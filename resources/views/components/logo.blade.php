@@ -4,11 +4,23 @@
     }
 
     .brand-logos-container {
-        max-width: 1440px;
+        max-width: 1280px;
         margin: 0 auto;
-        padding: 0 24px;
+        padding: 0 55px;
         box-sizing: border-box;
         overflow: hidden;
+    }
+
+    @media (max-width: 768px) {
+        .brand-logos-container {
+            padding: 0 20px;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .brand-logos-container {
+            padding: 0 16px;
+        }
     }
 
     .brand-logos-marquee {
@@ -28,7 +40,7 @@
         align-items: center;
         justify-content: center;
         gap: 40px;
-        padding: 5px 20px 20px 20px; /* Reduced top padding to move logos up */
+        padding: 5px 0 20px 0;
         min-height: 80px;
     }
 

@@ -97,10 +97,10 @@
         align-items: center;
         justify-content: center;
         gap: 5px;
-        background: linear-gradient(90deg, #AB5A5B 0%, #8D4445 100%);
+        background: var(--secondary-color, #FFB400);
         border: none;
         cursor: pointer;
-        color: #FFFFFF;
+        color: var(--primary-color, #0B2240);
         font-family: 'DM Sans', sans-serif;
         font-weight: 700;
         font-size: 16px;
@@ -112,7 +112,7 @@
     .faq-left-button:hover {
         opacity: 0.9;
         transform: translateY(-1px);
-        color: #FFFFFF;
+        color: var(--primary-color, #0B2240);
     }
 
     /* Right Accordion Column */
