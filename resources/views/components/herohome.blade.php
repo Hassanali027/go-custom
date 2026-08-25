@@ -3,11 +3,12 @@
         width: 100%;
         max-width: 100%;
         box-sizing: border-box;
-        background: var(--header-gradient, linear-gradient(278.74deg, #AB5A5B 0.2%, #8D4445 44.25%, #5B2829 88.3%));
-        color: #fff;
+        background: radial-gradient(circle at bottom left, rgba(255, 180, 0, 0.4) 0%, transparent 50%), radial-gradient(circle at top left, #FFFFFF 0%, #FFF8E7 25%, #FFE9C2 60%, #FFE0A6 100%);
+        color: #000;
         position: relative;
         overflow: hidden;
     }
+    
 
     .hero-bg-lines {
         position: absolute;
@@ -33,7 +34,7 @@
         position: absolute;
         width: 450px;
         height: 0;
-        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        border-top: 1px solid rgba(0, 0, 0, 0.05);
         transform-origin: left center;
         /* CSS uses the opposite visual direction to Figma's exported angle. */
         transform: rotate(52.86deg);
@@ -76,7 +77,7 @@
         line-height: 50px;
         letter-spacing: 0%;
        
-        color: #fff;
+        color: #000;
         margin-bottom: 14px;
         overflow-wrap: break-word;
     }
@@ -90,18 +91,20 @@
         font-family: 'DM Sans', sans-serif;
         font-size: 16px;
         line-height: 1.6;
-        color: rgba(255, 255, 255, 0.9);
+        color: #000;
         max-width: 510px;
         margin-bottom: 32px;
         font-weight: 300;
     }
 
     .hero-btn {
-        display: inline-block;
-        background: #fff;
+        display: inline-flex;
+        align-items: center;
+        background: var(--secondary-color);
         font-family: 'DM Sans', sans-serif;
-        color: var(--primary-color, #8D4445);
-        padding: 12px 20px;
+        color: var(--primary-color);
+        padding: 12px 24px;
+        box-shadow: 0px 15px 35px rgba(0, 0, 0, 0.15);
         font-size: 16px;
         font-weight: 700;
         border-radius: 4px;
@@ -110,7 +113,7 @@
     }
 
     .hero-btn:hover {
-        background: var(--secondary-color, #F8EEEC);
+        background: var(--primary-color); color: #fff;
         transform: translateY(-2px);
     }
 
@@ -223,14 +226,6 @@
 
 <!-- Hero Banner with gradient -->
 <div class="category-hero-wrapper">
-    <div class="hero-bg-lines">
-        <div class="hero-line hero-line-1" aria-hidden="true"></div>
-        <div class="hero-line hero-line-2" aria-hidden="true"></div>
-        <div class="hero-line hero-line-3" aria-hidden="true"></div>
-        <div class="hero-line hero-line-4" aria-hidden="true"></div>
-        <div class="hero-line hero-line-5" aria-hidden="true"></div>
-        <div class="hero-line hero-line-6" aria-hidden="true"></div>
-    </div>
 
 
     <section class="hero-section">
@@ -246,14 +241,14 @@
                     font-size: 14px;
                     text-transform: uppercase;
                     letter-spacing: 1px;
-                    color: rgba(255, 255, 255, 0.8);
+                    color: #000;
                 }
                 .hero-breadcrumb a {
                     color: inherit;
                     text-decoration: none;
                 }
                 .hero-breadcrumb a:hover {
-                    color: #fff;
+                    color: var(--primary-color);
                     text-decoration: none;
                 }
                 @media (max-width: 768px) {
@@ -289,7 +284,10 @@
                 {{ !empty($settings['hero_description']) ? $settings['hero_description'] : 'Crafted for prestige brands, our bespoke luxury boxes merge structural integrity with tactile sophistication. Redefining the unboxing experience through heritage craftsmanship and modern minimalism.' }}
             </p>
 
-            <a href="/request-quote/" class="hero-btn">Get Instant Quote</a>
+            <div class="hero-buttons" style="display: flex; gap: 16px; align-items: center;">
+                <a href="/request-quote/" class="hero-btn" style="display: inline-flex; align-items: center;">Get Instant Quote <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-left: 6px;"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a>
+                <a href="/shop/" class="hero-btn-outline" style="display: inline-block; padding: 11px 24px; font-family: 'DM Sans', sans-serif; font-size: 16px; font-weight: 700; color: var(--primary-color); border: 2px solid var(--primary-color); border-radius: 4px; text-decoration: none; transition: 0.3s;">Shop Now</a>
+            </div>
         </div>
 
         <div class="hero-image-wrapper">
@@ -301,3 +299,12 @@
         </div>
     </section>
 </div>
+
+
+
+
+
+
+
+
+
