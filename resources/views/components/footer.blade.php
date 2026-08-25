@@ -1,16 +1,35 @@
 <footer class="main-footer">
-    <!-- Newsletter Section -->
-    <div class="newsletter-section">
+    <!-- Top Cards Section -->
+    <div class="top-cards-section">
         <div class="container">
-            <div class="newsletter-content">
-                <div class="newsletter-text">
-                    <span class="newsletter-heading">Sign Up For Exclusive Offers<br>And Updates!</span>
+            <div class="top-cards-grid">
+                <div class="top-card">
+                    <div class="top-card-icon">
+                        <img src="{{ asset('images/contact-email.png') }}" alt="Email">
+                    </div>
+                    <div class="top-card-title">Get In Touch</div>
+                    <div class="top-card-text">
+                        support@gocustomboxes.com
+                    </div>
                 </div>
-                <form class="newsletter-form" action="{{ url('/submit-newsletter') }}" method="POST">
-                    @csrf
-                    <input type="email" name="email" placeholder="Email" class="newsletter-input" required>
-                    <button type="submit" class="newsletter-button">Subscribe</button>
-                </form>
+                <div class="top-card">
+                    <div class="top-card-icon">
+                        <img src="{{ asset('images/material-symbols_call-sharp.png') }}" alt="Phone">
+                    </div>
+                    <div class="top-card-title">Call Us</div>
+                    <div class="top-card-text">
+                        847-200-0971
+                    </div>
+                </div>
+                <div class="top-card">
+                    <div class="top-card-icon">
+                        <img src="{{ asset('images/contact-address.png') }}" alt="Address">
+                    </div>
+                    <div class="top-card-title">Address</div>
+                    <div class="top-card-text">
+                        1941 Waverly way Montgomery IL 60538
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -22,54 +41,19 @@
                 <!-- Brand Column -->
                 <div class="footer-column brand-column">
                     <div class="footer-logo">
-                        <img src="{{ asset('uploads/logo-rigid-boxes.svg') }}" alt="The Rigid Boxes Logo" class="logo-image">
+                        <img src="{{ asset('uploads/footer-logo (2).svg') }}" alt="Footer Logo" class="logo-image">
                     </div>
                     <p class="brand-description">
                         The Rigid Boxes is a leading custom packaging manufacturer, delivering premium boxes and packaging solutions tailored to your brand. From design to delivery, we ensure unmatched quality, style, and customer service.
                     </p>
-                    <div class="social-links">
-                        @if(!empty($siteSettings['social_facebook']))
-                        <a href="{{ $siteSettings['social_facebook'] }}" target="_blank" rel="noopener" class="social-icon" aria-label="Facebook">
-                            <img src="{{ asset('images/social-facebook.png') }}" alt="Facebook" class="social-icon-img" loading="lazy">
-                        </a>
-                        @endif
-                        
-                        @if(!empty($siteSettings['social_twitter']))
-                        <a href="{{ $siteSettings['social_twitter'] }}" target="_blank" rel="noopener" class="social-icon" aria-label="Twitter">
-                            <i class="fa-brands fa-x-twitter" style="color: white; font-size: 20px;"></i>
-                        </a>
-                        @endif
-                        
-                        @if(!empty($siteSettings['social_instagram']))
-                        <a href="{{ $siteSettings['social_instagram'] }}" target="_blank" rel="noopener" class="social-icon" aria-label="Instagram">
-                            <img src="{{ asset('images/social-instagram.png') }}" alt="Instagram" class="social-icon-img" loading="lazy">
-                        </a>
-                        @endif
-                        
-                        @if(!empty($siteSettings['social_linkedin']))
-                        <a href="{{ $siteSettings['social_linkedin'] }}" target="_blank" rel="noopener" class="social-icon" aria-label="LinkedIn">
-                            <img src="{{ asset('images/social-linkedin.png') }}" alt="LinkedIn" class="social-icon-img" loading="lazy">
-                        </a>
-                        @endif
-                        
-                        @if(!empty($siteSettings['social_pinterest']))
-                        <a href="{{ $siteSettings['social_pinterest'] }}" target="_blank" rel="noopener" class="social-icon" aria-label="Pinterest">
-                            <img src="{{ asset('images/bi_pinterest.png') }}" alt="Pinterest" class="social-icon-img" loading="lazy">
-                        </a>
-                        @endif
-                        
-                        @if(!empty($siteSettings['social_youtube']))
-                        <a href="{{ $siteSettings['social_youtube'] }}" target="_blank" rel="noopener" class="social-icon" aria-label="YouTube">
-                            <img src="{{ asset('images/social-youtube.png') }}" alt="YouTube" class="social-icon-img" loading="lazy">
-                        </a>
-                        @endif
-                    </div>
                 </div>
 
                 <!-- Categories Column -->
-                <div class="footer-column">
-                    <span class="footer-heading" style="display: block;">Categories</span>
-                    <ul class="footer-links">
+                <div class="footer-column mobile-accordion">
+                    <span class="footer-heading" onclick="this.parentElement.classList.toggle('open')" style="display: flex; justify-content: space-between; align-items: center; cursor: pointer;">
+                        Categories <span class="toggle-icon">+</span>
+                    </span>
+                    <ul class="footer-links accordion-content">
                         @php
                             $footerCatIds = $siteSettings['footer_categories'] ?? [];
                             $footerCats = [];
@@ -94,9 +78,11 @@
                 </div>
 
                 <!-- Quick Links Column -->
-                <div class="footer-column">
-                    <span class="footer-heading" style="display: block;">Quick Links</span>
-                    <ul class="footer-links">
+                <div class="footer-column mobile-accordion">
+                    <span class="footer-heading" onclick="this.parentElement.classList.toggle('open')" style="display: flex; justify-content: space-between; align-items: center; cursor: pointer;">
+                        Quick Links <span class="toggle-icon">+</span>
+                    </span>
+                    <ul class="footer-links accordion-content">
                         @php
                             $quickLinks = $siteSettings['footer_quick_links'] ?? [];
                         @endphp
@@ -114,33 +100,71 @@
                     </ul>
                 </div>
 
-                <!-- Company Info Column -->
-                <div class="footer-column">
-                    <span class="footer-heading" style="display: block;">Company Info</span>
-                    <ul class="footer-contact">
-                        <li class="contact-item">
-                            <img src="{{ asset('images/contact-email.png') }}" alt="Email" class="contact-icon">
-                            <a href="mailto:{{ $siteSettings['company_email'] ?? 'example@gmail.com' }}">{{ $siteSettings['company_email'] ?? 'example@gmail.com' }}</a>
-                        </li>
-                        <li class="contact-item">
-                            <img src="{{ asset('images/material-symbols_call-sharp.png') }}" alt="Phone" class="contact-icon">
-                            <a href="tel:{{ $siteSettings['company_phone'] ?? '1800-315-8441' }}">{{ $siteSettings['company_phone'] ?? '1800-315-8441' }}</a>
-                        </li>
-                        <li class="contact-item">
-                            <img src="{{ asset('images/contact-address.png') }}" alt="Address" class="contact-icon">
-                            <span>{!! $siteSettings['company_address'] ?? '4000 N Montrose Ave<br>550 Chicago, IL 60641' !!}</span>
-                        </li>
+                <!-- Policy Column -->
+                <div class="footer-column mobile-accordion">
+                    <span class="footer-heading" onclick="this.parentElement.classList.toggle('open')" style="display: flex; justify-content: space-between; align-items: center; cursor: pointer;">
+                        Policy <span class="toggle-icon">+</span>
+                    </span>
+                    <ul class="footer-links accordion-content">
+                        <li><a href="/privacy-policy/">Privacy Policy</a></li>
+                        <li><a href="/terms-and-conditions/">Terms & Conditions</a></li>
+                        <li><a href="/refund-policy/">Refund Policy</a></li>
                     </ul>
+                    
+                    <div class="desktop-social-section" style="margin-top: 63px;">
+                        <span class="footer-heading" style="display: block; margin-bottom: 20px;">Follow Us</span>
+                        <div class="social-links desktop-social-links" style="display: flex; justify-content: flex-start; gap: 15px;">
+                            <a href="{{ $siteSettings['social_facebook'] ?? '#' }}" target="_blank" rel="noopener" class="social-icon" aria-label="Facebook">
+                                <img src="{{ asset('images/social-facebook.png') }}" alt="Facebook" class="social-icon-img" loading="lazy">
+                            </a>
+                            
+                            <a href="{{ $siteSettings['social_instagram'] ?? '#' }}" target="_blank" rel="noopener" class="social-icon" aria-label="Instagram">
+                                <img src="{{ asset('images/social-instagram.png') }}" alt="Instagram" class="social-icon-img" loading="lazy">
+                            </a>
+                            
+                            <a href="{{ $siteSettings['social_linkedin'] ?? '#' }}" target="_blank" rel="noopener" class="social-icon" aria-label="LinkedIn">
+                                <img src="{{ asset('images/social-linkedin.png') }}" alt="LinkedIn" class="social-icon-img" loading="lazy">
+                            </a>
+                            
+                            <a href="{{ $siteSettings['social_pinterest'] ?? '#' }}" target="_blank" rel="noopener" class="social-icon" aria-label="Pinterest">
+                                <img src="{{ asset('images/bi_pinterest.png') }}" alt="Pinterest" class="social-icon-img" loading="lazy">
+                            </a>
+                            
+                            <a href="{{ $siteSettings['social_youtube'] ?? '#' }}" target="_blank" rel="noopener" class="social-icon" aria-label="YouTube">
+                                <img src="{{ asset('images/social-youtube.png') }}" alt="YouTube" class="social-icon-img" loading="lazy">
+                            </a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Footer Bottom -->
     <div class="footer-bottom">
         <div class="container">
             <div class="footer-bottom-content">
-                <p class="copyright">© 2026 The Rigid Boxes. All rights reserved.</p>
+                <div class="social-links mobile-social-links">
+                    <a href="{{ $siteSettings['social_facebook'] ?? '#' }}" target="_blank" rel="noopener" class="social-icon" aria-label="Facebook">
+                        <img src="{{ asset('images/social-facebook.png') }}" alt="Facebook" class="social-icon-img" loading="lazy">
+                    </a>
+                    
+                    <a href="{{ $siteSettings['social_instagram'] ?? '#' }}" target="_blank" rel="noopener" class="social-icon" aria-label="Instagram">
+                        <img src="{{ asset('images/social-instagram.png') }}" alt="Instagram" class="social-icon-img" loading="lazy">
+                    </a>
+                    
+                    <a href="{{ $siteSettings['social_linkedin'] ?? '#' }}" target="_blank" rel="noopener" class="social-icon" aria-label="LinkedIn">
+                        <img src="{{ asset('images/social-linkedin.png') }}" alt="LinkedIn" class="social-icon-img" loading="lazy">
+                    </a>
+                    
+                    <a href="{{ $siteSettings['social_pinterest'] ?? '#' }}" target="_blank" rel="noopener" class="social-icon" aria-label="Pinterest">
+                        <img src="{{ asset('images/bi_pinterest.png') }}" alt="Pinterest" class="social-icon-img" loading="lazy">
+                    </a>
+                    
+                    <a href="{{ $siteSettings['social_youtube'] ?? '#' }}" target="_blank" rel="noopener" class="social-icon" aria-label="YouTube">
+                        <img src="{{ asset('images/social-youtube.png') }}" alt="YouTube" class="social-icon-img" loading="lazy">
+                    </a>
+                </div>
+                <p class="copyright">© 2026 Go Custom Boxes. All rights reserved.</p>
                 <div class="payment-methods">
                     <img src="{{ asset('images/Group 1000006247.png') }}" alt="Payment Methods" class="payment-group">
                 </div>
