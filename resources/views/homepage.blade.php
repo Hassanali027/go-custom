@@ -249,8 +249,8 @@
             justify-content: center;
             width: 200px;
             height: 46px;
-            background: #8D4445;
-            color: #fff;
+            background: var(--secondary-color);
+            color: var(--primary-color);
             font-family: 'DM Sans', sans-serif;
             font-weight: 700;
             font-size: 16px;
@@ -261,13 +261,13 @@
             padding: 12px 20px;
             gap: 10px;
             cursor: pointer;
-            transition: background 0.25s;
+            transition: background 0.25s, color 0.25s;
             border: none;
         }
 
         .view-all-btn:hover {
-            background: #5F2D2F;
-            color: #fff;
+            background: #e6a200; /* Slightly darker shade of secondary color (#FFB400) */
+            color: var(--primary-color);
         }
 
         /* ─────────────────────────────────────────
