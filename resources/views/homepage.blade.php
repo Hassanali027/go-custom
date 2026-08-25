@@ -2357,11 +2357,6 @@
                     @endforeach
                 </div><!-- /.cards-grid -->
 
-                <!-- View All Categories Button -->
-                <div class="view-all-wrap">
-                    <a href="{{ url('/box-by-industry') }}/" class="view-all-btn">View All Categories</a>
-                </div>
-
             </div><!-- /.custom-boxes-container -->
         </section>
 

@@ -62,41 +62,12 @@ Route::get('/search', function (\Illuminate\Http\Request $request) {
 
 
 
-Route::get('/all-category/{slug}', function (string $slug) {
-    return redirect('/' . $slug, 301);
-});
-
 Route::get('/product', function () {
     return redirect('/', 301);
 });
 Route::get('/product/{slug}', function ($slug) {
     return redirect('/' . $slug, 301);
 });
-
-/* Parent-category landing pages use clean root-level URLs without a route catch-all. */
-$parentCategoryLanding = function (string $slug) {
-    $parentCategory = DB::table('admin_categories')
-        ->where('slug', $slug)
-        ->whereNull('parent_id')
-        ->first();
-
-    abort_unless($parentCategory, 404);
-
-    $categories = DB::table('admin_categories')
-        ->where('parent_id', $parentCategory->id)
-        ->get()
-        ->map(fn($r) => (array) $r)
-        ->all();
-
-    return view('all-category', [
-        'categories' => $categories,
-        'parentCategory' => (array) $parentCategory,
-    ]);
-};
-
-Route::get('/box-by-industry', fn () => $parentCategoryLanding('box-by-industry'));
-Route::get('/box-by-material', fn () => $parentCategoryLanding('box-by-material'));
-Route::get('/box-by-style', fn () => $parentCategoryLanding('box-by-style'));
 
 Route::get('/contact-us/', function () {
     return view('contact');

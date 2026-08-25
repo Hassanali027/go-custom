@@ -757,7 +757,7 @@
             <li><a href="/" style="color: var(--primary-color); text-decoration: none; font-weight: 700; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 15px;">Home</a></li>
             @foreach($navParentItems as $navParent)
             <li class="has-mega" data-mega-type="{{ $navParent['slug'] }}">
-                <a href="{{ url('/' . $navParent['slug']) }}/" class="mega-trigger" style="color: var(--primary-color); text-decoration: none; font-weight: 700; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 15px;">{{ $navParent['title'] }}</a>
+                <a href="#" class="mega-trigger" aria-haspopup="true" onclick="event.preventDefault();" style="color: var(--primary-color); text-decoration: none; font-weight: 700; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 15px;">{{ $navParent['title'] }}</a>
             </li>
             @endforeach
             <li><a href="/resources/" style="color: var(--primary-color); text-decoration: none; font-weight: 700; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 15px;">Resources</a></li>
@@ -838,7 +838,7 @@
                     @if(count($children) > 0)
                         <li class="mobile-nav-item has-dropdown">
                             <div class="mobile-nav-header" onclick="this.parentElement.classList.toggle('open')">
-                                <a href="{{ url('/' . $navParent['slug']) }}/" class="mobile-nav-link-top" onclick="event.stopPropagation();">{{ $navParent['title'] }}</a>
+                                <a href="#" class="mobile-nav-link-top" onclick="event.preventDefault(); event.stopPropagation(); this.parentElement.parentElement.classList.toggle('open');">{{ $navParent['title'] }}</a>
                                 <button type="button" class="mobile-dropdown-toggle" aria-label="Toggle {{ $navParent['title'] }} dropdown">
                                     <svg class="chevron-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
                                         <polyline points="6 9 12 15 18 9"></polyline>
@@ -856,7 +856,7 @@
                     @else
                         <li class="mobile-nav-item">
                             <div class="mobile-nav-header">
-                                <a href="{{ url('/' . $navParent['slug']) }}/" class="mobile-nav-link-top">{{ $navParent['title'] }}</a>
+                                <a href="#" class="mobile-nav-link-top" onclick="event.preventDefault();">{{ $navParent['title'] }}</a>
                             </div>
                         </li>
                     @endif
