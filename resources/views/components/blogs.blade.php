@@ -43,8 +43,8 @@
         display: inline-flex;
         align-items: center;
         justify-content: center;
-        background: var(--primary-color, #8D4445);
-        color: #fff;
+        background: var(--secondary-color, #FFB400);
+        color: var(--primary-color, #0B2240);
         font-weight: 700;
         font-size: 16px;
         padding: 12px 28px;
@@ -56,8 +56,8 @@
     }
 
     .view-all-blogs-btn:hover {
-        background: #5F2D2F;
-        color: #fff;
+        background: #e6a200;
+        color: var(--primary-color, #0B2240);
     }
 
     .mobile-btn-wrap {

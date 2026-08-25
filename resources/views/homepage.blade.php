@@ -2670,11 +2670,10 @@ From customized dimensions to box style, color, interior, layout and refined fin
             </div><!-- /.sustainable-inner -->
         </section>
 
-        @include('components.testimonal')
+        @include('components.testimonials_faq')
         @include('components.customquote')
         @include('components.content')
         @include('components.blogs')
-        @include('components.faq')
     </main>
 
     @include('components.footer')

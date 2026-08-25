@@ -9,6 +9,7 @@
         --header-bg: #FFFFFF;
         --topbar-bg: #0B2240;
         --section-text-color: #000000;
+        --section-background: #FFFBF0;
         --heading-h1-size: 32px;
         --heading-h2-size: 28px;
         --heading-h3-size: 24px;

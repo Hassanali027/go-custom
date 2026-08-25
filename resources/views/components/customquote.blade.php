@@ -1,22 +1,11 @@
 <style>
     .quote-section {
-        background: var(--primary-color);
+        background: #FFFFFF;
         width: 100%;
-        padding: 20px 0 54px;
+        padding: 0 0 60px 0 !important;
+        margin-top: 0 !important;
         font-family: 'DM Sans', sans-serif;
         position: relative;
-        overflow: hidden;
-        margin-top: 20px;
-    }
-    
-    /* Remove number input spinners */
-    input[type=number]::-webkit-inner-spin-button, 
-    input[type=number]::-webkit-outer-spin-button { 
-        -webkit-appearance: none; 
-        margin: 0; 
-    }
-    input[type=number] {
-        -moz-appearance: textfield;
     }
 
     .quote-container {
@@ -26,683 +15,410 @@
         box-sizing: border-box;
         display: flex;
         align-items: stretch;
-        gap: 40px;
-        position: relative;
-        z-index: 2;
+        gap: 60px;
     }
 
-    /* ── Left column: form card ── */
+    /* ── Left column: Form Card ── */
     .quote-form-card {
-        width: 739px;
-        min-height: 712px;
+        width: 780px;
         flex-shrink: 0;
-        background: #fff;
-        border-radius: 20px;
-        border: 1px solid rgba(255, 255, 255, 0.3);
-        padding: 46px 46px 46px 46px;
+        background: var(--primary-color, #0B2240);
+        border-radius: 12px;
+        padding: 40px;
         box-sizing: border-box;
+        color: #FFFFFF;
     }
 
     .quote-form-title {
         font-family: 'Open Sans', sans-serif;
-        font-size: 32px;
-        font-weight: 800;
-        color: var(--section-text-color);
-        text-align: center;
-        margin-bottom: 28px;
-    }
-
-    /* Section labels */
-    .form-section-label {
-        font-family: 'Open Sans', sans-serif;
+        font-size: 24px;
         font-weight: 700;
-        font-size: 15px;
-        color: var(--primary-color);
-        margin-bottom: 10px;
-        margin-top: 22px;
-    }
-    .form-section-label:first-of-type {
+        color: #FFFFFF;
+        text-align: center;
+        margin-bottom: 30px;
         margin-top: 0;
     }
 
-    /* Input rows */
-    .form-row {
+    /* Form grid system */
+    .qf-grid-3 {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+        margin-bottom: 20px;
+    }
+
+    .qf-grid-4 {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        gap: 20px;
+        margin-bottom: 20px;
+    }
+
+    .qf-grid-2 {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+        margin-bottom: 20px;
+    }
+
+    .qf-group {
         display: flex;
-        gap: 12px;
-        width: 100%;
-        box-sizing: border-box;
+        flex-direction: column;
+        gap: 8px;
     }
 
-    .form-row input,
-    .form-row select,
-    .form-row textarea {
-        flex: 1;
-        min-width: 0;
-        height: 44px;
-        border: 1px solid var(--primary-color);
+    .qf-group label {
+        font-size: 13px;
+        font-weight: 500;
+        color: #FFFFFF;
+    }
+
+    .qf-group input,
+    .qf-group select,
+    .qf-group textarea {
+        background: transparent;
+        border: 1px solid rgba(255, 255, 255, 0.2);
         border-radius: 6px;
-        padding: 0 14px;
+        color: #FFFFFF;
         font-family: 'DM Sans', sans-serif;
         font-size: 14px;
-        color: #333;
-        background: #FAFAFA;
+        padding: 0 12px;
+        height: 44px;
         outline: none;
         transition: border-color 0.2s;
-        box-sizing: border-box;
-        appearance: none;
-        -webkit-appearance: none;
-        scroll-margin-top: 180px;
-    }
-
-    .form-row input::placeholder,
-    .form-row textarea::placeholder {
-        color: #AAAAAA;
-    }
-    .form-row input:focus,
-    .form-row select:focus,
-    .form-row textarea:focus {
-        border-color: var(--primary-color);
-        background: #fff;
-    }
-
-    /* Select with custom arrow */
-    .select-wrapper {
-        flex: 1;
-        min-width: 0;
-        position: relative;
-    }
-
-    .select-wrapper select {
-        width: 100%;
-        min-width: 0;
-        height: 44px;
-        border: 1px solid var(--primary-color);
-        border-radius: 6px;
-        padding: 0 36px 0 14px;
-        font-family: 'DM Sans', sans-serif;
-        font-size: 14px;
-        color: #333;
-        background: #FAFAFA;
-        outline: none;
-        cursor: pointer;
-        transition: border-color 0.2s;
-        box-sizing: border-box;
-        appearance: none;
-        -webkit-appearance: none;
-        scroll-margin-top: 180px;
-    }
-    .select-wrapper select option:checked {
-        background: var(--primary-color) linear-gradient(0deg, var(--primary-color) 0%, var(--primary-color) 100%);
-        color: #fff;
-    }
-    .pref-input {
-        width: 100%;
-        min-width: 0;
-        height: 44px;
-        border: 1px solid var(--primary-color);
-        border-radius: 6px;
-        padding: 0 14px;
-        font-family: 'DM Sans', sans-serif;
-        font-size: 14px;
-        color: #333;
-        background: #FAFAFA;
-        outline: none;
-        transition: border-color 0.2s;
-        box-sizing: border-box;
-        scroll-margin-top: 180px;
-    }
-    .pref-input:focus {
-        border-color: var(--primary-color);
-        background: #fff;
-    }
-
-    .select-wrapper::after {
-        content: '';
-        position: absolute;
-        right: 14px;
-        top: 50%;
-        transform: translateY(-50%);
-        width: 0;
-        height: 0;
-        border-left: 5px solid transparent;
-        border-right: 5px solid transparent;
-        border-top: 6px solid #666;
-        pointer-events: none;
-    }
-
-    /* Box specs row: Width, Length, Depth + unit dropdown */
-    .specs-row {
-        display: flex;
-        gap: 12px;
-        width: 100%;
-        box-sizing: border-box;
-    }
-
-    .specs-row input {
-        flex: 1;
-        min-width: 0;
-        height: 44px;
-        border: 1px solid var(--primary-color);
-        border-radius: 6px;
-        padding: 0 14px;
-        font-family: 'DM Sans', sans-serif;
-        font-size: 14px;
-        color: #333;
-        background: #FAFAFA;
-        outline: none;
-        transition: border-color 0.2s;
-        box-sizing: border-box;
-        scroll-margin-top: 180px;
-    }
-
-    .specs-row input::placeholder {
-        color: #AAAAAA;
-    }
-
-    .specs-row input:focus {
-        border-color: var(--primary-color);
-        background: #fff;
-    }
-
-    .specs-unit {
-        position: relative;
-        width: 72px;
-        flex-shrink: 0;
-    }
-
-    .specs-unit select {
-        width: 100%;
-        height: 44px;
-        border: 1px solid var(--primary-color);
-        border-radius: 6px;
-        padding: 0 24px 0 10px;
-        font-family: 'DM Sans', sans-serif;
-        font-size: 14px;
-        color: #333;
-        background: #FAFAFA;
-        outline: none;
-        cursor: pointer;
-        appearance: none;
-        -webkit-appearance: none;
-        box-sizing: border-box;
-        scroll-margin-top: 180px;
     }
     
-    .specs-unit select option:checked {
-        background: var(--primary-color) linear-gradient(0deg, var(--primary-color) 0%, var(--primary-color) 100%);
-        color: #fff;
+    .qf-group select {
+        appearance: none;
+        -webkit-appearance: none;
+        background-image: url('data:image/svg+xml;utf8,<svg fill="white" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/></svg>');
+        background-repeat: no-repeat;
+        background-position: right 8px center;
     }
 
-    .specs-unit::after {
-        content: '';
-        position: absolute;
-        right: 8px;
-        top: 50%;
-        transform: translateY(-50%);
-        width: 0;
-        height: 0;
-        border-left: 4px solid transparent;
-        border-right: 4px solid transparent;
-        border-top: 5px solid #666;
-        pointer-events: none;
+    .qf-group select option {
+        background: var(--primary-color, #0B2240);
+        color: #FFFFFF;
     }
 
-    .preferences-grid {
-        display: grid;
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-        gap: 12px;
-        width: 100%;
+    .qf-group input::placeholder,
+    .qf-group textarea::placeholder {
+        color: rgba(255, 255, 255, 0.4);
     }
 
-    /* Textarea row */
-    .textarea-row {
-        width: 100%;
+    .qf-group input:focus,
+    .qf-group select:focus,
+    .qf-group textarea:focus {
+        border-color: var(--secondary-color, #FFB400);
     }
 
-    .textarea-row textarea {
-        width: 100%;
-        height: 128px;
-        border: 1px solid var(--primary-color);
-        border-radius: 8px;
-        padding: 12px 14px;
-        font-family: 'DM Sans', sans-serif;
-        font-size: 14px;
-        color: #333;
-        background: #FAFAFA;
-        outline: none;
+    .qf-group textarea {
+        height: auto;
+        min-height: 80px;
+        padding: 12px;
         resize: vertical;
-        transition: border-color 0.2s;
-        box-sizing: border-box;
-        scroll-margin-top: 180px;
     }
 
-    .textarea-row textarea::placeholder {
-        color: #AAAAAA;
-    }
-
-    .textarea-row textarea:focus {
-        border-color:0.4px var(--primary-color);
-        background: #fff;
-    }
-
-    /* Submit button */
-    .quote-btn-wrap {
+    /* Custom File Upload */
+    .qf-file-wrap {
         display: flex;
-        justify-content: center;
+        align-items: center;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 6px;
+        overflow: hidden;
+        height: 44px;
+    }
+
+    .qf-file-wrap input[type="text"] {
+        flex: 1;
+        border: none;
+        background: transparent;
+        color: rgba(255, 255, 255, 0.4);
+        padding: 0 12px;
+        font-size: 14px;
+        height: 100%;
+        outline: none;
+    }
+
+    .qf-file-btn {
+        background: var(--secondary-color, #FFB400);
+        color: var(--primary-color, #0B2240);
+        border: none;
+        height: 100%;
+        padding: 0 20px;
+        font-weight: 600;
+        font-size: 14px;
+        cursor: pointer;
+        transition: opacity 0.2s;
+    }
+
+    .qf-file-btn:hover {
+        opacity: 0.9;
+    }
+
+    .qf-submit-btn {
+        background: var(--secondary-color, #FFB400);
+        color: var(--primary-color, #0B2240);
+        border: none;
+        border-radius: 6px;
+        padding: 14px 40px;
+        font-size: 16px;
+        font-weight: 700;
+        font-family: 'Open Sans', sans-serif;
+        width: 100%;
+        max-width: 320px;
+        margin: 0 auto;
+        display: block;
+        cursor: pointer;
+        transition: transform 0.2s;
         margin-top: 24px;
     }
 
-    .quote-submit-btn {
-        width: 284px;
-        height: 50px;
-        background: var(--primary-color);
-        color: #fff;
-        border: none;
-        border-radius: 4px;
-        padding: 12px 20px;
-        font-family: 'Open Sans', sans-serif;
-        font-size: 16px;
-        font-weight: 700;
-        cursor: pointer;
-        transition: opacity 0.2s;
-        letter-spacing: 0.3px;
+    .qf-submit-btn:hover {
+        transform: translateY(-2px);
     }
 
-    .quote-submit-btn:hover {
-        opacity: 0.88;
-    }
-
-    /* ── Right column: steps ── */
-    .quote-steps {
+    /* ── Right column: Features ── */
+    .quote-features {
         flex: 1;
-        padding-top: 57px;
         display: flex;
         flex-direction: column;
-        position: relative;
+        justify-content: center;
+        gap: 40px;
     }
 
-    .quote-step {
+    .qf-feature {
         display: flex;
+        flex-direction: column;
         align-items: flex-start;
-        gap: 14px;
-        /* padding-bottom removed */
-        position: relative;
+        gap: 12px;
     }
 
-    .quote-step:not(:last-child) {
-        flex-grow: 1;
-        padding-bottom: 40px;
-    }
-
-    .quote-step:not(:last-child)::before {
-        content: '';
-        position: absolute;
-        left: 36px;
-        top: 73px;
-        bottom: 0;
-        width: 1px;
-        background: rgba(255, 255, 255, 0.15);
-        z-index: 0;
-    }
-
-    /* Vertical connecting line through all steps */
-    .quote-steps-inner {
-        position: relative;
-        display: flex;
-        flex-direction: column;
-        height: 100%;
-    }
-
-    .step-number-block {
-        position: relative;
+    .qf-feature-icon {
+        width: 63px;
+        height: 63px;
         flex-shrink: 0;
-        width: 117px;
-    }
-
-    /* White box with step number */
-    .step-num-box {
-        width: 73.33px;
-        height: 73.33px;
-        angle: 0 deg;
-          opacity: 1;
-           background: #fff;
-        border-radius: 4px;
         display: flex;
         align-items: center;
         justify-content: center;
-        font-family: 'Open Sans', sans-serif;
-        font-size: 16px;
-        font-weight: 700;
-        color: var(--primary-color);
-        position: relative;
-        z-index: 2;
-        flex-shrink: 0;
+    }
+    
+    .qf-feature-icon img, .qf-feature-icon svg {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
     }
 
-    /* Ghost number — sits directly behind the box, slightly to the right */
-    .step-ghost-num {
-        position: absolute;
-        left: 85px;
-        top: -12px;
-        font-family: 'Open Sans', sans-serif;
-        font-size: 80px;
-        font-weight: 900;
-        color: rgba(255, 255, 255, 0.15);
-        line-height: 1;
-        pointer-events: none;
-        z-index: 1;
-        user-select: none;
-    }
-
-    .step-text {
-        flex: 1;
-        padding-top: 6px;
-    }
-
-    .step-title {
+    .qf-feature-text h3 {
         font-family: 'Open Sans', sans-serif;
         font-size: 18px;
-        font-weight: 800;
-        color: #fff;
-        text-transform: uppercase;
-        letter-spacing: 0.5px;
-        margin-bottom: 10px;
+        font-weight: 700;
+        color: var(--primary-color, #0B2240);
+        margin: 0 0 4px 0;
     }
 
-    .step-desc {
-        font-family: 'DM Sans', sans-serif;
+    .qf-feature-text p {
         font-size: 14px;
-        line-height: 1.6;
-        color: rgba(255, 255, 255, 0.75);
+        color: #666666;
+        margin: 0;
+        line-height: 1.5;
     }
 
-    /* ── Responsive ── */
-    @media (max-width: 1280px) {
+    @media (max-width: 1100px) {
         .quote-container {
-            padding: 0 24px;
+            flex-direction: column;
+            align-items: center;
+            gap: 40px;
+        }
+        .quote-form-card {
+            width: 100%;
+            max-width: 780px;
+        }
+        .quote-features {
+            width: 100%;
+            max-width: 780px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
             gap: 30px;
         }
-        .quote-form-card {
-            width: 600px;
-        }
-        .quote-steps {
-            width: auto;
-            flex: 1;
-        }
     }
 
-    @media (max-width: 992px) {
+    @media (max-width: 768px) {
         .quote-section {
-            padding: 40px 0 50px;
-            margin-top: 0;
-        }
-        .quote-container {
-            flex-direction: column-reverse;
-            padding: 0 24px;
-            align-items: stretch;
+            padding: 40px 0;
         }
         .quote-form-card {
-            width: 100%;
-            min-height: unset;
+            padding: 24px;
         }
-        .quote-steps {
-            width: 100%;
-            padding-top: 0;
-            padding-bottom: 0;
+        .qf-grid-3, .qf-grid-4, .qf-grid-2 {
+            grid-template-columns: 1fr;
+            gap: 16px;
         }
-        .quote-steps-inner {
-            height: auto;
-        }
-        .quote-step {
-            padding-bottom: 28px;
+        .quote-features {
+            grid-template-columns: 1fr;
         }
     }
-
-    @media (max-width: 576px) {
-        .quote-section {
-            padding: 30px 0;
-        }
-        .quote-container {
-            gap:20px;
-            padding: 0 20px;
-        }
-        .quote-form-card {
-            padding: 10px 14px 16px;
-            border-radius: 18px;
-        }
-        .quote-form-title {
-            font-size: 19px;
-            line-height: 1.3;
-            margin: 0 0 10px;
-        }
-        .form-section-label {
-            font-size: 14px;
-            margin: 11px 0 8px;
-        }
-        .form-row {
-            flex-direction: column;
-            gap: 11px;
-        }
-        .form-row input,
-        .textarea-row textarea {
-            width: 100%;
-        }
-        .specs-row {
-            display: grid;
-            grid-template-columns: repeat(2, minmax(0, 1fr));
-            gap: 11px 8px;
-        }
-        .specs-row input,
-        .specs-unit {
-            width: 100%;
-        }
-        .preferences-grid {
-            grid-template-columns: repeat(2, minmax(0, 1fr));
-            gap: 11px 8px;
-        }
-        .form-row input,
-        .form-row select,
-        .specs-row input,
-        .specs-unit select,
-        .preferences-grid select,
-        .pref-input {
-            height: 37px;
-            padding-left: 12px;
-            font-size: 12px;
-        }
-        .form-row input,
-        .form-row select,
-        .form-row textarea {
-            flex: 0 0 37px;
-        }
-        .specs-unit,
-        .select-wrapper {
-            width: 100%;
-        }
-        .select-wrapper::after {
-            right: 10px;
-        }
-        .textarea-row textarea {
-            height: 66px;
-            padding: 11px 12px;
-            font-size: 12px;
-        }
-        .quote-btn-wrap {
-            margin-top: 13px;
-        }
-        .quote-submit-btn {
-            width: 90%;
-            height: 38px;
-            font-size: 13px;
-        }
-        .step-title {
-            font-size: 16px;
-        }
-        .step-ghost-num {
-            font-size: 64px;
-        }
-    }</style>
+</style>
 
 <section class="quote-section">
     <div class="quote-container">
 
         <!-- Left: Form Card -->
         <div class="quote-form-card">
-            <form action="{{ url('/submit-quote') }}" method="POST">
-                @csrf
-
             <h2 class="quote-form-title">Get Custom Quote</h2>
 
-            <!-- Contact Information -->
-            <p class="form-section-label">Contact Information</p>
-            <div class="form-row">
-                <input type="text" name="name" placeholder="Enter your name" oninput="this.value = this.value.replace(/[^a-zA-Z\s]/g, '')" required>
-                <input type="email" name="email" placeholder="Enter your email" required>
-                <input type="tel" name="phone" placeholder="Enter your number" oninput="this.value = this.value.replace(/[^0-9+\-\s()]/g, '')" required>
-            </div>
+            @if(session('success'))
+                <div style="background-color: #d4edda; color: #155724; padding: 10px; border-radius: 5px; margin-bottom: 20px; font-size: 14px;">
+                    {{ session('success') }}
+                </div>
+            @endif
 
-            <!-- Box Specifications -->
-            <p class="form-section-label">Box Specifications</p>
-            <div class="specs-row">
-                <input type="number" name="width" placeholder="Width" oninput="this.value = this.value.replace(/[^0-9.]/g, '')" required>
-                <input type="number" name="length" placeholder="Length" oninput="this.value = this.value.replace(/[^0-9.]/g, '')" required>
-                <input type="number" name="depth" placeholder="Depth" oninput="this.value = this.value.replace(/[^0-9.]/g, '')" required>
-                <div class="specs-unit">
-                    <select name="units" required>
-                        <option value="mm">mm</option>
-                        <option value="cm">cm</option>
-                        <option value="in">in</option>
-                    </select>
-                </div>
-            </div>
+            <form action="{{ url('/submit-quote') }}" method="POST" enctype="multipart/form-data">
+                @csrf
 
-            <!-- Packaging Preferences -->
-            <p class="form-section-label">Packaging Preferences</p>
-            <div class="preferences-grid">
-                <div class="select-wrapper">
-                    @php
-                        $boxStyleParent = \Illuminate\Support\Facades\DB::table('admin_categories')->where('slug', 'box-by-style')->first();
-                        $boxStyles = $boxStyleParent ? \Illuminate\Support\Facades\DB::table('admin_categories')->where('parent_id', $boxStyleParent->id)->get() : [];
-                    @endphp
-                    <select name="box_style">
-                        <option value="" disabled selected>Box Style</option>
-                        @foreach($boxStyles as $style)
-                            <option value="{{ $style->title }}">{{ $style->title }}</option>
-                        @endforeach
-                    </select>
+                <!-- Row 1: Name, Email, Phone -->
+                <div class="qf-grid-3">
+                    <div class="qf-group">
+                        <label>Name *</label>
+                        <input type="text" name="name" placeholder="Enter your name" oninput="this.value = this.value.replace(/[^a-zA-Z\s]/g, '')" required>
+                    </div>
+                    <div class="qf-group">
+                        <label>Email Address *</label>
+                        <input type="email" name="email" placeholder="Enter your email" required>
+                    </div>
+                    <div class="qf-group">
+                        <label>Phone *</label>
+                        <input type="tel" name="phone" placeholder="Enter your number" oninput="this.value = this.value.replace(/[^0-9+\-\s()]/g, '')" required>
+                    </div>
                 </div>
-                <div class="select-wrapper">
-                    <select name="material">
-                        <option value="" disabled selected>Paper Stock</option>
-                        <option>12pt Cardboard Stock</option>
-                        <option>14pt Cardboard Stock</option>
-                        <option>16pt Cardboard Stock</option>
-                        <option>18pt Cardboard Stock</option>
-                        <option>20pt Cardboard Stock</option>
-                        <option>22pt Cardboard Stock</option>
-                        <option>24pt Cardboard Stock</option>
-                        <option>Kraft Stock</option>
-                        <option>Recycled BuxBoard</option>
-                        <option>Corrugated Stock</option>
-                        <option>No Printing Required</option>
-                    </select>
-                </div>
-                <div class="select-wrapper">
-                    <select name="color">
-                        <option value="" disabled selected>Color</option>
-                        <option>1 color</option>
-                        <option>2 color</option>
-                        <option>3 color</option>
-                        <option>4 color</option>
-                        <option>4/1 color</option>
-                        <option>4/2 color</option>
-                        <option>4/3 color</option>
-                        <option>4/4 color</option>
-                    </select>
-                </div>
-                <div class="select-wrapper">
-                    <select name="paper_coating">
-                        <option value="" disabled selected>Paper Coating</option>
-                        <option>Aqueous Coating</option>
-                        <option>Semi Gloss</option>
-                        <option>Gloss UV</option>
-                        <option>Matte UV</option>
-                        <option>Semi Matte</option>
-                    </select>
-                </div>
-                <div class="select-wrapper">
-                    <select name="cad_sample">
-                        <option value="" disabled selected>CAD Sample</option>
-                        <option value="Yes">Yes</option>
-                        <option value="No">No</option>
-                    </select>
-                </div>
-                <div class="pref-input-wrapper">
-                    <input type="number" name="quantity" class="pref-input" placeholder="Quantity" oninput="this.value = this.value.replace(/[^0-9]/g, '')" required>
-                </div>
-            </div>
 
-            <!-- Additional Details -->
-            <p class="form-section-label">Additional Details</p>
-            <div class="textarea-row">
-                <textarea name="message" placeholder="Enter your message"></textarea>
-            </div>
+                <!-- Row 2: Dimensions -->
+                <div class="qf-grid-4">
+                    <div class="qf-group">
+                        <label>Width *</label>
+                        <input type="text" name="width" placeholder="Width" oninput="this.value = this.value.replace(/[^0-9.]/g, '')" required>
+                    </div>
+                    <div class="qf-group">
+                        <label>Length *</label>
+                        <input type="text" name="length" placeholder="Length" oninput="this.value = this.value.replace(/[^0-9.]/g, '')" required>
+                    </div>
+                    <div class="qf-group">
+                        <label>Depth *</label>
+                        <input type="text" name="depth" placeholder="Depth" oninput="this.value = this.value.replace(/[^0-9.]/g, '')" required>
+                    </div>
+                    <div class="qf-group">
+                        <label>Unit *</label>
+                        <select name="units" required>
+                            <option value="mm">mm</option>
+                            <option value="cm">cm</option>
+                            <option value="inches">inches</option>
+                        </select>
+                    </div>
+                </div>
 
-            <!-- Submit -->
-            <div class="quote-btn-wrap">
-                <button type="submit" class="quote-submit-btn">Get Free Quote</button>
-            </div>
+                <!-- Row 3: Material, Color, Turn Around -->
+                <div class="qf-grid-3">
+                    <div class="qf-group">
+                        <label>Select Material</label>
+                        <select name="material">
+                            <option value="">Choose option</option>
+                            <option value="Rigid Board">Rigid Board</option>
+                            <option value="Cardboard">Cardboard</option>
+                            <option value="Kraft Paper">Kraft Paper</option>
+                            <option value="Corrugated">Corrugated</option>
+                        </select>
+                    </div>
+                    <div class="qf-group">
+                        <label>Color Options</label>
+                        <select name="color">
+                            <option value="">Choose option</option>
+                            <option value="1 Color">1 Color</option>
+                            <option value="2 Colors">2 Colors</option>
+                            <option value="3 Colors">3 Colors</option>
+                            <option value="Full Color">Full Color</option>
+                        </select>
+                    </div>
+                    <div class="qf-group">
+                        <label>Turn Around Time</label>
+                        <select name="turn_around_time">
+                            <option value="">Choose option</option>
+                            <option value="Standard (8-10 Days)">Standard (8-10 Days)</option>
+                            <option value="Rush (4-6 Days)">Rush (4-6 Days)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Row 4: Quantity & File Upload -->
+                <div class="qf-grid-2">
+                    <div class="qf-group">
+                        <label>Quantity *</label>
+                        <input type="number" name="quantity" placeholder="Enter quantity" oninput="this.value = this.value.replace(/[^0-9]/g, '')" required>
+                    </div>
+                    <div class="qf-group">
+                        <label>Upload File Here</label>
+                        <div class="qf-file-wrap">
+                            <input type="file" name="quote_file" id="qf-file-input" style="display: none;" onchange="document.getElementById('qf-file-name').value = this.files[0] ? this.files[0].name : ''">
+                            <input type="text" id="qf-file-name" placeholder="No file chosen" readonly>
+                            <button type="button" class="qf-file-btn" onclick="document.getElementById('qf-file-input').click()">Upload</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Row 5: Message -->
+                <div class="qf-group" style="margin-bottom: 20px;">
+                    <label>Message</label>
+                    <textarea name="message" placeholder="Enter your message"></textarea>
+                </div>
+
+                <!-- Submit -->
+                <button type="submit" class="qf-submit-btn">Get Free Quote</button>
             </form>
         </div>
 
-        <!-- Right: Steps -->
-        <div class="quote-steps">
-            <div class="quote-steps-inner">
-
-                <div class="quote-step">
-                    <div class="step-number-block">
-                        <div class="step-num-box">01</div>
-                        <span class="step-ghost-num">1</span>
-                    </div>
-                    <div class="step-text">
-                        <div class="step-title">Tell Us What You Need</div>
-                        <p class="step-desc">Tell our team about your box requirements, intented use, box style, design and closure. Our team is there to help you choose the best.</p>
-                    </div>
+        <!-- Right: Features -->
+        <div class="quote-features">
+            <!-- Feature 1 -->
+            <div class="qf-feature">
+                <div class="qf-feature-icon">
+                    <img src="{{ asset('uploads/competitive-icon.svg') }}" alt="Competitive Pricing">
                 </div>
-
-                <div class="quote-step">
-                    <div class="step-number-block">
-                        <div class="step-num-box">02</div>
-                        <span class="step-ghost-num">2</span>
-                    </div>
-                    <div class="step-text">
-                        <div class="step-title">See It Before We Make It</div>
-                        <p class="step-desc">Brands can get physical and digital samples to review the artwork, text placement and box strength.</p>
-                    </div>
+                <div class="qf-feature-text">
+                    <h3>Competitive Pricing</h3>
+                    <p>High quality printing that fits your budget.</p>
                 </div>
+            </div>
 
-                <div class="quote-step">
-                    <div class="step-number-block">
-                        <div class="step-num-box">03</div>
-                        <span class="step-ghost-num">3</span>
-                    </div>
-                    <div class="step-text">
-                        <div class="step-title">We Bring Your Box to Life</div>
-                        <p class="step-desc">Your vision is our goal. From material to box structure, we consider your requirements and customization. We deliver you packaging that matches your brand vision.</p>
-                    </div>
+            <!-- Feature 2 -->
+            <div class="qf-feature">
+                <div class="qf-feature-icon">
+                    <img src="{{ asset('uploads/no-die-icon.svg') }}" alt="No Die or Plate Charges">
                 </div>
-
-                <div class="quote-step">
-                    <div class="step-number-block">
-                        <div class="step-num-box">04</div>
-                        <span class="step-ghost-num">4</span>
-                    </div>
-                    <div class="step-text">
-                        <div class="step-title">Packed and On Its Way</div>
-                        <p class="step-desc">Right on schedule, every order. Count on us because you are in capable hands. We deliver your package on time, rest assured.</p>
-                    </div>
+                <div class="qf-feature-text">
+                    <h3>No Die or Plate Charges</h3>
+                    <p>No hidden charges, slow or custom designs.</p>
                 </div>
+            </div>
 
+            <!-- Feature 3 -->
+            <div class="qf-feature">
+                <div class="qf-feature-icon">
+                    <img src="{{ asset('uploads/fast-turn-icon.svg') }}" alt="Fast Turnarounds">
+                </div>
+                <div class="qf-feature-text">
+                    <h3>Fast Turnarounds</h3>
+                    <p>Get your packaging rapidly when you need it.</p>
+                </div>
+            </div>
+
+            <!-- Feature 4 -->
+            <div class="qf-feature">
+                <div class="qf-feature-icon">
+                    <img src="{{ asset('uploads/free-ship-icon.svg') }}" alt="Free Shipping">
+                </div>
+                <div class="qf-feature-text">
+                    <h3>Free Shipping</h3>
+                    <p>Anywhere in the USA, we ship with zero hidden fees.</p>
+                </div>
             </div>
         </div>
 
