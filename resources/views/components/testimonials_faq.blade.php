@@ -22,6 +22,7 @@
 
     .testimonials-col {
         height: 603.33px;
+        contain: layout paint;
     }
 
     .faq-col {
@@ -45,6 +46,7 @@
         scroll-snap-type: y mandatory;
         scrollbar-width: none; /* Firefox */
         -ms-overflow-style: none;  /* Internet Explorer 10+ */
+        overflow-anchor: none; /* Prevents page scroll jumping */
     }
 
     .testimonial-cards-wrap::-webkit-scrollbar { 

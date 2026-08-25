@@ -21,7 +21,7 @@
         max-width: 1030px;
         background: #FAF5EC;
         border-radius: 0px;
-        border: 1px solid #59B1FC;
+        border: none;
         padding: 48px 20px 48px 56px;
         box-sizing: border-box;
         height: 787px;

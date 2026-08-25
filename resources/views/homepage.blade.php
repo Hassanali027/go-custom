@@ -2850,7 +2850,8 @@
             </div>
         </section>
 
-        @include('components.testimonal')
+        @include('components.howitworks')
+        @include('components.testimonials_faq')
         @include('components.customquote')
         @include('components.content')
         @include('components.blogs')
