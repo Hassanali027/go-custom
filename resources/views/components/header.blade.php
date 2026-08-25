@@ -15,17 +15,29 @@
         --heading-h4-size: 20px;
     }
 
-    .header-container,
-    .header-top,
-    .header-nav {
+    .header-container {
         width: 100% !important;
         max-width: var(--site-container-width) !important;
-        padding-left: clamp(20px, 3.5vw, 55px) !important;
-        padding-right: clamp(20px, 3.5vw, 55px) !important;
+        padding-left: 55px !important;
+        padding-right: 55px !important;
         margin-left: auto !important;
         margin-right: auto !important;
         box-sizing: border-box !important;
         min-width: 0;
+    }
+
+    @media (max-width: 768px) {
+        .header-container {
+            padding-left: 20px !important;
+            padding-right: 20px !important;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .header-container {
+            padding-left: 16px !important;
+            padding-right: 16px !important;
+        }
     }
 
     .site-header {
@@ -1017,35 +1029,20 @@
 
     // Sticky Navbar Scroll Behavior
     document.addEventListener('DOMContentLoaded', function() {
-        let lastScrollY = window.scrollY;
         const header = document.querySelector('.site-header');
-        const headerTop = document.querySelector('.header-top');
+        const headerTop = document.querySelector('.header-topbar');
         
         window.addEventListener('scroll', function() {
             if (window.innerWidth <= 1100) return;
             
             const currentScrollY = window.scrollY;
-            const headerTopHeight = headerTop ? headerTop.offsetHeight : 88;
+            const headerTopHeight = headerTop ? headerTop.offsetHeight : 42;
             
             if (currentScrollY > headerTopHeight) {
-                if (currentScrollY > lastScrollY) {
-                    // Scrolling Down
-                    header.classList.add('scrolled-down');
-                    header.style.top = `-${headerTopHeight}px`;
-                    header.style.transform = 'none'; // Ensure transform is cleared
-                } else {
-                    // Scrolling Up
-                    header.classList.remove('scrolled-down');
-                    header.style.top = '0px';
-                    header.style.transform = 'none';
-                }
+                header.style.top = `-${headerTopHeight}px`;
             } else {
-                header.classList.remove('scrolled-down');
                 header.style.top = '0px';
-                header.style.transform = 'none';
             }
-            
-            lastScrollY = currentScrollY;
         }, { passive: true });
     });
 </script>

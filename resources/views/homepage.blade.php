@@ -43,9 +43,10 @@
             overflow-x: clip;
         }
 
-        /* Shared canvas aligned with the header's centered 1440px container. */
+        /* Shared canvas aligned with the header's centered 1280px container. */
         .home-page>section>[class$="-container"],
-        .home-page>section>[class$="-inner"] {
+        .home-page>section>[class$="-inner"],
+        .home-page>section>[class$="-wrapper"] {
             width: 100%;
             max-width: 1280px !important;
             margin-left: auto;
@@ -59,7 +60,8 @@
         @media (max-width: 768px) {
 
             .home-page>section>[class$="-container"],
-            .home-page>section>[class$="-inner"] {
+            .home-page>section>[class$="-inner"],
+            .home-page>section>[class$="-wrapper"] {
                 padding-left: 20px !important;
                 padding-right: 20px !important;
             }
@@ -68,7 +70,8 @@
         @media (max-width: 480px) {
 
             .home-page>section>[class$="-container"],
-            .home-page>section>[class$="-inner"] {
+            .home-page>section>[class$="-inner"],
+            .home-page>section>[class$="-wrapper"] {
                 padding-left: 16px !important;
                 padding-right: 16px !important;
             }
@@ -78,7 +81,7 @@
            SECTION: CUSTOM BOXES FOR EVERY INDUSTRY
         ───────────────────────────────────────── */
         .custom-boxes-section {
-            background: #FAF8F8;
+            background: #fff;
             padding: 10px 0 30px;
         }
 
@@ -126,127 +129,107 @@
         }
 
         /* ─────────────────────────────────────────
-           CARD  (exact Figma spec)
+           CARD  (exact Figma spec: 297.86 x 391)
         ───────────────────────────────────────── */
         .industry-card {
             width: 100%;
             min-height: 0;
-            height: auto;
-            background: #FFFFFF;
-            border-radius: 12px;
-            box-shadow: 0px 0px 10px 0px #00000029;
+            background: #F8F5EE;
             overflow: hidden;
             display: flex;
             flex-direction: column;
+            text-decoration: none;
+            color: inherit;
+            box-sizing: border-box;
+            border-radius: 0;
+            transition: transform 0.25s ease;
         }
 
-        /* Card title — single line, never wraps */
-        .industry-card__title {
-            display: block;
-            font-family: 'Open Sans', sans-serif;
-            font-weight: 700;
-            font-size: 19px;
-            line-height: 1.25;
-            letter-spacing: 0%;
-            text-transform: capitalize;
-            text-align: left;
-            color: var(--section-text-color);
-            padding: 22px 17px 12px;
-            white-space: normal;
-            flex-shrink: 0;
-        }
-
-        /* Image area — Figma: left:8px w:275 h:266 */
+        /* Image area — Figma: 297.86 Fill x 305 */
         .industry-card__image-wrap {
-            width: calc(100% - 16px);
-            height: clamp(190px, 18vw, 230px);
-            margin: 0 auto;
+            width: 100%;
+            aspect-ratio: 297.86 / 305;
+            background: #F8F5EE;
+            margin: 0;
             overflow: hidden;
             flex-shrink: 0;
+            box-sizing: border-box;
+            display: block;
         }
 
         .industry-card__image-wrap img {
             width: 100%;
             height: 100%;
-            object-fit: contain;
+            object-fit: cover;
+            object-position: center;
             display: block;
             transition: transform 0.35s ease;
         }
 
         @media (hover: hover) {
             .industry-card:hover .industry-card__image-wrap img {
-                transform: scale(1.05);
+                transform: scale(1.04);
             }
         }
 
-        /* Bottom content area — grows to push button to same level across all cards */
+        /* Bottom content area — Figma: 86px (391 - 305) */
         .industry-card__bottom {
             display: flex;
             flex-direction: column;
-            flex: none;
-            padding: 14px 17px 20px;
+            justify-content: center;
+            flex: 1;
+            min-height: 86px;
+            width: 100%;
+            box-sizing: border-box;
+            padding: 12px 14px;
+            background: #F8F5EE;
+        }
+        
+        .industry-card__bottom-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 4px;
         }
 
-        /* Text area — Figma: w:247 h:42 */
-        .industry-card__text {
-            font-family: 'DM Sans', sans-serif;
-            font-weight: 400;
+        /* Card title */
+        .industry-card__title {
+            display: block;
+            font-family: 'Open Sans', sans-serif;
+            font-weight: 700;
             font-size: 15px;
-            line-height: 1.5;
-            color: #333;
+            line-height: 1.2;
+            letter-spacing: 0;
+            text-transform: capitalize;
             text-align: left;
-            flex: 1;
-            /* pushes button down */
-            display: -webkit-box;
-            -webkit-line-clamp: 2;
-            -webkit-box-orient: vertical;
+            color: #111;
+            white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
+            padding: 0;
         }
-
-        /* Button — Figma: left:46px w:200 h:46
-           border-radius:4px, border:1px, padding:12px 20px */
-        .industry-card__btn {
+        
+        .industry-card__arrow {
             display: flex;
             align-items: center;
             justify-content: center;
-            width: 200px;
-            height: 46px;
-            margin-top: 14px;
-            margin-left: auto;
-            margin-right: auto;
-            background: #FFFFFF;
-            color: #8D4445;
-            font-family: 'DM Sans', sans-serif;
-            font-weight: 700;
-            font-size: 16px;
-            line-height: 24px;
-            letter-spacing: 0%;
-            text-align: center;
-            text-decoration: none;
-            border: 1px solid #8D4445;
-            border-radius: 4px;
-            padding: 11px 20px;
-            cursor: pointer;
-            transition: background 0.25s, color 0.25s, border-color 0.25s;
-            white-space: nowrap;
+            color: #2F4235;
             flex-shrink: 0;
+            margin-left: 8px;
         }
 
-        @media (hover: hover) {
-            .industry-card__btn:hover {
-                background: #8D4445;
-                border-color: #8D4445;
-                color: #fff;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .industry-card__btn {
-                background: #8D4445;
-                color: #fff;
-                border-color: #8D4445;
-            }
+        /* Text area */
+        .industry-card__text {
+            font-family: 'DM Sans', sans-serif;
+            font-weight: 400;
+            font-size: 12px;
+            line-height: 1.35;
+            color: #666;
+            text-align: left;
+            margin: 0;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
 
         /* ─────────────────────────────────────────
@@ -1213,10 +1196,6 @@
         }
 
         @media (min-width: 769px) and (max-width: 1920px) {
-            .custom-boxes-container {
-                padding: 0 24px;
-            }
-
             .cards-grid {
                 grid-template-columns: repeat(4, minmax(0, 1fr));
                 gap: 16px;
@@ -2339,338 +2318,536 @@
                                     : 'storage/' . $cat['image'])
                                 : 'uploads/Gift-Boxes.webp';
                         @endphp
-                        <div class="industry-card">
-                            <a href="{{ $catUrl }}" style="text-decoration:none; color:inherit;">
-                                <span class="industry-card__title">{{ $cat['title'] }}</span>
-                            </a>
-                            <a href="{{ $catUrl }}" class="industry-card__image-wrap" style="display:block;">
+                        <a href="{{ $catUrl }}" class="industry-card">
+                            <div class="industry-card__image-wrap">
                                 <img src="{{ asset($cImg) }}" alt="{{ $cat['title'] }}" loading="lazy"
                                     onerror="this.src='https://placehold.co/275x266/dddddd/555555?text={{ urlencode($cat['title']) }}'">
-                            </a>
-                            <div class="industry-card__bottom">
-                                <p class="industry-card__text">
-                                    {{ Str::limit(html_entity_decode(html_entity_decode(strip_tags($cat['description'] ?? 'Premium packaging with a luxury feel and durable structure.'))), 80) }}
-                                </p>
-                                <a href="{{ $catUrl }}" class="industry-card__btn">Explore Boxes</a>
                             </div>
-                        </div>
+                            <div class="industry-card__bottom">
+                                <div class="industry-card__bottom-top">
+                                    <span class="industry-card__title">{{ $cat['title'] }}</span>
+                                    <span class="industry-card__arrow">
+                                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                            <path d="M5 12h14M12 5l7 7-7 7"/>
+                                        </svg>
+                                    </span>
+                                </div>
+                                <p class="industry-card__text">
+                                    {{ Str::limit(html_entity_decode(html_entity_decode(strip_tags($cat['description'] ?? 'Premium packaging with a luxury feel and durable structure.'))), 45) }}
+                                </p>
+                            </div>
+                        </a>
                     @endforeach
                 </div><!-- /.cards-grid -->
 
-                <!-- View All Categories Button -->
-                <div class="view-all-wrap">
-                    <a href="{{ url('/box-by-industry') }}/" class="view-all-btn">View All Categories</a>
-                </div>
+                <!-- View All Categories Button removed as requested -->
 
             </div><!-- /.custom-boxes-container -->
         </section>
 
         <!-- ═══════════════════════════════════════
-             WHY CHOOSE US SECTION
+             BEST SELLER PRODUCT SECTION
         ═══════════════════════════════════════ -->
-        <section class="why-choose-section">
-            <div class="why-choose-container">
+        <style>
+            .best-seller-section { padding: 60px 0; background: #fff; width: 100%; }
+            .best-seller-container { max-width: 1280px; margin: 0 auto; padding: 0 55px; box-sizing: border-box; width: 100%; }
+            .best-seller-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; margin-top: 30px; width: 100%; }
+            .bs-card { display: flex; flex-direction: column; align-items: center; text-decoration: none; }
+            .bs-card__img-wrap { width: 100%; aspect-ratio: 1; border-radius: 12px; overflow: hidden; background: #F6F4F0; margin-bottom: 12px; }
+            .bs-card__img-wrap img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s; }
+            .bs-card:hover .bs-card__img-wrap img { transform: scale(1.05); }
+            .bs-card__title { font-family: 'Open Sans', sans-serif; font-weight: 700; font-size: 15px; color: #222; text-align: center; }
+            @media (max-width: 991px) { .best-seller-grid { grid-template-columns: repeat(3, 1fr); } }
+            @media (max-width: 768px) { .best-seller-grid { grid-template-columns: repeat(2, 1fr); gap: 16px; } }
+        </style>
+        <section class="best-seller-section">
+            <div class="best-seller-container">
+                <h2 style="font-family: 'Open Sans', sans-serif; font-size: 28px; font-weight: 700; color: #000; margin-bottom: 8px;">Best Seller Product</h2>
+                <p style="font-family: 'DM Sans', sans-serif; font-size: 15px; color: #333; margin-bottom: 0;">Custom packaging for every industry, from retail and beauty to electronics&mdash;designed to fit your style and requirements.</p>
 
-                <span class="h2-heading">What Sets Our Boxes Apart</span>
-                <p class="why-desc">Our aim is to present your products in a premium packaging. From design support to choosing the material, our team assists you to achieve your business goals.</p>
-
-                <div class="why-bento">
-
-                    <!-- ROW 1: pink1 (299×413) | pink2 (299×413) | blue (612×413) -->
-                    <div class="why-row">
-
-                        <!-- CARD 1 — pink-1: Free Design Support -->
-                        <div class="why-card wc-pink1">
-                            <div class="why-card__content">
-                                <span class="why-card__title">Creative Direction</span>
-                                <p class="why-card__text">We have professional designers who provide assistance with artwork, reference images and early concepts. We don’t charge extra for this service.</p>
-                            </div>
-                            <div class="why-card__img-box">
-                                <img src="{{ asset('uploads/why-design-support.png') }}"
-                                    alt="Packaging designer creating a custom box dieline" loading="lazy">
-                            </div>
-                        </div>
-
-                        <!-- CARD 2 — pink-2: Premium Quality Materials -->
-                        <div class="why-card wc-pink2">
-                            <div class="why-card__content">
-                                <span class="why-card__title">Material Integrity</span>
-                                <p class="why-card__text">Get sturdy boxes made from premium materials that offer great protection with an elite presentation.</p>
-                            </div>
-                            <div class="why-card__img-box">
-                                <img src="{{ asset('uploads/why-premium-materials.png') }}"
-                                    alt="Sample materials showing paper and cardstock swatches" loading="lazy">
-                            </div>
-                        </div>
-
-                        <!-- CARD 3 — blue: Low MOQ -->
-                        <div class="why-card wc-blue">
-                            <div class="why-card__content">
-                                <span class="why-card__title">Flexible Order Runs: NO MOQ</span>
-                                <p class="why-card__text">Choose an order quantity that makes sense for your current plans. We do not have any low minimum quantity (MOQ) rule.
-</p>
-                            </div>
-                            <div class="why-card__img-box">
-                                <img src="{{ asset('uploads/why-low-moq.png') }}"
-                                    alt="Custom box sample representing low MOQ orders" loading="lazy">
-                            </div>
-                        </div>
-
-                    </div><!-- /.why-row -->
-
-                    <!-- ROW 2 & 3: yellow (612×242) | green (299×413) | skin (299×413) -->
-                    <div class="why-row">
-
-                        <!-- CARD 4 — yellow: Dedicated Customer Service -->
-                        <div class="why-card wc-yellow">
-                            <div class="why-card__content">
-                                <span class="why-card__title">Precision Sizing</span>
-                                <p class="why-card__text">Your boxes are manufactured according to the provided dimensions. We customize the internal space, opening style, and fitted insert.</p>
-                            </div>
-                            <div class="why-card__img-box">
-                                <img src="{{ asset('uploads/why-customer-service.png') }}"
-                                    alt="Customer service specialist with headset smiling" loading="lazy">
-                            </div>
-                        </div>
-
-                        <!-- CARD 5 — green: Custom Sizes & Designs -->
-                        <div class="why-card wc-green">
-                            <div class="why-card__content">
-                                <span class="why-card__title">Guidance at Every Turn</span>
-                                <p class="why-card__text">Our team assistance is available 24/7. Specialists guide you throughout the process.</p>
-                            </div>
-                            <div class="why-card__img-box">
-                                <img src="{{ asset('uploads/custom-sizes-and-designs-transparent.png') }}"
-                                    alt="Custom Sizes and Designs" loading="lazy">
-                            </div>
-                        </div>
-
-                        <!-- CARD 6 — skin: Fast Production Time -->
-                        <div class="why-card wc-skin">
-                            <div class="why-card__content">
-                                <span class="why-card__title">Reliable Turnaround</span>
-                                <p class="why-card__text">Right on schedule, every order. Your deadline is our commitment; so, you will receive your package on time.
-</p>
-                            </div>
-                            <div class="why-card__img-box">
-                                <img src="{{ asset('uploads/fast-production-management.png') }}"
-                                    alt="Fast Production Management" loading="lazy">
-                            </div>
-                        </div>
-
-                    </div><!-- /.why-row row-2 -->
-
-                </div><!-- /.why-bento -->
-
-            </div><!-- /.why-choose-container -->
-        </section>
-
-        <!-- ═══════════════════════════════════════
-             BEST SELLER SECTION
-        ═══════════════════════════════════════ -->
-        <section class="bestseller-section">
-            <div class="bestseller-inner">
-
-                <!-- Left: heading + desc -->
-                <div class="bestseller-left">
-                    <span class="bestseller-heading">Best Seller Product</span>
-                    <p class="bestseller-desc">Custom packaging designed for different industries. Whether it's retail,
-                        beauty, or electronics, we create packaging that fits your industry's style and requirements.
-                    </p>
-
-                    <div class="bestseller-dots" id="bestsellerDots" role="tablist" aria-label="Best seller products">
-                        <!-- Dots will be generated dynamically by JS -->
-                    </div>
-                </div>
-
-                <div class="bestseller-right">
-                    <div class="bestseller-cards">
+                <div class="best-seller-grid">
+                    @php
+                        $bestSellers = $featuredCategories ?? [];
+                        if(count($bestSellers) < 8) {
+                            $bestSellers = array_merge($bestSellers, array_fill(0, 8 - count($bestSellers), ['title' => 'Product Box', 'image' => 'uploads/Gift-Boxes.webp']));
+                        }
+                        $bestSellers = array_slice($bestSellers, 0, 8);
+                    @endphp
+                    @foreach($bestSellers as $item)
                         @php
-                            $bestsellerProdIds = (array) ($settings['bestseller_products'] ?? []);
-                            $bestsellerProducts = collect($products)->whereIn('id', $bestsellerProdIds)->all();
-                            if (empty($bestsellerProducts)) {
-                                $bestsellerProducts = array_slice($products, 0, 6);
-                            }
+                            $catSlug = $item['slug'] ?? Str::slug($item['title']);
+                            $catUrl = url('/' . $catSlug) . '/';
+                            $bsImg = !empty($item['image'])
+                                ? (\Illuminate\Support\Str::startsWith($item['image'], ['storage/', 'uploads/', 'images/'])
+                                    ? $item['image']
+                                    : 'storage/' . $item['image'])
+                                : 'uploads/Gift-Boxes.webp';
                         @endphp
-
-                        @foreach ($bestsellerProducts as $prod)
-                            @php
-                                $prodSlug = $prod['slug'] ?? Str::slug($prod['title']);
-                                $prodUrl = url('/' . $prodSlug) . '/';
-                                $pImg = !empty($prod['image'])
-                                    ? (\Illuminate\Support\Str::startsWith($prod['image'], [
-                                        'storage/',
-                                        'uploads/',
-                                        'images/',
-                                    ])
-                                        ? $prod['image']
-                                        : 'storage/' . $prod['image'])
-                                    : 'uploads/best-seller-p1.png';
-                            @endphp
-                            <a href="{{ $prodUrl }}" class="bestseller-card"
-                                style="text-decoration:none; color:inherit;">
-                                <div class="bestseller-card__img">
-                                    <img src="{{ asset($pImg) }}" alt="{{ $prod['title'] }}" loading="lazy"
-                                        onerror="this.src='https://placehold.co/284x284/eeeeee/555555?text={{ urlencode($prod['title']) }}'">
-                                </div>
-                                <p class="bestseller-card__title">{{ $prod['title'] }}</p>
-                            </a>
-                        @endforeach
-                    </div><!-- /.bestseller-cards -->
-
-                </div><!-- /.bestseller-dots removed -->
-            </div><!-- /.bestseller-right -->
-
-            </div><!-- /.bestseller-inner -->
-        </section>
-
-        <!-- ═══════════════════════════════════════
-             PREMIUM CUSTOM RIGID BOXES SECTION
-        ═══════════════════════════════════════ -->
-        <section class="premium-section">
-            <div class="premium-inner">
-
-                <!-- LEFT: two overlapping images -->
-                <div class="premium-images">
-                    <img class="premium-img1" src="{{ asset('uploads/premium-rigid-boxes-showcase.webp') }}"
-                        alt="Premium Custom Rigid Boxes" loading="lazy"
-                        onerror="this.src='https://placehold.co/504x465/6b3a3a/ffffff?text=Premium+Boxes'">
-                    <img class="premium-img2" src="{{ asset('uploads/luxury-rigid-box-detail.webp') }}"
-                        alt="Luxury Rigid Box Detail" loading="lazy"
-                        onerror="this.src='https://placehold.co/370x341/7a4040/ffffff?text=Luxury+Box'">
+                        <a href="{{ $catUrl }}" class="bs-card">
+                            <div class="bs-card__img-wrap">
+                                <img src="{{ asset($bsImg) }}" alt="{{ $item['title'] }}" loading="lazy" onerror="this.src='https://placehold.co/300x300/dddddd/555555?text={{ urlencode($item['title']) }}'">
+                            </div>
+                            <span class="bs-card__title">{{ $item['title'] }}</span>
+                        </a>
+                    @endforeach
                 </div>
-
-                <!-- RIGHT: content col -->
-                <div class="premium-content">
-
-                    <span class="premium-heading">Give Your Product the Presentation It Deserves</span>
-
-                    <p class="premium-desc">A thoughtful packaging box shows the value of the product inside it. Before opening the box, customers get expectations based on the packaging. Our rigid boxes have structural strength to protect your products and have custom-fitted inserts to restrict the movement. Finely designed box with exceptional wrapping makes the presentation premium. A box with top-tier branded elements wins customer’s heart even before opening it.
-From customized dimensions to box style, color, interior, layout and refined finishing; we give the best to boost your brand identity. Get magnetic closure rigid boxes to uplift your gift collections. We ensure your delicate products are safe while the unboxing experience is unforgettable.
-</p>
-
-                    <!-- Icons row -->
-                    <div class="premium-icons">
-
-                        <div class="premium-icon-item">
-                            <img src="{{ asset('uploads/icon-premium-quality.svg') }}" alt="Premium Quality" loading="lazy"
-                                onerror="this.src='https://placehold.co/50x50/ffffff/8D4445?text=Q'">
-                            <span class="premium-icon-text">Premium Quality</span>
-                        </div>
-
-                        <div class="premium-icon-item">
-                            <img src="{{ asset('uploads/icon-custom-design.svg') }}" alt="Custom Designs" loading="lazy"
-                                onerror="this.src='https://placehold.co/50x50/ffffff/8D4445?text=D'">
-                            <span class="premium-icon-text">Custom Designs</span>
-                        </div>
-
-                        <div class="premium-icon-item">
-                            <img src="{{ asset('uploads/icon-fast-delivery.svg') }}" alt="Fast & Reliable Delivery" loading="lazy"
-                                onerror="this.src='https://placehold.co/50x50/ffffff/8D4445?text=F'">
-                            <span class="premium-icon-text">Fast &amp; Reliable Delivery</span>
-                        </div>
-
-                    </div><!-- /.premium-icons -->
-
-                    <a href="/request-quote/" class="premium-btn">Order Now</a>
-
-                </div><!-- /.premium-content -->
-
-            </div><!-- /.premium-inner -->
+            </div>
         </section>
 
         <!-- ═══════════════════════════════════════
-             CUSTOMIZE EVERY DETAIL SECTION
+             SEE AND FEEL THE DIFFERENCE SECTION
         ═══════════════════════════════════════ -->
-        <section class="customize-detail-section">
-            <div class="customize-detail-inner">
+        <!-- ═══════════════════════════════════════
+             SEE AND FEEL THE DIFFERENCE SECTION
+        ═══════════════════════════════════════ -->
+        <style>
+            .see-feel-section { padding: 40px 0; background: #fff; width: 100%; }
+            .see-feel-inner {
+                width: 100%;
+                max-width: 1280px;
+                margin: 0 auto;
+                padding: 0 55px;
+                box-sizing: border-box;
+            }
+            .see-feel-box {
+                width: 100%;
+                background: #0B2240;
+                border-radius: 12px;
+                padding: 50px 60px;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                gap: 40px;
+                box-sizing: border-box;
+            }
+            .see-feel-left { flex: 1; max-width: 500px; color: #fff; }
+            .see-feel-heading { font-family: 'Open Sans', sans-serif; font-size: 32px; font-weight: 700; margin-bottom: 20px; line-height: 1.2; display: block; }
+            .see-feel-desc { font-family: 'DM Sans', sans-serif; font-size: 14px; margin-bottom: 30px; line-height: 1.6; color: rgba(255,255,255,0.85); text-align: justify; }
+            .see-feel-btn {
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                background: #FFB400;
+                color: #0B2240;
+                font-family: 'DM Sans', sans-serif;
+                font-weight: 700;
+                font-size: 15px;
+                padding: 14px 36px;
+                border-radius: 4px;
+                text-decoration: none;
+                transition: background 0.3s;
+                width: 183px;
+                height: 56px;
+            }
+            .see-feel-btn:hover { background: #e6a200; color: #0B2240; }
+            
+            .see-feel-right {
+                flex: 1;
+                background: #EBEBEB;
+                border-radius: 12px;
+                aspect-ratio: 16/10;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 20px;
+                color: #000;
+            }
+            .sfr-icon { display: flex; flex-direction: column; align-items: center; justify-content: center; opacity: 0.3; }
+            .sfr-text { font-family: 'Open Sans', sans-serif; font-weight: 800; font-size: 24px; opacity: 1; margin: 0 10px; }
 
-                <span class="customize-detail-heading">Make Every Detail Distinctly Yours</span>
-                <p class="customize-detail-desc">We manufacture packaging exclusively for your products. To give the boxes a premium appearance, choose the customized finishing. Foil stamping, embossing, protective laminations, magnetic closures, fitted inserts, and coatings make the box distinctly yours.</p>
-
-                <!-- Options pill bar (scrollable, draggable) -->
-                <div class="customize-detail-options-wrapper" id="cdoBar">
-                    <div class="customize-detail-options">
-                        <button type="button" class="cdo-btn active" data-cdo="foiling">Foiling</button>
-                        <button type="button" class="cdo-btn" data-cdo="embossing">Embossing/Debossing</button>
-                        <button type="button" class="cdo-btn" data-cdo="laminations">Laminations</button>
-                        <button type="button" class="cdo-btn" data-cdo="magnetic">Magnetic Closure</button>
-                        <button type="button" class="cdo-btn" data-cdo="inserts">Custom Inserts</button>
-                        <button type="button" class="cdo-btn" data-cdo="coating">Coating</button>
+            @media (max-width: 991px) {
+                .see-feel-box { flex-direction: column; padding: 40px 30px; }
+                .see-feel-left { max-width: 100%; text-align: center; }
+                .see-feel-desc { text-align: center; }
+                .see-feel-right { width: 100%; }
+            }
+            @media (max-width: 768px) {
+                .see-feel-inner { padding: 0 20px; }
+            }
+            @media (max-width: 480px) {
+                .see-feel-inner { padding: 0 16px; }
+            }
+        </style>
+        <section class="see-feel-section">
+            <div class="see-feel-inner">
+                <div class="see-feel-box">
+                    <div class="see-feel-left">
+                        <span class="see-feel-heading">See – and Feel – the Difference</span>
+                        <p class="see-feel-desc">Explore the quality behind every package with our curated collection of sustainable packaging materials. Experience different textures, finishes, paper stocks, and print techniques firsthand to find the perfect combination for packaging that looks exceptional, feels premium, and reflects your brand.</p>
+                        <a href="#" class="see-feel-btn">Shop Now</a>
+                    </div>
+                    <div class="see-feel-right">
+                        <div class="sfr-icon">
+                            <svg width="123" height="108" viewBox="0 0 24 24" fill="currentColor"><path d="M21 19V5C21 3.9 20.1 3 19 3H5C3.9 3 3 3.9 3 5V19C3 20.1 3.9 21 5 21H19C20.1 21 21 20.1 21 19ZM8.5 13.5L11 16.51L14.5 12L19 18H5L8.5 13.5Z"/></svg>
+                        </div>
+                        <span class="sfr-text">or</span>
+                        <div class="sfr-icon">
+                            <svg width="96.35" height="96.35" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM10 16.5V7.5L16 12L10 16.5Z"/></svg>
+                        </div>
                     </div>
                 </div>
-
-                <!-- Cards -->
-                <div class="customize-detail-cards" id="cdoCards">
-
-                    <div class="cdc-card cdc-card--gold">
-                        <img src="{{ asset('uploads/addon-gold-foil.webp') }}" alt="Gold Foil" id="cdo-img-1" loading="lazy"
-                            onerror="this.src='https://placehold.co/350x406/d4af37/fff?text=Gold+Foil'">
-                        <span class="cdc-card__label" id="cdo-label-1">Gold Foil</span>
-                    </div>
-
-                    <div class="cdc-card cdc-card--silver">
-                        <img src="{{ asset('uploads/silver-Foiling.webp') }}" alt="Silver Foil" id="cdo-img-2" loading="lazy"
-                            onerror="this.src='https://placehold.co/345x403/c0c0c0/333?text=Silver+Foil'">
-                        <span class="cdc-card__label" id="cdo-label-2">Silver Foil</span>
-                    </div>
-
-                    <div class="cdc-card cdc-card--holo">
-                        <img src="{{ asset('uploads/addon-Holographic.webp') }}" alt="Holographic Foil"
-                            id="cdo-img-3" loading="lazy"
-                            onerror="this.src='https://placehold.co/364x403/ccaaff/333?text=Holographic+Foil'">
-                        <span class="cdc-card__label" id="cdo-label-3">Holographic Foil</span>
-                    </div>
-
-                </div><!-- /.customize-detail-cards -->
-
-            </div><!-- /.customize-detail-inner -->
+            </div>
         </section>
 
         <!-- ═══════════════════════════════════════
-             SUSTAINABLE PACKAGING SOLUTIONS SECTION
+             MAKE YOUR BOX UNIQUELY YOURS SECTION
         ═══════════════════════════════════════ -->
-        <section class="sustainable-section">
-            <div class="sustainable-inner">
+        <style>
+            .uniquely-yours-section {
+                padding: 0px 0;
+                background: #fff;
+                text-align: center;
+                width: 100%;
+            }
+            .uniquely-yours-container {
+                max-width: 1280px;
+                margin: 0 auto;
+                padding: 0 55px;
+                box-sizing: border-box;
+                width: 100%;
+            }
+            .uy-heading {
+                font-family: 'Open Sans', sans-serif;
+                font-size: 32px;
+                font-weight: 700;
+                color: #000;
+                margin-bottom: 10px;
+                display: block;
+            }
+            .uy-desc {
+                font-family: 'DM Sans', sans-serif;
+                font-size: 15px;
+                color: #555;
+                max-width: 600px;
+                margin: 0 auto 40px auto;
+                line-height: 1.5;
+            }
+            .uy-grid {
+                display: grid;
+                grid-template-columns: repeat(4, 1fr);
+                grid-auto-rows: 231px;
+                gap: 18px;
+                width: 100%;
+                max-width: 100%;
+                margin: 0;
+            }
+            .uy-card {
+                position: relative;
+                border-radius: 8px;
+                overflow: hidden;
+                background: #333;
+            }
+            .uy-card img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                transition: transform 0.4s ease;
+            }
+            .uy-card:hover img {
+                transform: scale(1.05);
+            }
+            .uy-label {
+                position: absolute;
+                bottom: 20px;
+                left: 20px;
+                color: #fff;
+                font-family: 'Open Sans', sans-serif;
+                font-weight: 700;
+                font-size: 16px;
+                text-shadow: 0 1px 4px rgba(0,0,0,0.6);
+                z-index: 2;
+                margin: 0;
+            }
+            /* Gradient overlay for text readability */
+            .uy-card::after {
+                content: '';
+                position: absolute;
+                bottom: 0; left: 0; right: 0;
+                height: 50%;
+                background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0) 100%);
+                pointer-events: none;
+                z-index: 1;
+            }
+            
+            .uy-gloss { grid-column: span 2; }
+            .uy-embossing { grid-column: span 2; }
+            .uy-debossing { grid-column: span 2; }
+            .uy-matte { grid-column: span 1; grid-row: span 2; }
+            .uy-holo { grid-column: span 1; }
+            .uy-silver { grid-column: span 1; }
+            .uy-spot { grid-column: span 1; }
+            .uy-gold { grid-column: span 1; }
 
-                <span class="sustainable-heading">A Greener Approach to Rigid Packaging</span>
-                <p class="sustainable-desc">The Rigid Boxes recognizes the eco-friendly approach in packaging. We have recycled board options for eco-friendly packaging that keeps the environment safe. Get strong presentation that appeals customers with sustainability.<p>
+            @media (max-width: 991px) {
+                .uy-grid {
+                    grid-template-columns: repeat(2, 1fr);
+                }
+                .uy-gloss, .uy-embossing, .uy-debossing { grid-column: span 2; }
+                .uy-matte { grid-row: span 1; }
+            }
+            @media (max-width: 575px) {
+                .uy-grid {
+                    grid-template-columns: 1fr;
+                    grid-auto-rows: 200px;
+                }
+                .uy-gloss, .uy-embossing, .uy-debossing { grid-column: span 1; }
+            }
+        </style>
 
-                <div class="sustainable-grid">
-
-                    <!-- LEFT: big image with overlay -->
-                    <div class="sustainable-left">
-                        <img src="{{ asset('uploads/eco-friendly-img.webp') }}" alt="Eco-Friendly Packaging" loading="lazy"
-                            onerror="this.src='https://placehold.co/606x600/c4a882/fff?text=Eco+Packaging'">
-                        <div class="sustainable-left__overlay">
-                            <span class="sustainable-eco-label">ECO-FRIENDLY PACKAGING</span>
-                            <p class="sustainable-tagline">Go Green With Sustainably Responsible Packaging</p>
-                            <a href="/kraft-boxes/" class="sustainable-btn">Browse Products</a>
-                        </div>
-                    </div>
-
-                    <!-- RIGHT: two stacked images -->
-                    <div class="sustainable-right">
-
-                        <div class="sustainable-right__card">
-                            <img src="{{ asset('uploads/fsc-certified-packaging.webp') }}"
-                                alt="FSC Certified Packaging" loading="lazy"
-                                onerror="this.src='https://placehold.co/613x295/b5a08a/fff?text=FSC+Image'">
-                        </div>
-
-                        <div class="sustainable-right__card">
-                            <img src="{{ asset('uploads/circular-packaging.webp') }}" alt="Circular Packaging" loading="lazy"
-                                onerror="this.src='https://placehold.co/613x295/8a9b7a/fff?text=Circular+Packaging+Image'">
-                        </div>
-
-                    </div><!-- /.sustainable-right -->
-
-                </div><!-- /.sustainable-grid -->
-
-            </div><!-- /.sustainable-inner -->
+        <section class="uniquely-yours-section">
+            <div class="uniquely-yours-container">
+                <span class="uy-heading">Make Your Box Uniquely Yours</span>
+                <p class="uy-desc">From size and material to finishes and custom details, create packaging that's made specifically for your brand.</p>
+                
+                <div class="uy-grid">
+                <div class="uy-card uy-gloss">
+                    <img src="{{ asset('uploads/gloss-lamination.webp') }}" alt="Gloss Lamination" onerror="this.src='https://placehold.co/610x231/111/fff?text=Gloss+Lamination'">
+                    <span class="uy-label">Gloss Lamination</span>
+                </div>
+                <div class="uy-card uy-embossing">
+                    <img src="{{ asset('uploads/embossing.webp') }}" alt="Embossing" onerror="this.src='https://placehold.co/610x231/f0f0f0/333?text=Embossing'">
+                    <span class="uy-label">Embossing</span>
+                </div>
+                <div class="uy-card uy-debossing">
+                    <img src="{{ asset('uploads/debossing.webp') }}" alt="Debossing" onerror="this.src='https://placehold.co/610x231/333/fff?text=Debossing'">
+                    <span class="uy-label">Debossing</span>
+                </div>
+                <div class="uy-card uy-matte">
+                    <img src="{{ asset('uploads/matte-lamination.webp') }}" alt="Matte Lamination" onerror="this.src='https://placehold.co/293x481/222/fff?text=Matte+Lamination'">
+                    <span class="uy-label">Matte Lamination</span>
+                </div>
+                <div class="uy-card uy-holo">
+                    <img src="{{ asset('uploads/addon-Holographic.webp') }}" alt="Holographic Foiling" onerror="this.src='https://placehold.co/293x231/333/fff?text=Holographic+Foiling'">
+                    <span class="uy-label">Holographic Foiling</span>
+                </div>
+                <div class="uy-card uy-silver">
+                    <img src="{{ asset('uploads/silver-Foiling.webp') }}" alt="Silver Foiling" onerror="this.src='https://placehold.co/293x231/444/fff?text=Silver+Foiling'">
+                    <span class="uy-label">Silver Foiling</span>
+                </div>
+                <div class="uy-card uy-spot">
+                    <img src="{{ asset('uploads/Spot-Gloss-UV.webp') }}" alt="Spot UV" onerror="this.src='https://placehold.co/293x231/111/fff?text=Spot+UV'">
+                    <span class="uy-label">Spot UV</span>
+                </div>
+                <div class="uy-card uy-gold">
+                    <img src="{{ asset('uploads/addon-gold-foil.webp') }}" alt="Gold Foiling" onerror="this.src='https://placehold.co/293x231/333/d4af37?text=Gold+Foiling'">
+                    <span class="uy-label">Gold Foiling</span>
+                </div>
+            </div>
+            </div>
         </section>
 
-        @include('components.testimonal')
+        <!-- ═══════════════════════════════════════
+             WHY CHOOSE GO CUSTOM BOXES SECTION
+        ═══════════════════════════════════════ -->
+        <style>
+            .why-choose-section-custom {
+                padding: 80px 0;
+                background: #fff;
+                width: 100%;
+            }
+            .why-choose-inner {
+                max-width: 1280px;
+                margin: 0 auto;
+                padding: 0 55px;
+                box-sizing: border-box;
+                width: 100%;
+                display: flex;
+                justify-content: space-between;
+                gap: 40px;
+                align-items: start;
+            }
+            .wcc-left {
+                display: flex;
+                flex-direction: column;
+                flex: 0 0 468px;
+                max-width: 468px;
+            }
+            .wcc-title {
+                font-family: 'Open Sans', sans-serif;
+                font-size: 28px;
+                font-weight: 700;
+                color: #000;
+                margin-bottom: 15px;
+                line-height: 1.2;
+            }
+            .wcc-desc {
+                font-family: 'DM Sans', sans-serif;
+                font-size: 14px;
+                color: #555;
+                margin-bottom: 25px;
+                line-height: 1.5;
+            }
+            .wcc-collage {
+                display: grid;
+                grid-template-columns: 228px 228px;
+                gap: 12px;
+                width: 468px;
+                height: 353px;
+            }
+            .wcc-col {
+                display: flex;
+                flex-direction: column;
+                gap: 12px;
+            }
+            .wcc-img {
+                width: 100%;
+                border-radius: 8px;
+                object-fit: cover;
+                display: block;
+            }
+            .wcc-right {
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                gap: 20px;
+                flex: 1;
+            }
+            .wcc-feature-card {
+                background: #FBF6E9;
+                border-radius: 8px;
+                padding: 28px;
+                display: flex;
+                flex-direction: column;
+                width: 100%;
+                min-height: 241px;
+                box-sizing: border-box;
+            }
+            .wcc-icon-wrap {
+                width: 48px;
+                height: 48px;
+                background: #fff;
+                border-radius: 8px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                margin-bottom: 15px;
+                box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            }
+            .wcc-icon-wrap img {
+                width: 24px;
+                height: 24px;
+                object-fit: contain;
+            }
+            .wcc-feature-title {
+                font-family: 'Open Sans', sans-serif;
+                font-size: 16px;
+                font-weight: 700;
+                color: #000;
+                margin-bottom: 10px;
+            }
+            .wcc-feature-desc {
+                font-family: 'DM Sans', sans-serif;
+                font-size: 13px;
+                color: #444;
+                line-height: 1.5;
+                margin: 0;
+            }
+            @media (max-width: 991px) {
+                .why-choose-inner {
+                    flex-direction: column;
+                    align-items: center;
+                    gap: 40px;
+                }
+                .wcc-left {
+                    max-width: 100%;
+                    width: 100%;
+                }
+                .wcc-collage {
+                    width: 100%;
+                    max-width: 468px;
+                    margin: 0 auto;
+                }
+                .wcc-right {
+                    max-width: 100%;
+                    width: 100%;
+                }
+            }
+            @media (max-width: 680px) {
+                .wcc-right {
+                    grid-template-columns: 1fr;
+                    width: 100%;
+                }
+                .wcc-feature-card {
+                    width: 100%;
+                    height: auto;
+                }
+                .wcc-collage {
+                    grid-template-columns: 1fr 1fr;
+                    width: 100%;
+                    height: auto;
+                }
+            }
+            @media (max-width: 768px) {
+                .why-choose-inner { padding: 0 20px; }
+            }
+            @media (max-width: 480px) {
+                .why-choose-inner { padding: 0 16px; }
+            }
+        </style>
+
+        <section class="why-choose-section-custom">
+            <div class="why-choose-inner">
+                
+                <!-- LEFT CONTENT & COLLAGE -->
+                <div class="wcc-left">
+                    <h2 class="wcc-title">Why Choose Go Custom Boxes</h2>
+                    <p class="wcc-desc">From concept to production, we make custom packaging simple, reliable, and tailored to your brand with quality materials and attention to detail.</p>
+                    
+                    <div class="wcc-collage">
+                        <div class="wcc-col">
+                            <img src="{{ asset('uploads/Bakery-Boxes.webp') }}" alt="Packaging 1" class="wcc-img" style="height: 209px;">
+                            <img src="{{ asset('uploads/black-kraft.webp') }}" alt="Packaging 2" class="wcc-img" style="height: 132px;">
+                        </div>
+                        <div class="wcc-col">
+                            <img src="{{ asset('uploads/blind-emboss.webp') }}" alt="Packaging 3" class="wcc-img" style="height: 132px;">
+                            <img src="{{ asset('uploads/addon-gold-foil.webp') }}" alt="Packaging 4" class="wcc-img" style="height: 209px;">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- RIGHT FEATURES -->
+                <div class="wcc-right">
+                    
+                    <!-- Feature 1 -->
+                    <div class="wcc-feature-card">
+                        <div class="wcc-icon-wrap">
+                            <img src="{{ asset('uploads/premium-quality.svg') }}" alt="Premium Quality">
+                        </div>
+                        <span class="wcc-feature-title">Premium Quality</span>
+                        <p class="wcc-feature-desc">Every order undergoes a 12-point quality inspection. We use only premium-grade materials that look and feel exceptional.</p>
+                    </div>
+
+                    <!-- Feature 2 -->
+                    <div class="wcc-feature-card">
+                        <div class="wcc-icon-wrap">
+                            <img src="{{ asset('uploads/fast-flexible.svg') }}" alt="Fast & Flexible">
+                        </div>
+                        <span class="wcc-feature-title">Fast &amp; Flexible</span>
+                        <p class="wcc-feature-desc">Average production time is just 7 days. Rush options are available on select products to help keep your packaging on schedule.</p>
+                    </div>
+
+                    <!-- Feature 3 -->
+                    <div class="wcc-feature-card">
+                        <div class="wcc-icon-wrap">
+                            <img src="{{ asset('uploads/design-support.svg') }}" alt="Design & Support">
+                        </div>
+                        <span class="wcc-feature-title">Design &amp; Support</span>
+                        <p class="wcc-feature-desc">Enjoy unlimited design revisions and dedicated support from a packaging expert who understands your brand, specifications, and preferences from start to finish.</p>
+                    </div>
+
+                    <!-- Feature 4 -->
+                    <div class="wcc-feature-card">
+                        <div class="wcc-icon-wrap">
+                            <img src="{{ asset('uploads/plant-care.svg') }}" alt="Clear & Sustainable">
+                        </div>
+                        <span class="wcc-feature-title">Clear &amp; Sustainable</span>
+                        <p class="wcc-feature-desc">No hidden fees or surprise charges. Get transparent pricing and recyclable packaging made from responsibly sourced materials.</p>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        @include('components.howitworks')
         @include('components.customquote')
         @include('components.content')
         @include('components.blogs')
