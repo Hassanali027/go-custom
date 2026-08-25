@@ -2,11 +2,12 @@
     :root {
         --site-container-width: 1280px;
         --site-container-gutter: 55px;
-        --primary-color: #8D4445;
-        --secondary-color: #F8EEEC;
-        --background-color: #FAF8F8;
-        --footer-color: #5F2D2F;
-        --header-gradient: linear-gradient(278.74deg, #AB5A5B 0.2%, #8D4445 44.25%, #5B2829 88.3%);
+        --primary-color: #0B2240;
+        --secondary-color: #FFB400;
+        --background-color: #FFFFFF;
+        --footer-color: #0B2240;
+        --header-bg: #FFFFFF;
+        --topbar-bg: #0B2240;
         --section-text-color: #000000;
         --heading-h1-size: 32px;
         --heading-h2-size: 28px;
@@ -28,10 +29,10 @@
     }
 
     .site-header {
-        background: var(--header-gradient);
+        background: var(--header-bg);
         width: 100%;
-        border-bottom: 0.2px solid rgba(255, 255, 255, 0.2);
-        color: #fff;
+        border-bottom: 0.2px solid rgba(0, 0, 0, 0.1);
+        color: var(--primary-color);
         font-family: 'Open Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
         position: sticky;
         top: 0;
@@ -57,8 +58,8 @@
         align-items: center;
         text-decoration: none;
         color: #fff;
-        flex: 0 0 126px;
-        width: 126px;
+        flex: 0 0 205px;
+        width: 205px;
         outline: none;
     }
     
@@ -68,8 +69,8 @@
     }
 
     .header-logo-img {
-        width: 126px !important;
-        height: 64px !important;
+        width: 205px !important;
+        height: 70px !important;
         display: block;
         flex-shrink: 0;
     }
@@ -170,7 +171,7 @@
         height: 34px;
         flex-shrink: 0;
         fill: none;
-        stroke: #fff;
+        stroke: var(--primary-color);
         stroke-width: 1.5;
         stroke-linecap: round;
         stroke-linejoin: round;
@@ -474,12 +475,7 @@
             padding: 5px;
         }
 
-        .mobile-menu-btn svg {
-            width: 32px;
-            height: 32px;
-            stroke: #fff;
-            stroke-width: 2;
-        }
+        .mobile-menu-btn svg { width: 16px; height: 12px; stroke: none; }
 
         .mobile-overlay {
             position: fixed;
@@ -502,12 +498,12 @@
         .mobile-sidebar {
             position: fixed;
             top: 0;
-            right: -80vw;
+            left: -80vw;
             width: 80vw;
             height: 100vh;
-            background: var(--secondary-color);
+            background: var(--primary-color);
             z-index: 999;
-            transition: right 0.3s ease;
+            transition: left 0.3s ease;
             box-shadow: -2px 0 10px rgba(0,0,0,0.1);
             overflow-y: auto;
             display: flex;
@@ -515,12 +511,12 @@
         }
 
         .mobile-sidebar.active {
-            right: 0;
+            left: 0;
         }
 
         .mobile-sidebar-header {
             padding: 20px;
-            background: var(--header-gradient);
+            background: var(--primary-color);
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -603,7 +599,7 @@
         }
 
         .mobile-nav-item {
-            border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
 
         .mobile-nav-header {
@@ -616,7 +612,7 @@
 
         .mobile-nav-link-top,
         .mobile-nav > li > a {
-            color: #111111;
+            color: #fff;
             text-decoration: none;
             font-size: 16px;
             font-weight: 600;
@@ -635,7 +631,7 @@
             border: none;
             padding: 4px 6px;
             cursor: pointer;
-            color: #333333;
+            color: #fff;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -644,7 +640,7 @@
         .mobile-dropdown-toggle .chevron-icon {
             width: 18px;
             height: 18px;
-            stroke: #222222;
+            stroke: #fff;
             stroke-width: 2.2;
             transition: transform 0.3s ease;
         }
@@ -667,7 +663,7 @@
         }
 
         .mobile-submenu li a {
-            color: #444444;
+            color: #e0e0e0;
             text-decoration: none;
             font-size: 15px;
             font-weight: 500;
@@ -679,7 +675,7 @@
         }
 
         .mobile-submenu li a:hover {
-            color: #8D4445;
+            color: var(--secondary-color);
         }
 
         .mobile-contact {
@@ -714,84 +710,30 @@
 </style>
 
 <header class="site-header">
-    <div class="header-top">
-        <a href="/" class="header-logo">
-            <img src="{{ asset('uploads/logo-rigid-boxes.svg') }}" alt="The Rigid Boxes" class="header-logo-img" width="126" height="64" fetchpriority="high">
-        </a>
-
-        <!-- Desktop Search -->
-        <form action="/search" method="GET" class="header-search">
-            <svg class="search-icon" viewBox="0 0 24 24">
-                <path fill="currentColor" d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
-            </svg>
-            <input type="text" name="q" placeholder="Search products..." oninput="this.nextElementSibling.style.display = this.value ? 'block' : 'none';">
-            <svg class="clear-icon" viewBox="0 0 24 24" style="display: none;" onclick="this.previousElementSibling.value=''; this.style.display='none'; this.previousElementSibling.focus();">
-                <path fill="currentColor" d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
-            </svg>
-        </form>
-
-        <!-- Desktop Contact -->
-        <div class="header-contact" style="display: flex; align-items: center; gap: clamp(12px, 1.5vw, 24px); margin: 0 0 0 auto; flex: 0 0 auto; flex-shrink: 0;">
-            <div class="contact-item contact-item-phone" style="display: flex; align-items: center; gap: 10px; margin: 0; padding: 0; flex-shrink: 0; white-space: nowrap; min-width: 0;">
-                <svg viewBox="0 0 24 24" width="34" height="34" style="width: 34px; height: 34px; flex-shrink: 0; fill: none; stroke: #fff; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; display: block;">
-                    <path d="M3 18v-6a9 9 0 0 1 18 0v6"></path>
-                    <path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"></path>
-                    <path d="M14 22h-4"></path>
-                </svg>
-                <div class="contact-item-text" style="white-space: nowrap; font-variant-numeric: tabular-nums;">
-                    <span style="display: block; font-size: 14px; color: #fff; font-weight: 700; line-height: 1.2;">Call Us 24/7</span>
-                    <strong style="display: block; font-size: 16px; line-height: 1.35; font-weight: 400; margin-top: 1px;">{{ $siteSettings['company_phone'] ?? '1800-315-8441' }}</strong>
+    <div class="header-topbar" style="background-color: var(--topbar-bg); color: #fff; padding: 12px 0; font-size: 14px;">
+        <div class="header-container" style="display: flex; justify-content: space-between; align-items: center;">
+            <div style="display: flex; gap: 30px;">
+                <div style="display: flex; align-items: center; gap: 8px;">
+                    <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M6.62 10.79a15.053 15.053 0 006.59 6.59l2.2-2.2a1.011 1.011 0 011.02-.24c1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+                    <span>{{ $siteSettings['company_phone'] ?? '847-200-0971' }}</span>
+                </div>
+                <div style="display: flex; align-items: center; gap: 8px;">
+                    <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+                    <span>{{ $siteSettings['company_email'] ?? 'support@gocustomboxes.com' }}</span>
                 </div>
             </div>
-
-            <div class="contact-item contact-item-email" style="display: flex; align-items: center; gap: 10px; margin: 0; padding: 0; flex-shrink: 0; white-space: nowrap; min-width: 0;">
-                <svg viewBox="0 0 24 24" width="34" height="34" style="width: 34px; height: 34px; flex-shrink: 0; fill: none; stroke: #fff; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; display: block;">
-                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
-                    <polyline points="22,6 12,13 2,6"></polyline>
-                </svg>
-                <div class="contact-item-text" style="white-space: nowrap; font-variant-numeric: tabular-nums;">
-                    <span style="display: block; font-size: 14px; color: #fff; font-weight: 700; line-height: 1.2;">Email</span>
-                    <strong style="display: block; font-size: 16px; line-height: 1.35; font-weight: 400; margin-top: 1px;">{{ $siteSettings['company_email'] ?? 'example@gmail.com' }}</strong>
+            <div style="display: flex; align-items: center; gap: 15px;">
+                <span>Follow Us:</span>
+                <div style="display: flex; gap: 10px;">
+                    <a href="#" style="background: #fff; color: var(--topbar-bg); border-radius: 8px; width: 30px; height: 30px; display: flex; align-items: center; justify-content: center;"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg></a>
+                    <a href="#" style="background: #fff; color: var(--topbar-bg); border-radius: 8px; width: 30px; height: 30px; display: flex; align-items: center; justify-content: center;"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
+                    <a href="#" style="background: #fff; color: var(--topbar-bg); border-radius: 8px; width: 30px; height: 30px; display: flex; align-items: center; justify-content: center;"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg></a>
+                    <a href="#" style="background: #fff; color: var(--topbar-bg); border-radius: 8px; width: 30px; height: 30px; display: flex; align-items: center; justify-content: center;"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M22.54 6.42a2.78 2.78 0 00-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 00-1.94 2A29 29 0 001 11.75a29 29 0 00.46 5.33 2.78 2.78 0 001.94 2c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 001.94-2 29 29 0 00.46-5.33 29 29 0 00-.46-5.33zM9.75 15.02V8.48l6.19 3.27-6.19 3.27z"/></svg></a>
                 </div>
             </div>
-
-            <a href="/request-quote/" class="get-quote-btn" style="background-color: #fff; color: #8D4445; min-height: 44px; padding: 0 20px; border-radius: 6px; text-decoration: none; font-weight: 600; font-size: 15px; display: flex; align-items: center; justify-content: center; box-shadow: 0 3px 5px rgba(55, 21, 22, .25); flex-shrink: 0; white-space: nowrap;">Get Instant Quote</a>
-        </div>
-
-        <!-- Mobile Actions -->
-        <div class="mobile-actions">
-            <button class="mobile-search-btn" onclick="toggleMobileSearch()">
-                <svg viewBox="0 0 24 24">
-                    <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
-                </svg>
-            </button>
-            <button class="mobile-menu-btn" onclick="toggleMobileMenu()">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"></path>
-                </svg>
-            </button>
         </div>
     </div>
-
-    <!-- Mobile Search Dropdown -->
-    <div class="mobile-search-dropdown" id="mobileSearchDropdown" style="display: none; padding: 12px 20px; background: #FAF8F8; border-bottom: 1px solid rgba(0,0,0,0.1);">
-        <form action="/search" method="GET" style="display: flex; position: relative; width: 100%;">
-            <input type="text" name="q" placeholder="Search products..." style="width: 100%; padding: 10px 75px 10px 15px; border: 1px solid #ddd; border-radius: 6px; outline: none; font-size: 15px; color: #333;" oninput="this.nextElementSibling.style.display = this.value ? 'flex' : 'none';">
-            
-            <!-- Clear text icon -->
-            <svg viewBox="0 0 24 24" style="display: none; position: absolute; right: 45px; top: 50%; transform: translateY(-50%); width: 18px; height: 18px; cursor: pointer; color: #888;" onclick="this.previousElementSibling.value=''; this.style.display='none'; this.previousElementSibling.focus();">
-                <path fill="currentColor" d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
-            </svg>
-
-            <!-- Close dropdown icon -->
-            <button type="button" onclick="toggleMobileSearch()" style="position: absolute; right: 12px; top: 50%; transform: translateY(-50%); background: none; border: none; cursor: pointer; color: #8D4445; padding: 0; display: flex; align-items: center; justify-content: center; border-left: 1px solid #eee; padding-left: 10px; height: 24px;">
-                <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path>
-                </svg>
-            </button>
-        </form>
-    </div>
-
+    
     @php
         $navCatsAll = $navCategories ?? [];
         $navParents = array_values(array_filter($navCatsAll, fn($c) => empty($c['parent_id'])));
@@ -806,19 +748,43 @@
         $navParentItems = $navParents;
     @endphp
 
-    <!-- Desktop Navigation -->
-    <div class="header-bottom">
-        <ul class="header-nav">
-            <li><a href="/">Home</a></li>
+    <div class="header-main header-container" style="display: flex; align-items: center; height: 80px;">
+        <a href="/" class="header-logo" style="flex-shrink: 0; display: flex; align-items: center; margin-right: 30px;">
+            <img src="{{ asset('uploads/header-logo.svg') }}" alt="The Rigid Boxes" class="header-logo-img" width="205" height="70" fetchpriority="high">
+        </a>
+        
+        <ul class="header-nav" style="display: flex; align-items: center; justify-content: center; margin: 0; padding: 0; list-style: none; flex-grow: 1; gap: 28px;">
+            <li><a href="/" style="color: var(--primary-color); text-decoration: none; font-weight: 700; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 15px;">Home</a></li>
             @foreach($navParentItems as $navParent)
             <li class="has-mega" data-mega-type="{{ $navParent['slug'] }}">
-                <a href="{{ url('/' . $navParent['slug']) }}/" class="mega-trigger">{{ $navParent['title'] }}</a>
+                <a href="{{ url('/' . $navParent['slug']) }}/" class="mega-trigger" style="color: var(--primary-color); text-decoration: none; font-weight: 700; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 15px;">{{ $navParent['title'] }}</a>
             </li>
             @endforeach
-            <li><a href="/blog/">Blog</a></li>
+            <li><a href="/resources/" style="color: var(--primary-color); text-decoration: none; font-weight: 700; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 15px;">Resources</a></li>
         </ul>
+        
+        <div style="display: flex; align-items: center; gap: 24px; flex-shrink: 0; margin-left: 30px;">
+            <button class="search-trigger-btn" style="background: none; border: none; cursor: pointer; color: var(--primary-color); padding: 0; display: flex; align-items: center;" onclick="document.getElementById('desktopSearchForm').style.display='flex';">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+            </button>
+            
+            <a href="/request-quote/" class="get-quote-btn" style="background-color: var(--secondary-color); color: var(--primary-color); height: 48px; padding: 0 24px; border-radius: 4px; text-decoration: none; font-weight: 700; font-size: 16px; font-family: 'Plus Jakarta Sans', sans-serif; display: flex; align-items: center; justify-content: center; box-shadow: none; white-space: nowrap;">Get a Quote</a>
+            
+            <button class="mobile-menu-btn" onclick="toggleMobileMenu()" style="display: none; background: none; border: none; color: var(--primary-color);">
+                <svg width="16" height="12" viewBox="0 0 16 12" fill="var(--primary-color)"><rect x="0" y="0" width="16" height="2"/><rect x="0" y="5" width="16" height="2"/><rect x="0" y="10" width="16" height="2"/></svg>
+            </button>
+        </div>
+    </div>
 
-        <!-- Mega Menu Panel -->
+    <div id="desktopSearchForm" class="header-container" style="display: none; padding: 10px 0; border-top: 1px solid #eee;">
+        <form action="/search" method="GET" style="display: flex; width: 100%; position: relative;">
+            <input type="text" name="q" placeholder="Search products..." style="width: 100%; height: 44px; padding: 0 15px; border: 1px solid #ddd; border-radius: 4px; font-family: inherit;">
+            <button type="button" onclick="this.parentElement.parentElement.style.display='none'" style="position: absolute; right: 10px; top: 10px; background: none; border: none; cursor: pointer;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#333" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"></path></svg></button>
+        </form>
+    </div>
+
+    <div class="header-bottom" style="display: none;">
+    </div><!-- Mega Menu Panel -->
         <div class="mega-menu" id="megaMenu">
             <div class="mega-menu-grid" id="megaMenuGrid"></div>
             
@@ -843,7 +809,7 @@
     <div class="mobile-sidebar" id="mobileSidebar">
         <div class="mobile-sidebar-header">
             <a href="/" class="header-logo" style="margin: 0;">
-                <img src="{{ asset('uploads/logo-rigid-boxes.svg') }}" alt="The Rigid Boxes" class="header-logo-img">
+                <img src="{{ asset('uploads/header-logo.svg') }}" alt="The Rigid Boxes" class="header-logo-img">
             </a>
             <button class="close-menu-btn" onclick="toggleMobileMenu()">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
@@ -864,7 +830,7 @@
             </form>
 
             <ul class="mobile-nav">
-                <li><a href="/" class="mobile-nav-link-top" style="border-bottom: 1px solid rgba(0, 0, 0, 0.08);">Home</a></li>
+                <li><a href="/" class="mobile-nav-link-top" style="border-bottom: 1px solid rgba(255, 255, 255, 0.1);">Home</a></li>
                 @foreach($navParents as $navParent)
                     @php
                         $children = $navByParentSlug[$navParent['slug']] ?? [];
@@ -895,35 +861,35 @@
                         </li>
                     @endif
                 @endforeach
-                <li><a href="/blog/" class="mobile-nav-link-top" style="border-bottom: 1px solid rgba(0, 0, 0, 0.08);">Blog</a></li>
+                <li><a href="/blog/" class="mobile-nav-link-top" style="border-bottom: 1px solid rgba(255, 255, 255, 0.1);">Blog</a></li>
             </ul>
 
             <a href="/contact-us/" class="get-quote-btn" style="display:flex; width: 100%; text-align: center; justify-content: center; margin: 30px 0; background: #8D4445; color: #fff; padding: 12px 20px; border-radius: 4px; font-family: 'DM Sans', sans-serif; font-weight: 700; font-size: 16px; text-decoration: none;">Get Instant Quote</a>
 
             <div class="mobile-contact" style="margin-top: 0; gap: 0; display: flex; flex-direction: column; align-items: flex-start;">
-                <h3 style="font-family: 'DM Sans', sans-serif; font-size: 18px; margin-bottom: 20px; color: #000; text-align: left;">Get In Touch</h3>
+                <h3 style="font-family: 'DM Sans', sans-serif; font-size: 18px; margin-bottom: 20px; color: #fff; text-align: left;">Get In Touch</h3>
                 
                 <div class="mobile-contact-item" style="display: flex; align-items: flex-start; justify-content: flex-start !important; gap: 15px; margin-bottom: 20px; width: 100%; text-align: left;">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width: 20px; height: 20px; stroke: #8D4445; flex-shrink: 0; margin-top: 2px;">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width: 20px; height: 20px; stroke: var(--secondary-color); flex-shrink: 0; margin-top: 2px;">
                         <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
                     </svg>
-                    <span style="font-family: 'DM Sans', sans-serif; font-size: 16px; color: #111; font-weight: 400; text-align: left;">{{ $siteSettings['company_phone'] ?? '1800-518-9441' }}</span>
+                    <span style="font-family: 'DM Sans', sans-serif; font-size: 16px; color: #fff; font-weight: 400; text-align: left;">{{ $siteSettings['company_phone'] ?? '1800-518-9441' }}</span>
                 </div>
 
                 <div class="mobile-contact-item" style="display: flex; align-items: flex-start; justify-content: flex-start !important; gap: 15px; margin-bottom: 20px; width: 100%; text-align: left;">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width: 20px; height: 20px; stroke: #8D4445; flex-shrink: 0; margin-top: 2px;">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width: 20px; height: 20px; stroke: var(--secondary-color); flex-shrink: 0; margin-top: 2px;">
                         <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
                         <polyline points="22,6 12,13 2,6"></polyline>
                     </svg>
-                    <span style="font-family: 'DM Sans', sans-serif; font-size: 16px; color: #111; font-weight: 400; text-align: left;">{{ $siteSettings['company_email'] ?? 'example@gmail.com' }}</span>
+                    <span style="font-family: 'DM Sans', sans-serif; font-size: 16px; color: #fff; font-weight: 400; text-align: left;">{{ $siteSettings['company_email'] ?? 'example@gmail.com' }}</span>
                 </div>
 
                 <div class="mobile-contact-item" style="display: flex; align-items: flex-start; justify-content: flex-start !important; gap: 15px; width: 100%; text-align: left;">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width: 20px; height: 20px; stroke: #8D4445; flex-shrink: 0; margin-top: 2px;">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width: 20px; height: 20px; stroke: var(--secondary-color); flex-shrink: 0; margin-top: 2px;">
                         <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
                         <circle cx="12" cy="10" r="3"></circle>
                     </svg>
-                    <span style="font-family: 'DM Sans', sans-serif; font-size: 16px; color: #111; font-weight: 400; text-align: left;">{!! strip_tags(str_replace('<br>', ' ', $siteSettings['company_address'] ?? '1880 S Dairy Ashford Rd Suite 207 Houston, TX 77077')) !!}</span>
+                    <span style="font-family: 'DM Sans', sans-serif; font-size: 16px; color: #fff; font-weight: 400; text-align: left;">{!! strip_tags(str_replace('<br>', ' ', $siteSettings['company_address'] ?? '1880 S Dairy Ashford Rd Suite 207 Houston, TX 77077')) !!}</span>
                 </div>
             </div>
         </div>
@@ -1146,3 +1112,30 @@
         }
     })();
 </script>
+
+<style>
+@media (max-width: 991px) {
+    .header-nav { display: none !important; }
+    .get-quote-btn { display: none !important; }
+    .header-topbar { display: none !important; }
+    .header-main { justify-content: space-between !important; position: relative; }
+    .header-logo { position: absolute !important; left: 50% !important; transform: translateX(-50%) !important; margin: 0 !important; }
+    .header-logo-img { width: 175px !important; height: 60px !important; }
+    .header-main > div { display: contents !important; }
+    .mobile-menu-btn { display: block !important; order: -1 !important; margin-left: 0 !important; }
+    .search-trigger-btn { order: 1 !important; margin-right: 0 !important; }
+}
+</style>
+
+
+
+
+
+
+
+
+
+
+
+
+
