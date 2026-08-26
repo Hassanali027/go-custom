@@ -441,24 +441,63 @@
 
     /* Mobile Styles */
     @media (max-width: 1100px) {
-        .header-top {
-            height: 80px;
-            padding: 0 5%;
-            flex-direction: row;
-            justify-content: space-between;
-            align-items: center;
-            width: 100%;
-            max-width: 100%;
-        }
-
-        .header-search, .header-contact, .header-bottom {
+        .header-topbar {
             display: none !important;
         }
 
-        .mobile-actions {
-            display: flex;
+        .header-main {
+            position: relative;
+        }
+
+        .header-nav, .get-quote-btn {
+            display: none !important;
+        }
+
+        .header-logo {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            margin: 0 !important;
+        }
+
+        .header-right-actions {
+            width: 100%;
+            justify-content: space-between !important;
+            margin-left: 0 !important;
+            gap: 0 !important;
+        }
+
+        .search-trigger-btn, .mobile-menu-btn {
+            width: 44px;
+            height: 44px;
+            background: #fff !important;
+            border-radius: 12px;
+            display: flex !important;
             align-items: center;
-            flex-shrink: 0;
+            justify-content: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            border: 1px solid #f0f0f0 !important;
+            padding: 0 !important;
+        }
+
+        .search-trigger-btn svg, .mobile-menu-btn svg {
+            width: 20px !important;
+            height: 20px !important;
+            stroke: var(--primary-color);
+        }
+        
+        .mobile-menu-btn svg rect {
+            fill: var(--primary-color);
+            stroke: none;
+        }
+
+        #desktopSearchForm {
+            width: calc(100% - 32px) !important;
+            left: 16px !important;
+            right: 16px !important;
+            top: 100% !important;
+            margin-top: 15px !important;
+            box-sizing: border-box;
         }
 
         .mobile-search-btn {
@@ -776,12 +815,12 @@
             <li><a href="/resources/" style="color: var(--primary-color); text-decoration: none; font-weight: 700; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 15px;">Resources</a></li>
         </ul>
         
-        <div style="display: flex; align-items: center; gap: 24px; flex-shrink: 0; margin-left: 30px;">
-            <button class="search-trigger-btn" style="background: none; border: none; cursor: pointer; color: var(--primary-color); padding: 0; display: flex; align-items: center;" onclick="document.getElementById('desktopSearchForm').style.display='flex';">
+        <div class="header-right-actions" style="display: flex; align-items: center; gap: 24px; flex-shrink: 0; margin-left: 30px;">
+            <button class="search-trigger-btn" style="background: none; border: none; cursor: pointer; color: var(--primary-color); padding: 0; display: flex; align-items: center;" onclick="const sf = document.getElementById('desktopSearchForm'); sf.style.display = (sf.style.display === 'none' || sf.style.display === '') ? 'block' : 'none';">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
             </button>
             
-            <a href="/request-quote/" class="get-quote-btn" style="background-color: var(--secondary-color); color: var(--primary-color); height: 48px; padding: 0 24px; border-radius: 4px; text-decoration: none; font-weight: 700; font-size: 16px; font-family: 'Plus Jakarta Sans', sans-serif; display: flex; align-items: center; justify-content: center; box-shadow: none; white-space: nowrap;">Get a Quote</a>
+            <a href="/request-quote/" class="get-quote-btn" style="background-color: var(--secondary-color); color: var(--primary-color); width: 145px; height: 48px; padding: 0; border-radius: 4px; text-decoration: none; font-weight: 700; font-size: 16px; font-family: 'Plus Jakarta Sans', sans-serif; display: flex; align-items: center; justify-content: center; box-shadow: none; white-space: nowrap;">Get a Quote</a>
             
             <button class="mobile-menu-btn" onclick="toggleMobileMenu()" style="display: none; background: none; border: none; color: var(--primary-color);">
                 <svg width="16" height="12" viewBox="0 0 16 12" fill="var(--primary-color)"><rect x="0" y="0" width="16" height="2"/><rect x="0" y="5" width="16" height="2"/><rect x="0" y="10" width="16" height="2"/></svg>
@@ -789,10 +828,12 @@
         </div>
     </div>
 
-    <div id="desktopSearchForm" class="header-container" style="display: none; padding: 10px 0; border-top: 1px solid #eee;">
-        <form action="/search" method="GET" style="display: flex; width: 100%; position: relative;">
-            <input type="text" name="q" placeholder="Search products..." style="width: 100%; height: 44px; padding: 0 15px; border: 1px solid #ddd; border-radius: 4px; font-family: inherit;">
-            <button type="button" onclick="this.parentElement.parentElement.style.display='none'" style="position: absolute; right: 10px; top: 10px; background: none; border: none; cursor: pointer;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#333" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"></path></svg></button>
+    <div id="desktopSearchForm" style="display: none; position: absolute; right: 180px; top: 100%; margin-top: 10px; width: 320px; background: #fff; border-radius: 50px; box-shadow: 0 15px 35px rgba(0,0,0,0.1); padding: 6px; z-index: 1001; border: 1px solid #eaeaea;">
+        <form action="/search" method="GET" style="display: flex; width: 100%; position: relative; align-items: center;">
+            <input type="text" name="q" placeholder="Search products..." style="flex: 1; height: 46px; padding: 0 20px 0 24px; border: none; border-radius: 50px; outline: none; font-family: inherit; font-size: 15px; color: #333;" autocomplete="off">
+            <button type="submit" style="width: 46px; height: 46px; background-color: var(--secondary-color); color: var(--primary-color); border: none; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; flex-shrink: 0; transition: transform 0.2s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+            </button>
         </form>
     </div>
 

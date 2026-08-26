@@ -2,11 +2,21 @@
     .category-hero-wrapper {
         width: 100%;
         max-width: 100%;
+        height: 538px;
         box-sizing: border-box;
-        background: radial-gradient(circle at bottom left, rgba(255, 180, 0, 0.4) 0%, transparent 50%), radial-gradient(circle at top left, #FFFFFF 0%, #FFF8E7 25%, #FFE9C2 60%, #FFE0A6 100%);
+        background: linear-gradient(160deg, #FFF8E7 0%, #FFE9C2 35%, #FFE0A6 100%);
         color: #000;
         position: relative;
         overflow: hidden;
+        display: flex;
+        align-items: center;
+    }
+    
+    @media (max-width: 992px) {
+        .category-hero-wrapper {
+            height: auto;
+            display: block;
+        }
     }
     
 
@@ -70,16 +80,20 @@
 
 
 
+    @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@700&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400&display=swap');
+
     .hero-title {
-        font-family: 'Open Sans', sans-serif;
-        font-weight: 800;
-        font-size:32px;
-        line-height: 50px;
+        font-family: 'Plus Jakarta Sans', sans-serif;
+        font-weight: 700;
+        font-size: 50px;
+        line-height: 1.2;
         letter-spacing: 0%;
        
         color: #000;
         margin-bottom: 14px;
         overflow-wrap: break-word;
+        max-width: 480px;
     }
 
     .hero-title .highlight {
@@ -100,10 +114,13 @@
     .hero-btn {
         display: inline-flex;
         align-items: center;
+        justify-content: center;
+        width: 236px;
+        height: 56px;
+        box-sizing: border-box;
         background: var(--secondary-color);
         font-family: 'DM Sans', sans-serif;
         color: var(--primary-color);
-        padding: 12px 24px;
         box-shadow: 0px 15px 35px rgba(0, 0, 0, 0.15);
         font-size: 16px;
         font-weight: 700;
@@ -159,10 +176,10 @@
         }
 
         .hero-section {
-            flex-direction: column;
+            flex-direction: column-reverse;
             display: flex;
             padding: 30px 55px 24px;
-            text-align: left;
+            text-align: center;
             gap: 20px;
         }
 
@@ -170,11 +187,25 @@
             max-width: 100%;
             padding-top: 0;
             padding-bottom: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
         .hero-title {
-            font-size: 38px;
+            font-size: 28px;
             line-height: 1.3;
+            text-align: center;
+        }
+
+        .hero-description {
+            font-family: 'Inter', sans-serif;
+            font-size: 16px;
+            font-weight: 400;
+            line-height: 24px;
+            text-align: justify;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         .hero-image-wrapper {
@@ -185,7 +216,7 @@
             justify-content: center;
             width: 100%;
             height: auto;
-            margin-top: 10px;
+            margin-top: 0;
         }
 
         .hero-image-wrapper img {
@@ -195,24 +226,35 @@
             max-height: 456px;
             aspect-ratio: auto;
         }
+
+        .hero-btn-outline {
+            display: none !important;
+        }
     }
 
     @media (max-width: 576px) {
 
         .hero-section {
             padding: 24px 16px 16px !important;
-            text-align: left;
+            text-align: center;
         }
 
         .hero-title {
-            font-size: 29px !important;
+            font-size: 28px !important;
             line-height: 1.3;
             word-wrap: break-word;
+            text-wrap: balance;
+            max-width: 336px;
+            margin-left: auto;
+            margin-right: auto;
+            text-transform: uppercase;
         }
 
-        .hero-description {
-            font-size: 13px;
+        .hero-title br {
+            display: none;
         }
+
+
 
     }
 
@@ -221,6 +263,34 @@
             padding-left: 20px;
             padding-right: 20px;
         }
+    }
+
+    .hero-glow-circle {
+        position: absolute;
+        width: 182px;
+        height: 182px;
+        left: 0;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        background: #FFE0A2;
+        filter: blur(45px);
+        border-radius: 50%;
+        pointer-events: none;
+        z-index: -1;
+    }
+
+    .hero-glow-circle-right {
+        position: absolute;
+        width: 257px;
+        height: 257px;
+        right: 0;
+        top: 0;
+        transform: translate(30%, -20%);
+        background: #FFE0A2;
+        filter: blur(60px);
+        border-radius: 50%;
+        pointer-events: none;
+        z-index: -1;
     }
 </style>
 
@@ -284,13 +354,15 @@
                 {{ !empty($settings['hero_description']) ? $settings['hero_description'] : 'Crafted for prestige brands, our bespoke luxury boxes merge structural integrity with tactile sophistication. Redefining the unboxing experience through heritage craftsmanship and modern minimalism.' }}
             </p>
 
-            <div class="hero-buttons" style="display: flex; gap: 16px; align-items: center;">
+            <div class="hero-buttons" style="position: relative; display: flex; gap: 16px; align-items: center;">
+                <div class="hero-glow-circle"></div>
                 <a href="/request-quote/" class="hero-btn" style="display: inline-flex; align-items: center;">Get Instant Quote <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-left: 6px;"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a>
-                <a href="/shop/" class="hero-btn-outline" style="display: inline-block; padding: 11px 24px; font-family: 'DM Sans', sans-serif; font-size: 16px; font-weight: 700; color: var(--primary-color); border: 2px solid var(--primary-color); border-radius: 4px; text-decoration: none; transition: 0.3s;">Shop Now</a>
+                <a href="/shop/" class="hero-btn-outline" style="display: inline-flex; align-items: center; justify-content: center; width: 195px; height: 56px; box-sizing: border-box; font-family: 'DM Sans', sans-serif; font-size: 16px; font-weight: 700; color: var(--primary-color); border: 2px solid var(--primary-color); border-radius: 4px; text-decoration: none; transition: 0.3s;">Shop Now</a>
             </div>
         </div>
 
         <div class="hero-image-wrapper">
+            <div class="hero-glow-circle-right"></div>
             @php
                 $hImg = !empty($settings['hero_image']) ? $settings['hero_image'] : (!empty($category['hero_image']) ? $category['hero_image'] : 'uploads/Home-Banner.webp');
                 $hImgPath = \Illuminate\Support\Str::startsWith($hImg, ['storage/', 'uploads/', 'images/']) ? $hImg : 'storage/' . $hImg;

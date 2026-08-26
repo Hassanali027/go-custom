@@ -15,7 +15,7 @@
         box-sizing: border-box;
         display: flex;
         align-items: stretch;
-        gap: 60px;
+        gap: 100px;
     }
 
     /* ── Left column: Form Card ── */
@@ -76,6 +76,8 @@
     .qf-group input,
     .qf-group select,
     .qf-group textarea {
+        width: 100%;
+        box-sizing: border-box;
         background: transparent;
         border: 1px solid rgba(255, 255, 255, 0.2);
         border-radius: 6px;
@@ -127,6 +129,8 @@
         border-radius: 6px;
         overflow: hidden;
         height: 44px;
+        width: 100%;
+        box-sizing: border-box;
     }
 
     .qf-file-wrap input[type="text"] {
@@ -245,17 +249,32 @@
 
     @media (max-width: 768px) {
         .quote-section {
-            padding: 40px 0;
+            padding: 30px 0 50px 0 !important;
+        }
+        .quote-container {
+            padding: 0 16px;
         }
         .quote-form-card {
-            padding: 24px;
+            padding: 24px 16px;
+            width: 100%;
+            border-radius: 12px;
         }
-        .qf-grid-3, .qf-grid-4, .qf-grid-2 {
+        .quote-form-title {
+            font-size: 22px;
+            margin-bottom: 20px;
+        }
+        .qf-grid-3 {
             grid-template-columns: 1fr;
-            gap: 16px;
+            gap: 14px;
+            margin-bottom: 14px;
+        }
+        .qf-grid-4 {
+            grid-template-columns: 1fr 1fr;
+            gap: 14px;
+            margin-bottom: 14px;
         }
         .quote-features {
-            grid-template-columns: 1fr;
+            display: none !important;
         }
     }
 </style>
@@ -316,8 +335,8 @@
                     </div>
                 </div>
 
-                <!-- Row 3: Material, Color, Turn Around -->
-                <div class="qf-grid-3">
+                <!-- Row 3: Material, Color, Turn Around, Quantity -->
+                <div class="qf-grid-4">
                     <div class="qf-group">
                         <label>Select Material</label>
                         <select name="material">
@@ -346,21 +365,19 @@
                             <option value="Rush (4-6 Days)">Rush (4-6 Days)</option>
                         </select>
                     </div>
-                </div>
-
-                <!-- Row 4: Quantity & File Upload -->
-                <div class="qf-grid-2">
                     <div class="qf-group">
                         <label>Quantity *</label>
                         <input type="number" name="quantity" placeholder="Enter quantity" oninput="this.value = this.value.replace(/[^0-9]/g, '')" required>
                     </div>
-                    <div class="qf-group">
-                        <label>Upload File Here</label>
-                        <div class="qf-file-wrap">
-                            <input type="file" name="quote_file" id="qf-file-input" style="display: none;" onchange="document.getElementById('qf-file-name').value = this.files[0] ? this.files[0].name : ''">
-                            <input type="text" id="qf-file-name" placeholder="No file chosen" readonly>
-                            <button type="button" class="qf-file-btn" onclick="document.getElementById('qf-file-input').click()">Upload</button>
-                        </div>
+                </div>
+
+                <!-- Row 4: File Upload -->
+                <div class="qf-group" style="margin-bottom: 20px;">
+                    <label>Upload File Here</label>
+                    <div class="qf-file-wrap">
+                        <input type="file" name="quote_file" id="qf-file-input" style="display: none;" onchange="document.getElementById('qf-file-name').value = this.files[0] ? this.files[0].name : ''">
+                        <input type="text" id="qf-file-name" placeholder="No file chosen" readonly>
+                        <button type="button" class="qf-file-btn" onclick="document.getElementById('qf-file-input').click()">Upload</button>
                     </div>
                 </div>
 

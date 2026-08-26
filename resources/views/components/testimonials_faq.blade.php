@@ -38,15 +38,17 @@
     }
 
     .testimonial-cards-wrap {
-        display: flex;
-        flex-direction: column;
+        display: grid;
+        grid-template-rows: repeat(2, 236px);
+        grid-auto-columns: 100%;
+        grid-auto-flow: column;
         gap: 24px;
         height: 496px; /* Exactly fits 2 cards + 1 gap */
-        overflow-y: auto;
-        scroll-snap-type: y mandatory;
+        overflow-x: auto;
+        overflow-y: hidden;
+        scroll-snap-type: x mandatory;
         scrollbar-width: none; /* Firefox */
         -ms-overflow-style: none;  /* Internet Explorer 10+ */
-        overflow-anchor: none; /* Prevents page scroll jumping */
     }
 
     .testimonial-cards-wrap::-webkit-scrollbar { 
@@ -57,18 +59,20 @@
         width: 100%;
         max-width: 560px;
         height: 236px;
-        background-color: var(--section-background, #FFFBF0);
-        border-radius: 8px;
+        background-color: #FFFBF0;
+        border-radius: 12px;
         padding: 30px;
         box-shadow: none;
         scroll-snap-align: start;
         flex-shrink: 0;
+        box-sizing: border-box;
     }
 
     .tf-stars {
-        color: var(--secondary-color, #FFB400);
-        font-size: 18px;
-        margin-bottom: 15px;
+        color: #FFB400;
+        font-size: 16px;
+        margin-bottom: 14px;
+        letter-spacing: 2px;
     }
     
     .tf-stars span.gray {
@@ -76,26 +80,27 @@
     }
 
     .tf-quote {
-        font-size: 15px;
+        font-size: 14.5px;
         line-height: 1.6;
         color: #333;
-        margin-bottom: 24px;
-        font-style: italic;
+        margin-bottom: 20px;
+        font-style: normal;
     }
 
     .tf-author-area {
         display: flex;
         align-items: center;
-        gap: 15px;
+        gap: 12px;
     }
 
     .tf-author-initial {
-        width: 40px;
-        height: 40px;
-        background: transparent;
+        width: 36px;
+        height: 36px;
+        background: #B4C0CB;
+        border-radius: 50%;
         color: #E25C5C;
         font-weight: 700;
-        font-size: 18px;
+        font-size: 15px;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -109,34 +114,36 @@
     .tf-author-name {
         font-family: 'Open Sans', sans-serif;
         font-weight: 700;
-        font-size: 16px;
-        color: var(--primary-color, #000);
+        font-size: 15px;
+        color: #0B2240;
     }
 
     .tf-author-title {
-        font-size: 13px;
+        font-size: 12.5px;
         color: #777;
     }
 
     .tf-pagination {
         display: flex;
         align-items: center;
-        gap: 10px;
+        gap: 8px;
         margin-top: 25px;
     }
 
     .tf-dot {
-        width: 8px;
-        height: 8px;
+        width: 6px;
+        height: 6px;
         background: #D9D9D9;
         border-radius: 50%;
         cursor: pointer;
+        transition: all 0.3s ease;
     }
 
     .tf-dot.active {
         width: 24px;
-        border-radius: 4px;
-        background: var(--primary-color, #0B2240);
+        height: 6px;
+        border-radius: 3px;
+        background: #0B2240;
     }
 
     /* Right Column: FAQs */
@@ -193,9 +200,68 @@
     }
 
     @media (max-width: 992px) {
+        .testimonials-faq-section {
+            padding: 10px 0 40px 0;
+            overflow: hidden;
+            width: 100%;
+        }
         .testimonials-faq-container {
-            grid-template-columns: 1fr;
+            grid-template-columns: 100%;
             gap: 40px;
+            padding: 0 16px;
+            width: 100%;
+            max-width: 100%;
+            box-sizing: border-box;
+            overflow: hidden;
+        }
+        .testimonials-col {
+            height: auto;
+            width: 100%;
+            max-width: 100%;
+            min-width: 0;
+            contain: none;
+            box-sizing: border-box;
+        }
+        .faq-col {
+            display: none !important;
+        }
+        .testimonial-cards-wrap {
+            display: flex;
+            flex-direction: row;
+            width: 100%;
+            max-width: 100%;
+            min-width: 0;
+            overflow-x: auto;
+            overflow-y: hidden;
+            scroll-snap-type: x mandatory;
+            scroll-behavior: smooth;
+            height: auto;
+            gap: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-overflow-scrolling: touch;
+        }
+        .tf-testimonial-card {
+            flex: 0 0 100%;
+            width: 100%;
+            max-width: 100%;
+            min-width: 100%;
+            height: auto;
+            min-height: auto;
+            padding: 24px;
+            box-sizing: border-box;
+            scroll-snap-align: start;
+        }
+        .tf-quote {
+            font-size: 14px;
+            line-height: 1.6;
+            margin-bottom: 18px;
+            text-align: left;
+        }
+        .tf-pagination {
+            justify-content: center;
+            margin-top: 18px;
+            gap: 8px;
         }
     }
 </style>
@@ -257,10 +323,7 @@
             </div>
             
             <div class="tf-pagination">
-                <div class="tf-dot"></div>
-                <div class="tf-dot"></div>
-                <div class="tf-dot active"></div>
-                <div class="tf-dot"></div>
+                <!-- Dots generated by JS -->
             </div>
         </div>
 
@@ -397,37 +460,70 @@
 
     document.addEventListener('DOMContentLoaded', function() {
         const cardWrap = document.querySelector('.testimonial-cards-wrap');
-        const dots = document.querySelectorAll('.tf-pagination .tf-dot');
+        const pagination = document.querySelector('.tf-pagination');
+        const cards = document.querySelectorAll('.tf-testimonial-card');
+        let dots = [];
         let currentDot = 0;
+        let autoSlideInterval;
 
-        if (dots.length > 0) {
-            dots.forEach(d => d.classList.remove('active'));
-            dots[0].classList.add('active');
-        }
-
-        if (cardWrap) {
-            let scrollAmount = 260; // 236px card + 24px gap
+        function initPagination() {
+            if (!pagination || !cardWrap) return;
             
-            setInterval(() => {
-                // Smooth scroll down
-                cardWrap.scrollBy({ top: scrollAmount, behavior: 'smooth' });
-                
-                // Update pagination dots
-                if (dots.length > 0) {
-                    dots[currentDot].classList.remove('active');
-                    currentDot = (currentDot + 1) % dots.length;
-                    dots[currentDot].classList.add('active');
+            let isMobile = window.innerWidth <= 992;
+            let itemsPerPage = isMobile ? 1 : 2;
+            let totalPages = Math.ceil(cards.length / itemsPerPage);
+            
+            if (dots.length !== totalPages) {
+                pagination.innerHTML = '';
+                dots = [];
+                for(let i=0; i<totalPages; i++) {
+                    let d = document.createElement('div');
+                    d.className = 'tf-dot' + (i === 0 ? ' active' : '');
+                    pagination.appendChild(d);
+                    dots.push(d);
+                    
+                    d.addEventListener('click', () => {
+                        let cardWidth = cardWrap.offsetWidth;
+                        let gap = isMobile ? 0 : 24;
+                        cardWrap.scrollTo({ left: i * (cardWidth + gap), behavior: 'smooth' });
+                        dots.forEach(dot => dot.classList.remove('active'));
+                        d.classList.add('active');
+                        currentDot = i;
+                    });
                 }
-                
-                // Wait for the smooth scroll to finish, then move the top card to the bottom
-                setTimeout(() => {
-                    let firstCard = cardWrap.firstElementChild;
-                    cardWrap.appendChild(firstCard);
-                    // Instantly adjust scroll position back so the user doesn't notice the jump
-                    cardWrap.scrollBy({ top: -scrollAmount, behavior: 'auto' });
-                }, 500); // 500ms allows the smooth scroll animation to finish
-                
-            }, 1000); // Auto scroll every 1 second
+            }
         }
+        
+        initPagination();
+        window.addEventListener('resize', initPagination);
+
+        // On scroll, sync active dot
+        if (cardWrap) {
+            cardWrap.addEventListener('scroll', () => {
+                let isMobile = window.innerWidth <= 992;
+                let cardWidth = cardWrap.offsetWidth;
+                let gap = isMobile ? 0 : 24;
+                let activeIndex = Math.round(cardWrap.scrollLeft / (cardWidth + gap));
+                if (dots[activeIndex] && !dots[activeIndex].classList.contains('active')) {
+                    dots.forEach(dot => dot.classList.remove('active'));
+                    dots[activeIndex].classList.add('active');
+                    currentDot = activeIndex;
+                }
+            }, { passive: true });
+        }
+
+        // Auto slide every 4 seconds
+        autoSlideInterval = setInterval(() => {
+            if (cardWrap && dots.length > 0) {
+                currentDot = (currentDot + 1) % dots.length;
+                let isMobile = window.innerWidth <= 992;
+                let cardWidth = cardWrap.offsetWidth;
+                let gap = isMobile ? 0 : 24;
+                cardWrap.scrollTo({ left: currentDot * (cardWidth + gap), behavior: 'smooth' });
+                
+                dots.forEach(dot => dot.classList.remove('active'));
+                dots[currentDot].classList.add('active');
+            }
+        }, 4000);
     });
 </script>

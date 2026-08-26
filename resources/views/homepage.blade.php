@@ -145,12 +145,13 @@
             transition: transform 0.25s ease;
         }
 
-        /* Image area — Figma: 297.86 Fill x 305 */
+        /* Image area */
         .industry-card__image-wrap {
-            width: 100%;
-            aspect-ratio: 297.86 / 305;
+            width: 100% !important;
+            aspect-ratio: 1 / 1 !important;
             background: #F8F5EE;
-            margin: 0;
+            margin: 0 !important;
+            padding: 0 !important;
             overflow: hidden;
             flex-shrink: 0;
             box-sizing: border-box;
@@ -158,9 +159,12 @@
         }
 
         .industry-card__image-wrap img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
+            width: 100% !important;
+            height: 100% !important;
+            max-width: 100% !important;
+            margin: 0 !important;
+            padding: 0 !important;
+            object-fit: cover !important;
             object-position: center;
             display: block;
             transition: transform 0.35s ease;
@@ -1198,43 +1202,26 @@
         @media (min-width: 769px) and (max-width: 1920px) {
             .cards-grid {
                 grid-template-columns: repeat(4, minmax(0, 1fr));
-                gap: 16px;
+                gap: 24px;
             }
 
             .industry-card {
                 width: 100%;
                 min-height: 0;
-                height: auto;
-            }
-
-            .industry-card__title {
-                font-size: 15px;
-                padding: 16px 10px 8px;
             }
 
             .industry-card__image-wrap {
-                width: calc(100% - 12px);
-                height: clamp(150px, 19vw, 220px);
+                width: 100% !important;
+                height: auto !important;
+                aspect-ratio: 1 / 1 !important;
+                padding: 0 !important;
+                margin: 0 !important;
             }
 
-            .industry-card__bottom {
-                padding: 12px;
-                flex: none;
-            }
-
-            .industry-card__text {
-                font-size: 14px;
-            }
-
-            .industry-card__btn {
-                height: 40px;
-                font-size: 14px;
-                margin-top: 10px;
-                width: min(200px, 100%);
-            }
-
-            .view-all-wrap {
-                margin-top: 35px;
+            .industry-card__image-wrap img {
+                width: 100% !important;
+                height: 100% !important;
+                object-fit: cover !important;
             }
         }
 
@@ -1258,26 +1245,22 @@
                 min-height: auto;
             }
 
-            .industry-card__title {
-                font-size: 15px;
-                padding: 14px 12px 6px;
+            .industry-card__image-wrap {
+                width: 100% !important;
+                height: auto !important;
+                aspect-ratio: 1 / 1 !important;
+                padding: 0 !important;
+                margin: 0 !important;
             }
 
-            .industry-card__image-wrap {
-                width: calc(100% - 16px);
-                height: 180px;
+            .industry-card__image-wrap img {
+                width: 100% !important;
+                height: 100% !important;
+                object-fit: cover !important;
             }
 
             .industry-card__bottom {
                 padding: 12px;
-            }
-
-            .industry-card__btn {
-                width: 100%;
-                margin-left: 0;
-                margin-top: 12px;
-                height: 40px;
-                font-size: 14px;
             }
         }
 
@@ -1294,6 +1277,7 @@
             .custom-boxes-container .section-desc {
                 font-size: 14px;
                 margin-bottom: 24px;
+                text-align: center;
             }
 
             .cards-grid {
@@ -1301,17 +1285,18 @@
                 gap: 10px;
             }
 
-            .industry-card__title {
-                font-size: 12px;
-                line-height: 1.25;
-                padding: 10px 8px 4px;
+            .industry-card__image-wrap {
+                width: 100% !important;
+                height: auto !important;
+                aspect-ratio: 1 / 1 !important;
+                padding: 0 !important;
+                margin: 0 !important;
             }
 
-            .industry-card__image-wrap {
-                width: 100%;
-                height: 140px;
-                padding: 0 6px;
-                box-sizing: border-box;
+            .industry-card__image-wrap img {
+                width: 100% !important;
+                height: 100% !important;
+                object-fit: cover !important;
             }
 
             .industry-card__bottom {
@@ -1319,8 +1304,7 @@
             }
 
             .industry-card__text {
-                font-size: 11px;
-                line-height: 1.35;
+                display: none !important;
             }
 
             .industry-card__btn {
@@ -1330,6 +1314,10 @@
                 width: 100%;
                 margin-left: 0;
                 margin-top: 10px;
+            }
+
+            .view-all-wrap {
+                display: none !important;
             }
 
             .view-all-btn {
@@ -2158,111 +2146,6 @@
                 width: 90%;
             }
         }
-
-        /* ═══════════════════════════════════
-           TEXT CONTENT
-        ═══════════════════════════════════ */
-        .text-content-section {
-            background: var(--background-color);
-            padding: 25px 0;
-        }
-
-        .text-content-container {
-            max-width: 1440px;
-            margin: 0 auto;
-            padding: 0 24px;
-            display: flex;
-            justify-content: center;
-        }
-
-        .text-content-card {
-            width: 100%;
-            max-width: 1030px;
-            background: #fff;
-            border-radius: 40px;
-            border: 1px solid var(--section-text-color);
-            padding: 48px 20px 48px 56px;
-            box-sizing: border-box;
-            height: 787px;
-        }
-
-        .text-content-inner {
-            height: 100%;
-            overflow-y: auto;
-            padding-right: 26px;
-            scrollbar-width: thin;
-            scrollbar-color: var(--primary-color) #F0F0F0;
-        }
-
-        .text-content-inner::-webkit-scrollbar {
-            width: 10px;
-        }
-
-        .text-content-inner::-webkit-scrollbar-track {
-            background: #F0F0F0;
-            border-radius: 20px;
-        }
-
-        .text-content-inner::-webkit-scrollbar-thumb {
-            background: var(--primary-color);
-            border-radius: 20px;
-        }
-
-        .text-content-heading {
-            font-family: 'Open Sans', sans-serif;
-            font-size: 24px !important;
-            font-weight: 700;
-            color: #000;
-            margin-bottom: 20px;
-            line-height: 1.4;
-        }
-
-        .text-content-body p {
-            font-family: 'Open Sans', sans-serif;
-            font-size: 16px;
-            color: #000;
-            line-height: 1.7;
-            margin-bottom: 14px;
-        }
-
-        .text-content-body a {
-            color: #333;
-            text-decoration: underline;
-        }
-
-        @media (max-width: 992px) {
-            .text-content-card {
-                padding: 36px 32px;
-                height: auto;
-            }
-
-            .text-content-inner {
-                height: auto;
-                overflow-y: visible;
-                padding-right: 0;
-            }
-        }
-
-        @media (max-width: 576px) {
-            .text-content-section {
-                padding: 20px 0;
-            }
-
-            .text-content-card {
-                padding: 28px 20px;
-                border-radius: 20px;
-                height: auto;
-            }
-
-            .text-content-heading {
-                font-size: 20px !important;
-            }
-
-            .text-content-body p,
-            .text-content-body ul li {
-                font-size: 14px;
-            }
-        }
     </style>
 </head>
 
@@ -2352,7 +2235,7 @@
              BEST SELLER PRODUCT SECTION
         ═══════════════════════════════════════ -->
         <style>
-            .best-seller-section { padding: 60px 0; background: #fff; width: 100%; }
+            .best-seller-section { padding: 10px 0 60px 0; background: #fff; width: 100%; }
             .best-seller-container { max-width: 1280px; margin: 0 auto; padding: 0 55px; box-sizing: border-box; width: 100%; }
             .best-seller-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; margin-top: 30px; width: 100%; }
             .bs-card { display: flex; flex-direction: column; align-items: center; text-decoration: none; }
@@ -2360,13 +2243,20 @@
             .bs-card__img-wrap img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s; }
             .bs-card:hover .bs-card__img-wrap img { transform: scale(1.05); }
             .bs-card__title { font-family: 'Open Sans', sans-serif; font-weight: 700; font-size: 15px; color: #222; text-align: center; }
+            .bs-heading { font-family: 'Open Sans', sans-serif; font-size: 28px; font-weight: 700; color: #000; margin-bottom: 8px; }
+            .bs-desc { font-family: 'DM Sans', sans-serif; font-size: 15px; color: #333; margin-bottom: 0; }
             @media (max-width: 991px) { .best-seller-grid { grid-template-columns: repeat(3, 1fr); } }
-            @media (max-width: 768px) { .best-seller-grid { grid-template-columns: repeat(2, 1fr); gap: 16px; } }
+            @media (max-width: 768px) { 
+                .best-seller-section { padding: 15px 0 30px 0; }
+                .best-seller-grid { grid-template-columns: repeat(2, 1fr); gap: 16px; } 
+                .bs-heading { text-align: center; font-size: 24px; }
+                .bs-desc { text-align: justify; font-size: 14px; }
+            }
         </style>
         <section class="best-seller-section">
             <div class="best-seller-container">
-                <h2 style="font-family: 'Open Sans', sans-serif; font-size: 28px; font-weight: 700; color: #000; margin-bottom: 8px;">Best Seller Product</h2>
-                <p style="font-family: 'DM Sans', sans-serif; font-size: 15px; color: #333; margin-bottom: 0;">Custom packaging for every industry, from retail and beauty to electronics&mdash;designed to fit your style and requirements.</p>
+                <h2 class="bs-heading">Best Seller Product</h2>
+                <p class="bs-desc">Custom packaging for every industry, from retail and beauty to electronics&mdash;designed to fit your style and requirements.</p>
 
                 <div class="best-seller-grid">
                     @php
@@ -2404,7 +2294,7 @@
              SEE AND FEEL THE DIFFERENCE SECTION
         ═══════════════════════════════════════ -->
         <style>
-            .see-feel-section { padding: 40px 0; background: #fff; width: 100%; }
+            .see-feel-section { padding: 0 0 20px 0; background: #fff; width: 100%; }
             .see-feel-inner {
                 width: 100%;
                 max-width: 1280px;
@@ -2439,7 +2329,8 @@
                 border-radius: 4px;
                 text-decoration: none;
                 transition: background 0.3s;
-                width: 183px;
+                width: auto;
+                white-space: nowrap;
                 height: 56px;
             }
             .see-feel-btn:hover { background: #e6a200; color: #0B2240; }
@@ -2459,10 +2350,32 @@
             .sfr-text { font-family: 'Open Sans', sans-serif; font-weight: 800; font-size: 24px; opacity: 1; margin: 0 10px; }
 
             @media (max-width: 991px) {
-                .see-feel-box { flex-direction: column; padding: 40px 30px; }
-                .see-feel-left { max-width: 100%; text-align: center; }
-                .see-feel-desc { text-align: center; }
-                .see-feel-right { width: 100%; }
+                .see-feel-box { flex-direction: column; padding: 32px 24px; gap: 24px; }
+                .see-feel-left { max-width: 100%; text-align: left; }
+                .see-feel-heading { text-align: left; font-size: 24px; margin-bottom: 12px; }
+                .see-feel-desc { text-align: justify; margin-bottom: 0; }
+                
+                /* Image and layout for mobile */
+                .see-feel-right {
+                    width: 100%;
+                    max-width: 326px;
+                    aspect-ratio: 326 / 218.69;
+                    margin: 0 auto;
+                    background-image: url('{{ asset('uploads/Iframe.png') }}');
+                    background-size: 100% 100%;
+                    background-position: center;
+                    background-repeat: no-repeat;
+                    border-radius: 12px;
+                    flex: none !important;
+                }
+                .sfr-icon, .sfr-text { display: none !important; }
+                
+                /* Button visibility */
+                .desktop-btn { display: none !important; }
+                .mobile-btn { display: flex !important; width: auto; margin-top: 8px; justify-content: center; white-space: nowrap; padding: 14px 24px; }
+            }
+            @media (min-width: 992px) {
+                .mobile-btn { display: none !important; }
             }
             @media (max-width: 768px) {
                 .see-feel-inner { padding: 0 20px; }
@@ -2477,7 +2390,7 @@
                     <div class="see-feel-left">
                         <span class="see-feel-heading">See – and Feel – the Difference</span>
                         <p class="see-feel-desc">Explore the quality behind every package with our curated collection of sustainable packaging materials. Experience different textures, finishes, paper stocks, and print techniques firsthand to find the perfect combination for packaging that looks exceptional, feels premium, and reflects your brand.</p>
-                        <a href="#" class="see-feel-btn">Shop Now</a>
+                        <a href="/request-quote/" class="see-feel-btn desktop-btn">Get Instant Quote</a>
                     </div>
                     <div class="see-feel-right">
                         <div class="sfr-icon">
@@ -2488,6 +2401,7 @@
                             <svg width="96.35" height="96.35" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM10 16.5V7.5L16 12L10 16.5Z"/></svg>
                         </div>
                     </div>
+                    <a href="/request-quote/" class="see-feel-btn mobile-btn">Get Instant Quote</a>
                 </div>
             </div>
         </section>
@@ -2588,12 +2502,10 @@
                 .uy-gloss, .uy-embossing, .uy-debossing { grid-column: span 2; }
                 .uy-matte { grid-row: span 1; }
             }
-            @media (max-width: 575px) {
-                .uy-grid {
-                    grid-template-columns: 1fr;
-                    grid-auto-rows: 200px;
+            @media (max-width: 768px) {
+                .uniquely-yours-section {
+                    display: none !important;
                 }
-                .uy-gloss, .uy-embossing, .uy-debossing { grid-column: span 1; }
             }
         </style>
 
@@ -2644,7 +2556,7 @@
         ═══════════════════════════════════════ -->
         <style>
             .why-choose-section-custom {
-                padding: 80px 0;
+                padding: 20px 0 40px 0;
                 background: #fff;
                 width: 100%;
             }
@@ -2657,11 +2569,12 @@
                 display: flex;
                 justify-content: space-between;
                 gap: 40px;
-                align-items: start;
+                align-items: stretch;
             }
             .wcc-left {
                 display: flex;
                 flex-direction: column;
+                justify-content: space-between;
                 flex: 0 0 468px;
                 max-width: 468px;
             }
@@ -2686,6 +2599,7 @@
                 gap: 12px;
                 width: 468px;
                 height: 353px;
+                margin-top: auto;
             }
             .wcc-col {
                 display: flex;
@@ -2701,6 +2615,7 @@
             .wcc-right {
                 display: grid;
                 grid-template-columns: repeat(2, 1fr);
+                grid-template-rows: repeat(2, 1fr);
                 gap: 20px;
                 flex: 1;
             }
@@ -2711,14 +2626,15 @@
                 display: flex;
                 flex-direction: column;
                 width: 100%;
+                height: 100%;
                 min-height: 241px;
                 box-sizing: border-box;
             }
             .wcc-icon-wrap {
-                width: 48px;
-                height: 48px;
+                width: 50px;
+                height: 50px;
                 background: #fff;
-                border-radius: 8px;
+                border-radius: 7.5px;
                 display: flex;
                 align-items: center;
                 justify-content: center;
@@ -2726,8 +2642,8 @@
                 box-shadow: 0 2px 5px rgba(0,0,0,0.05);
             }
             .wcc-icon-wrap img {
-                width: 24px;
-                height: 24px;
+                width: 30px;
+                height: 30px;
                 object-fit: contain;
             }
             .wcc-feature-title {
@@ -2745,14 +2661,26 @@
                 margin: 0;
             }
             @media (max-width: 991px) {
+                .why-choose-section-custom {
+                    padding: 40px 0;
+                }
                 .why-choose-inner {
                     flex-direction: column;
                     align-items: center;
-                    gap: 40px;
+                    gap: 20px;
                 }
                 .wcc-left {
                     max-width: 100%;
                     width: 100%;
+                    flex: none !important;
+                }
+                .wcc-title {
+                    text-align: center;
+                }
+                .wcc-desc { 
+                    text-align: justify;
+                    text-align-last: center;
+                    margin-bottom: 0 !important; 
                 }
                 .wcc-collage {
                     width: 100%;
@@ -2762,21 +2690,44 @@
                 .wcc-right {
                     max-width: 100%;
                     width: 100%;
+                    flex: none !important;
                 }
             }
             @media (max-width: 680px) {
+                .why-choose-section-custom {
+                    padding: 5px 0 30px 0;
+                }
+                .why-choose-inner {
+                    gap: 15px !important;
+                }
+                .wcc-left {
+                    flex: none !important;
+                    margin-bottom: 0 !important;
+                }
+                .wcc-title {
+                    text-align: center;
+                }
+                .wcc-desc {
+                    text-align: justify;
+                    text-align-last: center;
+                    margin-bottom: 0 !important;
+                }
                 .wcc-right {
                     grid-template-columns: 1fr;
                     width: 100%;
+                    flex: none !important;
                 }
                 .wcc-feature-card {
                     width: 100%;
                     height: auto;
+                    min-height: auto;
+                    align-items: center;
+                    text-align: center;
+                    padding: 24px 20px;
+                    border: 1px solid rgba(0,0,0,0.05);
                 }
                 .wcc-collage {
-                    grid-template-columns: 1fr 1fr;
-                    width: 100%;
-                    height: auto;
+                    display: none !important;
                 }
             }
             @media (max-width: 768px) {
@@ -2854,6 +2805,7 @@
         @include('components.testimonials_faq')
         @include('components.customquote')
         @include('components.content')
+        @include('components.faq_mobile')
         @include('components.blogs')
     </main>
 
