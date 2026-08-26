@@ -34,7 +34,53 @@
     .category-hero-wrapper::before {
         content: '';
         position: absolute;
-        top: 0; left: 0; right: 0; bottom: 0;
+        top: -40%;
+        right: -15%;
+        width: 700px;
+        height: 700px;
+        background: radial-gradient(circle, rgba(255, 180, 0, 0.3) 0%, transparent 70%);
+        border-radius: 50%;
+        pointer-events: none;
+        animation: heroGlow 8s ease-in-out infinite alternate;
+        z-index: 0;
+    }
+
+    .category-hero-wrapper::after {
+        content: '';
+        position: absolute;
+        bottom: -30%;
+        left: -10%;
+        width: 500px;
+        height: 500px;
+        background: radial-gradient(circle, rgba(255, 180, 0, 0.2) 0%, transparent 70%);
+        border-radius: 50%;
+        pointer-events: none;
+        animation: heroGlow 10s ease-in-out infinite alternate-reverse;
+        z-index: 0;
+    }
+
+    @keyframes heroGlow {
+        0% {
+            transform: scale(1);
+            opacity: 0.7;
+        }
+        100% {
+            transform: scale(1.2);
+            opacity: 1;
+        }
+    }
+
+    .hero-pattern {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-image:
+            radial-gradient(circle at 20% 30%, rgba(255, 180, 0, 0.08) 1px, transparent 1px),
+            radial-gradient(circle at 70% 60%, rgba(255, 180, 0, 0.06) 1px, transparent 1px),
+            radial-gradient(circle at 40% 80%, rgba(255, 180, 0, 0.04) 1px, transparent 1px);
+        background-size: 60px 60px, 80px 80px, 50px 50px;
         pointer-events: none;
         z-index: 0;
     }
@@ -296,6 +342,7 @@
 
 <!-- Hero Banner with gradient -->
 <div class="category-hero-wrapper">
+    <div class="hero-pattern"></div>
 
 
     <section class="hero-section">
