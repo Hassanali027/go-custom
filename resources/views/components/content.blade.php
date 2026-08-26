@@ -4,7 +4,7 @@
     ───────────────────────────────────────── */
     .text-content-section {
         background: var(--background-color);
-        padding: 25px 0;
+        padding: 0 0 25px 0;
     }
 
     .text-content-container {
@@ -20,7 +20,7 @@
         width: 100%;
         max-width: 1030px;
         background: #FAF5EC;
-        border-radius: 0px;
+        border-radius: 10px;
         border: none;
         padding: 48px 20px 48px 56px;
         box-sizing: border-box;
@@ -146,26 +146,50 @@
         }
     }
 
-    @media (max-width: 576px) {
+    @media (max-width: 768px) {
         .text-content-section {
-            padding: 24px 0;
+            padding: 0 0 24px 0;
         }
         .text-content-container {
             padding: 0 16px;
         }
         .text-content-card {
-            padding: 24px 10px 24px 18px;
-            border-radius: 24px;
-            border: 1.5px solid #000000;
-            height: 440px;
+            padding: 24px 8px 24px 18px;
+            border-radius: 10px;
+            border: none;
+            height: 634px;
+            position: relative;
         }
         .text-content-inner {
             height: 100%;
-            overflow-y: auto;
-            padding-right: 10px;
+            overflow-y: scroll;
+            padding-right: 20px;
+            /* Hide native scrollbar on mobile */
+            -ms-overflow-style: none;
+            scrollbar-width: none;
         }
         .text-content-inner::-webkit-scrollbar {
+            display: none;
+        }
+        /* Custom scrollbar track */
+        .tc-scrollbar-track {
+            position: absolute;
+            top: 18px;
+            right: 6px;
             width: 6px;
+            bottom: 18px;
+            background: #EBEBEB;
+            border-radius: 10px;
+            display: none;
+        }
+        /* Custom scrollbar thumb */
+        .tc-scrollbar-thumb {
+            position: absolute;
+            width: 6px;
+            background: #0B2240;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: background 0.2s;
         }
         .text-content-heading {
             font-size: 18px;
@@ -177,6 +201,7 @@
             font-size: 13.5px;
             line-height: 1.55;
             margin-bottom: 10px;
+            text-align: justify;
         }
     }
 </style>
@@ -186,8 +211,12 @@
 ═══════════════════════════════════════ --}}
 <section class="text-content-section">
     <div class="text-content-container">
-        <div class="text-content-card">
-            <div class="text-content-inner">
+        <div class="text-content-card" id="tcCard">
+            <!-- Custom scrollbar for mobile -->
+            <div class="tc-scrollbar-track" id="tcTrack">
+                <div class="tc-scrollbar-thumb" id="tcThumb"></div>
+            </div>
+            <div class="text-content-inner" id="tcInner">
                 <div class="text-content-body">
                     <h2 class="text-content-heading">Order Custom Boxes, Custom Packaging & Shipping Boxes At Wholesale Rates</h2>
                     <p>Do You Have A Business? Big Or Small Doesn't Matter!</p>
@@ -211,3 +240,70 @@
         </div>
     </div>
 </section>
+
+<script>
+(function() {
+    function initMobileScrollbar() {
+        if (window.innerWidth > 768) return;
+        var inner = document.getElementById('tcInner');
+        var track = document.getElementById('tcTrack');
+        var thumb = document.getElementById('tcThumb');
+        if (!inner || !track || !thumb) return;
+
+        track.style.display = 'block';
+
+        function updateThumb() {
+            var trackH = track.offsetHeight;
+            var ratio = inner.clientHeight / inner.scrollHeight;
+            var thumbH = Math.max(30, trackH * ratio);
+            thumb.style.height = thumbH + 'px';
+            var scrollRatio = inner.scrollTop / (inner.scrollHeight - inner.clientHeight);
+            thumb.style.top = (scrollRatio * (trackH - thumbH)) + 'px';
+        }
+
+        inner.addEventListener('scroll', updateThumb);
+        window.addEventListener('resize', updateThumb);
+        updateThumb();
+
+        // Drag thumb
+        var startY, startScrollTop;
+        thumb.addEventListener('mousedown', function(e) {
+            startY = e.clientY;
+            startScrollTop = inner.scrollTop;
+            document.addEventListener('mousemove', onDrag);
+            document.addEventListener('mouseup', stopDrag);
+        });
+        thumb.addEventListener('touchstart', function(e) {
+            startY = e.touches[0].clientY;
+            startScrollTop = inner.scrollTop;
+            document.addEventListener('touchmove', onTouchDrag);
+            document.addEventListener('touchend', stopDrag);
+        }, {passive: true});
+
+        function onDrag(e) {
+            var dy = e.clientY - startY;
+            var trackH = track.offsetHeight;
+            var thumbH = thumb.offsetHeight;
+            inner.scrollTop = startScrollTop + (dy / (trackH - thumbH)) * (inner.scrollHeight - inner.clientHeight);
+        }
+        function onTouchDrag(e) {
+            var dy = e.touches[0].clientY - startY;
+            var trackH = track.offsetHeight;
+            var thumbH = thumb.offsetHeight;
+            inner.scrollTop = startScrollTop + (dy / (trackH - thumbH)) * (inner.scrollHeight - inner.clientHeight);
+        }
+        function stopDrag() {
+            document.removeEventListener('mousemove', onDrag);
+            document.removeEventListener('mouseup', stopDrag);
+            document.removeEventListener('touchmove', onTouchDrag);
+            document.removeEventListener('touchend', stopDrag);
+        }
+    }
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initMobileScrollbar);
+    } else {
+        initMobileScrollbar();
+    }
+})();
+</script>

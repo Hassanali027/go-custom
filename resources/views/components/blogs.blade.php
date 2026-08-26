@@ -4,7 +4,7 @@
     ───────────────────────────────────────── */
     .blogs-section {
         background: var(--background-color, #FAF8F8);
-        padding: 35px 0;
+        padding: 5px 0 35px 0;
         font-family: 'DM Sans', sans-serif;
     }
 
@@ -188,9 +188,15 @@
         }
     }
 
+    @media (max-width: 768px) {
+        .blogs-section {
+            display: none !important;
+        }
+    }
+
     @media (max-width: 600px) {
         .blogs-section {
-            padding: 0px 0;
+            display: none !important;
         }
 
         .blogs-container {

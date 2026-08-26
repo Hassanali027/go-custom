@@ -100,13 +100,9 @@
         gap: 40px 20px;
     }
 }
-@media (max-width: 575px) {
-    .hiw-grid {
-        grid-template-columns: 1fr;
-        gap: 35px;
-    }
+@media (max-width: 768px) {
     .how-it-works-section {
-        padding: 50px 15px;
+        display: none !important;
     }
 }
 </style>
