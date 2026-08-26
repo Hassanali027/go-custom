@@ -210,6 +210,8 @@
         /* Product Form */
         .hero-form {
             flex: 1.2;
+            min-width: 0;
+            max-width: 100%;
             padding: 0;
         }
 
@@ -2059,11 +2061,28 @@
                 $productCategory = $productCatId ? DB::table('admin_categories')->where('id', $productCatId)->first() : null;
                 $catTitle = $productCategory ? strtoupper($productCategory->title) : 'PRODUCTS';
                 $catUrl = $productCategory ? url('/' . ($productCategory->slug ?? \Illuminate\Support\Str::slug($productCategory->title))) . '/' : '#';
+                
+                $descText = html_entity_decode(html_entity_decode(strip_tags($product['description'] ?? 'Custom printed boxes crafted to protect your products while showcasing your brand with premium-quality printing and luxury finishes.')));
+                $limit = 260;
+                $isLong = strlen($descText) > $limit;
             @endphp
-            <div class="desktop-breadcrumb">
-                <a href="/">HOME</a> / 
-                <strong>{{ strtoupper($pTitle) }}</strong>
+            <div class="desktop-breadcrumb" style="font-size: 13px; margin-bottom: 15px; color: #333;">
+                <a href="/" style="color: #333; text-decoration: none;"><i class="fas fa-home"></i> Home</a> &gt; 
+                <a href="{{ $catUrl }}" style="color: #333; text-decoration: none;">{{ ucwords(strtolower($catTitle)) }}</a> &gt; 
+                <strong>{{ $pTitle }}</strong>
             </div>
+            
+            <h1 style="font-size: 36px; margin-bottom: 10px; color: #000; line-height: 1.2; font-family: 'Open Sans', sans-serif;">{{ $pTitle }}</h1>
+            
+            <p class="desc-text" style="color: #333; font-size: 15px; line-height: 1.6; margin-bottom: 25px;">
+                @if($isLong)
+                    <span id="shortDescText">{{ \Illuminate\Support\Str::limit($descText, $limit, '') }}... </span>
+                    <span id="fullDescText" style="display:none;">{{ $descText }} </span>
+                    <span class="read-more-btn" id="readMoreBtn" onclick="toggleTopReadMore()" style="color: #FFB800; cursor: pointer; font-weight: 600;">Read More</span>
+                @else
+                    {{ $descText }}
+                @endif
+            </p>
         </div>
         <div class="container hero-container">
             @php
@@ -2110,175 +2129,242 @@
                 </div>
                 @endif
                 
-                <div class="review-section-container">
-                    <div class="review-item">
-                        <div class="review-icon-box">
-                            <svg width="26" height="26" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
-                                <path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"></path>
-                                <path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"></path>
-                                <path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"></path>
-                                <path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"></path>
-                                <path fill="none" d="M0 0h48v48H0z"></path>
-                            </svg>
-                        </div>
-                        <div class="review-text-box">
-                            <div class="review-title">Google Rating</div>
-                            <div class="review-rating">
-                                <span class="rating-number google-color">5.0</span>
-                                <span class="rating-stars google-color">
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                </span>
-                            </div>
-                        </div>
-                    </div>
 
-                    <div class="review-item">
-                        <div class="review-icon-box">
-                            <svg width="32" height="32" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M512 201.242H316.592L255.976 11.084l-60.59 190.158H0l158.296 114.93-60.493 190.17 158.173-115.028 158.196 115.028-60.493-190.17L512 201.242z" fill="#219653"/>
-                            </svg>
-                        </div>
-                        <div class="review-text-box">
-                            <div class="review-title">Trustpilot</div>
-                            <div class="review-rating-tp">
-                                <strong>4.6</strong> out of 5
-                            </div>
-                            <div class="rating-stars-tp">
-                                <div class="tp-star"><i class="fas fa-star"></i></div>
-                                <div class="tp-star"><i class="fas fa-star"></i></div>
-                                <div class="tp-star"><i class="fas fa-star"></i></div>
-                                <div class="tp-star"><i class="fas fa-star"></i></div>
-                                <div class="tp-star tp-star-half"><i class="fas fa-star"></i></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
             </div>
 
-            <div class="hero-form">
-                <h1>{{ $pTitle }}</h1>
-                @php
-                    $descText = html_entity_decode(html_entity_decode(strip_tags($product['description'] ?? 'Custom printed boxes crafted to protect your products while showcasing your brand with premium-quality printing and luxury finishes.')));
-                    $limit = 260;
-                    $isLong = strlen($descText) > $limit;
-                @endphp
-                <p class="desc-text" style="color: #000; font-size: 14px; line-height: 1.6; margin-bottom: 15px;">
-                    @if($isLong)
-                        <span id="shortDescText">{{ \Illuminate\Support\Str::limit($descText, $limit, '') }}... </span>
-                        <span id="fullDescText" style="display:none;">{{ $descText }} </span>
-                        <span class="read-more-btn" id="readMoreBtn" onclick="toggleTopReadMore()" style="color: var(--primary-color); cursor: pointer;">Read More</span>
-                    @else
-                        {{ $descText }}
-                    @endif
-                </p>
-                
-                <script>
-                    function toggleTopReadMore() {
-                        var shortText = document.getElementById('shortDescText');
-                        var fullText = document.getElementById('fullDescText');
-                        var btn = document.getElementById('readMoreBtn');
-                        
-                        if (fullText.style.display === 'none') {
-                            fullText.style.display = 'inline';
-                            shortText.style.display = 'none';
-                            btn.textContent = 'Read Less';
-                        } else {
-                            fullText.style.display = 'none';
-                            shortText.style.display = 'inline';
-                            btn.textContent = 'Read More';
-                        }
+            <script>
+                function toggleTopReadMore() {
+                    var shortText = document.getElementById('shortDescText');
+                    var fullText = document.getElementById('fullDescText');
+                    var btn = document.getElementById('readMoreBtn');
+                    
+                    if (fullText.style.display === 'none') {
+                        fullText.style.display = 'inline';
+                        shortText.style.display = 'none';
+                        btn.textContent = 'Read Less';
+                    } else {
+                        fullText.style.display = 'none';
+                        shortText.style.display = 'inline';
+                        btn.textContent = 'Read More';
                     }
-                </script>
-
+                }
+            </script>
+            <div class="hero-form hero-quote-box" style="background-color: #FFF9F0; padding: 35px 30px; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.05);">
+                <h3 style="text-align: center; font-family: 'Open Sans', sans-serif; font-size: 24px; font-weight: 700; color: #000; margin-bottom: 25px;">Instant Quotes, Quick Service</h3>
+                
                 <form action="{{ url('/submit-quote') }}" method="POST" enctype="multipart/form-data">
                     @csrf
+                    
+                    <style>
+                        .hero-quote-box .form-grid-3 {
+                            display: grid; 
+                            grid-template-columns: repeat(3, 1fr); 
+                            gap: 15px; 
+                            margin-bottom: 15px;
+                        }
+                        .hero-quote-box .form-grid-4 {
+                            display: grid; 
+                            grid-template-columns: 1fr 1fr 1fr 0.6fr; 
+                            gap: 15px; 
+                            margin-bottom: 15px;
+                        }
+                        .hero-quote-box .form-grid-2-upload {
+                            display: grid; 
+                            grid-template-columns: 1fr 1fr; 
+                            gap: 15px; 
+                            margin-bottom: 15px;
+                        }
 
-                    <div class="form-section">
-                        <span class="section-label">Contact Information</span>
-                        <div class="form-grid-3">
-                            <input type="text" name="name" class="form-control" placeholder="Enter your name" oninput="this.value = this.value.replace(/[^a-zA-Z\s]/g, '')" required>
-                            <input type="email" name="email" class="form-control" placeholder="Enter your email" required>
-                            <input type="tel" name="phone" class="form-control" placeholder="Enter your number" oninput="this.value = this.value.replace(/[^0-9+\-\(\)\s]/g, '')" required>
-                        </div>
+                        @media (max-width: 1150px) {
+                            .hero-quote-box .form-grid-4 {
+                                grid-template-columns: repeat(2, 1fr);
+                            }
+                        }
+                        @media (max-width: 991px) {
+                            .hero-quote-box {
+                                padding: 25px 20px !important;
+                            }
+                        }
+                        @media (max-width: 768px) {
+                            .hero-quote-box .form-grid-3,
+                            .hero-quote-box .form-grid-4,
+                            .hero-quote-box .form-grid-2-upload {
+                                grid-template-columns: 1fr;
+                            }
+                            .hero-quote-box .file-upload-wrap {
+                                flex-direction: column;
+                                height: auto !important;
+                            }
+                            .hero-quote-box .file-upload-wrap input[type="text"] {
+                                border-radius: 8px !important;
+                                border-right: 1px solid #c4b5a5 !important;
+                                margin-bottom: 10px;
+                            }
+                            .hero-quote-box .file-upload-wrap .upload-btn {
+                                border-radius: 8px !important;
+                                width: 100%;
+                            }
+                        }
+                        .hero-quote-box .quote-input,
+                        .hero-quote-box input.form-control,
+                        .hero-quote-box select.form-control,
+                        .hero-quote-box textarea.form-control {
+                            width: 100% !important;
+                            background-color: #FFF9F0 !important;
+                            border: 1px solid #c4b5a5 !important;
+                            border-radius: 8px !important;
+                            color: #333333 !important;
+                            font-size: 15px !important;
+                            height: 48px !important;
+                            padding: 10px 14px !important;
+                            box-sizing: border-box !important;
+                            outline: none !important;
+                            box-shadow: none !important;
+                            transition: border-color 0.2s ease !important;
+                        }
+                        .hero-quote-box .quote-input:focus,
+                        .hero-quote-box input.form-control:focus,
+                        .hero-quote-box select.form-control:focus,
+                        .hero-quote-box textarea.form-control:focus {
+                            border-color: #8c7d6d !important;
+                            outline: none !important;
+                            box-shadow: none !important;
+                        }
+                        .hero-quote-box select.quote-input,
+                        .hero-quote-box select.form-control {
+                            appearance: none !important;
+                            -webkit-appearance: none !important;
+                            -moz-appearance: none !important;
+                            background-color: #FFF9F0 !important;
+                            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23333333' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E") !important;
+                            background-repeat: no-repeat !important;
+                            background-position: right 14px center !important;
+                            background-size: 14px auto !important;
+                            padding-right: 38px !important;
+                            cursor: pointer !important;
+                        }
+                        .hero-quote-box select option {
+                            background-color: #FFF9F0 !important;
+                            color: #333333 !important;
+                        }
+                        .hero-quote-box .quote-input::placeholder,
+                        .hero-quote-box input::placeholder,
+                        .hero-quote-box textarea::placeholder {
+                            color: #736d66 !important;
+                            opacity: 1 !important;
+                        }
+                        .hero-quote-box .file-upload-wrap {
+                            display: flex !important;
+                            height: 48px !important;
+                            position: relative !important;
+                        }
+                        .hero-quote-box .file-upload-wrap input[type="text"] {
+                            border-radius: 8px 0 0 8px !important;
+                            border-right: none !important;
+                            background-color: #FFF9F0 !important;
+                            flex: 1 !important;
+                        }
+                        .hero-quote-box .file-upload-wrap .upload-btn {
+                            background-color: #FFB800 !important;
+                            color: #000000 !important;
+                            font-weight: 700 !important;
+                            font-size: 15px !important;
+                            border: 1px solid #FFB800 !important;
+                            border-radius: 0 8px 8px 0 !important;
+                            padding: 0 24px !important;
+                            height: 48px !important;
+                            cursor: pointer !important;
+                            display: flex !important;
+                            align-items: center !important;
+                            justify-content: center !important;
+                        }
+                        .hero-quote-box textarea.form-control,
+                        .hero-quote-box textarea.quote-input {
+                            height: 130px !important;
+                            min-height: 130px !important;
+                            resize: none !important;
+                            padding: 14px !important;
+                        }
+                        .hero-quote-box .quote-submit-btn {
+                            background-color: #FFB800 !important;
+                            color: #000000 !important;
+                            border: none !important;
+                            padding: 14px 40px !important;
+                            border-radius: 8px !important;
+                            font-weight: 700 !important;
+                            font-size: 16px !important;
+                            cursor: pointer !important;
+                            width: 100% !important;
+                            max-width: 450px !important;
+                            transition: transform 0.2s ease, filter 0.2s ease !important;
+                        }
+                        .hero-quote-box .quote-submit-btn:hover {
+                            filter: brightness(0.95) !important;
+                        }
+                    </style>
+
+                    <div class="form-grid-3">
+                        <input type="text" name="name" class="quote-input" placeholder="Name *" oninput="this.value = this.value.replace(/[^a-zA-Z\s]/g, '')" required>
+                        <input type="email" name="email" class="quote-input" placeholder="Email *" required>
+                        <input type="tel" name="phone" class="quote-input" placeholder="Phone number *" oninput="this.value = this.value.replace(/[^0-9+\-\(\)\s]/g, '')" required>
                     </div>
 
-                    <div class="form-section">
-                        <span class="section-label">Box Specifications</span>
-                        <div class="form-grid-4">
-                            <input type="number" name="width" class="form-control" placeholder="Width" required>
-                            <input type="number" name="length" class="form-control" placeholder="Length" required>
-                            <input type="number" name="depth" class="form-control" placeholder="Depth" required>
-                            <select name="units" class="form-control" required>
-                                <option>mm</option>
-                                <option>cm</option>
-                                <option>inch</option>
-                            </select>
-                        </div>
+                    <div class="form-grid-4">
+                        <input type="number" name="width" class="quote-input" placeholder="Width *" required>
+                        <input type="number" name="length" class="quote-input" placeholder="Length *" required>
+                        <input type="number" name="depth" class="quote-input" placeholder="Depth *" required>
+                        <select name="units" class="quote-input" required>
+                            <option value="" disabled selected>mm *</option>
+                            <option>mm</option>
+                            <option>cm</option>
+                            <option>inch</option>
+                        </select>
                     </div>
 
-                    <div class="form-section">
-                        <span class="section-label">Packaging Preferences</span>
-                        <div class="form-grid-pref">
-                            @php
-                                $boxStyleParent = \Illuminate\Support\Facades\DB::table('admin_categories')->where('slug', 'box-by-style')->first();
-                                $boxStyles = $boxStyleParent ? \Illuminate\Support\Facades\DB::table('admin_categories')->where('parent_id', $boxStyleParent->id)->get() : [];
-                            @endphp
-                            <select name="box_style" class="form-control" id="pref-box-style">
-                                <option value="" disabled selected>Box Style</option>
-                                @foreach($boxStyles as $style)
-                                    <option value="{{ $style->title }}">{{ $style->title }}</option>
-                                @endforeach
-                            </select>
-                            <select name="material" class="form-control" id="pref-paper-stock">
-                                <option value="" disabled selected>Select Paper Stock</option>
-                                <option>12pt Cardboard Stock</option>
-                                <option>14pt Cardboard Stock</option>
-                                <option>16pt Cardboard Stock</option>
-                                <option>18pt Cardboard Stock</option>
-                                <option>20pt Cardboard Stock</option>
-                                <option>22pt Cardboard Stock</option>
-                                <option>24pt Cardboard Stock</option>
-                                <option>Kraft Stock</option>
-                                <option>Recycled BuxBoard</option>
-                                <option>Corrugated Stock</option>
-                                <option>No Printing Required</option>
-                            </select>
-                            <select name="color" class="form-control">
-                                <option value="" disabled selected>Select Color</option>
-                                <option>1 color</option>
-                                <option>2 color</option>
-                                <option>3 color</option>
-                                <option>4 color</option>
-                                <option>4/1 color</option>
-                                <option>4/2 color</option>
-                                <option>4/3 color</option>
-                                <option>4/4 color</option>
-                            </select>
-                        </div>
+                    <div class="form-grid-3">
+                        <select name="material" class="quote-input" required>
+                            <option value="" disabled selected>Select Material</option>
+                            <option>12pt Cardboard Stock</option>
+                            <option>14pt Cardboard Stock</option>
+                            <option>16pt Cardboard Stock</option>
+                            <option>18pt Cardboard Stock</option>
+                            <option>20pt Cardboard Stock</option>
+                            <option>Kraft Stock</option>
+                            <option>Corrugated Stock</option>
+                            <option>Rigid Stock</option>
+                        </select>
+                        <select name="color" class="quote-input" required>
+                            <option value="" disabled selected>Color Options</option>
+                            <option>1 color</option>
+                            <option>2 color</option>
+                            <option>3 color</option>
+                            <option>4 color (CMYK)</option>
+                            <option>No Printing</option>
+                        </select>
+                        <select name="turnaround" class="quote-input" required>
+                            <option value="" disabled selected>Turn Around Time</option>
+                            <option>Standard (8-10 Days)</option>
+                            <option>Rush (4-6 Days)</option>
+                        </select>
+                        <input type="hidden" name="box_style" value="{{ $product['title'] ?? 'Custom Box' }}">
                     </div>
                     
-                    <div class="form-section">
-                        <span class="section-label">Production Details</span>
-                        <div class="form-grid-2-upload">
-                            <input type="number" name="quantity" class="form-control" placeholder="Quantity" required>
-                            <div class="file-upload-wrap" style="position: relative;">
-                                <input type="file" name="quote_file" id="quote_file_input" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; opacity: 0; cursor: pointer;" onchange="document.getElementById('quote_file_text').value = this.files.length > 0 ? this.files[0].name : ''">
-                                <input type="text" id="quote_file_text" class="form-control" placeholder="No File Choosen" readonly style="pointer-events: none;">
-                                <button type="button" class="upload-btn" style="pointer-events: none;">Upload</button>
-                            </div>
+                    <div class="form-grid-2-upload">
+                        <input type="number" name="quantity" class="quote-input" placeholder="Quantity" required>
+                        <div class="file-upload-wrap">
+                            <input type="file" name="quote_file" id="quote_file_input" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; opacity: 0; cursor: pointer;" onchange="document.getElementById('quote_file_text').value = this.files.length > 0 ? this.files[0].name : ''">
+                            <input type="text" id="quote_file_text" class="quote-input" placeholder="No file choosen" readonly style="pointer-events: none;">
+                            <button type="button" class="upload-btn" style="pointer-events: none;">Upload</button>
                         </div>
                     </div>
 
-                    <div class="form-section">
-                        <span class="section-label">Additional Details</span>
-                        <textarea name="message" class="form-control" rows="3" placeholder="Enter your message"></textarea>
+                    <div style="margin-bottom: 25px;">
+                        <textarea name="message" class="quote-input" rows="4" placeholder="Enter your message"></textarea>
                     </div>
 
-                    <button type="submit" class="btn-primary">Get a Quote</button>
+                    <div style="text-align: center;">
+                        <button type="submit" class="quote-submit-btn">Get Free Quote</button>
+                    </div>
                 </form>
             </div>
         </div>
@@ -3044,7 +3130,7 @@ function toggleFaq(element) {
                 activeControl.classList.add('is-active');
             }, true);
             // Custom JS Select Implementation
-            document.querySelectorAll('select.form-control').forEach(select => {
+            document.querySelectorAll('select.form-control:not(.quote-input)').forEach(select => {
                 if (select.parentElement.classList.contains('custom-select-wrapper')) return;
                 
                 const wrapper = document.createElement('div');
