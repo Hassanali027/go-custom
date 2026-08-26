@@ -21,7 +21,7 @@
     }
 
     .testimonials-col {
-        height: 603.33px;
+        height: 618.33px;
         contain: layout paint;
     }
 

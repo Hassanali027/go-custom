@@ -13,10 +13,210 @@
         overflow-x: clip;
     }
 
-    /* Popular Boxes Section */
+    /* Clothing Features Section */
+    .clothing-features-section {
+        background-color: #FDF7E5; 
+        padding: 60px 0;
+        font-family: 'DM Sans', sans-serif;
+    }
+
+    .clothing-features-inner {
+        max-width: 1280px;
+        margin: 0 auto;
+        padding: 0 28px;
+        display: flex;
+        flex-direction: column;
+        gap: 80px;
+    }
+
+    .clothing-features-title {
+        text-align: center;
+        font-size: 28px;
+        font-weight: 700;
+        color: #111;
+        margin-bottom: 20px;
+    }
+
+    .mobile-br { display: none; }
+    .desktop-br { display: block; }
+
+    .clothing-feature-card {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        max-width: 1224px;
+        margin: 0 auto;
+        width: 100%;
+        gap: 60px;
+    }
+
+    .clothing-feature-card.reverse {
+        flex-direction: row-reverse;
+    }
+
+    .clothing-feature-text {
+        width: 539px;
+        flex-shrink: 0;
+    }
+
+    .clothing-feature-text h3 {
+        font-size: 24px;
+        font-weight: 700;
+        color: #111;
+        margin-bottom: 20px;
+    }
+
+    .clothing-feature-text p {
+        font-size: 15px;
+        line-height: 1.6;
+        color: #444;
+        margin: 0;
+    }
+
+    .clothing-feature-image {
+        width: 565px;
+        height: 500px;
+        flex-shrink: 0;
+        border-radius: 16px;
+        overflow: hidden;
+    }
+
+    .clothing-feature-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    @media (max-width: 1024px) {
+        .clothing-feature-card, .clothing-feature-card.reverse {
+            flex-direction: column;
+            gap: 30px;
+            height: auto;
+        }
+        .clothing-feature-text, .clothing-feature-image {
+            width: 100%;
+            height: auto;
+        }
+    }
+
+    @media (max-width: 768px) {
+        .clothing-features-section {
+            margin: 0 15px;
+            padding: 40px 0;
+            border-radius: 8px;
+        }
+        .clothing-features-inner {
+            gap: 20px;
+        }
+        .clothing-feature-card, .clothing-feature-card.reverse {
+            flex-direction: column-reverse;
+        }
+        .clothing-features-title {
+            font-size: 24px;
+            font-weight: 600;
+            color: #333;
+            line-height: 1.4;
+        }
+        .mobile-br { display: block; }
+        .desktop-br { display: none; }
+    }
+
+    /* Category Hero Section */
+    .category-hero {
+        background: linear-gradient(135deg, #FFF3DE 0%, #FDF7E5 50%, #FAF0CE 100%);
+        padding: 60px 0 70px;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .category-hero-inner {
+        max-width: 1280px;
+        margin: 0 auto;
+        padding: 0 55px;
+        box-sizing: border-box;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 40px;
+    }
+
+    .category-hero-content {
+        flex: 1;
+        max-width: 580px;
+        position: relative;
+        z-index: 2;
+    }
+
+    .category-breadcrumb {
+        font-family: 'DM Sans', sans-serif;
+        font-size: 13px;
+        color: #555;
+        margin-bottom: 24px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+
+    .category-breadcrumb a {
+        color: inherit;
+        text-decoration: none;
+    }
+
+    .category-hero-title {
+        font-family: 'Open Sans', sans-serif;
+        font-size: 42px;
+        font-weight: 800;
+        line-height: 1.15;
+        color: #111;
+        margin-bottom: 16px;
+    }
+
+    .category-hero-desc {
+        font-family: 'DM Sans', sans-serif;
+        font-size: 15px;
+        line-height: 1.6;
+        color: #333;
+        margin-bottom: 32px;
+    }
+
+    .category-hero-btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        background: #FFB400;
+        color: #111;
+        font-family: 'DM Sans', sans-serif;
+        font-size: 16px;
+        font-weight: 700;
+        padding: 14px 28px;
+        border-radius: 4px;
+        text-decoration: none;
+        gap: 8px;
+        transition: background 0.3s;
+    }
+    
+    .category-hero-btn:hover {
+        background: #e6a200;
+    }
+
+    .category-hero-image {
+        flex: 1;
+        position: relative;
+        z-index: 1;
+        display: flex;
+        justify-content: flex-end;
+    }
+
+    .category-hero-image img {
+        max-width: 100%;
+        height: auto;
+        object-fit: contain;
+    }
+
+    /* Popular Boxes Section - Updated to Figma */
     .popular-boxes-section {
-        background: #FAF8F8;
-        padding: 0px;
+        background: #fff;
+        padding: 60px 0;
     }
 
     .popular-boxes-inner {
@@ -25,61 +225,58 @@
         padding: 0 55px;
         box-sizing: border-box;
         text-align: center;
-        color: #333;
     }
 
     .section-title {
-        font-size: 32px;
+        font-family: 'Open Sans', sans-serif;
+        font-size: 28px;
         font-weight: 800;
-        margin-bottom: 12px;
+        margin-bottom: 8px;
         color: #111;
     }
 
     .section-subtitle {
-        font-size: 16px;
-        color: #000;
-        margin-bottom: 20px;
+        font-family: 'DM Sans', sans-serif;
+        font-size: 15px;
+        color: #444;
+        margin-bottom: 40px;
     }
 
     .boxes-grid {
         width: 100%;
         display: grid;
-        grid-template-columns: repeat(4, minmax(0, 292px));
-        gap: 40px 30px;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 24px;
         justify-content: space-between;
-        justify-items: stretch;
     }
 
     .box-card {
         width: 100%;
-        max-width: 292px;
-        height: auto;
-        min-width: 200px;
         display: flex;
         flex-direction: column;
         align-items: center;
+        text-decoration: none;
+        color: inherit;
     }
 
     .box-image-wrapper {
         width: 100%;
-        height: auto;
-        aspect-ratio: auto;
+        aspect-ratio: 1;
         border-radius: 12px;
         overflow: hidden;
         background-color: #E8E8E8;
-        margin-bottom: 26px;
-        /* Default subtle shadow like the figma design */
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.03);
+        margin-bottom: 16px;
         position: relative;
+        transition: box-shadow 0.3s ease;
     }
 
     .box-image-wrapper img {
         width: 100%;
-        height: auto;
+        height: 100%;
         display: block;
-        object-fit: contain;
+        object-fit: cover;
         object-position: center;
-        transition: transform 0.4s ease, opacity 0.4s ease;
+        transition: transform 0.4s ease;
     }
 
     .box-image-wrapper .hover-img {
@@ -105,76 +302,63 @@
     }
 
     .box-title {
-        font-size: 19px !important;
+        font-family: 'Open Sans', sans-serif;
+        font-size: 16px !important;
         font-weight: 700;
-        color: var(--section-text-color);
+        color: #111;
         text-align: center;
-        word-wrap: break-word;
         display: block;
-        /* Ensures span behaves like block element */
     }
 
     /* Mobile Responsive View */
     @media (max-width: 992px) {
+        .category-hero-inner {
+            flex-direction: column;
+            text-align: center;
+        }
+        
+        .category-hero-image {
+            justify-content: center;
+        }
+        
+        .category-breadcrumb {
+            justify-content: center;
+        }
+        
+        .boxes-grid {
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+    }
+
+    @media (max-width: 768px) {
         .boxes-grid {
             grid-template-columns: repeat(2, 1fr);
-            gap: 24px 16px;
-        }
-
-        .box-card {
-            width: 100%;
-            max-width: 100%;
-            min-width: 0;
-            height: auto;
-        }
-
-        .box-image-wrapper {
-            height: auto;
+            gap: 16px;
         }
     }
 
     @media (max-width: 576px) {
-        .popular-boxes-section {
-            padding: 0px 0 25px;
+        .category-hero {
+            padding: 40px 0 30px;
         }
 
-        .popular-boxes-inner {
-            padding: 0 16px;
+        .category-hero-title {
+            font-size: 28px;
         }
-
-        .section-title {
-            font-size: 22px;
-            margin-bottom: 8px;
-        }
-
-        .section-subtitle {
-            font-size: 13.5px;
-            margin-bottom: 20px;
-        }
-
+        
         .boxes-grid {
-            grid-template-columns: repeat(2, 1fr);
-            gap: 20px 12px;
+            grid-template-columns: repeat(2, 1fr) !important;
+            gap: 16px;
         }
-
-        .box-card {
-            width: 100%;
-            max-width: 100%;
-            min-width: 0;
-            height: auto;
+        
+        .popular-boxes-section {
+            padding: 40px 0;
         }
-
-        .box-image-wrapper {
-            width: 100%;
-            height: auto;
-            border-radius: 16px;
-            margin-bottom: 8px;
-        }
-
-        .box-title {
-            font-size: 14px !important;
+        
+        .section-title {
+            font-size: 28px;
             font-weight: 700;
-            line-height: 1.25;
         }
     }
 
@@ -237,80 +421,98 @@
     }
 
     .customize-layout {
-        display: grid;
-        grid-template-columns: minmax(230px, 26%) minmax(0, 1fr);
+        display: flex;
+        flex-direction: column;
         gap: 38px;
-        align-items: stretch;
     }
 
     .customize-sidebar {
-        width: auto;
+        width: 100%;
         display: flex;
-        flex-direction: column;
-        gap: 18px;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        gap: 0;
+        border-bottom: 1px solid #ccc; /* Bottom border for navbar */
+        overflow-x: auto;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
         padding-bottom: 0;
-        flex-shrink: 0;
-        align-self: stretch;
+    }
+    
+    .customize-sidebar::-webkit-scrollbar {
+        display: none;
     }
 
     .customize-tab {
-        width: 100%;
-        min-height: 54px;
         flex: 1;
-        padding: 14px 24px;
+        min-width: fit-content;
+        padding: 12px 10px;
         text-align: center;
-        background: #FFFFFF;
-        border: 1px solid #D8D8D8;
-        border-radius: 0px;
+        background: transparent;
+        border: none;
+        border-bottom: 3px solid transparent;
         font-family: 'Open Sans', sans-serif;
         font-weight: 700;
-        font-size: 14px;
-        color: #222222;
+        font-size: 13px;
+        color: #111;
         cursor: pointer;
-        text-transform: uppercase;
-        letter-spacing: 0.5px;
         transition: all 0.25s ease;
         display: inline-flex;
         align-items: center;
         justify-content: center;
         white-space: nowrap;
+        margin-bottom: -1px; /* Overlap the container's bottom border */
     }
 
     .customize-tab.active,
     .customize-tab:hover,
     .customize-tab:focus-visible {
-        background: #8D4445;
-        color: #FFFFFF;
-        border-color: #8D4445;
+        color: #fff;
+        background: #112a46; /* Matching the active tab from the Figma image */
+        border-bottom: 3px solid #112a46;
+    }
+    
+    .customize-tab:not(.active):hover {
+        background: #f0f0f0;
+        color: #111;
+        border-bottom: 3px solid #f0f0f0;
     }
 
     .customize-content {
-        flex: 1;
-        min-width: 0;
-        max-width: none;
+        width: 100%;
     }
 
     .customize-grid {
-        display: grid;
-        grid-template-columns: repeat(4, 1fr);
-        gap: 24px;
+        display: flex;
+        flex-direction: row;
+        gap: 20px;
+        overflow-x: auto;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+        padding-bottom: 10px;
+    }
+    
+    .customize-grid::-webkit-scrollbar {
+        display: none;
     }
 
     .custom-card {
+        flex: 0 0 auto;
+        width: 220px;
         background: #FFF;
-        border-radius: 14px;
-        padding: 18px;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+        border-radius: 12px;
+        padding: 12px;
         display: flex;
         flex-direction: column;
         transition: opacity 0.2s ease, transform 0.2s ease;
+        text-align: center;
     }
-
 
     .custom-img-wrapper {
         width: 100%;
         aspect-ratio: 1;
-        border-radius: 11px;
+        border-radius: 8px;
         overflow: hidden;
         margin-bottom: 14px;
         background: #f7f7f7;
@@ -325,7 +527,7 @@
 
     .custom-card .h4-style {
         font-family: 'Open Sans', sans-serif;
-        font-size: 16px;
+        font-size: 14px;
         font-weight: 600;
         color: var(--section-text-color);
         margin: 0;
@@ -335,51 +537,13 @@
 
     .custom-card .custom-card-title {
         font-family: 'Open Sans', sans-serif;
-        font-size: 16px !important;
+        font-size: 14px !important;
         font-weight: 600;
         color: var(--section-text-color);
         margin: 0;
         padding: 0 0 2px;
         line-height: 1.3;
         display: block;
-    }
-
-    @media (max-width: 992px) {
-        .customize-layout {
-            display: flex;
-            flex-direction: column;
-            gap:0px
-        }
-
-        .customize-sidebar {
-            width: 100%;
-            display: flex !important;
-            flex-direction: row !important;
-            gap: 12px !important;
-            padding-bottom: 24px;
-            overflow-x: auto !important;
-            scrollbar-width: none;
-            -ms-overflow-style: none;
-        }
-
-        .customize-sidebar::-webkit-scrollbar {
-            display: none;
-        }
-
-        .customize-tab {
-            width: auto !important;
-            flex: 0 0 auto !important;
-            min-height: 46px !important;
-            height: 46px !important;
-            padding: 10px 20px !important;
-            font-size: 13px !important;
-            white-space: nowrap !important;
-        }
-
-        .customize-content {
-            width: 100%;
-            max-width: 100%;
-        }
     }
 
     @media (max-width: 576px) {
@@ -404,11 +568,12 @@
         .customize-sidebar {
             display: flex !important;
             flex-direction: row !important;
-            gap: 10px !important;
-            padding-bottom: 20px;
+            gap: 0px !important;
+            padding-bottom: 0px !important;
             overflow-x: auto !important;
             scrollbar-width: none;
             -ms-overflow-style: none;
+            border-bottom: 1px solid #ccc !important;
         }
 
         .customize-sidebar::-webkit-scrollbar {
@@ -417,49 +582,64 @@
 
         .customize-tab {
             width: auto !important;
-            flex: 0 0 auto !important;
+            flex: 0 0 50% !important;
             height: 44px !important;
             min-height: 0 !important;
-            padding: 10px 18px !important;
-            font-size: 12px !important;
+            padding: 10px 10px !important;
+            font-size: 13px !important;
             font-weight: 700;
             text-align: center;
             white-space: nowrap !important;
             border-radius: 0px !important;
+            margin-bottom: -1px;
         }
 
         .customize-grid {
-            grid-template-columns: repeat(2, minmax(0, 1fr));
-            gap: 14px 12px;
+            display: flex !important;
+            flex-direction: row !important;
+            gap: 12px !important;
+            overflow-x: auto !important;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+            padding-bottom: 10px !important;
+        }
+        
+        .customize-grid::-webkit-scrollbar {
+            display: none;
         }
 
         .custom-card {
-            padding: 12px;
-            border-radius: 14px;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            flex: 0 0 calc(50% - 6px) !important;
+            padding: 0px !important;
+            border-radius: 0px !important;
+            box-shadow: none !important;
+            background: transparent !important;
+            text-align: center !important;
         }
 
         .custom-img-wrapper {
-            height: 130px;
-            border-radius: 10px;
-            margin-bottom: 10px;
+            height: auto !important;
+            aspect-ratio: 1;
+            border-radius: 8px !important;
+            margin-bottom: 10px !important;
+            background: transparent !important;
+            overflow: hidden;
         }
 
         .custom-card .h4-style {
             font-size: 13px;
             font-weight: 600;
             color: #111;
-            text-align: left;
+            text-align: center !important;
             padding-left: 0;
             line-height: 1.3;
         }
 
         .custom-card .custom-card-title {
-            font-size: 15px;
+            font-size: 14px !important;
             font-weight: 600;
             color: #111;
-            text-align: left;
-            padding-left: 0;
+            text-align: center !important;
             line-height: 1.3;
             display: block;
         }
@@ -479,13 +659,22 @@
         <!-- Popular Boxes Section -->
         <section class="popular-boxes-section">
             <div class="popular-boxes-inner">
-                <h2 class="section-title">Explore Our {{ $category['title'] ?? 'Custom Packaging Boxes' }}</h2>
-                <p class="section-subtitle">Specialized structural packaging solutions engineered for maximum impact and
-                    protection.</p>
+                <h2 class="section-title">Packaging Made For Every Product</h2>
+                <p class="section-subtitle">Custom packaging for every industry, from retail and beauty to electronics—designed to fit your style and requirements.</p>
 
                 <div class="boxes-grid">
                     @php
-                        $catProducts = !empty($products) ? $products : [];
+                        $catProducts = !empty($products) ? (is_object($products) ? $products->toArray() : $products) : [];
+                        if (count($catProducts) > 0 && count($catProducts) < 4) {
+                            $first = $catProducts[0];
+                            while(count($catProducts) < 4) {
+                                $catProducts[] = $first;
+                            }
+                        } elseif (count($catProducts) == 0) {
+                            for($i=0; $i<4; $i++) {
+                                $catProducts[] = ['title' => 'bra boxes', 'slug' => 'bra-boxes'];
+                            }
+                        }
                     @endphp
                     @foreach ($catProducts as $p)
                         @php
@@ -499,12 +688,12 @@
                             }
                             
                             if (!empty($p['image'])) {
-                                $pImg = $p['image'];
+                                $pImg = 'uploads/allcategory-cta.webp';
                             } else {
                                 if (!empty($pGalleryRaw) && count($pGalleryRaw) > 0) {
-                                    $pImg = $pGalleryRaw[0];
+                                    $pImg = 'uploads/allcategory-cta.webp';
                                 } else {
-                                    $pImg = 'uploads/Gift-Boxes.webp';
+                                    $pImg = 'uploads/allcategory-cta.webp';
                                 }
                             }
                             
@@ -529,20 +718,17 @@
 
                             $pSlug = $p['slug'] ?? \Illuminate\Support\Str::slug($p['title']);
                         @endphp
-                        <div class="box-card">
-                            <a href="{{ url('/' . $pSlug) }}/"
-                                style="text-decoration:none; color:inherit; width:100%; display:block;">
-                                <div class="box-image-wrapper">
-                                    <img src="{{ asset($pImg) }}?v={{ @filemtime(public_path($pImg)) ?: 1 }}" alt="{{ $p['title'] }}" class="main-img"
-                                        onerror="this.src='https://placehold.co/284x322/dddddd/555555?text={{ urlencode($p['title']) }}'" loading="lazy">
-                                    @if($pHoverImg && $pHoverImg !== $pImg)
-                                    <img src="{{ asset($pHoverImg) }}?v={{ @filemtime(public_path($pHoverImg)) ?: 1 }}" alt="{{ $p['title'] }} Hover" class="hover-img"
-                                        onerror="this.src='https://placehold.co/284x322/dddddd/555555?text={{ urlencode($p['title']) }}'" loading="lazy">
-                                    @endif
-                                </div>
-                                <span class="box-title">{{ $p['title'] }}</span>
-                            </a>
-                        </div>
+                        <a href="{{ url('/' . $pSlug) }}/" class="box-card">
+                            <div class="box-image-wrapper">
+                                <img src="{{ asset($pImg) }}?v={{ @filemtime(public_path($pImg)) ?: 1 }}" alt="{{ $p['title'] }}" class="main-img"
+                                    onerror="this.src='https://placehold.co/284x284/dddddd/555555?text={{ urlencode($p['title']) }}'" loading="lazy">
+                                @if($pHoverImg && $pHoverImg !== $pImg)
+                                <img src="{{ asset($pHoverImg) }}?v={{ @filemtime(public_path($pHoverImg)) ?: 1 }}" alt="{{ $p['title'] }} Hover" class="hover-img"
+                                    onerror="this.src='https://placehold.co/284x284/dddddd/555555?text={{ urlencode($p['title']) }}'" loading="lazy">
+                                @endif
+                            </div>
+                            <span class="box-title">{{ $p['title'] }}</span>
+                        </a>
                     @endforeach
                 </div>
             </div><!-- end .popular-boxes-inner -->
@@ -551,22 +737,19 @@
         <!-- Customize Packaging Section -->
         <section class="customize-section">
             <div class="customize-container">
-                <span class="customize-title" style="display: block;">Customize Every Detail Of Your Packaging</span>
-                <p class="customize-subtitle">Choose from premium materials, vibrant printing, luxury finishes, and
-                    custom inserts to create packaging that perfectly reflects your brand.</p>
+                <span class="customize-title" style="display: block;">Coating and Finishing</span>
+                <p class="customize-subtitle">Discover our top packaging style recommendations, meticulously crafted to enhance your products' presentation and appeal.</p>
 
                 <div class="customize-layout">
                     <!-- Left Sidebar Tabs -->
                     <aside class="customize-sidebar">
-                        <button type="button" class="customize-tab active"
-                            data-customize-tab="materials">MATERIALS</button>
-                        <button type="button" class="customize-tab" data-customize-tab="printing">PRINTING
-                            METHODS</button>
-                        <button type="button" class="customize-tab" data-customize-tab="inks">INKS</button>
-                        <button type="button" class="customize-tab" data-customize-tab="finishing">FINISHING</button>
-                        <button type="button" class="customize-tab" data-customize-tab="addons">ADD-ONS</button>
-                        <button type="button" class="customize-tab" data-customize-tab="additional">ADDITIONAL
-                            OPTIONS</button>
+                        <button type="button" class="customize-tab active" data-customize-tab="coating">Coating</button>
+                        <button type="button" class="customize-tab" data-customize-tab="special_finishes">Special Finishes</button>
+                        <button type="button" class="customize-tab" data-customize-tab="paperboard">Paperboard</button>
+                        <button type="button" class="customize-tab" data-customize-tab="corrugated">Corrugated</button>
+                        <button type="button" class="customize-tab" data-customize-tab="fluted_grades">Fluted Grades</button>
+                        <button type="button" class="customize-tab" data-customize-tab="rigid_materials">Rigid Materials</button>
+                        <button type="button" class="customize-tab" data-customize-tab="printing_options">Printing Options</button>
                     </aside>
 
                     <!-- Right Content Grid -->
@@ -640,20 +823,66 @@
                 </div>
             </div>
         </section>
-
-        @include('components.testimonal')
-
+        
         @include('components.customquote')
 
         {{-- ═══════════════════════════════════════
-             TEXT CONTENT SECTION
+             CLOTHING FEATURES SECTION (New from Figma)
         ═══════════════════════════════════════ --}}
-        @include('components.content')
+        <section class="clothing-features-section">
+            <div class="clothing-features-inner">
+                <h2 class="clothing-features-title">One destination for building<br class="mobile-br"> your dream<br class="desktop-br"> clothing and<br class="mobile-br"> apparel packaging</h2>
+                
+                <!-- Card 1 -->
+                <div class="clothing-feature-card">
+                    <div class="clothing-feature-text">
+                        <h3>Easily package your clothing line</h3>
+                        <p>Packaging for entire clothing lines can be tough, especially when considering both retail and e-commerce platforms. Luckily, our multi-packaging capabilities help simplify this process by providing every packaging style you need to get you started.</p>
+                    </div>
+                    <div class="clothing-feature-image">
+                        <img src="{{ asset('uploads/section1img.png') }}" alt="Easily package your clothing line">
+                    </div>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="clothing-feature-card reverse">
+                    <div class="clothing-feature-text">
+                        <h3>Luxury clothing gift boxes</h3>
+                        <p>Ensuring your packaging is a reflection of the quality of your clothing products is an integral component of making an impact in the apparel market. Choose from a hand curated library of premium packaging options built for you to achieve the look and feel of your brand.</p>
+                    </div>
+                    <div class="clothing-feature-image">
+                        <img src="{{ asset('uploads/section2img.png') }}" alt="Luxury clothing gift boxes">
+                    </div>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="clothing-feature-card">
+                    <div class="clothing-feature-text">
+                        <h3>Eco-friendly clothing packaging</h3>
+                        <p>Pair your sustainable fashion products with eco-friendly packaging for clothing to meet your brand's green goals! We carry a multitude of sustainable packaging styles to help further support industry leaders paving the way to a more sustainable world.</p>
+                    </div>
+                    <div class="clothing-feature-image">
+                        <img src="{{ asset('uploads/section3img.png') }}" alt="Eco-friendly clothing packaging">
+                    </div>
+                </div>
+
+                <!-- Card 4 -->
+                <div class="clothing-feature-card reverse">
+                    <div class="clothing-feature-text">
+                        <h3>Smart clothing shipping solutions</h3>
+                        <p>Get all the shipping solutions you need to package your apparel efficiently. All our packaging is custom tailored and right sized to your specifications to ensure the most optimal size for shipping all your articles of clothing to keep your shipping costs low.</p>
+                    </div>
+                    <div class="clothing-feature-image">
+                        <img src="{{ asset('uploads/section4img.png') }}" alt="Smart clothing shipping solutions">
+                    </div>
+                </div>
+            </div>
+        </section>
 
         {{-- ═══════════════════════════════════════
-             FAQ SECTION
+             TESTIMONIALS & FAQ SECTION
         ═══════════════════════════════════════ --}}
-        @include('components.faq')
+        @include('components.testimonials_faq')
 
 
         @include('components.cta')
@@ -664,19 +893,20 @@
 
     <script>
         const customizeCardOrders = {
-            materials: [0, 1, 2, 3, 4, 5, 6, 7],
-            printing: [1, 0, 2, 3, 7, 5, 6, 4],
-            inks: [2, 3, 0, 1, 6, 7],
-            finishing: [4, 5, 6, 7, 0, 1, 2, 3],
-            addons: [7, 6, 5, 4, 3, 2, 1, 0],
-            additional: [0, 1, 2, 3, 4, 5, 6]
+            coating: [4, 5, 6, 7, 0, 1, 2, 3],
+            special_finishes: [0, 1, 2, 3, 4, 5, 6],
+            paperboard: [0, 1, 2, 3, 4, 5, 6, 7],
+            corrugated: [7, 6, 5, 4, 3, 2, 1, 0],
+            fluted_grades: [2, 3, 0, 1, 6, 7],
+            rigid_materials: [0, 1, 2, 3, 4, 5, 6, 7],
+            printing_options: [1, 0, 2, 3, 7, 5, 6, 4]
         };
 
         const customizeCards = Array.from(document.querySelectorAll('.customize-grid .custom-card'));
         const customizeSidebar = document.querySelector('.customize-sidebar');
         const customizeUploadsUrl = "{{ asset('') }}";
         const customizeCardSets = {
-            materials: [
+            paperboard: [
                 ['uploads/duplex-chipboard.webp', 'Duplex Chipboard'],
                 ['uploads/grey-board.webp', 'Grey Chipboard Cardboard'],
                 ['uploads/black-kraft.webp', 'Black-Kraft'],
@@ -686,7 +916,7 @@
                 ['uploads/sbs-c2s.webp', 'SBS C2S'],
                 ['uploads/textured-.webp', 'Textured']
             ],
-            printing: [
+            printing_options: [
                 ['uploads/Digital Print.webp', 'Digital Print'],
                 ['uploads/Flexographic Printing.webp', 'Flexographic Printing'],
                 ['uploads/gravure printing.webp', 'Gravure Printing'],
@@ -696,7 +926,7 @@
                 ['uploads/Screen Printing.webp', 'Screen Printing'],
                 ['uploads/UV Print.webp', 'UV Print']
             ],
-            inks: [
+            fluted_grades: [
                 ['uploads/Fluorescent Color Inks.webp', 'Fluorescent Color Inks'],
                 ['uploads/Oil Based Inks.webp', 'Oil Based Inks'],
                 ['uploads/Pantone Metallic.webp', 'Pantone Metallic'],
@@ -704,7 +934,7 @@
                 ['uploads/Soy Vegetable Based Inks.webp', 'Soy Vegetable Based Inks'],
                 ['uploads/Water Based Inks.webp', 'Water Based Inks']
             ],
-            finishing: [
+            coating: [
                 ['uploads/Anti-scratch-Lamination-.webp', 'Anti-scratch Lamination'],
                 ['uploads/Aqueous-Coating-.webp', 'Aqueous Coating'],
                 ['uploads/Lamination.webp', 'Lamination'],
@@ -714,7 +944,7 @@
                 ['uploads/Spot-Gloss-UV-2.webp', 'Spot Gloss UV-2'],
                 ['uploads/UV-Coating-.webp', 'UV Coating']
             ],
-            addons: [
+            corrugated: [
                 ['uploads/corrugated-divider.webp', 'Corrugated Divider'],
                 ['uploads/folding-divider.webp', 'Folding Divider'],
                 ['uploads/hips-insert.webp', 'HIPS Insert'],
@@ -724,7 +954,7 @@
                 ['uploads/pvc-insert.webp', 'PVC Insert'],
                 ['uploads/white-corrugated.webp', 'White Corrugated']
             ],
-            additional: [
+            special_finishes: [
                 ['uploads/blind-deboss.webp', 'Blind Debossing'],
                 ['uploads/blind-embossing.webp', 'Blind Embossing'],
                 ['uploads/cold-foil.webp', 'Cold Foil Printing'],
@@ -732,6 +962,16 @@
                 ['uploads/hot-foil.webp', 'Hot Foil Stamping'],
                 ['uploads/registered-emboss.webp', 'Registered Embossing'],
                 ['uploads/window-patch.webp', 'Window Patching']
+            ],
+            rigid_materials: [
+                ['uploads/duplex-chipboard.webp', 'Duplex Chipboard'],
+                ['uploads/grey-board.webp', 'Grey Chipboard Cardboard'],
+                ['uploads/black-kraft.webp', 'Black-Kraft'],
+                ['uploads/finish-material-holographic.webp', 'Holographic'],
+                ['uploads/metallic-paper.webp', 'Metallic Paper'],
+                ['uploads/natural-brown-.webp', 'Natural Brown Kraft'],
+                ['uploads/sbs-c2s.webp', 'SBS C2S'],
+                ['uploads/textured-.webp', 'Textured']
             ]
         };
 
@@ -810,7 +1050,7 @@
             });
         });
 
-        setCustomizeCardOrder('materials');
+        setCustomizeCardOrder('coating');
 
         if (customizeSidebar) {
             let dragStartX = 0;

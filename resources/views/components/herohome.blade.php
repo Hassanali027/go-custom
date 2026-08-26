@@ -159,17 +159,18 @@
         }
 
         .hero-section {
-            flex-direction: column;
+            flex-direction: column-reverse;
             display: flex;
             padding: 30px 55px 24px;
-            text-align: left;
+            text-align: center;
             gap: 20px;
         }
 
         .hero-content {
-            max-width: 100%;
+            max-width: 94%;
             padding-top: 0;
             padding-bottom: 0;
+            padding-left: 15px;
         }
 
         .hero-title {
@@ -185,15 +186,33 @@
             justify-content: center;
             width: 100%;
             height: auto;
-            margin-top: 10px;
+            margin-top: 0;
+            margin-bottom: 10px;
         }
 
         .hero-image-wrapper img {
             width: 100%;
             height: auto;
-            max-width: 450px;
-            max-height: 456px;
+            max-width: 303px;
+            max-height: 298px;
             aspect-ratio: auto;
+            margin: 0 auto;
+        }
+
+        .hero-buttons {
+            justify-content: center !important;
+            flex-wrap: wrap;
+        }
+
+        .hero-btn {
+            width: 236px !important;
+            height: 50px !important;
+            justify-content: center;
+            box-sizing: border-box;
+        }
+
+        .hero-description {
+            text-align: justify;
         }
     }
 
@@ -201,17 +220,23 @@
 
         .hero-section {
             padding: 24px 16px 16px !important;
-            text-align: left;
+            text-align: center;
         }
 
         .hero-title {
-            font-size: 29px !important;
+            font-size: 26px !important;
             line-height: 1.3;
             word-wrap: break-word;
         }
 
         .hero-description {
             font-size: 13px;
+            text-align: justify;
+            margin-bottom: 20px;
+        }
+        
+        .hero-btn-outline {
+            display: none !important; /* Hide second button on mobile as per Figma */
         }
 
     }
@@ -277,11 +302,11 @@
             </div>
             @endif
             <h1 class="hero-title">
-                {!! !empty($settings['hero_title']) ? $settings['hero_title'] : 'CUSTOM <span class="highlight">COSMETIC</span><br>PACKAGING BOXES' !!}
+                {!! !empty($settings['hero_title']) ? $settings['hero_title'] : 'CRAFTING SPACES WITH<br>WARMTH & INTENTION' !!}
             </h1>
 
             <p class="hero-description">
-                {{ !empty($settings['hero_description']) ? $settings['hero_description'] : 'Crafted for prestige brands, our bespoke luxury boxes merge structural integrity with tactile sophistication. Redefining the unboxing experience through heritage craftsmanship and modern minimalism.' }}
+                {{ !empty($settings['hero_description']) ? $settings['hero_description'] : 'We believe your home should feel like a gentle exhale. Every piece we curate carries the quiet confidence of timeless design — rooted in earthy tones, honest materials, and a deep respect for slow living.' }}
             </p>
 
             <div class="hero-buttons" style="display: flex; gap: 16px; align-items: center;">

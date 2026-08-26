@@ -23,9 +23,9 @@
     .cta-text-card {
         width: 100%;
         min-height: 449px;
-        background: linear-gradient(177.63deg, #DB9E9F 1.99%, #8D4445 93.3%);
+        background: var(--secondary-color);
         border-radius: 40px;
-        padding: 47px 86px 47px 640px;
+        padding: 47px 640px 47px 86px;
         box-sizing: border-box;
         display: flex;
         flex-direction: column;
@@ -70,7 +70,7 @@
         font-family: 'Open Sans', sans-serif;
         font-size: 32px;
         font-weight: 800;
-        color: #fff;
+        color: var(--primary-color);
         line-height: 1.25;
         margin-bottom: 16px;
     }
@@ -78,7 +78,7 @@
     .cta-desc {
         font-family: 'DM Sans', sans-serif;
         font-size: 16px;
-        color: rgba(255, 255, 255, 0.85);
+        color: #333;
         line-height: 1.6;
         margin-bottom: 32px;
         max-width: 480px;
@@ -88,8 +88,8 @@
         display: inline-flex;
         align-items: center;
         gap: 8px;
-        background: #fff;
-        color: var(--section-text-color);
+        background: var(--primary-color);
+        color: var(--secondary-color);
         font-family: 'DM Sans', sans-serif;
         font-size: 15px;
         font-weight: 700;
@@ -110,10 +110,10 @@
 
     .cta-image-wrapper {
         position: absolute;
-        left: 86px;
-        top: 47px;
-        width: 512px;
-        height: 355px;
+        right: 86px;
+        top: 62.5px;
+        width: 540px;
+        height: 324px;
         overflow: hidden;
     }
 
@@ -128,13 +128,35 @@
 
     @media (max-width: 1100px) {
         .cta-text-card {
-            padding: 47px 40px 47px 460px;
+            padding: 47px 460px 47px 40px;
         }
         .cta-image-wrapper {
-            left: 40px;
-            top: 47px;
+            right: 40px;
+            top: 50%;
+            transform: translateY(-50%);
             width: 380px;
-            height: 263px;
+            height: 228px; /* Maintain aspect ratio (380 / (540/324)) */
+        }
+    }
+
+    @media (max-width: 768px) {
+        .cta-text-card {
+            padding: 24px 20px 24px 20px;
+        }
+        .cta-image-wrapper {
+            position: relative;
+            right: auto;
+            left: auto;
+            top: auto;
+            transform: none;
+            width: 100%;
+            height: auto;
+            max-width: 540px;
+            margin: 0 auto 24px;
+        }
+        .cta-text-card {
+            display: flex;
+            flex-direction: column-reverse;
         }
     }
 
@@ -245,7 +267,7 @@
             <div class="cta-text-card">
                 <img src="{{ asset('uploads/cta-ellipse-1.png') }}" alt="" class="cta-ellipse cta-ellipse-1">
                 <img src="{{ asset('uploads/cta-ellipse-2.png') }}" alt="" class="cta-ellipse cta-ellipse-2">
-                <span class="cta-heading" style="display: block;">Get Your Custom Packaging<br>Today</span>
+                <span class="cta-heading" style="display: block; white-space: nowrap;">Get Your Custom Packaging<br>Today</span>
                 <p class="cta-desc">Deliver elegance, protection, and a memorable unboxing experience with fully customized rigid box solutions.</p>
                 <a href="/request-quote/" class="cta-btn">
                     Get Started Today
@@ -255,7 +277,7 @@
                 </a>
             </div>
             <div class="cta-image-wrapper">
-                <img src="{{ asset('uploads/cta-category.webp') }}" alt="Image Frame" onerror="this.src='https://placehold.co/512x355/2a2a2a/888888?text=Custom+Packaging'">
+                <img src="{{ asset('uploads/yellowpic.png') }}" alt="Custom Packaging" onerror="this.src='https://placehold.co/540x324/f5bd00/112a46?text=Custom+Packaging'">
             </div>
         </div>
     </div>
