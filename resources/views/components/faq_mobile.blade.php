@@ -25,7 +25,22 @@
             color: #000;
             line-height: 1;
         }
+        .faq-mobile-section .tf-accordion {
+            border-top: none !important;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        .faq-mobile-section .tf-accordion-item {
+            border: 1px solid #EAEAEA !important;
+            border-radius: 8px;
+            background: #fff;
+            padding: 4px 16px;
+        }
         .faq-mobile-section .tf-accordion-btn {
+            height: auto !important;
+            min-height: 53px;
+            padding: 10px 0 !important;
             color: #000 !important;
             font-family: 'Inter', sans-serif !important;
             font-weight: 400 !important;
@@ -39,6 +54,7 @@
             font-weight: 400;
             font-style: normal;
             font-size: 14px !important;
+            padding-bottom: 12px;
         }
     }
 </style>

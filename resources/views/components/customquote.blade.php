@@ -2,8 +2,8 @@
     .quote-section {
         background: #FFFFFF;
         width: 100%;
-        padding: 0 0 60px 0 !important;
-        margin-top: 53px !important;
+        padding: 0 0 20px 0 !important;
+        margin-top: 0 !important;
         font-family: 'DM Sans', sans-serif;
         position: relative;
     }
@@ -15,7 +15,7 @@
         box-sizing: border-box;
         display: flex;
         align-items: stretch;
-        gap: 100px;
+        gap: 120px;
     }
 
     /* ── Left column: Form Card ── */
@@ -65,8 +65,6 @@
     .qf-group input,
     .qf-group select,
     .qf-group textarea {
-        width: 100%;
-        box-sizing: border-box;
         background: transparent;
         border: 1px solid rgba(255, 255, 255, 0.2);
         border-radius: 6px;
@@ -118,8 +116,6 @@
         border-radius: 6px;
         overflow: hidden;
         height: 44px;
-        width: 100%;
-        box-sizing: border-box;
     }
 
     .qf-file-wrap input[type="text"] {
@@ -239,32 +235,17 @@
 
     @media (max-width: 768px) {
         .quote-section {
-            padding: 30px 0 50px 0 !important;
-        }
-        .quote-container {
-            padding: 0 16px;
+            padding: 40px 0;
+            margin-top: 4px;
         }
         .quote-form-card {
-            padding: 24px 16px;
-            width: 100%;
-            border-radius: 12px;
+            padding: 24px;
+            width: 108%;
         }
-        .quote-form-title {
-            font-size: 22px;
-            margin-bottom: 20px;
-        }
-        .qf-grid-3 {
-            grid-template-columns: 1fr;
-            gap: 14px;
-            margin-bottom: 14px;
-        }
-        .qf-grid-4 {
-            grid-template-columns: 1fr 1fr;
-            gap: 14px;
-            margin-bottom: 14px;
-        }
+        .qf-span-6-m { grid-column: span 6; }
+        .qf-span-12-m { grid-column: span 12; }
         .quote-features {
-            display: none !important;
+            display: none;
         }
     }
 </style>
@@ -321,44 +302,41 @@
                     </select>
                 </div>
 
-                <!-- Row 3: Material, Color, Turn Around, Quantity -->
-                <div class="qf-grid-4">
-                    <div class="qf-group">
-                        <label>Select Material</label>
-                        <select name="material">
-                            <option value="">Choose option</option>
-                            <option value="Rigid Board">Rigid Board</option>
-                            <option value="Cardboard">Cardboard</option>
-                            <option value="Kraft Paper">Kraft Paper</option>
-                            <option value="Corrugated">Corrugated</option>
-                        </select>
-                    </div>
-                    <div class="qf-group">
-                        <label>Color Options</label>
-                        <select name="color">
-                            <option value="">Choose option</option>
-                            <option value="1 Color">1 Color</option>
-                            <option value="2 Colors">2 Colors</option>
-                            <option value="3 Colors">3 Colors</option>
-                            <option value="Full Color">Full Color</option>
-                        </select>
-                    </div>
-                    <div class="qf-group">
-                        <label>Turn Around Time</label>
-                        <select name="turn_around_time">
-                            <option value="">Choose option</option>
-                            <option value="Standard (8-10 Days)">Standard (8-10 Days)</option>
-                            <option value="Rush (4-6 Days)">Rush (4-6 Days)</option>
-                        </select>
-                    </div>
-                    <div class="qf-group">
-                        <label>Quantity *</label>
-                        <input type="number" name="quantity" placeholder="Enter quantity" oninput="this.value = this.value.replace(/[^0-9]/g, '')" required>
-                    </div>
+                <!-- Row 3 & 4: Material, Color, Turn Around, Quantity -->
+                <div class="qf-group qf-span-4 qf-span-6-m">
+                    <label>Select Material</label>
+                    <select name="material">
+                        <option value="">Choose option</option>
+                        <option value="Rigid Board">Rigid Board</option>
+                        <option value="Cardboard">Cardboard</option>
+                        <option value="Kraft Paper">Kraft Paper</option>
+                        <option value="Corrugated">Corrugated</option>
+                    </select>
                 </div>
-
-                <!-- Row 4: File Upload -->
-                <div class="qf-group" style="margin-bottom: 20px;">
+                <div class="qf-group qf-span-4 qf-span-6-m">
+                    <label>Color Options</label>
+                    <select name="color">
+                        <option value="">Choose option</option>
+                        <option value="1 Color">1 Color</option>
+                        <option value="2 Colors">2 Colors</option>
+                        <option value="3 Colors">3 Colors</option>
+                        <option value="Full Color">Full Color</option>
+                    </select>
+                </div>
+                <div class="qf-group qf-span-4 qf-span-6-m">
+                    <label>Turn Around Time</label>
+                    <select name="turn_around_time">
+                        <option value="">Choose option</option>
+                        <option value="Standard (8-10 Days)">Standard (8-10 Days)</option>
+                        <option value="Rush (4-6 Days)">Rush (4-6 Days)</option>
+                    </select>
+                </div>
+                <div class="qf-group qf-span-4 qf-span-6-m">
+                    <label>Quantity *</label>
+                    <input type="number" name="quantity" placeholder="Enter quantity" oninput="this.value = this.value.replace(/[^0-9]/g, '')" required>
+                </div>
+                
+                <div class="qf-group qf-span-8 qf-span-12-m">
                     <label>Upload File Here</label>
                     <div class="qf-file-wrap">
                         <input type="file" name="quote_file" id="qf-file-input" style="display: none;" onchange="document.getElementById('qf-file-name').value = this.files[0] ? this.files[0].name : ''">

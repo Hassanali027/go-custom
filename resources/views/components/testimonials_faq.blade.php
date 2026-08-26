@@ -1,7 +1,7 @@
 <style>
     .testimonials-faq-section {
         background: var(--background-color, #FAF8F8);
-        padding: 60px 0;
+        padding: 60px 0 20px 0;
         font-family: 'DM Sans', sans-serif;
     }
 
@@ -150,11 +150,10 @@
     .tf-accordion {
         display: flex;
         flex-direction: column;
-        border-top: 1px solid #ccc;
     }
 
     .tf-accordion-item {
-        border-bottom: 1px solid #ccc;
+        border-bottom: 1px solid #888;
     }
 
     .tf-accordion-btn {
