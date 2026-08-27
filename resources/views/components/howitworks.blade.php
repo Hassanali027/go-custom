@@ -102,7 +102,14 @@
 }
 @media (max-width: 768px) {
     .how-it-works-section {
-        display: none !important;
+        display: block;
+    }
+    .hiw-subtitle {
+        text-align: justify;
+    }
+    .hiw-title {
+        font-size: 20px;
+        white-space: nowrap;
     }
 }
 </style>
