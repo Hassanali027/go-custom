@@ -51,46 +51,83 @@
 
         .iq-page-hero {
             width: 100%;
-            max-width: 1280px;
+            max-width: 1440px;
+            height: 400px;
             margin: 0 auto;
-            padding: 40px 55px 20px 55px;
             text-align: center;
             box-sizing: border-box;
+            background: url("{{ asset('uploads/quote-hero-img.png') }}") center/cover no-repeat;
+            position: relative;
+            color: #ffffff;
+        }
+
+        .iq-hero-inner {
+            width: 100%;
+            max-width: 1280px;
+            height: 100%;
+            margin: 0 auto;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 2;
+        }
+
+        .iq-page-hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.58);
+            z-index: 1;
+        }
+
+        .iq-page-hero > * {
+            position: relative;
+            z-index: 2;
         }
 
         .iq-breadcrumb {
-            text-align: left;
-            margin-bottom: 14px;
-            font-size: 14px;
-            font-weight: 600;
-            color: #000;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            font-family: 'Open Sans', sans-serif;
+            position: absolute;
+            top: 40px;
+            left: 55px;
+            font-size: 15px;
+            font-weight: 500;
+            color: #fff;
+            letter-spacing: 0.5px;
+            font-family: 'DM Sans', sans-serif;
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
 
         .iq-breadcrumb a {
-            color: #666;
+            color: #fff;
             text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
 
         .iq-breadcrumb span {
-            color: #000000;
+            color: #fff;
         }
 
         .iq-page-hero h1 {
-            font-size: clamp(26px, 4vw, 38px);
-            font-weight: 800;
-            color: #000000;
-            margin-bottom: 12px;
-            line-height: 1.25;
+            font-family: 'Open Sans', sans-serif;
+            font-size: clamp(32px, 4vw, 46px);
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 16px;
+            line-height: 1.2;
         }
 
         .iq-page-hero p {
-            color: #000;
-            font-size: 15px;
-            max-width: 580px;
-            margin: 0 auto 30px;
+            font-family: 'DM Sans', sans-serif;
+            color: #ffffff;
+            font-size: 17px;
+            max-width: 680px;
+            margin: 0 auto;
             line-height: 1.6;
         }
 
@@ -98,7 +135,7 @@
             width: 100%;
             max-width: 1280px;
             margin: 0 auto;
-            padding: 0 55px 60px 55px;
+            padding: 45px 55px 60px 55px;
             display: flex;
             gap: 30px;
             flex-wrap: wrap;
@@ -111,7 +148,7 @@
             flex: 0 1 750px;
             max-width: 750px;
             width: 100%;
-            background-color: #F8F4F2;
+            background-color: var(--section-background);
             padding: 40px;
             border-radius: 16px;
             box-sizing: border-box;
@@ -133,8 +170,9 @@
             max-width: 350px;
             display: flex;
             flex-direction: column;
-            gap: 20px;
+            /* gap: 20px; */
             box-sizing: border-box;
+            margin-top:20px;
         }
 
         .iq-form-group {
@@ -277,8 +315,62 @@
 
         @media (max-width: 400px) {
             
+            
             .iq-grid-4 {
-                grid-template-columns: ;
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .iq-features-container {
+                max-width: 1280px;
+    margin: 0px auto 25px auto;
+    padding: 10px 55px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px;
+    text-align: center
+        }
+
+        .iq-feature-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .iq-feature-item img {
+            width: 56px;
+            height: 56px;
+            object-fit: contain;
+            margin-bottom: 8px;
+        }
+
+        .iq-feature-item h4 {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 15px;
+            font-weight: 700;
+            color: #333;
+            margin: 0;
+        }
+
+        .iq-feature-item p {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 13px;
+            color: #666;
+            margin: 0;
+            line-height: 1.5;
+        }
+
+        @media (max-width: 991px) {
+            .iq-features-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 576px) {
+            .iq-features-container {
+                grid-template-columns: 1fr;
+                padding: 30px 20px;
             }
         }
     </style>
@@ -289,15 +381,45 @@
 
     <main class="main-content">
         <div class="iq-page-hero">
-            <div class="iq-breadcrumb">
-                <a href="/">HOME</a> / <span>GET INSTANT QUOTE</span>
+            <div class="iq-hero-inner">
+                <div class="iq-breadcrumb">
+                    <a href="/"><i class="fa-solid fa-house" style="font-size: 14px;"></i> Home</a> <i class="fa-solid fa-angle-right" style="font-size: 12px; margin: 0 2px;"></i> <span>Get a Quote</span>
+                </div>
+                <h1>Get A Free Quote</h1>
+                <p>Tell us about your packaging needs and our team will create a custom quote around your product, brand, and requirements.</p>
             </div>
-            <h1>Request Your Free Custom Quote</h1>
-            <p>Fill in the details below and receive a tailored estimate within minutes. No steps, just straightforward.</p>
         </div>
 
         <div class="iq-page-container">
-            <!-- Left form section -->
+            <!-- Left sidebar section -->
+            <div class="iq-page-sidebar" style="padding: 0; background: transparent; box-shadow: none;">
+                <h2 style="font-family: 'Open Sans', sans-serif; font-size: 25px; font-weight: 700; color: #000; margin-bottom: 16px; margin-top: 0;">Let's Build Your Perfect Box</h2>
+                <p style="font-family: 'DM Sans', sans-serif; font-size: 15px; color: #333; line-height: 1.6; margin-bottom: 24px;">
+                    From simple to premium, we create custom packaging designed around your product and brand. Tell us what you need, and our team will help bring your packaging vision to life with the right size, material, finish, and print. Fill out the form to get started.
+                </p>
+                <div style="width: 100%; aspect-ratio: 1; background-color: #D9D9D9; border-radius: 12px; margin-bottom: 24px; display: flex; justify-content: center; align-items: center;">
+                    <i class="fa-solid fa-image" style="font-size: 48px; color: #999;"></i>
+                </div>
+                <div class="iq-sidebar-card" style="margin-bottom: 0; background-color: #F3F3F3; border: none;">
+                    <h3 style="margin-bottom: 16px; font-size: 16px;">Need Help Immediately?</h3>
+                    <div style="display: flex; flex-direction: column; gap: 12px;">
+                        <div style="display: flex; gap: 12px; align-items: center;">
+                            <div style="background-color: #FFB400; color: white; width: 32px; height: 32px; border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 14px; flex-shrink: 0;">
+                                <i class="fa-solid fa-envelope"></i>
+                            </div>
+                            <span style="font-size: 15px; color: #000; font-family: 'DM Sans', sans-serif; font-weight: 500;">support@gocustomboxes.com</span>
+                        </div>
+                        <div style="display: flex; gap: 12px; align-items: center;">
+                            <div style="background-color: #FFB400; color: white; width: 32px; height: 32px; border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 14px; flex-shrink: 0;">
+                                <i class="fa-solid fa-phone"></i>
+                            </div>
+                            <span style="font-size: 15px; color: #000; font-family: 'DM Sans', sans-serif; font-weight: 500;">847-200-0971</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right form section -->
             <div class="iq-page-form-card">
                 <h2>Instant Quotes, Quick Service!</h2>
                 @if(session('success'))
@@ -398,7 +520,7 @@
                             <div style="display: flex; align-items: center; border: 1px solid #E2D9D5; border-radius: 8px; overflow: hidden; background: #FFFFFF; height: 44px;">
                                 <input type="file" name="quote_file" id="quote-file-input" style="display: none;" onchange="document.getElementById('quote-file-name').value = this.files[0] ? this.files[0].name : ''">
                                 <input type="text" id="quote-file-name" placeholder="No file chosen" readonly style="flex: 1; padding: 0 14px; border: none; font-size: 14px; background: transparent; outline: none; color: #666; height: 100%;">
-                                <button type="button" onclick="document.getElementById('quote-file-input').click()" style="background-color: var(--primary-color, #8D4445); color: white; border: none; padding: 0 20px; font-size: 14px; font-weight: 600; cursor: pointer; height: 100%; font-family: 'DM Sans', sans-serif;">Upload</button>
+                                <button type="button" onclick="document.getElementById('quote-file-input').click()" style="background-color: var(--secondary-color); color: var(--primary-color); border: none; padding: 0 20px; font-size: 14px; font-weight: 700; cursor: pointer; height: 100%; font-family: 'DM Sans', sans-serif;">Upload</button>
                             </div>
                         </div>
                     </div>
@@ -411,56 +533,33 @@
                     
                     <!-- Submit button -->
                     <div style="text-align: center; margin-top: 10px;">
-                        <button type="submit" style="background-color: var(--primary-color, #8D4445); color: white; border: none; border-radius: 6px; padding: 14px 40px; font-size: 16px; font-weight: 700; font-family: 'Open Sans', sans-serif; width: 100%; max-width: 320px; cursor: pointer; transition: background-color 0.2s ease;" onmouseover="this.style.backgroundColor='#6E3435'" onmouseout="this.style.backgroundColor='var(--primary-color, #8D4445)'">Get a Quote</button>
+                        <button type="submit" style="background-color: var(--secondary-color); color: var(--primary-color); border: none; border-radius: 6px; padding: 14px 40px; font-size: 16px; font-weight: 700; font-family: 'Open Sans', sans-serif; width: 100%; max-width: 320px; cursor: pointer; transition: background-color 0.2s ease;" onmouseover="this.style.backgroundColor='#e0d5d3'" onmouseout="this.style.backgroundColor='var(--secondary-color)'">Get a Quote</button>
                     </div>
                 </form>
             </div>
+        </div>
 
-            <!-- Right sidebar section -->
-            <div class="iq-page-sidebar">
-                <!-- Box 1 -->
-                <div class="iq-sidebar-card">
-                    <h3>Why Request a Quote?</h3>
-                    <p style="font-size: 14px; color: #000; line-height: 1.5; margin: 0;">No obligation. No pressure. Just a detailed proposal that helps you make an informed decision backed by 500+ successful brand partnerships.</p>
-                </div>
-
-                <!-- Box 2 -->
-                <div class="iq-sidebar-card">
-                    <h3 style="margin-bottom: 16px;">What Happens Next</h3>
-                    <div style="display: flex; flex-direction: column; gap: 16px;">
-                        <div style="display: flex; gap: 12px; align-items: flex-start;">
-                            <div style="background-color: var(--primary-color, #8D4445); color: white; width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; flex-shrink: 0; margin-top: 2px;">1</div>
-                            <p style="font-size: 14px; color: #000; margin: 0; line-height: 1.4;">We review your request within 4 business hours.</p>
-                        </div>
-                        <div style="display: flex; gap: 12px; align-items: flex-start;">
-                            <div style="background-color: var(--primary-color, #8D4445); color: white; width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; flex-shrink: 0; margin-top: 2px;">2</div>
-                            <p style="font-size: 14px; color: #000; margin: 0; line-height: 1.4;">A dedicated packaging specialist reaches out to clarify details.</p>
-                        </div>
-                        <div style="display: flex; gap: 12px; align-items: flex-start;">
-                            <div style="background-color: var(--primary-color, #8D4445); color: white; width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; flex-shrink: 0; margin-top: 2px;">3</div>
-                            <p style="font-size: 14px; color: #000; margin: 0; line-height: 1.4;">You receive a tailored quote with 3D mockups within 24 hours.</p>
-                        </div>
-                        <div style="display: flex; gap: 12px; align-items: flex-start;">
-                            <div style="background-color: var(--primary-color, #8D4445); color: white; width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; flex-shrink: 0; margin-top: 2px;">4</div>
-                            <p style="font-size: 14px; color: #000; margin: 0; line-height: 1.4;">We ship a complimentary sample kit for your evaluation.</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Box 3 -->
-                <div class="iq-sidebar-card">
-                    <h3 style="margin-bottom: 16px;">Need Help Immediately?</h3>
-                    <div style="display: flex; flex-direction: column; gap: 12px;">
-                        <div style="display: flex; gap: 12px; align-items: center;">
-                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--primary-color, #8D4445)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
-                            <span style="font-size: 14px; color: #000;">1800-518-9441</span>
-                        </div>
-                        <div style="display: flex; gap: 12px; align-items: center;">
-                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--primary-color, #8D4445)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
-                            <span style="font-size: 14px; color: #000;">example@gmail.com</span>
-                        </div>
-                    </div>
-                </div>
+        <!-- Features Section -->
+        <div class="iq-features-container">
+            <div class="iq-feature-item">
+                <img src="{{ asset('uploads/competitive-icon.svg') }}" alt="Competitive Pricing">
+                <h4>Competitive Pricing</h4>
+                <p>High-quality printing that fits your budget.</p>
+            </div>
+            <div class="iq-feature-item">
+                <img src="{{ asset('uploads/no-die-icon.svg') }}" alt="No Die or Plate Charges">
+                <h4>No Die or Plate Charges</h4>
+                <p>No hidden charges, save on custom designs.</p>
+            </div>
+            <div class="iq-feature-item">
+                <img src="{{ asset('uploads/fast-turn-icon.svg') }}" alt="Fast Turn Arounds">
+                <h4>Fast Turn Arounds</h4>
+                <p>Get your packaging exactly when you need it.</p>
+            </div>
+            <div class="iq-feature-item">
+                <img src="{{ asset('uploads/free-ship-icon.svg') }}" alt="Free Shipping">
+                <h4>Free Shipping</h4>
+                <p>Anywhere in the USA, we ship with love not money.</p>
             </div>
         </div>
     </main>
