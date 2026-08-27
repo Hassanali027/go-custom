@@ -93,8 +93,8 @@
             padding-top: 10px;
         }
         .product-faq-heading {
-            font-size: 26px;
-            margin-bottom: 20px;
+            font-size: 24px;
+            margin-bottom: 30px;
         }
         .product-faq-question {
             padding: 16px 20px;

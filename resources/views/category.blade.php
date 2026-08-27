@@ -6,35 +6,39 @@
     'schema' => $category['schema'] ?? '',
 ])
 
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
 <style>
     html,
     body {
         max-width: 100%;
-        overflow-x: clip;
     }
 
     /* Clothing Features Section */
     .clothing-features-section {
         background-color: #FDF7E5; 
-        padding: 60px 0;
+        padding: 50px 0;
         font-family: 'DM Sans', sans-serif;
     }
 
     .clothing-features-inner {
         max-width: 1280px;
         margin: 0 auto;
-        padding: 0 28px;
+        padding: 0 40px;
+        box-sizing: border-box;
         display: flex;
         flex-direction: column;
-        gap: 80px;
+        gap: 40px;
     }
 
     .clothing-features-title {
         text-align: center;
-        font-size: 28px;
+        font-family: 'Open Sans', sans-serif;
+        font-size: 34px;
         font-weight: 700;
         color: #111;
-        margin-bottom: 20px;
+        margin-bottom: 0;
+        line-height: 1.3;
     }
 
     .mobile-br { display: none; }
@@ -44,10 +48,11 @@
         display: flex;
         align-items: center;
         justify-content: space-between;
-        max-width: 1224px;
+        max-width: 1200px;
         margin: 0 auto;
         width: 100%;
-        gap: 60px;
+        gap: 40px;
+        box-sizing: border-box;
     }
 
     .clothing-feature-card.reverse {
@@ -55,67 +60,78 @@
     }
 
     .clothing-feature-text {
-        width: 539px;
-        flex-shrink: 0;
+        flex: 1 1 0;
+        min-width: 0;
+        max-width: 580px;
     }
 
     .clothing-feature-text h3 {
-        font-size: 24px;
+        font-family: 'Open Sans', sans-serif;
+        font-size: 30px;
         font-weight: 700;
         color: #111;
-        margin-bottom: 20px;
+        margin-bottom: 18px;
+        line-height: 1.3;
     }
 
     .clothing-feature-text p {
-        font-size: 15px;
-        line-height: 1.6;
-        color: #444;
+        font-family: 'DM Sans', sans-serif;
+        font-size: 16px;
+        line-height: 1.7;
+        color: black;
         margin: 0;
         text-align: justify;
     }
 
     .clothing-feature-image {
-        width: 565px;
-        height: 500px;
-        flex-shrink: 0;
-        border-radius: 16px;
+        flex: 1 1 0;
+        min-width: 0;
+        max-width: 400px;
+        width: 100%;
+        border-radius: 20px;
         overflow: hidden;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+        background-color: transparent;
     }
 
     .clothing-feature-image img {
         width: 100%;
-        height: 100%;
+        height: auto;
+        aspect-ratio: 1 / 1;
         object-fit: cover;
+        display: block;
+        border-radius: 20px;
     }
 
-    @media (max-width: 1024px) {
-        .clothing-feature-card, .clothing-feature-card.reverse {
-            flex-direction: column;
-            gap: 30px;
-            height: auto;
-        }
-        .clothing-feature-text, .clothing-feature-image {
-            width: 100%;
-            height: auto;
-        }
-    }
-
-    @media (max-width: 768px) {
+    @media (max-width: 992px) {
         .clothing-features-section {
-            margin: 0 15px;
-            padding: 40px 0;
-            border-radius: 8px;
+            padding: 40px 15px;
         }
         .clothing-features-inner {
-            gap: 20px;
+            padding: 0 10px;
+            gap: 40px;
         }
         .clothing-feature-card, .clothing-feature-card.reverse {
             flex-direction: column-reverse;
+            gap: 30px;
+        }
+        .clothing-feature-text, .clothing-feature-image {
+            max-width: 100%;
+            width: 100%;
+            flex: none !important;
+        }
+        .clothing-feature-text {
+            text-align: justify;
+        }
+        .clothing-feature-text p {
+            text-align: justify;
+        }
+        .clothing-feature-image {
+            max-width: 480px;
+            margin: 0 auto;
         }
         .clothing-features-title {
-            font-size: 24px;
-            font-weight: 600;
-            color: #333;
+            font-size: 23px;
             line-height: 1.4;
         }
         .mobile-br { display: block; }
@@ -273,6 +289,9 @@
     }
 
     .box-image-wrapper img {
+        position: absolute;
+        top: 0;
+        left: 0;
         width: 100%;
         height: 100%;
         display: block;
@@ -527,6 +546,9 @@
     }
 
     .custom-img-wrapper img {
+        position: absolute;
+        top: 0;
+        left: 0;
         width: 100%;
         height: 100%;
         object-fit: cover;
@@ -590,15 +612,15 @@
 
         .customize-tab {
             width: auto !important;
-            flex: 0 0 50% !important;
+            flex: 0 0 auto !important;
             height: 44px !important;
             min-height: 0 !important;
-            padding: 10px 10px !important;
-            font-size: 13px !important;
+            padding: 10px 16px !important;
+            font-size: 14px !important;
             font-weight: 700;
             text-align: center;
             white-space: nowrap !important;
-            border-radius: 0px !important;
+            border-radius: 4px 4px 0 0 !important;
             margin-bottom: -1px;
         }
 
@@ -617,8 +639,8 @@
         }
 
         .custom-card {
-            flex: 0 0 180.41px !important;
-            width: 180.41px !important;
+            flex: 0 0 200.01px !important;
+            width: 200.01px !important;
             padding: 0px !important;
             border-radius: 0px !important;
             box-shadow: none !important;
@@ -627,8 +649,7 @@
         }
 
         .custom-img-wrapper {
-            width: 180.41px !important;
-            height: 181.97px !important;
+            width: 100% !important;
             border-radius: 4.71px !important;
             margin-bottom: 10px !important;
             background: transparent !important;
@@ -813,7 +834,225 @@
     @include('components.footer')
 
     <script>
+        const customizeCardOrders = {
+            coating: [0, 1, 2, 3, 4],
+            special_finishes: [0, 1, 2, 3, 4, 5, 6],
+            paperboard: [0, 1, 2, 3, 4, 5, 6, 7],
+            corrugated: [7, 6, 5, 4, 3, 2, 1, 0],
+            fluted_grades: [2, 3, 0, 1, 6, 7],
+            rigid_materials: [0, 1, 2, 3, 4, 5, 6, 7],
+            printing_options: [1, 0, 2, 3, 7, 5, 6, 4]
+        };
 
+        const customizeGrid = document.querySelector('.customize-grid');
+        const originalCards = Array.from(customizeGrid.querySelectorAll('.custom-card'));
+        const halfLength = originalCards.length;
+        
+        // Duplicate cards for infinite marquee
+        originalCards.forEach(card => {
+            let clone = card.cloneNode(true);
+            clone.setAttribute('aria-hidden', 'true');
+            customizeGrid.appendChild(clone);
+        });
+        
+        const customizeCards = Array.from(document.querySelectorAll('.customize-grid .custom-card'));
+        const customizeSidebar = document.querySelector('.customize-sidebar');
+        const customizeUploadsUrl = "{{ asset('') }}";
+        const customizeCardSets = {
+            paperboard: [
+                ['uploads/duplex-chipboard.webp', 'Duplex Chipboard'],
+                ['uploads/grey-board.webp', 'Grey Chipboard Cardboard'],
+                ['uploads/black-kraft.webp', 'Black-Kraft'],
+                ['uploads/finish-material-holographic.webp', 'Holographic'],
+                ['uploads/metallic-paper.webp', 'Metallic Paper'],
+                ['uploads/natural-brown-.webp', 'Natural Brown Kraft'],
+                ['uploads/sbs-c2s.webp', 'SBS C2S'],
+                ['uploads/textured-.webp', 'Textured']
+            ],
+            printing_options: [
+                ['uploads/Digital Print.webp', 'Digital Print'],
+                ['uploads/Flexographic Printing.webp', 'Flexographic Printing'],
+                ['uploads/gravure printing.webp', 'Gravure Printing'],
+                ['uploads/Offset Print.webp', 'Offset Print'],
+                ['uploads/Rotogravure Printing.webp', 'Rotogravure Printing'],
+                ['uploads/Scodixe Digital.webp', 'Scodixe Digital'],
+                ['uploads/Screen Printing.webp', 'Screen Printing'],
+                ['uploads/UV Print.webp', 'UV Print']
+            ],
+            fluted_grades: [
+                ['uploads/Fluorescent Color Inks.webp', 'Fluorescent Color Inks'],
+                ['uploads/Oil Based Inks.webp', 'Oil Based Inks'],
+                ['uploads/Pantone Metallic.webp', 'Pantone Metallic'],
+                ['uploads/Pantone.webp', 'Pantone'],
+                ['uploads/Soy Vegetable Based Inks.webp', 'Soy Vegetable Based Inks'],
+                ['uploads/Water Based Inks.webp', 'Water Based Inks']
+            ],
+            coating: [
+                ['uploads/Anti-scratch-Lamination-.webp', 'Anti-scratch Lamination'],
+                ['uploads/Aqueous-Coating-.webp', 'Aqueous Coating'],
+                ['uploads/Lamination.webp', 'Lamination'],
+                ['uploads/Soft-Touch-Coating-.webp', 'Soft-Touch Coating'],
+                ['uploads/Soft-Touch-Silk-Lamination-.webp', 'Soft-Touch Silk Lamination']
+            ],
+            corrugated: [
+                ['uploads/corrugated-divider.webp', 'Corrugated Divider'],
+                ['uploads/folding-divider.webp', 'Folding Divider'],
+                ['uploads/hips-insert.webp', 'HIPS Insert'],
+                ['uploads/kraft-corrugated.webp', 'Kraft Corrugated'],
+                ['uploads/kraft-paperboard.webp', 'Kraft Paperboard'],
+                ['uploads/petg-insert.webp', 'PETG Insert'],
+                ['uploads/pvc-insert.webp', 'PVC Insert'],
+                ['uploads/white-corrugated.webp', 'White Corrugated']
+            ],
+            special_finishes: [
+                ['uploads/blind-deboss.webp', 'Blind Debossing'],
+                ['uploads/blind-embossing.webp', 'Blind Embossing'],
+                ['uploads/cold-foil.webp', 'Cold Foil Printing'],
+                ['uploads/combo-emboss.webp', 'Combination Embossing'],
+                ['uploads/hot-foil.webp', 'Hot Foil Stamping'],
+                ['uploads/registered-emboss.webp', 'Registered Embossing'],
+                ['uploads/window-patch.webp', 'Window Patching']
+            ],
+            rigid_materials: [
+                ['uploads/duplex-chipboard.webp', 'Duplex Chipboard'],
+                ['uploads/grey-board.webp', 'Grey Chipboard Cardboard'],
+                ['uploads/black-kraft.webp', 'Black-Kraft'],
+                ['uploads/finish-material-holographic.webp', 'Holographic'],
+                ['uploads/metallic-paper.webp', 'Metallic Paper'],
+                ['uploads/natural-brown-.webp', 'Natural Brown Kraft'],
+                ['uploads/sbs-c2s.webp', 'SBS C2S'],
+                ['uploads/textured-.webp', 'Textured']
+            ]
+        };
+
+        // Preload all customization images in the background so tabs switch instantly
+        window.addEventListener('load', function() {
+            setTimeout(function() {
+                for (let key in customizeCardSets) {
+                    if (customizeCardSets.hasOwnProperty(key)) {
+                        customizeCardSets[key].forEach(function(item) {
+                            let img = new Image();
+                            img.src = customizeUploadsUrl + item[0];
+                        });
+                    }
+                }
+            }, 500); // Start preloading half a second after page load
+        });
+
+        function setCustomizeCardOrder(option) {
+            const cardSet = customizeCardSets[option] || customizeCardSets.materials;
+            const cardOrder = customizeCardOrders[option] || customizeCardOrders.materials;
+
+            customizeCards.forEach(card => {
+                card.style.opacity = '0';
+                card.style.transform = 'scale(0.98)';
+            });
+
+            setTimeout(() => {
+                customizeCards.forEach(card => card.style.display = 'none');
+
+                try {
+                    cardOrder.forEach(function(cardIndex, position) {
+                        if (!cardSet[position]) return;
+                        
+                        const [imagePath, title] = cardSet[position];
+                        
+                        // Update Original Card
+                        const card1 = customizeCards[cardIndex];
+                        if(card1) {
+                            const image1 = card1.querySelector('img');
+                            if (image1) {
+                                image1.src = customizeUploadsUrl + imagePath;
+                                image1.alt = title;
+                            }
+                            const title1 = card1.querySelector('.custom-card-title');
+                            if (title1) title1.textContent = title;
+                            card1.style.order = position + 1;
+                            card1.style.display = 'flex';
+                        }
+
+                        // Update Cloned Card
+                        const card2 = customizeCards[cardIndex + halfLength];
+                        if(card2) {
+                            const image2 = card2.querySelector('img');
+                            if (image2) {
+                                image2.src = customizeUploadsUrl + imagePath;
+                                image2.alt = title;
+                            }
+                            const title2 = card2.querySelector('.custom-card-title');
+                            if (title2) title2.textContent = title;
+                            card2.style.order = position + 1 + cardOrder.length;
+                            card2.style.display = 'flex';
+                        }
+                    });
+                } catch(e) {
+                    console.error("Error setting custom cards", e);
+                } finally {
+                    requestAnimationFrame(() => {
+                        customizeCards.forEach(card => {
+                            if (card.style.display !== 'none') {
+                                card.style.opacity = '1';
+                                card.style.transform = 'scale(1)';
+                            }
+                        });
+                    });
+                }
+            }, 200);
+        }
+
+        document.querySelectorAll('.customize-tab').forEach(function(tab) {
+            tab.addEventListener('pointerdown', function(event) {
+                event.stopPropagation();
+            });
+            tab.addEventListener('click', function() {
+                document.querySelectorAll('.customize-tab').forEach(function(item) {
+                    item.classList.remove('active');
+                    item.setAttribute('aria-selected', 'false');
+                });
+
+                tab.classList.add('active');
+                tab.setAttribute('aria-selected', 'true');
+                setCustomizeCardOrder(tab.dataset.customizeTab);
+
+                if (customizeSidebar) {
+                    try {
+                        tab.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'nearest',
+                            inline: 'center'
+                        });
+                    } catch (e) {
+                        tab.scrollIntoView(false);
+                    }
+                }
+            });
+        });
+
+        setCustomizeCardOrder('coating');
+
+        if (customizeSidebar) {
+            let dragStartX = 0;
+            let dragStartScrollLeft = 0;
+            let isDraggingTabs = false;
+
+            customizeSidebar.addEventListener('pointerdown', function(event) {
+                dragStartX = event.clientX;
+                dragStartScrollLeft = customizeSidebar.scrollLeft;
+                isDraggingTabs = true;
+                customizeSidebar.setPointerCapture(event.pointerId);
+            });
+
+            customizeSidebar.addEventListener('pointermove', function(event) {
+                if (!isDraggingTabs) return;
+                customizeSidebar.scrollLeft = dragStartScrollLeft - (event.clientX - dragStartX);
+            });
+
+            ['pointerup', 'pointercancel'].forEach(function(eventName) {
+                customizeSidebar.addEventListener(eventName, function() {
+                    isDraggingTabs = false;
+                });
+            });
+        }
 
         function toggleFaq(btn) {
             const item = btn.closest('.faq-item');
