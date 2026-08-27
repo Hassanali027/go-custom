@@ -62,7 +62,7 @@
         /* Hero Image */
         .hero-img {
             width: 100%;
-            height: 450px;
+            height: 430px;
             object-fit: cover;
             border-radius: 12px;
             margin-bottom: 40px;
@@ -71,28 +71,34 @@
 
         /* Title & Meta */
         .article-title {
-            font-family: var(--font-heading);
-            font-size: 40px;
+            font-family: var(--font-heading); /* Or 'Plus Jakarta Sans' if added, but var(--font-heading) is fine */
+            font-size: 32px;
             font-weight: 700;
-            line-height: 1.2;
-            margin: 0 0 20px 0;
+            line-height: 40px;
+            margin: 0 0 15px 0;
+            color: #111;
+            text-align: justify;
         }
         .article-subtitle {
-            font-size: 18px;
-            color: var(--text-light);
-            margin: 0 0 20px 0;
+            font-family: 'Inter', sans-serif;
+            font-size: 16px;
+            font-weight: 400;
+            color: #000;
+            margin: 0 0 25px 0;
+            line-height: 26px;
+            text-align: justify;
         }
         .article-meta {
+            font-family: 'Inter', sans-serif;
             font-size: 14px;
-            color: #888;
+            color: #000;
+            font-weight: 500;
             display: flex;
             align-items: center;
-            gap: 10px;
-            margin-bottom: 50px;
-            padding-bottom: 20px;
-            border-bottom: 1px solid var(--border-color);
+            gap: 16px;
+            margin-bottom: 40px;
         }
-        .article-meta span.divider { color: #ccc; }
+        .article-meta span.divider { color: #888; }
 
         /* Layout Grid */
         .content-layout {
@@ -104,9 +110,13 @@
 
         /* Main Content */
         .main-content {
-            font-size: 17px;
-            color: #333;
-            line-height: 1.8;
+            font-family: 'Inter', sans-serif;
+            font-size: 16px;
+            font-weight: 400;
+            color: #000;
+            line-height: 30px;
+            letter-spacing: 0px;
+            text-align: justify;
         }
 
         .main-content h2 {
@@ -133,19 +143,22 @@
 
         /* Key Takeaways Box (Mapping from .callout-box) */
         .callout-box {
-            background-color: var(--light-yellow);
+            background-color: #FDF9EE;
             border-radius: 12px;
             padding: 30px;
             margin-bottom: 40px;
         }
+        .callout-box li {
+            margin-bottom: 15px;
+        }
         .callout-label {
             font-family: var(--font-heading);
-            font-size: 18px;
+            font-size: 15px;
             font-weight: 700;
             text-transform: uppercase;
             margin-bottom: 15px;
             color: var(--dark-blue);
-            letter-spacing: 1px;
+            letter-spacing: 0.5px;
         }
         .callout-content {
             font-size: 16px;
@@ -155,7 +168,7 @@
         .cta-banner {
             background-color: var(--dark-blue);
             border-radius: 12px;
-            padding: 30px 40px;
+            padding: 20px 40px;
             display: flex;
             align-items: center;
             justify-content: space-between;
@@ -166,6 +179,7 @@
             font-family: var(--font-heading);
             font-size: 22px;
             font-weight: 700;
+            color: var(--yellow);
         }
         .cta-banner-sub {
             font-size: 14px;
@@ -175,11 +189,16 @@
         .cta-btn {
             background-color: var(--yellow);
             color: #000;
-            padding: 14px 28px;
-            border-radius: 6px;
+            width: 169px;
+            height: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 8px;
             font-weight: 700;
             font-size: 16px;
             white-space: nowrap;
+            text-decoration: none;
             transition: background 0.3s;
         }
         .cta-btn:hover { background-color: #e5a300; }
@@ -188,6 +207,8 @@
         .sidebar {
             position: sticky;
             top: 40px;
+            border-left: 1px solid #eaeaea;
+            padding-left: 30px;
         }
 
         .widget {
@@ -198,19 +219,36 @@
             font-size: 16px;
             font-weight: 700;
             margin-bottom: 20px;
-            color: var(--text-dark);
+            color: #000;
+        }
+
+        .author-share-card {
+            border: 1px solid #EAEAEA;
+            border-radius: 8px;
+            padding: 24px;
+            margin-bottom: 30px;
+            background: #fff;
+        }
+        .author-share-card .widget { margin-bottom: 0; }
+        .card-divider {
+            border: none;
+            border-top: 1px dotted #ccc;
+            margin: 24px 0;
         }
 
         /* Author Widget */
         .author-box {
+            margin-bottom: 30px;
+        }
+        .author-profile {
             display: flex;
-            flex-direction: column;
-            align-items: flex-start;
+            align-items: center;
             gap: 15px;
+            margin-bottom: 15px;
         }
         .author-img {
-            width: 70px;
-            height: 70px;
+            width: 60px;
+            height: 60px;
             border-radius: 50%;
             object-fit: cover;
         }
@@ -222,14 +260,14 @@
         }
         .author-role {
             font-size: 13px;
-            color: var(--text-light);
-            margin-top: -10px;
-            margin-bottom: 10px;
+            color: #666;
+            margin-top: 5px;
         }
         .author-bio {
             font-size: 14px;
-            color: var(--text-light);
+            color: #000;
             line-height: 1.5;
+            text-align: justify;
         }
 
         /* TOC */
@@ -237,27 +275,22 @@
             list-style: none;
             padding: 0;
             margin: 0;
-            border-left: 2px solid #f0f0f0;
         }
         .toc-item {
             margin-bottom: 15px;
-            padding-left: 15px;
             position: relative;
         }
         .toc-item a {
-            font-size: 14px;
-            color: var(--text-light);
+            font-size: 16px;
+            color: #444;
             transition: color 0.3s;
-        }
-        .toc-item.active {
-            border-left: 2px solid var(--yellow);
-            margin-left: -2px;
+            text-decoration: none;
         }
         .toc-item.active a {
-            color: var(--yellow);
-            font-weight: 700;
+            color: var(--dark-blue);
+            font-weight: 500;
         }
-        .toc-item a:hover { color: var(--yellow); }
+        .toc-item a:hover { color: var(--dark-blue); }
 
         /* Social Share */
         .share-icons {
@@ -267,13 +300,15 @@
         .share-icon {
             width: 40px;
             height: 40px;
-            border-radius: 6px;
-            background: #f5f5f5;
+            border-radius: 8px;
+            background: #EAEAEA;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: var(--text-dark);
+            color: #000;
+            font-size: 18px;
             transition: all 0.3s;
+            text-decoration: none;
         }
         .share-icon:hover {
             background: var(--dark-blue);
@@ -282,9 +317,7 @@
 
         /* Related Blogs */
         .related-section {
-            padding: 60px 0;
-            border-top: 1px solid var(--border-color);
-            margin-top: 60px;
+            padding: 20px 0 0 0;
         }
         .related-title {
             font-family: var(--font-heading);
@@ -352,16 +385,42 @@
         .card-link i { color: var(--yellow); }
 
         @media (max-width: 991px) {
-            .content-layout { grid-template-columns: 1fr; }
-            .sidebar { position: static; margin-top: 40px; }
+            .content-layout { grid-template-columns: 1fr; gap: 0; }
+            .sidebar { position: static; margin-top: 0; }
             .blog-grid { grid-template-columns: repeat(2, 1fr); }
             .hero-img { height: 350px; }
         }
         @media (max-width: 768px) {
+            .container { padding: 0 16px; }
+            .blog-detail-section { padding-top: 0; }
+            .breadcrumb { display: none !important; }
+            .hero-img { 
+                width: 100vw; 
+                margin-left: calc(-50vw + 50%); 
+                border-radius: 0; 
+                height: 300px;
+                margin-bottom: 25px;
+            }
+            .article-title { 
+                font-size: 24px; 
+                line-height: 34px;
+                text-align: left;
+                width: 100%;
+                display: block;
+            }
+            .article-meta {
+                flex-wrap: wrap;
+                gap: 10px 16px;
+                line-height: 1.6;
+            }
+            .toc-widget { display: none !important; }
+            .desktop-cta { display: none !important; }
+            .mobile-cta { display: flex !important; margin-top: 30px; }
             .blog-grid { grid-template-columns: 1fr; }
-            .article-title { font-size: 32px; }
             .cta-banner { flex-direction: column; text-align: center; gap: 20px; }
         }
+        
+        .mobile-cta { display: none; }
     </style>
 </head>
 <body>
@@ -387,32 +446,39 @@
     <div class="container">
         
         <!-- Breadcrumbs -->
-        <div class="breadcrumb">
-            <a href="{{ url('/') }}"><i class="fa-solid fa-house"></i> Home</a> <span>&gt;</span>
-            <a href="{{ url('/blog') }}">Blog</a> <span>&gt;</span>
-            {{ $fTitle }}
+        <div class="breadcrumb" style="display: flex; align-items: center; gap: 8px;">
+            <a href="{{ url('/') }}" style="display: flex; align-items: center; gap: 5px;">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                    <polyline points="9 22 9 12 15 12 15 22"></polyline>
+                </svg> Home
+            </a> 
+            <span style="color: #666; font-size: 12px;">&gt;</span>
+            <a href="{{ url('/blog') }}">Blog</a> 
+            <span style="color: #666; font-size: 12px;">&gt;</span>
+            {{ Str::limit($fTitle, 18) }}
         </div>
 
         <!-- Hero Image -->
         <img src="{{ $fImg }}" alt="{{ $fTitle }}" class="hero-img" onerror="this.src='{{ asset('uploads/about-us-banner.webp') }}'">
-
-        <!-- Title & Meta -->
-        <h1 class="article-title">{{ $fTitle }}</h1>
-        <p class="article-subtitle">{{ $blog['excerpt'] ?? 'Discover the latest packaging trends shaping modern brands, from sustainable materials to premium finishes and memorable unboxing experiences.' }}</p>
-        
-        <div class="article-meta">
-            <span>Published: {{ $publishDate }}</span>
-            <span class="divider">|</span>
-            <span>Last Updated: {{ $updateDate }}</span>
-            <span class="divider">|</span>
-            <span>8 min read</span>
-        </div>
 
         <!-- 2 Column Layout -->
         <div class="content-layout">
             
             <!-- Left: Main Content -->
             <div class="main-content">
+                
+                <!-- Title & Meta -->
+                <h1 class="article-title">{{ $fTitle }}</h1>
+                <p class="article-subtitle">{{ $blog['excerpt'] ?? 'Discover the latest packaging trends shaping modern brands, from sustainable materials to premium finishes and memorable unboxing experiences.' }}</p>
+                
+                <div class="article-meta">
+                    <span>Published: {{ $publishDate }}</span>
+                    <span class="divider">•</span>
+                    <span>Last Updated: {{ $updateDate }}</span>
+                    <span class="divider">•</span>
+                    <span>8 min read</span>
+                </div>
                 
                 @if(!empty($blog['content']))
                     {!! $blog['content'] !!}
@@ -431,21 +497,34 @@
                     </div>
 
                     <p>Packaging has evolved far beyond a simple way to protect a product. Today, it plays an important role in how customers recognize, experience, and remember a brand. From the moment a package arrives at a customer's doorstep to the satisfaction of opening it, every detail can influence how a product is perceived.</p>
-                    <p>As brands continue to compete for attention, packaging is becoming more thoughtful, functional, and visually distinctive. Here are seven packaging trends that are shaping the industry in 2026.</p>
 
-                    <h2>1. Sustainable Materials Take Center Stage</h2>
-                    <p>Sustainability continues to influence packaging decisions across industries. Brands are increasingly exploring recyclable, responsibly sourced, and lightweight materials that reduce environmental impact without compromising quality.</p>
-                    <p>Kraft paper, recycled paperboard, and other responsible material options are becoming popular choices for brands that want their packaging to reflect their environmental values.</p>
+                    <h2>What is Offset Printing?</h2>
+                    <p>Offset printing is a common printing technique in which the inked image is transferred from a plate to a rubber blanket, then to the printing surface.</p>
 
-                    <h2>2. Minimalist Packaging With a Strong Identity</h2>
-                    <p>Less can often say more. Clean layouts, simple typography, restrained spacing, and balanced color palettes are helping brands create packaging that feels modern and premium.</p>
+                    <h2>Offset Lithography vs Digital Printing</h2>
+                    <p>While digital printing is ideal for short runs, offset lithography remains the most cost-effective solution for high-volume jobs while delivering superior color fidelity.</p>
 
-                    <h2>3. Premium Finishes Create an Unforgettable Experience</h2>
-                    <p>Texture and finishing can completely change how packaging looks and feels. Matte coatings, soft-touch finishes, foil stamping, embossing, and spot UV are being used to create more distinctive packaging experiences.</p>
+                    <h2>The Pre-Press Stage</h2>
+                    <p>Before any ink touches the paper, the pre-press stage ensures all digital files are perfectly converted to plates, ready for the press.</p>
+                    
+                    <h2>The Printing Stage</h2>
+                    <p>Once plates are loaded, the printing stage begins, transferring the image with incredible speed and precision.</p>
+
+                    <h2>The Post-Press Stage</h2>
+                    <p>After printing, the sheets are cut, folded, and bound, turning flat paper into finished products.</p>
+
+                    <h2>Quality Control and Inspection</h2>
+                    <p>Throughout the process, rigorous quality control ensures every printed piece meets exact standards.</p>
+
+                    <h2>Types of Offset Litho-Printing</h2>
+                    <p>There are several types of offset printing, each suited for different applications and materials.</p>
+
+                    <h2>Web Offset Printing</h2>
+                    <p>Web offset printing uses rolls of paper rather than individual sheets, making it ideal for extremely high-volume printing like newspapers and catalogs.</p>
                 @endif
 
-                <!-- CTA Banner -->
-                <div class="cta-banner">
+                <!-- CTA Banner (Desktop) -->
+                <div class="cta-banner desktop-cta">
                     <div>
                         <div class="cta-banner-text">Need custom packaging for your product?</div>
                         <div class="cta-banner-sub">Get pricing, samples, and expert advice — no commitment required.</div>
@@ -458,25 +537,36 @@
             <!-- Right: Sidebar -->
             <div class="sidebar">
                 
-                <!-- Author Widget -->
-                <div class="widget">
-                    <div class="widget-title">Written by</div>
-                    <div class="author-box">
-                        <img src="{{ $authorImg }}" alt="{{ $authorName }}" class="author-img" onerror="this.src='{{ asset('images/ahmed-khan.png') }}'">
-                        <div>
-                            <div class="author-name">{{ $authorName }}</div>
-                            <div class="author-role">{{ $authorDesc }}</div>
+                <div class="author-share-card">
+                    <!-- Author Widget -->
+                    <div class="widget">
+                        <div class="widget-title">Written by</div>
+                        <div class="author-box">
+                            <div class="author-profile">
+                                <img src="{{ $authorImg }}" alt="{{ $authorName }}" class="author-img" onerror="this.src='{{ asset('images/ahmed-khan.png') }}'">
+                                <div>
+                                    <div class="author-name">{{ $authorName }}</div>
+                                    <div class="author-role">{{ $authorDesc }}</div>
+                                </div>
+                            </div>
+                            <div class="author-bio">
+                                5+ years in content strategy — building packaging case studies, guides, and blogs.
+                            </div>
                         </div>
                     </div>
                 </div>
 
+                <hr style="border: none; border-top: 1px dotted #ccc; margin: 30px 0;" class="toc-widget">
+
                 <!-- TOC Widget -->
-                <div class="widget">
-                    <div class="widget-title">Table of Contents</div>
+                <div class="widget toc-widget">
+                    <div class="widget-title">Table Of Content</div>
                     <ul class="toc-list" id="tocList">
                         <!-- Populated by JS -->
                     </ul>
                 </div>
+                
+                <hr style="border: none; border-top: 1px dotted #ccc; margin: 30px 0;" class="toc-widget">
 
                 <!-- Share Widget -->
                 <div class="widget">
@@ -484,13 +574,36 @@
                     <div class="share-icons">
                         <a href="#" class="share-icon"><i class="fa-solid fa-link"></i></a>
                         <a href="#" class="share-icon"><i class="fa-brands fa-linkedin-in"></i></a>
-                        <a href="#" class="share-icon"><i class="fa-brands fa-x-twitter"></i></a>
+                        <a href="#" class="share-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                                <path d="M12.6.75h2.454l-5.36 6.142L16 15.25h-4.937l-3.867-5.07-4.425 5.07H.316l5.733-6.57L0 .75h5.063l3.495 4.633L12.601.75Zm-.86 13.028h1.36L4.323 2.145H2.865l8.875 11.633Z"/>
+                            </svg>
+                        </a>
                         <a href="#" class="share-icon"><i class="fa-brands fa-facebook-f"></i></a>
                     </div>
                 </div>
 
+                <hr style="border: none; border-top: 1px dotted #ccc; margin: 30px 0;" class="toc-widget">
+
+                <!-- TOC Widget -->
+                <div class="widget toc-widget">
+                    <div class="widget-title">Table Of Content</div>
+                    <ul class="toc-list" id="tocList">
+                        <!-- Populated by JS -->
+                    </ul>
+                </div>
+
             </div>
 
+        </div>
+
+        <!-- CTA Banner (Mobile) -->
+        <div class="cta-banner mobile-cta">
+            <div>
+                <div class="cta-banner-text">Need custom packaging for your product?</div>
+                <div class="cta-banner-sub">Get pricing, samples, and expert advice — no commitment required.</div>
+            </div>
+            <a href="{{ url('/contact-us') }}" class="cta-btn">Get a Free Quote</a>
         </div>
 
     </div>

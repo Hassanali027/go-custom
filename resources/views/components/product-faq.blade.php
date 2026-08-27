@@ -4,7 +4,7 @@
     ───────────────────────────────────────── */
     .product-faq-section {
         background-color: #FFFFFF !important;
-        padding: 20px 0 60px;
+        padding: 20px 0 10px;
         width: 100%;
         font-family: 'DM Sans', sans-serif;
     }
@@ -85,6 +85,7 @@
         font-size: 15px;
         line-height: 1.6;
         color: #666666;
+        text-align: justify;
     }
 
     @media (max-width: 768px) {

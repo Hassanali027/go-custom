@@ -28,7 +28,7 @@
     .cta-text-card {
         width: 100%;
         min-height: 412px;
-        background: linear-gradient(to right, #FFB400, #FDD471);
+        background: linear-gradient(to right, #FDD471, #FFB400);
         border-radius: 40px;
         padding: 47px 540px 47px 86px;
         box-sizing: border-box;
@@ -182,7 +182,7 @@
             margin: 0 auto !important;
             padding: 45px 0 0 !important;
             overflow: visible !important;
-            background: linear-gradient(to right, #FFB400, #FDD471) !important;
+            background: linear-gradient(to right, #FDD471, #FFB400) !important;
             border-radius: 20px !important;
             box-sizing: border-box !important;
             position: relative;

@@ -86,7 +86,7 @@
 
         /* Content Section */
         .blog-content {
-            padding: 60px 0;
+            padding: 30px 0;
         }
 
         /* Featured Post */
@@ -95,7 +95,7 @@
             grid-template-columns: 1fr 1fr;
             gap: 40px;
             align-items: center;
-            margin-bottom: 60px;
+            margin-bottom: 40px;
         }
 
         .featured-img {
@@ -231,27 +231,91 @@
 
         /* Responsive */
         @media (max-width: 991px) {
+            .container {
+                padding: 0 24px;
+            }
             .featured-post {
                 grid-template-columns: 1fr;
+                gap: 30px;
+                margin-bottom: 40px;
+            }
+            .featured-img {
+                height: 360px;
+                border-radius: 16px;
             }
             .blog-grid {
                 grid-template-columns: repeat(2, 1fr);
-            }
-            .featured-img {
-                height: 300px;
+                gap: 20px;
             }
         }
 
         @media (max-width: 768px) {
-            .blog-grid {
-                grid-template-columns: 1fr;
+            .container {
+                padding: 0 16px;
+            }
+            .blog-hero {
+                padding: 0 16px;
+                height: 400px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
             }
             .blog-hero h1 {
-                font-size: 36px;
+                font-size: 32px;
+                margin-top: 5px;
+                margin-bottom: 10px;
+            }
+            .blog-hero p {
+                font-size: 14px;
+                line-height: 1.5;
             }
             .breadcrumb {
-                position: static;
-                margin-bottom: 20px;
+                display: none;
+            }
+            .blog-content {
+                padding: 24px 0 40px;
+            }
+            .featured-post {
+                grid-template-columns: 1fr;
+                gap: 18px;
+                margin-bottom: 35px;
+            }
+            .featured-img {
+                width: 100%;
+                aspect-ratio: 1 / 1;
+                object-fit: cover;
+                border-radius: 16px;
+            }
+            .featured-copy {
+                padding: 0;
+            }
+            .featured-copy h2 {
+                font-size: 21px;
+                font-weight: 700;
+                line-height: 1.35;
+                margin: 0 0 12px 0;
+                color: #000;
+            }
+            .featured-copy p.excerpt {
+                text-align: justify;
+                font-size: 14px;
+                line-height: 1.6;
+                color: #555;
+                margin: 0 0 15px 0;
+            }
+            .meta {
+                font-size: 13px;
+                color: #888;
+                margin-bottom: 18px;
+            }
+            .read-btn {
+                height: 40px;
+                width: 125px;
+                font-size: 13.5px;
+            }
+            .blog-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
             }
         }
     </style>
@@ -291,7 +355,7 @@
                         // Mock feature blog if no DB
                         $featuredBlog = [
                             'title' => '7 Packaging Trends That Will Shape Brands In 2026',
-                            'image' => 'images/Frame 571 (1).png',
+                            'image' => 'uploads/blog-content img.png',
                             'author_name' => 'Joe Stanley',
                             'publish_date' => '2026-08-12',
                             'excerpt' => 'Discover the latest packaging trends transforming how brands present their products from sustainable materials to premium designs.',
@@ -356,6 +420,8 @@
 
             </div>
         </section>
+        
+        @include('components.cta')
     </main>
 
     @include('components.footer')

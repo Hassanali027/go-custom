@@ -315,8 +315,8 @@
         left: 50%;
         width: min(1020px, calc(100vw - 32px));
         padding: 26px 30px 20px;
-        background: #FAF2F0;
-        border: 1px solid #E8DCDA;
+        background: var(--primary-color);
+        border: 1px solid rgba(255,255,255,0.1);
         border-radius: 12px;
         box-shadow: 0 18px 45px rgba(35, 15, 16, 0.22);
         opacity: 0;
@@ -344,7 +344,7 @@
         padding: 8px 10px;
         border-radius: 8px;
         text-decoration: none;
-        color: #222222;
+        color: #ffffff;
         font-size: 15px;
         font-weight: 600;
         line-height: 1.35;
@@ -352,8 +352,8 @@
     }
 
     .mega-menu-item:hover {
-        background: #F2E3E0;
-        color: var(--primary-color);
+        background: rgba(255, 255, 255, 0.1);
+        color: var(--secondary-color);
         transform: translateX(2px);
     }
 
@@ -369,7 +369,7 @@
     .mega-menu-icon svg {
         width: 22px;
         height: 22px;
-        stroke: var(--primary-color);
+        stroke: var(--secondary-color);
         fill: none;
     }
 
@@ -386,14 +386,14 @@
         justify-content: space-between;
         margin-top: 22px;
         padding-top: 16px;
-        border-top: 1px solid #E5D5D3;
+        border-top: 1px solid rgba(255,255,255,0.1);
     }
 
     .mega-menu-footer-left {
         display: flex;
         align-items: center;
         gap: 12px;
-        color: #1a1a1a;
+        color: #ffffff;
         font-size: 15px;
         font-weight: 700;
     }
@@ -404,7 +404,7 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        color: var(--primary-color);
+        color: var(--secondary-color);
     }
 
     .mega-menu-cta {
@@ -413,17 +413,17 @@
         justify-content: center;
         padding: 10px 24px;
         border-radius: 6px;
-        background: var(--primary-color);
-        color: #ffffff !important;
+        background: var(--secondary-color);
+        color: var(--primary-color) !important;
         font-weight: 700;
         font-size: 14px;
         text-decoration: none;
-        box-shadow: 0 4px 10px rgba(141, 68, 69, 0.22);
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
         transition: background 0.2s ease, transform 0.2s ease;
     }
 
     .mega-menu-cta:hover {
-        background: #733435;
+        background: #e6a600;
         transform: translateY(-1px);
     }
 
@@ -567,11 +567,13 @@
         }
 
         .mobile-sidebar-header {
-            padding: 20px;
+            padding: 18px 20px;
             background: var(--primary-color);
             display: flex;
             justify-content: space-between;
             align-items: center;
+            width: 100%;
+            box-sizing: border-box;
         }
 
         .close-menu-btn {
@@ -580,6 +582,25 @@
             color: #fff;
             cursor: pointer;
             padding: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .mobile-sidebar-header .header-logo {
+            margin-left: auto !important;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+        }
+
+        .mobile-sidebar-header .header-logo img {
+            height: 60px !important;
+            max-height: 60px !important;
+            width: auto !important;
+            max-width: 100% !important;
+            object-fit: contain;
         }
 
         .close-menu-btn svg {
@@ -651,15 +672,17 @@
         }
 
         .mobile-nav-item {
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.18) !important;
+            width: 100%;
         }
 
         .mobile-nav-header {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 12px 0;
+            padding: 14px 0;
             cursor: pointer;
+            width: 100%;
         }
 
         .mobile-nav-link-top,
@@ -669,9 +692,10 @@
             font-size: 16px;
             font-weight: 600;
             font-family: 'DM Sans', 'Open Sans', sans-serif;
-            display: block;
+            display: flex;
+            align-items: center;
             flex: 1;
-            padding: 12px 0;
+            padding: 0;
         }
 
         .mobile-nav-header .mobile-nav-link-top {
@@ -681,20 +705,22 @@
         .mobile-dropdown-toggle {
             background: none;
             border: none;
-            padding: 4px 6px;
+            padding: 4px;
             cursor: pointer;
             color: #fff;
             display: flex;
             align-items: center;
             justify-content: center;
+            flex-shrink: 0;
         }
 
         .mobile-dropdown-toggle .chevron-icon {
-            width: 18px;
-            height: 18px;
+            width: 16px;
+            height: 16px;
             stroke: #fff;
             stroke-width: 2.2;
             transition: transform 0.3s ease;
+            display: block;
         }
 
         .mobile-nav-item.has-dropdown.open .chevron-icon {
@@ -704,14 +730,18 @@
         .mobile-submenu {
             display: none;
             list-style: none;
-            padding: 4px 0 12px 14px;
+            padding: 6px 0 14px 16px;
             margin: 0;
             flex-direction: column;
-            gap: 6px;
+            gap: 8px;
         }
 
         .mobile-nav-item.has-dropdown.open .mobile-submenu {
             display: flex;
+        }
+
+        .mobile-submenu li {
+            width: 100%;
         }
 
         .mobile-submenu li a {
@@ -791,10 +821,18 @@
         $navParents = array_values(array_filter($navCatsAll, fn($c) => empty($c['parent_id'])));
         $navChildren = array_filter($navCatsAll, fn($c) => !empty($c['parent_id']));
         
+        if (count($navParents) <= 1) {
+            $navParents = [
+                ['id' => 101, 'title' => 'Box by Industry', 'slug' => 'box-by-industry'],
+                ['id' => 102, 'title' => 'Box by Material', 'slug' => 'box-by-material'],
+                ['id' => 103, 'title' => 'Box by Style', 'slug' => 'box-by-style'],
+            ];
+        }
+
         $navByParentSlug = [];
         foreach ($navParents as $parent) {
             $slug = $parent['slug'];
-            $children = array_filter($navChildren, fn($c) => $c['parent_id'] == $parent['id']);
+            $children = array_filter($navChildren, fn($c) => isset($c['parent_id']) && $c['parent_id'] == $parent['id']);
             $navByParentSlug[$slug] = array_values($children);
         }
         $navParentItems = $navParents;
@@ -806,13 +844,13 @@
         </a>
         
         <ul class="header-nav" style="display: flex; align-items: center; justify-content: center; margin: 0; padding: 0; list-style: none; flex-grow: 1; gap: 28px;">
-            <li><a href="/" style="color: var(--primary-color); text-decoration: none; font-weight: 700; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 15px;">Home</a></li>
+            <li><a href="/" style="color: #000000; text-decoration: none; font-weight: 700; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 15px;">Home</a></li>
             @foreach($navParentItems as $navParent)
             <li class="has-mega" data-mega-type="{{ $navParent['slug'] }}">
-                <a href="#" class="mega-trigger" aria-haspopup="true" onclick="event.preventDefault();" style="color: var(--primary-color); text-decoration: none; font-weight: 700; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 15px;">{{ $navParent['title'] }}</a>
+                <a href="#" class="mega-trigger" aria-haspopup="true" onclick="event.preventDefault();" style="color: #000000; text-decoration: none; font-weight: 700; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 15px;">{{ $navParent['title'] }}</a>
             </li>
             @endforeach
-            <li><a href="/resources/" style="color: var(--primary-color); text-decoration: none; font-weight: 700; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 15px;">Resources</a></li>
+            <li><a href="/resources/" style="color: #000000; text-decoration: none; font-weight: 700; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 15px;">Resources</a></li>
         </ul>
         
         <div class="header-right-actions" style="display: flex; align-items: center; gap: 24px; flex-shrink: 0; margin-left: 30px;">
@@ -845,7 +883,7 @@
             <div class="mega-menu-footer">
                 <div class="mega-menu-footer-left">
                     <div class="mega-menu-footer-icon">
-                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#8D4445" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <path d="M3 18v-6a9 9 0 0 1 18 0v6"></path>
                             <path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"></path>
                             <path d="M14 22h-4"></path>
@@ -861,15 +899,15 @@
     <!-- Mobile Sidebar -->
     <div class="mobile-overlay" id="mobileOverlay" onclick="toggleMobileMenu()"></div>
     <div class="mobile-sidebar" id="mobileSidebar">
-        <div class="mobile-sidebar-header">
-            <a href="/" class="header-logo" style="margin: 0;">
-                <img src="{{ asset('uploads/header-logo.svg') }}" alt="The Rigid Boxes" class="header-logo-img">
-            </a>
-            <button class="close-menu-btn" onclick="toggleMobileMenu()">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+        <div class="mobile-sidebar-header" style="display: flex !important; justify-content: space-between !important; align-items: center !important; width: 100% !important; padding: 18px 20px !important; box-sizing: border-box !important;">
+            <button class="close-menu-btn" onclick="toggleMobileMenu()" style="background: none !important; border: none !important; color: #fff !important; cursor: pointer !important; padding: 5px !important; display: flex !important; align-items: center !important; justify-content: center !important; flex-shrink: 0 !important;">
+                <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" style="width: 26px !important; height: 26px !important; display: block !important;">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path>
                 </svg>
             </button>
+            <a href="/" class="header-logo" style="margin: 0 0 0 auto !important; display: flex !important; align-items: center !important; justify-content: flex-end !important; text-decoration: none !important; max-width: calc(100% - 50px) !important;">
+                <img src="{{ asset('uploads/hamberger-logo.svg') }}" alt="Go Custom Boxes" style="height: 60px !important; max-height: 60px !important; width: auto !important; max-width: 100% !important; object-fit: contain !important; display: block !important;">
+            </a>
         </div>
 
         <div class="mobile-sidebar-content">
@@ -884,21 +922,25 @@
             </form>
 
             <ul class="mobile-nav">
-                <li><a href="/" class="mobile-nav-link-top" style="border-bottom: 1px solid rgba(255, 255, 255, 0.1);">Home</a></li>
+                <li class="mobile-nav-item">
+                    <div class="mobile-nav-header">
+                        <a href="/" class="mobile-nav-link-top">Home</a>
+                    </div>
+                </li>
                 @foreach($navParents as $navParent)
                     @php
                         $children = $navByParentSlug[$navParent['slug']] ?? [];
                     @endphp
-                    @if(count($children) > 0)
-                        <li class="mobile-nav-item has-dropdown">
-                            <div class="mobile-nav-header" onclick="this.parentElement.classList.toggle('open')">
-                                <a href="#" class="mobile-nav-link-top" onclick="event.preventDefault(); event.stopPropagation(); this.parentElement.parentElement.classList.toggle('open');">{{ $navParent['title'] }}</a>
-                                <button type="button" class="mobile-dropdown-toggle" aria-label="Toggle {{ $navParent['title'] }} dropdown">
-                                    <svg class="chevron-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                                        <polyline points="6 9 12 15 18 9"></polyline>
-                                    </svg>
-                                </button>
-                            </div>
+                    <li class="mobile-nav-item has-dropdown">
+                        <div class="mobile-nav-header" onclick="this.parentElement.classList.toggle('open')">
+                            <a href="#" class="mobile-nav-link-top" onclick="event.preventDefault(); event.stopPropagation(); this.parentElement.parentElement.classList.toggle('open');">{{ $navParent['title'] }}</a>
+                            <button type="button" class="mobile-dropdown-toggle" aria-label="Toggle {{ $navParent['title'] }} dropdown">
+                                <svg class="chevron-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="6 9 12 15 18 9"></polyline>
+                                </svg>
+                            </button>
+                        </div>
+                        @if(count($children) > 0)
                             <ul class="mobile-submenu">
                                 @foreach($children as $child)
                                     <li>
@@ -906,19 +948,17 @@
                                     </li>
                                 @endforeach
                             </ul>
-                        </li>
-                    @else
-                        <li class="mobile-nav-item">
-                            <div class="mobile-nav-header">
-                                <a href="#" class="mobile-nav-link-top" onclick="event.preventDefault();">{{ $navParent['title'] }}</a>
-                            </div>
-                        </li>
-                    @endif
+                        @endif
+                    </li>
                 @endforeach
-                <li><a href="/blog/" class="mobile-nav-link-top" style="border-bottom: 1px solid rgba(255, 255, 255, 0.1);">Blog</a></li>
+                <li class="mobile-nav-item">
+                    <div class="mobile-nav-header">
+                        <a href="/blog/" class="mobile-nav-link-top">Blog</a>
+                    </div>
+                </li>
             </ul>
 
-            <a href="/contact-us/" class="get-quote-btn" style="display:flex; width: 100%; text-align: center; justify-content: center; margin: 30px 0; background: #8D4445; color: #fff; padding: 12px 20px; border-radius: 4px; font-family: 'DM Sans', sans-serif; font-weight: 700; font-size: 16px; text-decoration: none;">Get Instant Quote</a>
+            <a href="/request-quote/" class="mobile-get-quote-btn" style="display:flex; width: 100%; text-align: center; justify-content: center; margin: 30px 0; background: #FFB800; color: #002147; padding: 12px 20px; border-radius: 4px; font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 700; font-size: 16px; text-decoration: none;">Get Instant Quote</a>
 
             <div class="mobile-contact" style="margin-top: 0; gap: 0; display: flex; flex-direction: column; align-items: flex-start;">
                 <h3 style="font-family: 'DM Sans', sans-serif; font-size: 18px; margin-bottom: 20px; color: #fff; text-align: left;">Get In Touch</h3>
@@ -1073,6 +1113,7 @@
     document.addEventListener('DOMContentLoaded', function() {
         const header = document.querySelector('.site-header');
         const headerTop = document.querySelector('.header-topbar');
+        let lastScrollY = window.scrollY;
         
         window.addEventListener('scroll', function() {
             if (window.innerWidth <= 1100) return;
@@ -1080,11 +1121,17 @@
             const currentScrollY = window.scrollY;
             const headerTopHeight = headerTop ? headerTop.offsetHeight : 42;
             
-            if (currentScrollY > headerTopHeight) {
-                header.style.top = `-${headerTopHeight}px`;
+            if (currentScrollY > lastScrollY) {
+                // Scrolling down
+                if (currentScrollY > headerTopHeight) {
+                    header.style.top = `-${headerTopHeight}px`;
+                }
             } else {
+                // Scrolling up
                 header.style.top = '0px';
             }
+            
+            lastScrollY = currentScrollY;
         }, { passive: true });
     });
 </script>
