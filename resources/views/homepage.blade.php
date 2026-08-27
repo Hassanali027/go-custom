@@ -228,7 +228,7 @@
             font-weight: 400;
             font-size: 12px;
             line-height: 1.35;
-            color: #666;
+            color: #000;
             text-align: left;
             margin: 0;
             white-space: nowrap;
@@ -2223,11 +2223,6 @@
                     @endforeach
                 </div><!-- /.cards-grid -->
 
-                <!-- View All Categories Button -->
-                <div class="view-all-wrap">
-                    <a href="{{ url('/box-by-industry') }}/" class="view-all-btn">View All Categories</a>
-                </div>
-
             </div><!-- /.custom-boxes-container -->
         </section>
 
@@ -2244,7 +2239,7 @@
             .bs-card:hover .bs-card__img-wrap img { transform: scale(1.05); }
             .bs-card__title { font-family: 'Open Sans', sans-serif; font-weight: 700; font-size: 15px; color: #222; text-align: center; }
             .bs-heading { font-family: 'Open Sans', sans-serif; font-size: 28px; font-weight: 700; color: #000; margin-bottom: 8px; }
-            .bs-desc { font-family: 'DM Sans', sans-serif; font-size: 15px; color: #333; margin-bottom: 0; }
+            .bs-desc { font-family: 'DM Sans', sans-serif; font-size: 15px; color: #000; margin-bottom: 0; }
             @media (max-width: 991px) { .best-seller-grid { grid-template-columns: repeat(3, 1fr); } }
             @media (max-width: 768px) { 
                 .best-seller-section { padding: 15px 0 30px 0; }
@@ -2260,11 +2255,12 @@
 
                 <div class="best-seller-grid">
                     @php
-                        $bestSellers = $featuredCategories ?? [];
-                        if(count($bestSellers) < 8) {
-                            $bestSellers = array_merge($bestSellers, array_fill(0, 8 - count($bestSellers), ['title' => 'Product Box', 'image' => 'uploads/Gift-Boxes.webp']));
-                        }
-                        $bestSellers = array_slice($bestSellers, 0, 8);
+                        $bestSellerProductIds = array_map('intval', (array) ($settings['bestseller_products'] ?? []));
+                        $productsById = collect($products)->keyBy('id');
+                        $bestSellers = collect($bestSellerProductIds)
+                            ->map(fn ($id) => $productsById->get($id))
+                            ->filter()
+                            ->values();
                     @endphp
                     @foreach($bestSellers as $item)
                         @php
