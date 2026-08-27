@@ -4,7 +4,7 @@
     ───────────────────────────────────────── */
     .product-faq-section {
         background-color: #FFFFFF !important;
-        padding: 60px 0;
+        padding: 20px 0 60px;
         width: 100%;
         font-family: 'DM Sans', sans-serif;
     }
@@ -88,9 +88,12 @@
     }
 
     @media (max-width: 768px) {
+        .product-faq-section {
+            padding-top: 10px;
+        }
         .product-faq-heading {
             font-size: 26px;
-            margin-bottom: 30px;
+            margin-bottom: 20px;
         }
         .product-faq-question {
             padding: 16px 20px;

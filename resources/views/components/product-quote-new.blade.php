@@ -28,7 +28,7 @@
         flex: 0 0 812px;
         max-width: 812px;
         height: 657px;
-        background-color: #FFFDF0;
+        background-color: #FFF8E7;
         padding: 40px;
         border-radius: 16px;
         margin: 24px 0;
@@ -97,8 +97,8 @@
     }
     
     .pqn-input {
-        background-color: #fff;
-        border: 1px solid #EAEAEA;
+        background-color: #FFF8E7;
+        border: 1px solid #c4b5a5;
         border-radius: 6px;
         padding: 12px 15px;
         font-size: 14px;
@@ -252,8 +252,7 @@
     
     @media (max-width: 991px) {
         .product-quote-section-new {
-            height: auto;
-            padding: 20px 0;
+            display: none !important;
         }
         .pqn-grid {
             flex-direction: column;

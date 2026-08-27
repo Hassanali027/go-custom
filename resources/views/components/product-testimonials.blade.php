@@ -1,6 +1,6 @@
 <style>
     .product-testimonials-section {
-        padding: 20px 20px;
+        padding: 40px 20px;
         background-color: #fff;
         font-family: 'DM Sans', sans-serif;
     }
@@ -108,14 +108,27 @@
     }
     
     @media (max-width: 768px) {
+        .product-testimonials-section {
+            padding: 15px 20px;
+        }
+        .product-testimonials-viewport {
+            margin-bottom: 20px;
+        }
         .product-testimonials-container {
             padding: 0 20px;
         }
         .product-testimonial-card {
             flex: 0 0 100%; /* Show 1 per view on mobile */
+            height: 253px;
         }
         .product-testimonials-track {
             gap: 0;
+        }
+        .pt-quote {
+            text-align: justify;
+        }
+        .product-testimonials-title {
+            margin-bottom: 20px;
         }
     }
 </style>
