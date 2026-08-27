@@ -118,19 +118,20 @@
         .clothing-feature-text, .clothing-feature-image {
             max-width: 100%;
             width: 100%;
+            flex: none !important;
         }
         .clothing-feature-text {
-            text-align: center;
+            text-align: justify;
         }
         .clothing-feature-text p {
-            text-align: center;
+            text-align: justify;
         }
         .clothing-feature-image {
             max-width: 480px;
             margin: 0 auto;
         }
         .clothing-features-title {
-            font-size: 24px;
+            font-size: 23px;
             line-height: 1.4;
         }
         .mobile-br { display: block; }
