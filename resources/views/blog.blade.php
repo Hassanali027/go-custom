@@ -1,647 +1,363 @@
 <!DOCTYPE html>
-<html lang="en"><head><link rel="icon" href="{{ asset('uploads/favicon-rigid-boxes.webp') }}" type="image/webp">@include('components.canonical')<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Blog</title>
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Open+Sans:wght@300;400;600;700;800;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-<style>
-:root{--color-primary:#8d4445;--color-primary-dark:#692f31;--color-primary-soft:#f8eeee;--color-ink:#1f1f1f;--color-copy:#333;--color-muted:#6d6d6d;--color-line:#ddd6d5;--color-page:#faf8f8;--color-surface:#fff;--font-heading:'Open Sans',sans-serif;--font-body:'DM Sans',sans-serif;--text-xs:11px;--text-sm:12px;--text-base:14px;--heading-xl:40px;--heading-lg:27px;--canvas-width:1440px;--section-width:1240px;--gutter:20px}*{box-sizing:border-box}body{margin:0;background:var(--color-page);color:var(--color-copy);font-family:var(--font-body)}a{color:inherit;text-decoration:none}button{font:inherit}img{display:block;max-width:100%}.page{width:min(100%,var(--canvas-width));margin:auto;background:var(--color-surface);overflow:hidden}.container{width:min(calc(100% - var(--gutter)*2),var(--section-width));margin:auto}.hero{height:390px;padding:0;color:var(--color-surface);background:none}.hero .container{display:flex;align-items:center;height:100%}.hero h1{max-width:660px;margin:22px 0 0;font:700 var(--heading-xl)/1.18 var(--font-heading);letter-spacing:-.03em}.hero p{max-width:590px;margin:14px 0 0;font-size:var(--text-base);line-height:1.65;color:rgba(255,255,255,.9)}.breadcrumb{font-family:'Open Sans',sans-serif;font-size:13px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:#fff;margin-bottom:20px}.breadcrumb a{color:#fff;text-decoration:none}.breadcrumb a:hover{color:var(--color-primary)}.breadcrumb span{font-weight:700}.categories{overflow:hidden;border-bottom:1px solid var(--color-line)}.category-row{display:flex;min-height:73px;align-items:center;gap:12px;overflow-x:auto;overflow-y:hidden;overscroll-behavior-x:contain;scroll-behavior:smooth;scroll-snap-type:x proximity;scrollbar-width:none}.category-row::-webkit-scrollbar{display:none}.filter{flex:0 0 calc(15.3846% - 11.08px);min-height:46px;padding:7px 14px;border:0;background:var(--color-primary-soft);color:var(--color-ink);cursor:pointer;text-align:left;font-size:var(--text-xs);font-weight:700;scroll-snap-align:start}.filter small{display:block;margin-top:4px;font-size:10px;font-weight:500}.filter.active{color:var(--color-surface);background:var(--color-primary)}.content{padding:38px 0 54px}.feature{display:grid;grid-template-columns:1.13fr .87fr;min-height:330px;margin-bottom:35px}.feature>img{width:100%;height:100%;min-height:330px;object-fit:cover;background:var(--color-primary-dark)}.feature-copy{display:flex;flex-direction:column;align-items:flex-start;justify-content:center;padding:38px 47px;border:3px solid var(--color-primary);border-left:0}.eyebrow{margin:0 0 9px;color:var(--color-primary);font-size:var(--text-xs);font-weight:700;letter-spacing:.12em;text-transform:uppercase}.feature h2{max-width:370px;margin:0;color:var(--color-ink);font:700 var(--heading-lg)/1.2 var(--font-heading);letter-spacing:-.025em}.feature p:not(.eyebrow){margin:13px 0 19px;color:var(--color-muted);font-size:var(--text-sm);line-height:1.6}.button{display:inline-flex;align-items:center;min-height:31px;padding:0 14px;border:1px solid var(--color-primary);color:var(--color-primary);background:var(--color-surface);font-size:var(--text-xs);font-weight:700}.button:hover{color:var(--color-surface);background:var(--color-primary)}.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}.card{display:flex;flex-direction:column;border:1px solid var(--color-line);background:var(--color-surface);transition:.2s}.card:hover{transform:translateY(-4px);box-shadow:0 10px 23px rgba(62,32,32,.11)}.card[hidden]{display:none}.card img{width:100%;height:170px;object-fit:cover;background:var(--color-primary-dark)}.card-copy{display:flex;flex:1;flex-direction:column;padding:14px 15px 16px}.meta{display:flex;justify-content:space-between;gap:7px;margin-bottom:8px;color:var(--color-muted);font-size:10px}.card h3{min-height:37px;margin:0;color:var(--color-ink);font:700 var(--text-base)/1.35 var(--font-heading)}.card p{margin:9px 0 13px;color:var(--color-muted);font-size:var(--text-xs);line-height:1.5}.card .button{min-height:auto;margin-top:auto;padding:0;border:0}.card .button:hover{background:transparent;color:var(--color-primary-dark);text-decoration:underline}.pages{display:flex;justify-content:center;gap:8px;margin:34px 0 47px}.pages button{display:grid;width:27px;height:27px;place-items:center;border:0;background:transparent;color:var(--color-muted);cursor:pointer}.pages .active{color:var(--color-surface);background:var(--color-primary)}.cta{display:grid;grid-template-columns:1.03fr .97fr;min-height:210px;overflow:hidden;border-radius:12px;color:var(--color-surface);background:linear-gradient(120deg,var(--color-primary-dark),var(--color-primary))}.cta img{width:100%;height:100%;object-fit:cover;opacity:.8}.cta-copy{align-self:center;padding:34px 48px;background:radial-gradient(circle at 87% 89%,rgba(255,255,255,.17) 0 15%,transparent 15.5%)}.cta h2{margin:0;font:700 20px/1.25 var(--font-heading)}.cta p{margin:10px 0 18px;font-size:var(--text-sm);line-height:1.55;color:rgba(255,255,255,.88)}.cta .button{border-color:var(--color-surface);color:var(--color-primary)}@media(max-width:1250px){:root{--gutter:28px}.hero{height:350px}}@media(max-width:900px){:root{--gutter:22px;--heading-xl:35px}.feature{grid-template-columns:1fr}.feature>img{min-height:270px}.feature-copy{border:3px solid var(--color-primary);border-top:0}.grid{grid-template-columns:repeat(2,1fr)}.cta{grid-template-columns:1fr 1fr}}@media(max-width:600px){:root{--gutter:16px;--heading-xl:29px;--heading-lg:23px}.hero{height:270px;padding:0}.hero .container{height:100%}.hero h1{margin-top:16px}.category-row{margin:0 -16px;padding:0 16px}.content{padding-top:24px}.feature>img{min-height:200px}.feature-copy{padding:24px 20px}.grid{grid-template-columns:1fr;gap:14px}.card{display:grid;grid-template-columns:42% 58%}.card img{height:100%;min-height:146px}.card-copy{padding:13px}.card h3{min-height:0}.card p{display:none}.pages{margin:27px 0 34px}.cta{grid-template-columns:1fr}.cta img{height:150px}.cta-copy{padding:27px 22px}}
-</style>
-<style>
-/* Figma Design Overrides */
-.hero {
-    background-position: center 52%;
-    background-size: cover;
-}
-.filter {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
-.filter .filter-icon { flex: 0 0 20px; }
-.page {
-    background: #FAF8F8;
-    overflow: visible;
-    width: 100%;
-    max-width: none;
-}
-.content { padding-bottom: 0; }
-.content > .cta-section { margin-top: 15px; padding-bottom: 24px; }
-.hero {
-    width: 100vw;
-    max-width: none;
-    margin-left: calc(50% - 50vw);
-}
-/* Match the hero edges to every other page section at browser zoom levels. */
-.hero {
-    width: 100vw;
-    max-width: none;
-}
-.hero .container {
-    width: min(calc(100% - (var(--gutter) * 2)), var(--section-width));
-}
-/* Breadcrumb aligned with contact page - 40px top gap */
-.hero .container > div {
-    margin-top: 0;
-    padding-top: 40px;
-    align-self: flex-start;
-}
-.hero .breadcrumb {
-    position: relative;
-    top: 0;
-}
-.blog-content{
-    margin-top:30px !important;
-    margin-bottom:30px !important;
-}
-
-.hero h1 {
-    margin-top: 0;
-}
-/* Keep the 1440px hero contained on narrower desktop viewports. */
-@media (max-width: 1255px) {
-    .hero {
-        width: 100vw;
-        max-width: none;
-        margin-left: calc(50% - 50vw);
-        overflow: hidden;
-    }
-    .hero .container { width: min(calc(100% - (var(--gutter) * 2)), var(--section-width)); }
-}
-.hero h1 {
-    font-family: 'Open Sans', sans-serif;
-    font-weight: 700;
-    font-size: 40px;
-    line-height: 56px;
-    letter-spacing: 0px;
-    color: #FFFFFF;
-}
-.categories {
-    max-width: var(--section-width);
-    margin: 0 auto;
-    overflow: hidden;
-    border-bottom: 1px solid var(--color-line);
-}
-.category-row {
-    margin-right: 0;
-    padding: 20px 0;
-    padding-left: 0;
-    gap: 24px;
-    display: flex;
-    justify-content: flex-start;
-    overflow-x: auto;
-    scrollbar-width: none;
-}
-@media (max-width: 1240px) {
-    .category-row {
-        padding-left: var(--gutter);
-        padding-right: var(--gutter);
-    }
-}
-.category-row::-webkit-scrollbar {
-    display: none;
-}
-.filter {
-    flex: 0 0 auto;
-    width: auto;
-    min-width: 169px;
-    height: 76px;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    padding: 10px;
-    border-radius: 6px;
-    background: #F9F1F0; /* Light pinkish */
-    color: #000000;
-    font-family: 'Open Sans', sans-serif;
-    font-size: 16px;
-    font-weight: 600;
-    line-height: 22px;
-    letter-spacing: 0%;
-    text-align: center;
-    text-transform: capitalize;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    overflow: hidden;
-}
-.filter br { display: block; }
-.filter.active {
-    background: var(--color-primary);
-    color: #fff;
-}
-.filter-icon {
-    width: 24px;
-    height: 24px;
-    object-fit: contain;
-    filter: brightness(0); /* Make icon black when unselected */
-}
-.filter.active .filter-icon {
-    filter: brightness(0) invert(1); /* Make icon white when active */
-}
-/* Keep the desktop composition intact when browser zoom reduces the CSS viewport. */
-@media (max-width: 1240px) and (min-width: 901px) {
-    /* Buttons should not shrink/crop, let them scroll horizontally */
-    .category-row { gap: clamp(6px, 1.5vw, 24px); }
-    .feature { min-height: 470px; }
-    .feature > img { height: 470px; }
-    .feature-copy { width: 47%; padding: clamp(26px, 4vw, 60px); }
-    .feature h2, .cta-copy h2 { font-size: clamp(24px, 2.55vw, 32px); line-height: 1.25; }
-    .feature p:not(.eyebrow), .cta-copy p { font-size: clamp(13px, 1.4vw, 16px); line-height: 1.5; }
-    .cta { gap: clamp(22px, 4vw, 50px); padding-right: clamp(30px, 6vw, 80px); }
-}
-
-.content {
-    padding-top: 12px;
-    padding-bottom: 24px;
-}
-
-.feature {
-    display: block;
-    position: relative;
-    min-height: 545px;
-    margin-bottom: 48px;
-}
-.feature > img {
-    width: 68%;
-    height: 545px;
-    object-fit: cover;
-}
-.feature-copy {
-    position: absolute;
-    top: 50%;
-    right: 12px; /* Leaves room for the 12px shadow */
-    transform: translateY(-50%);
-    width: 44%;
-    background: #fff;
-    border: none;
-    box-shadow: 12px 12px 0px var(--color-primary); /* Maroon drop shadow */
-    padding: 60px 50px;
-    z-index: 10;
-}
-.eyebrow {
-    color: #8D4445;
-    font-family: 'Open Sans', sans-serif;
-    font-size: 14px;
-    font-weight: 600;
-    line-height: 20px;
-    letter-spacing: 1.4px;
-    text-transform: uppercase;
-    margin-bottom: 15px;
-}
-.feature h2 {
-    font-family: 'Open Sans', sans-serif;
-    font-size: 32px;
-    font-weight: 700;
-    line-height: 40px;
-    letter-spacing: 0px;
-    color: #000000;
-    margin: 0 0 20px 0;
-    max-width: 100%;
-    vertical-align: middle;
-    transition: color 0.3s ease;
-}
-.feature:hover h2 {
-    color: var(--color-primary);
-}
-.feature p:not(.eyebrow) {
-    font-family: 'Hanken Grotesk', sans-serif;
-    font-size: 16px;
-    font-weight: 400;
-    line-height: 24px;
-    letter-spacing: 0px;
-    color: #444748;
-    margin: 0 0 32px 0;
-    text-align: justify;
-    vertical-align: middle;
-}
-.feature-copy .button {
-    border: 1px solid var(--color-primary);
-    color: var(--color-primary);
-    padding: 12px 28px;
-    font-weight: 600;
-    border-radius: 4px;
-    font-size: 14px;
-    background: transparent;
-    cursor: pointer;
-}
-.feature-copy .button:hover {
-    background: var(--color-primary);
-    color: #fff;
-}
-
-/* Card Grid Overrides */
-.grid {
-    gap: 24.5px;
-}
-.card {
-    min-height: 444px;
-    height: 100%;
-    border: none;
-    background: #FFFFFF;
-    border-radius: 12px;
-    overflow: hidden;
-    box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.06);
-}
-.card img {
-    height: 233px !important;
-    width: 100%;
-    object-fit: cover;
-    background: transparent !important;
-}
-.card-copy {
-    padding: 24px;
-    display: flex;
-    flex-direction: column;
-    flex: 1;
-}
-.card .meta {
-    font-family: 'Open Sans', sans-serif;
-    font-size: 12px;
-    color: #444748;
-    margin-bottom: 12px;
-    display: flex;
-    justify-content: space-between;
-}
-.card h3 {
-    font-family: 'Open Sans', sans-serif;
-    font-size: 20px;
-    font-weight: 700;
-    line-height: 26px;
-    letter-spacing: 0%;
-    color: #000000;
-    margin: 0 0 12px 0;
-    text-transform: capitalize;
-    transition: color 0.3s ease;
-}
-.card:hover h3 {
-    color: var(--color-primary);
-}
-.card p {
-    font-family: 'DM Sans', sans-serif;
-    font-size: 16px;
-    font-weight: 400;
-    line-height: 22px;
-    color: #444748;
-    margin: 9px 0 20px 0;
-    text-align: justify;
-}
-.card .button {
-    font-family: 'DM Sans', sans-serif;
-    font-size: 16px;
-    font-weight: 700;
-    line-height: 22px;
-    color: #8D4445;
-    padding: 0;
-    border: none;
-    margin-top: auto;
-    text-transform: none;
-    text-align: left;
-}
-.card .button:hover {
-    text-decoration: none;
-    background: transparent;
-    color: #8D4445;
-}
-
-/* Pagination Overrides */
-.pages {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 8px;
-    margin: 38px 0;
-}
-.pages button {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 40px;
-    height: 40px;
-    border: 0;
-    background: transparent;
-    color: #444748;
-    font-family: 'Open Sans', sans-serif;
-    font-size: 14px;
-    font-weight: 600;
-    cursor: pointer;
-    border-radius: 4px;
-}
-.pages button.active {
-    background: #8D4445;
-    color: #fff;
-    border-radius: 4px;
-}
-.pages button.text-btn {
-    width: auto;
-    padding: 0 16px;
-    font-weight: 600;
-    color: #444748;
-}
-.pages button.dots {
-    width: auto;
-    padding: 0 4px;
-    cursor: default;
-}
-
-@media(max-width:900px) {
-    .feature > img {
-        width: 100%;
-        height: 300px;
-    }
-    .feature-copy {
-        position: relative;
-        top: auto;
-        right: auto;
-        transform: none;
-        width: 90%;
-        margin: -50px auto 0;
-        box-shadow: 8px 8px 0px var(--color-primary);
-        padding: 30px;
-    }
-}
-
-
-@media (max-width: 900px) {
-    .categories { overflow: visible; }
-    .category-row { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; padding: 20px var(--gutter); overflow: visible; }
-    .filter { width: 100%; min-width: 0; height: auto; min-height: 62px; flex: none; font-size: 13px; line-height: 1.25; padding: 7px; white-space: normal; }
-    .filter-icon { width: 20px; height: 20px; flex: 0 0 auto; }
-    .feature { min-height: auto; margin-bottom: 55px; }
-    .feature > img { height: 300px; }
-    .feature-copy { width: min(90%, 600px); }
-}
-
-@media (max-width: 620px) {
-    .category-row { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-}
-/* ═══════════════════════════════════════════════════
-   UNIFIED BLOG LAYOUT — aligned with site header
-   max-width: 1280px | gutter: 55px (matches header)
-   ═══════════════════════════════════════════════════ */
-html, body { overflow-x: clip; }
-.page { width: 100%; max-width: none; overflow: visible; }
-.hero { width: 100%; max-width: none; margin: 0; }
-.hero .container,
-.categories,
-.content {
-    width: 100%;
-    max-width: 1280px;
-    margin-left: auto;
-    margin-right: auto;
-    padding-left: 55px;
-    padding-right: 55px;
-    box-sizing: border-box;
-}
-.category-row { width: 100%; padding-left: 0; padding-right: 0; }
-.content { padding-bottom: 0; }
-.content > .cta-section { margin: 40px 0 0; padding-bottom: 24px; }
-/* Fix CTA alignment - remove extra padding, match content width */
-.content > .cta-section {
-    padding-left: 0 !important;
-    padding-right: 0 !important;
-    box-sizing: border-box;
-}
-.content > .cta-section .cta-container {
-    padding-left: 0 !important;
-    padding-right: 0 !important;
-    max-width: 100%;
-}
-.content > .cta-section .cta-banner {
-    border-radius: 24px;
-    overflow: hidden;
-}
-@media (max-width: 1100px) {
-    .hero .container, .categories, .content { padding-left: 32px; padding-right: 32px; }
-    .content > .cta-section { padding-left: 0 !important; padding-right: 0 !important; }
-    .content > .cta-section .cta-container { padding-left: 0 !important; padding-right: 0 !important; }
-}
-@media (max-width: 992px) {
-    .content > .cta-section { padding-left: 0 !important; padding-right: 0 !important; }
-}
-@media (max-width: 768px) {
-    .hero .container, .categories, .content { padding-left: 20px; padding-right: 20px; }
-}
-@media (max-width: 600px) {
-    .hero .container, .categories, .content { padding-left: 16px; padding-right: 16px; }
-    .hero h1, .hero p { max-width: 100%; overflow-wrap: anywhere; word-break: normal; }
-    .feature, .grid, .feature > img, .card, .card img { max-width: 100%; }
-    .content > .cta-section { margin-top: 24px; }
-    .breadcrumb { display: none; }
-
-</style>
-</head><body>
-@include('components.header')
-<div class="page"><main>
-<section class="hero" style="position: relative; overflow: hidden; background: #8D4445;">
-    <img src="{{ asset('uploads/blog-banner-rigid-boxes.webp') }}" alt="blog banner rigid boxes" class="hero-bg-img desktop-hero-img" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: fill; object-position: right center; z-index: 0;">
-    <img src="{{ asset('uploads/blog-banner-mobile-view.webp') }}" alt="blog banner mobile view" class="hero-bg-img mobile-hero-img" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: fill; object-position: bottom center; z-index: 0; display: none;">
+<html lang="en">
+<head>
+    <link rel="icon" href="{{ asset('uploads/favicon-rigid-boxes.webp') }}" type="image/webp">
+    @include('components.canonical')
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog - Go Custom Boxes</title>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Open+Sans:wght@300;400;600;700;800;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="{{ asset('css/footer.css') }}">
     
-    <div class="container" style="position: relative; z-index: 2; height: 100%;">
-        <div class="hero-text-wrapper" style="position: relative; z-index: 1; width: 100%; height: 100%; display: flex; flex-direction: column;">
-            <div class="breadcrumb"><a href="/">HOME</a> / <span>BLOGS</span></div>
-            
-            <div class="blog-content">
-                 <h1>Insights on Luxury Packaging &amp; Design</h1>
-            <p>Expert perspectives on packaging trends, sustainable materials, unboxing strategy and brand elevation - curated for discerning B2B leaders.</p>
+    <style>
+        :root {
+            --dark-blue: #0A2240;
+            --yellow: #FFB400;
+            --text-dark: #333333;
+            --text-light: #666666;
+            --container-width: 1280px;
+            --margin-sides: 55px;
+            --font-heading: 'Open Sans', sans-serif;
+            --font-body: 'DM Sans', sans-serif;
+        }
+
+        body {
+            margin: 0;
+            font-family: var(--font-body);
+            background-color: #FFFFFF;
+            color: var(--text-dark);
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        .container {
+            max-width: var(--container-width);
+            margin: 0 auto;
+            padding: 0 var(--margin-sides);
+        }
+
+        /* Hero Section */
+        .blog-hero {
+            background: linear-gradient(rgba(10,34,64,0.6), rgba(10,34,64,0.6)), url('{{ asset("uploads/about-us-banner.webp") }}') center/cover no-repeat;
+            padding: 60px 0 80px;
+            text-align: center;
+            color: #fff;
+            position: relative;
+        }
+        
+        .blog-hero .container {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .breadcrumb {
+            position: absolute;
+            top: 0;
+            left: var(--margin-sides);
+            font-size: 14px;
+            font-family: var(--font-heading);
+            margin: 0;
+        }
+        
+        .breadcrumb a {
+            color: #fff;
+            text-decoration: none;
+        }
+
+        .blog-hero h1 {
+            font-family: var(--font-heading);
+            font-size: 48px;
+            font-weight: 700;
+            margin: 40px 0 15px 0;
+        }
+
+        .blog-hero p {
+            font-size: 16px;
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        /* Content Section */
+        .blog-content {
+            padding: 60px 0;
+        }
+
+        /* Featured Post */
+        .featured-post {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+            margin-bottom: 60px;
+        }
+
+        .featured-img {
+            width: 100%;
+            height: 430px;
+            object-fit: cover;
+            border-radius: 12px;
+            background-color: #f5f5f5;
+        }
+
+        .featured-copy h2 {
+            font-family: var(--font-heading);
+            font-size: 32px;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin: 0 0 20px 0;
+            line-height: 1.3;
+        }
+
+        .featured-copy p.excerpt {
+            font-size: 16px;
+            color: var(--text-light);
+            line-height: 1.6;
+            margin: 0 0 20px 0;
+        }
+
+        .meta {
+            font-size: 14px;
+            color: #888;
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .read-btn {
+            background-color: var(--yellow);
+            color: #000;
+            width: 140px;
+            height: 44px;
+            border-radius: 6px;
+            font-weight: 700;
+            font-size: 15px;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            transition: background 0.3s;
+        }
+
+        .read-btn:hover {
+            background-color: #e5a300;
+        }
+
+        /* Blog Grid */
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+
+        .blog-card {
+            border: 1px solid #EAEAEA;
+            border-radius: 12px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            background: #fff;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+        }
+
+        .blog-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.06);
+        }
+
+        .blog-card img {
+            width: 100%;
+            height: 240px;
+            object-fit: cover;
+            border-bottom: 1px solid #EAEAEA;
+        }
+
+        .card-content {
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+        }
+
+        .card-meta {
+            display: flex;
+            justify-content: space-between;
+            font-size: 12px;
+            color: #888;
+            margin-bottom: 15px;
+            font-weight: 500;
+        }
+
+        .blog-card h3 {
+            font-family: var(--font-heading);
+            font-size: 20px;
+            font-weight: 700;
+            margin: 0 0 20px 0;
+            color: var(--text-dark);
+            line-height: 1.4;
+        }
+
+        .card-link {
+            margin-top: auto;
+            color: var(--dark-blue);
+            font-weight: 700;
+            font-size: 14px;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .card-link i {
+            color: var(--yellow);
+        }
+
+        /* Load More */
+        .load-more-wrap {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        /* Responsive */
+        @media (max-width: 991px) {
+            .featured-post {
+                grid-template-columns: 1fr;
+            }
+            .blog-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .featured-img {
+                height: 300px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .blog-grid {
+                grid-template-columns: 1fr;
+            }
+            .blog-hero h1 {
+                font-size: 36px;
+            }
+            .breadcrumb {
+                position: static;
+                margin-bottom: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    @include('components.header')
+
+    <main>
+        <section class="blog-hero">
+            <div class="container">
+                <div class="breadcrumb">
+                    <a href="{{ url('/') }}"><i class="fa-solid fa-house"></i> Home</a> &gt; Blog
+                </div>
+                <h1>Blog</h1>
+                <p>Discover packaging ideas, industry trends, design inspiration, and practical tips to help your brand stand out.</p>
             </div>
-           
-        </div>
-    </div>
-</section>
-<style>
-    @media (max-width: 768px) {
-        .desktop-hero-img { display: none !important; }
-        .mobile-hero-img { display: block !important; }
-    }
-</style>
-<nav class="categories" aria-label="Blog categories"><div class="category-row">
-<button class="filter active" data-filter="all"><img src="{{ asset('images/blog-filter-all.svg') }}" class="filter-icon" alt="" loading="lazy"> All</button>
-<button class="filter" data-filter="packaging"><img src="{{ asset('images/blog-filter-packaging.png') }}" class="filter-icon" alt="" loading="lazy"> Packaging Basics</button>
-<button class="filter" data-filter="marketing"><img src="{{ asset('images/01 align center.png') }}" class="filter-icon" alt="" loading="lazy"> Marketing Tips</button>
-<button class="filter" data-filter="sustainability"><img src="{{ asset('images/blog-filter-sustainability.png') }}" class="filter-icon" alt="" loading="lazy"> Sustainable Packaging Guide</button>
-<button class="filter" data-filter="production"><img src="{{ asset('images/blog-filter-production.png') }}" class="filter-icon" alt="" loading="lazy"> Production &amp; MOQ Tips</button>
-<button class="filter" data-filter="design"><img src="{{ asset('images/blog-filter-design.png') }}" class="filter-icon" alt="" loading="lazy"> Design Tips</button>
-<button class="filter" data-filter="industry"><img src="{{ asset('images/blog-filter-industry.png') }}" class="filter-icon" alt="" loading="lazy"> Industry Specific Studies</button>
-</div></nav>
-<section class="container content">
-@php
-    $featuredBlog = null;
-    $displayBlogs = [
-        ['title' => 'Sustainable Packaging Trends For 2026', 'blog_category' => 'packaging', 'image' => 'images/Frame 571 (1).png', 'author_name' => 'Joe Danley', 'publish_date' => '2024-11-15', 'excerpt' => 'Explore how eco-friendly rigid boxes are transforming luxury packaging with sustainable', 'slug' => 'sustainable-packaging-trends'],
-    ];
-    if (!empty($blogs) && count($blogs) > 0) {
-        $blogsArray = json_decode(json_encode($blogs), true);
-        $featuredBlog = $blogsArray[0];
-        $displayBlogs = array_slice($blogsArray, 1);
-    }
-@endphp
+        </section>
 
-@if($featuredBlog)
-    @php
-        $fTitle = $featuredBlog['title'] ?? '';
-        $fCat = str_replace('-', ' ', $featuredBlog['blog_category'] ?? 'Category');
-        $fExcerpt = $featuredBlog['excerpt'] ?? '';
-        $fSlug = $featuredBlog['slug'] ?? '';
-        $fImg = !empty($featuredBlog['image']) ? asset($featuredBlog['image']) : asset('images/below-hero.png');
-        $fUrl = url('/blog/' . $fSlug);
-    @endphp
-    <article class="feature" onclick="window.location.href='{{ $fUrl }}';" style="cursor: pointer;">
-        <img src="{{ $fImg }}" alt="{{ $fTitle }}" onerror="this.src='{{ asset('images/below-hero.png') }}'" loading="lazy">
-        <div class="feature-copy">
-            <p class="eyebrow">{{ $fCat }}</p>
-            <h2><a href="{{ $fUrl }}" style="color:inherit; text-decoration:none;" onclick="event.stopPropagation();">{{ $fTitle }}</a></h2>
-            <p>{{ Str::limit(html_entity_decode(html_entity_decode(strip_tags($fExcerpt))), 150) }}</p>
-            <a class="button" href="{{ $fUrl }}" onclick="event.stopPropagation();">Read More &rarr;</a>
-        </div>
-    </article>
-@else
-    <article class="feature"><img src="{{ asset('images/below-hero.png') }}" alt="Luxury rigid boxes" loading="lazy"><div class="feature-copy"><p class="eyebrow">Structural Integrity</p><h2><a href="{{ url('/blog-detail') }}" style="color:inherit; text-decoration:none;">The Weight of Prestige: Why Mass Matters in Rigid Construction</a></h2><p>In the realm of high-end manufacturing, the tactile sensation of gravity serves as a silent communicator of quality. We analyze the psychology of physical weight and the engineering required to achieve it.</p><a class="button" href="{{ url('/blog-detail') }}">Read More &rarr;</a></div></article>
-@endif
+        <section class="blog-content">
+            <div class="container">
+                
+                @php
+                    $featuredBlog = null;
+                    $displayBlogs = [
+                        ['title' => 'Sustainable Packaging Trends For 2026', 'blog_category' => 'packaging', 'image' => 'images/Frame 571 (1).png', 'author_name' => 'Joe Danley', 'publish_date' => '2024-11-15', 'excerpt' => 'Explore how eco-friendly rigid boxes are transforming luxury packaging with sustainable materials.', 'slug' => 'sustainable-packaging-trends'],
+                        ['title' => 'The Ultimate Guide To Choosing The Right Custom Packaging For Your Brand', 'blog_category' => 'packaging', 'image' => 'images/Frame 571 (1).png', 'author_name' => 'Joe Stanley', 'publish_date' => '2024-11-15', 'excerpt' => 'Learn how to make the right packaging choices.', 'slug' => 'ultimate-guide-custom-packaging'],
+                        ['title' => 'The Ultimate Guide To Choosing The Right Custom Packaging For Your Brand', 'blog_category' => 'packaging', 'image' => 'images/Frame 571 (1).png', 'author_name' => 'Joe Stanley', 'publish_date' => '2024-11-15', 'excerpt' => 'Learn how to make the right packaging choices.', 'slug' => 'ultimate-guide-custom-packaging'],
+                        ['title' => 'The Ultimate Guide To Choosing The Right Custom Packaging For Your Brand', 'blog_category' => 'packaging', 'image' => 'images/Frame 571 (1).png', 'author_name' => 'Joe Stanley', 'publish_date' => '2024-11-15', 'excerpt' => 'Learn how to make the right packaging choices.', 'slug' => 'ultimate-guide-custom-packaging'],
+                        ['title' => 'The Ultimate Guide To Choosing The Right Custom Packaging For Your Brand', 'blog_category' => 'packaging', 'image' => 'images/Frame 571 (1).png', 'author_name' => 'Joe Stanley', 'publish_date' => '2024-11-15', 'excerpt' => 'Learn how to make the right packaging choices.', 'slug' => 'ultimate-guide-custom-packaging'],
+                        ['title' => 'The Ultimate Guide To Choosing The Right Custom Packaging For Your Brand', 'blog_category' => 'packaging', 'image' => 'images/Frame 571 (1).png', 'author_name' => 'Joe Stanley', 'publish_date' => '2024-11-15', 'excerpt' => 'Learn how to make the right packaging choices.', 'slug' => 'ultimate-guide-custom-packaging'],
+                    ];
+                    if (!empty($blogs) && count($blogs) > 0) {
+                        $blogsArray = json_decode(json_encode($blogs), true);
+                        $featuredBlog = $blogsArray[0];
+                        $displayBlogs = array_slice($blogsArray, 1);
+                    } else {
+                        // Mock feature blog if no DB
+                        $featuredBlog = [
+                            'title' => '7 Packaging Trends That Will Shape Brands In 2026',
+                            'image' => 'images/Frame 571 (1).png',
+                            'author_name' => 'Joe Stanley',
+                            'publish_date' => '2026-08-12',
+                            'excerpt' => 'Discover the latest packaging trends transforming how brands present their products from sustainable materials to premium designs.',
+                            'slug' => '7-packaging-trends-2026'
+                        ];
+                    }
+                @endphp
 
-<div class="grid">
-@foreach($displayBlogs as $item)
-    @php
-        $item = (array) $item;
-        $bTitle = $item['title'] ?? 'Sustainable Packaging Trends For 2026';
-        $bCat = $item['blog_category'] ?? 'packaging';
-        $bAuthor = $item['author_name'] ?? 'Joe Danley';
-        $bDate = !empty($item['publish_date']) ? date('M d, Y', strtotime($item['publish_date'])) : 'Nov 15, 2024';
-        $bExcerpt = $item['excerpt'] ?? 'Explore how eco-friendly rigid boxes are transforming luxury packaging with sustainable';
-        $bSlug = $item['slug'] ?? 'blog-detail';
-        $bImg = !empty($item['image']) ? asset($item['image']) : asset('images/Frame 571 (1).png');
-        $bUrl = url('/blog/' . $bSlug);
-    @endphp
-    <article class="card" data-category="{{ $bCat }}" onclick="window.location.href='{{ $bUrl }}';" style="cursor: pointer;">
-        <img src="{{ $bImg }}" alt="{{ $bTitle }}" onerror="this.src='{{ asset('images/below-hero.png') }}'" loading="lazy">
-        <div class="card-copy">
-            <div class="meta">
-                @if(!empty($item['author_slug']))
-                    <a href="{{ url('/author/' . $item['author_slug']) }}" style="color:inherit;text-decoration:none;" onclick="event.stopPropagation();"><span>{{ $bAuthor }}</span></a>
-                @else
-                    <span>{{ $bAuthor }}</span>
+                <!-- Featured Post -->
+                @if($featuredBlog)
+                    @php
+                        $fTitle = $featuredBlog['title'] ?? '';
+                        $fExcerpt = $featuredBlog['excerpt'] ?? '';
+                        $fSlug = $featuredBlog['slug'] ?? '';
+                        $fImg = !empty($featuredBlog['image']) ? asset($featuredBlog['image']) : asset('uploads/about-us-banner.webp');
+                        $fUrl = url('/blog/' . $fSlug);
+                        $fAuthor = $featuredBlog['author_name'] ?? 'Joe Stanley';
+                        $fDate = !empty($featuredBlog['publish_date']) ? date('M d, Y', strtotime($featuredBlog['publish_date'])) : 'Aug 12, 2026';
+                    @endphp
+                    <div class="featured-post">
+                        <img src="{{ $fImg }}" alt="{{ $fTitle }}" class="featured-img" onerror="this.src='{{ asset('uploads/about-us-banner.webp') }}'">
+                        <div class="featured-copy">
+                            <h2>{{ $fTitle }}</h2>
+                            <p class="excerpt">{{ Str::limit(html_entity_decode(strip_tags($fExcerpt)), 150) }}</p>
+                            <div class="meta">
+                                {{ $fAuthor }} &nbsp;|&nbsp; {{ $fDate }}
+                            </div>
+                            <a href="{{ $fUrl }}" class="read-btn">Read Blog <i class="fa-solid fa-arrow-right"></i></a>
+                        </div>
+                    </div>
                 @endif
-                <time>{{ $bDate }}</time>
+
+                <!-- Grid -->
+                <div class="blog-grid">
+                    @foreach($displayBlogs as $item)
+                        @php
+                            $item = (array) $item;
+                            $bTitle = $item['title'] ?? 'The Ultimate Guide To Choosing The Right Custom Packaging For Your Brand';
+                            $bAuthor = $item['author_name'] ?? 'Joe Stanley';
+                            $bSlug = $item['slug'] ?? 'blog-detail';
+                            $bImg = !empty($item['image']) ? asset($item['image']) : asset('uploads/about-us-banner.webp');
+                            $bUrl = url('/blog/' . $bSlug);
+                        @endphp
+                        <div class="blog-card" onclick="window.location.href='{{ $bUrl }}';">
+                            <img src="{{ $bImg }}" alt="{{ $bTitle }}" onerror="this.src='{{ asset('uploads/about-us-banner.webp') }}'">
+                            <div class="card-content">
+                                <div class="card-meta">
+                                    <span>{{ $bAuthor }}</span>
+                                    <span>8 min read</span>
+                                </div>
+                                <h3>{{ $bTitle }}</h3>
+                                <a href="{{ $bUrl }}" class="card-link" onclick="event.stopPropagation();">Read Blog <i class="fa-solid fa-arrow-right"></i></a>
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
+
+                <!-- Load More -->
+                <div class="load-more-wrap">
+                    <button class="read-btn" style="border:none; cursor:pointer; width: 202px; height: 54px;">Load more</button>
+                </div>
+
             </div>
-            <h3><a href="{{ $bUrl }}" style="color:inherit; text-decoration:none;" onclick="event.stopPropagation();">{{ $bTitle }}</a></h3>
-            <p>{{ Str::limit(html_entity_decode(html_entity_decode(strip_tags($bExcerpt))), 90) }}</p>
-            <a class="button" href="{{ $bUrl }}" onclick="event.stopPropagation();">Read More &rarr;</a>
-        </div>
-    </article>
-@endforeach
-</div>
+        </section>
+    </main>
 
-@include('components.cta')
-</section>
-</main></div>
-<script>
-// Always start the page at the left edge; category scrolling stays local to its row.
-window.scrollTo(0, 0);
-document.documentElement.scrollLeft = 0;
-// Category Filter JS
-document.querySelectorAll('.filter').forEach(f=>f.addEventListener('click',()=>{
-    document.querySelectorAll('.filter').forEach(x=>x.classList.remove('active'));
-    f.classList.add('active');
-    document.querySelectorAll('.card').forEach(c=>c.hidden=f.dataset.filter!=='all'&&c.dataset.category!==f.dataset.filter);
-    // Scroll only the category strip; never move the whole page horizontally.
-    const row = f.closest('.category-row');
-    if (row) {
-        const targetLeft = f.offsetLeft - ((row.clientWidth - f.offsetWidth) / 2);
-        row.scrollTo({left: Math.max(0, targetLeft), behavior:'smooth'});
-    }
-}));
-
-// Pagination JS
-const pageButtons = document.querySelectorAll('.pages button:not(.dots):not(.text-btn)');
-const prevBtn = document.querySelector('.pages button.text-btn:first-child');
-const nextBtn = document.querySelector('.pages button.text-btn:last-child');
-let activeIndex = 0;
-
-function updatePagination(index) {
-    if(index < 0 || index >= pageButtons.length) return;
-    pageButtons.forEach(btn => btn.classList.remove('active'));
-    pageButtons[index].classList.add('active');
-    activeIndex = index;
-    // Note: Here you can add logic to actually hide/show grid items based on the page number
-}
-
-pageButtons.forEach((btn, index) => {
-    btn.addEventListener('click', () => {
-        updatePagination(index);
-    });
-});
-
-prevBtn.addEventListener('click', () => {
-    updatePagination(activeIndex - 1);
-});
-
-nextBtn.addEventListener('click', () => {
-    updatePagination(activeIndex + 1);
-});
-</script>
-<style>
-/* Figma mobile layout */
-@media (max-width: 600px) {
-    .hero { height: 520px; }
-    .hero-text-wrapper { justify-content: flex-start !important; padding-top: 40px; }
-    /* Mobile: dark overlay from bottom covering text area */
-    .hero {
-        background: none;
-    }
-    .hero h1 { font-size: 28px; line-height: 1.22; margin-top: 0px; }
-    .hero p { font-size: 12px; line-height: 1.55; }
-    .hero .breadcrumb { top: -4px; }
-    .blog-content { margin-top: 15px !important; }
-
-    .categories { overflow: hidden; }
-    .category-row {
-        display: flex;
-        min-height: 0;
-        gap: 10px;
-        margin: 0;
-        padding: 14px var(--gutter);
-        overflow-x: auto;
-        overflow-y: hidden;
-    }
-    .filter {
-        flex: 0 0 auto;
-        width: auto;
-        min-height: 58px;
-        height: 58px;
-        padding: 7px 16px;
-        font-size: 12px;
-        white-space: nowrap;
-    }
-    .filter-icon { width: 19px; height: 19px; }
-
-    .content { padding-top: 14px; padding-bottom: 30px; }
-    .feature { display: none; }
-    .feature > img { height: 150px; min-height: 0; }
-    .feature-copy { width: calc(100% - 28px); margin-top: -28px; padding: 22px 18px; box-shadow: 6px 6px 0 var(--color-primary); }
-    .eyebrow { margin-bottom: 8px; font-size: 11px; line-height: 1.3; }
-    .feature h2 { margin-bottom: 10px; font-size: 22px; line-height: 1.27; }
-    .feature p:not(.eyebrow) { margin-bottom: 18px; font-size: 13px; line-height: 1.5; text-align: left; }
-    .feature-copy .button { padding: 9px 16px; font-size: 12px; }
-
-    .grid { grid-template-columns: 1fr; gap: 14px; }
-    .card { display: flex; min-height: 0; border-radius: 8px; }
-    .card img { width: 100%; height: 128px !important; min-height: 0; }
-    .card-copy { padding: 13px 14px 15px; }
-    .card .meta { margin-bottom: 8px; font-size: 11px; }
-    .card h3 { min-height: 0; margin-bottom: 8px; font-size: 16px; line-height: 1.3; }
-    .card p { display: block; margin: 0 0 12px; font-size: 13px; line-height: 1.45; text-align: left; }
-    .card .button { font-size: 13px; line-height: 1.3; }
-    .pages { gap: 3px; margin: 26px 0; }
-    .pages button { width: 32px; height: 32px; font-size: 12px; }
-    .pages button.text-btn { padding: 0 7px; }
-
-    .cta { gap: 16px; min-height: 0; margin: 24px 0; padding: 16px; border-radius: 12px; text-align: left; }
-    .cta > img { width: 100%; min-height: 130px; border-radius: 8px; }
-    .cta-copy h2 { margin-bottom: 10px; font-size: 22px; line-height: 1.3; }
-    .cta-copy p { margin-bottom: 16px; font-size: 13px; line-height: 1.5; }
-    .cta .button { padding: 10px 16px; font-size: 13px; }
-}
-</style>
-@include('components.footer')
-</body></html>
+    @include('components.footer')
+</body>
+</html>

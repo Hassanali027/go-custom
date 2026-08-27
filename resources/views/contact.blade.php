@@ -11,408 +11,444 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Open+Sans:wght@300;400;600;700;800;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-:root { --contact-primary:#8d4445; --contact-dark:#2d2d2d; --contact-muted:#5d5d5d; --contact-pale:#f8eeee; --contact-page:#faf8f8; --container-width:1280px; --margin-sides:55px; }
-* { box-sizing:border-box; } html { scroll-behavior:smooth; }
-body.contact-page { margin:0; color:var(--contact-dark); background:var(--contact-page); font-family:'DM Sans',sans-serif; }
-/* Uses the same outer container as the Product page hero. */
-.contact-page .container,
-.contact-page .contact-container {
-    max-width:var(--container-width);
-    margin:0 auto;
-    padding:0 var(--margin-sides);
-}
-.contact-hero { padding:40px 0; }
-.contact-hero .contact-container,
-.map-section .contact-container,
-.faq-section .contact-container { max-width:var(--container-width); }
-.contact-page .main-footer .container { max-width:var(--container-width); }
-.contact-grid { display:grid; grid-template-columns:minmax(0,1.06fr) minmax(420px,.94fr); align-items:center; gap:90px; }
-.contact-breadcrumb { font-size: 13px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; color: #000; margin-top: 0; margin-bottom: 20px; font-family: 'Open Sans', sans-serif; }
-@media (max-width: 768px) { .contact-breadcrumb { display: none; } }
-.contact-breadcrumb a { color: #666; text-decoration: none; }
-.contact-breadcrumb .sep { padding: 0 8px; color: #999; }
-.contact-breadcrumb .current { color: #000; font-weight: 700; }
-.eyebrow { margin:0 0 18px; color:var(--contact-primary); font-size:12px; font-weight:700; letter-spacing:.2em; text-transform:uppercase; }
-.contact-intro h1,.faq-section h2 { margin:0; color:#242424; font-family:'Open Sans',sans-serif; font-weight:800; }
-.contact-intro h1 { max-width:590px; font-size:clamp(28px,3.5vw,50px); line-height:45px; font-weight:700; }
-.intro-copy { max-width:550px; margin:23px 0 32px; color:var(--contact-muted); font-size:15px; line-height:1.7; }
-.contact-details { display:grid; grid-template-columns:1fr; max-width:545px; gap:20px; }
-.detail-item { display:flex; align-items:flex-start; gap:12px; color:#3e3e3e; font-size:14px; font-style:normal; line-height:1.45; text-decoration:none; }
-.detail-item i { width:18px; padding-top:2px; color:var(--contact-primary); font-size:17px; text-align:center; }
-.detail-icon { flex:0 0 18px; width:18px; height:18px; margin-top:1px; object-fit:contain; }
-.address-mobile { display:none; }
-.contact-form { padding:30px 34px 24px; border-radius:5px; border-bottom:6px solid var(--contact-primary); background:var(--contact-pale); box-shadow:0 8px 18px rgba(67,30,30,.04); }
-.contact-form label { display:block; margin:0 0 6px; color:#2c2c2c; font-size:12px; font-weight:700; }
-.contact-form label:not(:first-child) { margin-top:12px; }.contact-form em { color:var(--contact-primary); font-style:normal; }
-.contact-form input,.contact-form textarea { display:block; width:100%; border:1px solid #e5e2e2; border-radius:6px; outline:none; background:#fff; color:var(--contact-dark); font:13px 'DM Sans',sans-serif; }
-.contact-form input { height:43px; padding:0 14px; }.contact-form textarea { min-height:96px; padding:13px 14px; resize:vertical; }
-.contact-form input:focus,.contact-form textarea:focus { border-color:var(--contact-primary); box-shadow:0 0 0 3px rgba(141,68,69,.1); }
-.contact-form button { display:block; width:min(100%,280px); height:46px; margin:22px auto 0; border:0; border-radius:3px; background:var(--contact-primary); color:#fff; cursor:pointer; font:700 14px 'DM Sans',sans-serif; transition:background .2s ease,transform .2s ease; }
-.contact-form button:hover { background:#6e3435; transform:translateY(-1px); }
-.map-section { padding:8px 0 56px; }.map-frame { position:relative; height:410px; overflow:hidden; border:1px solid #dedede; border-radius:4px; background:#e5ece2; }
-.map-frame iframe { position:absolute; top:-60px; left:0; width:100%; height:calc(100% + 110px); border:0; filter:saturate(.78) contrast(.93); }.map-pin { position:absolute; top:48%; left:50%; transform:translate(-50%,-100%); display:grid; width:38px; height:38px; place-items:center; border-radius:50% 50% 50% 0; background:#d84735; color:#fff; font-size:19px; box-shadow:0 3px 10px rgba(0,0,0,.3); pointer-events:none; }
-.faq-section { padding:0 0 72px; }.faq-section h2 { margin-bottom:20px; text-align:center; font-size:28px; line-height:1.3; }
-.contact-faq { margin-bottom:12px; overflow:hidden; border:1px solid #bababa; border-radius:5px; background:#fffdfd; }.contact-faq button { display:flex; width:100%; min-height:57px; align-items:center; justify-content:space-between; gap:20px; padding:14px 22px; border:0; background:transparent; color:#292929; cursor:pointer; font:500 13px 'DM Sans',sans-serif; text-align:left; }.contact-faq button i { font-size:14px; transition:transform .2s ease; }.contact-faq p { display:none; margin:0; padding:0 22px 18px; color:var(--contact-muted); font-size:13px; line-height:1.6; }.contact-faq.is-open { border-color:var(--contact-primary); }.contact-faq.is-open p { display:block; }.contact-faq.is-open button i { transform:rotate(45deg); color:var(--contact-primary); }
-@media (max-width:900px) { .contact-hero { padding-top:30px; }.contact-grid { grid-template-columns:1fr; gap:38px; }.contact-intro h1 { font-size:38px; line-height:1.3; max-width:100%; }.intro-copy { max-width:100%; }.contact-form { max-width:650px; width:100%; }.map-frame { height:340px; } }
-
-/* Mobile Typography for Live Support */
-@media (max-width: 767px) {
-    .eyebrow {
-        font-family: 'Open Sans', sans-serif !important;
-        font-weight: 700 !important;
-        font-style: bold !important;
-        font-size: 16px !important;
-        line-height: 100% !important;
-        letter-spacing: 3px !important;
-        text-transform: uppercase !important;
-        color: var(--contact-primary) !important;
-        margin: 0 0 18px !important;
-    }
-}
-
-@media (max-width: 480px) {
-    .eyebrow {
-        margin: 0 0 20px !important;
-        font-size: 16px !important;
-        line-height: 12px !important;
-        letter-spacing: 3px !important;
-    }
-}
-
-@media (max-width:560px) { :root { --margin-sides:16px; }.contact-hero { padding:36px 0 28px; }.contact-intro h1 { font-size:28px; }.contact-details { grid-template-columns:1fr; gap:16px; }.contact-form { padding:24px 18px 20px; }.map-section { padding-bottom:42px; }.map-frame { height:275px; }.faq-section { padding-bottom:48px; }.faq-section h2 { font-size:24px; }.contact-faq button { min-height:62px; padding:13px 16px; font-size:12px; } }
-
-/* Remove conflicting duplicate styles - global padding set above */
-
-/* Preserve the compact two-column Figma composition on narrow landscape/tablet canvases. */
-@media (min-width: 481px) and (max-width: 600px) {
-    :root { --margin-sides: 20px; }
-    .contact-hero { padding: 5px 0 20px; }
-    .contact-grid { grid-template-columns: minmax(0, 1fr) minmax(0, 1.08fr); gap: 40px; align-items: start; }
-    .contact-intro { padding-top: 28px; }
-    .eyebrow { margin-bottom: 11px; font-size: 7px; letter-spacing: .18em; }
-    .contact-intro h1 { font-size: 16px; line-height: 1.18; }
-    .intro-copy { margin: 12px 0 17px; font-size: 7px; line-height: 1.6; }
-    .contact-details { gap: 16px 8px; }
-    .detail-item { gap: 7px; font-size: 7px; line-height: 1.35; }
-    .detail-item i { width: 10px; padding-top: 1px; font-size: 9px; } .detail-icon { width:10px; height:10px; margin-top:1px; }
-    .contact-form { padding: 12px 16px 11px; border-bottom-width: 5px; }
-    .contact-form label { margin-bottom: 3px; font-size: 6px; }
-    .contact-form label:not(:first-child) { margin-top: 6px; }
-    .contact-form input, .contact-form textarea { border-radius: 4px; font-size: 6px; }
-    .contact-form input { height: 19px; padding: 0 8px; }
-    .contact-form textarea { min-height: 43px; padding: 7px 8px; }
-    .contact-form button { width: 140px; height: 20px; margin-top: 13px; border-radius: 2px; font-size: 7px; }
-}
-
-@media (max-width: 480px) {
-    .contact-hero { padding: 36px 0 28px; }
-    .contact-grid { grid-template-columns: 1fr; gap: 38px; }
-    .contact-intro { padding-top: 0; }
-    .contact-intro h1 { font-size: 28px; }
-}
-
-/* The accent starts at the upper edge of the first input. */
-.contact-form {
-    position: relative;
-    z-index: 0;
-    border-bottom: 0;
-    box-shadow: none;
-    --first-input-top: 50px;
-    --first-input-left: 34px;
-}
-.contact-form::before,
-.contact-form::after {
-    position: absolute;
-    z-index: 0;
-    content: '';
-    background: #8d4445;
-    pointer-events: none;
-}
-.contact-form::before {
-    top: var(--first-input-top);
-    right: -10px;
-    bottom: -10px;
-    width: 10px;
-}
-.contact-form::after {
-    right: 0;
-    bottom: -10px;
-    left: var(--first-input-left);
-    height: 10px;
-}
-.contact-form > * { position: relative; z-index: 1; }
-@media (min-width: 481px) and (max-width: 600px) {
-    .contact-form { --first-input-top: 22px; --first-input-left: 16px; }
-    .contact-form::before { right: -5px; bottom: -5px; width: 5px; }
-    .contact-form::after { bottom: -5px; height: 5px; }
-}
-@media (max-width: 480px) {
-    .contact-form { --first-input-top: 44px; --first-input-left: 18px; }
-}
-/* Figma FAQ block dimensions. The 20px side padding leaves a 718px accordion area. */
-.faq-section .faq-container { max-width:758px; }
-.contact-faq { margin-bottom:6px; }
-.contact-faq button { min-height:55px; padding:12px 16px; font-size:12px; }
-.contact-faq p { padding:0 16px 16px; font-size:12px; }
-@media (min-width: 901px) {
-    .contact-intro h1 { width:479px; max-width:none; }
-}
-/* Figma typography for the contact-page headline. */
-.contact-intro h1 {
-    color:#1f1f1f;
-    font-family:'Open Sans', sans-serif;
-    font-size:32px;
-    font-weight:700;
-    line-height:45px;
-    letter-spacing:0;
-}
-/* Figma typography for the contact-page intro copy. */
-.intro-copy {
-    color:#000;
-    font-family:'DM Sans', sans-serif;
-    font-size:16px;
-    font-weight:400;
-    line-height:25.6px;
-    letter-spacing:.23px;
-}
-/* Figma typography for the contact-page eyebrow. */
-.eyebrow {
-    color:#8d4445;
-    font-family:'Open Sans', sans-serif;
-    font-size:16px;
-    font-weight:700;
-    line-height:1;
-    letter-spacing:3px;
-    text-transform:uppercase;
-}
-/* Figma typography for contact details. */
-.detail-item {
-    color:#000;
-    font-family:'DM Sans', sans-serif;
-    font-size:16px;
-    font-weight:400;
-    line-height:21.6px;
-    letter-spacing:0;
-}
-/* Figma typography for contact-form labels. */
-.contact-form label {
-    color:#000;
-    font-family:'Open Sans', sans-serif;
-    font-size:14px;
-    font-weight:600;
-    line-height:16px;
-    letter-spacing:0;
-}
-/* Required markers use the same color as form labels in Figma. */
-.contact-form em { color:#000; }
-/* Figma typography for the FAQ heading. */
-.faq-section h2 {
-    color:#000;
-    font-family:'Open Sans', sans-serif;
-    font-size:32px;
-    font-weight:700;
-    line-height:1.2;
-    letter-spacing:0;
-}
-/* Figma typography for FAQ question titles. */
-.contact-faq button {
-    color:#000;
-    font-family:'DM Sans', sans-serif;
-    font-size:16px;
-    font-weight:400;
-    line-height:16px;
-    letter-spacing:0;
-}
-/* Tighter vertical spacing around the FAQ section. */
-.map-section { padding-bottom:24px; }
-.faq-section { padding-bottom:32px; }
-
-/* Compact one-column mobile layout from the Contact Us design. */
-@media (max-width:480px) {
-    :root { --margin-sides:20px; }
-    .contact-hero { padding:40px 0; }
-    .contact-grid { grid-template-columns:1fr; gap:24px; padding-right:0; }
-    .contact-intro { padding-top:0; }
-    .eyebrow { margin:0 0 20px; font-size:10px; line-height:12px; letter-spacing:1.5px; }
-    .contact-intro h1 { width:auto; max-width:100%; font-size:24px; line-height:1.3; }
-    .intro-copy { max-width:374px; margin:6px 0 16px; font-size:16px; line-height:25.6px; letter-spacing:.23px; text-align:justify; }
-    .mobile-copy-break { display:block; }
-    .contact-details { grid-template-columns:1fr; row-gap:16px; column-gap:0; max-width:none; }
-    .detail-item { gap:8px; color:#000; font-size:18px; font-weight:400; line-height:21.6px; }
-    .detail-icon { flex:0 0 25px; width:25px; height:25px; }
-    .address-desktop { display:none; }
-    .address-mobile { display:inline; }
-    .contact-form { width:calc(100% + 40px); max-width:none; margin:0 -20px; padding:18px 20px 20px; border-radius:0; }
-    .contact-form label { margin-bottom:5px; font-size:12px; line-height:14px; }
-    .contact-form label:not(:first-child) { margin-top:10px; }
-    .contact-form input, .contact-form textarea { border-radius:4px; font-size:12px; }
-    .contact-form input { height:38px; padding:0 10px; }
-    .contact-form textarea { min-height:76px; padding:10px; }
-    .contact-form button { width:100%; height:40px; margin-top:14px; font-size:12px; }
-    .contact-form::before, .contact-form::after { display:none; }
-}
-
-.mobile-copy-break { display:none; }
-.mobile-heading-break { display:none; }
-@media (max-width:480px) { .mobile-copy-break, .mobile-heading-break { display:block; } }
-
-/* Mobile map and FAQ layout from the Contact Us design. */
-@media (max-width:480px) {
-    .map-section { padding:24px 0 22px; }
-    .map-frame { height:372px; border-radius:4px; }
-    .faq-section { padding:0 0 32px; }
-    .faq-section h2 { margin-bottom:16px; font-size:20px !important; line-height:1.3; white-space:nowrap; }
-    .contact-faq { margin-bottom:6px; border-radius:4px; }
-    .contact-faq button { min-height:55px; padding:10px 12px; font-size:16px; line-height:22px; }
-    .contact-faq button i { font-size:12px; }
-    .contact-faq p { padding:0 12px 14px; font-size:16px; line-height:25.6px; text-align:justify; }
-}
-/* Match the Product page accordion design on Contact Us. */
-.contact-faq {
-    margin-bottom:12px;
-    overflow:hidden;
-    border:1px solid #D6D6D6;
-    border-radius:4px;
-    background:#FFFDFD;
-}
-.contact-faq button {
-    min-height:0;
-    padding:20px;
-    color:#000;
-    font-family:'DM Sans', sans-serif;
-    font-size:18px;
-    font-weight:500;
-    line-height:1.2;
-}
-.contact-faq p {
-    padding:20px;
-    color:var(--contact-dark);
-    font-size:14px;
-    line-height:1.6;
-}
-.contact-faq.is-open { border-color:#D6D6D6; }
-.contact-faq.is-open button {
-    background:#8d4445;
-    color:#fff;
-}
-.contact-faq.is-open button i {
-    transform:none;
-    color:#fff;
-}
-    </style>
     <link rel="stylesheet" href="{{ asset('css/footer.css') }}">
+    
+    <style>
+        :root {
+            --primary-color: #8D4445;
+            --dark-blue: #0A2240;
+            --light-cream: #FAF5EC;
+            --yellow: #FFB400;
+            --text-dark: #333333;
+            --text-light: #666666;
+            --container-width: 1280px;
+            --margin-sides: 55px;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'DM Sans', sans-serif;
+            background-color: #FFFFFF;
+            color: var(--text-dark);
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        .container {
+            max-width: var(--container-width);
+            margin: 0 auto;
+            padding: 0 var(--margin-sides);
+        }
+
+        /* Hero Section */
+        .contact-hero {
+            background: linear-gradient(rgba(10,34,64,0.4), rgba(10,34,64,0.4)), url('{{ asset("uploads/about-us-banner.webp") }}') center/cover no-repeat;
+            max-width: 1440px;
+            width: 100%;
+            height: 400px;
+            margin: 0 auto;
+            position: relative;
+            color: #fff;
+        }
+
+        .contact-hero .container {
+            position: relative;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+        
+        .contact-breadcrumb {
+            position: absolute;
+            top: 40px;
+            left: var(--margin-sides);
+            font-size: 14px;
+            font-family: 'Open Sans', sans-serif;
+        }
+        
+        .contact-breadcrumb a {
+            color: #fff;
+            text-decoration: none;
+        }
+        
+        .contact-hero h1 {
+            font-size: 48px;
+            font-family: 'Open Sans', sans-serif;
+            font-weight: 700;
+            margin: 0 0 15px 0;
+        }
+        
+        .contact-hero p {
+            font-size: 16px;
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.6;
+            text-align: center;
+        }
+
+        /* Main Section */
+        .contact-main-section {
+            padding: 60px 0;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) 393px;
+            gap: 24px;
+            align-items: stretch;
+        }
+
+        /* Form Column */
+        .contact-form-box {
+            background-color: var(--light-cream);
+            padding: 40px;
+            border-radius: 8px;
+            height: 634px;
+        }
+
+        .contact-form-box h2 {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 28px;
+            font-weight: 700;
+            color: #000;
+            text-align: center;
+            margin: 0 0 15px 0;
+        }
+
+        .contact-form-box > p {
+            text-align: center;
+            color: var(--text-light);
+            font-size: 14px;
+            line-height: 1.6;
+            margin-bottom: 30px;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .contact-form {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px 24px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .form-group.full-width {
+            grid-column: 1 / -1;
+        }
+
+        .contact-form label {
+            font-size: 13px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #000;
+        }
+
+        .contact-form input, 
+        .contact-form textarea {
+            padding: 12px 15px;
+            border: 1px solid #E0DCD5;
+            border-radius: 6px;
+            background: #fff;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 14px;
+            outline: none;
+            transition: border-color 0.3s;
+            box-sizing: border-box;
+            width: 100%;
+        }
+
+        .contact-form input {
+            height: 48px;
+        }
+
+        .contact-form input:focus, 
+        .contact-form textarea:focus {
+            border-color: var(--yellow);
+        }
+
+        .contact-form textarea {
+            height: 92px;
+            min-height: 92px;
+            resize: vertical;
+        }
+
+        .submit-btn-wrap {
+            grid-column: 1 / -1;
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        .submit-btn {
+            background-color: var(--yellow);
+            color: #000;
+            border: none;
+            width: 297px;
+            height: 60px;
+            font-size: 16px;
+            font-weight: 700;
+            border-radius: 6px;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            transition: background 0.3s;
+        }
+
+        .submit-btn:hover {
+            background-color: #e5a300;
+        }
+
+        /* Info Column */
+        .contact-info-box {
+            background-color: var(--dark-blue);
+            padding: 40px;
+            border-radius: 8px;
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+            height: 634px;
+        }
+
+        .contact-info-box h3 {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 24px;
+            font-weight: 600;
+            margin: 0 0 30px 0;
+            color: #fff;
+        }
+
+        .info-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            margin-bottom: 25px;
+            width: 306px;
+            height: 90px;
+        }
+
+        .info-icon {
+            background-color: var(--yellow);
+            color: #000;
+            width: 36px;
+            height: 36px;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            flex-shrink: 0;
+        }
+
+        .info-content h4 {
+            margin: 0 0 5px 0;
+            font-size: 15px;
+            font-weight: 600;
+            color: #fff;
+        }
+
+        .info-content p, .info-content a {
+            margin: 0;
+            font-size: 13px;
+            color: #B4C0CB;
+            text-decoration: none;
+            line-height: 1.5;
+        }
+
+        .info-content a:hover {
+            color: var(--yellow);
+            text-decoration: underline;
+        }
+
+        .social-media-title {
+            font-size: 15px;
+            font-weight: 600;
+            margin: 20px 0 15px 0;
+            color: #fff;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 12px;
+        }
+
+        .social-icon {
+            background-color: #fff;
+            color: var(--dark-blue);
+            width: 32px;
+            height: 32px;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            text-decoration: none;
+            transition: background 0.3s, color 0.3s;
+        }
+
+        .social-icon:hover {
+            background-color: var(--yellow);
+            color: #000;
+        }
+
+        /* Map Section */
+        .map-section {
+            width: 100%;
+            height: 400px;
+        }
+        
+        .map-section iframe {
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        @media (max-width: 991px) {
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .contact-hero h1 { font-size: 36px; }
+            .contact-form { grid-template-columns: 1fr; }
+        }
+
+        @media (max-width: 480px) {
+            :root { --margin-sides: 20px; }
+            .contact-hero { padding: 50px 0; }
+            .contact-form-box, .contact-info-box { padding: 30px 20px; }
+        }
+    </style>
 </head>
 <body class="contact-page">
     @include('components.header')
+    
     <main>
+        <!-- Hero Section -->
         <section class="contact-hero">
-            <div class="container contact-container">
+            <div class="container">
                 <div class="contact-breadcrumb">
-                    <a href="{{ url('/') }}">HOME</a>
-                    <span class="sep">/</span>
-                    <span class="current">CONTACT US</span>
+                    <a href="{{ url('/') }}"><i class="fa-solid fa-house"></i> Home</a> &gt; Contact Us
                 </div>
+                <h1>Contact Us</h1>
+                <p>Have a question, need help with a project, or ready to create custom packaging? Our team is here to help you find the right solution.</p>
+            </div>
+        </section>
+
+        <!-- Main Content -->
+        <section class="contact-main-section">
+            <div class="container">
+                @if(session('success'))
+                    <div style="background-color: #d4edda; color: #155724; padding: 15px; border-radius: 8px; margin-bottom: 30px; text-align: center; font-weight: 500;">
+                        {{ session('success') }}
+                    </div>
+                @endif
                 <div class="contact-grid">
-                    <div class="contact-intro">
-                        <p class="eyebrow">Live Support</p>
-                        <h1>Need Help With Your<br class="mobile-heading-break"> Packaging? Let's Talk<br class="mobile-heading-break"> Real Quick.</h1>
-                        <p class="intro-copy">Get in touch with our packaging experts for fast and reliable support. We help you choose the right packaging solutions based on your product, branding, and budget requirements.</p>
-                        <div class="contact-details">
-                            <a href="tel:{{ $siteSettings['company_phone'] ?? '1800-518-8441' }}" class="detail-item"><img src="{{ asset('images/contact-phone-icon.png') }}" alt="" class="detail-icon" loading="lazy"><span>{{ $siteSettings['company_phone'] ?? '1800-518-8441' }}</span></a>
-                            <a href="mailto:{{ $siteSettings['company_email'] ?? 'example@gmail.com' }}" class="detail-item"><img src="{{ asset('images/envelope 2.png') }}" alt="" class="detail-icon" loading="lazy"><span>{{ $siteSettings['company_email'] ?? 'example@gmail.com' }}</span></a>
-                            <div class="detail-item"><img src="{{ asset('images/calendar 1.png') }}" alt="" class="detail-icon" loading="lazy"><span>Monday - Sunday</span></div>
-                            @php
-                                $rawAddress = $siteSettings['company_address'] ?? '1880 S Dairy Ashford Rd<br>Suite 207 Houston, TX<br>77077';
-                                $cleanAddress = strip_tags(str_replace(['<br>', '<br/>', '<br />'], ' ', $rawAddress));
-                                $mobileAddress = str_replace('Suite 207', 'Suite<br>207', $cleanAddress);
-                                $mobileAddress = str_replace([' Chicago', ', Chicago'], ['<br>Chicago', '<br>Chicago'], $mobileAddress);
-                            @endphp
-                            <address class="detail-item contact-address"><img src="{{ asset('images/marker 1.png') }}" alt="" class="detail-icon" loading="lazy"><span class="address-desktop">{!! $rawAddress !!}</span><span class="address-mobile">{!! $mobileAddress !!}</span></address>
+                    <!-- Form Column -->
+                    <div class="contact-form-box">
+                        <h2>Tell Us What You Need</h2>
+                        <p>Have a question or need help choosing the right packaging from Go Custom Boxes? Feel free to reach out we're here to help.</p>
+                        
+                        <form class="contact-form" action="{{ url('/submit-contact') }}" method="post">
+                            @csrf
+                            <div class="form-group">
+                                <label for="first_name">First Name</label>
+                                <input type="text" id="first_name" name="name" placeholder="Enter Your Name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="last_name">Last Name</label>
+                                <input type="text" id="last_name" name="last_name" placeholder="Enter Last Name">
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input type="email" id="email" name="email" placeholder="Enter Your email" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="phone">Phone</label>
+                                <input type="tel" id="phone" name="phone" placeholder="Enter Your Number" required>
+                            </div>
+                            <div class="form-group full-width">
+                                <label for="message">Message</label>
+                                <textarea id="message" name="message" placeholder="Tell us about your project..." required></textarea>
+                            </div>
+                            <div class="submit-btn-wrap">
+                                <button type="submit" class="submit-btn">Send Message <i class="fa-solid fa-arrow-right"></i></button>
+                            </div>
+                        </form>
+                    </div>
+
+                    <!-- Info Column -->
+                    <div class="contact-info-box">
+                        <h3>We're Here to Help</h3>
+                        
+                        <div class="info-item">
+                            <div class="info-icon">
+                                <i class="fa-solid fa-location-dot"></i>
+                            </div>
+                            <div class="info-content">
+                                <h4>Office</h4>
+                                @php
+                                    $rawAddress = $siteSettings['company_address'] ?? '1941 Waverly Way<br>Montgomery IL 60538';
+                                @endphp
+                                <p>{!! $rawAddress !!}</p>
+                            </div>
+                        </div>
+
+                        <div class="info-item">
+                            <div class="info-icon">
+                                <i class="fa-solid fa-envelope"></i>
+                            </div>
+                            <div class="info-content">
+                                <h4>Email Us</h4>
+                                <a href="mailto:{{ $siteSettings['company_email'] ?? 'support@gocustomboxes.com' }}">{{ $siteSettings['company_email'] ?? 'support@gocustomboxes.com' }}</a>
+                            </div>
+                        </div>
+
+                        <div class="info-item">
+                            <div class="info-icon">
+                                <i class="fa-solid fa-phone"></i>
+                            </div>
+                            <div class="info-content">
+                                <h4>Call Us</h4>
+                                <a href="tel:{{ $siteSettings['company_phone'] ?? '847-200-0971' }}">{{ $siteSettings['company_phone'] ?? '847-200-0971' }}</a>
+                            </div>
+                        </div>
+
+                        <h4 class="social-media-title">Social Media</h4>
+                        <div class="social-icons">
+                            <a href="#" class="social-icon" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+                            <a href="#" class="social-icon" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                            <a href="#" class="social-icon" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+                            <a href="#" class="social-icon" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
                         </div>
                     </div>
-                    @if(session('success'))
-                        <div style="background-color: #d4edda; color: #155724; padding: 10px; border-radius: 5px; margin-bottom: 20px;">
-                            {{ session('success') }}
-                        </div>
-                    @endif
-                    <form class="contact-form" action="{{ url('/submit-contact') }}" method="post">
-                        @csrf
-                        <label for="name">Name <em>*</em></label><input id="name" name="name" type="text" placeholder="Name" pattern="[A-Za-z' -]+" title="Name can contain letters only." required>
-                        <label for="email">Email Address <em>*</em></label><input id="email" name="email" type="email" placeholder="Email" required>
-                        <label for="phone">Phone <em>*</em></label><input id="phone" name="phone" type="tel" inputmode="tel" placeholder="Phone number" pattern="[0-9+() -]+" title="Phone can contain numbers only." required>
-                        <label for="subject">Subject</label><input id="subject" name="subject" type="text" placeholder="Subject">
-                        <label for="message">Message</label><textarea id="message" name="message" placeholder="Enter your message"></textarea>
-                        <button type="submit">Send Message</button>
-                    </form>
                 </div>
             </div>
         </section>
-        <section class="map-section"><div class="container contact-container"><div class="map-frame">
-            <iframe title="The Rigid Boxes location map" src="https://www.openstreetmap.org/export/embed.html?bbox=-95.621%2C29.737%2C-95.592%2C29.757&amp;layer=mapnik&amp;marker=29.7469%2C-95.6066" loading="lazy"></iframe>
-            <span class="map-pin" aria-hidden="true"><i class="fa-solid fa-location-dot"></i></span>
-        </div></div></section>
-        <section class="faq-section"><div class="container contact-container faq-container">
-            <h2>Frequently Asked Questions</h2><div class="contact-faqs">
-                <article class="contact-faq"><button type="button" aria-expanded="false"><span>What type of retail boxes are best for luxury product packaging?</span><i class="fa-solid fa-plus"></i></button><p>Luxury rigid boxes, magnetic closure boxes, and premium sleeve boxes offer a refined unboxing experience while keeping products protected.</p></article>
-                <article class="contact-faq"><button type="button" aria-expanded="false"><span>Which retail boxes offer the most protect for fragile items?</span><i class="fa-solid fa-plus"></i></button><p>Our rigid boxes can be paired with fitted inserts to give delicate products extra protection in transit and on the shelf.</p></article>
-                <article class="contact-faq"><button type="button" aria-expanded="false"><span>Do retail boxes have customizable shapes and structures?</span><i class="fa-solid fa-plus"></i></button><p>Yes. We customise the size, structure, material, printing, and finishing to suit your product and brand.</p></article>
-                <article class="contact-faq"><button type="button" aria-expanded="false"><span>What printing customization are available for retail boxes?</span><i class="fa-solid fa-plus"></i></button><p>Choose from full-colour printing, foil stamping, embossing, debossing, spot UV, and other premium finishes.</p></article>
-                <article class="contact-faq"><button type="button" aria-expanded="false"><span>What printing customization are available for retail boxes?</span><i class="fa-solid fa-plus"></i></button><p>Send us your packaging requirements and our team will get back to you with a tailored quote as quickly as possible.</p></article>
+
+        <!-- Map Section -->
+        <section class="map-section">
+            <div class="container" style="height: 100%;">
+                <iframe title="Location map" src="https://www.openstreetmap.org/export/embed.html?bbox=-95.621%2C29.737%2C-95.592%2C29.757&amp;layer=mapnik&amp;marker=29.7469%2C-95.6066" loading="lazy"></iframe>
             </div>
-        </div></section>
+        </section>
+
+        <!-- FAQ Section -->
+        @include('components.product-faq')
+
     </main>
+
     @include('components.footer')
-    <script>
-        document.querySelectorAll('.contact-faq button').forEach((button) => {
-            button.addEventListener('click', () => {
-                const item = button.closest('.contact-faq');
-                const shouldOpen = !item.classList.contains('is-open');
-
-                document.querySelectorAll('.contact-faq').forEach((faq) => {
-                    faq.classList.remove('is-open');
-                    faq.querySelector('button').setAttribute('aria-expanded', 'false');
-                    const icon = faq.querySelector('button i');
-                    icon.classList.remove('fa-minus');
-                    icon.classList.add('fa-plus');
-                });
-
-                if (shouldOpen) {
-                    item.classList.add('is-open');
-                    button.setAttribute('aria-expanded', 'true');
-                    const icon = button.querySelector('i');
-                    icon.classList.remove('fa-plus');
-                    icon.classList.add('fa-minus');
-                }
-            });
-        });
-
-        const mobileFaqTitles = [
-            'Which printing method is best for small orders?',
-            'Which retail boxes offer the most protect for fragile items?',
-            'Do retail boxes have customizable shapes and structures?',
-            'What printing customization are available for retail boxes?',
-            'What printing customization are available for retail boxes?'
-        ];
-        const faqTitleElements = document.querySelectorAll('.contact-faq button span');
-
-        function updateFaqTitlesForViewport() {
-            const isMobile = window.matchMedia('(max-width: 480px)').matches;
-            faqTitleElements.forEach((title, index) => {
-                if (!title.dataset.desktopTitle) {
-                    title.dataset.desktopTitle = title.textContent;
-                }
-                title.textContent = isMobile ? mobileFaqTitles[index] : title.dataset.desktopTitle;
-            });
-        }
-
-        updateFaqTitlesForViewport();
-        window.addEventListener('resize', updateFaqTitlesForViewport);document.querySelector('#name').addEventListener('input', (event) => {
-            event.target.value = event.target.value.replace(/[^A-Za-z\s'-]/g, '');
-        });
-        document.querySelector('#phone').addEventListener('input', (event) => {
-            event.target.value = event.target.value.replace(/[^0-9+()\s-]/g, '');
-        });
-    </script>
 </body>
 </html>

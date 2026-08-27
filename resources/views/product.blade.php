@@ -90,7 +90,7 @@
         .hero-container {
             display: flex;
             gap: 60px;
-            align-items: flex-start;
+            align-items: stretch;
         }
         
         .hero-images {
@@ -98,19 +98,19 @@
             max-width: 456px;
             display: flex;
             flex-direction: column;
-            gap: 20px;
+            justify-content: space-between;
         }
         
         .hero-details {
             flex: 0 1 50%;
-            max-width: 600px;
+            max-width: 700px;
         }
         
         .main-image {
             width: 100%;
-            height: auto;
+            aspect-ratio: 1 / 1;
             margin: 0; /* Left align */
-            background-color: var(--secondary-color);
+            background-color: transparent;
             border-radius: 12px;
             border: 1px solid var(--primary-color);
             overflow: hidden;
@@ -121,9 +121,9 @@
         }
         
         .main-image img {
-            max-width: 100%;
-            height: auto;
-            object-fit: contain;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
 
         .in-stock-tag {
@@ -163,7 +163,7 @@
             background-color: var(--secondary-color);
             border-radius: 8px;
             cursor: pointer;
-            border: 2px solid #eaeaea; /* Light border by default */
+            border: 1px solid #0B2545;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -183,8 +183,8 @@
             border-bottom-left-radius: 4px;
         }
         
-        .thumb:hover, .thumb.active {
-            border-color: var(--primary-color);
+        .thumb.active {
+            border: 1px solid #0B2545;
         }
         
         .trust-badges-container {
@@ -474,17 +474,14 @@
             background-color: #EFEFEF;
             padding: 20px 0 10px 0;
             margin-top: -12px;
-            max-width: calc(var(--container-width) - (var(--margin-sides) * 2));
-            width: calc(100% - (var(--margin-sides) * 2));
+            max-width: var(--container-width);
+            width: 100%;
             margin-left: auto;
             margin-right: auto;
             border-radius: 12px;
             position: relative;
             z-index: 10;
         }
-
-        .features-badges-section .container {
-            padding: 0 40px;
         }
 
         .badges-horizontal {
@@ -526,7 +523,9 @@
 
         .trust-badges-wrapper {
             display: flex;
+            flex-direction: column;
             align-items: center;
+            text-align: center;
             gap: 10px;
         }
 
@@ -539,7 +538,9 @@
 
         .features-badges-wrapper {
             display: flex;
+            flex-direction: column;
             align-items: center;
+            text-align: center;
             gap: 10px;
         }
 
@@ -552,7 +553,9 @@
 
         .shipping-badge-wrapper {
             display: flex;
+            flex-direction: column;
             align-items: center;
+            text-align: center;
             gap: 10px;
         }
 
@@ -565,7 +568,9 @@
 
         .fourth-badge-wrapper {
             display: flex;
+            flex-direction: column;
             align-items: center;
+            text-align: center;
             gap: 10px;
         }
 
@@ -578,10 +583,12 @@
 
         .badge-label {
             display: inline-block;
-            color: #4a4a4a;
-            font: 500 14px/1.35 'DM Sans', sans-serif;
-            text-align: left;
-            white-space: nowrap;
+            font-family: 'Inter', sans-serif;
+            font-size: 13px;
+            color: #333333;
+            font-weight: 600;
+            line-height: 1.3;
+            text-align: center;
         }
 
         .badge-icon-svg {
@@ -750,10 +757,10 @@
         .specs-section {
             max-width: calc(var(--container-width) - (var(--margin-sides) * 2));
             width: calc(100% - (var(--margin-sides) * 2));
-            margin: 0 auto 60px;
-            border-radius: 12px;
+            margin: 17px auto;
+            border-radius: 8px;
             overflow: hidden;
-            border: 0.5px solid #8d4445;
+            border: none;
         }
 
         .specs-table {
@@ -764,7 +771,7 @@
         }
         
         .specs-table tr:nth-child(odd) {
-            background-color: #F8EEEC;
+            background-color: #FFF8E7;
         }
         
         .specs-table tr:nth-child(even) {
@@ -773,14 +780,15 @@
         
         .specs-table td {
             padding: 15px 30px;
-            color: var(--color-text-secondary);
+            color: #000;
+            border: 1px solid #DDDDDD;
         }
         
         .specs-table td:first-child {
             font-weight: 700;
-
             color: #000;
-
+            text-align: center;
+            width: 30%;
         }
 
         /* FAQs Section */
@@ -2075,13 +2083,7 @@
             <h1 style="font-size: 36px; margin-bottom: 10px; color: #000; line-height: 1.2; font-family: 'Open Sans', sans-serif;">{{ $pTitle }}</h1>
             
             <p class="desc-text" style="color: #333; font-size: 15px; line-height: 1.6; margin-bottom: 25px;">
-                @if($isLong)
-                    <span id="shortDescText">{{ \Illuminate\Support\Str::limit($descText, $limit, '') }}... </span>
-                    <span id="fullDescText" style="display:none;">{{ $descText }} </span>
-                    <span class="read-more-btn" id="readMoreBtn" onclick="toggleTopReadMore()" style="color: #FFB800; cursor: pointer; font-weight: 600;">Read More</span>
-                @else
-                    {{ $descText }}
-                @endif
+                {{ $descText }}
             </p>
         </div>
         <div class="container hero-container">
@@ -2116,7 +2118,7 @@
                     <div class="in-stock-tag">
                         <span class="stock-dot"></span> In Stock
                     </div>
-                    <img id="product-main-image" src="{{ asset($pMainImg) }}?v={{ @filemtime(public_path($pMainImg)) ?: 1 }}" alt="{{ $pTitle }}" style="width: 100%; height: auto; display: block;" onerror="this.src='https://placehold.co/600x500/eeeeee/555555?text={{ urlencode($pTitle) }}'">
+                    <img id="product-main-image" src="{{ asset($pMainImg) }}?v={{ @filemtime(public_path($pMainImg)) ?: 1 }}" alt="{{ $pTitle }}" onerror="this.src='https://placehold.co/600x500/eeeeee/555555?text={{ urlencode($pTitle) }}'">
                 </div>
                 @if(count($pGallery) > 1)
                 <div class="thumbnails">
@@ -2164,7 +2166,7 @@
                         }
                         .hero-quote-box .form-grid-4 {
                             display: grid; 
-                            grid-template-columns: 1fr 1fr 1fr 0.6fr; 
+                            grid-template-columns: 1.55fr 1.55fr 1.55fr 1fr; 
                             gap: 15px; 
                             margin-bottom: 15px;
                         }
@@ -2214,7 +2216,11 @@
                             border: 1px solid #c4b5a5 !important;
                             border-radius: 8px !important;
                             color: #333333 !important;
-                            font-size: 15px !important;
+                            font-family: 'Inter', sans-serif !important;
+                            font-weight: 400 !important;
+                            font-size: 14px !important;
+                            line-height: 16px !important;
+                            letter-spacing: 0 !important;
                             height: 48px !important;
                             padding: 10px 14px !important;
                             box-sizing: border-box !important;
@@ -2280,8 +2286,8 @@
                         }
                         .hero-quote-box textarea.form-control,
                         .hero-quote-box textarea.quote-input {
-                            height: 130px !important;
-                            min-height: 130px !important;
+                            height: 107px !important;
+                            min-height: 107px !important;
                             resize: none !important;
                             padding: 14px !important;
                         }
@@ -2289,13 +2295,16 @@
                             background-color: #FFB800 !important;
                             color: #000000 !important;
                             border: none !important;
-                            padding: 14px 40px !important;
                             border-radius: 8px !important;
                             font-weight: 700 !important;
                             font-size: 16px !important;
                             cursor: pointer !important;
-                            width: 100% !important;
-                            max-width: 450px !important;
+                            width: 354px !important;
+                            height: 50px !important;
+                            display: flex !important;
+                            align-items: center !important;
+                            justify-content: center !important;
+                            margin: 0 auto !important; /* To keep it centered if it was centered before */
                             transition: transform 0.2s ease, filter 0.2s ease !important;
                         }
                         .hero-quote-box .quote-submit-btn:hover {
@@ -2376,15 +2385,15 @@
             <div class="badges-horizontal">
                 <div class="trust-badges-wrapper">
                     <svg class="badge-icon-svg" viewBox="0 0 48 48" aria-label="No Die and Plate Charges" role="img"><circle cx="24" cy="24" r="18" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M14 32 34 14M16 16l16 16M21 13l14 14M13 25l10 10" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M20 36h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-                    <span class="badge-label">No Die &amp; Plate<br>Charges</span>
+                    <span class="badge-label">No Die &amp; Plate Charges</span>
                 </div>
                 <div class="features-badges-wrapper">
                     <svg class="badge-icon-svg" viewBox="0 0 48 48" aria-label="Free Graphic Designing" role="img"><rect x="8" y="9" width="32" height="23" rx="2" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M14 38h20M24 32v6M14 15h20M17 20h7M17 25h12" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><circle cx="34" cy="23" r="3" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
-                    <span class="badge-label">Free Graphic<br>Designing</span>
+                    <span class="badge-label">Free Graphic Designing</span>
                 </div>
                 <div class="shipping-badge-wrapper">
                     <svg class="badge-icon-svg" viewBox="0 0 48 48" aria-label="Quick Turnaround Time" role="img"><circle cx="24" cy="24" r="17" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M24 14v11l7 4M10 24h-3M41 24h-3M24 7v-3M24 44v-3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
-                    <span class="badge-label">Quick Turnaround<br>Time</span>
+                    <span class="badge-label">Quick Turnaround Time</span>
                 </div>
                 <div class="fourth-badge-wrapper">
                     <svg class="badge-icon-svg" viewBox="0 0 48 48" aria-label="Free Shipping" role="img"><path d="M6 14h24v21H6zM30 22h7l6 7v6H30zM13 35a4 4 0 1 0 8 0M34 35a4 4 0 1 0 8 0M37 22v7h6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M12 20h10M12 25h7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
@@ -2394,310 +2403,72 @@
         </div>
     </section>
 
-    <!-- Tabs Section -->
-    <div class="tabs-section">
-        <div class="container">
-            <ul class="tabs-list">
-                <li class="tab-item active" onclick="switchTab('description')" id="tab-btn-description">Description</li>
-                <li class="tab-item" onclick="switchTab('specs')" id="tab-btn-specs">Product Specifications</li>
-                <li class="tab-item" onclick="switchTab('faqs')" id="tab-btn-faqs">FAQs</li>
-                <li class="tab-item" onclick="switchTab('order')" id="tab-btn-order">Order Process</li>
-            </ul>
-        </div>
-    </div>
-
-    <!-- Content Section -->
-    <section class="content-section container" id="content-description">
-        <style>
-            #desc-wrapper {
-                display: -webkit-box;
-                -webkit-line-clamp: 14;
-                -webkit-box-orient: vertical;
-                overflow: hidden;
-                line-height: 1.7;
-            }
-            #desc-wrapper a,
-            #desc-wrapper a * {
-                text-decoration: underline !important;
-                text-decoration-color: #5b2829 !important;
-                color: #5b2829 !important;
-            }
-            #desc-wrapper a:hover,
-            #desc-wrapper a:hover * {
-                text-decoration: underline !important;
-                text-decoration-color: #5b2829 !important;
-                color: #5b2829 !important;
-            }
-            #desc-wrapper.expanded {
-                display: block;
-                -webkit-line-clamp: unset;
-                overflow: visible;
-            }
-            .content-read-more-btn {
-                color: var(--primary-color, #8D4445);
-                cursor: pointer;
-                font-family: 'Open Sans', sans-serif;
-                font-weight: 700;
-                font-size: 14px;
-                text-decoration: none;
-                display: none;
-                margin-top: 5px;
-            }
-            .content-read-more-btn:hover {
-                text-decoration: underline;
-            }
-        </style>
-        <div id="desc-wrapper">
-            {!! !empty($product['long_description']) ? $product['long_description'] : '<p>' . ($product['description'] ?? '') . '</p>' !!}
-        </div>
-        
-        <script>
-            document.addEventListener('DOMContentLoaded', function() {
-                const wrapper = document.getElementById('desc-wrapper');
-                if (wrapper) {
-                    const btn = document.createElement('span');
-                    btn.className = 'content-read-more-btn';
-                    btn.textContent = 'Read More';
-                    wrapper.parentNode.insertBefore(btn, wrapper.nextSibling);
-
-                    // Check if content overflows the 14 lines clamp
-                    setTimeout(() => {
-                        if (wrapper.scrollHeight > wrapper.clientHeight + 10) {
-                            btn.style.display = 'inline-block';
-                        }
-                    }, 50);
-
-                    btn.onclick = function() {
-                        if (wrapper.classList.contains('expanded')) {
-                            wrapper.classList.remove('expanded');
-                            btn.textContent = 'Read More';
-                            
-                            // Scroll back to the top of the content section
-                            const offset = wrapper.getBoundingClientRect().top + window.scrollY - 150;
-                            window.scrollTo({ top: offset, behavior: 'smooth' });
-                        } else {
-                            wrapper.classList.add('expanded');
-                            btn.textContent = 'Read Less';
-                        }
-                    };
-                }
-            });
-        </script>
-    </section>
-
     <!-- Specs Section -->
-    <section class="specs-section" id="content-specs" style="display: none;">
-        <table class="specs-table">
-            <tr>
-                <td>Box Style</td>
-                <td>{{ $product['box_style'] ?? 'Custom Box Style' }}</td>
-            </tr>
-            <tr>
-                <td>Dimensions</td>
-                <td>{{ $product['dimensions'] ?? 'Custom Sizes Available' }}</td>
-            </tr>
-            <tr>
-                <td>MOQ</td>
-                <td>{{ $product['moq'] ?? '100 Units' }}</td>
-            </tr>
-            <tr>
-                <td>Material Stock</td>
-                <td>{{ $product['material'] ?? 'Premium Rigid Board / Cardstock' }}</td>
-            </tr>
-            <tr>
-                <td>Printing</td>
-                <td>{{ $product['printing'] ?? 'CMYK / PMS Color Printing' }}</td>
-            </tr>
-            <tr>
-                <td>Finishing</td>
-                <td>{{ $product['finishing'] ?? 'Soft-Touch Matte, Foil Stamping & Spot UV' }}</td>
-            </tr>
-            <tr>
-                <td>Included Options</td>
-                <td>Die Cutting, Window Patching, Custom Inserts</td>
-            </tr>
-            <tr>
-                <td>Turnaround</td>
-                <td>{{ $product['turnaround'] ?? '8 - 10 Business Days' }}</td>
-            </tr>
-        </table>
+    <section class="specs-section" id="content-specs">
+        <h2 style="font-family: 'Inter', sans-serif; font-size: 24px; font-weight: 700; color: #000; margin-bottom: 20px; padding-left: 0;">Product Specifications</h2>
+        <div style="border-radius: 8px; overflow: hidden; border: 1px solid #DDDDDD;">
+            <table class="specs-table" style="border-style: hidden;">
+                <tr>
+                    <td>Box Style</td>
+                    <td>{{ $product['box_style'] ?? 'Lipstick Boxes' }}</td>
+                </tr>
+                <tr>
+                    <td>Retail Boxes</td>
+                    <td>All Custom Sizes & Shapes</td>
+                </tr>
+                <tr>
+                    <td>MOQ</td>
+                    <td>{{ $product['moq'] ?? 'Starting from 100 Boxes' }}</td>
+                </tr>
+                <tr>
+                    <td>Paper Stock</td>
+                    <td>10pt to 28pt (60lb to 400lb) Eco-Friendly Kraft, E-flute Corrugated, Bux Board, Cardstock</td>
+                </tr>
+                <tr>
+                    <td>Printing</td>
+                    <td>{{ $product['printing'] ?? 'Digital (Standard and HD Print), Lithography, CMYK, CMYK + 1 PMS color, CMYK + 2 PMS colors' }}</td>
+                </tr>
+                <tr>
+                    <td>Finishing</td>
+                    <td>{{ $product['finishing'] ?? 'Gloss Lamination, Matte Lamination, Gloss AQ, Gloss UV, Matte UV, Spot UV, Embossing, Foiling' }}</td>
+                </tr>
+                <tr>
+                    <td>Included Options</td>
+                    <td>Die Cutting, Gluing, Scored,Perforation</td>
+                </tr>
+                <tr>
+                    <td>Proof</td>
+                    <td>Flat View, 3D Mock-up, Physical Sampling (On request)</td>
+                </tr>
+                <tr>
+                    <td>Turnaround</td>
+                    <td>{{ $product['turnaround'] ?? '12 - 16 days' }}</td>
+                </tr>
+                <tr>
+                    <td>Shipping</td>
+                    <td>Flat</td>
+                </tr>
+            </table>
+        </div>
     </section>
+
+    <!-- Customize Packaging Component (Coating and Finishing) -->
+    @include('components.coating-finishing')
+
+    <!-- How It Works Component (Simple 4-Step Order Process) -->
+    @include('components.howitworks')
+
+    <!-- Product Testimonials -->
+    @include('components.product-testimonials')
+
+    <!-- Quote Section (Redesigned) -->
+    @include('components.product-quote-new')
+
+    <!-- SEO Content Section -->
+    @include('components.content')
 
     <!-- FAQs Section -->
-    <section class="faqs-section" id="content-faqs" style="display: none;">
-        @foreach($faqs ?? [] as $faq)
-            <div class="faq-item">
-                <div class="faq-question" onclick="toggleFaq(this)">
-                    <span>{{ $faq['question'] ?? '' }}</span>
-                    <span class="faq-icon">+</span>
-                </div>
-                <div class="faq-answer"><p>{{ $faq['answer'] ?? '' }}</p></div>
-            </div>
-        @endforeach
-    </section>
-
-    <!-- Order Process Section -->
-    <section class="order-process-section" id="content-order" style="display: none;">
-        <div class="process-cards">
-            <div class="process-card">
-                <div class="process-icon"><i class="fas fa-gift"></i></div>
-                <h4>Customize Your Packaging</h4>
-                <p>Choose from our extensive packaging solutions and personalize them with a variety of options to bring your ideal packaging to life.</p>
-            </div>
-            <div class="process-card">
-                <div class="process-icon"><i class="fas fa-clipboard-list"></i></div>
-                <h4>Request a Quote</h4>
-                <p>After customizing your packaging, simply request a quote, and our packaging specialists will review your submission.</p>
-            </div>
-            <div class="process-card">
-                <div class="process-icon"><i class="fas fa-headset"></i></div>
-                <h4>Expert Consultation</h4>
-                <p>Get expert consultation on your quote to reduce costs, improve efficiency, and minimize environmental impact.</p>
-            </div>
-            <div class="process-card">
-                <div class="process-icon"><i class="fas fa-truck-fast"></i></div>
-                <h4>Production & Delivery</h4>
-                <p>After finalizing the details, we'll handle the entire production and shipping process. Just sit back and wait for your packaging to arrive!</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Finishes Section -->
-    <section class="finishes-section">
-        <h2 class="finishes-header">Custom Finishes <br class="mobile-heading-break">For Premium Feel</h2>
-        <div class="finishes-grid">
-            <div class="finishes-image-container">
-                <img src="{{ asset('uploads/finish-material-grey-board.webp') }}" alt="Grey Board Material" loading="lazy">
-                <div class="carousel-dots">
-                    <div class="carousel-dot active"></div>
-                    <div class="carousel-dot"></div>
-                    <div class="carousel-dot"></div>
-                    <div class="carousel-dot"></div>
-                    <div class="carousel-dot"></div>
-                </div>
-            </div>
-            <div class="finishes-details-box">
-                <div class="finishes-top-text">Materials We Offer</div>
-                <div class="finishes-middle-list">
-                    <div class="finish-item-light">Duplex Chipboard</div>
-                    <div class="finish-item-dark">Grey Board</div>
-                    <div class="finish-item-light">Holographic</div>
-                </div>
-                <div class="finishes-bottom-nav">
-                    <span class="active-nav">Materials</span>
-                    <span>Printing Methods</span>
-                    <span>Inks</span>
-                    <span>Finishing</span>
-                    <span>Add-ons</span>
-                    <span>Additional Options</span>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Quote Section -->
-    <section class="quote-section">
-        <div class="quote-grid">
-            <div class="quote-form">
-                <div class="quote-form-header">
-                    <div class="quote-icon-box"><img src="{{ asset('images/request-sample-kit.svg') }}" alt="sample kit" style="width: 50px; height: 50px;" ></div>
-                    <div>
-                        <h2>Request A Sample Kit</h2>
-                        <p>Fill out the form below and we'll send you a sample kit tailored to your needs.</p>
-                    </div>
-                </div>
-                
-                <form action="{{ url('/submit-quote') }}" method="POST" enctype="multipart/form-data">
-                    @csrf
-                    @if(session('success'))
-                        <div style="background-color: #d4edda; color: #155724; padding: 10px; border-radius: 5px; margin-bottom: 20px;">
-                            {{ session('success') }}
-                        </div>
-                    @endif
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label>Name *</label>
-                            <input type="text" name="name" class="form-control" placeholder="Name" oninput="this.value = this.value.replace(/[^a-zA-Z\s]/g, '')" required>
-                        </div>
-                        <div class="form-group">
-                            <label>Email Address *</label>
-                            <input type="email" name="email" class="form-control" placeholder="Email" required>
-                        </div>
-                        <div class="form-group">
-                            <label>Phone *</label>
-                            <input type="tel" name="phone" class="form-control" placeholder="Phone number" oninput="this.value = this.value.replace(/[^0-9+\-\(\)\s]/g, '')" required>
-                            
-                            <!-- Hidden inputs for required fields from backend validation -->
-                            <input type="hidden" name="width" value="N/A">
-                            <input type="hidden" name="length" value="N/A">
-                            <input type="hidden" name="depth" value="N/A">
-                            <input type="hidden" name="units" value="N/A">
-                        </div>
-                    </div>
-                    
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label>Company Name</label>
-                            <input type="text" name="company_name" class="form-control" placeholder="Company">
-                        </div>
-                        <div class="form-group">
-                            <label>Website</label>
-                            <input type="text" name="website" class="form-control" placeholder="Website">
-                        </div>
-                        <div class="form-group">
-                            <label>Physical Address</label>
-                            <input type="text" name="physical_address" class="form-control" placeholder="Address">
-                        </div>
-                    </div>
-                    
-                    <div class="form-row form-row-2col">
-                        <div class="form-group" style="flex: 1.5;">
-                            <label>Box Style *</label>
-                            <select name="box_style" class="form-control" id="quote-box-style">
-                                <option value="{{ $product['title'] ?? 'Custom Box' }}" selected>{{ $product['title'] ?? 'Custom Box' }}</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label>Quantity *</label>
-                            <input type="number" name="quantity" class="form-control" placeholder="Enter quantity" required>
-                        </div>
-                    </div>
-                    
-                    <div class="form-group" style="margin-bottom: 20px;">
-                        <label>Message</label>
-                        <textarea name="message" class="form-control" rows="4" placeholder="Enter your message"></textarea>
-                    </div>
-                    
-                    <div style="text-align: center;">
-                        <button type="submit" class="btn-submit-quote">Get Free Quote</button>
-                    </div>
-                </form>
-            </div>
-            
-            <div class="quote-info">
-                <h3>Premium Packaging<br>Starts Here</h3>
-                <div class="quote-title-line"></div>
-                
-                <!-- Using the specific image requested by user -->
-                <img src="{{ asset('uploads/product-cta.png') }}" alt="Premium Box" loading="lazy">
-                
-                <div class="features-list">
-                    <div class="feature-item">
-                        <div class="feature-icon"><img src="{{ asset('uploads/icon-premium-quality.svg') }}" alt="Premium Quality" loading="lazy"></div>
-                        <span>Premium<br>Quality</span>
-                    </div>
-                    <div class="feature-item">
-                        <div class="feature-icon"><img src="{{ asset('uploads/icon-custom-design.svg') }}" alt="Custom Designs" loading="lazy"></div>
-                        <span>Custom<br>Designs</span>
-                    </div>
-                    <div class="feature-item">
-                        <div class="feature-icon"><img src="{{ asset('uploads/icon-fast-delivery.svg') }}" alt="Fast & Reliable Delivery" loading="lazy"></div>
-                        <span>Fast & Reliable<br>Delivery</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+    @include('components.product-faq')
 
     <!-- Related Products -->
     <section class="related-products">
