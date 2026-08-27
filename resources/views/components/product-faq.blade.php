@@ -89,7 +89,7 @@
 
     @media (max-width: 768px) {
         .product-faq-heading {
-            font-size: 26px;
+            font-size: 24px;
             margin-bottom: 30px;
         }
         .product-faq-question {

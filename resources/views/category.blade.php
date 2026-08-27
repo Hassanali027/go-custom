@@ -6,35 +6,39 @@
     'schema' => $category['schema'] ?? '',
 ])
 
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
 <style>
     html,
     body {
         max-width: 100%;
-        overflow-x: clip;
     }
 
     /* Clothing Features Section */
     .clothing-features-section {
         background-color: #FDF7E5; 
-        padding: 60px 0;
+        padding: 50px 0;
         font-family: 'DM Sans', sans-serif;
     }
 
     .clothing-features-inner {
         max-width: 1280px;
         margin: 0 auto;
-        padding: 0 28px;
+        padding: 0 40px;
+        box-sizing: border-box;
         display: flex;
         flex-direction: column;
-        gap: 80px;
+        gap: 40px;
     }
 
     .clothing-features-title {
         text-align: center;
-        font-size: 28px;
+        font-family: 'Open Sans', sans-serif;
+        font-size: 34px;
         font-weight: 700;
         color: #111;
-        margin-bottom: 20px;
+        margin-bottom: 0;
+        line-height: 1.3;
     }
 
     .mobile-br { display: none; }
@@ -44,10 +48,11 @@
         display: flex;
         align-items: center;
         justify-content: space-between;
-        max-width: 1224px;
+        max-width: 1200px;
         margin: 0 auto;
         width: 100%;
-        gap: 60px;
+        gap: 40px;
+        box-sizing: border-box;
     }
 
     .clothing-feature-card.reverse {
@@ -55,67 +60,77 @@
     }
 
     .clothing-feature-text {
-        width: 539px;
-        flex-shrink: 0;
+        flex: 1 1 0;
+        min-width: 0;
+        max-width: 580px;
     }
 
     .clothing-feature-text h3 {
-        font-size: 24px;
+        font-family: 'Open Sans', sans-serif;
+        font-size: 30px;
         font-weight: 700;
         color: #111;
-        margin-bottom: 20px;
+        margin-bottom: 18px;
+        line-height: 1.3;
     }
 
     .clothing-feature-text p {
-        font-size: 15px;
-        line-height: 1.6;
-        color: #444;
+        font-family: 'DM Sans', sans-serif;
+        font-size: 16px;
+        line-height: 1.7;
+        color: black;
         margin: 0;
         text-align: justify;
     }
 
     .clothing-feature-image {
-        width: 565px;
-        height: 500px;
-        flex-shrink: 0;
-        border-radius: 16px;
+        flex: 1 1 0;
+        min-width: 0;
+        max-width: 400px;
+        width: 100%;
+        border-radius: 20px;
         overflow: hidden;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+        background-color: transparent;
     }
 
     .clothing-feature-image img {
         width: 100%;
-        height: 100%;
+        height: auto;
+        aspect-ratio: 1 / 1;
         object-fit: cover;
+        display: block;
+        border-radius: 20px;
     }
 
-    @media (max-width: 1024px) {
-        .clothing-feature-card, .clothing-feature-card.reverse {
-            flex-direction: column;
-            gap: 30px;
-            height: auto;
-        }
-        .clothing-feature-text, .clothing-feature-image {
-            width: 100%;
-            height: auto;
-        }
-    }
-
-    @media (max-width: 768px) {
+    @media (max-width: 992px) {
         .clothing-features-section {
-            margin: 0 15px;
-            padding: 40px 0;
-            border-radius: 8px;
+            padding: 40px 15px;
         }
         .clothing-features-inner {
-            gap: 20px;
+            padding: 0 10px;
+            gap: 40px;
         }
         .clothing-feature-card, .clothing-feature-card.reverse {
             flex-direction: column-reverse;
+            gap: 30px;
+        }
+        .clothing-feature-text, .clothing-feature-image {
+            max-width: 100%;
+            width: 100%;
+        }
+        .clothing-feature-text {
+            text-align: center;
+        }
+        .clothing-feature-text p {
+            text-align: center;
+        }
+        .clothing-feature-image {
+            max-width: 480px;
+            margin: 0 auto;
         }
         .clothing-features-title {
             font-size: 24px;
-            font-weight: 600;
-            color: #333;
             line-height: 1.4;
         }
         .mobile-br { display: block; }
@@ -273,6 +288,9 @@
     }
 
     .box-image-wrapper img {
+        position: absolute;
+        top: 0;
+        left: 0;
         width: 100%;
         height: 100%;
         display: block;
@@ -527,6 +545,9 @@
     }
 
     .custom-img-wrapper img {
+        position: absolute;
+        top: 0;
+        left: 0;
         width: 100%;
         height: 100%;
         object-fit: cover;
@@ -590,15 +611,15 @@
 
         .customize-tab {
             width: auto !important;
-            flex: 0 0 50% !important;
+            flex: 0 0 auto !important;
             height: 44px !important;
             min-height: 0 !important;
-            padding: 10px 10px !important;
-            font-size: 13px !important;
+            padding: 10px 16px !important;
+            font-size: 14px !important;
             font-weight: 700;
             text-align: center;
             white-space: nowrap !important;
-            border-radius: 0px !important;
+            border-radius: 4px 4px 0 0 !important;
             margin-bottom: -1px;
         }
 
@@ -617,8 +638,8 @@
         }
 
         .custom-card {
-            flex: 0 0 180.41px !important;
-            width: 180.41px !important;
+            flex: 0 0 200.01px !important;
+            width: 200.01px !important;
             padding: 0px !important;
             border-radius: 0px !important;
             box-shadow: none !important;
@@ -627,8 +648,7 @@
         }
 
         .custom-img-wrapper {
-            width: 180.41px !important;
-            height: 181.97px !important;
+            width: 100% !important;
             border-radius: 4.71px !important;
             margin-bottom: 10px !important;
             background: transparent !important;
@@ -930,42 +950,52 @@
             setTimeout(() => {
                 customizeCards.forEach(card => card.style.display = 'none');
 
-                cardOrder.forEach(function(cardIndex, position) {
-                    if (!cardSet[position]) return;
-                    
-                    const [imagePath, title] = cardSet[position];
-                    
-                    // Update Original Card
-                    const card1 = customizeCards[cardIndex];
-                    if(card1) {
-                        const image1 = card1.querySelector('img');
-                        image1.src = customizeUploadsUrl + imagePath;
-                        image1.alt = title;
-                        card1.querySelector('.custom-card-title').textContent = title;
-                        card1.style.order = position + 1;
-                        card1.style.display = 'flex';
-                    }
+                try {
+                    cardOrder.forEach(function(cardIndex, position) {
+                        if (!cardSet[position]) return;
+                        
+                        const [imagePath, title] = cardSet[position];
+                        
+                        // Update Original Card
+                        const card1 = customizeCards[cardIndex];
+                        if(card1) {
+                            const image1 = card1.querySelector('img');
+                            if (image1) {
+                                image1.src = customizeUploadsUrl + imagePath;
+                                image1.alt = title;
+                            }
+                            const title1 = card1.querySelector('.custom-card-title');
+                            if (title1) title1.textContent = title;
+                            card1.style.order = position + 1;
+                            card1.style.display = 'flex';
+                        }
 
-                    // Update Cloned Card
-                    const card2 = customizeCards[cardIndex + halfLength];
-                    if(card2) {
-                        const image2 = card2.querySelector('img');
-                        image2.src = customizeUploadsUrl + imagePath;
-                        image2.alt = title;
-                        card2.querySelector('.custom-card-title').textContent = title;
-                        card2.style.order = position + 1 + cardOrder.length;
-                        card2.style.display = 'flex';
-                    }
-                });
-
-                requestAnimationFrame(() => {
-                    customizeCards.forEach(card => {
-                        if (card.style.display !== 'none') {
-                            card.style.opacity = '1';
-                            card.style.transform = 'scale(1)';
+                        // Update Cloned Card
+                        const card2 = customizeCards[cardIndex + halfLength];
+                        if(card2) {
+                            const image2 = card2.querySelector('img');
+                            if (image2) {
+                                image2.src = customizeUploadsUrl + imagePath;
+                                image2.alt = title;
+                            }
+                            const title2 = card2.querySelector('.custom-card-title');
+                            if (title2) title2.textContent = title;
+                            card2.style.order = position + 1 + cardOrder.length;
+                            card2.style.display = 'flex';
                         }
                     });
-                });
+                } catch(e) {
+                    console.error("Error setting custom cards", e);
+                } finally {
+                    requestAnimationFrame(() => {
+                        customizeCards.forEach(card => {
+                            if (card.style.display !== 'none') {
+                                card.style.opacity = '1';
+                                card.style.transform = 'scale(1)';
+                            }
+                        });
+                    });
+                }
             }, 200);
         }
 

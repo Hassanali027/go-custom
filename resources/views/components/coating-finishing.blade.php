@@ -147,6 +147,7 @@
     }
 
     .custom-img-wrapper {
+        position: relative;
         width: 100%;
         aspect-ratio: 1;
         border-radius: 8px;
@@ -156,6 +157,9 @@
     }
 
     .custom-img-wrapper img {
+        position: absolute;
+        top: 0;
+        left: 0;
         width: 100%;
         height: 100%;
         object-fit: cover;
@@ -246,7 +250,8 @@
         }
 
         .custom-card {
-            flex: 0 0 calc(50% - 6px) !important;
+            flex: 0 0 200.01px !important;
+            width: 200.01px !important;
             padding: 0px !important;
             border-radius: 0px !important;
             box-shadow: none !important;
@@ -255,8 +260,7 @@
         }
 
         .custom-img-wrapper {
-            height: auto !important;
-            aspect-ratio: 1;
+            width: 100% !important;
             border-radius: 8px !important;
             margin-bottom: 10px !important;
             background: transparent !important;
@@ -372,8 +376,8 @@
                 </div>
             </div>
         </section>
+@if(!request()->is('*category*'))
 <script>
-    <script>
         const customizeCardOrders = {
             coating: [4, 5, 6, 7, 0, 1, 2, 3],
             special_finishes: [0, 1, 2, 3, 4, 5, 6],
@@ -559,3 +563,4 @@
         }
 
 </script>
+@endif

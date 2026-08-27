@@ -277,28 +277,38 @@
             color: #fff;
         }
 
-        .social-icons {
+        .contact-info-box .social-icons {
             display: flex;
             gap: 12px;
         }
 
-        .social-icon {
+        .contact-info-box .social-icon {
             background-color: #fff;
-            color: var(--dark-blue);
+            color: #0A2240;
             width: 32px;
             height: 32px;
-            border-radius: 4px;
+            border-radius: 8px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 16px;
+            font-size: 18px;
             text-decoration: none;
             transition: background 0.3s, color 0.3s;
         }
 
-        .social-icon:hover {
+        .contact-info-box .social-icon i, .contact-info-box .social-icon svg {
+            color: #0A2240;
+            fill: #0A2240;
+        }
+
+        .contact-info-box .social-icon:hover {
             background-color: var(--yellow);
             color: #000;
+        }
+        
+        .contact-info-box .social-icon:hover i, .contact-info-box .social-icon:hover svg {
+            color: #000;
+            fill: #000;
         }
 
         /* Map Section */
@@ -316,12 +326,57 @@
         @media (max-width: 991px) {
             .contact-grid {
                 grid-template-columns: 1fr;
+                gap: 20px;
             }
         }
 
         @media (max-width: 768px) {
             .contact-hero h1 { font-size: 36px; }
+            .contact-breadcrumb { display: none; }
             .contact-form { grid-template-columns: 1fr; }
+            .contact-form-box {
+                background-color: var(--section-background);
+                padding: 40px;
+                border-radius: 0px;
+                height: auto;
+            }
+            .contact-form-box > p {
+                display: none;
+            }
+            .contact-info-box {
+                margin-top: 30px;
+            }
+            .submit-btn {
+                background-color: var(--yellow);
+                color: #000;
+                border: none;
+                width: 273px;
+                height: 50px;
+                font-size: 16px;
+                font-weight: 700;
+                border-radius: 6px;
+                cursor: pointer;
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                gap: 10px;
+                transition: background 0.3s;
+            }
+            .map-section {
+                height: 460px;
+                max-width: 364px;
+                margin: 0 auto;
+                border-radius: 10px;
+                overflow: hidden;
+            }
+            .contact-form-box h2 {
+                font-family: 'Open Sans', sans-serif;
+                font-size: 27px;
+                font-weight: 700;
+                color: #000;
+                text-align: center;
+                margin: 0 0 15px 0;
+            }
         }
 
         @media (max-width: 480px) {
@@ -430,6 +485,7 @@
                             <a href="#" class="social-icon" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
                             <a href="#" class="social-icon" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
                             <a href="#" class="social-icon" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+                            <a href="#" class="social-icon" aria-label="Pinterest"><i class="fa-brands fa-pinterest-p"></i></a>
                             <a href="#" class="social-icon" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
                         </div>
                     </div>
