@@ -173,15 +173,17 @@
         flex: 1;
         display: flex;
         flex-direction: column;
-        justify-content: center;
-        gap: 40px;
+        justify-content: space-between;
+        padding-top: 83px;
+        padding-bottom: 90px;
+        gap:30px;
     }
 
     .qf-feature {
         display: flex;
         flex-direction: column;
         align-items: flex-start;
-        gap: 12px;
+        /* gap: px; */
     }
 
     .qf-feature-icon {
