@@ -71,6 +71,7 @@
         line-height: 1.6;
         color: #444;
         margin: 0;
+        text-align: justify;
     }
 
     .clothing-feature-image {
@@ -216,7 +217,8 @@
     /* Popular Boxes Section - Updated to Figma */
     .popular-boxes-section {
         background: #fff;
-        padding: 60px 0;
+        padding-top: 20px;
+        padding-bottom: 60px; /* Keep bottom padding */
     }
 
     .popular-boxes-inner {
@@ -353,7 +355,8 @@
         }
         
         .popular-boxes-section {
-            padding: 40px 0;
+            padding-top: 20px;
+            padding-bottom: 40px;
         }
         
         .section-title {
@@ -364,8 +367,8 @@
 
     /* Customize Section */
     .customize-section {
-        background: #FAFAFA;
-        padding: 48px 0 54px;
+        
+        padding: 0px 0 54px;
         font-family: 'Open Sans', sans-serif;
     }
 
@@ -481,20 +484,25 @@
 
     .customize-content {
         width: 100%;
+        overflow: hidden;
     }
 
     .customize-grid {
         display: flex;
         flex-direction: row;
         gap: 20px;
-        overflow-x: auto;
-        scrollbar-width: none;
-        -ms-overflow-style: none;
+        width: max-content;
+        animation: marqueeTrain 30s linear infinite;
         padding-bottom: 10px;
     }
     
-    .customize-grid::-webkit-scrollbar {
-        display: none;
+    .customize-grid:hover {
+        animation-play-state: paused;
+    }
+
+    @keyframes marqueeTrain {
+        0% { transform: translateX(0); }
+        100% { transform: translateX(calc(-50% - 10px)); }
     }
 
     .custom-card {
@@ -609,7 +617,8 @@
         }
 
         .custom-card {
-            flex: 0 0 calc(50% - 6px) !important;
+            flex: 0 0 180.41px !important;
+            width: 180.41px !important;
             padding: 0px !important;
             border-radius: 0px !important;
             box-shadow: none !important;
@@ -618,9 +627,9 @@
         }
 
         .custom-img-wrapper {
-            height: auto !important;
-            aspect-ratio: 1;
-            border-radius: 8px !important;
+            width: 180.41px !important;
+            height: 181.97px !important;
+            border-radius: 4.71px !important;
             margin-bottom: 10px !important;
             background: transparent !important;
             overflow: hidden;
@@ -893,7 +902,7 @@
 
     <script>
         const customizeCardOrders = {
-            coating: [4, 5, 6, 7, 0, 1, 2, 3],
+            coating: [0, 1, 2, 3, 4],
             special_finishes: [0, 1, 2, 3, 4, 5, 6],
             paperboard: [0, 1, 2, 3, 4, 5, 6, 7],
             corrugated: [7, 6, 5, 4, 3, 2, 1, 0],
@@ -902,6 +911,17 @@
             printing_options: [1, 0, 2, 3, 7, 5, 6, 4]
         };
 
+        const customizeGrid = document.querySelector('.customize-grid');
+        const originalCards = Array.from(customizeGrid.querySelectorAll('.custom-card'));
+        const halfLength = originalCards.length;
+        
+        // Duplicate cards for infinite marquee
+        originalCards.forEach(card => {
+            let clone = card.cloneNode(true);
+            clone.setAttribute('aria-hidden', 'true');
+            customizeGrid.appendChild(clone);
+        });
+        
         const customizeCards = Array.from(document.querySelectorAll('.customize-grid .custom-card'));
         const customizeSidebar = document.querySelector('.customize-sidebar');
         const customizeUploadsUrl = "{{ asset('') }}";
@@ -939,10 +959,7 @@
                 ['uploads/Aqueous-Coating-.webp', 'Aqueous Coating'],
                 ['uploads/Lamination.webp', 'Lamination'],
                 ['uploads/Soft-Touch-Coating-.webp', 'Soft-Touch Coating'],
-                ['uploads/Soft-Touch-Silk-Lamination-.webp', 'Soft-Touch Silk Lamination'],
-                ['uploads/Spot-Gloss-UV.webp', 'Spot Gloss UV'],
-                ['uploads/Spot-Gloss-UV-2.webp', 'Spot Gloss UV-2'],
-                ['uploads/UV-Coating-.webp', 'UV Coating']
+                ['uploads/Soft-Touch-Silk-Lamination-.webp', 'Soft-Touch Silk Lamination']
             ],
             corrugated: [
                 ['uploads/corrugated-divider.webp', 'Corrugated Divider'],
@@ -1003,20 +1020,38 @@
 
                 cardOrder.forEach(function(cardIndex, position) {
                     if (!cardSet[position]) return;
-                    const card = customizeCards[cardIndex];
+                    
                     const [imagePath, title] = cardSet[position];
-                    const image = card.querySelector('img');
-                    image.src = customizeUploadsUrl + imagePath;
-                    image.alt = title;
-                    card.querySelector('.custom-card-title').textContent = title;
-                    card.style.order = position + 1;
-                    card.style.display = 'flex';
+                    
+                    // Update Original Card
+                    const card1 = customizeCards[cardIndex];
+                    if(card1) {
+                        const image1 = card1.querySelector('img');
+                        image1.src = customizeUploadsUrl + imagePath;
+                        image1.alt = title;
+                        card1.querySelector('.custom-card-title').textContent = title;
+                        card1.style.order = position + 1;
+                        card1.style.display = 'flex';
+                    }
+
+                    // Update Cloned Card
+                    const card2 = customizeCards[cardIndex + halfLength];
+                    if(card2) {
+                        const image2 = card2.querySelector('img');
+                        image2.src = customizeUploadsUrl + imagePath;
+                        image2.alt = title;
+                        card2.querySelector('.custom-card-title').textContent = title;
+                        card2.style.order = position + 1 + cardOrder.length;
+                        card2.style.display = 'flex';
+                    }
                 });
 
                 requestAnimationFrame(() => {
                     customizeCards.forEach(card => {
-                        card.style.opacity = '1';
-                        card.style.transform = 'scale(1)';
+                        if (card.style.display !== 'none') {
+                            card.style.opacity = '1';
+                            card.style.transform = 'scale(1)';
+                        }
                     });
                 });
             }, 200);
