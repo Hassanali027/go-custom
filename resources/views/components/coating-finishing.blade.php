@@ -1,8 +1,7 @@
 <style>
-    /* Customize Section */
     .customize-section {
-        background: #FAFAFA;
-        padding: 48px 0 54px;
+        background: transparent;
+        padding: 0 0 24px;
         font-family: 'Open Sans', sans-serif;
     }
 
@@ -53,7 +52,7 @@
         font-family: 'Open Sans', sans-serif;
         font-size: 18px;
         color: var(--section-text-color);
-        margin-bottom: 40px;
+        margin-bottom: 24px;
         line-height: 1.5;
     }
 
@@ -118,20 +117,25 @@
 
     .customize-content {
         width: 100%;
+        overflow: hidden;
     }
 
     .customize-grid {
         display: flex;
         flex-direction: row;
         gap: 20px;
-        overflow-x: auto;
-        scrollbar-width: none;
-        -ms-overflow-style: none;
+        width: max-content;
+        animation: marqueeTrain 30s linear infinite;
         padding-bottom: 10px;
     }
     
-    .customize-grid::-webkit-scrollbar {
-        display: none;
+    .customize-grid:hover {
+        animation-play-state: paused;
+    }
+
+    @keyframes marqueeTrain {
+        0% { transform: translateX(0); }
+        100% { transform: translateX(calc(-50% - 10px)); }
     }
 
     .custom-card {
@@ -189,7 +193,7 @@
 
     @media (max-width: 576px) {
         .customize-section {
-            padding: 0px 0 36px;
+            padding: 30px 0 36px;
         }
 
         .customize-title {
@@ -223,10 +227,10 @@
 
         .customize-tab {
             width: auto !important;
-            flex: 0 0 50% !important;
+            flex: 0 0 auto !important;
             height: 44px !important;
             min-height: 0 !important;
-            padding: 10px 10px !important;
+            padding: 10px 20px !important;
             font-size: 13px !important;
             font-weight: 700;
             text-align: center;
@@ -285,7 +289,6 @@
             display: block;
         }
     }
-</style>
 </style>
         <!-- Customize Packaging Section -->
         <section class="customize-section">
@@ -388,6 +391,17 @@
             printing_options: [1, 0, 2, 3, 7, 5, 6, 4]
         };
 
+        const customizeGrid = document.querySelector('.customize-grid');
+        const originalCards = Array.from(customizeGrid.querySelectorAll('.custom-card'));
+        const halfLength = originalCards.length;
+        
+        // Duplicate cards for infinite marquee
+        originalCards.forEach(card => {
+            let clone = card.cloneNode(true);
+            clone.setAttribute('aria-hidden', 'true');
+            customizeGrid.appendChild(clone);
+        });
+        
         const customizeCards = Array.from(document.querySelectorAll('.customize-grid .custom-card'));
         const customizeSidebar = document.querySelector('.customize-sidebar');
         const customizeUploadsUrl = "{{ asset('') }}";
@@ -489,20 +503,38 @@
 
                 cardOrder.forEach(function(cardIndex, position) {
                     if (!cardSet[position]) return;
-                    const card = customizeCards[cardIndex];
+                    
                     const [imagePath, title] = cardSet[position];
-                    const image = card.querySelector('img');
-                    image.src = customizeUploadsUrl + imagePath;
-                    image.alt = title;
-                    card.querySelector('.custom-card-title').textContent = title;
-                    card.style.order = position + 1;
-                    card.style.display = 'flex';
+                    
+                    // Update Original Card
+                    const card1 = customizeCards[cardIndex];
+                    if(card1) {
+                        const image1 = card1.querySelector('img');
+                        image1.src = customizeUploadsUrl + imagePath;
+                        image1.alt = title;
+                        card1.querySelector('.custom-card-title').textContent = title;
+                        card1.style.order = position + 1;
+                        card1.style.display = 'flex';
+                    }
+
+                    // Update Cloned Card
+                    const card2 = customizeCards[cardIndex + halfLength];
+                    if(card2) {
+                        const image2 = card2.querySelector('img');
+                        image2.src = customizeUploadsUrl + imagePath;
+                        image2.alt = title;
+                        card2.querySelector('.custom-card-title').textContent = title;
+                        card2.style.order = position + 1 + cardOrder.length;
+                        card2.style.display = 'flex';
+                    }
                 });
 
                 requestAnimationFrame(() => {
                     customizeCards.forEach(card => {
-                        card.style.opacity = '1';
-                        card.style.transform = 'scale(1)';
+                        if (card.style.display !== 'none') {
+                            card.style.opacity = '1';
+                            card.style.transform = 'scale(1)';
+                        }
                     });
                 });
             }, 200);

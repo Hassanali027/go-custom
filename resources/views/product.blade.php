@@ -98,7 +98,8 @@
             max-width: 456px;
             display: flex;
             flex-direction: column;
-            justify-content: space-between;
+            justify-content: flex-start;
+            gap: 20px;
         }
         
         .hero-details {
@@ -154,7 +155,8 @@
         .thumbnails {
             display: flex;
             gap: 15px;
-            justify-content: center; /* Center align */
+            justify-content: space-between;
+            width: 100%;
         }
         
         .thumb {
@@ -272,14 +274,35 @@
             margin-bottom: 12px;
         }
         
-        /* Mobile view handled in main media query below */
-        
         .form-grid-4 {
             display: grid;
             grid-template-columns: 1fr 1fr 1fr 80px;
             gap: 8px;
             margin-bottom: 12px;
         }
+
+        .mobile-title-desc {
+            display: none;
+        }
+
+        @media (max-width: 991px) {
+            .desktop-title-desc {
+                display: none !important;
+            }
+            .mobile-title-desc {
+                display: block;
+                margin-top: 0px;
+            }
+            .hero-container {
+                flex-direction: column;
+                gap: 30px;
+            }
+            .trust-badges-container,
+            .features-badges-section {
+                display: none !important;
+            }
+        }
+
 
         .form-grid-2-upload {
             display: grid;
@@ -1599,6 +1622,7 @@
             .thumbnails {
                 flex-wrap: wrap;
                 gap: 10px;
+                margin-top: 0;
             }
             .thumb {
                 width: 65px;
@@ -2080,11 +2104,13 @@
                 <strong>{{ $pTitle }}</strong>
             </div>
             
-            <h1 style="font-size: 36px; margin-bottom: 10px; color: #000; line-height: 1.2; font-family: 'Open Sans', sans-serif;">{{ $pTitle }}</h1>
-            
-            <p class="desc-text" style="color: #333; font-size: 15px; line-height: 1.6; margin-bottom: 25px;">
-                {{ $descText }}
-            </p>
+            <div class="desktop-title-desc">
+                <h1 style="font-size: 36px; margin-bottom: 10px; color: #000; line-height: 1.2; font-family: 'Open Sans', sans-serif;">{{ $pTitle }}</h1>
+                
+                <p class="desc-text" style="color: #333; font-size: 15px; line-height: 1.6; margin-bottom: 25px; text-align: justify;">
+                    {{ $descText }}
+                </p>
+            </div>
         </div>
         <div class="container hero-container">
             @php
@@ -2131,7 +2157,13 @@
                 </div>
                 @endif
                 
+            </div>
 
+            <div class="mobile-title-desc">
+                <h1 style="font-size: 28px; margin-bottom: 10px; color: #000; line-height: 1.2; font-family: 'Open Sans', sans-serif; font-weight: 700;">{{ $pTitle }}</h1>
+                <p class="desc-text" style="color: #333; font-size: 15px; line-height: 1.6; margin-bottom: 20px; text-align: justify;">
+                    {{ $descText }}
+                </p>
             </div>
 
             <script>
@@ -2151,8 +2183,8 @@
                     }
                 }
             </script>
-            <div class="hero-form hero-quote-box" style="background-color: #FFF9F0; padding: 35px 30px; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.05);">
-                <h3 style="text-align: center; font-family: 'Open Sans', sans-serif; font-size: 24px; font-weight: 700; color: #000; margin-bottom: 25px;">Instant Quotes, Quick Service</h3>
+            <div class="hero-form hero-quote-box" style="background-color: #FFF8E7; padding: 20px 30px; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.05); height: 622px;">
+                <h3 style="text-align: center; font-family: 'Open Sans', sans-serif; font-size: 24px; font-weight: 700; color: #000; margin-bottom: 15px;">Instant Quotes, Quick Service</h3>
                 
                 <form action="{{ url('/submit-quote') }}" method="POST" enctype="multipart/form-data">
                     @csrf
@@ -2161,20 +2193,20 @@
                         .hero-quote-box .form-grid-3 {
                             display: grid; 
                             grid-template-columns: repeat(3, 1fr); 
-                            gap: 15px; 
-                            margin-bottom: 15px;
+                            gap: 12px; 
+                            margin-bottom: 10px;
                         }
                         .hero-quote-box .form-grid-4 {
                             display: grid; 
                             grid-template-columns: 1.55fr 1.55fr 1.55fr 1fr; 
-                            gap: 15px; 
-                            margin-bottom: 15px;
+                            gap: 12px; 
+                            margin-bottom: 10px;
                         }
                         .hero-quote-box .form-grid-2-upload {
                             display: grid; 
                             grid-template-columns: 1fr 1fr; 
-                            gap: 15px; 
-                            margin-bottom: 15px;
+                            gap: 12px; 
+                            margin-bottom: 10px;
                         }
 
                         @media (max-width: 1150px) {
@@ -2185,26 +2217,22 @@
                         @media (max-width: 991px) {
                             .hero-quote-box {
                                 padding: 25px 20px !important;
+                                border-radius: 0 !important;
+                                width: 100vw !important;
+                                margin-left: calc(-50vw + 50%) !important;
+                                margin-right: calc(-50vw + 50%) !important;
+                                max-width: 100vw !important;
+                                box-sizing: border-box !important;
+                                height: auto !important;
                             }
                         }
                         @media (max-width: 768px) {
                             .hero-quote-box .form-grid-3,
-                            .hero-quote-box .form-grid-4,
                             .hero-quote-box .form-grid-2-upload {
                                 grid-template-columns: 1fr;
                             }
-                            .hero-quote-box .file-upload-wrap {
-                                flex-direction: column;
-                                height: auto !important;
-                            }
-                            .hero-quote-box .file-upload-wrap input[type="text"] {
-                                border-radius: 8px !important;
-                                border-right: 1px solid #c4b5a5 !important;
-                                margin-bottom: 10px;
-                            }
-                            .hero-quote-box .file-upload-wrap .upload-btn {
-                                border-radius: 8px !important;
-                                width: 100%;
+                            .hero-quote-box .form-grid-4 {
+                                grid-template-columns: 1fr 1fr;
                             }
                         }
                         .hero-quote-box .quote-input,
@@ -2212,7 +2240,7 @@
                         .hero-quote-box select.form-control,
                         .hero-quote-box textarea.form-control {
                             width: 100% !important;
-                            background-color: #FFF9F0 !important;
+                            background-color: #FFF8E7 !important;
                             border: 1px solid #c4b5a5 !important;
                             border-radius: 8px !important;
                             color: #333333 !important;
@@ -2241,7 +2269,7 @@
                             appearance: none !important;
                             -webkit-appearance: none !important;
                             -moz-appearance: none !important;
-                            background-color: #FFF9F0 !important;
+                            background-color: #FFF8E7 !important;
                             background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23333333' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E") !important;
                             background-repeat: no-repeat !important;
                             background-position: right 14px center !important;
@@ -2250,7 +2278,7 @@
                             cursor: pointer !important;
                         }
                         .hero-quote-box select option {
-                            background-color: #FFF9F0 !important;
+                            background-color: #FFF8E7 !important;
                             color: #333333 !important;
                         }
                         .hero-quote-box .quote-input::placeholder,
@@ -2267,7 +2295,7 @@
                         .hero-quote-box .file-upload-wrap input[type="text"] {
                             border-radius: 8px 0 0 8px !important;
                             border-right: none !important;
-                            background-color: #FFF9F0 !important;
+                            background-color: #FFF8E7 !important;
                             flex: 1 !important;
                         }
                         .hero-quote-box .file-upload-wrap .upload-btn {
@@ -2293,81 +2321,160 @@
                         }
                         .hero-quote-box .quote-submit-btn {
                             background-color: #FFB800 !important;
-                            color: #000000 !important;
+                            color: #002147 !important;
                             border: none !important;
                             border-radius: 8px !important;
                             font-weight: 700 !important;
                             font-size: 16px !important;
                             cursor: pointer !important;
                             width: 354px !important;
+                            max-width: 100% !important;
                             height: 50px !important;
                             display: flex !important;
                             align-items: center !important;
                             justify-content: center !important;
-                            margin: 0 auto !important; /* To keep it centered if it was centered before */
+                            margin: 0 auto !important;
                             transition: transform 0.2s ease, filter 0.2s ease !important;
                         }
                         .hero-quote-box .quote-submit-btn:hover {
                             filter: brightness(0.95) !important;
                         }
+                        .hero-quote-box .input-group {
+                            display: flex;
+                            flex-direction: column;
+                        }
+                        .hero-quote-box .input-group label {
+                            font-size: 11px;
+                            font-weight: 700;
+                            color: #333;
+                            margin-bottom: 6px;
+                            text-align: left;
+                            font-family: 'DM Sans', sans-serif;
+                        }
+                        .hero-quote-box .form-bottom-grid {
+                            display: grid;
+                            grid-template-columns: repeat(6, 1fr);
+                            gap: 15px;
+                            margin-bottom: 15px;
+                        }
+                        .hero-quote-box .form-bottom-grid > :nth-child(1),
+                        .hero-quote-box .form-bottom-grid > :nth-child(2),
+                        .hero-quote-box .form-bottom-grid > :nth-child(3) {
+                            grid-column: span 2;
+                        }
+                        .hero-quote-box .form-bottom-grid > :nth-child(4),
+                        .hero-quote-box .form-bottom-grid > :nth-child(5) {
+                            grid-column: span 3;
+                        }
+                        @media (max-width: 768px) {
+                            .hero-quote-box .form-bottom-grid {
+                                grid-template-columns: 1fr 1fr;
+                            }
+                            .hero-quote-box .form-bottom-grid > :nth-child(1),
+                            .hero-quote-box .form-bottom-grid > :nth-child(2),
+                            .hero-quote-box .form-bottom-grid > :nth-child(3),
+                            .hero-quote-box .form-bottom-grid > :nth-child(4) {
+                                grid-column: span 1;
+                            }
+                            .hero-quote-box .form-bottom-grid > :nth-child(5) {
+                                grid-column: span 2;
+                            }
+                            .hero-quote-box .quote-submit-btn {
+                                width: 236px !important;
+                            }
+                        }
                     </style>
 
                     <div class="form-grid-3">
-                        <input type="text" name="name" class="quote-input" placeholder="Name *" oninput="this.value = this.value.replace(/[^a-zA-Z\s]/g, '')" required>
-                        <input type="email" name="email" class="quote-input" placeholder="Email *" required>
-                        <input type="tel" name="phone" class="quote-input" placeholder="Phone number *" oninput="this.value = this.value.replace(/[^0-9+\-\(\)\s]/g, '')" required>
-                    </div>
-
-                    <div class="form-grid-4">
-                        <input type="number" name="width" class="quote-input" placeholder="Width *" required>
-                        <input type="number" name="length" class="quote-input" placeholder="Length *" required>
-                        <input type="number" name="depth" class="quote-input" placeholder="Depth *" required>
-                        <select name="units" class="quote-input" required>
-                            <option value="" disabled selected>mm *</option>
-                            <option>mm</option>
-                            <option>cm</option>
-                            <option>inch</option>
-                        </select>
-                    </div>
-
-                    <div class="form-grid-3">
-                        <select name="material" class="quote-input" required>
-                            <option value="" disabled selected>Select Material</option>
-                            <option>12pt Cardboard Stock</option>
-                            <option>14pt Cardboard Stock</option>
-                            <option>16pt Cardboard Stock</option>
-                            <option>18pt Cardboard Stock</option>
-                            <option>20pt Cardboard Stock</option>
-                            <option>Kraft Stock</option>
-                            <option>Corrugated Stock</option>
-                            <option>Rigid Stock</option>
-                        </select>
-                        <select name="color" class="quote-input" required>
-                            <option value="" disabled selected>Color Options</option>
-                            <option>1 color</option>
-                            <option>2 color</option>
-                            <option>3 color</option>
-                            <option>4 color (CMYK)</option>
-                            <option>No Printing</option>
-                        </select>
-                        <select name="turnaround" class="quote-input" required>
-                            <option value="" disabled selected>Turn Around Time</option>
-                            <option>Standard (8-10 Days)</option>
-                            <option>Rush (4-6 Days)</option>
-                        </select>
-                        <input type="hidden" name="box_style" value="{{ $product['title'] ?? 'Custom Box' }}">
-                    </div>
-                    
-                    <div class="form-grid-2-upload">
-                        <input type="number" name="quantity" class="quote-input" placeholder="Quantity" required>
-                        <div class="file-upload-wrap">
-                            <input type="file" name="quote_file" id="quote_file_input" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; opacity: 0; cursor: pointer;" onchange="document.getElementById('quote_file_text').value = this.files.length > 0 ? this.files[0].name : ''">
-                            <input type="text" id="quote_file_text" class="quote-input" placeholder="No file choosen" readonly style="pointer-events: none;">
-                            <button type="button" class="upload-btn" style="pointer-events: none;">Upload</button>
+                        <div class="input-group">
+                            <label>Name *</label>
+                            <input type="text" name="name" class="quote-input" placeholder="Enter your name" oninput="this.value = this.value.replace(/[^a-zA-Z\s]/g, '')" required>
+                        </div>
+                        <div class="input-group">
+                            <label>Email Address *</label>
+                            <input type="email" name="email" class="quote-input" placeholder="Enter your email" required>
+                        </div>
+                        <div class="input-group">
+                            <label>Phone *</label>
+                            <input type="tel" name="phone" class="quote-input" placeholder="Enter your number" oninput="this.value = this.value.replace(/[^0-9+\-\(\)\s]/g, '')" required>
                         </div>
                     </div>
 
-                    <div style="margin-bottom: 25px;">
+                    <div class="form-grid-4">
+                        <div class="input-group">
+                            <label>Width *</label>
+                            <input type="number" name="width" class="quote-input" placeholder="Width" required>
+                        </div>
+                        <div class="input-group">
+                            <label>Length *</label>
+                            <input type="number" name="length" class="quote-input" placeholder="Length" required>
+                        </div>
+                        <div class="input-group">
+                            <label>Depth *</label>
+                            <input type="number" name="depth" class="quote-input" placeholder="Depth" required>
+                        </div>
+                        <div class="input-group">
+                            <label>Units *</label>
+                            <select name="units" class="quote-input" required>
+                                <option value="" disabled selected>mm</option>
+                                <option>mm</option>
+                                <option>cm</option>
+                                <option>inch</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-bottom-grid">
+                        <div class="input-group">
+                            <label>Select Material</label>
+                            <select name="material" class="quote-input" required>
+                                <option value="" disabled selected>Choose option</option>
+                                <option>12pt Cardboard Stock</option>
+                                <option>14pt Cardboard Stock</option>
+                                <option>16pt Cardboard Stock</option>
+                                <option>18pt Cardboard Stock</option>
+                                <option>20pt Cardboard Stock</option>
+                                <option>Kraft Stock</option>
+                                <option>Corrugated Stock</option>
+                                <option>Rigid Stock</option>
+                            </select>
+                        </div>
+                        <div class="input-group">
+                            <label>Color Options</label>
+                            <select name="color" class="quote-input" required>
+                                <option value="" disabled selected>Choose option</option>
+                                <option>1 color</option>
+                                <option>2 color</option>
+                                <option>3 color</option>
+                                <option>4 color (CMYK)</option>
+                                <option>No Printing</option>
+                            </select>
+                        </div>
+                        <div class="input-group">
+                            <label>Turn Around Time</label>
+                            <select name="turnaround" class="quote-input" required>
+                                <option value="" disabled selected>Choose option</option>
+                                <option>Standard (8-10 Days)</option>
+                                <option>Rush (4-6 Days)</option>
+                            </select>
+                        </div>
+                        <div class="input-group">
+                            <label>Quantity *</label>
+                            <input type="number" name="quantity" class="quote-input" placeholder="Enter quantity" required>
+                        </div>
+                        <div class="input-group">
+                            <label>Upload File Here</label>
+                            <div class="file-upload-wrap">
+                                <input type="file" name="quote_file" id="quote_file_input" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; opacity: 0; cursor: pointer;" onchange="document.getElementById('quote_file_text').value = this.files.length > 0 ? this.files[0].name : ''">
+                                <input type="text" id="quote_file_text" class="quote-input" placeholder="No file choosen" readonly style="pointer-events: none;">
+                                <button type="button" class="upload-btn" style="pointer-events: none;">Upload</button>
+                            </div>
+                        </div>
+                        <input type="hidden" name="box_style" value="{{ $product['title'] ?? 'Custom Box' }}">
+                    </div>
+
+                    <div style="margin-bottom: 15px;" class="input-group">
+                        <label>Message</label>
                         <textarea name="message" class="quote-input" rows="4" placeholder="Enter your message"></textarea>
                     </div>
 
@@ -2405,9 +2512,38 @@
 
     <!-- Specs Section -->
     <section class="specs-section" id="content-specs">
+        <style>
+            @media (max-width: 991px) {
+                .specs-section h2 {
+                    text-align: center !important;
+                    font-size: 22px !important;
+                }
+                .specs-table {
+                    width: 100% !important;
+                    border-collapse: collapse !important;
+                }
+                .specs-table td {
+                    border: 1px solid #EAEAEA !important;
+                    padding: 12px 15px !important;
+                    font-size: 13px !important;
+                    color: #333 !important;
+                }
+                .specs-table tr:nth-child(odd) {
+                    background-color: #FFF8E7 !important;
+                }
+                .specs-table tr:nth-child(even) {
+                    background-color: #FFFFFF !important;
+                }
+                .specs-table tr td:first-child {
+                    font-weight: 700 !important;
+                    width: 35% !important;
+                    color: #000 !important;
+                }
+            }
+        </style>
         <h2 style="font-family: 'Inter', sans-serif; font-size: 24px; font-weight: 700; color: #000; margin-bottom: 20px; padding-left: 0;">Product Specifications</h2>
         <div style="border-radius: 8px; overflow: hidden; border: 1px solid #DDDDDD;">
-            <table class="specs-table" style="border-style: hidden;">
+            <table class="specs-table" style="border-style: hidden; width: 100%;">
                 <tr>
                     <td>Box Style</td>
                     <td>{{ $product['box_style'] ?? 'Lipstick Boxes' }}</td>

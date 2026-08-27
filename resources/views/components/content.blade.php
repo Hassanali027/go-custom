@@ -24,11 +24,11 @@
         border: none;
         padding: 48px 20px 48px 56px;
         box-sizing: border-box;
-        height: 787px;
+        max-height: 787px;
     }
 
     .text-content-inner {
-        height: 100%;
+        max-height: calc(787px - 96px);
         overflow-y: auto;
         padding-right: 26px;
         scrollbar-width: thin;
