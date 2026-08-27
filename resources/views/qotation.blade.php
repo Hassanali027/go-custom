@@ -201,12 +201,23 @@
             border-radius: 8px;
             font-size: 14px;
             font-family: 'DM Sans', sans-serif;
-            background-color: #FFFFFF !important;
+            background-color: transparent !important;
             color: #2D2D2D;
             box-sizing: border-box;
             outline: none;
             transition: border-color 0.2s ease, box-shadow 0.2s ease;
             scroll-margin-top: 150px;
+        }
+        
+        .iq-form-group select {
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' width='16' height='16' fill='none' stroke='%23333' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 16px center;
+            padding-right: 40px;
+            cursor: pointer;
         }
 
         /* Remove number input spinner arrows */
@@ -275,11 +286,19 @@
                 max-width: 100%;
                 flex: 1 1 100%;
                 padding: 32px 24px;
+                order: 1;
             }
             .iq-page-sidebar {
                 flex: 1 1 100%;
                 width: 100%;
                 max-width: 100%;
+                order: 2;
+                margin-top: 5px; /* Compensates for 20px gap to equal 25px */
+            }
+            .iq-page-sidebar > h2,
+            .iq-page-sidebar > p,
+            .iq-page-sidebar > div:not(.iq-sidebar-card) {
+                display: none !important;
             }
         }
 
@@ -295,12 +314,46 @@
                 display: none;
             } 
             .iq-page-container {
-                padding: 0 20px 40px;
+                padding: 0 0 40px;
                 gap: 20px;
             }
             .iq-page-form-card {
                 padding: 22px 16px;
                 border-radius: 12px;
+                background-color: #FFF9F0;
+                border: none;
+                margin-top: 36px;
+                width: 100%;
+            }
+            .iq-page-form-card h2 {
+                font-size: 19px;
+                font-weight: 800;
+                color: #000000;
+                margin-bottom: 24px;
+            }
+            .iq-page-form-card .iq-form-group input,
+            .iq-page-form-card .iq-form-group select,
+            .iq-page-form-card .iq-form-group textarea {
+                background-color: transparent !important;
+                border: 1px solid #D5C7B8 !important;
+            }
+            .iq-upload-wrapper {
+                background-color: transparent !important;
+                border: 1px solid #D5C7B8 !important;
+            }
+            .iq-upload-wrapper input[type="text"] {
+                border: none !important;
+            }
+            .iq-upload-btn {
+                background-color: #FFB400 !important;
+                color: #000 !important;
+            }
+            .iq-submit-btn {
+                background-color: #FFB400 !important;
+                color: #001533 !important;
+                max-width: 240px !important;
+                width: 100% !important;
+                border-radius: 8px !important;
             }
             .iq-grid-2,
             .iq-grid-3 {
@@ -314,11 +367,7 @@
         }
 
         @media (max-width: 400px) {
-            
-            
-            .iq-grid-4 {
-                grid-template-columns: 1fr;
-            }
+            /* Kept for future specific small screen overrides */
         }
 
         .iq-features-container {
@@ -369,8 +418,9 @@
 
         @media (max-width: 576px) {
             .iq-features-container {
-                grid-template-columns: 1fr;
+                grid-template-columns: repeat(2, 1fr);
                 padding: 30px 20px;
+                gap: 20px;
             }
         }
     </style>
@@ -517,10 +567,10 @@
                         </div>
                         <div class="iq-form-group">
                             <label>Upload File Here</label>
-                            <div style="display: flex; align-items: center; border: 1px solid #E2D9D5; border-radius: 8px; overflow: hidden; background: #FFFFFF; height: 44px;">
+                            <div class="iq-upload-wrapper" style="display: flex; align-items: center; border: 1px solid #E2D9D5; border-radius: 8px; overflow: hidden; background: transparent; height: 44px;">
                                 <input type="file" name="quote_file" id="quote-file-input" style="display: none;" onchange="document.getElementById('quote-file-name').value = this.files[0] ? this.files[0].name : ''">
                                 <input type="text" id="quote-file-name" placeholder="No file chosen" readonly style="flex: 1; padding: 0 14px; border: none; font-size: 14px; background: transparent; outline: none; color: #666; height: 100%;">
-                                <button type="button" onclick="document.getElementById('quote-file-input').click()" style="background-color: var(--secondary-color); color: var(--primary-color); border: none; padding: 0 20px; font-size: 14px; font-weight: 700; cursor: pointer; height: 100%; font-family: 'DM Sans', sans-serif;">Upload</button>
+                                <button type="button" class="iq-upload-btn" onclick="document.getElementById('quote-file-input').click()" style="background-color: var(--secondary-color); color: var(--primary-color); border: none; padding: 0 20px; font-size: 14px; font-weight: 700; cursor: pointer; height: 100%; font-family: 'DM Sans', sans-serif;">Upload</button>
                             </div>
                         </div>
                     </div>
@@ -533,7 +583,7 @@
                     
                     <!-- Submit button -->
                     <div style="text-align: center; margin-top: 10px;">
-                        <button type="submit" style="background-color: var(--secondary-color); color: var(--primary-color); border: none; border-radius: 6px; padding: 14px 40px; font-size: 16px; font-weight: 700; font-family: 'Open Sans', sans-serif; width: 100%; max-width: 320px; cursor: pointer; transition: background-color 0.2s ease;" onmouseover="this.style.backgroundColor='#e0d5d3'" onmouseout="this.style.backgroundColor='var(--secondary-color)'">Get a Quote</button>
+                        <button type="submit" class="iq-submit-btn" style="background-color: var(--secondary-color); color: var(--primary-color); border: none; border-radius: 6px; padding: 14px 40px; font-size: 16px; font-weight: 700; font-family: 'Open Sans', sans-serif; width: 100%; max-width: 320px; cursor: pointer; transition: background-color 0.2s ease;" onmouseover="this.style.backgroundColor='#e0d5d3'" onmouseout="this.style.backgroundColor='var(--secondary-color)'">Get a Quote</button>
                     </div>
                 </form>
             </div>
