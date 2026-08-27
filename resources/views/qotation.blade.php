@@ -197,7 +197,7 @@
             width: 100%;
             height: 44px;
             padding: 0 14px;
-            border: 0.5px solid #8d4445;
+            border: 0.5px solid black;
             border-radius: 8px;
             font-size: 14px;
             font-family: 'DM Sans', sans-serif;
@@ -444,7 +444,7 @@
             <!-- Left sidebar section -->
             <div class="iq-page-sidebar" style="padding: 0; background: transparent; box-shadow: none;">
                 <h2 style="font-family: 'Open Sans', sans-serif; font-size: 25px; font-weight: 700; color: #000; margin-bottom: 16px; margin-top: 0;">Let's Build Your Perfect Box</h2>
-                <p style="font-family: 'DM Sans', sans-serif; font-size: 15px; color: #333; line-height: 1.6; margin-bottom: 24px;">
+                <p style="font-family: 'DM Sans', sans-serif; font-size: 15px; color: #333; line-height: 1.6; margin-bottom: 24px; text-align: justify;">
                     From simple to premium, we create custom packaging designed around your product and brand. Tell us what you need, and our team will help bring your packaging vision to life with the right size, material, finish, and print. Fill out the form to get started.
                 </p>
                 <div style="width: 100%; aspect-ratio: 1; background-color: #D9D9D9; border-radius: 12px; margin-bottom: 24px; display: flex; justify-content: center; align-items: center;">
