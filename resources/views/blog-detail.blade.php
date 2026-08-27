@@ -583,15 +583,7 @@
                     </div>
                 </div>
 
-                <hr style="border: none; border-top: 1px dotted #ccc; margin: 30px 0;" class="toc-widget">
 
-                <!-- TOC Widget -->
-                <div class="widget toc-widget">
-                    <div class="widget-title">Table Of Content</div>
-                    <ul class="toc-list" id="tocList">
-                        <!-- Populated by JS -->
-                    </ul>
-                </div>
 
             </div>
 
