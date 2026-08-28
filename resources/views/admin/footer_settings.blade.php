@@ -24,8 +24,8 @@
         transition: border-color 0.2s ease, box-shadow 0.2s ease;
     }
     .multiselect-trigger:hover, .custom-multiselect-container.open .multiselect-trigger {
-        border-color: #8d4445;
-        box-shadow: 0 0 0 3px rgba(141,68,69,0.1);
+        border-color: #FFB400;
+        box-shadow: 0 0 0 3px rgba(255,180,0,0.16);
     }
     .selected-tags {
         display: flex;
@@ -37,7 +37,7 @@
     }
     .tag-chip {
         background: #fbfafb;
-        color: #8d4445;
+        color: #0B2240;
         font-size: 12px;
         font-weight: 700;
         padding: 4px 10px;
@@ -45,7 +45,7 @@
         display: inline-flex;
         align-items: center;
         gap: 6px;
-        border: 1px solid #f0dddd;
+        border: 1px solid #f2d78e;
     }
     .tag-chip i {
         cursor: pointer;
@@ -102,7 +102,7 @@
         margin-bottom: 6px;
     }
     .dropdown-actions span {
-        color: #8d4445;
+        color: #0B2240;
         cursor: pointer;
     }
     .dropdown-actions span:hover {
@@ -133,7 +133,7 @@
     .dropdown-option-item input[type="checkbox"] {
         width: 16px;
         height: 16px;
-        accent-color: #8d4445;
+        accent-color: #FFB400;
         cursor: pointer;
     }
 </style>

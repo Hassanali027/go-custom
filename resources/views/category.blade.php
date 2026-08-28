@@ -689,23 +689,16 @@
         <!-- Popular Boxes Section -->
         <section class="popular-boxes-section">
             <div class="popular-boxes-inner">
-                <h2 class="section-title">Packaging Made For Every Product</h2>
-                <p class="section-subtitle">Custom packaging for every industry, from retail and beauty to electronics—designed to fit your style and requirements.</p>
+                <h2 class="section-title">{{ $category['products_heading'] ?: 'Packaging Made For Every Product' }}</h2>
+                <p class="section-subtitle">{{ $category['products_description'] ?: 'Explore products available in this category, designed to fit your style and requirements.' }}</p>
 
                 <div class="boxes-grid">
                     @php
                         $catProducts = !empty($products) ? (is_object($products) ? $products->toArray() : $products) : [];
-                        if (count($catProducts) > 0 && count($catProducts) < 4) {
-                            $first = $catProducts[0];
-                            while(count($catProducts) < 4) {
-                                $catProducts[] = $first;
-                            }
-                        } elseif (count($catProducts) == 0) {
-                            for($i=0; $i<4; $i++) {
-                                $catProducts[] = ['title' => 'bra boxes', 'slug' => 'bra-boxes'];
-                            }
-                        }
                     @endphp
+                    @if(count($catProducts) === 0)
+                        <p style="grid-column:1/-1;text-align:center;color:#667085;padding:30px 0;">No products have been added to this category yet.</p>
+                    @endif
                     @foreach ($catProducts as $p)
                         @php
                             $pImg = '';
@@ -718,13 +711,11 @@
                             }
                             
                             if (!empty($p['image'])) {
-                                $pImg = 'uploads/allcategory-cta.webp';
+                                $pImg = $p['image'];
+                            } elseif (!empty($pGalleryRaw)) {
+                                $pImg = $pGalleryRaw[0];
                             } else {
-                                if (!empty($pGalleryRaw) && count($pGalleryRaw) > 0) {
-                                    $pImg = 'uploads/allcategory-cta.webp';
-                                } else {
-                                    $pImg = 'uploads/allcategory-cta.webp';
-                                }
+                                $pImg = 'uploads/allcategory-cta.webp';
                             }
                             
                             $pHoverImg = '';

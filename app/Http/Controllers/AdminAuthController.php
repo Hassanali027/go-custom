@@ -32,7 +32,7 @@ class AdminAuthController extends Controller
         }
 
         // Fallback default admin credentials if DB user is not yet created
-        $defaultEmail = 'admin@rigidboxes.com';
+        $defaultEmail = 'admin@gocustomboxes.com';
         $defaultPass = 'admin123';
 
         if (strtolower($request->email) === $defaultEmail && $request->password === $defaultPass) {

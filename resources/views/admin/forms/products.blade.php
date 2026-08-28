@@ -24,13 +24,13 @@
         cursor: pointer; transition: border-color 0.2s ease, box-shadow 0.2s ease;
     }
     .multiselect-trigger:hover, .custom-multiselect-container.open .multiselect-trigger {
-        border-color: var(--primary); box-shadow: 0 0 0 3px rgba(141,68,69,0.1);
+        border-color: var(--primary); box-shadow: 0 0 0 3px rgba(255,180,0,0.16);
     }
     .selected-tags { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; flex: 1; margin-right: 10px; }
     .tag-chip {
         background: var(--soft); color: var(--primary); font-size: 12px;
         font-weight: 700; padding: 4px 10px; border-radius: 6px;
-        display: inline-flex; align-items: center; gap: 6px; border: 1px solid #f0dddd;
+        display: inline-flex; align-items: center; gap: 6px; border: 1px solid #f2d78e;
     }
     .tag-chip i { cursor: pointer; font-size: 11px; }
     .tag-chip i:hover { color: var(--primary-dark); }

@@ -212,15 +212,16 @@ Route::get('/{slug}', function ($slug) {
         $products = [];
         $faqs = [];
         if (!empty($categoryArr['id'])) {
-            $productIds = DB::table('admin_category_product')->where('category_id', $categoryArr['id'])->pluck('product_id');
-            $products = DB::table('admin_products')->whereIn('id', $productIds)->get()->map(fn($r)=>(array)$r)->all();
-            
-            $childIds = DB::table('admin_categories')->where('parent_id', $categoryArr['id'])->pluck('id');
-            if ($childIds->count() > 0) {
-                $childProductIds = DB::table('admin_category_product')->whereIn('category_id', $childIds)->pluck('product_id');
-                $moreProducts = DB::table('admin_products')->whereIn('id', $childProductIds)->get()->map(fn($r)=>(array)$r)->all();
-                $products = array_merge($products, $moreProducts);
-            }
+            $productIds = DB::table('admin_category_product')
+                ->where('category_id', $categoryArr['id'])
+                ->pluck('product_id');
+            $products = DB::table('admin_products')
+                ->whereIn('id', $productIds)
+                ->where('status', 'published')
+                ->orderBy('id')
+                ->get()
+                ->map(fn($r)=>(array)$r)
+                ->all();
 
             $faqs = DB::table('admin_category_faqs')->where('category_id', $categoryArr['id'])->get()->map(fn($r)=>(array)$r)->all();
         }

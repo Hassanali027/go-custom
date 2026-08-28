@@ -98,7 +98,7 @@
             // Add focus styles dynamically
             searchInput.addEventListener('focus', function() {
                 this.style.borderColor = 'var(--primary)';
-                this.style.boxShadow = '0 0 0 3px rgba(141,68,69,0.1)';
+                this.style.boxShadow = '0 0 0 3px rgba(255,180,0,0.16)';
             });
             
             searchInput.addEventListener('blur', function() {

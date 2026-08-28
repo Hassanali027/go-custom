@@ -9,16 +9,16 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <style>
         :root {
-            --primary: #8d4445;
-            --primary-dark: #633032;
-            --sidebar: #251d21;
-            --accent: #c16a6b;
-            --soft: #f8eeec;
-            --bg: #1e171a;
+            --primary: #FFB400;
+            --primary-dark: #e6a200;
+            --sidebar: #0B2240;
+            --accent: #FFB400;
+            --soft: #FFF3D3;
+            --bg: #0B2240;
             --card: #ffffff;
-            --text: #252329;
-            --muted: #77737c;
-            --line: #ebe8ec;
+            --text: #0B2240;
+            --muted: #667085;
+            --line: #e7e2d6;
             --shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
         }
 
@@ -30,7 +30,7 @@
 
         body {
             font-family: 'DM Sans', sans-serif;
-            background: radial-gradient(circle at 50% 30%, #34272d 0%, #191215 100%);
+            background: linear-gradient(160deg, #0B2240 0%, #102f55 60%, #07182d 100%);
             color: var(--text);
             min-height: 100vh;
             display: flex;
@@ -90,7 +90,7 @@
             display: block;
             font-size: 13px;
             font-weight: 700;
-            color: #3b3740;
+            color: var(--text);
             margin-bottom: 8px;
         }
 
@@ -103,7 +103,7 @@
         .input-wrapper i.prefix-icon {
             position: absolute;
             left: 14px;
-            color: #9c8d94;
+            color: #8796a8;
             font-size: 15px;
             transition: color 0.2s ease;
         }
@@ -124,7 +124,7 @@
         .input-wrapper input:focus {
             background: #fff;
             border-color: var(--primary);
-            box-shadow: 0 0 0 4px rgba(141, 68, 69, 0.12);
+            box-shadow: 0 0 0 4px rgba(255, 180, 0, 0.18);
         }
 
         .input-wrapper input:focus + i.prefix-icon {
@@ -174,14 +174,14 @@
             width: 100%;
             padding: 14px;
             background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
-            color: #fff;
+            color: #0B2240;
             border: none;
             border-radius: 12px;
             font-size: 15px;
             font-weight: 700;
             font-family: 'DM Sans', sans-serif;
             cursor: pointer;
-            box-shadow: 0 8px 20px rgba(141, 68, 69, 0.35);
+            box-shadow: 0 8px 20px rgba(255, 180, 0, 0.30);
             transition: transform 0.15s ease, box-shadow 0.15s ease;
             display: flex;
             align-items: center;
@@ -191,7 +191,7 @@
 
         .btn-submit:hover {
             transform: translateY(-1px);
-            box-shadow: 0 10px 24px rgba(141, 68, 69, 0.45);
+            box-shadow: 0 10px 24px rgba(255, 180, 0, 0.40);
         }
 
         .btn-submit:active {
@@ -224,7 +224,7 @@
         .alert-info {
             background: var(--soft);
             color: var(--primary);
-            border: 1px solid #f0dddd;
+            border: 1px solid #f2d78e;
         }
 
         .credentials-hint {
