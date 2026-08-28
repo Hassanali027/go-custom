@@ -16,7 +16,7 @@
 
 /* 1. Hero Section */
 .about-hero {
-    background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('{{ asset('uploads/about-us-banner.webp') }}');
+    background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('{{ asset('uploads/about-us-hero-bg.png') }}');
     background-size: cover;
     background-position: center;
     color: #fff;
@@ -303,12 +303,12 @@
         </div>
         <div class="who-we-are-grid">
             <div class="who-we-are-col">
-                <img src="{{ asset('uploads/best-seller-p1.png') }}" alt="Custom Perfume Box" class="img-tall" onerror="this.src='https://placehold.co/250x290/brown/white'">
-                <img src="{{ asset('uploads/best-seller-p2.png') }}" alt="Custom Blue Box" class="img-short" onerror="this.src='https://placehold.co/250x150/blue/white'">
+                <img src="{{ asset('uploads/who-img-1.jpg') }}" alt="Custom Perfume Box" class="img-tall" onerror="this.src='https://placehold.co/250x290/brown/white'">
+                <img src="{{ asset('uploads/who-img-2.jpg') }}" alt="Custom Green Box" class="img-short" onerror="this.src='https://placehold.co/250x150/blue/white'">
             </div>
             <div class="who-we-are-col">
-                <img src="{{ asset('uploads/best-seller-p3.png') }}" alt="Custom Hexagon Box" class="img-short" onerror="this.src='https://placehold.co/250x150/tan/white'">
-                <img src="{{ asset('uploads/category-natural-brown-kraft.png') }}" alt="Custom Beige Box" class="img-tall" onerror="this.src='https://placehold.co/250x290/tan/white'">
+                <img src="{{ asset('uploads/who-img-3.jpg') }}" alt="Custom Blue Box" class="img-short" onerror="this.src='https://placehold.co/250x150/tan/white'">
+                <img src="{{ asset('uploads/who-img-4.jpg') }}" alt="Custom Beige Box" class="img-tall" onerror="this.src='https://placehold.co/250x290/tan/white'">
             </div>
         </div>
     </div>
@@ -318,7 +318,7 @@
 <section class="section-padding" style="padding-top: 0; padding-bottom: 1.25rem;">
     <div class="about-container making-simple">
         <div>
-            <img src="{{ asset('uploads/category-textured.png') }}" alt="Custom Packaging" class="making-simple-img" onerror="this.src='https://placehold.co/600x600/darkgreen/white'">
+            <img src="{{ asset('uploads/making-simple-img.jpg') }}" alt="Custom Packaging" class="making-simple-img" onerror="this.src='https://placehold.co/600x600/darkgreen/white'">
         </div>
         <div class="making-simple-text">
             <h2>Making Custom Packaging Simple</h2>
