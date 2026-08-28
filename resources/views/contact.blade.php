@@ -42,54 +42,7 @@
             padding: 0 var(--margin-sides);
         }
 
-        /* Hero Section */
-        .contact-hero {
-            background: linear-gradient(rgba(10,34,64,0.4), rgba(10,34,64,0.4)), url('{{ asset("uploads/about-us-banner.webp") }}') center/cover no-repeat;
-            max-width: 90rem;
-            width: 100%;
-            height: 25rem;
-            margin: 0 auto;
-            position: relative;
-            color: #fff;
-        }
 
-        .contact-hero .container {
-            position: relative;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-        }
-        
-        .contact-breadcrumb {
-            position: absolute;
-            top: 2.5rem;
-            left: var(--margin-sides);
-            font-size: 0.875rem;
-            font-family: 'Open Sans', sans-serif;
-        }
-        
-        .contact-breadcrumb a {
-            color: #fff;
-            text-decoration: none;
-        }
-        
-        .contact-hero h1 {
-            font-size: 3rem;
-            font-family: 'Open Sans', sans-serif;
-            font-weight: 700;
-            margin: 0 0 0.9375rem 0;
-        }
-        
-        .contact-hero p {
-            font-size: 1rem;
-            max-width: 37.5rem;
-            margin: 0 auto;
-            line-height: 1.6;
-            text-align: center;
-        }
 
         /* Main Section */
         .contact-main-section {
@@ -391,15 +344,13 @@
     
     <main>
         <!-- Hero Section -->
-        <section class="contact-hero">
-            <div class="container">
-                <div class="contact-breadcrumb">
-                    <a href="{{ url('/') }}"><i class="fa-solid fa-house"></i> Home</a> &gt; Contact Us
-                </div>
-                <h1>Contact Us</h1>
-                <p>Have a question, need help with a project, or ready to create custom packaging? Our team is here to help you find the right solution.</p>
-            </div>
-        </section>
+        <x-about-hero 
+            title="Contact Us"
+            description="Have a question, need help with a project, or ready to create custom packaging? Our team is here to help you find the right solution."
+            bgImage="uploads/about-us-banner.webp"
+            breadcrumb="Contact Us"
+            overlay="rgba(10, 34, 64, 0.5)"
+        />
 
         <!-- Main Content -->
         <section class="contact-main-section">
