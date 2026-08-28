@@ -35,9 +35,9 @@
 
     .inner-hero-container {
         width: 100%;
-        max-width: 1440px;
+        max-width: 90rem;
         margin: 0 auto;
-        padding: 40px 55px;
+        padding: 2.5rem 3.4375rem;
         min-height: 0;
         display: flex;
         align-items: center;
@@ -46,14 +46,14 @@
     .inner-hero-content {
         position: relative;
         z-index: 2;
-        max-width: 700px;
+        max-width: 43.75rem;
     }
 
     .inner-hero-breadcrumb {
-        font-size: 13px;
+        font-size: 0.8125rem;
         text-transform: uppercase;
         letter-spacing: 1px;
-        margin-bottom: 20px;
+        margin-bottom: 1.25rem;
         color: #FFFFFF;
         text-align:left !important
     }
@@ -64,18 +64,18 @@
     }
 
     .inner-hero-subtitle {
-        font-size: 18px;
+        font-size: 1.125rem;
         font-weight: 700;
-        margin-bottom: 15px;
+        margin-bottom: 0.9375rem;
         text-transform: uppercase;
         color: #ffffff;
     }
 
     .inner-hero-title {
-        font-size: 42px;
+        font-size: 2.625rem;
         font-weight: 700;
         line-height: 1.2;
-        margin-bottom: 20px;
+        margin-bottom: 1.25rem;
         color: #ffffff;
     }
 
@@ -84,12 +84,12 @@
     }
 
     .inner-hero-desc {
-        font-size: 16px;
+        font-size: 1rem;
         line-height: 1.6;
         color: #f0f0f0;
     }
 
-    @media (max-width: 1100px) {
+    @media (max-width: 68.75rem) {
         .inner-hero-section {
             background-image: none !important;
             background: #6C2223;
@@ -100,13 +100,13 @@
             background-position: bottom center !important;
             background-size: 100% auto !important;
             background-repeat: no-repeat;
-            padding: 40px 24px 65vw 24px;
+            padding: 2.5rem 1.5rem 65vw 1.5rem;
             min-height: 0;
             align-items: flex-start;
         }
 
         .inner-hero-title {
-            font-size: 32px;
+            font-size: 2rem;
         }
 
         .inner-hero-content {
@@ -116,7 +116,7 @@
 
         .inner-hero-desc {
             text-align: center;
-            margin-bottom:30px;
+            margin-bottom:1.875rem;
         }
 
         br.desktop-br {

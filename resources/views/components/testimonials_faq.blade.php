@@ -1,27 +1,27 @@
 <style>
     .testimonials-faq-section {
         background: var(--background-color, #FAF8F8);
-        padding: 60px 0 20px 0;
+        padding: 3.75rem 0 1.25rem 0;
         font-family: 'DM Sans', sans-serif;
     }
 
     .testimonials-faq-container {
-        max-width: var(--site-container-width, 1280px);
+        max-width: var(--site-container-width, 80rem);
         margin: 0 auto;
-        padding: 0 var(--site-container-gutter, 55px);
+        padding: 0 var(--site-container-gutter, 3.4375rem);
         display: grid;
         grid-template-columns: 1fr 1fr;
-        gap: 60px;
+        gap: 3.75rem;
     }
 
     /* Left Column: Testimonials */
     .testimonials-col, .faq-col {
         width: 100%;
-        max-width: 560px;
+        max-width: 35rem;
     }
 
     .testimonials-col {
-        height: 618.33px;
+        height: 38.6456rem;
         contain: layout paint;
     }
 
@@ -32,18 +32,18 @@
     .testimonials-col h2, .faq-col h2 {
         font-family: 'Open Sans', sans-serif;
         font-weight: 700;
-        font-size: 32px;
+        font-size: 2rem;
         color: var(--primary-color, #0B2240);
-        margin-bottom: 30px;
+        margin-bottom: 1.875rem;
     }
 
     .testimonial-cards-wrap {
         display: grid;
-        grid-template-rows: repeat(2, 236px);
+        grid-template-rows: repeat(2, 14.75rem);
         grid-auto-columns: 100%;
         grid-auto-flow: column;
-        gap: 24px;
-        height: 496px; /* Exactly fits 2 cards + 1 gap */
+        gap: 1.5rem;
+        height: 31rem; /* Exactly fits 2 cards + 1 gap */
         overflow-x: auto;
         overflow-y: hidden;
         scroll-snap-type: x mandatory;
@@ -57,11 +57,11 @@
 
     .tf-testimonial-card {
         width: 100%;
-        max-width: 560px;
-        height: 236px;
+        max-width: 35rem;
+        height: 14.75rem;
         background-color: #FFF8E7;
-        border-radius: 12px;
-        padding: 30px;
+        border-radius: 0.75rem;
+        padding: 1.875rem;
         box-shadow: none;
         scroll-snap-align: start;
         flex-shrink: 0;
@@ -70,9 +70,9 @@
 
     .tf-stars {
         color: #FFB400;
-        font-size: 16px;
-        margin-bottom: 14px;
-        letter-spacing: 2px;
+        font-size: 1rem;
+        margin-bottom: 0.875rem;
+        letter-spacing: 0.125rem;
     }
     
     .tf-stars span.gray {
@@ -80,27 +80,27 @@
     }
 
     .tf-quote {
-        font-size: 14.5px;
+        font-size: 0.9062rem;
         line-height: 1.6;
         color: #333;
-        margin-bottom: 20px;
+        margin-bottom: 1.25rem;
         font-style: normal;
     }
 
     .tf-author-area {
         display: flex;
         align-items: center;
-        gap: 12px;
+        gap: 0.75rem;
     }
 
     .tf-author-initial {
-        width: 36px;
-        height: 36px;
+        width: 2.25rem;
+        height: 2.25rem;
        
         border-radius: 50%;
         color: #E25C5C;
         font-weight: 700;
-        font-size: 15px;
+        font-size: 0.9375rem;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -114,25 +114,25 @@
     .tf-author-name {
         font-family: 'Open Sans', sans-serif;
         font-weight: 700;
-        font-size: 15px;
+        font-size: 0.9375rem;
         color: #0B2240;
     }
 
     .tf-author-title {
-        font-size: 12.5px;
+        font-size: 0.7812rem;
         color: #777;
     }
 
     .tf-pagination {
         display: flex;
         align-items: center;
-        gap: 8px;
-        margin-top: 25px;
+        gap: 0.5rem;
+        margin-top: 1.5625rem;
     }
 
     .tf-dot {
-        width: 6px;
-        height: 6px;
+        width: 0.375rem;
+        height: 0.375rem;
         background: #D9D9D9;
         border-radius: 50%;
         cursor: pointer;
@@ -140,9 +140,9 @@
     }
 
     .tf-dot.active {
-        width: 24px;
-        height: 6px;
-        border-radius: 3px;
+        width: 1.5rem;
+        height: 0.375rem;
+        border-radius: 0.1875rem;
         background: #0B2240;
     }
 
@@ -158,8 +158,8 @@
 
     .tf-accordion-btn {
         width: 100%;
-        max-width: 560px;
-        height: 53px;
+        max-width: 35rem;
+        height: 3.3125rem;
         background: transparent;
         border: none;
         padding: 0;
@@ -169,14 +169,14 @@
         cursor: pointer;
         font-family: 'DM Sans', sans-serif;
         font-weight: 500;
-        font-size: 15px;
+        font-size: 0.9375rem;
         color: var(--primary-color, #000);
         text-align: left;
     }
 
     .tf-accordion-btn svg {
-        width: 16px;
-        height: 16px;
+        width: 1rem;
+        height: 1rem;
         transition: transform 0.3s ease;
         fill: #666;
     }
@@ -192,22 +192,22 @@
     }
 
     .tf-accordion-content-inner {
-        padding-bottom: 20px;
-        font-size: 14.5px;
+        padding-bottom: 1.25rem;
+        font-size: 0.9062rem;
         line-height: 1.5;
         color: #555;
     }
 
-    @media (max-width: 992px) {
+    @media (max-width: 62rem) {
         .testimonials-faq-section {
-            padding: 10px 0 40px 0;
+            padding: 0.625rem 0 2.5rem 0;
             overflow: hidden;
             width: 100%;
         }
         .testimonials-faq-container {
             grid-template-columns: 100%;
-            gap: 40px;
-            padding: 0 16px;
+            gap: 2.5rem;
+            padding: 0 1rem;
             width: 100%;
             max-width: 100%;
             box-sizing: border-box;
@@ -245,20 +245,20 @@
             min-width: 100%;
             height: auto;
             min-height: auto;
-            padding: 24px;
+            padding: 1.5rem;
             box-sizing: border-box;
             scroll-snap-align: start;
         }
         .tf-quote {
-            font-size: 14px;
+            font-size: 0.875rem;
             line-height: 1.6;
-            margin-bottom: 18px;
+            margin-bottom: 1.125rem;
             text-align: left;
         }
         .tf-pagination {
             justify-content: center;
-            margin-top: 18px;
-            gap: 8px;
+            margin-top: 1.125rem;
+            gap: 0.5rem;
         }
     }
 </style>
@@ -305,7 +305,7 @@
                         </div>
                     </div>
                 </div>
-                <!-- Card 4 -->
+            <!-- Card 4 -->
                 <div class="tf-testimonial-card">
                     <div class="tf-stars">★★★★<span class="gray">★</span></div>
                     <p class="tf-quote">"The turnaround time was amazingly fast without compromising on the quality. These custom mailer boxes have completely elevated our unboxing experience."</p>
@@ -314,6 +314,30 @@
                         <div class="tf-author-details">
                             <span class="tf-author-name">Sarah Jenkins</span>
                             <span class="tf-author-title">Artisan Coffee Co.</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- Card 5 -->
+                <div class="tf-testimonial-card">
+                    <div class="tf-stars">★★★★★</div>
+                    <p class="tf-quote">"I was amazed by the eco-friendly materials and vibrant colors! The structural integrity of the boxes is top-notch. Highly recommended for sustainable brands."</p>
+                    <div class="tf-author-area">
+                        <div class="tf-author-initial">D</div>
+                        <div class="tf-author-details">
+                            <span class="tf-author-name">David Lawson</span>
+                            <span class="tf-author-title">Nature's Essence</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- Card 6 -->
+                <div class="tf-testimonial-card">
+                    <div class="tf-stars">★★★★★</div>
+                    <p class="tf-quote">"Perfectly tailored to our product specifications. The custom inserts fit our fragile items securely. Very happy with the final packaging solution!"</p>
+                    <div class="tf-author-area">
+                        <div class="tf-author-initial">A</div>
+                        <div class="tf-author-details">
+                            <span class="tf-author-name">Amanda Brooks</span>
+                            <span class="tf-author-title">Crystal Clear</span>
                         </div>
                     </div>
                 </div>

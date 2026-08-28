@@ -17,8 +17,8 @@
             --text-dark: #111827;
             --text-light: #4B5563;
             --border-color: #EAEAEA;
-            --container-width: 1280px;
-            --margin-sides: 55px;
+            --container-width: 80rem;
+            --margin-sides: 3.4375rem;
             --font-heading: 'Open Sans', sans-serif;
             --font-body: 'DM Sans', sans-serif;
         }
@@ -42,61 +42,61 @@
         }
 
         .blog-detail-section {
-            padding: 40px 0 60px 0;
+            padding: 2.5rem 0 3.75rem 0;
         }
 
         /* Breadcrumb */
         .breadcrumb {
             font-family: var(--font-heading);
-            font-size: 14px;
+            font-size: 0.875rem;
             font-weight: 600;
-            margin-bottom: 30px;
+            margin-bottom: 1.875rem;
             color: var(--text-dark);
         }
         .breadcrumb a {
             color: var(--text-dark);
             text-decoration: none;
         }
-        .breadcrumb span { margin: 0 8px; color: #999; }
+        .breadcrumb span { margin: 0 0.5rem; color: #999; }
 
         /* Hero Image */
         .hero-img {
             width: 100%;
-            height: 430px;
+            height: 26.875rem;
             object-fit: cover;
-            border-radius: 12px;
-            margin-bottom: 40px;
+            border-radius: 0.75rem;
+            margin-bottom: 2.5rem;
             background: #f5f5f5;
         }
 
         /* Title & Meta */
         .article-title {
             font-family: var(--font-heading); /* Or 'Plus Jakarta Sans' if added, but var(--font-heading) is fine */
-            font-size: 32px;
+            font-size: 2rem;
             font-weight: 700;
-            line-height: 40px;
-            margin: 0 0 15px 0;
+            line-height: 2.5rem;
+            margin: 0 0 0.9375rem 0;
             color: #111;
             text-align: justify;
         }
         .article-subtitle {
             font-family: 'Inter', sans-serif;
-            font-size: 16px;
+            font-size: 1rem;
             font-weight: 400;
             color: #000;
-            margin: 0 0 25px 0;
-            line-height: 26px;
+            margin: 0 0 1.5625rem 0;
+            line-height: 1.625rem;
             text-align: justify;
         }
         .article-meta {
             font-family: 'Inter', sans-serif;
-            font-size: 14px;
+            font-size: 0.875rem;
             color: #000;
             font-weight: 500;
             display: flex;
             align-items: center;
-            gap: 16px;
-            margin-bottom: 40px;
+            gap: 1rem;
+            margin-bottom: 2.5rem;
         }
         .article-meta span.divider { color: #888; }
 
@@ -104,99 +104,99 @@
         .content-layout {
             display: grid;
             grid-template-columns: minmax(0, 3fr) minmax(0, 1fr);
-            gap: 60px;
+            gap: 3.75rem;
             align-items: start;
         }
 
         /* Main Content */
         .main-content {
             font-family: 'Inter', sans-serif;
-            font-size: 16px;
+            font-size: 1rem;
             font-weight: 400;
             color: #000;
-            line-height: 30px;
-            letter-spacing: 0px;
+            line-height: 1.875rem;
+            letter-spacing: 0;
             text-align: justify;
         }
 
         .main-content h2 {
             font-family: var(--font-heading);
-            font-size: 28px;
-            margin: 40px 0 20px 0;
+            font-size: 1.75rem;
+            margin: 2.5rem 0 1.25rem 0;
             color: var(--dark-blue);
         }
         .main-content h3 {
             font-family: var(--font-heading);
-            font-size: 22px;
-            margin: 30px 0 15px 0;
+            font-size: 1.375rem;
+            margin: 1.875rem 0 0.9375rem 0;
         }
         .main-content p {
-            margin-bottom: 20px;
+            margin-bottom: 1.25rem;
         }
         .main-content ul, .main-content ol {
-            margin-bottom: 20px;
-            padding-left: 20px;
+            margin-bottom: 1.25rem;
+            padding-left: 1.25rem;
         }
         .main-content li {
-            margin-bottom: 10px;
+            margin-bottom: 0.625rem;
         }
 
         /* Key Takeaways Box (Mapping from .callout-box) */
         .callout-box {
             background-color: #FDF9EE;
-            border-radius: 12px;
-            padding: 30px;
-            margin-bottom: 40px;
+            border-radius: 0.75rem;
+            padding: 1.875rem;
+            margin-bottom: 2.5rem;
         }
         .callout-box li {
-            margin-bottom: 15px;
+            margin-bottom: 0.9375rem;
         }
         .callout-label {
             font-family: var(--font-heading);
-            font-size: 15px;
+            font-size: 0.9375rem;
             font-weight: 700;
             text-transform: uppercase;
-            margin-bottom: 15px;
+            margin-bottom: 0.9375rem;
             color: var(--dark-blue);
-            letter-spacing: 0.5px;
+            letter-spacing: 0.0312rem;
         }
         .callout-content {
-            font-size: 16px;
+            font-size: 1rem;
         }
 
         /* CTA Banner */
         .cta-banner {
             background-color: var(--dark-blue);
-            border-radius: 12px;
-            padding: 20px 40px;
+            border-radius: 0.75rem;
+            padding: 1.25rem 2.5rem;
             display: flex;
             align-items: center;
             justify-content: space-between;
-            margin-top: 50px;
+            margin-top: 3.125rem;
             color: #fff;
         }
         .cta-banner-text {
             font-family: var(--font-heading);
-            font-size: 22px;
+            font-size: 1.375rem;
             font-weight: 700;
             color: var(--yellow);
         }
         .cta-banner-sub {
-            font-size: 14px;
+            font-size: 0.875rem;
             color: #ccc;
-            margin-top: 5px;
+            margin-top: 0.3125rem;
         }
         .cta-btn {
             background-color: var(--yellow);
             color: #000;
-            width: 169px;
-            height: 48px;
+            width: 10.5625rem;
+            height: 3rem;
             display: flex;
             align-items: center;
             justify-content: center;
-            border-radius: 8px;
+            border-radius: 0.5rem;
             font-weight: 700;
-            font-size: 16px;
+            font-size: 1rem;
             white-space: nowrap;
             text-decoration: none;
             transition: background 0.3s;
@@ -206,65 +206,65 @@
         /* Sidebar */
         .sidebar {
             position: sticky;
-            top: 40px;
+            top: 2.5rem;
             border-left: 1px solid #eaeaea;
-            padding-left: 30px;
+            padding-left: 1.875rem;
         }
 
         .widget {
-            margin-bottom: 40px;
+            margin-bottom: 2.5rem;
         }
         .widget-title {
             font-family: var(--font-heading);
-            font-size: 16px;
+            font-size: 1rem;
             font-weight: 700;
-            margin-bottom: 20px;
+            margin-bottom: 1.25rem;
             color: #000;
         }
 
         .author-share-card {
             border: 1px solid #EAEAEA;
-            border-radius: 8px;
-            padding: 24px;
-            margin-bottom: 30px;
+            border-radius: 0.5rem;
+            padding: 1.5rem;
+            margin-bottom: 1.875rem;
             background: #fff;
         }
         .author-share-card .widget { margin-bottom: 0; }
         .card-divider {
             border: none;
             border-top: 1px dotted #ccc;
-            margin: 24px 0;
+            margin: 1.5rem 0;
         }
 
         /* Author Widget */
         .author-box {
-            margin-bottom: 30px;
+            margin-bottom: 1.875rem;
         }
         .author-profile {
             display: flex;
             align-items: center;
-            gap: 15px;
-            margin-bottom: 15px;
+            gap: 0.9375rem;
+            margin-bottom: 0.9375rem;
         }
         .author-img {
-            width: 60px;
-            height: 60px;
+            width: 3.75rem;
+            height: 3.75rem;
             border-radius: 50%;
             object-fit: cover;
         }
         .author-name {
             font-family: var(--font-heading);
-            font-size: 18px;
+            font-size: 1.125rem;
             font-weight: 700;
             color: var(--dark-blue);
         }
         .author-role {
-            font-size: 13px;
+            font-size: 0.8125rem;
             color: #666;
-            margin-top: 5px;
+            margin-top: 0.3125rem;
         }
         .author-bio {
-            font-size: 14px;
+            font-size: 0.875rem;
             color: #000;
             line-height: 1.5;
             text-align: justify;
@@ -277,11 +277,11 @@
             margin: 0;
         }
         .toc-item {
-            margin-bottom: 15px;
+            margin-bottom: 0.9375rem;
             position: relative;
         }
         .toc-item a {
-            font-size: 16px;
+            font-size: 1rem;
             color: #444;
             transition: color 0.3s;
             text-decoration: none;
@@ -295,18 +295,18 @@
         /* Social Share */
         .share-icons {
             display: flex;
-            gap: 10px;
+            gap: 0.625rem;
         }
         .share-icon {
-            width: 40px;
-            height: 40px;
-            border-radius: 8px;
+            width: 2.5rem;
+            height: 2.5rem;
+            border-radius: 0.5rem;
             background: #EAEAEA;
             display: flex;
             align-items: center;
             justify-content: center;
             color: #000;
-            font-size: 18px;
+            font-size: 1.125rem;
             transition: all 0.3s;
             text-decoration: none;
         }
@@ -317,25 +317,25 @@
 
         /* Related Blogs */
         .related-section {
-            padding: 20px 0 0 0;
+            padding: 1.25rem 0 0 0;
         }
         .related-title {
             font-family: var(--font-heading);
-            font-size: 32px;
+            font-size: 2rem;
             font-weight: 700;
-            margin-bottom: 40px;
+            margin-bottom: 2.5rem;
             text-align: center;
         }
         
         .blog-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 30px;
+            gap: 1.875rem;
         }
 
         .blog-card {
             border: 1px solid var(--border-color);
-            border-radius: 12px;
+            border-radius: 0.75rem;
             overflow: hidden;
             display: flex;
             flex-direction: column;
@@ -343,17 +343,17 @@
             transition: transform 0.3s;
         }
         .blog-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+            transform: translateY(-0.3125rem);
+            box-shadow: 0 0.625rem 1.5625rem rgba(0,0,0,0.05);
         }
         .blog-card img {
             width: 100%;
-            height: 220px;
+            height: 13.75rem;
             object-fit: cover;
             border-bottom: 1px solid var(--border-color);
         }
         .card-content {
-            padding: 24px;
+            padding: 1.5rem;
             display: flex;
             flex-direction: column;
             flex: 1;
@@ -361,63 +361,63 @@
         .card-meta {
             display: flex;
             justify-content: space-between;
-            font-size: 12px;
+            font-size: 0.75rem;
             color: #888;
-            margin-bottom: 15px;
+            margin-bottom: 0.9375rem;
             font-weight: 500;
         }
         .blog-card h3 {
             font-family: var(--font-heading);
-            font-size: 18px;
+            font-size: 1.125rem;
             font-weight: 700;
-            margin: 0 0 15px 0;
+            margin: 0 0 0.9375rem 0;
             line-height: 1.4;
         }
         .card-link {
             margin-top: auto;
             color: var(--dark-blue);
             font-weight: 700;
-            font-size: 14px;
+            font-size: 0.875rem;
             display: flex;
             align-items: center;
-            gap: 5px;
+            gap: 0.3125rem;
         }
         .card-link i { color: var(--yellow); }
 
-        @media (max-width: 991px) {
+        @media (max-width: 61.9375rem) {
             .content-layout { grid-template-columns: 1fr; gap: 0; }
             .sidebar { position: static; margin-top: 0; }
             .blog-grid { grid-template-columns: repeat(2, 1fr); }
-            .hero-img { height: 350px; }
+            .hero-img { height: 21.875rem; }
         }
-        @media (max-width: 768px) {
-            .container { padding: 0 16px; }
+        @media (max-width: 48rem) {
+            .container { padding: 0 1rem; }
             .blog-detail-section { padding-top: 0; }
             .breadcrumb { display: none !important; }
             .hero-img { 
                 width: 100vw; 
                 margin-left: calc(-50vw + 50%); 
                 border-radius: 0; 
-                height: 300px;
-                margin-bottom: 25px;
+                height: 18.75rem;
+                margin-bottom: 1.5625rem;
             }
             .article-title { 
-                font-size: 24px; 
-                line-height: 34px;
+                font-size: 1.5rem; 
+                line-height: 2.125rem;
                 text-align: left;
                 width: 100%;
                 display: block;
             }
             .article-meta {
                 flex-wrap: wrap;
-                gap: 10px 16px;
+                gap: 0.625rem 1rem;
                 line-height: 1.6;
             }
             .toc-widget { display: none !important; }
             .desktop-cta { display: none !important; }
-            .mobile-cta { display: flex !important; margin-top: 30px; }
+            .mobile-cta { display: flex !important; margin-top: 1.875rem; }
             .blog-grid { grid-template-columns: 1fr; }
-            .cta-banner { flex-direction: column; text-align: center; gap: 20px; }
+            .cta-banner { flex-direction: column; text-align: center; gap: 1.25rem; }
         }
         
         .mobile-cta { display: none; }
@@ -446,16 +446,16 @@
     <div class="container">
         
         <!-- Breadcrumbs -->
-        <div class="breadcrumb" style="display: flex; align-items: center; gap: 8px;">
-            <a href="{{ url('/') }}" style="display: flex; align-items: center; gap: 5px;">
+        <div class="breadcrumb" style="display: flex; align-items: center; gap: 0.5rem;">
+            <a href="{{ url('/') }}" style="display: flex; align-items: center; gap: 0.3125rem;">
                 <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
                     <polyline points="9 22 9 12 15 12 15 22"></polyline>
                 </svg> Home
             </a> 
-            <span style="color: #666; font-size: 12px;">&gt;</span>
+            <span style="color: #666; font-size: 0.75rem;">&gt;</span>
             <a href="{{ url('/blog') }}">Blog</a> 
-            <span style="color: #666; font-size: 12px;">&gt;</span>
+            <span style="color: #666; font-size: 0.75rem;">&gt;</span>
             {{ Str::limit($fTitle, 18) }}
         </div>
 
@@ -556,7 +556,7 @@
                     </div>
                 </div>
 
-                <hr style="border: none; border-top: 1px dotted #ccc; margin: 30px 0;" class="toc-widget">
+                <hr style="border: none; border-top: 1px dotted #ccc; margin: 1.875rem 0;" class="toc-widget">
 
                 <!-- TOC Widget -->
                 <div class="widget toc-widget">
@@ -566,7 +566,7 @@
                     </ul>
                 </div>
                 
-                <hr style="border: none; border-top: 1px dotted #ccc; margin: 30px 0;" class="toc-widget">
+                <hr style="border: none; border-top: 1px dotted #ccc; margin: 1.875rem 0;" class="toc-widget">
 
                 <!-- Share Widget -->
                 <div class="widget">

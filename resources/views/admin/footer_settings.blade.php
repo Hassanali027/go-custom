@@ -12,11 +12,11 @@
         z-index: 50;
     }
     .multiselect-trigger {
-        min-height: 48px;
-        padding: 8px 14px;
+        min-height: 3rem;
+        padding: 0.5rem 0.875rem;
         background: #ffffff;
         border: 1px solid #ddd8df;
-        border-radius: 8px;
+        border-radius: 0.5rem;
         display: flex;
         align-items: center;
         justify-content: space-between;
@@ -25,81 +25,81 @@
     }
     .multiselect-trigger:hover, .custom-multiselect-container.open .multiselect-trigger {
         border-color: #8d4445;
-        box-shadow: 0 0 0 3px rgba(141,68,69,0.1);
+        box-shadow: 0 0 0 0.1875rem rgba(141,68,69,0.1);
     }
     .selected-tags {
         display: flex;
         flex-wrap: wrap;
-        gap: 6px;
+        gap: 0.375rem;
         align-items: center;
         flex: 1;
-        margin-right: 10px;
+        margin-right: 0.625rem;
     }
     .tag-chip {
         background: #fbfafb;
         color: #8d4445;
-        font-size: 12px;
+        font-size: 0.75rem;
         font-weight: 700;
-        padding: 4px 10px;
-        border-radius: 6px;
+        padding: 0.25rem 0.625rem;
+        border-radius: 0.375rem;
         display: inline-flex;
         align-items: center;
-        gap: 6px;
+        gap: 0.375rem;
         border: 1px solid #f0dddd;
     }
     .tag-chip i {
         cursor: pointer;
-        font-size: 11px;
+        font-size: 0.6875rem;
     }
     .dropdown-placeholder {
         color: #888;
-        font-size: 13px;
+        font-size: 0.8125rem;
         font-weight: 500;
     }
     .multiselect-dropdown {
         display: none;
         position: absolute;
-        top: calc(100% + 6px);
+        top: calc(100% + 0.375rem);
         left: 0;
         right: 0;
         background: #ffffff;
         border: 1px solid #ddd8df;
-        border-radius: 8px;
-        box-shadow: 0 12px 35px rgba(0,0,0,0.18);
+        border-radius: 0.5rem;
+        box-shadow: 0 0.75rem 2.1875rem rgba(0,0,0,0.18);
         z-index: 9999;
-        padding: 12px;
+        padding: 0.75rem;
     }
     .custom-multiselect-container.open .multiselect-dropdown {
         display: block;
     }
     .dropdown-search {
         position: relative;
-        margin-bottom: 8px;
+        margin-bottom: 0.5rem;
     }
     .dropdown-search input {
         width: 100%;
-        padding: 9px 12px 9px 34px;
-        font-size: 13px;
-        border-radius: 6px;
+        padding: 0.5625rem 0.75rem 0.5625rem 2.125rem;
+        font-size: 0.8125rem;
+        border-radius: 0.375rem;
         border: 1px solid #ddd8df;
         background: #fbfafb;
     }
     .dropdown-search i.search-icon {
         position: absolute;
-        left: 11px;
+        left: 0.6875rem;
         top: 50%;
         transform: translateY(-50%);
         color: #888;
-        font-size: 12px;
+        font-size: 0.75rem;
     }
     .dropdown-actions {
         display: flex;
         justify-content: space-between;
-        padding: 4px 6px 8px;
-        font-size: 11px;
+        padding: 0.25rem 0.375rem 0.5rem;
+        font-size: 0.6875rem;
         font-weight: 700;
         border-bottom: 1px solid #ddd8df;
-        margin-bottom: 6px;
+        margin-bottom: 0.375rem;
     }
     .dropdown-actions span {
         color: #8d4445;
@@ -109,21 +109,21 @@
         text-decoration: underline;
     }
     .dropdown-options-list {
-        max-height: 220px;
+        max-height: 13.75rem;
         overflow-y: auto;
         display: flex;
         flex-direction: column;
-        gap: 4px;
+        gap: 0.25rem;
     }
     .dropdown-option-item {
         display: flex;
         align-items: center;
-        gap: 10px;
-        padding: 8px 10px;
-        border-radius: 6px;
+        gap: 0.625rem;
+        padding: 0.5rem 0.625rem;
+        border-radius: 0.375rem;
         cursor: pointer;
         transition: background 0.15s ease;
-        font-size: 13px;
+        font-size: 0.8125rem;
         font-weight: 600;
         color: #333;
     }
@@ -131,20 +131,20 @@
         background: #fbfafb;
     }
     .dropdown-option-item input[type="checkbox"] {
-        width: 16px;
-        height: 16px;
+        width: 1rem;
+        height: 1rem;
         accent-color: #8d4445;
         cursor: pointer;
     }
 </style>
 
-<div class="card" style="max-width: 900px;">
+<div class="card" style="max-width: 56.25rem;">
     <div class="card-header">
         <h2 class="card-title">Manage Global Settings</h2>
     </div>
     
     @if(session('success'))
-        <div style="padding:15px; background:#d4edda; color:#155724; border-radius:6px; margin-bottom:20px;">
+        <div style="padding:0.9375rem; background:#d4edda; color:#155724; border-radius:0.375rem; margin-bottom:1.25rem;">
             {{ session('success') }}
         </div>
     @endif
@@ -152,9 +152,9 @@
     <form action="{{ route('admin.footer.update') }}" method="POST">
         @csrf
         
-        <div style="margin-bottom:30px;">
-            <h3 style="font-size:18px; margin-bottom:15px; padding-bottom:8px; border-bottom:1px solid #eaeaea;">Company Information</h3>
-            <p style="font-size:13px; color:#666; margin-bottom:15px;">These details will automatically update across the Header, Footer, and Contact pages.</p>
+        <div style="margin-bottom:1.875rem;">
+            <h3 style="font-size:1.125rem; margin-bottom:0.9375rem; padding-bottom:0.5rem; border-bottom:1px solid #eaeaea;">Company Information</h3>
+            <p style="font-size:0.8125rem; color:#666; margin-bottom:0.9375rem;">These details will automatically update across the Header, Footer, and Contact pages.</p>
             
             <div class="form-group">
                 <label class="form-label">Company Email</label>
@@ -169,12 +169,12 @@
             <div class="form-group">
                 <label class="form-label">Company Address</label>
                 <textarea name="company_address" class="form-input" rows="3">{{ old('company_address', $settings['company_address'] ?? '') }}</textarea>
-                <small style="color:#666; font-size:12px;">You can use &lt;br&gt; to add line breaks.</small>
+                <small style="color:#666; font-size:0.75rem;">You can use &lt;br&gt; to add line breaks.</small>
             </div>
         </div>
 
-        <div style="margin-bottom:30px;">
-            <h3 style="font-size:18px; margin-bottom:15px; padding-bottom:8px; border-bottom:1px solid #eaeaea;">1. Social Media Links</h3>
+        <div style="margin-bottom:1.875rem;">
+            <h3 style="font-size:1.125rem; margin-bottom:0.9375rem; padding-bottom:0.5rem; border-bottom:1px solid #eaeaea;">1. Social Media Links</h3>
             
             <div class="form-group">
                 <label class="form-label">Facebook URL</label>
@@ -207,8 +207,8 @@
             </div>
         </div>
 
-        <div style="margin-bottom:30px;">
-            <h3 style="font-size:18px; margin-bottom:15px; padding-bottom:8px; border-bottom:1px solid #eaeaea;">Footer Settings</h3>
+        <div style="margin-bottom:1.875rem;">
+            <h3 style="font-size:1.125rem; margin-bottom:0.9375rem; padding-bottom:0.5rem; border-bottom:1px solid #eaeaea;">Footer Settings</h3>
             
             <div class="form-group">
                 <label class="form-label">Footer Categories (Multiple)</label>
@@ -216,7 +216,7 @@
                 <div class="custom-multiselect-container" id="categoryMultiselect">
                     <div class="multiselect-trigger" onclick="toggleDropdown('categoryMultiselect')">
                         <div class="selected-tags" id="categorySelectedTags"></div>
-                        <i class="fa-solid fa-chevron-down" style="font-size: 12px; color: #888;"></i>
+                        <i class="fa-solid fa-chevron-down" style="font-size: 0.75rem; color: #888;"></i>
                     </div>
 
                     <div class="multiselect-dropdown">
@@ -235,7 +235,7 @@
                                     <span>{{ $category['title'] ?? $category['name'] ?? '' }}</span>
                                 </label>
                             @empty
-                                <p style="color: #888; padding: 8px; font-size: 12px;">No categories available.</p>
+                                <p style="color: #888; padding: 0.5rem; font-size: 0.75rem;">No categories available.</p>
                             @endforelse
                         </div>
                     </div>
@@ -248,30 +248,30 @@
                     @php $quickLinks = $settings['footer_quick_links'] ?? []; @endphp
                     
                     @if(empty($quickLinks))
-                        <div class="quick-link-row" style="display:flex; gap:10px; margin-bottom:10px;">
+                        <div class="quick-link-row" style="display:flex; gap:0.625rem; margin-bottom:0.625rem;">
                             <input type="text" name="footer_quick_links_names[]" class="form-input" placeholder="Link Name (e.g. About Us)">
                             <input type="text" name="footer_quick_links_urls[]" class="form-input" placeholder="URL (e.g. /about-us)">
-                            <button type="button" class="btn btn-danger remove-link-btn" style="padding:0 15px;">&times;</button>
+                            <button type="button" class="btn btn-danger remove-link-btn" style="padding:0 0.9375rem;">&times;</button>
                         </div>
                     @else
                         @foreach($quickLinks as $link)
-                        <div class="quick-link-row" style="display:flex; gap:10px; margin-bottom:10px;">
+                        <div class="quick-link-row" style="display:flex; gap:0.625rem; margin-bottom:0.625rem;">
                             <input type="text" name="footer_quick_links_names[]" class="form-input" value="{{ $link['name'] ?? '' }}" placeholder="Link Name (e.g. About Us)">
                             <input type="text" name="footer_quick_links_urls[]" class="form-input" value="{{ $link['url'] ?? '' }}" placeholder="URL (e.g. /about-us)">
-                            <button type="button" class="btn btn-danger remove-link-btn" style="padding:0 15px;">&times;</button>
+                            <button type="button" class="btn btn-danger remove-link-btn" style="padding:0 0.9375rem;">&times;</button>
                         </div>
                         @endforeach
                     @endif
                 </div>
                 
-                <button type="button" id="add-quick-link-btn" class="btn" style="background:#f0f0f0; color:#333; margin-top:10px;">
+                <button type="button" id="add-quick-link-btn" class="btn" style="background:#f0f0f0; color:#333; margin-top:0.625rem;">
                     + Add Quick Link
                 </button>
             </div>
         </div>
 
-        <div style="margin-top: 30px;">
-            <button type="submit" class="btn btn-primary" style="padding: 10px 24px; font-size: 16px;">Save Settings</button>
+        <div style="margin-top: 1.875rem;">
+            <button type="submit" class="btn btn-primary" style="padding: 0.625rem 1.5rem; font-size: 1rem;">Save Settings</button>
         </div>
     </form>
 </div>
@@ -285,11 +285,11 @@
             addBtn.addEventListener('click', function() {
                 const row = document.createElement('div');
                 row.className = 'quick-link-row';
-                row.style = 'display:flex; gap:10px; margin-bottom:10px;';
+                row.style = 'display:flex; gap:0.625rem; margin-bottom:0.625rem;';
                 row.innerHTML = `
                     <input type="text" name="footer_quick_links_names[]" class="form-input" placeholder="Link Name (e.g. About Us)">
                     <input type="text" name="footer_quick_links_urls[]" class="form-input" placeholder="URL (e.g. /about-us)">
-                    <button type="button" class="btn btn-danger remove-link-btn" style="padding:0 15px;">&times;</button>
+                    <button type="button" class="btn btn-danger remove-link-btn" style="padding:0 0.9375rem;">&times;</button>
                 `;
                 container.appendChild(row);
             });

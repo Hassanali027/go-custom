@@ -8,71 +8,71 @@
     .faq-heading-card {
         background: #ffffff;
         border: 1px solid #ddd8df;
-        border-radius: 8px;
-        padding: 20px;
-        margin-bottom: 20px;
+        border-radius: 0.5rem;
+        padding: 1.25rem;
+        margin-bottom: 1.25rem;
         position: relative;
     }
     .faq-heading-card-header {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        margin-bottom: 15px;
-        padding-bottom: 10px;
+        margin-bottom: 0.9375rem;
+        padding-bottom: 0.625rem;
         border-bottom: 1px solid #f0f0f0;
     }
     .faq-heading-card-header input {
-        font-size: 16px;
+        font-size: 1rem;
         font-weight: bold;
         border: 1px solid #ddd8df;
-        border-radius: 4px;
-        padding: 8px 12px;
+        border-radius: 0.25rem;
+        padding: 0.5rem 0.75rem;
         width: 100%;
-        max-width: 400px;
+        max-width: 25rem;
     }
     .faq-row {
         background: #faf8f9;
-        padding: 15px;
-        border-radius: 8px;
+        padding: 0.9375rem;
+        border-radius: 0.5rem;
         border: 1px solid #ddd8df;
-        margin-bottom: 10px;
+        margin-bottom: 0.625rem;
         position: relative;
     }
     .btn-remove-heading {
         background: #fff0f0;
         color: #a52b2b;
         border: none;
-        padding: 8px 12px;
-        border-radius: 6px;
+        padding: 0.5rem 0.75rem;
+        border-radius: 0.375rem;
         cursor: pointer;
-        font-size: 12px;
+        font-size: 0.75rem;
         font-weight: 600;
     }
     .btn-remove-faq {
         position: absolute;
-        top: 15px;
-        right: 15px;
+        top: 0.9375rem;
+        right: 0.9375rem;
         background: transparent;
         color: #a52b2b;
         border: none;
         cursor: pointer;
-        font-size: 14px;
+        font-size: 0.875rem;
     }
 </style>
 
-<div class="card" style="max-width: 900px;">
+<div class="card" style="max-width: 56.25rem;">
     <div class="card-header">
         <h2 class="card-title">Manage Global FAQ Page</h2>
     </div>
     
     @if(session('success'))
-        <div style="padding:15px; background:#d4edda; color:#155724; border-radius:6px; margin-bottom:20px;">
+        <div style="padding:0.9375rem; background:#d4edda; color:#155724; border-radius:0.375rem; margin-bottom:1.25rem;">
             {{ session('success') }}
         </div>
     @endif
     @if($errors->any())
-        <div style="padding:15px; background:#f8d7da; color:#721c24; border-radius:6px; margin-bottom:20px;">
-            <ul style="margin: 0; padding-left: 20px;">
+        <div style="padding:0.9375rem; background:#f8d7da; color:#721c24; border-radius:0.375rem; margin-bottom:1.25rem;">
+            <ul style="margin: 0; padding-left: 1.25rem;">
                 @foreach($errors->all() as $error)
                     <li>{{ $error }}</li>
                 @endforeach
@@ -83,8 +83,8 @@
     <form action="{{ route('admin.faqpage.update') }}" method="POST">
         @csrf
         
-        <div style="margin-bottom:30px;">
-            <h3 style="font-size:18px; margin-bottom:15px; padding-bottom:8px; border-bottom:1px solid #eaeaea;">Page Configuration</h3>
+        <div style="margin-bottom:1.875rem;">
+            <h3 style="font-size:1.125rem; margin-bottom:0.9375rem; padding-bottom:0.5rem; border-bottom:1px solid #eaeaea;">Page Configuration</h3>
             
             <div class="form-group">
                 <label class="form-label">Page Title</label>
@@ -94,12 +94,12 @@
             <div class="form-group">
                 <label class="form-label">URL Slug</label>
                 <input type="text" name="faq_page_slug" class="form-input" value="{{ old('faq_page_slug', $settings['faq_page_slug'] ?? 'frequently-asked-questions') }}" required>
-                <small style="color:#666; font-size:12px;">The URL where this page will be available (e.g. yourwebsite.com/<b>frequently-asked-questions</b>)</small>
+                <small style="color:#666; font-size:0.75rem;">The URL where this page will be available (e.g. yourwebsite.com/<b>frequently-asked-questions</b>)</small>
             </div>
         </div>
 
-        <div style="margin-bottom:30px;">
-            <h3 style="font-size:18px; margin-bottom:15px; padding-bottom:8px; border-bottom:1px solid #eaeaea;">FAQ Sections (Headings & Q/A)</h3>
+        <div style="margin-bottom:1.875rem;">
+            <h3 style="font-size:1.125rem; margin-bottom:0.9375rem; padding-bottom:0.5rem; border-bottom:1px solid #eaeaea;">FAQ Sections (Headings & Q/A)</h3>
             
             <div id="faq-sections-container">
                 @php $sections = $settings['faq_page_sections'] ?? []; @endphp
@@ -114,17 +114,17 @@
                         <div class="faqs-container">
                             <div class="faq-row">
                                 <button type="button" class="btn-remove-faq" onclick="removeFaq(this)"><i class="fa-solid fa-trash"></i></button>
-                                <div class="form-group" style="margin-bottom: 10px;">
-                                    <label class="form-label" style="font-size: 13px;">Question</label>
+                                <div class="form-group" style="margin-bottom: 0.625rem;">
+                                    <label class="form-label" style="font-size: 0.8125rem;">Question</label>
                                     <input type="text" name="questions[0][]" class="form-input" placeholder="Enter Question">
                                 </div>
                                 <div class="form-group" style="margin-bottom: 0;">
-                                    <label class="form-label" style="font-size: 13px;">Answer</label>
+                                    <label class="form-label" style="font-size: 0.8125rem;">Answer</label>
                                     <textarea name="answers[0][]" class="form-input" rows="2" placeholder="Enter Answer"></textarea>
                                 </div>
                             </div>
                         </div>
-                        <button type="button" class="btn btn-secondary" style="font-size: 12px; padding: 6px 12px; margin-top: 10px;" onclick="addFaq(this, 0)">+ Add Question</button>
+                        <button type="button" class="btn btn-secondary" style="font-size: 0.75rem; padding: 0.375rem 0.75rem; margin-top: 0.625rem;" onclick="addFaq(this, 0)">+ Add Question</button>
                     </div>
                 @else
                     <!-- Load Saved Sections -->
@@ -139,12 +139,12 @@
                                 @if(empty($faqs))
                                     <div class="faq-row">
                                         <button type="button" class="btn-remove-faq" onclick="removeFaq(this)"><i class="fa-solid fa-trash"></i></button>
-                                        <div class="form-group" style="margin-bottom: 10px;">
-                                            <label class="form-label" style="font-size: 13px;">Question</label>
+                                        <div class="form-group" style="margin-bottom: 0.625rem;">
+                                            <label class="form-label" style="font-size: 0.8125rem;">Question</label>
                                             <input type="text" name="questions[{{ $index }}][]" class="form-input" placeholder="Enter Question">
                                         </div>
                                         <div class="form-group" style="margin-bottom: 0;">
-                                            <label class="form-label" style="font-size: 13px;">Answer</label>
+                                            <label class="form-label" style="font-size: 0.8125rem;">Answer</label>
                                             <textarea name="answers[{{ $index }}][]" class="form-input" rows="2" placeholder="Enter Answer"></textarea>
                                         </div>
                                     </div>
@@ -152,31 +152,31 @@
                                     @foreach($faqs as $faq)
                                         <div class="faq-row">
                                             <button type="button" class="btn-remove-faq" onclick="removeFaq(this)"><i class="fa-solid fa-trash"></i></button>
-                                            <div class="form-group" style="margin-bottom: 10px;">
-                                                <label class="form-label" style="font-size: 13px;">Question</label>
+                                            <div class="form-group" style="margin-bottom: 0.625rem;">
+                                                <label class="form-label" style="font-size: 0.8125rem;">Question</label>
                                                 <input type="text" name="questions[{{ $index }}][]" class="form-input" placeholder="Enter Question" value="{{ $faq['question'] ?? '' }}">
                                             </div>
                                             <div class="form-group" style="margin-bottom: 0;">
-                                                <label class="form-label" style="font-size: 13px;">Answer</label>
+                                                <label class="form-label" style="font-size: 0.8125rem;">Answer</label>
                                                 <textarea name="answers[{{ $index }}][]" class="form-input" rows="2" placeholder="Enter Answer">{{ $faq['answer'] ?? '' }}</textarea>
                                             </div>
                                         </div>
                                     @endforeach
                                 @endif
                             </div>
-                            <button type="button" class="btn btn-secondary" style="font-size: 12px; padding: 6px 12px; margin-top: 10px;" onclick="addFaq(this, {{ $index }})">+ Add Question</button>
+                            <button type="button" class="btn btn-secondary" style="font-size: 0.75rem; padding: 0.375rem 0.75rem; margin-top: 0.625rem;" onclick="addFaq(this, {{ $index }})">+ Add Question</button>
                         </div>
                     @endforeach
                 @endif
             </div>
 
-            <button type="button" id="add-heading-btn" class="btn" style="background:#f0f0f0; color:#333; margin-top:10px;">
+            <button type="button" id="add-heading-btn" class="btn" style="background:#f0f0f0; color:#333; margin-top:0.625rem;">
                 + Add New Heading Section
             </button>
         </div>
 
-        <div style="margin-top: 30px;">
-            <button type="submit" class="btn btn-primary" style="padding: 10px 24px; font-size: 16px;">Save Settings</button>
+        <div style="margin-top: 1.875rem;">
+            <button type="submit" class="btn btn-primary" style="padding: 0.625rem 1.5rem; font-size: 1rem;">Save Settings</button>
         </div>
     </form>
 </div>
@@ -197,17 +197,17 @@
                 <div class="faqs-container">
                     <div class="faq-row">
                         <button type="button" class="btn-remove-faq" onclick="removeFaq(this)"><i class="fa-solid fa-trash"></i></button>
-                        <div class="form-group" style="margin-bottom: 10px;">
-                            <label class="form-label" style="font-size: 13px;">Question</label>
+                        <div class="form-group" style="margin-bottom: 0.625rem;">
+                            <label class="form-label" style="font-size: 0.8125rem;">Question</label>
                             <input type="text" name="questions[${currentIndex}][]" class="form-input" placeholder="Enter Question">
                         </div>
                         <div class="form-group" style="margin-bottom: 0;">
-                            <label class="form-label" style="font-size: 13px;">Answer</label>
+                            <label class="form-label" style="font-size: 0.8125rem;">Answer</label>
                             <textarea name="answers[${currentIndex}][]" class="form-input" rows="2" placeholder="Enter Answer"></textarea>
                         </div>
                     </div>
                 </div>
-                <button type="button" class="btn btn-secondary" style="font-size: 12px; padding: 6px 12px; margin-top: 10px;" onclick="addFaq(this, ${currentIndex})">+ Add Question</button>
+                <button type="button" class="btn btn-secondary" style="font-size: 0.75rem; padding: 0.375rem 0.75rem; margin-top: 0.625rem;" onclick="addFaq(this, ${currentIndex})">+ Add Question</button>
             </div>
         `;
         container.insertAdjacentHTML('beforeend', html);
@@ -218,12 +218,12 @@
         const html = `
             <div class="faq-row">
                 <button type="button" class="btn-remove-faq" onclick="removeFaq(this)"><i class="fa-solid fa-trash"></i></button>
-                <div class="form-group" style="margin-bottom: 10px;">
-                    <label class="form-label" style="font-size: 13px;">Question</label>
+                <div class="form-group" style="margin-bottom: 0.625rem;">
+                    <label class="form-label" style="font-size: 0.8125rem;">Question</label>
                     <input type="text" name="questions[${index}][]" class="form-input" placeholder="Enter Question">
                 </div>
                 <div class="form-group" style="margin-bottom: 0;">
-                    <label class="form-label" style="font-size: 13px;">Answer</label>
+                    <label class="form-label" style="font-size: 0.8125rem;">Answer</label>
                     <textarea name="answers[${index}][]" class="form-input" rows="2" placeholder="Enter Answer"></textarea>
                 </div>
             </div>

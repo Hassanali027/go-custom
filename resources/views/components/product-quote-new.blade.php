@@ -1,14 +1,14 @@
 <style>
     .product-quote-section-new {
-        max-width: 1440px;
+        max-width: 90rem;
         width: 100%;
-        margin: 0 auto 60px;
+        margin: 0 auto 3.75rem;
         background-color: #0A2240;
         border-radius: 0; /* Removed border-radius */
         overflow: hidden;
         font-family: 'DM Sans', sans-serif;
         box-sizing: border-box;
-        height: 705px;
+        height: 44.0625rem;
         display: flex;
         align-items: center;
         position: relative;
@@ -20,18 +20,18 @@
         width: 100%;
         position: relative;
         z-index: 1;
-        gap: 30px;
+        gap: 1.875rem;
         align-items: center;
     }
     
     .pqn-form-col {
-        flex: 0 0 812px;
-        max-width: 812px;
-        height: 657px;
+        flex: 0 0 50.75rem;
+        max-width: 50.75rem;
+        height: 41.0625rem;
         background-color: #FFF8E7;
-        padding: 40px;
-        border-radius: 16px;
-        margin: 24px 0;
+        padding: 2.5rem;
+        border-radius: 1rem;
+        margin: 1.5rem 0;
         box-sizing: border-box;
         display: flex;
         flex-direction: column;
@@ -40,30 +40,30 @@
     .pqn-header {
         display: flex;
         align-items: flex-start;
-        gap: 20px;
-        margin-bottom: 30px;
+        gap: 1.25rem;
+        margin-bottom: 1.875rem;
     }
     
     .pqn-icon-box {
-        width: 60px;
-        height: 60px;
+        width: 3.75rem;
+        height: 3.75rem;
         background-color: #ffffff;
-        border-radius: 8px;
+        border-radius: 0.5rem;
         display: flex;
         align-items: center;
         justify-content: center;
         flex-shrink: 0;
-        border-bottom: 3px solid #0A2240;
+        border-bottom: 0.1875rem solid #0A2240;
     }
     
     .pqn-icon-box img {
-        width: 46px;
-        height: 46px;
+        width: 2.875rem;
+        height: 2.875rem;
     }
     
     .pqn-header-text h2 {
-        margin: 0 0 10px 0;
-        font-size: 26px;
+        margin: 0 0 0.625rem 0;
+        font-size: 1.625rem;
         font-weight: 700;
         color: #000;
         font-family: 'Open Sans', sans-serif;
@@ -71,26 +71,26 @@
     
     .pqn-header-text p {
         margin: 0;
-        font-size: 14px;
+        font-size: 0.875rem;
         color: #555;
         line-height: 1.5;
     }
     
     .pqn-form-row {
         display: flex;
-        gap: 15px;
-        margin-bottom: 20px;
+        gap: 0.9375rem;
+        margin-bottom: 1.25rem;
     }
     
     .pqn-form-group {
         flex: 1;
         display: flex;
         flex-direction: column;
-        gap: 8px;
+        gap: 0.5rem;
     }
     
     .pqn-label {
-        font-size: 13px;
+        font-size: 0.8125rem;
         font-weight: 700;
         color: #000;
         font-family: 'Open Sans', sans-serif;
@@ -99,18 +99,18 @@
     .pqn-input {
         background-color: #FFF8E7;
         border: 1px solid #c4b5a5;
-        border-radius: 6px;
-        padding: 12px 15px;
-        font-size: 14px;
+        border-radius: 0.375rem;
+        padding: 0.75rem 0.9375rem;
+        font-size: 0.875rem;
         color: #333;
         font-family: 'Open Sans', sans-serif;
         width: 100%;
         box-sizing: border-box;
-        height: 48px;
+        height: 3rem;
     }
     
     textarea.pqn-input {
-        height: 96px;
+        height: 6rem;
         resize: vertical;
     }
     
@@ -120,9 +120,9 @@
         -moz-appearance: none;
         background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23333' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
         background-repeat: no-repeat;
-        background-position: right 15px center;
-        background-size: 16px;
-        padding-right: 40px;
+        background-position: right 0.9375rem center;
+        background-size: 1rem;
+        padding-right: 2.5rem;
     }
     
     .pqn-input:focus {
@@ -134,13 +134,13 @@
         background-color: #F6B72D;
         color: #0A2240;
         border: none;
-        border-radius: 6px;
-        width: 284px;
-        height: 54px;
+        border-radius: 0.375rem;
+        width: 17.75rem;
+        height: 3.375rem;
         display: inline-flex;
         align-items: center;
         justify-content: center;
-        font-size: 16px;
+        font-size: 1rem;
         font-weight: 700;
         cursor: pointer;
         transition: background-color 0.2s ease;
@@ -153,12 +153,12 @@
     
     .pqn-btn-wrapper {
         text-align: center;
-        margin-top: 30px;
+        margin-top: 1.875rem;
     }
     
     .pqn-sidebar-col {
         flex: 1;
-        padding: 24px 0;
+        padding: 1.5rem 0;
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -171,7 +171,7 @@
         position: absolute;
         top: 0;
         right: 0;
-        width: 320px;
+        width: 20rem;
         height: auto;
         opacity: 0.6;
         pointer-events: none;
@@ -187,46 +187,46 @@
     }
     
     .pqn-product-img {
-        width: 211px;
-        height: 207px;
+        width: 13.1875rem;
+        height: 12.9375rem;
         object-fit: contain;
-        margin-top: 60px;
-        margin-bottom: 30px;
-        filter: drop-shadow(0 15px 20px rgba(0,0,0,0.3));
+        margin-top: 3.75rem;
+        margin-bottom: 1.875rem;
+        filter: drop-shadow(0 0.9375rem 1.25rem rgba(0,0,0,0.3));
     }
     
     .pqn-features-grid {
         display: grid;
-        grid-template-columns: 133px 133px;
+        grid-template-columns: 8.3125rem 8.3125rem;
         justify-content: center;
-        gap: 15px;
+        gap: 0.9375rem;
         width: 100%;
-        margin-bottom: 30px;
+        margin-bottom: 1.875rem;
     }
     
     .pqn-feature-card {
-        width: 133px;
-        height: 119.33px;
+        width: 8.3125rem;
+        height: 7.4581rem;
         box-sizing: border-box;
         background-color: #fff;
-        border-radius: 8px;
-        padding: 12px 10px;
+        border-radius: 0.5rem;
+        padding: 0.75rem 0.625rem;
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;
         text-align: center;
-        gap: 8px;
+        gap: 0.5rem;
     }
     
     .pqn-feature-card svg {
-        width: 24px;
-        height: 24px;
+        width: 1.5rem;
+        height: 1.5rem;
         color: #0A2240;
     }
     
     .pqn-feature-text {
-        font-size: 12px;
+        font-size: 0.75rem;
         font-weight: 700;
         color: #0A2240;
         line-height: 1.3;
@@ -234,7 +234,7 @@
     
     .pqn-trust-badges {
         display: flex;
-        gap: 20px;
+        gap: 1.25rem;
         justify-content: center;
         width: 100%;
     }
@@ -242,15 +242,15 @@
     .pqn-trust-badge {
         display: flex;
         align-items: center;
-        gap: 10px;
+        gap: 0.625rem;
     }
     
     .pqn-trust-badge img {
-        height: 35px;
+        height: 2.1875rem;
         object-fit: contain;
     }
     
-    @media (max-width: 991px) {
+    @media (max-width: 61.9375rem) {
         .product-quote-section-new {
             display: none !important;
         }
@@ -261,10 +261,10 @@
             flex: auto;
             max-width: 100%;
             height: auto;
-            margin: 15px 15px 0 15px;
+            margin: 0.9375rem 0.9375rem 0 0.9375rem;
         }
         .pqn-sidebar-col {
-            padding: 30px 15px;
+            padding: 1.875rem 0.9375rem;
         }
         .pqn-form-row {
             flex-direction: column;
@@ -293,7 +293,7 @@
             <form action="{{ url('/submit-quote') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 @if(session('success'))
-                    <div style="background-color: #d4edda; color: #155724; padding: 10px; border-radius: 5px; margin-bottom: 20px;">
+                    <div style="background-color: #d4edda; color: #155724; padding: 0.625rem; border-radius: 0.3125rem; margin-bottom: 1.25rem;">
                         {{ session('success') }}
                     </div>
                 @endif
@@ -341,7 +341,7 @@
                     </div>
                 </div>
                 
-                <div class="pqn-form-group" style="margin-bottom: 10px;">
+                <div class="pqn-form-group" style="margin-bottom: 0.625rem;">
                     <label class="pqn-label">Message</label>
                     <textarea name="message" class="pqn-input" rows="4" placeholder="Enter your message"></textarea>
                 </div>

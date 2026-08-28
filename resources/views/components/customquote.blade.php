@@ -2,40 +2,42 @@
     .quote-section {
         background: #FFFFFF;
         width: 100%;
-        padding: 0 0 20px 0 !important;
+        padding: 0 0 1.25rem 0 !important;
         margin-top: 0 !important;
         font-family: 'DM Sans', sans-serif;
         position: relative;
     }
 
     .quote-container {
-        max-width: 1440px;
+        max-width: 90rem;
         margin: 0 auto;
-        padding: 0 24px;
+        padding: 0 1.5rem;
         box-sizing: border-box;
         display: flex;
-        align-items: stretch;
-        gap: 120px;
+        align-items: flex-start;
+        gap: 7.5rem;
     }
 
     /* ── Left column: Form Card ── */
     .quote-form-card {
-        width: 780px;
+        width: 48.75rem;
         flex-shrink: 0;
         background: var(--primary-color, #0B2240);
-        border-radius: 12px;
-        padding: 40px;
+        border-radius: 0.75rem;
+        padding: 2.25rem 2.5rem;
         box-sizing: border-box;
         color: #FFFFFF;
+        height: auto;
+        min-height: 0;
     }
 
     .quote-form-title {
         font-family: 'Open Sans', sans-serif;
-        font-size: 24px;
+        font-size: 1.5rem;
         font-weight: 700;
         color: #FFFFFF;
         text-align: center;
-        margin-bottom: 30px;
+        margin-bottom: 1.875rem;
         margin-top: 0;
     }
 
@@ -43,7 +45,7 @@
     .qf-main-grid {
         display: grid;
         grid-template-columns: repeat(12, 1fr);
-        gap: 20px;
+        gap: 1.25rem;
     }
     .qf-span-3 { grid-column: span 3; }
     .qf-span-4 { grid-column: span 4; }
@@ -53,11 +55,11 @@
     .qf-group {
         display: flex;
         flex-direction: column;
-        gap: 8px;
+        gap: 0.5rem;
     }
 
     .qf-group label {
-        font-size: 13px;
+        font-size: 0.8125rem;
         font-weight: 500;
         color: #FFFFFF;
     }
@@ -67,12 +69,12 @@
     .qf-group textarea {
         background: transparent;
         border: 1px solid rgba(255, 255, 255, 0.2);
-        border-radius: 6px;
+        border-radius: 0.375rem;
         color: #FFFFFF;
         font-family: 'DM Sans', sans-serif;
-        font-size: 14px;
-        padding: 0 12px;
-        height: 44px;
+        font-size: 0.875rem;
+        padding: 0 0.75rem;
+        height: 2.75rem;
         outline: none;
         transition: border-color 0.2s;
     }
@@ -82,7 +84,7 @@
         -webkit-appearance: none;
         background-image: url('data:image/svg+xml;utf8,<svg fill="white" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/></svg>');
         background-repeat: no-repeat;
-        background-position: right 8px center;
+        background-position: right 0.5rem center;
     }
 
     .qf-group select option {
@@ -103,9 +105,9 @@
 
     .qf-group textarea {
         height: auto;
-        min-height: 80px;
-        padding: 12px;
-        resize: vertical;
+        min-height: 5rem;
+        padding: 0.75rem;
+        resize: none;
     }
 
     /* Custom File Upload */
@@ -113,9 +115,9 @@
         display: flex;
         align-items: center;
         border: 1px solid rgba(255, 255, 255, 0.2);
-        border-radius: 6px;
+        border-radius: 0.375rem;
         overflow: hidden;
-        height: 44px;
+        height: 2.75rem;
     }
 
     .qf-file-wrap input[type="text"] {
@@ -123,8 +125,8 @@
         border: none;
         background: transparent;
         color: rgba(255, 255, 255, 0.4);
-        padding: 0 12px;
-        font-size: 14px;
+        padding: 0 0.75rem;
+        font-size: 0.875rem;
         height: 100%;
         outline: none;
     }
@@ -134,9 +136,9 @@
         color: var(--primary-color, #0B2240);
         border: none;
         height: 100%;
-        padding: 0 20px;
+        padding: 0 1.25rem;
         font-weight: 600;
-        font-size: 14px;
+        font-size: 0.875rem;
         cursor: pointer;
         transition: opacity 0.2s;
     }
@@ -149,23 +151,23 @@
         background: var(--secondary-color, #FFB400);
         color: var(--primary-color, #0B2240);
         border: none;
-        border-radius: 6px;
+        border-radius: 0.375rem;
         padding: 0;
-        height: 50px;
-        font-size: 16px;
+        height: 3.125rem;
+        font-size: 1rem;
         font-weight: 700;
         font-family: 'Open Sans', sans-serif;
         width: 100%;
-        max-width: 236px;
+        max-width: 14.75rem;
         margin: 0 auto;
         display: block;
         cursor: pointer;
         transition: transform 0.2s;
-        margin-top: 24px;
+        margin-top: 1.5rem;
     }
 
     .qf-submit-btn:hover {
-        transform: translateY(-2px);
+        transform: translateY(-0.125rem);
     }
 
     /* ── Right column: Features ── */
@@ -173,10 +175,10 @@
         flex: 1;
         display: flex;
         flex-direction: column;
-        justify-content: space-between;
-        padding-top: 83px;
-        padding-bottom: 90px;
-        gap:30px;
+        justify-content: flex-start;
+        padding-top: 1rem;
+        padding-bottom: 1rem;
+        gap: 2.25rem;
     }
 
     .qf-feature {
@@ -187,8 +189,8 @@
     }
 
     .qf-feature-icon {
-        width: 63px;
-        height: 63px;
+        width: 2.75rem;
+        height: 2.75rem;
         flex-shrink: 0;
         display: flex;
         align-items: center;
@@ -203,45 +205,45 @@
 
     .qf-feature-text h3 {
         font-family: 'Open Sans', sans-serif;
-        font-size: 18px;
+        font-size: 1.125rem;
         font-weight: 700;
         color: var(--primary-color, #0B2240);
-        margin: 0 0 4px 0;
+        margin: 0 0 0.25rem 0;
     }
 
     .qf-feature-text p {
-        font-size: 14px;
+        font-size: 0.875rem;
         color: #666666;
         margin: 0;
         line-height: 1.5;
     }
 
-    @media (max-width: 1100px) {
+    @media (max-width: 68.75rem) {
         .quote-container {
             flex-direction: column;
             align-items: center;
-            gap: 40px;
+            gap: 2.5rem;
         }
         .quote-form-card {
             width: 100%;
-            max-width: 780px;
+            max-width: 48.75rem;
         }
         .quote-features {
             width: 100%;
-            max-width: 780px;
+            max-width: 48.75rem;
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 30px;
+            gap: 1.875rem;
         }
     }
 
-    @media (max-width: 768px) {
+    @media (max-width: 48rem) {
         .quote-section {
-            padding: 40px 0;
-            margin-top: 4px;
+            padding: 2.5rem 0;
+            margin-top: 0.25rem;
         }
         .quote-form-card {
-            padding: 24px;
+            padding: 1.5rem;
             width: 108%;
         }
         .qf-span-6-m { grid-column: span 6; }
@@ -260,7 +262,7 @@
             <h2 class="quote-form-title">Get Custom Quote</h2>
 
             @if(session('success'))
-                <div style="background-color: #d4edda; color: #155724; padding: 10px; border-radius: 5px; margin-bottom: 20px; font-size: 14px;">
+                <div style="background-color: #d4edda; color: #155724; padding: 0.625rem; border-radius: 0.3125rem; margin-bottom: 1.25rem; font-size: 0.875rem;">
                     {{ session('success') }}
                 </div>
             @endif

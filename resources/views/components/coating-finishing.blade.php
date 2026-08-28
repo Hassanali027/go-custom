@@ -1,66 +1,66 @@
 <style>
     /* Customize Section */
     .customize-section {
-        background: #FAFAFA;
-        padding: 48px 0 54px;
+        background: transparent;
+        padding: 0 0 1.5rem;
         font-family: 'Open Sans', sans-serif;
     }
 
     .customize-container {
-        max-width: 1280px;
+        max-width: 80rem;
         margin: 0 auto;
-        padding: 0 55px;
+        padding: 0 3.4375rem;
         box-sizing: border-box;
     }
 
     /* Unified Container Responsive Padding */
-    @media (max-width: 1100px) {
+    @media (max-width: 68.75rem) {
 
         .popular-boxes-inner,
         .customize-container {
-            padding-left: 32px;
-            padding-right: 32px;
+            padding-left: 2rem;
+            padding-right: 2rem;
         }
     }
 
-    @media (max-width: 768px) {
+    @media (max-width: 48rem) {
 
         .popular-boxes-inner,
         .customize-container {
-            padding-left: 20px;
-            padding-right: 20px;
+            padding-left: 1.25rem;
+            padding-right: 1.25rem;
         }
     }
 
-    @media (max-width: 576px) {
+    @media (max-width: 36rem) {
 
         .popular-boxes-inner,
         .customize-container {
-            padding-left: 16px;
-            padding-right: 16px;
+            padding-left: 1rem;
+            padding-right: 1rem;
         }
     }
 
     .customize-title {
         font-family: 'Open Sans', sans-serif;
-        font-size: 32px;
+        font-size: 2rem;
         font-weight: 800;
         color: var(--section-text-color);
-        margin-bottom: 12px;
+        margin-bottom: 0.75rem;
     }
 
     .customize-subtitle {
         font-family: 'Open Sans', sans-serif;
-        font-size: 18px;
+        font-size: 1.125rem;
         color: var(--section-text-color);
-        margin-bottom: 40px;
+        margin-bottom: 1.5rem;
         line-height: 1.5;
     }
 
     .customize-layout {
         display: flex;
         flex-direction: column;
-        gap: 38px;
+        gap: 2.375rem;
     }
 
     .customize-sidebar {
@@ -84,14 +84,14 @@
     .customize-tab {
         flex: 1;
         min-width: fit-content;
-        padding: 12px 10px;
+        padding: 0.75rem 0.625rem;
         text-align: center;
         background: transparent;
         border: none;
-        border-bottom: 3px solid transparent;
+        border-bottom: 0.1875rem solid transparent;
         font-family: 'Open Sans', sans-serif;
         font-weight: 700;
-        font-size: 13px;
+        font-size: 0.8125rem;
         color: #111;
         cursor: pointer;
         transition: all 0.25s ease;
@@ -107,13 +107,13 @@
     .customize-tab:focus-visible {
         color: #fff;
         background: #112a46; /* Matching the active tab from the Figma image */
-        border-bottom: 3px solid #112a46;
+        border-bottom: 0.1875rem solid #112a46;
     }
     
     .customize-tab:not(.active):hover {
         background: #f0f0f0;
         color: #111;
-        border-bottom: 3px solid #f0f0f0;
+        border-bottom: 0.1875rem solid #f0f0f0;
     }
 
     .customize-content {
@@ -123,23 +123,27 @@
     .customize-grid {
         display: flex;
         flex-direction: row;
-        gap: 20px;
-        overflow-x: auto;
-        scrollbar-width: none;
-        -ms-overflow-style: none;
-        padding-bottom: 10px;
+        gap: 1.25rem;
+        width: max-content;
+        animation: marqueeTrain 30s linear infinite;
+        padding-bottom: 0.625rem;
     }
     
-    .customize-grid::-webkit-scrollbar {
-        display: none;
+    .customize-grid:hover {
+        animation-play-state: paused;
+    }
+
+    @keyframes marqueeTrain {
+        0% { transform: translateX(0); }
+        100% { transform: translateX(calc(-50% - 0.625rem)); }
     }
 
     .custom-card {
         flex: 0 0 auto;
-        width: 220px;
+        width: 13.75rem;
         background: #FFF;
-        border-radius: 12px;
-        padding: 12px;
+        border-radius: 0.75rem;
+        padding: 0.75rem;
         display: flex;
         flex-direction: column;
         transition: opacity 0.2s ease, transform 0.2s ease;
@@ -150,9 +154,9 @@
         position: relative;
         width: 100%;
         aspect-ratio: 1;
-        border-radius: 8px;
+        border-radius: 0.5rem;
         overflow: hidden;
-        margin-bottom: 14px;
+        margin-bottom: 0.875rem;
         background: #f7f7f7;
     }
 
@@ -168,49 +172,49 @@
 
     .custom-card .h4-style {
         font-family: 'Open Sans', sans-serif;
-        font-size: 14px;
+        font-size: 0.875rem;
         font-weight: 600;
         color: var(--section-text-color);
         margin: 0;
-        padding: 0 0 2px;
+        padding: 0 0 0.125rem;
         line-height: 1.3;
     }
 
     .custom-card .custom-card-title {
         font-family: 'Open Sans', sans-serif;
-        font-size: 14px !important;
+        font-size: 0.875rem !important;
         font-weight: 600;
         color: var(--section-text-color);
         margin: 0;
-        padding: 0 0 2px;
+        padding: 0 0 0.125rem;
         line-height: 1.3;
         display: block;
     }
 
-    @media (max-width: 576px) {
+    @media (max-width: 36rem) {
         .customize-section {
-            padding: 0px 0 36px;
+            padding: 1.875rem 0 2.25rem;
         }
 
         .customize-title {
-            font-size: 22px;
+            font-size: 1.375rem;
             line-height: 1.25;
             text-align: center;
-            margin-bottom: 8px;
+            margin-bottom: 0.5rem;
         }
 
         .customize-subtitle {
-            font-size: 13px;
+            font-size: 0.8125rem;
             line-height: 1.35;
             text-align: center;
-            margin-bottom: 24px;
+            margin-bottom: 1.5rem;
         }
 
         .customize-sidebar {
             display: flex !important;
             flex-direction: row !important;
-            gap: 0px !important;
-            padding-bottom: 0px !important;
+            gap: 0 !important;
+            padding-bottom: 0 !important;
             overflow-x: auto !important;
             scrollbar-width: none;
             -ms-overflow-style: none;
@@ -223,26 +227,26 @@
 
         .customize-tab {
             width: auto !important;
-            flex: 0 0 50% !important;
-            height: 44px !important;
+            flex: 0 0 auto !important;
+            height: 2.75rem !important;
             min-height: 0 !important;
-            padding: 10px 10px !important;
-            font-size: 13px !important;
+            padding: 0.625rem 1.25rem !important;
+            font-size: 0.8125rem !important;
             font-weight: 700;
             text-align: center;
             white-space: nowrap !important;
-            border-radius: 0px !important;
+            border-radius: 0 !important;
             margin-bottom: -1px;
         }
 
         .customize-grid {
             display: flex !important;
             flex-direction: row !important;
-            gap: 12px !important;
+            gap: 0.75rem !important;
             overflow-x: auto !important;
             scrollbar-width: none;
             -ms-overflow-style: none;
-            padding-bottom: 10px !important;
+            padding-bottom: 0.625rem !important;
         }
         
         .customize-grid::-webkit-scrollbar {
@@ -250,10 +254,10 @@
         }
 
         .custom-card {
-            flex: 0 0 200.01px !important;
-            width: 200.01px !important;
-            padding: 0px !important;
-            border-radius: 0px !important;
+            flex: 0 0 12.5006rem !important;
+            width: 12.5006rem !important;
+            padding: 0 !important;
+            border-radius: 0 !important;
             box-shadow: none !important;
             background: transparent !important;
             text-align: center !important;
@@ -261,14 +265,14 @@
 
         .custom-img-wrapper {
             width: 100% !important;
-            border-radius: 8px !important;
-            margin-bottom: 10px !important;
+            border-radius: 0.5rem !important;
+            margin-bottom: 0.625rem !important;
             background: transparent !important;
             overflow: hidden;
         }
 
         .custom-card .h4-style {
-            font-size: 13px;
+            font-size: 0.8125rem;
             font-weight: 600;
             color: #111;
             text-align: center !important;
@@ -277,7 +281,7 @@
         }
 
         .custom-card .custom-card-title {
-            font-size: 14px !important;
+            font-size: 0.875rem !important;
             font-weight: 600;
             color: #111;
             text-align: center !important;
