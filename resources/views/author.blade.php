@@ -831,7 +831,7 @@
         <div class="container" style="margin-top: 40px; margin-bottom: 40px;">
             <x-cta />
         </div>
-    </main>
+                                                                                                                                            </main>
 
     <!-- Footer Component -->
     <x-footer />

@@ -205,15 +205,6 @@
     @if(!empty($sections))
     <div class="faq-container">
         
-        <!-- Center Tabs -->
-        <div class="faq-tabs-container">
-            @foreach($sections as $index => $section)
-                @php 
-                    $slug = \Illuminate\Support\Str::slug($section['heading']);
-                @endphp
-                <button class="{{ $index == 0 ? 'active' : '' }}" data-target="{{ $slug }}">{{ $section['heading'] }}</button>
-            @endforeach
-        </div>
 
         <div class="faq-content">
             @foreach($sections as $index => $section)

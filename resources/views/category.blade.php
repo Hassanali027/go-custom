@@ -256,7 +256,7 @@
     .section-subtitle {
         font-family: 'DM Sans', sans-serif;
         font-size: 15px;
-        color: #444;
+        color: black;
         margin-bottom: 40px;
     }
 

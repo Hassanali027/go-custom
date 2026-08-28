@@ -172,7 +172,7 @@ try {
 } catch (\Exception $e) {
     $faqSlug = 'frequentlyAskedQuestions';
 }
-Route::get('/' . ltrim($faqSlug, '/'), [FrequentlyAskedQuestionController::class, 'index']);
+Route::get('/' . strtolower(ltrim($faqSlug, '/')), [FrequentlyAskedQuestionController::class, 'index']);
 
 Route::get('/about-us/',[AboutUsController::class,'index']);
 
