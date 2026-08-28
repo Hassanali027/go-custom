@@ -175,10 +175,11 @@
     }
 
     .tf-accordion-btn svg {
-        width: 1rem;
-        height: 1rem;
+        width: 1.2rem;
+        height: 1.2rem;
         transition: transform 0.3s ease;
-        fill: #666;
+        stroke: #666;
+        fill: none;
     }
 
     .tf-accordion-item.active .tf-accordion-btn svg {
@@ -222,7 +223,7 @@
             contain: none;
             box-sizing: border-box;
         }
-        .faq-col { height: auto; }
+        .faq-col { display: none; }
         .testimonial-cards-wrap {
             display: flex;
             flex-direction: row;
@@ -360,7 +361,9 @@
                         <div class="tf-accordion-item">
                             <button class="tf-accordion-btn" type="button" onclick="toggleTfFaq(this)">
                                 {{ is_array($faq) ? ($faq['question'] ?? '') : ($faq->question ?? '') }}
-                                <svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="6 9 12 15 18 9"></polyline>
+                                </svg>
                             </button>
                             <div class="tf-accordion-content">
                                 <div class="tf-accordion-content-inner">{!! nl2br(e(is_array($faq) ? ($faq['answer'] ?? '') : ($faq->answer ?? ''))) !!}</div>

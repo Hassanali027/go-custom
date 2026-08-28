@@ -1,65 +1,10 @@
 @include('components.htmlboilerplate')
 <style>
-    .faq-hero, .faq-container {
+    .faq-container {
         font-family: 'DM Sans', sans-serif;
     }
-    .faq-hero h1, .faq-section-title, .faq-tabs-container button {
+    .faq-section-title, .faq-tabs-container button {
         font-family: 'Open Sans', sans-serif;
-    }
-    .faq-hero {
-        height: 25rem;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        padding: 1.5rem;
-        text-align: center;
-        background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('{{ asset("uploads/quote-hero-img.png") }}');
-        background-size: cover;
-        background-position: center;
-        position: relative;
-    }
-    .faq-breadcrumb {
-        position: absolute;
-        top: 2.5rem;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 100%;
-        max-width: 80rem;
-        padding: 0 3.4375rem;
-        font-size: 0.8125rem;
-        text-transform: capitalize;
-        color: #fff;
-        text-align: left;
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-    }
-    .faq-breadcrumb svg {
-        width: 0.875rem;
-        height: 0.875rem;
-        fill: #fff;
-    }
-    .faq-breadcrumb a {
-        color: #fff;
-        text-decoration: none;
-    }
-    .faq-breadcrumb span {
-        font-weight: 500;
-        color: #fff;
-    }
-    .faq-hero h1 {
-        font-size: 2.625rem;
-        font-weight: 700;
-        margin-bottom: 0.9375rem;
-        color: #fff;
-    }
-    .faq-hero p {
-        font-size: 1rem;
-        color: #fff;
-        max-width: 37.5rem;
-        margin: 0 auto;
-        line-height: 1.6;
     }
 
     .faq-container {
@@ -168,16 +113,6 @@
     }
 
     @media (max-width: 47.9375rem) {
-        .faq-breadcrumb {
-            display: none !important;
-        }
-        .faq-hero {
-            padding: 3.125rem 1.25rem;
-        }
-        .faq-hero h1 {
-            font-size: clamp(1.125rem, 6.5vw, 1.625rem);
-            white-space: nowrap;
-        }
         .faq-tabs-container {
             display: none !important;
         }
@@ -190,14 +125,12 @@
 
 <main class="faq-page">
     @include('components.header')
-    <div class="faq-hero">
-        <div class="faq-breadcrumb">
-            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
-            <a href="/">Home</a> <span>></span> <span>FAQs</span>
-        </div>
-        <h1>{{ $settings['faq_page_title'] ?? 'Frequently Asked Questions' }}</h1>
-        <p>From box styles and materials to custom sizes, pricing, and delivery, find quick answers to the questions we hear most.</p>
-    </div>
+    <x-about-hero 
+        :title="$settings['faq_page_title'] ?? 'Frequently Asked Questions'"
+        description="From box styles and materials to custom sizes, pricing, and delivery, find quick answers to the questions we hear most."
+        bgImage="uploads/quote-hero-img.png"
+        breadcrumb="FAQs"
+    />
 
     @php
         $sections = $settings['faq_page_sections'] ?? [];

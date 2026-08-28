@@ -39,50 +39,7 @@
             padding: 0 var(--margin-sides);
         }
 
-        /* Hero Section */
-        .blog-hero {
-            background: linear-gradient(rgba(10,34,64,0.6), rgba(10,34,64,0.6)), url('{{ asset("uploads/about-us-banner.webp") }}') center/cover no-repeat;
-            padding: 3.75rem 0 5rem;
-            text-align: center;
-            color: #fff;
-            position: relative;
-        }
-        
-        .blog-hero .container {
-            position: relative;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-        }
 
-        .breadcrumb {
-            position: absolute;
-            top: 0;
-            left: var(--margin-sides);
-            font-size: 0.875rem;
-            font-family: var(--font-heading);
-            margin: 0;
-        }
-        
-        .breadcrumb a {
-            color: #fff;
-            text-decoration: none;
-        }
-
-        .blog-hero h1 {
-            font-family: var(--font-heading);
-            font-size: 3rem;
-            font-weight: 700;
-            margin: 2.5rem 0 0.9375rem 0;
-        }
-
-        .blog-hero p {
-            font-size: 1rem;
-            max-width: 37.5rem;
-            margin: 0 auto;
-            line-height: 1.6;
-        }
 
         /* Content Section */
         .blog-content {
@@ -324,15 +281,13 @@
     @include('components.header')
 
     <main>
-        <section class="blog-hero">
-            <div class="container">
-                <div class="breadcrumb">
-                    <a href="{{ url('/') }}"><i class="fa-solid fa-house"></i> Home</a> &gt; Blog
-                </div>
-                <h1>Blog</h1>
-                <p>Discover packaging ideas, industry trends, design inspiration, and practical tips to help your brand stand out.</p>
-            </div>
-        </section>
+        <x-about-hero 
+            title="Blog"
+            description="Discover packaging ideas, industry trends, design inspiration, and practical tips to help your brand stand out."
+            bgImage="uploads/about-us-banner.webp"
+            breadcrumb="Blog"
+            overlay="rgba(10, 34, 64, 0.6)"
+        />
 
         <section class="blog-content">
             <div class="container">

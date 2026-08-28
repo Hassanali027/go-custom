@@ -319,7 +319,7 @@
         padding: 1.75rem 2rem 1.25rem;
         background: #FAF5F2; /* Cream background matching screenshot */
         border: none;
-        border-radius: 0.75rem;
+        border-radius: 0.90rem;
         box-shadow: 0 0.75rem 2.25rem rgba(0, 0, 0, 0.1);
         box-sizing: border-box;
         opacity: 0;
@@ -439,6 +439,7 @@
         transform: translateY(-1px);
     }
 
+
     /* Modifiers for Popular products & Resources */
     .mega-menu.mega-menu--products {
         width: min(23rem, calc(100vw - 2rem));
@@ -486,6 +487,13 @@
     .mega-menu--resources .mega-menu-item:hover {
         background: rgba(0, 0, 0, 0.05);
         color: #000;
+    }
+
+    /* Modifier for Material menu (Same height & style as Resources + Red/Orange line on top) */
+    .mega-menu.mega-menu--material {
+        border-top: 3.5px solid #E35A24 !important;
+        border-top-left-radius: 0 !important;
+        border-top-right-radius: 0 !important;
     }
 
     .custom-boxes-menu {
@@ -1012,14 +1020,14 @@
         
         <ul class="header-nav" style="display: flex; align-items: center; justify-content: center; margin: 0; padding: 0; list-style: none; flex-grow: 1; gap: 1.75rem;">
             <li><a href="/" style="color: #000000; text-decoration: none; font-weight: 700; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 0.9375rem;">Home</a></li>
+            <li class="has-mega" data-mega-type="custom-boxes">
+                <a href="#" class="mega-trigger" aria-haspopup="true" onclick="event.preventDefault();" style="color: #000000; text-decoration: none; font-weight: 700; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 0.9375rem;">Popular product</a>
+            </li>
             @foreach($navParentItems as $navParent)
             <li class="has-mega" data-mega-type="{{ $navParent['slug'] }}">
                 <a href="#" class="mega-trigger" aria-haspopup="true" onclick="event.preventDefault();" style="color: #000000; text-decoration: none; font-weight: 700; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 0.9375rem;">{{ $navLabels[$navParent['slug']] ?? $navParent['title'] }}</a>
             </li>
             @endforeach
-            <li class="has-mega" data-mega-type="custom-boxes">
-                <a href="#" class="mega-trigger" aria-haspopup="true" onclick="event.preventDefault();" style="color: #000000; text-decoration: none; font-weight: 700; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 0.9375rem;">Popular product</a>
-            </li>
             <li class="has-mega" data-mega-type="resources">
                 <a href="#" class="mega-trigger" aria-haspopup="true" onclick="event.preventDefault();" style="color: #000000; text-decoration: none; font-weight: 700; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 0.9375rem;">Resources</a>
             </li>
@@ -1099,14 +1107,33 @@
                         <a href="/" class="mobile-nav-link-top">Home</a>
                     </div>
                 </li>
+                <li class="mobile-nav-item has-dropdown">
+                    <div class="mobile-nav-header" onclick="this.parentElement.classList.toggle('open')">
+                        <a href="#" class="mobile-nav-link-top" onclick="event.preventDefault(); event.stopPropagation(); this.parentElement.parentElement.classList.toggle('open');">Popular product</a>
+                        <button type="button" class="mobile-dropdown-toggle" aria-label="Toggle Popular product dropdown">
+                            <svg class="chevron-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="6 9 12 15 18 9"></polyline>
+                            </svg>
+                        </button>
+                    </div>
+                    @if(count($customBoxProducts) > 0)
+                        <ul class="mobile-submenu">
+                            @foreach($customBoxProducts as $product)
+                                <li>
+                                    <a href="{{ url('/' . $product->slug) }}/">{{ $product->title }}</a>
+                                </li>
+                            @endforeach
+                        </ul>
+                    @endif
+                </li>
                 @foreach($navParents as $navParent)
                     @php
                         $children = $navByParentSlug[$navParent['slug']] ?? [];
                     @endphp
                     <li class="mobile-nav-item has-dropdown">
                         <div class="mobile-nav-header" onclick="this.parentElement.classList.toggle('open')">
-                            <a href="#" class="mobile-nav-link-top" onclick="event.preventDefault(); event.stopPropagation(); this.parentElement.parentElement.classList.toggle('open');">{{ $navParent['title'] }}</a>
-                            <button type="button" class="mobile-dropdown-toggle" aria-label="Toggle {{ $navParent['title'] }} dropdown">
+                            <a href="#" class="mobile-nav-link-top" onclick="event.preventDefault(); event.stopPropagation(); this.parentElement.parentElement.classList.toggle('open');">{{ $navLabels[$navParent['slug']] ?? $navParent['title'] }}</a>
+                            <button type="button" class="mobile-dropdown-toggle" aria-label="Toggle {{ $navLabels[$navParent['slug']] ?? $navParent['title'] }} dropdown">
                                 <svg class="chevron-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                                     <polyline points="6 9 12 15 18 9"></polyline>
                                 </svg>
@@ -1123,10 +1150,30 @@
                         @endif
                     </li>
                 @endforeach
-                <li class="mobile-nav-item">
-                    <div class="mobile-nav-header">
-                        <a href="/blog/" class="mobile-nav-link-top">Blog</a>
+                <li class="mobile-nav-item has-dropdown">
+                    <div class="mobile-nav-header" onclick="this.parentElement.classList.toggle('open')">
+                        <a href="#" class="mobile-nav-link-top" onclick="event.preventDefault(); event.stopPropagation(); this.parentElement.parentElement.classList.toggle('open');">Resources</a>
+                        <button type="button" class="mobile-dropdown-toggle" aria-label="Toggle Resources dropdown">
+                            <svg class="chevron-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="6 9 12 15 18 9"></polyline>
+                            </svg>
+                        </button>
                     </div>
+                    @php
+                        try {
+                            $faqRow = DB::table('homepage_contents')->where('section', 'faq_page')->where('field_key', 'faq_page_slug')->first();
+                            $faqSlug = $faqRow ? $faqRow->value : 'frequentlyAskedQuestions';
+                        } catch (\Exception $e) {
+                            $faqSlug = 'frequentlyAskedQuestions';
+                        }
+                        $faqSlug = strtolower(ltrim($faqSlug, '/'));
+                    @endphp
+                    <ul class="mobile-submenu">
+                        <li><a href="/{{ $faqSlug }}">FAQ's</a></li>
+                        <li><a href="/blog">Blog</a></li>
+                        <li><a href="/about-us">About Us</a></li>
+                        <li><a href="/contact-us">Contact Us</a></li>
+                    </ul>
                 </li>
             </ul>
 
@@ -1215,8 +1262,7 @@
                 @endforeach
             ],
             "resources": [
-                { title: "Artwork Guidelines", slug: "artwork-guidelines" },
-                { title: "FAQ's", slug: "faqs" },
+                { title: "FAQ's", slug: "{{ $faqSlug }}" },
                 { title: "Blog", slug: "blog" },
                 { title: "About Us", slug: "about-us" },
                 { title: "Contact Us", slug: "contact-us" }
@@ -1274,8 +1320,10 @@
         function renderMegaGrid(type) {
             const isProductMenu = type === 'custom-boxes';
             const isResourcesMenu = type === 'resources';
+            const isMaterialMenu = type === 'box-by-material';
             megaMenu.classList.toggle('mega-menu--products', isProductMenu);
-            megaMenu.classList.toggle('mega-menu--resources', isResourcesMenu);
+            megaMenu.classList.toggle('mega-menu--resources', isResourcesMenu || isMaterialMenu);
+            megaMenu.classList.toggle('mega-menu--material', isMaterialMenu);
 
             const items = megaData[type] || [];
             if (items.length === 0) {
@@ -1295,7 +1343,7 @@
                     iconHtml = getCategoryIcon(title, slug);
                 }
                 
-                return `<a href="/${slug}/" class="mega-menu-item">
+                return `<a href="/${slug}" class="mega-menu-item">
                     <div class="mega-menu-icon">${iconHtml}</div>
                     <span>${title}</span>
                 </a>`;
@@ -1323,20 +1371,36 @@
             const lastNavRect = lastNavItem.getBoundingClientRect();
             const isProductMenu = megaMenu.classList.contains('mega-menu--products');
             const isResourcesMenu = megaMenu.classList.contains('mega-menu--resources');
-            const activeMenuItem = document.querySelector('.header-nav .has-mega.active');
-            const activeMenuRect = activeMenuItem ? activeMenuItem.getBoundingClientRect() : homeRect;
+            const isMaterialMenu = megaMenu.classList.contains('mega-menu--material');
             
-            if (isProductMenu || isResourcesMenu) {
+            const menuPaddingLeft = parseFloat(getComputedStyle(megaMenu).paddingLeft) || 0;
+            
+            if (isResourcesMenu || isMaterialMenu) {
+                // Position below the active nav item — left edge aligned
+                const activeMenuItem = document.querySelector('.header-nav .has-mega.active');
+                const activeMenuRect = activeMenuItem ? activeMenuItem.getBoundingClientRect() : lastNavRect;
                 megaMenu.style.width = '';
                 const menuWidth = megaMenu.offsetWidth;
-                const desiredLeft = (activeMenuRect.left + (activeMenuRect.width / 2) - (menuWidth / 2)) - headerRect.left;
+                // Align center of menu with center of the nav item
+                let desiredLeft = (activeMenuRect.left + (activeMenuRect.width / 2) - (menuWidth / 2)) - headerRect.left;
+                // Don't go off right edge
+                const maximumLeft = Math.max(4, header.clientWidth - menuWidth - 4);
+                megaMenu.style.left = `${Math.min(Math.max(4, desiredLeft), maximumLeft)}px`;
+            } else if (isProductMenu) {
+                // Center below the active nav item
+                const activeMenuItem = document.querySelector('.header-nav .has-mega.active');
+                const activeMenuRect = activeMenuItem ? activeMenuItem.getBoundingClientRect() : homeRect;
+                megaMenu.style.width = '';
+                const menuWidth = megaMenu.offsetWidth;
+                let desiredLeft = (activeMenuRect.left + (activeMenuRect.width / 2) - (menuWidth / 2)) - headerRect.left;
                 const maximumLeft = Math.max(4, header.clientWidth - menuWidth - 4);
                 megaMenu.style.left = `${Math.min(Math.max(4, desiredLeft), maximumLeft)}px`;
             } else {
+                // Grid menus (Industry, Box by Style) start from Home
+                const desiredLeft = (homeRect.left - headerRect.left) - menuPaddingLeft;
                 const calculatedNavWidth = lastNavRect.right - homeRect.left;
-                const desiredWidth = Math.min(Math.max(760, calculatedNavWidth), header.clientWidth - 32);
+                const desiredWidth = Math.min(Math.max(760, calculatedNavWidth + (menuPaddingLeft * 2)), header.clientWidth - 32);
                 megaMenu.style.width = `${desiredWidth}px`;
-                const desiredLeft = homeRect.left - headerRect.left;
                 const maximumLeft = Math.max(4, header.clientWidth - desiredWidth - 16);
                 megaMenu.style.left = `${Math.min(Math.max(4, desiredLeft), maximumLeft)}px`;
             }

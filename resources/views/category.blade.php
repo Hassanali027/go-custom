@@ -338,12 +338,22 @@
             text-align: center;
         }
         
+        .category-hero-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
         .category-hero-image {
             justify-content: center;
         }
         
         .category-breadcrumb {
             justify-content: center;
+        }
+
+        .category-hero-desc {
+            text-align: center;
         }
         
         .boxes-grid {

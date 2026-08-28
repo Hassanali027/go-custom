@@ -49,87 +49,7 @@
             color: #000000;
         }
 
-        .iq-page-hero {
-            width: 100%;
-            max-width: 90rem;
-            height: 25rem;
-            margin: 0 auto;
-            text-align: center;
-            box-sizing: border-box;
-            background: url("{{ asset('uploads/quote-hero-img.png') }}") center/cover no-repeat;
-            position: relative;
-            color: #ffffff;
-        }
 
-        .iq-hero-inner {
-            width: 100%;
-            max-width: 80rem;
-            height: 100%;
-            margin: 0 auto;
-            position: relative;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            z-index: 2;
-        }
-
-        .iq-page-hero::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: rgba(0, 0, 0, 0.58);
-            z-index: 1;
-        }
-
-        .iq-page-hero > * {
-            position: relative;
-            z-index: 2;
-        }
-
-        .iq-breadcrumb {
-            position: absolute;
-            top: 2.5rem;
-            left: 3.4375rem;
-            font-size: 0.9375rem;
-            font-weight: 500;
-            color: #fff;
-            letter-spacing: 0.0312rem;
-            font-family: 'DM Sans', sans-serif;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .iq-breadcrumb a {
-            color: #fff;
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .iq-breadcrumb span {
-            color: #fff;
-        }
-
-        .iq-page-hero h1 {
-            font-family: 'Open Sans', sans-serif;
-            font-size: clamp(2rem, 4vw, 2.875rem);
-            font-weight: 700;
-            color: #ffffff;
-            margin-bottom: 1rem;
-            line-height: 1.2;
-        }
-
-        .iq-page-hero p {
-            font-family: 'DM Sans', sans-serif;
-            color: #ffffff;
-            font-size: 1.0625rem;
-            max-width: 42.5rem;
-            margin: 0 auto;
-            line-height: 1.6;
-        }
 
         .iq-page-container {
             width: 100%;
@@ -430,15 +350,12 @@
     @include('components.header')
 
     <main class="main-content">
-        <div class="iq-page-hero">
-            <div class="iq-hero-inner">
-                <div class="iq-breadcrumb">
-                    <a href="/"><i class="fa-solid fa-house" style="font-size: 0.875rem;"></i> Home</a> <i class="fa-solid fa-angle-right" style="font-size: 0.75rem; margin: 0 0.125rem;"></i> <span>Get a Quote</span>
-                </div>
-                <h1>Get A Free Quote</h1>
-                <p>Tell us about your packaging needs and our team will create a custom quote around your product, brand, and requirements.</p>
-            </div>
-        </div>
+        <x-about-hero 
+            title="Get A Free Quote"
+            description="Tell us about your packaging needs and our team will create a custom quote around your product, brand, and requirements."
+            bgImage="uploads/quote-hero-img.png"
+            breadcrumb="Get a Quote"
+        />
 
         <div class="iq-page-container">
             <!-- Left sidebar section -->

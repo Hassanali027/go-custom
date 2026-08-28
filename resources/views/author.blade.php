@@ -109,13 +109,12 @@
             padding: 2.5rem 0 0;
             margin-bottom: 1.25rem;
             font-family: 'Open Sans', sans-serif;
-            font-size: 0.8125rem;
-            font-weight: 600;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            color: #000;
+            font-size: 1rem;
+            font-weight: 500;
+            color: var(--color-text-primary);
             display: flex;
             align-items: center;
+            gap: 0.5rem;
             flex-wrap: wrap;
         }
 
@@ -130,7 +129,7 @@
         }
 
         .breadcrumb span {
-            margin: 0 0.5rem;
+            /* reset margin since gap is used */
         }
 
         .breadcrumb span[aria-current="page"] {
@@ -256,15 +255,7 @@
             padding-bottom: 0.75rem;
         }
 
-        .section-title::after {
-            content: '';
-            position: absolute;
-            left: 0;
-            bottom: 0;
-            width: 8.75rem;
-            height: 0.1875rem;
-            background-color: var(--color-link);
-        }
+
 
         .blog-grid {
             display: grid;
@@ -730,10 +721,18 @@
         <section class="hero-section">
             <div class="container">
                 <!-- Breadcrumb -->
-                <nav class="breadcrumb" aria-label="Breadcrumb">
-                    <a href="/">HOME</a>
-                    <span>/</span>
-                    <span aria-current="page" style="text-transform: uppercase;">{{ $author['title'] }}</span>
+                <nav class="breadcrumb" aria-label="Breadcrumb" style="text-transform: capitalize; letter-spacing: normal;">
+                    <a href="/" style="display: flex; align-items: center; gap: 6px;">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="width: 16px; height: 16px;">
+                            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                            <polyline points="9 22 9 12 15 12 15 22"></polyline>
+                        </svg>
+                        Home
+                    </a>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width: 16px; height: 16px;">
+                        <polyline points="9 18 15 12 9 6"></polyline>
+                    </svg>
+                    <span aria-current="page" style="color: #000;">About Us</span>
                 </nav>
 
                 <div class="hero-content">

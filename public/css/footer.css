@@ -624,7 +624,7 @@
         margin-bottom: 16px;
         width: 97%;
         height: auto;
-        line-height: 20px;
+        line-height: 29px;
     }
 
     .social-links {
@@ -702,7 +702,7 @@
     .contact-item a,
     .contact-item span {
         font-size: 14px;
-        line-height: 20px;
+        line-height: 29px;
     }
 
     /* Company Info Section */
@@ -873,7 +873,7 @@
 
     .brand-description {
         font-size: 14px;
-        line-height: 22px;
+        line-height: 29px;
         text-align: justify;
     }
 
@@ -885,6 +885,7 @@
     .contact-item a,
     .contact-item span {
         font-size: 13px;
+        line-height: 29px;
     }
 }
 @media (max-width: 768px) {
