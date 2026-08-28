@@ -44,7 +44,12 @@
 
         /* Hero Section */
         .contact-hero {
-            background: linear-gradient(rgba(10,34,64,0.4), rgba(10,34,64,0.4)), url('{{ asset("uploads/about-us-banner.webp") }}') center/cover no-repeat;
+            background-image:
+                linear-gradient(110deg, rgba(11,34,64,.82) 0%, rgba(11,34,64,.58) 48%, rgba(11,34,64,.76) 100%),
+                url('{{ asset("uploads/about-us-banner.webp") }}');
+            background-position: center;
+            background-size: cover;
+            background-repeat: no-repeat;
             max-width: 90rem;
             width: 100%;
             height: 25rem;

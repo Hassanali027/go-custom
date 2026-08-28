@@ -686,19 +686,18 @@
 
         @include('components.logo')
 
+        @php
+            $catProducts = !empty($products) ? (is_object($products) ? $products->toArray() : $products) : [];
+        @endphp
+
         <!-- Popular Boxes Section -->
+        @if(count($catProducts) > 0)
         <section class="popular-boxes-section">
             <div class="popular-boxes-inner">
                 <h2 class="section-title">{{ $category['products_heading'] ?: 'Packaging Made For Every Product' }}</h2>
                 <p class="section-subtitle">{{ $category['products_description'] ?: 'Explore products available in this category, designed to fit your style and requirements.' }}</p>
 
                 <div class="boxes-grid">
-                    @php
-                        $catProducts = !empty($products) ? (is_object($products) ? $products->toArray() : $products) : [];
-                    @endphp
-                    @if(count($catProducts) === 0)
-                        <p style="grid-column:1/-1;text-align:center;color:#667085;padding:30px 0;">No products have been added to this category yet.</p>
-                    @endif
                     @foreach ($catProducts as $p)
                         @php
                             $pImg = '';
@@ -754,6 +753,7 @@
                 </div>
             </div><!-- end .popular-boxes-inner -->
         </section>
+        @endif
 
         @include('components.coating-finishing')
         

@@ -20,5 +20,7 @@ class DatabaseSeeder extends Seeder
         $this->call(CategoryFeatureSectionsSeeder::class);
         $this->call(CategorySeoSeeder::class);
         $this->call(ProductFaqsSeeder::class);
+        $this->call(RequestedCategoriesSeeder::class);
+        $this->call(RequestedCategoryContentSeeder::class);
     }
 }

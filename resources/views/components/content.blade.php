@@ -53,7 +53,8 @@
         background: var(--footer-color);
     }
 
-    .text-content-heading {
+    .text-content-heading,
+    .text-content-body h2 {
         font-family: 'Open Sans', sans-serif;
         font-size: 1.5rem;
         font-weight: 700;
@@ -191,7 +192,8 @@
             cursor: pointer;
             transition: background 0.2s;
         }
-        .text-content-heading {
+        .text-content-heading,
+        .text-content-body h2 {
             font-size: 1.125rem;
             line-height: 1.35;
             margin-bottom: 0.875rem;
@@ -218,23 +220,11 @@
             </div>
             <div class="text-content-inner" id="tcInner">
                 <div class="text-content-body">
-                    <h2 class="text-content-heading">Order Custom Boxes, Custom Packaging & Shipping Boxes At Wholesale Rates</h2>
-                    <p>Do You Have A Business? Big Or Small Doesn't Matter!</p>
-                    <p>Want To Give Your Customers Elegance With Great Packaging And A Secure Product Within? Look No Further!</p>
-                    <p>Here We Are, My Box Printing Offers Wholesale, Unbeatable Rates That Are Unbelievable For The Quality We Are Providing. We Understand Our Clients And Their Business Needs. Business Is Like A Baby That Needs To Be Taken Care Of With Great Products That Won't Get Harmed In Any Way.</p>
-                    <p>In The Same Way, Your Brand Needs To Deliver With Our Custom Packaging And Material So That Your Customer Feels Luxurious With The Feel Of The Product Packaging And Printing.</p>
-                    <p>We Are A Company That Provides A Complete Packaging Solution At Retail And Wholesale Prices. Let's Put Our Services Into Major Points.</p>
-                    <ul>
-                        <li>Custom Boxes</li>
-                        <li>Custom Packaging</li>
-                        <li>Custom Box Designs</li>
-                        <li>Custom Mailer Boxes</li>
-                        <li>Custom Printed Boxes</li>
-                        <li>Custom Gift Packaging</li>
-                    </ul>
-                    <p>Not Only This, We Also Offer Mock-Ups And Complete Satisfaction, In Which Our Team Will Review Your Design And Make The Changes Needed. We Have A Great 3d Design Studio That Gives You A Visual Representation Of What You Are Going To Receive After The Order.</p>
-                    <p>The Design Team Also Makes Sure To Keep Every Aspect Of Your Brand In Mind. After The Order Is Completed, All Is Packed In Corrugated Cardboard Shipping Boxes, Which Are Also Sustainable Packaging And Eco-Friendly.</p>
-                    <p>No Matter How Unique The Design You Want, We'll Give You Your Expected Results. We Design And Ship Within Due Time.</p>
+                    @php
+                        $dynamicContentSettings = $settings ?? app(\App\Http\Controllers\AdminHomepageController::class)->loadSettings();
+                        $dynamicContentHtml = $dynamicContentSettings['content_section'] ?? '';
+                    @endphp
+                    {!! $dynamicContentHtml !!}
                 </div>
             </div>
         </div>
