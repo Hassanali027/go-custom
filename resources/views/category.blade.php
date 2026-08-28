@@ -768,58 +768,38 @@
         
         @include('components.customquote')
 
-        {{-- ═══════════════════════════════════════
-             CLOTHING FEATURES SECTION (New from Figma)
-        ═══════════════════════════════════════ --}}
-        <section class="clothing-features-section">
-            <div class="clothing-features-inner">
-                <h2 class="clothing-features-title">One destination for building<br class="mobile-br"> your dream<br class="desktop-br"> clothing and<br class="mobile-br"> apparel packaging</h2>
-                
-                <!-- Card 1 -->
-                <div class="clothing-feature-card">
-                    <div class="clothing-feature-text">
-                        <h3>Easily package your clothing line</h3>
-                        <p>Packaging for entire clothing lines can be tough, especially when considering both retail and e-commerce platforms. Luckily, our multi-packaging capabilities help simplify this process by providing every packaging style you need to get you started.</p>
-                    </div>
-                    <div class="clothing-feature-image">
-                        <img src="{{ asset('uploads/section1img.png') }}" alt="Easily package your clothing line">
-                    </div>
-                </div>
+        @php
+            $featureSections = json_decode($category['feature_sections'] ?? '[]', true) ?: [];
+        @endphp
+        @if(count($featureSections))
+            <section class="clothing-features-section">
+                <div class="clothing-features-inner">
+                    @if(!empty($category['feature_title']))
+                        <h2 class="clothing-features-title">{{ $category['feature_title'] }}</h2>
+                    @endif
 
-                <!-- Card 2 -->
-                <div class="clothing-feature-card reverse">
-                    <div class="clothing-feature-text">
-                        <h3>Luxury clothing gift boxes</h3>
-                        <p>Ensuring your packaging is a reflection of the quality of your clothing products is an integral component of making an impact in the apparel market. Choose from a hand curated library of premium packaging options built for you to achieve the look and feel of your brand.</p>
-                    </div>
-                    <div class="clothing-feature-image">
-                        <img src="{{ asset('uploads/section2img.png') }}" alt="Luxury clothing gift boxes">
-                    </div>
+                    @foreach($featureSections as $feature)
+                        @php
+                            $featureImage = $feature['image'] ?? '';
+                            $featureImagePath = \Illuminate\Support\Str::startsWith($featureImage, ['storage/', 'uploads/', 'images/'])
+                                ? $featureImage
+                                : 'storage/' . $featureImage;
+                        @endphp
+                        <div class="clothing-feature-card {{ $loop->odd ? '' : 'reverse' }}">
+                            <div class="clothing-feature-text">
+                                @if(!empty($feature['title']))<h3>{{ $feature['title'] }}</h3>@endif
+                                @if(!empty($feature['description']))<p>{{ $feature['description'] }}</p>@endif
+                            </div>
+                            @if(!empty($featureImage))
+                                <div class="clothing-feature-image">
+                                    <img src="{{ asset($featureImagePath) }}" alt="{{ $feature['title'] ?? $category['title'] }}" loading="lazy">
+                                </div>
+                            @endif
+                        </div>
+                    @endforeach
                 </div>
-
-                <!-- Card 3 -->
-                <div class="clothing-feature-card">
-                    <div class="clothing-feature-text">
-                        <h3>Eco-friendly clothing packaging</h3>
-                        <p>Pair your sustainable fashion products with eco-friendly packaging for clothing to meet your brand's green goals! We carry a multitude of sustainable packaging styles to help further support industry leaders paving the way to a more sustainable world.</p>
-                    </div>
-                    <div class="clothing-feature-image">
-                        <img src="{{ asset('uploads/section3img.png') }}" alt="Eco-friendly clothing packaging">
-                    </div>
-                </div>
-
-                <!-- Card 4 -->
-                <div class="clothing-feature-card reverse">
-                    <div class="clothing-feature-text">
-                        <h3>Smart clothing shipping solutions</h3>
-                        <p>Get all the shipping solutions you need to package your apparel efficiently. All our packaging is custom tailored and right sized to your specifications to ensure the most optimal size for shipping all your articles of clothing to keep your shipping costs low.</p>
-                    </div>
-                    <div class="clothing-feature-image">
-                        <img src="{{ asset('uploads/section4img.png') }}" alt="Smart clothing shipping solutions">
-                    </div>
-                </div>
-            </div>
-        </section>
+            </section>
+        @endif
 
         {{-- ═══════════════════════════════════════
              TESTIMONIALS & FAQ SECTION

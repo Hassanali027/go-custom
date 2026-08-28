@@ -124,15 +124,15 @@ class AdminContentController extends Controller
         ]);
         $table = ['products'=>'admin_products','categories'=>'admin_categories','blogs'=>'admin_blogs','pages'=>'admin_pages','authors'=>'admin_authors'][$module];
         $columns = [
-            'products' => ['title','slug','status','show_home','image','hover_image','images','description','long_description','alt_text','box_style','material','printing','finishing','dimensions','moq','turnaround','meta_title','meta_description','meta_keywords','robots','schema','related'],
-            'categories' => ['title','slug','status','parent_id','show_in_nav','show_home','image','icon','hero_image','banner_image','hero_title','hero_badge','hero_description','description','products_heading','products_description','feature_title','why_choose_title','why_choose_description','meta_title','meta_description','meta_keywords','robots','schema'],
+            'products' => ['title','slug','status','show_home','show_as_custom_box','image','hover_image','nav_image','images','description','long_description','alt_text','box_style','material','printing','finishing','dimensions','moq','turnaround','meta_title','meta_description','meta_keywords','robots','schema','related'],
+            'categories' => ['title','slug','status','parent_id','show_in_nav','show_home','image','icon','hero_image','banner_image','hero_title','hero_badge','hero_description','description','products_heading','products_description','feature_title','why_choose_title','why_choose_description','feature_sections','meta_title','meta_description','meta_keywords','robots','schema'],
             'blogs' => ['title','slug','status','show_home','image','author_id','author_name','publish_date','blog_category','tags','excerpt','content','author_description','alt_text','meta_title','meta_description','meta_keywords','robots','schema'],
             'pages' => ['title','slug','status','show_home','image','heading','content','position','appearance','alt_text','meta_title','meta_description','meta_keywords','robots','schema'],
             'authors' => ['title','slug','status','description','image','facebook','twitter','linkedin'],
         ][$module];
         $existing = ctype_digit((string)$id) ? DB::table($table)->where('id',(int)$id)->first() : null;
         $fields = $columns;
-        $payload = collect($request->except(['_token','_method','images','existing_images','image','hover_image','hero_image','banner_image','icon','categories','related','faq_question','faq_answer']))->only($fields)->all();
+        $payload = collect($request->except(['_token','_method','images','existing_images','image','hover_image','nav_image','hero_image','banner_image','icon','categories','related','faq_question','faq_answer']))->only($fields)->all();
         \Log::info('AdminContentController payload for ' . $module, $payload);
         $payload['title'] = $request->title; $payload['slug'] = Str::slug($request->slug ?: $request->title); $payload['updated_at'] = now();
 
@@ -140,7 +140,7 @@ class AdminContentController extends Controller
             $payload['publish_date'] = date('Y-m-d', strtotime(trim($payload['publish_date'])));
         }
 
-        foreach (['show_home', 'show_in_nav'] as $checkboxField) {
+        foreach (['show_home', 'show_in_nav', 'show_as_custom_box'] as $checkboxField) {
             if (in_array($checkboxField, $fields, true)) {
                 $payload[$checkboxField] = $request->boolean($checkboxField) ? 1 : 0;
             }
@@ -148,9 +148,43 @@ class AdminContentController extends Controller
 
         if ($module === 'categories') {
             $payload['parent_id'] = $request->filled('parent_id') ? $request->input('parent_id') : null;
+
+            $featureSections = [];
+            $featureTitles = (array) $request->input('feature_section_title', []);
+            $featureDescriptions = (array) $request->input('feature_section_description', []);
+            $existingFeatureImages = (array) $request->input('feature_section_existing_image', []);
+            $uploadPath = public_path('uploads');
+
+            foreach ($featureTitles as $index => $featureTitle) {
+                $featureTitle = trim((string) $featureTitle);
+                $featureDescription = trim((string) ($featureDescriptions[$index] ?? ''));
+                $featureImage = $existingFeatureImages[$index] ?? null;
+
+                if ($request->hasFile("feature_section_image.{$index}")) {
+                    $file = $request->file("feature_section_image.{$index}");
+                    if ($file && $file->isValid()) {
+                        if (!is_dir($uploadPath)) {
+                            mkdir($uploadPath, 0775, true);
+                        }
+                        $fileName = 'category-feature-' . time() . '-' . $index . '.' . $file->getClientOriginalExtension();
+                        $file->move($uploadPath, $fileName);
+                        $featureImage = 'uploads/' . $fileName;
+                    }
+                }
+
+                if ($featureTitle !== '' || $featureDescription !== '' || !empty($featureImage)) {
+                    $featureSections[] = [
+                        'title' => $featureTitle,
+                        'description' => $featureDescription,
+                        'image' => $featureImage,
+                    ];
+                }
+            }
+
+            $payload['feature_sections'] = json_encode($featureSections);
         }
 
-        foreach (['image', 'hover_image', 'hero_image', 'banner_image', 'icon'] as $field) {
+        foreach (['image', 'hover_image', 'nav_image', 'hero_image', 'banner_image', 'icon'] as $field) {
             if (in_array($field, $fields) && $request->input('remove_' . $field) == '1') {
                 $payload[$field] = null;
             }

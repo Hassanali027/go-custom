@@ -2,7 +2,7 @@
     .category-hero-wrapper {
         width: 100%;
         max-width: 100%;
-        height: 538px;
+        height: 420px;
         box-sizing: border-box;
         background: linear-gradient(160deg, #FFF8E7 0%, #FFE9C2 35%, #FFE0A6 100%);
         color: #000;
@@ -146,6 +146,23 @@
         color: #D4A872;
     }
 
+    .category-page-hero .hero-title {
+        font-family: 'Open Sans', sans-serif;
+        font-size: 32px;
+        line-height: 1.35;
+        max-width: 460px;
+        text-align: left;
+    }
+
+    .category-page-hero .hero-description {
+        max-width: 460px;
+        text-align: left;
+    }
+
+    .category-page-hero .hero-title br {
+        display: none;
+    }
+
     .hero-description {
         text-align: justify;
         font-family: 'DM Sans', sans-serif;
@@ -244,6 +261,21 @@
             text-align: center;
         }
 
+        .category-page-hero .hero-section,
+        .category-page-hero .hero-content {
+            align-items: flex-start;
+            text-align: left;
+        }
+
+        .category-page-hero .hero-content {
+            max-width: 100%;
+        }
+
+        .category-page-hero .hero-title {
+            max-width: 440px;
+            text-align: left;
+        }
+
         .hero-description {
             font-family: 'Inter', sans-serif;
             font-size: 16px;
@@ -300,6 +332,14 @@
             display: none;
         }
 
+        .category-page-hero .hero-title {
+            font-size: 24px !important;
+            max-width: 100%;
+            margin-left: 0;
+            margin-right: 0;
+            text-align: left;
+        }
+
 
 
     }
@@ -341,7 +381,7 @@
 </style>
 
 <!-- Hero Banner with gradient -->
-<div class="category-hero-wrapper">
+<div class="category-hero-wrapper {{ request()->is('/') ? 'home-hero-wrapper' : 'category-page-hero' }}">
     <div class="hero-pattern"></div>
 
 

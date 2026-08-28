@@ -10,6 +10,17 @@
     $editing = (bool)$item;
     $selectedParentId = old('parent_id', $item['parent_id'] ?? '');
     $categoryFaqs = $categoryFaqs ?? [];
+    $categoryFeatureSections = json_decode($item['feature_sections'] ?? '[]', true) ?: [];
+    if (is_array(old('feature_section_title'))) {
+        $categoryFeatureSections = [];
+        foreach (old('feature_section_title') as $index => $title) {
+            $categoryFeatureSections[] = [
+                'title' => $title,
+                'description' => old('feature_section_description.' . $index, ''),
+                'image' => old('feature_section_existing_image.' . $index, ''),
+            ];
+        }
+    }
     $resolveImg = fn($path) => empty($path) ? '' : (\Illuminate\Support\Str::startsWith($path, ['storage/', 'uploads/', 'images/']) ? asset($path) . '?v=' . (@filemtime(public_path($path)) ?: 1) : asset('storage/' . $path) . '?v=' . (@filemtime(storage_path('app/public/' . $path)) ?: 1));
 @endphp
 
@@ -138,6 +149,44 @@
                 <label>Category Description</label>
                 <textarea name="description" style="min-height:180px">{{ $v('description') }}</textarea>
             </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <div style="display:flex; justify-content:space-between; align-items:center; gap:16px; margin-bottom:15px;">
+            <div>
+                <h3 style="margin:0;">Image & Text Feature Sections</h3>
+                <p style="margin:5px 0 0; color:#6b7280; font-size:13px;">Add as many image, title, and description rows as needed. They will alternate left and right on this category page.</p>
+            </div>
+            <button type="button" onclick="addFeatureSection()" class="btn light" style="padding:6px 12px; font-size:13px;"><i class="fa-solid fa-plus"></i> Add Section</button>
+        </div>
+        <div id="featureSectionsContainer" style="display:grid; gap:16px;">
+            @foreach($categoryFeatureSections as $index => $feature)
+                <div class="feature-section-row" style="border:1px solid #e5e7eb; border-radius:8px; padding:16px; background:#fafafa;">
+                    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+                        <strong>Feature Section <span class="feature-section-number">{{ $loop->iteration }}</span></strong>
+                        <button type="button" onclick="removeFeatureSection(this)" style="background:none; border:0; color:#e74c3c; cursor:pointer;" title="Remove section"><i class="fa-solid fa-trash"></i> Remove</button>
+                    </div>
+                    <input type="hidden" name="feature_section_existing_image[]" value="{{ $feature['image'] ?? '' }}">
+                    <div class="form-grid">
+                        <div class="field">
+                            <label>Heading</label>
+                            <input name="feature_section_title[]" value="{{ $feature['title'] ?? '' }}" placeholder="Feature heading">
+                        </div>
+                        <div class="field">
+                            <label>Image</label>
+                            @if(!empty($feature['image']))
+                                <img src="{{ $resolveImg($feature['image']) }}" alt="" style="display:block; width:80px; height:60px; object-fit:cover; border-radius:4px; margin-bottom:8px;">
+                            @endif
+                            <input type="file" name="feature_section_image[]" accept="image/*">
+                        </div>
+                        <div class="field full">
+                            <label>Description</label>
+                            <textarea name="feature_section_description[]" style="min-height:90px;">{{ $feature['description'] ?? '' }}</textarea>
+                        </div>
+                    </div>
+                </div>
+            @endforeach
         </div>
     </div>
 
@@ -281,6 +330,35 @@
         const aLabels = document.querySelectorAll('#faqsContainer .faq-a-label');
         qLabels.forEach((lbl, idx) => lbl.innerText = 'Question ' + (idx + 1));
         aLabels.forEach((lbl, idx) => lbl.innerText = 'Answer ' + (idx + 1));
+    }
+
+    function addFeatureSection() {
+        const container = document.getElementById('featureSectionsContainer');
+        const section = document.createElement('div');
+        section.className = 'feature-section-row';
+        section.style.cssText = 'border:1px solid #e5e7eb; border-radius:8px; padding:16px; background:#fafafa;';
+        section.innerHTML = `
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+                <strong>Feature Section <span class="feature-section-number"></span></strong>
+                <button type="button" onclick="removeFeatureSection(this)" style="background:none; border:0; color:#e74c3c; cursor:pointer;" title="Remove section"><i class="fa-solid fa-trash"></i> Remove</button>
+            </div>
+            <input type="hidden" name="feature_section_existing_image[]" value="">
+            <div class="form-grid">
+                <div class="field"><label>Heading</label><input name="feature_section_title[]" placeholder="Feature heading"></div>
+                <div class="field"><label>Image</label><input type="file" name="feature_section_image[]" accept="image/*"></div>
+                <div class="field full"><label>Description</label><textarea name="feature_section_description[]" style="min-height:90px;"></textarea></div>
+            </div>`;
+        container.appendChild(section);
+        renumberFeatureSections();
+    }
+
+    function removeFeatureSection(btn) {
+        btn.closest('.feature-section-row').remove();
+        renumberFeatureSections();
+    }
+
+    function renumberFeatureSections() {
+        document.querySelectorAll('.feature-section-number').forEach((number, index) => number.textContent = index + 1);
     }
 </script>
 

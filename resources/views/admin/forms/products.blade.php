@@ -114,6 +114,17 @@
                 @endif
                 <input type="file" name="hover_image" accept="image/*">
             </div>
+            <div class="field">
+                <label>Custom Boxes Nav Image</label>
+                @if($editing && !empty($item['nav_image']))
+                    <div class="single-image-wrapper" style="margin-bottom:8px; position:relative; display:inline-block;">
+                        <img src="{{ $resolveImg($item['nav_image']) }}" style="height:60px; border-radius:4px; border:1px solid #ddd; display:block;">
+                        <span onclick="removeSingleImage(this, 'nav_image')" style="position:absolute; top:-6px; right:-6px; background:#e74c3c; color:white; border-radius:50%; width:18px; height:18px; display:flex; align-items:center; justify-content:center; font-size:14px; font-weight:bold; cursor:pointer; box-shadow:0 1px 3px rgba(0,0,0,0.3); line-height:1;" title="Remove Image">&times;</span>
+                    </div>
+                @endif
+                <input type="file" name="nav_image" accept="image/*">
+                <small>Custom Boxes dropdown mein ye image show hogi. Khali chhorne par Featured Image use hogi.</small>
+            </div>
         </div>
     </div>
 
@@ -313,6 +324,10 @@
             <label class="check">
                 <input type="checkbox" name="show_home" value="1" @checked($v('show_home'))>
                 Show on home page
+            </label>
+            <label class="check">
+                <input type="checkbox" name="show_as_custom_box" value="1" @checked($v('show_as_custom_box'))>
+                Show as Custom Box
             </label>
         </div>
     </div>

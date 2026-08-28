@@ -26,7 +26,7 @@
     }
 
     .faq-col {
-        height: 597px;
+        height: auto;
     }
 
     .testimonials-col h2, .faq-col h2 {
@@ -59,7 +59,7 @@
         width: 100%;
         max-width: 560px;
         height: 236px;
-        background-color: #FFFBF0;
+        background-color: #FFF8E7;
         border-radius: 12px;
         padding: 30px;
         box-shadow: none;
@@ -96,7 +96,7 @@
     .tf-author-initial {
         width: 36px;
         height: 36px;
-        background: #B4C0CB;
+       
         border-radius: 50%;
         color: #E25C5C;
         font-weight: 700;
@@ -221,9 +221,7 @@
             contain: none;
             box-sizing: border-box;
         }
-        .faq-col {
-            display: none !important;
-        }
+        .faq-col { height: auto; }
         .testimonial-cards-wrap {
             display: flex;
             flex-direction: row;
@@ -326,111 +324,27 @@
             </div>
         </div>
 
-        <!-- Right: FAQs -->
-        <div class="faq-col">
-            <h2>Frequently Asked Questions</h2>
-            <div class="tf-accordion">
-                <div class="tf-accordion-item">
-                    <button class="tf-accordion-btn" onclick="toggleTfFaq(this)">
-                        How fully can I customize my packaging?
-                        <svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
-                    </button>
-                    <div class="tf-accordion-content">
-                        <div class="tf-accordion-content-inner">
-                            You can customize everything from the box dimensions and material to the printing, coating, and add-ons like foil stamping or embossing.
+        @php
+            $displayFaqs = isset($category) ? ($faqs ?? []) : ($settings['faqs'] ?? []);
+        @endphp
+        @if(count($displayFaqs))
+            <div class="faq-col">
+                <h2>Frequently Asked Questions</h2>
+                <div class="tf-accordion">
+                    @foreach($displayFaqs as $faq)
+                        <div class="tf-accordion-item">
+                            <button class="tf-accordion-btn" type="button" onclick="toggleTfFaq(this)">
+                                {{ is_array($faq) ? ($faq['question'] ?? '') : ($faq->question ?? '') }}
+                                <svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
+                            </button>
+                            <div class="tf-accordion-content">
+                                <div class="tf-accordion-content-inner">{!! nl2br(e(is_array($faq) ? ($faq['answer'] ?? '') : ($faq->answer ?? ''))) !!}</div>
+                            </div>
                         </div>
-                    </div>
-                </div>
-                <div class="tf-accordion-item">
-                    <button class="tf-accordion-btn" onclick="toggleTfFaq(this)">
-                        Do you offer free design support?
-                        <svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
-                    </button>
-                    <div class="tf-accordion-content">
-                        <div class="tf-accordion-content-inner">
-                            Yes, we provide free design support to ensure your packaging looks exactly the way you envision it.
-                        </div>
-                    </div>
-                </div>
-                <div class="tf-accordion-item">
-                    <button class="tf-accordion-btn" onclick="toggleTfFaq(this)">
-                        What printing options are available?
-                        <svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
-                    </button>
-                    <div class="tf-accordion-content">
-                        <div class="tf-accordion-content-inner">
-                            We offer offset, digital, and flexography printing, with support for CMYK, PMS, and custom spot colors.
-                        </div>
-                    </div>
-                </div>
-                <div class="tf-accordion-item">
-                    <button class="tf-accordion-btn" onclick="toggleTfFaq(this)">
-                        What is the minimum order quantity?
-                        <svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
-                    </button>
-                    <div class="tf-accordion-content">
-                        <div class="tf-accordion-content-inner">
-                            Our standard minimum order quantity (MOQ) is 100 units, but we can accommodate smaller custom runs upon request.
-                        </div>
-                    </div>
-                </div>
-                <div class="tf-accordion-item">
-                    <button class="tf-accordion-btn" onclick="toggleTfFaq(this)">
-                        Do you ship internationally?
-                        <svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
-                    </button>
-                    <div class="tf-accordion-content">
-                        <div class="tf-accordion-content-inner">
-                            Yes, we ship globally with various logistics partners to provide secure and timely delivery.
-                        </div>
-                    </div>
-                </div>
-                <div class="tf-accordion-item">
-                    <button class="tf-accordion-btn" onclick="toggleTfFaq(this)">
-                        What is your turnaround time?
-                        <svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
-                    </button>
-                    <div class="tf-accordion-content">
-                        <div class="tf-accordion-content-inner">
-                            Standard turnaround is 10-12 business days, but we also offer expedited services if you are on a tight deadline.
-                        </div>
-                    </div>
-                </div>
-                <div class="tf-accordion-item">
-                    <button class="tf-accordion-btn" onclick="toggleTfFaq(this)">
-                        What is the minimum order quantity?
-                        <svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
-                    </button>
-                    <div class="tf-accordion-content">
-                        <div class="tf-accordion-content-inner">
-                            Our standard minimum order quantity (MOQ) is 100 units, but we can accommodate smaller custom runs upon request.
-                        </div>
-                    </div>
-                </div>
-                <div class="tf-accordion-item">
-                    <button class="tf-accordion-btn" onclick="toggleTfFaq(this)">
-                        Do you ship internationally?
-                        <svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
-                    </button>
-                    <div class="tf-accordion-content">
-                        <div class="tf-accordion-content-inner">
-                            Yes, we ship globally with various logistics partners to provide secure and timely delivery.
-                        </div>
-                    </div>
-                </div>
-                <div class="tf-accordion-item">
-                    <button class="tf-accordion-btn" onclick="toggleTfFaq(this)">
-                        What is your turnaround time?
-                        <svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
-                    </button>
-                    <div class="tf-accordion-content">
-                        <div class="tf-accordion-content-inner">
-                            Standard turnaround is 10-12 business days, but we also offer expedited services if you are on a tight deadline.
-                        </div>
-                    </div>
+                    @endforeach
                 </div>
             </div>
-        </div>
+        @endif
     </div>
 </section>
 

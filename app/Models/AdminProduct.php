@@ -5,7 +5,7 @@ class AdminProduct extends Model
 {
     protected $table = 'admin_products';
     protected $guarded = [];
-    protected $casts = ['show_home' => 'boolean', 'images' => 'array', 'related' => 'array'];
+    protected $casts = ['show_home' => 'boolean', 'show_as_custom_box' => 'boolean', 'images' => 'array', 'related' => 'array'];
 
     public function categories()
     {

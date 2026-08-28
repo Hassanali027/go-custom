@@ -250,6 +250,7 @@
         display: flex;
         justify-content: center;
         width: 100%;
+        height: 100%;
         min-height: 48px;
         list-style: none;
         gap: clamp(36px, 4vw, 62px);
@@ -307,59 +308,60 @@
         transform: rotate(225deg) translateY(-2px);
     }
 
-    /* Mega Menu Dropdown UI (Matching Screenshot Exactly) */
+    /* Compact category mega menu */
     .mega-menu {
         position: absolute;
         z-index: 1200;
         top: 100%;
-        left: 50%;
-        width: min(1020px, calc(100vw - 32px));
-        padding: 26px 30px 20px;
-        background: var(--primary-color);
-        border: 1px solid rgba(255,255,255,0.1);
-        border-radius: 12px;
-        box-shadow: 0 18px 45px rgba(35, 15, 16, 0.22);
+        left: 16px;
+        width: min(500px, calc(100vw - 8px));
+        padding: 22px;
+        background: #fff;
+        border: 1px solid #1f1f1f;
+        border-radius: 3px;
+        box-shadow: 0 10px 24px rgba(0, 0, 0, 0.12);
+        box-sizing: border-box;
         opacity: 0;
         visibility: hidden;
-        transform: translate(-50%, 8px);
+        transform: translateY(8px);
         transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s ease;
     }
 
     .mega-menu.is-open {
         opacity: 1;
         visibility: visible;
-        transform: translate(-50%, 0);
+        transform: translateY(0);
     }
 
     .mega-menu-grid {
         display: grid;
         grid-template-columns: repeat(4, minmax(0, 1fr));
-        gap: 16px 20px;
+        gap: 14px 18px;
     }
 
     .mega-menu-item {
         display: flex;
         align-items: center;
-        gap: 12px;
-        padding: 8px 10px;
-        border-radius: 8px;
+        gap: 9px;
+        padding: 2px 0;
+        border-radius: 4px;
         text-decoration: none;
-        color: #ffffff;
-        font-size: 15px;
-        font-weight: 600;
+        color: #0B2240;
+        font-size: 11px;
+        font-weight: 500;
         line-height: 1.35;
         transition: background 0.15s ease, color 0.15s ease, transform 0.15s ease;
     }
 
     .mega-menu-item:hover {
-        background: rgba(255, 255, 255, 0.1);
-        color: var(--secondary-color);
+        background: #f7f3ea;
+        color: #0B2240;
         transform: translateX(2px);
     }
 
     .mega-menu-icon {
-        width: 26px;
-        height: 26px;
+        width: 20px;
+        height: 20px;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -367,27 +369,92 @@
     }
 
     .mega-menu-icon svg {
-        width: 22px;
-        height: 22px;
-        stroke: var(--secondary-color);
+        width: 20px;
+        height: 20px;
+        stroke: #0B2240;
         fill: none;
     }
 
     .mega-menu-icon img {
-        width: 26px;
-        height: 26px;
+        width: 20px;
+        height: 20px;
         display: block;
         object-fit: contain;
     }
 
-    .mega-menu-footer {
+    .mega-menu-footer { display: none; }
+
+    .mega-menu.mega-menu--products {
+        width: min(340px, calc(100vw - 32px));
+        padding: 22px 28px;
+    }
+
+    .mega-menu--products .mega-menu-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 18px 22px;
+    }
+
+    .mega-menu--products .mega-menu-item { gap: 9px; }
+    .mega-menu--products .mega-menu-icon,
+    .mega-menu--products .mega-menu-icon img { width: 42px; height: 42px; }
+    .mega-menu--products .mega-menu-icon img { border-radius: 3px; object-fit: cover; }
+
+    .custom-boxes-menu {
+        position: relative;
+        align-self: stretch;
         display: flex;
         align-items: center;
-        justify-content: space-between;
-        margin-top: 22px;
-        padding-top: 16px;
-        border-top: 1px solid rgba(255,255,255,0.1);
     }
+    .custom-boxes-dropdown {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        z-index: 1300;
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        column-gap: 14px;
+        row-gap: 18px;
+        width: 280px;
+        padding: 20px;
+        box-sizing: border-box;
+        background: #fff;
+        border: 0;
+        border-radius: 4px;
+        box-shadow: 0 12px 28px rgba(0, 0, 0, 0.16);
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(8px);
+        transition: opacity .18s ease, transform .18s ease, visibility .18s ease;
+    }
+    .custom-boxes-menu:hover .custom-boxes-dropdown,
+    .custom-boxes-menu:focus-within .custom-boxes-dropdown { opacity: 1; visibility: visible; transform: translateY(0); }
+    .header-nav .custom-boxes-dropdown a {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        min-width: 0;
+        padding: 0;
+        margin: 0;
+        color: #111 !important;
+        font-size: 12px;
+        font-weight: 400;
+        line-height: 1.3;
+        text-decoration: none;
+        opacity: 1;
+    }
+    .header-nav .custom-boxes-dropdown a span {
+        display: block;
+        min-width: 0;
+        color: #111 !important;
+        font-size: 12px;
+        font-weight: 400;
+        line-height: 1.3;
+        white-space: normal;
+        overflow-wrap: anywhere;
+        opacity: 1 !important;
+        visibility: visible !important;
+    }
+    .custom-boxes-dropdown img { width:48px; height:48px; flex:0 0 48px; object-fit:cover; border-radius:5px; background:#eee; }
 
     .mega-menu-footer-left {
         display: flex;
@@ -818,7 +885,7 @@
     
     @php
         $navCatsAll = $navCategories ?? [];
-        $navParents = array_values(array_filter($navCatsAll, fn($c) => empty($c['parent_id'])));
+        $navParents = array_values(array_filter($navCatsAll, fn($c) => empty($c['parent_id']) && ($c['slug'] ?? '') !== 'custom-boxes'));
         $navChildren = array_filter($navCatsAll, fn($c) => !empty($c['parent_id']));
         
         if (count($navParents) <= 1) {
@@ -836,6 +903,17 @@
             $navByParentSlug[$slug] = array_values($children);
         }
         $navParentItems = $navParents;
+        $navLabels = [
+            'box-by-industry' => 'Industry',
+            'box-by-material' => 'Material',
+            'box-by-style' => 'Box by Style',
+        ];
+        $customBoxProducts = \Illuminate\Support\Facades\DB::table('admin_products')
+            ->select('title', 'slug', 'image', 'nav_image')
+            ->where('status', 'published')
+            ->where('show_as_custom_box', 1)
+            ->orderBy('id')
+            ->get();
     @endphp
 
     <div class="header-main header-container" style="display: flex; align-items: center; height: 80px;">
@@ -847,10 +925,27 @@
             <li><a href="/" style="color: #000000; text-decoration: none; font-weight: 700; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 15px;">Home</a></li>
             @foreach($navParentItems as $navParent)
             <li class="has-mega" data-mega-type="{{ $navParent['slug'] }}">
-                <a href="#" class="mega-trigger" aria-haspopup="true" onclick="event.preventDefault();" style="color: #000000; text-decoration: none; font-weight: 700; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 15px;">{{ $navParent['title'] }}</a>
+                <a href="#" class="mega-trigger" aria-haspopup="true" onclick="event.preventDefault();" style="color: #000000; text-decoration: none; font-weight: 700; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 15px;">{{ $navLabels[$navParent['slug']] ?? $navParent['title'] }}</a>
             </li>
             @endforeach
-            <li><a href="/resources/" style="color: #000000; text-decoration: none; font-weight: 700; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 15px;">Resources</a></li>
+            <li class="custom-boxes-menu">
+                <a href="#" aria-haspopup="true" onclick="event.preventDefault();" style="color: #000000; text-decoration: none; font-weight: 700; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 15px;">Custom boxes</a>
+                <div class="custom-boxes-dropdown">
+                    @foreach($customBoxProducts as $product)
+                        @php
+                            $customProductNavImage = $product->nav_image ?: $product->image;
+                            $customProductImage = !empty($customProductNavImage)
+                                ? (\Illuminate\Support\Str::startsWith($customProductNavImage, ['storage/', 'uploads/', 'images/']) ? asset($customProductNavImage) : asset('storage/' . $customProductNavImage))
+                                : asset('uploads/Gift-Boxes.webp');
+                        @endphp
+                        <a href="{{ url('/' . $product->slug) }}/">
+                            <img src="{{ $customProductImage }}" alt="" loading="lazy" onerror="this.onerror=null;this.src='{{ asset('uploads/Gift-Boxes.webp') }}';">
+                            <span>{{ $product->title }}</span>
+                        </a>
+                    @endforeach
+                </div>
+            </li>
+            <li><a href="/blogs/" style="color: #000000; text-decoration: none; font-weight: 700; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 15px;">blogs</a></li>
         </ul>
         
         <div class="header-right-actions" style="display: flex; align-items: center; gap: 24px; flex-shrink: 0; margin-left: 30px;">
@@ -1002,7 +1097,7 @@
         // Build megaData dynamically from DB categories
         @php
             $navCatsAll = $navCategories ?? [];
-            $navParents = array_filter($navCatsAll, fn($c) => empty($c['parent_id']));
+            $navParents = array_filter($navCatsAll, fn($c) => empty($c['parent_id']) && ($c['slug'] ?? '') !== 'custom-boxes');
             $navChildren = array_filter($navCatsAll, fn($c) => !empty($c['parent_id']));
             
             // Map: parent_slug => [children]
@@ -1029,6 +1124,19 @@
                 @endforeach
             ],
             @endforeach
+            "custom-boxes": [
+                @foreach($customBoxProducts as $product)
+                @php
+                    $productNavImage = $product->nav_image ?: $product->image;
+                    $productImage = !empty($productNavImage)
+                        ? (\Illuminate\Support\Str::startsWith($productNavImage, ['storage/', 'uploads/', 'images/'])
+                            ? asset($productNavImage)
+                            : asset('storage/' . $productNavImage))
+                        : '';
+                @endphp
+                { title: @json($product->title), slug: @json($product->slug), image: @json($productImage) },
+                @endforeach
+            ],
         };
 
         // Map nav li data-mega-type to parent slug
@@ -1051,12 +1159,13 @@
                 megaMenuGrid.innerHTML = '<p style="color:#999;padding:12px;font-size:13px;">No subcategories found.</p>';
                 return;
             }
+            const isProductMenu = type === 'custom-boxes';
+            megaMenu.classList.toggle('mega-menu--products', isProductMenu);
             megaMenuGrid.innerHTML = items.map(item => {
                 const title = typeof item === 'string' ? item : item.title;
                 const slug = typeof item === 'string' ? title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '') : item.slug;
-                const icon = typeof item === 'object' ? item.icon : '';
-                const iconHtml = icon
-                    ? `<img src="${icon}" alt="" loading="lazy">`
+                const iconHtml = isProductMenu && item.image
+                    ? `<img src="${item.image}" alt="" loading="lazy">`
                     : giftBoxSvg;
                 return `<a href="/${slug}/" class="mega-menu-item">
                     <div class="mega-menu-icon">${iconHtml}</div>
@@ -1071,7 +1180,27 @@
             hasMegaLis.forEach(l => l.classList.remove('active'));
             li.classList.add('active');
             renderMegaGrid(type);
+            positionMegaMenu();
             megaMenu.classList.add('is-open');
+        }
+
+        function positionMegaMenu() {
+            const header = document.querySelector('.site-header');
+            const homeItem = document.querySelector('.header-nav li:first-child');
+            const lastNavItem = document.querySelector('.header-nav li:last-child');
+            if (!header || !homeItem || !lastNavItem) return;
+
+            const headerRect = header.getBoundingClientRect();
+            const homeRect = homeItem.getBoundingClientRect();
+            const lastNavRect = lastNavItem.getBoundingClientRect();
+            const isProductMenu = megaMenu.classList.contains('mega-menu--products');
+            const activeMenuItem = document.querySelector('.header-nav .has-mega.active');
+            const activeMenuRect = activeMenuItem ? activeMenuItem.getBoundingClientRect() : homeRect;
+            megaMenu.style.width = isProductMenu ? '' : `${lastNavRect.right - homeRect.left}px`;
+            const menuWidth = megaMenu.offsetWidth;
+            const desiredLeft = (isProductMenu ? activeMenuRect.left : homeRect.left) - headerRect.left;
+            const maximumLeft = Math.max(4, header.clientWidth - menuWidth - 4);
+            megaMenu.style.left = `${Math.min(Math.max(4, desiredLeft), maximumLeft)}px`;
         }
 
         function closeMenu() {
@@ -1089,8 +1218,15 @@
             li.addEventListener('mouseleave', () => closeMenu());
         });
 
+        const customBoxesTrigger = document.querySelector('.has-mega[data-mega-type="custom-boxes"]');
+        if (customBoxesTrigger) {
+            customBoxesTrigger.addEventListener('mouseenter', () => openMenu('custom-boxes', customBoxesTrigger));
+            customBoxesTrigger.querySelector('.mega-trigger')?.addEventListener('focus', () => openMenu('custom-boxes', customBoxesTrigger));
+        }
+
         megaMenu.addEventListener('mouseenter', () => clearTimeout(hoverTimeout));
         megaMenu.addEventListener('mouseleave', () => closeMenu());
+        window.addEventListener('resize', positionMegaMenu);
     })();
 
     function toggleMobileMenu() {

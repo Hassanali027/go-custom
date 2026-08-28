@@ -141,7 +141,7 @@
 
             @if (isset($page) && $page == 'whyChooseUs')
                 <h1 class="inner-hero-title">
-                    More Than Packaging,<br>
+                    More Than Packaging
                     <span class="gold-text">We Deliver Confidence.</span>
                 </h1>
             @else
