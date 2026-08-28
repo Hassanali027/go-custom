@@ -111,9 +111,9 @@
                         <li><a href="/refund-policy/">Refund Policy</a></li>
                     </ul>
                     
-                    <div class="desktop-social-section" style="margin-top: 63px;">
-                        <span class="footer-heading" style="display: block; margin-bottom: 20px;">Follow Us</span>
-                        <div class="social-links desktop-social-links" style="display: flex; justify-content: flex-start; gap: 15px;">
+                    <div class="desktop-social-section" style="margin-top: 3.9375rem;">
+                        <span class="footer-heading" style="display: block; margin-bottom: 1.25rem;">Follow Us</span>
+                        <div class="social-links desktop-social-links" style="display: flex; justify-content: flex-start; gap: 0.9375rem;">
                             <a href="{{ $siteSettings['social_facebook'] ?? '#' }}" target="_blank" rel="noopener" class="social-icon" aria-label="Facebook">
                                 <img src="{{ asset('images/social-facebook.png') }}" alt="Facebook" class="social-icon-img" loading="lazy">
                             </a>
@@ -192,23 +192,23 @@
     display: flex; align-items: center; justify-content: center;
 }
 .success-popup-box {
-    background: #fff; padding: 30px; border-radius: 12px;
-    text-align: center; max-width: 400px; width: 90%;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    background: #fff; padding: 1.875rem; border-radius: 0.75rem;
+    text-align: center; max-width: 25rem; width: 90%;
+    box-shadow: 0 0.625rem 1.5625rem rgba(0,0,0,0.2);
     animation: popIn 0.4s ease;
 }
 .success-icon {
-    width: 60px; height: 60px; border-radius: 50%;
+    width: 3.75rem; height: 3.75rem; border-radius: 50%;
     background: #e8f5e9; color: #4caf50;
     display: flex; align-items: center; justify-content: center;
-    margin: 0 auto 15px;
+    margin: 0 auto 0.9375rem;
 }
-.success-icon svg { width: 35px; height: 35px; }
-.success-popup-box h2, .success-popup-box .thank-you-title { color: #333; margin-bottom: 10px; font-family: 'Open Sans', sans-serif; display: block; }
-.success-popup-box p { color: #666; font-size: 16px; margin-bottom: 25px; line-height: 1.5; font-family: 'DM Sans', sans-serif; }
+.success-icon svg { width: 2.1875rem; height: 2.1875rem; }
+.success-popup-box h2, .success-popup-box .thank-you-title { color: #333; margin-bottom: 0.625rem; font-family: 'Open Sans', sans-serif; display: block; }
+.success-popup-box p { color: #666; font-size: 1rem; margin-bottom: 1.5625rem; line-height: 1.5; font-family: 'DM Sans', sans-serif; }
 .success-popup-box button {
     background: #8D4445; color: #fff; border: none;
-    padding: 10px 30px; border-radius: 6px; font-size: 16px;
+    padding: 0.625rem 1.875rem; border-radius: 0.375rem; font-size: 1rem;
     cursor: pointer; font-weight: 600; transition: background 0.2s;
 }
 .success-popup-box button:hover { background: #6b3334; }
@@ -293,10 +293,10 @@ document.addEventListener('DOMContentLoaded', function() {
                     inlineMsg.className = 'ajax-inline-success';
                     inlineMsg.style.backgroundColor = '#d4edda';
                     inlineMsg.style.color = '#155724';
-                    inlineMsg.style.padding = '10px';
-                    inlineMsg.style.borderRadius = '5px';
-                    inlineMsg.style.marginBottom = '20px';
-                    inlineMsg.style.fontSize = '14px';
+                    inlineMsg.style.padding = '0.625rem';
+                    inlineMsg.style.borderRadius = '0.3125rem';
+                    inlineMsg.style.marginBottom = '1.25rem';
+                    inlineMsg.style.fontSize = '0.875rem';
                     inlineMsg.style.transition = 'opacity 0.5s';
                     
                     // Insert at the top of the form

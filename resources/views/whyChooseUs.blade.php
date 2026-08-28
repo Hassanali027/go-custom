@@ -13,7 +13,7 @@
        SECTION 1: Craftsmanship Meets Precision
        ========================================= */
     .why-us-section {
-        padding: 40px 0;
+        padding: 2.5rem 0;
         background-color: #faf9f9;
         display: flex;
         justify-content: center;
@@ -21,7 +21,7 @@
     }
 
     .why-us-section .container {
-        max-width: 1440px;
+        max-width: 90rem;
         width: 100%;
         margin: 0 auto;
         padding: 0 5%;
@@ -32,7 +32,7 @@
         display: flex;
         align-items: center;
         justify-content: space-between;
-        gap: 40px;
+        gap: 2.5rem;
         flex-wrap: wrap;
         overflow: hidden;
     }
@@ -46,35 +46,35 @@
 
     .why-us-image img {
         width: 100%;
-        max-width: 596px;
+        max-width: 37.25rem;
         height: auto;
         aspect-ratio: 596 / 552;
-        border-radius: 20px;
+        border-radius: 1.25rem;
         object-fit: cover;
     }
 
     .why-us-text {
         flex: 1;
         min-width: 0;
-        max-width: 522px;
+        max-width: 32.625rem;
     }
 
     .why-us-text h2 {
         font-family: 'Open Sans', sans-serif;
         font-weight: 700;
-        font-size: 32px;
-        line-height: 40px;
-        letter-spacing: -0.32px;
+        font-size: 2rem;
+        line-height: 2.5rem;
+        letter-spacing: -0.02rem;
         color: var(--section-text-color, #000);
         margin-top: 0;
-        margin-bottom: 24px;
+        margin-bottom: 1.5rem;
     }
 
     .why-us-text p {
         font-family: 'DM Sans', sans-serif;
         font-weight: 400;
-        font-size: 16px;
-        line-height: 24px;
+        font-size: 1rem;
+        line-height: 1.5rem;
         text-align: justify;
         color: var(--section-text-color, #000);
         margin: 0;
@@ -85,11 +85,11 @@
        ========================================= */
     .trust-us-section {
         background-color: var(--secondary-color);
-        padding: 24px 0;
+        padding: 1.5rem 0;
     }
 
     .trust-us-container {
-        max-width: 1440px;
+        max-width: 90rem;
         width: 100%;
         margin: 0 auto;
         padding: 0 5%;
@@ -97,22 +97,22 @@
 
     .trust-us-header {
         text-align: center;
-        margin-bottom: 20px;
+        margin-bottom: 1.25rem;
     }
 
     .trust-us-header h2 {
         font-family: 'Open Sans', sans-serif;
         font-weight: 700;
-        font-size: 32px;
+        font-size: 2rem;
         color: var(--section-text-color);
-        margin-bottom: 15px;
+        margin-bottom: 0.9375rem;
         margin-top: 0;
     }
 
     .trust-us-header p {
         font-family: 'DM Sans', sans-serif;
         font-weight: 400;
-        font-size: 16px;
+        font-size: 1rem;
         color: var(--section-text-color);
         margin: 0;
         line-height: 1.5;
@@ -121,14 +121,14 @@
     .trust-us-grid {
         display: grid;
         grid-template-columns: repeat(3, 1fr);
-        gap: 20px;
+        gap: 1.25rem;
     }
 
     .trust-card {
         background: #FFFFFF;
-        border: 0.5px solid #8D4445;
-        border-radius: 12px;
-        padding: 24px 20px;
+        border: 0.0312rem solid #8D4445;
+        border-radius: 0.75rem;
+        padding: 1.5rem 1.25rem;
         text-align: center;
         display: flex;
         flex-direction: column;
@@ -138,43 +138,43 @@
     }
 
     .trust-card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 10px 20px rgba(141, 68, 69, 0.1);
+        transform: translateY(-0.3125rem);
+        box-shadow: 0 0.625rem 1.25rem rgba(141, 68, 69, 0.1);
     }
 
     .trust-icon {
         display: inline-flex;
         align-items: center;
         justify-content: center;
-        width: 60px;
-        height: 60px;
+        width: 3.75rem;
+        height: 3.75rem;
         border-radius: 50%;
         background-color: var(--secondary-color);
-        margin-bottom: 16px;
+        margin-bottom: 1rem;
     }
 
     .trust-icon img {
-        max-width: 35px;
-        max-height: 35px;
+        max-width: 2.1875rem;
+        max-height: 2.1875rem;
         object-fit: contain;
     }
 
     .trust-card h3 {
         font-family: 'Open Sans', sans-serif;
         font-weight: 700;
-        font-size: 16px;
-        line-height: 19.2px;
+        font-size: 1rem;
+        line-height: 1.2rem;
         color: var(--section-text-color);
-        margin-bottom: 12px;
+        margin-bottom: 0.75rem;
         margin-top: 0;
     }
 
     .trust-card p {
         font-family: 'DM Sans', sans-serif;
         font-weight: 400;
-        font-size: 14px;
-        line-height: 21.7px;
-        letter-spacing: 0.23px;
+        font-size: 0.875rem;
+        line-height: 1.3562rem;
+        letter-spacing: 0.0144rem;
         color: var(--section-text-color);
         margin: 0;
     }
@@ -183,14 +183,14 @@
        SECTION 3: Sustainable Packaging
        ========================================= */
     .sustainable-section {
-        padding: 40px 0;
+        padding: 2.5rem 0;
         background-color: #ffffff;
         display: flex;
         justify-content: center;
     }
 
     .sustainable-section .container {
-        max-width: 1440px;
+        max-width: 90rem;
         width: 100%;
         margin: 0 auto;
         padding: 0 5%;
@@ -200,29 +200,29 @@
         display: flex;
         align-items: center;
         justify-content: space-between;
-        gap: 40px;
+        gap: 2.5rem;
         flex-wrap: wrap;
     }
 
     .sustainable-content {
         flex: 1;
         min-width: 0;
-        max-width: 522px;
+        max-width: 32.625rem;
     }
 
     .sustainable-badge {
         display: flex;
         align-items: center;
-        gap: 8px;
-        margin-bottom: 16px;
+        gap: 0.5rem;
+        margin-bottom: 1rem;
     }
 
     .sustainable-badge span {
         font-family: 'Open Sans', sans-serif;
         font-weight: 600;
-        font-size: 16px;
-        line-height: 24px;
-        letter-spacing: 1.6px;
+        font-size: 1rem;
+        line-height: 1.5rem;
+        letter-spacing: 0.1rem;
         text-transform: uppercase;
         color: #166534;
     }
@@ -230,16 +230,16 @@
     .sustainable-content h2 {
         font-family: 'Open Sans', sans-serif;
         font-weight: 700;
-        font-size: 32px;
+        font-size: 2rem;
         color: var(--section-text-color, #000);
-        margin: 0 0 16px 0;
+        margin: 0 0 1rem 0;
     }
 
     .sustainable-content p {
         font-family: 'DM Sans', sans-serif;
         font-weight: 400;
-        font-size: 16px;
-        line-height: 24px;
+        font-size: 1rem;
+        line-height: 1.5rem;
         text-align: justify;
         color: var(--section-text-color, #000);
         margin: 0;
@@ -247,21 +247,21 @@
 
     .sustainable-icons {
         display: flex;
-        gap: 20px;
-        padding-top: 16px;
+        gap: 1.25rem;
+        padding-top: 1rem;
     }
 
     .icon-box {
-        width: 64px;
-        height: 64px;
+        width: 4rem;
+        height: 4rem;
         border: 1px solid rgba(116, 120, 120, 0.5);
         display: flex;
         align-items: center;
         justify-content: center;
         font-family: 'DM Sans', sans-serif;
         font-weight: 600;
-        font-size: 16px;
-        line-height: 24px;
+        font-size: 1rem;
+        line-height: 1.5rem;
         color: var(--section-text-color);
     }
 
@@ -274,17 +274,17 @@
 
     .sustainable-image img {
         width: 100%;
-        max-width: 493px;
+        max-width: 30.8125rem;
         height: auto;
         aspect-ratio: 493 / 448;
-        border-radius: 20px;
+        border-radius: 1.25rem;
         object-fit: cover;
     }
 
     /* =========================================
        Responsive Styles
        ========================================= */
-    @media (max-width: 1100px) {
+    @media (max-width: 68.75rem) {
         .why-us-content, .sustainable-wrapper {
             flex-direction: column;
             text-align: left;
@@ -324,25 +324,25 @@
 
         .trust-us-grid {
             grid-template-columns: repeat(2, 1fr);
-            gap: 20px;
+            gap: 1.25rem;
         }
     }
 
-    @media (max-width: 767px) {
+    @media (max-width: 47.9375rem) {
         .why-us-section,
         .trust-us-section,
         .sustainable-section {
-            padding: 24px 0;
+            padding: 1.5rem 0;
         }
 
         .why-us-section .container,
         .sustainable-section .container,
         .trust-us-container {
-            padding: 0 20px;
+            padding: 0 1.25rem;
         }
 
         .why-us-content {
-            gap: 32px;
+            gap: 2rem;
         }
 
         .why-us-image {
@@ -354,7 +354,7 @@
             width: 100%;
             max-width: 100%;
             height: auto;
-            border-radius: 12px;
+            border-radius: 0.75rem;
         }
 
         .why-us-text {
@@ -364,37 +364,37 @@
         }
 
         .why-us-text h2 {
-            font-size: 24px;
-            line-height: 32px;
-            margin-bottom: 16px;
+            font-size: 1.5rem;
+            line-height: 2rem;
+            margin-bottom: 1rem;
             text-align: left;
         }
 
         .why-us-text p {
-            font-size: 15px;
-            line-height: 24px;
+            font-size: 0.9375rem;
+            line-height: 1.5rem;
             text-align: left;
         }
 
         .trust-us-grid {
             grid-template-columns: 1fr;
-            gap: 16px;
+            gap: 1rem;
         }
 
         .trust-us-header h2 {
-            font-size: 24px;
-            margin-bottom: 10px;
+            font-size: 1.5rem;
+            margin-bottom: 0.625rem;
         }
 
         .trust-us-header p {
-            font-size: 14px;
+            font-size: 0.875rem;
         }
 
         .trust-card {
             width: 100%;
             margin: 0 auto;
-            border-radius: 12px;
-            padding: 20px;
+            border-radius: 0.75rem;
+            padding: 1.25rem;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -402,25 +402,25 @@
         }
 
         .trust-icon {
-            width: 70px;
-            height: 70px;
-            margin-bottom: 16px;
+            width: 4.375rem;
+            height: 4.375rem;
+            margin-bottom: 1rem;
         }
 
         .trust-icon img {
-            max-width: 35px;
-            max-height: 35px;
+            max-width: 2.1875rem;
+            max-height: 2.1875rem;
         }
 
         .trust-card h3 {
-            font-size: 17px;
+            font-size: 1.0625rem;
             font-weight: 700;
-            margin-bottom: 10px;
+            margin-bottom: 0.625rem;
             text-align: center;
         }
 
         .trust-card p {
-            font-size: 14px;
+            font-size: 0.875rem;
             line-height: 1.5;
             text-align: center;
         }
@@ -430,7 +430,7 @@
         }
 
         .sustainable-wrapper {
-            gap: 32px;
+            gap: 2rem;
         }
 
         .sustainable-content {
@@ -439,12 +439,12 @@
         }
 
         .sustainable-content h2 {
-            font-size: 24px;
-            margin-bottom: 16px;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
         }
 
         .sustainable-content p {
-            font-size: 15px;
+            font-size: 0.9375rem;
             text-align: left;
         }
 
@@ -453,16 +453,16 @@
         }
     }
 
-    @media (max-width: 480px) {
+    @media (max-width: 30rem) {
         .why-us-text p,
         .sustainable-content p {
-            font-size: 14px;
+            font-size: 0.875rem;
         }
 
         .why-us-text h2,
         .sustainable-content h2,
         .trust-us-header h2 {
-            font-size: 22px;
+            font-size: 1.375rem;
         }
     }
 </style>

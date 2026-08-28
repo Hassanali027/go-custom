@@ -7,12 +7,12 @@
         font-family: 'Open Sans', sans-serif;
     }
     .faq-hero {
-        height: 400px;
+        height: 25rem;
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        padding: 24px;
+        padding: 1.5rem;
         text-align: center;
         background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('{{ asset("uploads/quote-hero-img.png") }}');
         background-size: cover;
@@ -21,23 +21,23 @@
     }
     .faq-breadcrumb {
         position: absolute;
-        top: 40px;
+        top: 2.5rem;
         left: 50%;
         transform: translateX(-50%);
         width: 100%;
-        max-width: 1280px;
-        padding: 0 55px;
-        font-size: 13px;
+        max-width: 80rem;
+        padding: 0 3.4375rem;
+        font-size: 0.8125rem;
         text-transform: capitalize;
         color: #fff;
         text-align: left;
         display: flex;
         align-items: center;
-        gap: 8px;
+        gap: 0.5rem;
     }
     .faq-breadcrumb svg {
-        width: 14px;
-        height: 14px;
+        width: 0.875rem;
+        height: 0.875rem;
         fill: #fff;
     }
     .faq-breadcrumb a {
@@ -49,23 +49,23 @@
         color: #fff;
     }
     .faq-hero h1 {
-        font-size: 42px;
+        font-size: 2.625rem;
         font-weight: 700;
-        margin-bottom: 15px;
+        margin-bottom: 0.9375rem;
         color: #fff;
     }
     .faq-hero p {
-        font-size: 16px;
+        font-size: 1rem;
         color: #fff;
-        max-width: 600px;
+        max-width: 37.5rem;
         margin: 0 auto;
         line-height: 1.6;
     }
 
     .faq-container {
-        max-width: var(--site-container-width, 1280px);
-        margin: 0px auto;
-        padding: 50px var(--site-container-gutter, 55px);
+        max-width: var(--site-container-width, 80rem);
+        margin: 0 auto;
+        padding: 3.125rem var(--site-container-gutter, 3.4375rem);
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -76,20 +76,20 @@
         width: 100%;
         display: flex;
         justify-content: center;
-        gap: 15px;
-        margin-bottom: 50px;
+        gap: 0.9375rem;
+        margin-bottom: 3.125rem;
         flex-wrap: wrap;
     }
     .faq-tabs-container button {
-        padding: 12px 30px;
+        padding: 0.75rem 1.875rem;
         background: #fff;
         border: 1px solid #e0e0e0;
-        font-size: 14px;
+        font-size: 0.875rem;
         font-weight: 600;
         color: #111;
         cursor: pointer;
         transition: all 0.3s;
-        min-width: 160px;
+        min-width: 10rem;
         text-align: center;
     }
     .faq-tabs-container button.active, .faq-tabs-container button:hover {
@@ -103,36 +103,36 @@
         width: 100%;
     }
     .faq-section {
-        margin-bottom: 50px;
+        margin-bottom: 3.125rem;
     }
     .faq-section-title {
-        font-size: 22px;
+        font-size: 1.375rem;
         font-weight: 700;
         color: #111;
-        margin-bottom: 25px;
+        margin-bottom: 1.5625rem;
     }
 
     .faq-accordion {
         display: flex;
         flex-direction: column;
-        gap: 12px;
+        gap: 0.75rem;
     }
     .faq-item {
         border: 1px solid #eaeaea;
-        border-radius: 8px;
-        box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.05);
+        border-radius: 0.5rem;
+        box-shadow: 0 0.125rem 0.625rem rgba(0, 0, 0, 0.05);
         overflow: hidden;
         transition: all 0.3s ease;
         background-color: #fff;
     }
     .faq-item-header {
-        padding: 16px 25px;
+        padding: 1rem 1.5625rem;
         display: flex;
         justify-content: space-between;
         align-items: center;
         cursor: pointer;
         font-weight: 500;
-        font-size: 14.5px;
+        font-size: 0.9062rem;
         color: #222;
         transition: background-color 0.3s;
     }
@@ -140,7 +140,7 @@
         background-color: #fafafa;
     }
     .faq-item-icon {
-        font-size: 20px;
+        font-size: 1.25rem;
         font-weight: 400;
         color: #111;
     }
@@ -151,39 +151,39 @@
     }
     .faq-item-body {
         background-color: #fff;
-        padding: 0 25px;
+        padding: 0 1.5625rem;
         max-height: 0;
         overflow: hidden;
         transition: max-height 0.3s ease-out, padding 0.3s ease;
     }
     .faq-item.active .faq-item-body {
-        padding: 20px 25px;
-        max-height: 500px;
+        padding: 1.25rem 1.5625rem;
+        max-height: 31.25rem;
     }
     .faq-item-body p {
         color: #000;
-        font-size: 14.5px;
+        font-size: 0.9062rem;
         line-height: 1.6;
         margin: 0;
     }
 
-    @media (max-width: 767px) {
+    @media (max-width: 47.9375rem) {
         .faq-breadcrumb {
             display: none !important;
         }
         .faq-hero {
-            padding: 50px 20px;
+            padding: 3.125rem 1.25rem;
         }
         .faq-hero h1 {
-            font-size: clamp(18px, 6.5vw, 26px);
+            font-size: clamp(1.125rem, 6.5vw, 1.625rem);
             white-space: nowrap;
         }
         .faq-tabs-container {
             display: none !important;
         }
         .faq-item-header {
-            font-size: 14px;
-            padding: 15px 20px;
+            font-size: 0.875rem;
+            padding: 0.9375rem 1.25rem;
         }
     }
 </style>
@@ -205,15 +205,6 @@
     @if(!empty($sections))
     <div class="faq-container">
         
-        <!-- Center Tabs -->
-        <div class="faq-tabs-container">
-            @foreach($sections as $index => $section)
-                @php 
-                    $slug = \Illuminate\Support\Str::slug($section['heading']);
-                @endphp
-                <button class="{{ $index == 0 ? 'active' : '' }}" data-target="{{ $slug }}">{{ $section['heading'] }}</button>
-            @endforeach
-        </div>
 
         <div class="faq-content">
             @foreach($sections as $index => $section)
@@ -295,7 +286,7 @@
         const faqSections = document.querySelectorAll('.faq-section');
         const observerOptions = {
             root: null,
-            rootMargin: '-150px 0px -50% 0px',
+            rootMargin: '-9.375rem 0 -50% 0',
             threshold: 0
         };
         

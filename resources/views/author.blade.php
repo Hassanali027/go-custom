@@ -47,10 +47,10 @@
             --color-link-hover: #5F2D2F;
 
             /* Spacing */
-            --container-max-width: 1240px;
-            --container-padding: 20px;
-            --section-spacing: 64px;
-            --card-gap: 30px;
+            --container-max-width: 77.5rem;
+            --container-padding: 1.25rem;
+            --section-spacing: 4rem;
+            --card-gap: 1.875rem;
         }
 
         /* ==========================================================================
@@ -73,31 +73,31 @@
 
         .container {
             width: 100%;
-            max-width: 1280px;
+            max-width: 80rem;
             margin: 0 auto;
-            padding-left: 55px;
-            padding-right: 55px;
+            padding-left: 3.4375rem;
+            padding-right: 3.4375rem;
             box-sizing: border-box;
         }
 
-        @media (max-width: 1100px) {
+        @media (max-width: 68.75rem) {
             .container {
-                padding-left: 32px;
-                padding-right: 32px;
+                padding-left: 2rem;
+                padding-right: 2rem;
             }
         }
 
-        @media (max-width: 768px) {
+        @media (max-width: 48rem) {
             .container {
-                padding-left: 20px;
-                padding-right: 20px;
+                padding-left: 1.25rem;
+                padding-right: 1.25rem;
             }
         }
 
-        @media (max-width: 600px) {
+        @media (max-width: 37.5rem) {
             .container {
-                padding-left: 16px;
-                padding-right: 16px;
+                padding-left: 1rem;
+                padding-right: 1rem;
             }
         }
 
@@ -106,10 +106,10 @@
            ========================================================================== */
 
         .breadcrumb {
-            padding: 40px 0 0;
-            margin-bottom: 20px;
+            padding: 2.5rem 0 0;
+            margin-bottom: 1.25rem;
             font-family: 'Open Sans', sans-serif;
-            font-size: 13px;
+            font-size: 0.8125rem;
             font-weight: 600;
             letter-spacing: 1px;
             text-transform: uppercase;
@@ -130,7 +130,7 @@
         }
 
         .breadcrumb span {
-            margin: 0 8px;
+            margin: 0 0.5rem;
         }
 
         .breadcrumb span[aria-current="page"] {
@@ -144,17 +144,17 @@
 
         .hero-section {
             background-color: var(--color-hero-bg);
-            min-height: 421px;
+            min-height: 26.3125rem;
             display: flex;
             flex-direction: column;
-            padding: 0px 0 60px 0;
-            border-radius: 0 0 40px 40px;
+            padding: 0 0 3.75rem 0;
+            border-radius: 0 0 2.5rem 2.5rem;
         }
 
         .hero-content {
             display: flex;
             align-items: flex-start;
-            gap: 60px;
+            gap: 3.75rem;
             width: 100%;
         }
 
@@ -163,7 +163,7 @@
         }
 
         .author-image {
-            width: 383px;
+            width: 23.9375rem;
             height: auto;
             display: block;
         }
@@ -171,55 +171,55 @@
         .author-info {
             flex: 1;
             max-width: 100%;
-            padding-top: 75px;
+            padding-top: 4.6875rem;
         }
 
         .author-name {
             font-family: 'Open Sans', sans-serif;
             font-weight: 700;
             font-style: bold;
-            font-size: 54px;
-            line-height: 77.85px;
-            letter-spacing: -0.75px;
+            font-size: 3.375rem;
+            line-height: 4.8656rem;
+            letter-spacing: -0.0469rem;
             color: var(--color-text-primary);
-            margin-bottom: 12px;
+            margin-bottom: 0.75rem;
         }
 
         .author-title {
             font-family: 'Inter', sans-serif;
             font-weight: 400;
-            font-size: 16px;
-            line-height: 24px;
+            font-size: 1rem;
+            line-height: 1.5rem;
             color: var(--color-link);
             text-transform: uppercase;
-            margin-bottom: 24px;
+            margin-bottom: 1.5rem;
         }
 
         .author-bio {
             font-family: 'Inter', sans-serif;
             font-weight: 400;
-            font-size: 18px;
-            line-height: 28px;
+            font-size: 1.125rem;
+            line-height: 1.75rem;
             letter-spacing: 0%;
             text-align: justify;
             color: var(--color-text-primary);
-            margin-bottom: 24px;
+            margin-bottom: 1.5rem;
         }
 
         .author-social {
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 0.75rem;
         }
 
         .social-link {
             display: inline-flex;
             align-items: center;
-            gap: 8px;
+            gap: 0.5rem;
             color: var(--color-link);
             text-decoration: none;
             font-family: 'Inter', sans-serif;
-            font-size: 16px;
+            font-size: 1rem;
             transition: color 0.3s ease;
         }
 
@@ -228,9 +228,9 @@
         }
 
         .author-social-icon {
-            width: 20px;
-            height: 20px;
-            font-size: 20px;
+            width: 1.25rem;
+            height: 1.25rem;
+            font-size: 1.25rem;
             display: inline-flex;
             align-items: center;
             justify-content: center;
@@ -241,7 +241,7 @@
            ========================================================================== */
 
         .blog-section {
-            padding: 32px 0 var(--section-spacing) 0;
+            padding: 2rem 0 var(--section-spacing) 0;
             background-color: var(--color-content-bg);
         }
 
@@ -249,11 +249,11 @@
             position: relative;
             font-family: 'Open Sans', sans-serif;
             font-weight: 700;
-            font-size: 36px;
-            line-height: 48px;
+            font-size: 2.25rem;
+            line-height: 3rem;
             color: var(--color-text-primary);
-            margin-bottom: 24px;
-            padding-bottom: 12px;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.75rem;
         }
 
         .section-title::after {
@@ -261,8 +261,8 @@
             position: absolute;
             left: 0;
             bottom: 0;
-            width: 140px;
-            height: 3px;
+            width: 8.75rem;
+            height: 0.1875rem;
             background-color: var(--color-link);
         }
 
@@ -279,22 +279,22 @@
         .blog-card {
             width: 100%;
             background-color: var(--color-content-bg);
-            border-radius: 8px;
+            border-radius: 0.5rem;
             overflow: hidden;
-            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 0.75rem 1.5rem rgba(0, 0, 0, 0.1);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             text-decoration: none;
             display: block;
         }
 
         .blog-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 16px 32px rgba(0, 0, 0, 0.15);
+            transform: translateY(-0.25rem);
+            box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.15);
         }
 
         .card-image-wrapper {
             width: 100%;
-            height: 233px;
+            height: 14.5625rem;
             overflow: hidden;
             background-color: #F5F5F5;
         }
@@ -311,16 +311,16 @@
         }
 
         .card-content {
-            padding: 24px;
+            padding: 1.5rem;
         }
 
         .card-meta {
             display: flex;
             align-items: center;
-            gap: 16px;
-            margin-bottom: 16px;
+            gap: 1rem;
+            margin-bottom: 1rem;
             font-family: 'DM Sans', sans-serif;
-            font-size: 14px;
+            font-size: 0.875rem;
             color: var(--color-text-secondary);
         }
 
@@ -336,12 +336,12 @@
             font-family: 'Open Sans', sans-serif;
             font-weight: 700;
             font-style: bold;
-            font-size: 20px;
-            line-height: 26px;
+            font-size: 1.25rem;
+            line-height: 1.625rem;
             letter-spacing: 0%;
             text-transform: capitalize;
             color: var(--color-text-primary);
-            margin-bottom: 12px;
+            margin-bottom: 0.75rem;
             display: -webkit-box;
             -webkit-line-clamp: 2;
             transition: color 0.2s ease;
@@ -370,8 +370,8 @@
             font-family: 'DM Sans', sans-serif;
             font-weight: 400;
             font-style: regular;
-            font-size: 16px;
-            line-height: 22px;
+            font-size: 1rem;
+            line-height: 1.375rem;
             letter-spacing: 0%;
             text-align: justify;
             color: var(--color-text-secondary);
@@ -384,11 +384,11 @@
         .read-more {
             display: inline-flex;
             align-items: center;
-            gap: 8px;
-            margin-top: 16px;
+            gap: 0.5rem;
+            margin-top: 1rem;
             color: var(--primary-color);
             font-family: 'DM Sans', sans-serif;
-            font-size: 14px;
+            font-size: 0.875rem;
             font-weight: 600;
             text-decoration: none;
             transition: gap 0.3s ease;
@@ -401,56 +401,56 @@
         }
 
         .blog-card:hover .read-more {
-            gap: 12px;
+            gap: 0.75rem;
         }
 
         /* ==========================================================================
            RESPONSIVE DESIGN - ZOOM LEVELS (100%, 110%, 125%, 150%)
            ========================================================================== */
 
-        /* Base: 100% zoom - 1440px container */
-        @media screen and (max-width: 1600px) {
+        /* Base: 100% zoom - 90rem container */
+        @media screen and (max-width: 100rem) {
         }
 
-        /* Adapt for 110% zoom (effectively 1309px viewport) */
-        @media screen and (max-width: 1440px) {
+        /* Adapt for 110% zoom (effectively 81.8125rem viewport) */
+        @media screen and (max-width: 90rem) {
 
             .author-name {
-                font-size: 48px;
-                line-height: 68px;
+                font-size: 3rem;
+                line-height: 4.25rem;
             }
         }
 
-        /* Adapt for 125% zoom (effectively 1152px viewport) */
-        @media screen and (max-width: 1280px) {
+        /* Adapt for 125% zoom (effectively 72rem viewport) */
+        @media screen and (max-width: 80rem) {
             :root {
-                --card-gap: 24px;
+                --card-gap: 1.5rem;
             }
 
             .hero-content {
-                gap: 6px;
+                gap: 0.375rem;
             }
 
             .author-image {
-                width: 220px;
-                height: 220px;
+                width: 13.75rem;
+                height: 13.75rem;
             }
 
             .author-name {
-                font-size: 44px;
-                line-height: 60px;
+                font-size: 2.75rem;
+                line-height: 3.75rem;
             }
 
             .author-bio {
-                font-size: 17px;
-                line-height: 26px;
+                font-size: 1.0625rem;
+                line-height: 1.625rem;
             }
         }
 
         /* Large Tablets - 3 column to 2 column */
-        @media screen and (max-width: 1024px) {
+        @media screen and (max-width: 64rem) {
             :root {
-                --card-gap: 20px;
+                --card-gap: 1.25rem;
             }
 
             .blog-grid {
@@ -458,22 +458,22 @@
             }
 
             .hero-content {
-                gap: 40px;
+                gap: 2.5rem;
             }
 
             .author-image {
-                width: 200px;
-                height: 200px;
+                width: 12.5rem;
+                height: 12.5rem;
             }
 
             .author-name {
-                font-size: 40px;
-                line-height: 54px;
+                font-size: 2.5rem;
+                line-height: 3.375rem;
             }
 
             .author-bio {
-                font-size: 16px;
-                line-height: 24px;
+                font-size: 1rem;
+                line-height: 1.5rem;
             }
 
             .blog-card {
@@ -481,34 +481,34 @@
             }
         }
 
-        /* Adapt for 150% zoom (effectively 960px viewport) */
-        @media screen and (max-width: 960px) {
+        /* Adapt for 150% zoom (effectively 60rem viewport) */
+        @media screen and (max-width: 60rem) {
 
             .hero-section {
                 min-height: auto;
-                padding: 48px 0;
+                padding: 3rem 0;
                 border-radius: 0;
             }
 
             .hero-content {
                 flex-direction: column;
                 align-items: center;
-                gap: 32px;
+                gap: 2rem;
             }
 
             .author-image {
-                width: 267px;
+                width: 16.6875rem;
                 height: auto;
             }
 
             .author-info {
                 max-width: 100%;
-                padding-top: 0px;
+                padding-top: 0;
             }
 
             .author-name {
-                font-size: 36px;
-                line-height: 48px;
+                font-size: 2.25rem;
+                line-height: 3rem;
                 text-align: left;
             }
             
@@ -526,11 +526,11 @@
         }
 
         /* Tablets Portrait */
-        @media screen and (max-width: 768px) {
+        @media screen and (max-width: 48rem) {
             :root {
-                --container-padding: 24px;
-                --section-spacing: 48px;
-                --card-gap: 16px;
+                --container-padding: 1.5rem;
+                --section-spacing: 3rem;
+                --card-gap: 1rem;
             }
 
             .breadcrumb {
@@ -543,24 +543,24 @@
 
             .blog-grid {
                 grid-template-columns: 1fr;
-                max-width: 500px;
+                max-width: 31.25rem;
                 margin: 0 auto;
             }
 
             .author-name {
-                font-size: 32px;
-                line-height: 44px;
+                font-size: 2rem;
+                line-height: 2.75rem;
             }
 
             .author-bio {
-                font-size: 15px;
-                line-height: 22px;
+                font-size: 0.9375rem;
+                line-height: 1.375rem;
             }
 
             .section-title {
-                font-size: 28px;
-                line-height: 38px;
-                margin-bottom: 32px;
+                font-size: 1.75rem;
+                line-height: 2.375rem;
+                margin-bottom: 2rem;
             }
 
             .blog-card {
@@ -568,104 +568,104 @@
             }
 
             .card-image-wrapper {
-                height: 260px;
+                height: 16.25rem;
             }
         }
 
         /* Mobile Landscape */
-        @media screen and (max-width: 640px) {
+        @media screen and (max-width: 40rem) {
             :root {
-                --container-padding: 20px;
+                --container-padding: 1.25rem;
             }
 
             .author-name {
-                font-size: 28px;
-                line-height: 38px;
-                letter-spacing: -0.5px;
+                font-size: 1.75rem;
+                line-height: 2.375rem;
+                letter-spacing: -0.0312rem;
             }
 
             .hero-section {
-                padding: 40px 0;
+                padding: 2.5rem 0;
             }
         }
 
         /* Mobile Portrait */
-        @media screen and (max-width: 480px) {
+        @media screen and (max-width: 30rem) {
             :root {
-                --container-padding: 16px;
-                --section-spacing: 32px;
+                --container-padding: 1rem;
+                --section-spacing: 2rem;
             }
 
             .breadcrumb {
-                font-size: 12px;
-                padding: 16px 0;
+                font-size: 0.75rem;
+                padding: 1rem 0;
             }
 
             .hero-content {
-                gap: 24px;
+                gap: 1.5rem;
             }
 
             .author-name {
-                font-size: 24px;
-                line-height: 32px;
-                margin-bottom: 8px;
+                font-size: 1.5rem;
+                line-height: 2rem;
+                margin-bottom: 0.5rem;
                 text-align:center;
             }
 
             .author-title {
-                font-size: 14px;
-                line-height: 20px;
-                margin-bottom: 16px;
+                font-size: 0.875rem;
+                line-height: 1.25rem;
+                margin-bottom: 1rem;
             }
 
             .author-bio {
-                font-size: 14px;
-                line-height: 20px;
-                margin-bottom: 16px;
+                font-size: 0.875rem;
+                line-height: 1.25rem;
+                margin-bottom: 1rem;
                 color:black;
             }
 
             .section-title {
-                font-size: 24px;
-                line-height: 32px;
-                margin-bottom: 24px;
+                font-size: 1.5rem;
+                line-height: 2rem;
+                margin-bottom: 1.5rem;
             }
 
             .card-content {
-                padding: 20px;
+                padding: 1.25rem;
             }
 
             .card-heading {
-                font-size: 18px;
-                line-height: 24px;
+                font-size: 1.125rem;
+                line-height: 1.5rem;
                 font-weight: 500;
             }
 
             .card-description {
-                font-size: 17px;
-                line-height: 23px;
+                font-size: 1.0625rem;
+                line-height: 1.4375rem;
                 font-weight: bold;
                 color: black;
             }
 
             .card-image-wrapper {
-                height: 220px;
+                height: 13.75rem;
             }
         }
 
         /* Extra Small Mobile */
-        @media screen and (max-width: 360px) {
+        @media screen and (max-width: 22.5rem) {
             :root {
-                --container-padding: 12px;
+                --container-padding: 0.75rem;
             }
 
             .author-name {
-                font-size: 22px;
-                line-height: 30px;
+                font-size: 1.375rem;
+                line-height: 1.875rem;
             }
 
             .card-image-wrapper {
-                height: 200px;
+                height: 12.5rem;
             }
         }
 
@@ -676,8 +676,8 @@
         /* Focus States */
         a:focus,
         button:focus {
-            outline: 2px solid var(--color-link);
-            outline-offset: 2px;
+            outline: 0.125rem solid var(--color-link);
+            outline-offset: 0.125rem;
         }
 
         /* Reduced Motion */
@@ -699,7 +699,7 @@
             }
 
             .blog-card {
-                border: 2px solid currentColor;
+                border: 0.125rem solid currentColor;
             }
         }
 
@@ -816,22 +816,22 @@
                         </article>
                         @endforeach
                     </div>
-                    <div class="load-more-container" style="width: 100%; display: flex; justify-content: center; margin-top: 40px;">
-                        <button class="btn-load-more" style="width: 202px; height: 54px; background-color: #FFB400; color: #000; font-family: 'Open Sans', sans-serif; font-size: 16px; font-weight: 600; border: none; border-radius: 4px; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background-color 0.3s, box-shadow 0.3s; box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.15);">
+                    <div class="load-more-container" style="width: 100%; display: flex; justify-content: center; margin-top: 2.5rem;">
+                        <button class="btn-load-more" style="width: 12.625rem; height: 3.375rem; background-color: #FFB400; color: #000; font-family: 'Open Sans', sans-serif; font-size: 1rem; font-weight: 600; border: none; border-radius: 0.25rem; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background-color 0.3s, box-shadow 0.3s; box-shadow: 0 0.25rem 0.625rem rgba(0, 0, 0, 0.15);">
                             Load more
                         </button>
                     </div>
                 @else
-                    <p style="font-family: 'Open Sans', sans-serif; font-size: 16px; color: #555;">No published blogs found for this author yet.</p>
+                    <p style="font-family: 'Open Sans', sans-serif; font-size: 1rem; color: #555;">No published blogs found for this author yet.</p>
                 @endif
             </div>
         </section>
 
         <!-- CTA Section -->
-        <div class="container" style="margin-top: 40px; margin-bottom: 40px;">
+        <div class="container" style="margin-top: 2.5rem; margin-bottom: 2.5rem;">
             <x-cta />
         </div>
-    </main>
+                                                                                                                                            </main>
 
     <!-- Footer Component -->
     <x-footer />

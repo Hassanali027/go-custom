@@ -15,11 +15,11 @@
         z-index: 50;
     }
     .multiselect-trigger {
-        min-height: 48px;
-        padding: 8px 14px;
+        min-height: 3rem;
+        padding: 0.5rem 0.875rem;
         background: #ffffff;
-        border: 1.5px solid #ddd8df;
-        border-radius: 10px;
+        border: 0.0938rem solid #ddd8df;
+        border-radius: 0.625rem;
         display: flex;
         align-items: center;
         justify-content: space-between;
@@ -33,18 +33,18 @@
     .selected-tags {
         display: flex;
         flex-wrap: wrap;
-        gap: 6px;
+        gap: 0.375rem;
         align-items: center;
         flex: 1;
-        margin-right: 10px;
+        margin-right: 0.625rem;
     }
     .tag-chip {
         background: var(--soft);
         color: var(--primary);
-        font-size: 12px;
+        font-size: 0.75rem;
         font-weight: 700;
-        padding: 4px 10px;
-        border-radius: 6px;
+        padding: 0.25rem 0.625rem;
+        border-radius: 0.375rem;
         display: inline-flex;
         align-items: center;
         gap: 6px;
@@ -52,60 +52,60 @@
     }
     .tag-chip i {
         cursor: pointer;
-        font-size: 11px;
+        font-size: 0.6875rem;
     }
     .tag-chip i:hover {
         color: var(--primary-dark);
     }
     .dropdown-placeholder {
         color: var(--muted);
-        font-size: 13px;
+        font-size: 0.8125rem;
         font-weight: 500;
     }
     .multiselect-dropdown {
         display: none;
         position: absolute;
-        top: calc(100% + 6px);
+        top: calc(100% + 0.375rem);
         left: 0;
         right: 0;
         background: #ffffff;
-        border: 1.5px solid #ddd8df;
-        border-radius: 12px;
-        box-shadow: 0 12px 35px rgba(0,0,0,0.18);
+        border: 0.0938rem solid #ddd8df;
+        border-radius: 0.75rem;
+        box-shadow: 0 0.75rem 2.1875rem rgba(0,0,0,0.18);
         z-index: 9999;
-        padding: 12px;
+        padding: 0.75rem;
     }
     .custom-multiselect-container.open .multiselect-dropdown {
         display: block;
     }
     .dropdown-search {
         position: relative;
-        margin-bottom: 8px;
+        margin-bottom: 0.5rem;
     }
     .dropdown-search input {
         width: 100%;
-        padding: 9px 12px 9px 34px;
-        font-size: 13px;
-        border-radius: 8px;
+        padding: 0.5625rem 0.75rem 0.5625rem 2.125rem;
+        font-size: 0.8125rem;
+        border-radius: 0.5rem;
         border: 1px solid var(--line);
         background: #fbfafb;
     }
     .dropdown-search i.search-icon {
         position: absolute;
-        left: 11px;
+        left: 0.6875rem;
         top: 50%;
         transform: translateY(-50%);
         color: var(--muted);
-        font-size: 12px;
+        font-size: 0.75rem;
     }
     .dropdown-actions {
         display: flex;
         justify-content: space-between;
-        padding: 4px 6px 8px;
-        font-size: 11px;
+        padding: 0.25rem 0.375rem 0.5rem;
+        font-size: 0.6875rem;
         font-weight: 700;
         border-bottom: 1px solid var(--line);
-        margin-bottom: 6px;
+        margin-bottom: 0.375rem;
     }
     .dropdown-actions span {
         color: var(--primary);
@@ -115,21 +115,21 @@
         text-decoration: underline;
     }
     .dropdown-options-list {
-        max-height: 220px;
+        max-height: 13.75rem;
         overflow-y: auto;
         display: flex;
         flex-direction: column;
-        gap: 4px;
+        gap: 0.25rem;
     }
     .dropdown-option-item {
         display: flex;
         align-items: center;
-        gap: 10px;
-        padding: 8px 10px;
-        border-radius: 6px;
+        gap: 0.625rem;
+        padding: 0.5rem 0.625rem;
+        border-radius: 0.375rem;
         cursor: pointer;
         transition: background 0.15s ease;
-        font-size: 13px;
+        font-size: 0.8125rem;
         font-weight: 600;
         color: var(--text);
     }
@@ -137,8 +137,8 @@
         background: var(--soft);
     }
     .dropdown-option-item input[type="checkbox"] {
-        width: 16px;
-        height: 16px;
+        width: 1rem;
+        height: 1rem;
         accent-color: var(--primary);
         cursor: pointer;
     }
@@ -150,8 +150,8 @@
     <!-- SECTION 1: SEO META SETTINGS -->
     <div class="panel">
         <div class="panel-head">
-            <h2 style="font-size: 17px;"><i class="fa-solid fa-globe" style="color:var(--primary); margin-right: 8px;"></i> 1. Search Engine Optimization (SEO)</h2>
-            <span style="color:var(--muted); font-size: 12px;">Manage Meta Title, Meta Description & Meta Keywords for search engines</span>
+            <h2 style="font-size: 1.0625rem;"><i class="fa-solid fa-globe" style="color:var(--primary); margin-right: 0.5rem;"></i> 1. Search Engine Optimization (SEO)</h2>
+            <span style="color:var(--muted); font-size: 0.75rem;">Manage Meta Title, Meta Description & Meta Keywords for search engines</span>
         </div>
         <div class="section">
             <div class="form-grid">
@@ -185,8 +185,8 @@
     <!-- SECTION 2: HERO SECTION -->
     <div class="panel">
         <div class="panel-head">
-            <h2 style="font-size: 17px;"><i class="fa-solid fa-star" style="color:var(--primary); margin-right: 8px;"></i> 2. Hero Banner Section</h2>
-            <span style="color:var(--muted); font-size: 12px;">Configure main banner title, description & hero image</span>
+            <h2 style="font-size: 1.0625rem;"><i class="fa-solid fa-star" style="color:var(--primary); margin-right: 0.5rem;"></i> 2. Hero Banner Section</h2>
+            <span style="color:var(--muted); font-size: 0.75rem;">Configure main banner title, description & hero image</span>
         </div>
         <div class="section">
             <div class="form-grid">
@@ -203,14 +203,14 @@
                 <div class="field full">
                     <label for="hero_image">Hero Image</label>
                     @if(!empty($settings['hero_image']))
-                        <div class="single-image-wrapper" style="margin-bottom: 10px; display: flex; align-items: center; gap: 12px; background: var(--soft); padding: 10px 14px; border-radius: 10px; width: fit-content; position:relative;">
-                            <img src="{{ asset('storage/' . $settings['hero_image']) }}" alt="Current Hero Image" style="height: 60px; object-fit: contain; border-radius: 6px;">
-                            <span style="font-size: 12px; color: var(--muted); font-weight: 600; margin-right:20px;">Current Hero Image</span>
-                            <span onclick="removeSingleImage(this, 'hero_image')" style="position:absolute; top:-6px; right:-6px; background:#e74c3c; color:white; border-radius:50%; width:18px; height:18px; display:flex; align-items:center; justify-content:center; font-size:14px; font-weight:bold; cursor:pointer; box-shadow:0 1px 3px rgba(0,0,0,0.3); line-height:1;" title="Remove Image">&times;</span>
+                        <div class="single-image-wrapper" style="margin-bottom: 0.625rem; display: flex; align-items: center; gap: 0.75rem; background: var(--soft); padding: 0.625rem 0.875rem; border-radius: 0.625rem; width: fit-content; position:relative;">
+                            <img src="{{ asset('storage/' . $settings['hero_image']) }}" alt="Current Hero Image" style="height: 3.75rem; object-fit: contain; border-radius: 0.375rem;">
+                            <span style="font-size: 0.75rem; color: var(--muted); font-weight: 600; margin-right:1.25rem;">Current Hero Image</span>
+                            <span onclick="removeSingleImage(this, 'hero_image')" style="position:absolute; top:-0.375rem; right:-0.375rem; background:#e74c3c; color:white; border-radius:50%; width:1.125rem; height:1.125rem; display:flex; align-items:center; justify-content:center; font-size:0.875rem; font-weight:bold; cursor:pointer; box-shadow:0 1px 0.1875rem rgba(0,0,0,0.3); line-height:1;" title="Remove Image">&times;</span>
                         </div>
                     @endif
                     <input type="file" id="hero_image" name="hero_image" accept="image/*">
-                    <small>Recommended size: 1200x600px. PNG, JPG or WebP formats.</small>
+                    <small>Recommended size: 1200x37.5rem. PNG, JPG or WebP formats.</small>
                 </div>
             </div>
         </div>
@@ -219,8 +219,8 @@
     <!-- SECTION 3: SELECT CATEGORIES (SEARCHABLE MULTI-SELECT DROPDOWN) -->
     <div class="panel" style="overflow: visible; position: relative; z-index: 30;">
         <div class="panel-head">
-            <h2 style="font-size: 17px;"><i class="fa-solid fa-layer-group" style="color:var(--primary); margin-right: 8px;"></i> 3. Select Featured Categories</h2>
-            <span style="color:var(--muted); font-size: 12px;">Choose multiple categories via searchable dropdown</span>
+            <h2 style="font-size: 1.0625rem;"><i class="fa-solid fa-layer-group" style="color:var(--primary); margin-right: 0.5rem;"></i> 3. Select Featured Categories</h2>
+            <span style="color:var(--muted); font-size: 0.75rem;">Choose multiple categories via searchable dropdown</span>
         </div>
         <div class="section" style="overflow: visible;">
             @php $selectedCats = (array) ($settings['featured_categories'] ?? []); @endphp
@@ -228,7 +228,7 @@
             <div class="custom-multiselect-container" id="categoryMultiselect">
                 <div class="multiselect-trigger" onclick="toggleDropdown('categoryMultiselect')">
                     <div class="selected-tags" id="categorySelectedTags"></div>
-                    <i class="fa-solid fa-chevron-down" style="font-size: 12px; color: var(--muted);"></i>
+                    <i class="fa-solid fa-chevron-down" style="font-size: 0.75rem; color: var(--muted);"></i>
                 </div>
 
                 <div class="multiselect-dropdown">
@@ -247,7 +247,7 @@
                                 <span>{{ $category['title'] }}</span>
                             </label>
                         @empty
-                            <p style="color: var(--muted); padding: 8px; font-size: 12px;">No categories available.</p>
+                            <p style="color: var(--muted); padding: 0.5rem; font-size: 0.75rem;">No categories available.</p>
                         @endforelse
                     </div>
                 </div>
@@ -258,8 +258,8 @@
     <!-- SECTION 4: BEST SELLER PRODUCTS (SEARCHABLE MULTI-SELECT DROPDOWN) -->
     <div class="panel" style="overflow: visible; position: relative; z-index: 20;">
         <div class="panel-head">
-            <h2 style="font-size: 17px;"><i class="fa-solid fa-fire" style="color:var(--primary); margin-right: 8px;"></i> 4. Best Seller Products</h2>
-            <span style="color:var(--muted); font-size: 12px;">Select multiple products via searchable dropdown</span>
+            <h2 style="font-size: 1.0625rem;"><i class="fa-solid fa-fire" style="color:var(--primary); margin-right: 0.5rem;"></i> 4. Best Seller Products</h2>
+            <span style="color:var(--muted); font-size: 0.75rem;">Select multiple products via searchable dropdown</span>
         </div>
         <div class="section" style="overflow: visible;">
             @php $selectedProds = (array) ($settings['bestseller_products'] ?? []); @endphp
@@ -267,7 +267,7 @@
             <div class="custom-multiselect-container" id="productMultiselect">
                 <div class="multiselect-trigger" onclick="toggleDropdown('productMultiselect')">
                     <div class="selected-tags" id="productSelectedTags"></div>
-                    <i class="fa-solid fa-chevron-down" style="font-size: 12px; color: var(--muted);"></i>
+                    <i class="fa-solid fa-chevron-down" style="font-size: 0.75rem; color: var(--muted);"></i>
                 </div>
 
                 <div class="multiselect-dropdown">
@@ -286,7 +286,7 @@
                                 <span>{{ $product['title'] }}</span>
                             </label>
                         @empty
-                            <p style="color: var(--muted); padding: 8px; font-size: 12px;">No products available.</p>
+                            <p style="color: var(--muted); padding: 0.5rem; font-size: 0.75rem;">No products available.</p>
                         @endforelse
                     </div>
                 </div>
@@ -297,8 +297,8 @@
     <!-- SECTION 5: CONTENT SECTION (ADVANCED EDITOR WITH RAW HTML CODE VIEW & H1-H6) -->
     <div class="panel">
         <div class="panel-head">
-            <h2 style="font-size: 17px;"><i class="fa-solid fa-code" style="color:var(--primary); margin-right: 8px;"></i> 5. Content Section</h2>
-            <span style="color:var(--muted); font-size: 12px;">Rich text editor with Raw HTML Code mode (&lt;/&gt;) and H1-H6 Headings</span>
+            <h2 style="font-size: 1.0625rem;"><i class="fa-solid fa-code" style="color:var(--primary); margin-right: 0.5rem;"></i> 5. Content Section</h2>
+            <span style="color:var(--muted); font-size: 0.75rem;">Rich text editor with Raw HTML Code mode (&lt;/&gt;) and H1-H6 Headings</span>
         </div>
         <div class="section">
             <div class="field full">
@@ -311,22 +311,22 @@
     <div class="panel">
         <div class="panel-head" style="display: flex; align-items: center; justify-content: space-between;">
             <div>
-                <h2 style="font-size: 17px;"><i class="fa-solid fa-circle-question" style="color:var(--primary); margin-right: 8px;"></i> 6. Homepage FAQs</h2>
-                <span style="color:var(--muted); font-size: 12px;">Add question & answer pairs for the Homepage FAQ section</span>
+                <h2 style="font-size: 1.0625rem;"><i class="fa-solid fa-circle-question" style="color:var(--primary); margin-right: 0.5rem;"></i> 6. Homepage FAQs</h2>
+                <span style="color:var(--muted); font-size: 0.75rem;">Add question & answer pairs for the Homepage FAQ section</span>
             </div>
-            <button type="button" class="btn light" onclick="addFaqRow()" style="font-size: 12px; padding: 6px 12px;">
+            <button type="button" class="btn light" onclick="addFaqRow()" style="font-size: 0.75rem; padding: 0.375rem 0.75rem;">
                 <i class="fa-solid fa-plus"></i> Add Question
             </button>
         </div>
         <div class="section">
-            <div id="faqContainer" style="display: flex; flex-direction: column; gap: 16px;">
+            <div id="faqContainer" style="display: flex; flex-direction: column; gap: 1rem;">
                 @php $faqs = (array) ($settings['faqs'] ?? []); @endphp
                 @forelse($faqs as $index => $faq)
-                    <div class="faq-row" style="background: #faf8f9; padding: 18px; border-radius: 12px; border: 1px solid var(--line); position: relative;">
-                        <button type="button" onclick="this.closest('.faq-row').remove()" style="position: absolute; top: 12px; right: 12px; border: none; background: #fff0f0; color: #a52b2b; width: 28px; height: 28px; border-radius: 6px; cursor: pointer;" title="Delete FAQ">
-                            <i class="fa-solid fa-trash" style="font-size: 12px;"></i>
+                    <div class="faq-row" style="background: #faf8f9; padding: 1.125rem; border-radius: 0.75rem; border: 1px solid var(--line); position: relative;">
+                        <button type="button" onclick="this.closest('.faq-row').remove()" style="position: absolute; top: 0.75rem; right: 0.75rem; border: none; background: #fff0f0; color: #a52b2b; width: 1.75rem; height: 1.75rem; border-radius: 0.375rem; cursor: pointer;" title="Delete FAQ">
+                            <i class="fa-solid fa-trash" style="font-size: 0.75rem;"></i>
                         </button>
-                        <div class="field" style="margin-bottom: 10px; width: calc(100% - 40px);">
+                        <div class="field" style="margin-bottom: 0.625rem; width: calc(100% - 2.5rem);">
                             <label>Question</label>
                             <input type="text" name="faq_questions[]" value="{{ $faq['question'] ?? '' }}" placeholder="Enter Question...">
                         </div>
@@ -336,11 +336,11 @@
                         </div>
                     </div>
                 @empty
-                    <div class="faq-row" style="background: #faf8f9; padding: 18px; border-radius: 12px; border: 1px solid var(--line); position: relative;">
-                        <button type="button" onclick="this.closest('.faq-row').remove()" style="position: absolute; top: 12px; right: 12px; border: none; background: #fff0f0; color: #a52b2b; width: 28px; height: 28px; border-radius: 6px; cursor: pointer;" title="Delete FAQ">
-                            <i class="fa-solid fa-trash" style="font-size: 12px;"></i>
+                    <div class="faq-row" style="background: #faf8f9; padding: 1.125rem; border-radius: 0.75rem; border: 1px solid var(--line); position: relative;">
+                        <button type="button" onclick="this.closest('.faq-row').remove()" style="position: absolute; top: 0.75rem; right: 0.75rem; border: none; background: #fff0f0; color: #a52b2b; width: 1.75rem; height: 1.75rem; border-radius: 0.375rem; cursor: pointer;" title="Delete FAQ">
+                            <i class="fa-solid fa-trash" style="font-size: 0.75rem;"></i>
                         </button>
-                        <div class="field" style="margin-bottom: 10px; width: calc(100% - 40px);">
+                        <div class="field" style="margin-bottom: 0.625rem; width: calc(100% - 2.5rem);">
                             <label>Question</label>
                             <input type="text" name="faq_questions[]" placeholder="Enter Question...">
                         </div>
@@ -355,8 +355,8 @@
     </div>
 
     <!-- SAVE BUTTON -->
-    <div style="margin-top: 24px; display: flex; justify-content: flex-end;">
-        <button type="submit" class="btn" style="padding: 14px 32px; font-size: 15px;">
+    <div style="margin-top: 1.5rem; display: flex; justify-content: flex-end;">
+        <button type="submit" class="btn" style="padding: 0.875rem 2rem; font-size: 0.9375rem;">
             <i class="fa-solid fa-floppy-disk"></i> Save Home Page Settings
         </button>
     </div>
@@ -375,7 +375,7 @@
                 block_formats: 'Paragraph=p; Heading 1=h1; Heading 2=h2; Heading 3=h3; Heading 4=h4; Heading 5=h5; Heading 6=h6; Preformatted=pre',
                 branding: false,
                 promotion: false,
-                content_style: 'body { font-family:"DM Sans",sans-serif; font-size:14px; line-height:1.6; }'
+                content_style: 'body { font-family:"DM Sans",sans-serif; font-size:0.875rem; line-height:1.6; }'
             });
         }
 
@@ -453,12 +453,12 @@
         const container = document.getElementById('faqContainer');
         const row = document.createElement('div');
         row.className = 'faq-row';
-        row.style.cssText = 'background: #faf8f9; padding: 18px; border-radius: 12px; border: 1px solid var(--line); position: relative;';
+        row.style.cssText = 'background: #faf8f9; padding: 1.125rem; border-radius: 0.75rem; border: 1px solid var(--line); position: relative;';
         row.innerHTML = `
-            <button type="button" onclick="this.closest('.faq-row').remove()" style="position: absolute; top: 12px; right: 12px; border: none; background: #fff0f0; color: #a52b2b; width: 28px; height: 28px; border-radius: 6px; cursor: pointer;" title="Delete FAQ">
-                <i class="fa-solid fa-trash" style="font-size: 12px;"></i>
+            <button type="button" onclick="this.closest('.faq-row').remove()" style="position: absolute; top: 0.75rem; right: 0.75rem; border: none; background: #fff0f0; color: #a52b2b; width: 1.75rem; height: 1.75rem; border-radius: 0.375rem; cursor: pointer;" title="Delete FAQ">
+                <i class="fa-solid fa-trash" style="font-size: 0.75rem;"></i>
             </button>
-            <div class="field" style="margin-bottom: 10px; width: calc(100% - 40px);">
+            <div class="field" style="margin-bottom: 0.625rem; width: calc(100% - 2.5rem);">
                 <label>Question</label>
                 <input type="text" name="faq_questions[]" placeholder="Enter Question...">
             </div>

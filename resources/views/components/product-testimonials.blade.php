@@ -1,56 +1,56 @@
 <style>
     .product-testimonials-section {
-        padding: 40px 20px;
+        padding: 2.5rem 1.25rem;
         background-color: #fff;
         font-family: 'DM Sans', sans-serif;
     }
     .product-testimonials-container {
-        max-width: 1280px;
+        max-width: 80rem;
         margin: 0 auto;
-        padding: 0 55px;
+        padding: 0 3.4375rem;
         box-sizing: border-box;
     }
     .product-testimonials-title {
         text-align: center;
-        font-size: 28px;
+        font-size: 1.75rem;
         font-weight: 700;
         color: #0A2240;
-        margin-bottom: 40px;
+        margin-bottom: 2.5rem;
         font-family: 'Open Sans', sans-serif;
     }
     
     .product-testimonials-viewport {
         overflow: hidden;
-        margin-bottom: 30px;
+        margin-bottom: 1.875rem;
     }
     
     .product-testimonials-track {
         display: flex;
         transition: transform 0.5s ease;
-        gap: 30px;
+        gap: 1.875rem;
     }
     
     .product-testimonial-card {
         background-color: #FFF8E7;
-        border-radius: 12px;
-        padding: 30px;
+        border-radius: 0.75rem;
+        padding: 1.875rem;
         display: flex;
         flex-direction: column;
-        gap: 15px;
-        flex: 0 0 calc(50% - 15px); /* Show 2 per view on desktop */
+        gap: 0.9375rem;
+        flex: 0 0 calc(50% - 0.9375rem); /* Show 2 per view on desktop */
         box-sizing: border-box;
     }
     
     .pt-stars {
         color: #F6B72D;
-        font-size: 16px;
-        letter-spacing: 2px;
+        font-size: 1rem;
+        letter-spacing: 0.125rem;
     }
     .pt-stars span.grey-star {
         color: #E0E0E0;
     }
     .pt-quote {
-        font-size: 14px;
+        font-size: 0.875rem;
         line-height: 1.6;
         color: #333;
         margin: 0;
@@ -59,20 +59,19 @@
     .pt-author {
         display: flex;
         align-items: center;
-        gap: 15px;
-        margin-top: 10px;
+        gap: 0.9375rem;
+        margin-top: 0.625rem;
     }
     .pt-avatar {
-        width: 40px;
-        height: 40px;
-        border-radius: 50%;
-        background-color: #E74C3C;
-        color: #fff;
+        width: 2.5rem;
+        height: 2.5rem;
+        background-color: transparent !important;
+        color: #E74C3C !important;
         display: flex;
         align-items: center;
         justify-content: center;
         font-weight: 700;
-        font-size: 18px;
+        font-size: 1.125rem;
     }
     .pt-author-info {
         display: flex;
@@ -80,22 +79,22 @@
     }
     .pt-author-name {
         font-weight: 700;
-        font-size: 14px;
+        font-size: 0.875rem;
         color: #000;
     }
     .pt-author-role {
-        font-size: 12px;
+        font-size: 0.75rem;
         color: #666;
     }
     .pt-dots {
         display: flex;
         justify-content: center;
-        gap: 8px;
-        margin-top: 20px;
+        gap: 0.5rem;
+        margin-top: 1.25rem;
     }
     .pt-dot {
-        width: 8px;
-        height: 8px;
+        width: 0.5rem;
+        height: 0.5rem;
         border-radius: 50%;
         background-color: #E0E0E0;
         cursor: pointer;
@@ -103,23 +102,23 @@
     }
     .pt-dot.active {
         background-color: #0A2240;
-        width: 20px;
-        border-radius: 4px;
+        width: 1.25rem;
+        border-radius: 0.25rem;
     }
     
-    @media (max-width: 768px) {
+    @media (max-width: 48rem) {
         .product-testimonials-section {
-            padding: 15px 20px;
+            padding: 0.9375rem 1.25rem;
         }
         .product-testimonials-viewport {
-            margin-bottom: 20px;
+            margin-bottom: 1.25rem;
         }
         .product-testimonials-container {
-            padding: 0 20px;
+            padding: 0 1.25rem;
         }
         .product-testimonial-card {
             flex: 0 0 100%; /* Show 1 per view on mobile */
-            height: 253px;
+            height: 15.8125rem;
         }
         .product-testimonials-track {
             gap: 0;
@@ -128,7 +127,7 @@
             text-align: justify;
         }
         .product-testimonials-title {
-            margin-bottom: 20px;
+            margin-bottom: 1.25rem;
         }
     }
 </style>

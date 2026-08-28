@@ -48,8 +48,8 @@
             <div class="field">
                 <label>Featured Image</label>
                 @if($editing && !empty($item['image']))
-                    <div style="margin-bottom:8px">
-                        <img src="{{ $resolveImg($item['image']) }}" style="height:60px; border-radius:4px; border:1px solid #ddd">
+                    <div style="margin-bottom:0.5rem">
+                        <img src="{{ $resolveImg($item['image']) }}" style="height:3.75rem; border-radius:0.25rem; border:1px solid #ddd">
                     </div>
                 @endif
                 <input type="file" name="image" accept="image/*">
@@ -110,7 +110,7 @@
             
             <div class="field full">
                 <label>Article Content</label>
-                <textarea name="content" style="min-height:300px">{{ $v('content') }}</textarea>
+                <textarea name="content" style="min-height:18.75rem">{{ $v('content') }}</textarea>
             </div>
             
 
@@ -182,7 +182,7 @@
                 block_formats: 'Paragraph=p; Heading 1=h1; Heading 2=h2; Heading 3=h3; Heading 4=h4; Heading 5=h5; Heading 6=h6; Preformatted=pre',
                 branding: false,
                 promotion: false,
-                content_style: 'body { font-family:"DM Sans",sans-serif; font-size:14px; line-height:1.6; }'
+                content_style: 'body { font-family:"DM Sans",sans-serif; font-size:0.875rem; line-height:1.6; }'
             });
             // Keep the full article editor taller while the short rich-text fields stay compact.
             ['excerpt', 'author_description'].forEach(function (name) {

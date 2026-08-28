@@ -4,22 +4,22 @@
     }
 
     .brand-logos-container {
-        max-width: 1280px;
+        max-width: 80rem;
         margin: 0 auto;
-        padding: 0 55px;
+        padding: 0 3.4375rem;
         box-sizing: border-box;
         overflow: hidden;
     }
 
-    @media (max-width: 768px) {
+    @media (max-width: 48rem) {
         .brand-logos-container {
-            padding: 0 20px;
+            padding: 0 1.25rem;
         }
     }
 
-    @media (max-width: 480px) {
+    @media (max-width: 30rem) {
         .brand-logos-container {
-            padding: 0 16px;
+            padding: 0 1rem;
         }
     }
 
@@ -39,9 +39,9 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        gap: 40px;
-        padding: 5px 0 20px 0;
-        min-height: 80px;
+        gap: 2.5rem;
+        padding: 0.3125rem 0 1.25rem 0;
+        min-height: 5rem;
     }
 
     .brand-logo-item {
@@ -54,8 +54,8 @@
     .brand-logo-item img {
         display: block;
         width: 100%;
-        max-width: 150px;
-        max-height: 50px;
+        max-width: 9.375rem;
+        max-height: 3.125rem;
         object-fit: contain;
     }
 
@@ -69,11 +69,11 @@
         }
     }
 
-    @media (max-width: 576px) {
+    @media (max-width: 36rem) {
         .brand-logos-set {
-            gap: 20px;
-            padding: 14px 10px;
-            min-height: 76px;
+            gap: 1.25rem;
+            padding: 0.875rem 0.625rem;
+            min-height: 4.75rem;
         }
 
         .brand-logo-item {
@@ -81,8 +81,8 @@
         }
 
         .brand-logo-item img {
-            max-width: 100px;
-            max-height: 32px;
+            max-width: 6.25rem;
+            max-height: 2rem;
         }
     }
 

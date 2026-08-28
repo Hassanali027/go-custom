@@ -6,12 +6,12 @@
     color: #000;
 }
 .about-container {
-    max-width: 1200px;
+    max-width: 75rem;
     margin: 0 auto;
-    padding: 0 20px;
+    padding: 0 1.25rem;
 }
 .section-padding {
-    padding: 80px 0;
+    padding: 5rem 0;
 }
 
 /* 1. Hero Section */
@@ -20,28 +20,28 @@
     background-size: cover;
     background-position: center;
     color: #fff;
-    padding: 40px 0 100px 0;
+    padding: 2.5rem 0 6.25rem 0;
     position: relative;
 }
 .hero-text-content {
-    margin-top: 60px;
+    margin-top: 3.75rem;
 }
 .about-breadcrumb {
-    font-size: 14px;
-    margin-bottom: 20px;
+    font-size: 0.875rem;
+    margin-bottom: 1.25rem;
     opacity: 1;
     color: #ffffff !important;
 }
 .about-hero h1 {
     font-family: var(--font-heading);
-    font-size: 48px;
+    font-size: 3rem;
     font-weight: 700;
-    margin-bottom: 20px;
+    margin-bottom: 1.25rem;
     color: #ffffff !important;
 }
 .about-hero p {
-    font-size: 18px;
-    max-width: 600px;
+    font-size: 1.125rem;
+    max-width: 37.5rem;
     margin: 0 auto;
     line-height: 1.6;
     color: #ffffff !important;
@@ -51,36 +51,36 @@
 .who-we-are {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 60px;
+    gap: 3.75rem;
     align-items: center;
 }
 .who-we-are-text h2 {
     font-family: var(--font-heading);
-    font-size: 36px;
+    font-size: 2.25rem;
     font-weight: 700;
-    margin-bottom: 20px;
+    margin-bottom: 1.25rem;
 }
 .who-we-are-text p {
-    font-size: 16px;
+    font-size: 1rem;
     line-height: 1.8;
-    margin-bottom: 20px;
+    margin-bottom: 1.25rem;
     color: #000;
     text-align: justify;
 }
 .who-we-are-grid {
     display: flex;
-    gap: 15px;
+    gap: 0.9375rem;
 }
 .who-we-are-col {
     display: flex;
     flex-direction: column;
-    gap: 15px;
+    gap: 0.9375rem;
     flex: 1;
 }
 .who-we-are-col img {
     width: 100%;
     object-fit: cover;
-    border-radius: 8px;
+    border-radius: 0.5rem;
 }
 .img-tall {
     aspect-ratio: 250 / 290;
@@ -93,35 +93,35 @@
 .making-simple {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 60px;
+    gap: 3.75rem;
     align-items: center;
 }
 .making-simple-img {
     width: 100%;
     aspect-ratio: 520 / 400;
     object-fit: cover;
-    border-radius: 12px;
+    border-radius: 0.75rem;
 }
 .making-simple-text h2 {
     font-family: var(--font-heading);
-    font-size: 32px;
+    font-size: 2rem;
     font-weight: 700;
-    margin-bottom: 20px;
+    margin-bottom: 1.25rem;
 }
 .making-simple-text p {
-    font-size: 16px;
+    font-size: 1rem;
     line-height: 1.8;
-    margin-bottom: 20px;
+    margin-bottom: 1.25rem;
     color: #000;
     text-align: justify;
 }
 .callout-box {
     background: #FDF9EE;
-    padding: 20px;
-    border-radius: 8px;
+    padding: 1.25rem;
+    border-radius: 0.5rem;
     display: inline-flex;
     align-items: center;
-    gap: 10px;
+    gap: 0.625rem;
     font-weight: 600;
     color: #000;
 }
@@ -132,26 +132,26 @@
 }
 .built-around h2 {
     font-family: var(--font-heading);
-    font-size: 36px;
+    font-size: 2.25rem;
     font-weight: 700;
-    margin-bottom: 15px;
+    margin-bottom: 0.9375rem;
 }
 .built-around p.subtitle {
-    font-size: 14px;
+    font-size: 0.875rem;
     color: #000 !important;
-    margin-bottom: 50px;
+    margin-bottom: 3.125rem;
 }
 .features-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 24px;
+    gap: 1.5rem;
 }
 .feature-card {
     background: #FDF9EE;
-    padding: 30px 20px;
-    border-radius: 12px;
+    padding: 1.875rem 1.25rem;
+    border-radius: 0.75rem;
     text-align: center;
-    min-height: 300px;
+    min-height: 18.75rem;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -159,26 +159,26 @@
 }
 .feature-icon {
     background: #0b1c31;
-    width: 50px;
-    height: 50px;
-    border-radius: 8px;
+    width: 3.125rem;
+    height: 3.125rem;
+    border-radius: 0.5rem;
     display: flex;
     align-items: center;
     justify-content: center;
-    margin: 0 auto 20px;
+    margin: 0 auto 1.25rem;
 }
 .feature-icon img {
-    width: 30px;
+    width: 1.875rem;
 }
 .feature-card h3 {
     font-family: var(--font-heading);
-    font-size: 18px;
+    font-size: 1.125rem;
     font-weight: 700;
-    margin-bottom: 15px;
+    margin-bottom: 0.9375rem;
     color: #000;
 }
 .feature-card p {
-    font-size: 14px;
+    font-size: 0.875rem;
     color: #000;
     line-height: 1.6;
     text-align: justify;
@@ -187,47 +187,47 @@
 /* 6. Our Valued Customers */
 .valued-customers {
     text-align: center;
-    padding: 40px 0 !important;
+    padding: 2.5rem 0 !important;
 }
 .valued-customers h2 {
     font-family: var(--font-heading);
-    font-size: 28px;
+    font-size: 1.75rem;
     font-weight: 700;
-    margin-bottom: 40px;
+    margin-bottom: 2.5rem;
 }
 .logo-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 20px;
+    gap: 1.25rem;
 }
 .logo-box {
     background: #fff;
     border: 1px solid #ccc;
-    border-radius: 8px;
+    border-radius: 0.5rem;
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 115px;
+    height: 7.1875rem;
 }
 .logo-box img {
-    max-height: 108px;
-    max-width: 108px;
+    max-height: 6.75rem;
+    max-width: 6.75rem;
     object-fit: contain;
 }
 
 /* Responsive */
-@media (max-width: 991px) {
+@media (max-width: 61.9375rem) {
     .bottom-cta-banner {
         grid-template-columns: 1fr;
-        gap: 40px;
+        gap: 2.5rem;
     }
     .making-simple {
         grid-template-columns: 1fr;
-        gap: 20px;
+        gap: 1.25rem;
     }
     .who-we-are {
         grid-template-columns: 1fr;
-        gap: 20px;
+        gap: 1.25rem;
     }
     .who-we-are-text {
         order: 2;
@@ -244,18 +244,18 @@
     .bottom-cta-banner {
         flex-direction: column;
         text-align: center;
-        padding: 40px 20px;
+        padding: 2.5rem 1.25rem;
     }
     .cta-image {
-        margin-top: 30px;
+        margin-top: 1.875rem;
     }
 }
-@media (max-width: 768px) {
+@media (max-width: 48rem) {
     .features-grid, .steps-grid {
         grid-template-columns: 1fr;
     }
     .about-hero {
-        padding: 100px 20px;
+        padding: 6.25rem 1.25rem;
     }
     .about-breadcrumb {
         display: none !important;
@@ -264,17 +264,17 @@
         margin-top: 0;
     }
     .about-hero h1 {
-        font-size: 36px;
+        font-size: 2.25rem;
     }
     .who-we-are-text h2, .making-simple-text h2, .built-around h2, .order-process h2, .cta-text h2 {
-        font-size: 28px;
+        font-size: 1.75rem;
     }
     .built-around p.subtitle {
         text-align: justify;
         color: #000 !important;
     }
     .feature-card {
-        min-height: 213px;
+        min-height: 13.3125rem;
     }
 }
 </style>
@@ -294,7 +294,7 @@
 </section>
 
 <!-- 2. Who We Are -->
-<section class="section-padding" style="padding: 40px 0;">
+<section class="section-padding" style="padding: 2.5rem 0;">
     <div class="about-container who-we-are">
         <div class="who-we-are-text">
             <h2>Who We Are</h2>
@@ -315,7 +315,7 @@
 </section>
 
 <!-- 3. Making Custom Packaging Simple -->
-<section class="section-padding" style="padding-top: 0; padding-bottom: 20px;">
+<section class="section-padding" style="padding-top: 0; padding-bottom: 1.25rem;">
     <div class="about-container making-simple">
         <div>
             <img src="{{ asset('uploads/category-textured.png') }}" alt="Custom Packaging" class="making-simple-img" onerror="this.src='https://placehold.co/600x600/darkgreen/white'">
@@ -325,16 +325,16 @@
             <p>Our purpose is to make custom packaging easier, more accessible, and more effective for businesses of all sizes. We help turn packaging ideas into practical, well-designed boxes that reflect each brand's unique identity.</p>
             <p>From selecting the right materials and dimensions to choosing printing and finishing options, we guide every project with care and attention to detail. Our goal is simple: create packaging that protects your product, strengthens your brand, and leaves a lasting impression.</p>
             <div class="callout-box">
-                <span style="font-size: 28px; font-weight: 900; font-family: serif; line-height: 0; position: relative; top: 8px;">&ldquo;</span> 
+                <span style="font-size: 1.75rem; font-weight: 900; font-family: serif; line-height: 0; position: relative; top: 0.5rem;">&ldquo;</span> 
                 <span>Durable and high-quality materials for product protection.</span>
-                <span style="font-size: 28px; font-weight: 900; font-family: serif; line-height: 0; position: relative; top: 8px;">&rdquo;</span>
+                <span style="font-size: 1.75rem; font-weight: 900; font-family: serif; line-height: 0; position: relative; top: 0.5rem;">&rdquo;</span>
             </div>
         </div>
     </div>
 </section>
 
 <!-- 4. Built Around What Matters -->
-<section class="section-padding" style="padding-top: 10px; padding-bottom: 30px;">
+<section class="section-padding" style="padding-top: 0.625rem; padding-bottom: 1.875rem;">
     <div class="about-container built-around">
         <h2>Built Around What Matters</h2>
         <p class="subtitle">Every project starts with your product and ends with packaging designed to work for your brand.</p>

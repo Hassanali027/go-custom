@@ -1,7 +1,7 @@
 <style>
 .how-it-works-section {
     background-color: #0A2240;
-    padding: 40px 20px 45px;
+    padding: 2.5rem 1.25rem 2.8125rem;
     font-family: 'DM Sans', sans-serif;
     color: #fff;
     text-align: center;
@@ -10,56 +10,56 @@
     overflow: hidden;
 }
 .hiw-container {
-    max-width: 1280px;
+    max-width: 80rem;
     margin: 0 auto;
     width: 100%;
-    padding: 0 55px;
+    padding: 0 3.4375rem;
     box-sizing: border-box;
 }
-@media (max-width: 768px) {
+@media (max-width: 48rem) {
     .hiw-container {
-        padding: 0 20px;
+        padding: 0 1.25rem;
     }
 }
-@media (max-width: 480px) {
+@media (max-width: 30rem) {
     .hiw-container {
-        padding: 0 16px;
+        padding: 0 1rem;
     }
 }
 .hiw-label {
     color: #F6B72D;
-    font-size: 12px;
+    font-size: 0.75rem;
     font-weight: 700;
-    letter-spacing: 1.5px;
+    letter-spacing: 0.0938rem;
     text-transform: uppercase;
-    margin-bottom: 12px;
+    margin-bottom: 0.75rem;
     font-family: 'Open Sans', sans-serif;
 }
 .hiw-title {
-    font-size: 32px;
+    font-size: 2rem;
     font-weight: 700;
     font-family: 'Open Sans', sans-serif;
-    margin-bottom: 14px;
+    margin-bottom: 0.875rem;
     color: #fff;
     line-height: 1.2;
 }
 .hiw-subtitle {
-    font-size: 14.5px;
+    font-size: 0.9062rem;
     color: rgba(255, 255, 255, 0.8);
-    max-width: 680px;
-    margin: 0 auto 35px;
+    max-width: 42.5rem;
+    margin: 0 auto 2.1875rem;
     line-height: 1.5;
 }
 .hiw-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 30px;
+    gap: 1.875rem;
     justify-content: center;
     align-items: start;
 }
 .hiw-step {
     width: 100%;
-    max-width: 220px;
+    max-width: 13.75rem;
     margin: 0 auto;
     display: flex;
     flex-direction: column;
@@ -67,40 +67,40 @@
     text-align: center;
 }
 .hiw-img-wrap {
-    height: 130px;
+    height: 8.125rem;
     width: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-bottom: 22px;
+    margin-bottom: 1.375rem;
 }
 .hiw-img {
     max-height: 100%;
     max-width: 100%;
     object-fit: contain;
-    filter: drop-shadow(0 10px 15px rgba(0,0,0,0.25));
+    filter: drop-shadow(0 0.625rem 0.9375rem rgba(0,0,0,0.25));
 }
 .hiw-step-title {
-    font-size: 18px;
+    font-size: 1.125rem;
     font-weight: 700;
     font-family: 'Open Sans', sans-serif;
-    margin-bottom: 12px;
+    margin-bottom: 0.75rem;
     color: #fff;
 }
 .hiw-step-desc {
-    font-size: 13px;
-    color: rgba(255, 255, 255, 0.75);
+    font-size: 0.8125rem;
+    /* color: rgba(255, 255, 255, 0.75); */
     line-height: 1.55;
     margin: 0;
 }
 
-@media (max-width: 991px) {
+@media (max-width: 61.9375rem) {
     .hiw-grid {
         grid-template-columns: repeat(2, 1fr);
-        gap: 40px 20px;
+        gap: 2.5rem 1.25rem;
     }
 }
-@media (max-width: 768px) {
+@media (max-width: 48rem) {
     .how-it-works-section {
         display: block;
     }
@@ -108,7 +108,7 @@
         text-align: justify;
     }
     .hiw-title {
-        font-size: 20px;
+        font-size: 1.25rem;
         white-space: nowrap;
     }
 }
