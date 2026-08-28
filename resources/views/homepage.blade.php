@@ -183,7 +183,7 @@
             }
             
             .industry-card:hover .industry-card__arrow {
-                transform: translateX(0.25rem);
+                transform: rotate(-45deg) translate(0.125rem, -0.125rem);
             }
         }
 
@@ -2341,8 +2341,9 @@
                 }
 
                 .bs-desc {
-                    text-align: justify;
+                    text-align: center;
                     font-size: 0.875rem;
+                    margin-bottom: 1.25rem;
                 }
             }
         </style>
@@ -2943,7 +2944,7 @@
                 }
 
                 .wcc-desc {
-                    text-align: justify;
+                    text-align: center;
                     color: #000;
                     margin-bottom: 0 !important;
                 }
@@ -2958,6 +2959,38 @@
                     max-width: 100%;
                     width: 100%;
                     flex: none !important;
+                }
+
+                .wcc-feature-card {
+                    align-items: center;
+                    text-align: center;
+                }
+
+                .wcc-feature-title {
+                    text-align: center;
+                }
+
+                .wcc-feature-desc {
+                    text-align: center;
+                }
+            }
+
+            @media (max-width: 48rem) {
+                .why-choose-inner {
+                    padding: 0 1.25rem;
+                }
+
+                .wcc-feature-card {
+                    align-items: center;
+                    text-align: center;
+                }
+
+                .wcc-feature-title {
+                    text-align: center;
+                }
+
+                .wcc-feature-desc {
+                    text-align: center;
                 }
             }
 
@@ -2977,10 +3010,12 @@
 
                 .wcc-title {
                     text-align: center;
+                    font-size: 1.5rem;
+                    margin-bottom: 0.375rem;
                 }
 
                 .wcc-desc {
-                    text-align: justify;
+                    text-align: center;
                     color: #000;
                     margin-bottom: 0 !important;
                 }
@@ -3001,20 +3036,39 @@
                     border: 1px solid rgba(0, 0, 0, 0.05);
                 }
 
+                .wcc-feature-title {
+                    text-align: center;
+                }
+
+                .wcc-feature-desc {
+                    text-align: center;
+                }
+
                 .wcc-collage {
                     display: none !important;
-                }
-            }
-
-            @media (max-width: 48rem) {
-                .why-choose-inner {
-                    padding: 0 1.25rem;
                 }
             }
 
             @media (max-width: 30rem) {
                 .why-choose-inner {
                     padding: 0 1rem;
+                }
+                .wcc-title {
+                    font-size: 1.25rem;
+                    margin-bottom: 0.25rem;
+                }
+
+                .wcc-feature-card {
+                    align-items: center;
+                    text-align: center;
+                }
+
+                .wcc-feature-title {
+                    text-align: center;
+                }
+
+                .wcc-feature-desc {
+                    text-align: center;
                 }
             }
         </style>

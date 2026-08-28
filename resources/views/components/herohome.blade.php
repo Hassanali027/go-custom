@@ -268,8 +268,8 @@
 
         .category-page-hero .hero-section,
         .category-page-hero .hero-content {
-            align-items: flex-start;
-            text-align: left;
+            align-items: center;
+            text-align: center;
         }
 
         .category-page-hero .hero-content {
@@ -278,7 +278,7 @@
 
         .category-page-hero .hero-title {
             max-width: 27.5rem;
-            text-align: left;
+            text-align: center;
         }
 
         .hero-description {
@@ -327,9 +327,15 @@
         }
 
         .hero-title {
-            font-size: 1.75rem !important;
+            font-size: 1.375rem !important;
             line-height: 1.25;
-            max-width: 23rem;
+            max-width: 17.5rem;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero-title br {
+            display: none;
         }
 
         .hero-description {
@@ -345,9 +351,11 @@
         }
 
         .hero-title {
-            font-size: 1.5rem !important;
+            font-size: 1.25rem !important;
             line-height: 1.25;
-            max-width: 20rem;
+            max-width: 16.5rem;
+            margin-left: auto;
+            margin-right: auto;
             margin-bottom: 0.75rem;
         }
 
@@ -358,9 +366,9 @@
         .category-page-hero .hero-title {
             font-size: 1.375rem !important;
             max-width: 100%;
-            margin-left: 0;
-            margin-right: 0;
-            text-align: left;
+            margin-left: auto;
+            margin-right: auto;
+            text-align: center;
         }
 
         .hero-description {

@@ -290,7 +290,6 @@
         }
     }
 </style>
-</style>
         <!-- Customize Packaging Section -->
         <section class="customize-section">
             <div class="customize-container">
