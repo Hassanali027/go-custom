@@ -308,19 +308,19 @@
         transform: rotate(225deg) translateY(-0.125rem);
     }
 
-    /* Compact category mega menu */
+    /* Category Mega Menu */
     .mega-menu {
         position: absolute;
         z-index: 1200;
         top: 100%;
         left: 1rem;
-        width: min(63.75rem, calc(100vw - 2rem));
-        height: 17.625rem;
-        padding: 1.375rem;
-        background: #fff;
-        border: 1px solid #1f1f1f;
-        border-radius: 0.1875rem;
-        box-shadow: 0 0.625rem 1.5rem rgba(0, 0, 0, 0.12);
+        width: min(65rem, calc(100vw - 2rem));
+        height: auto;
+        padding: 1.75rem 2rem 1.25rem;
+        background: #FAF5F2; /* Cream background matching screenshot */
+        border: none;
+        border-radius: 0.75rem;
+        box-shadow: 0 0.75rem 2.25rem rgba(0, 0, 0, 0.1);
         box-sizing: border-box;
         opacity: 0;
         visibility: hidden;
@@ -337,32 +337,34 @@
     .mega-menu-grid {
         display: grid;
         grid-template-columns: repeat(4, minmax(0, 1fr));
-        gap: 0.875rem 1.125rem;
+        gap: 1.125rem 1.75rem;
+        margin-bottom: 1.5rem;
     }
 
     .mega-menu-item {
         display: flex;
         align-items: center;
-        gap: 0.5625rem;
-        padding: 0.125rem 0;
-        border-radius: 0.25rem;
+        gap: 0.75rem;
+        padding: 0.25rem 0.25rem;
+        border-radius: 0.375rem;
         text-decoration: none;
-        color: #0B2240;
-        font-size: 0.6875rem;
-        font-weight: 500;
+        color: #1A1A1A;
+        font-family: 'DM Sans', 'Plus Jakarta Sans', sans-serif;
+        font-size: 0.9375rem;
+        font-weight: 600;
         line-height: 1.35;
-        transition: background 0.15s ease, color 0.15s ease, transform 0.15s ease;
+        transition: color 0.15s ease, transform 0.15s ease, background 0.15s ease;
     }
 
     .mega-menu-item:hover {
-        background: #f7f3ea;
-        color: #0B2240;
-        transform: translateX(0.125rem);
+        color: #8D4445;
+        background: rgba(141, 68, 69, 0.06);
+        transform: translateX(0.1875rem);
     }
 
     .mega-menu-icon {
-        width: 1.25rem;
-        height: 1.25rem;
+        width: 1.5rem;
+        height: 1.5rem;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -370,43 +372,110 @@
     }
 
     .mega-menu-icon svg {
-        width: 1.25rem;
-        height: 1.25rem;
-        stroke: #0B2240;
+        width: 1.375rem;
+        height: 1.375rem;
+        stroke: #8D4445;
         fill: none;
     }
 
     .mega-menu-icon img {
-        width: 1.25rem;
-        height: 1.25rem;
+        width: 1.375rem;
+        height: 1.375rem;
         display: block;
         object-fit: contain;
     }
 
-    .mega-menu-footer { display: none; }
+    /* Footer / Bottom Banner */
+    .mega-menu-footer {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding-top: 1.125rem;
+        border-top: 1px solid rgba(0, 0, 0, 0.08);
+    }
 
+    .mega-menu-footer-left {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        color: #1A1A1A;
+        font-family: 'DM Sans', 'Plus Jakarta Sans', sans-serif;
+        font-size: 0.9375rem;
+        font-weight: 700;
+    }
+
+    .mega-menu-footer-icon {
+        width: 1.5rem;
+        height: 1.5rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .mega-menu-footer-icon svg {
+        width: 1.375rem;
+        height: 1.375rem;
+        stroke: var(--primary-color);
+    }
+
+    .mega-menu-cta {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0.5625rem 1.375rem;
+        border-radius: 0.5rem;
+        background: #8D4445;
+        color: #ffffff !important;
+        font-family: 'DM Sans', 'Plus Jakarta Sans', sans-serif;
+        font-weight: 700;
+        font-size: 0.875rem;
+        text-decoration: none;
+        box-shadow: 0 0.125rem 0.5rem rgba(141, 68, 69, 0.2);
+        transition: background 0.2s ease, transform 0.2s ease;
+    }
+
+    .mega-menu-cta:hover {
+        background: #753435;
+        transform: translateY(-1px);
+    }
+
+    /* Modifiers for Popular products & Resources */
     .mega-menu.mega-menu--products {
-        width: min(21.25rem, calc(100vw - 2rem));
+        width: min(23rem, calc(100vw - 2rem));
         height: auto;
         padding: 1.375rem 1.75rem;
+        background: #fff;
+        border: 1px solid #e5e5e5;
+        border-radius: 0.5rem;
     }
+    .mega-menu--products .mega-menu-footer { display: none; }
+    .mega-menu--products .mega-menu-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 1.125rem 1.375rem;
+        margin-bottom: 0;
+    }
+    .mega-menu--products .mega-menu-item { gap: 0.5625rem; }
+    .mega-menu--products .mega-menu-icon,
+    .mega-menu--products .mega-menu-icon img { width: 2.625rem; height: 2.625rem; }
+    .mega-menu--products .mega-menu-icon img { border-radius: 0.1875rem; object-fit: cover; }
 
     .mega-menu.mega-menu--resources {
         width: 15.625rem;
         height: auto;
         padding: 1rem 1.25rem;
-        border-radius: 0.5rem; /* Slightly more rounded as per screenshot */
+        background: #fff;
+        border: 1px solid #e5e5e5;
+        border-radius: 0.5rem;
     }
-
+    .mega-menu--resources .mega-menu-footer { display: none; }
     .mega-menu--resources .mega-menu-grid {
         grid-template-columns: 1fr;
         gap: 0.25rem;
+        margin-bottom: 0;
     }
-
     .mega-menu--resources .mega-menu-icon {
         display: none;
     }
-
     .mega-menu--resources .mega-menu-item {
         padding: 0.5rem 0.75rem;
         font-size: 1rem;
@@ -414,21 +483,10 @@
         font-weight: 500;
         gap: 0;
     }
-
     .mega-menu--resources .mega-menu-item:hover {
         background: rgba(0, 0, 0, 0.05);
         color: #000;
     }
-
-    .mega-menu--products .mega-menu-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 1.125rem 1.375rem;
-    }
-
-    .mega-menu--products .mega-menu-item { gap: 0.5625rem; }
-    .mega-menu--products .mega-menu-icon,
-    .mega-menu--products .mega-menu-icon img { width: 2.625rem; height: 2.625rem; }
-    .mega-menu--products .mega-menu-icon img { border-radius: 0.1875rem; object-fit: cover; }
 
     .custom-boxes-menu {
         position: relative;
@@ -491,7 +549,7 @@
         display: flex;
         align-items: center;
         gap: 0.75rem;
-        color: #ffffff;
+        color: #000000;
         font-size: 0.9375rem;
         font-weight: 700;
     }
@@ -1178,6 +1236,41 @@
         let activeType = null;
         let hoverTimeout = null;
 
+        function getCategoryIcon(title, slug) {
+            const t = ((title || '') + ' ' + (slug || '')).toLowerCase();
+            if (t.includes('apparel') || t.includes('shirt') || t.includes('cloth') || t.includes('garment')) {
+                return `<svg viewBox="0 0 24 24" fill="none" stroke="#8D4445" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20.38 3.46 16 2a4 4 0 0 1-8 0L3.62 3.46a2 2 0 0 0-1.34 2.23l.58 3.47a1 1 0 0 0 .99.84H6v10a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V10h2.15a1 1 0 0 0 .99-.84l.58-3.47a2 2 0 0 0-1.34-2.23z"/></svg>`;
+            }
+            if (t.includes('bakery') || t.includes('cake') || t.includes('pastry') || t.includes('cookie') || t.includes('bread') || t.includes('donut')) {
+                return `<svg viewBox="0 0 24 24" fill="none" stroke="#8D4445" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="10" width="18" height="11" rx="2"/><path d="M7 10V7a5 5 0 0 1 10 0v3"/><path d="M12 14v3"/><circle cx="12" cy="4" r="1"/></svg>`;
+            }
+            if (t.includes('cbd') || t.includes('tincture') || t.includes('vape') || t.includes('oil') || t.includes('dropper') || t.includes('serum')) {
+                return `<svg viewBox="0 0 24 24" fill="none" stroke="#8D4445" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M10 2h4"/><path d="M12 2v4"/><path d="M7 8h10a1 1 0 0 1 1 1v11a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2V9a1 1 0 0 1 1-1Z"/><path d="M10 14h4"/></svg>`;
+            }
+            if (t.includes('stationery') || t.includes('pen') || t.includes('pencil') || t.includes('card') || t.includes('paper') || t.includes('notebook')) {
+                return `<svg viewBox="0 0 24 24" fill="none" stroke="#8D4445" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"/><path d="m15 5 4 4"/></svg>`;
+            }
+            if (t.includes('roll') || t.includes('pre roll') || t.includes('cigar') || t.includes('cigarette')) {
+                return `<svg viewBox="0 0 24 24" fill="none" stroke="#8D4445" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="6" width="18" height="12" rx="2"/><path d="M3 12h18"/><circle cx="7" cy="12" r="1"/><circle cx="17" cy="12" r="1"/></svg>`;
+            }
+            if (t.includes('cosmetic') || t.includes('beauty') || t.includes('makeup') || t.includes('cream') || t.includes('lotion') || t.includes('perfume') || t.includes('fragrance') || t.includes('skincare')) {
+                return `<svg viewBox="0 0 24 24" fill="none" stroke="#8D4445" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3h6v4H9z"/><rect x="7" y="7" width="10" height="14" rx="2"/><path d="M10 12h4"/><path d="M12 12v4"/></svg>`;
+            }
+            if (t.includes('jewelry') || t.includes('jewel') || t.includes('ring') || t.includes('diamond') || t.includes('watch') || t.includes('necklace')) {
+                return `<svg viewBox="0 0 24 24" fill="none" stroke="#8D4445" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h12l4 6-10 12L2 9Z"/><path d="M11 3 8 9l4 12 4-12-3-6"/><path d="M2 9h20"/></svg>`;
+            }
+            if (t.includes('chocolate') || t.includes('candy') || t.includes('sweet') || t.includes('snack')) {
+                return `<svg viewBox="0 0 24 24" fill="none" stroke="#8D4445" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 10h18"/><path d="M3 16h18"/><path d="M9 4v16"/><path d="M15 4v16"/></svg>`;
+            }
+            if (t.includes('food') || t.includes('pizza') || t.includes('meal') || t.includes('burger') || t.includes('restaurant')) {
+                return `<svg viewBox="0 0 24 24" fill="none" stroke="#8D4445" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg>`;
+            }
+            if (t.includes('gift')) {
+                return `<svg viewBox="0 0 24 24" fill="none" stroke="#8D4445" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="8" width="18" height="4" rx="1"/><path d="M12 8v13"/><path d="M19 12v7a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-7"/><path d="M7.5 8a2.5 2.5 0 0 1 0-5A4.8 8 0 0 1 12 8a4.8 8 0 0 1 4.5-5 2.5 2.5 0 0 1 0 5"/></svg>`;
+            }
+            return giftBoxSvg;
+        }
+
         function renderMegaGrid(type) {
             const isProductMenu = type === 'custom-boxes';
             const isResourcesMenu = type === 'resources';
@@ -1192,9 +1285,16 @@
             megaMenuGrid.innerHTML = items.map(item => {
                 const title = typeof item === 'string' ? item : item.title;
                 const slug = typeof item === 'string' ? title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '') : item.slug;
-                const iconHtml = isProductMenu && item.image
-                    ? `<img src="${item.image}" alt="" loading="lazy">`
-                    : giftBoxSvg;
+                
+                let iconHtml = '';
+                if (isProductMenu && item.image) {
+                    iconHtml = `<img src="${item.image}" alt="" loading="lazy">`;
+                } else if (item.icon) {
+                    iconHtml = `<img src="${item.icon}" alt="" loading="lazy">`;
+                } else {
+                    iconHtml = getCategoryIcon(title, slug);
+                }
+                
                 return `<a href="/${slug}/" class="mega-menu-item">
                     <div class="mega-menu-icon">${iconHtml}</div>
                     <span>${title}</span>
@@ -1233,10 +1333,12 @@
                 const maximumLeft = Math.max(4, header.clientWidth - menuWidth - 4);
                 megaMenu.style.left = `${Math.min(Math.max(4, desiredLeft), maximumLeft)}px`;
             } else {
-                const navWidth = lastNavRect.right - homeRect.left;
-                megaMenu.style.width = `${navWidth}px`;
+                const calculatedNavWidth = lastNavRect.right - homeRect.left;
+                const desiredWidth = Math.min(Math.max(760, calculatedNavWidth), header.clientWidth - 32);
+                megaMenu.style.width = `${desiredWidth}px`;
                 const desiredLeft = homeRect.left - headerRect.left;
-                megaMenu.style.left = `${desiredLeft}px`;
+                const maximumLeft = Math.max(4, header.clientWidth - desiredWidth - 16);
+                megaMenu.style.left = `${Math.min(Math.max(4, desiredLeft), maximumLeft)}px`;
             }
         }
 

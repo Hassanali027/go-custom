@@ -1350,8 +1350,8 @@
 
         /* Related Products Section */
         .related-products {
-            margin-top: -3.375rem;
-            padding: 0.625rem 0 1.25rem;
+            margin-top: 0;
+            padding: 2.5rem 0 1.25rem;
             background-color: #fff;
         }
         
@@ -2494,19 +2494,19 @@
         <div class="container">
             <div class="badges-horizontal">
                 <div class="trust-badges-wrapper">
-                    <svg class="badge-icon-svg" viewBox="0 0 48 48" aria-label="No Die and Plate Charges" role="img"><circle cx="24" cy="24" r="18" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M14 32 34 14M16 16l16 16M21 13l14 14M13 25l10 10" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M20 36h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+                    <img src="{{ asset('uploads/no-die-charges.svg') }}" class="badge-icon-svg" alt="No Die and Plate Charges">
                     <span class="badge-label">No Die &amp; Plate Charges</span>
                 </div>
                 <div class="features-badges-wrapper">
-                    <svg class="badge-icon-svg" viewBox="0 0 48 48" aria-label="Free Graphic Designing" role="img"><rect x="8" y="9" width="32" height="23" rx="2" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M14 38h20M24 32v6M14 15h20M17 20h7M17 25h12" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><circle cx="34" cy="23" r="3" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
-                    <span class="badge-label">Free Graphic Designing</span>
+                    <img src="{{ asset('uploads/compitative-pricing.svg') }}" class="badge-icon-svg" alt="Competitive Pricing">
+                    <span class="badge-label">Competitive Pricing</span>
                 </div>
                 <div class="shipping-badge-wrapper">
-                    <svg class="badge-icon-svg" viewBox="0 0 48 48" aria-label="Quick Turnaround Time" role="img"><circle cx="24" cy="24" r="17" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M24 14v11l7 4M10 24h-3M41 24h-3M24 7v-3M24 44v-3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+                    <img src="{{ asset('uploads/fast-turn.svg') }}" class="badge-icon-svg" alt="Quick Turnaround Time">
                     <span class="badge-label">Quick Turnaround Time</span>
                 </div>
                 <div class="fourth-badge-wrapper">
-                    <svg class="badge-icon-svg" viewBox="0 0 48 48" aria-label="Free Shipping" role="img"><path d="M6 14h24v21H6zM30 22h7l6 7v6H30zM13 35a4 4 0 1 0 8 0M34 35a4 4 0 1 0 8 0M37 22v7h6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M12 20h10M12 25h7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+                    <img src="{{ asset('uploads/free-shiping.svg') }}" class="badge-icon-svg" alt="Free Shipping">
                     <span class="badge-label">Free Shipping</span>
                 </div>
             </div>

@@ -195,7 +195,8 @@
         padding-bottom: 1.25rem;
         font-size: 0.9062rem;
         line-height: 1.5;
-        color: #555;
+        color: #000;
+        text-align: justify;
     }
 
     @media (max-width: 62rem) {

@@ -89,7 +89,7 @@
 }
 .hiw-step-desc {
     font-size: 0.8125rem;
-    /* color: rgba(255, 255, 255, 0.75); */
+    color: rgba(255, 255, 255, 0.75);
     line-height: 1.55;
     margin: 0;
 }
@@ -111,10 +111,13 @@
         font-size: 1.25rem;
         white-space: nowrap;
     }
+    .hide-on-mobile-home {
+        display: none !important;
+    }
 }
 </style>
 
-<section class="how-it-works-section">
+<section class="how-it-works-section {{ request()->is('/') ? 'hide-on-mobile-home' : '' }}">
     <div class="hiw-container">
         <div class="hiw-label">HOW IT WORKS</div>
         <h2 class="hiw-title">Simple 4&ndash;Step Order Process</h2>

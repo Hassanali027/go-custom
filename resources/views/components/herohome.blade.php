@@ -109,7 +109,7 @@
         width: 100%;
         max-width: 80rem;
         margin: 0 auto;
-        padding: 2.5rem 3.4375rem !important;
+        padding: 2.5rem 3.4375rem;
         display: block;
         position: relative;
         z-index: 2;
@@ -241,13 +241,15 @@
         .hero-section {
             flex-direction: column-reverse;
             display: flex;
-            padding: 1.875rem 3.4375rem 1.5rem;
+            padding: 1.875rem 2rem 1.5rem !important;
             text-align: center;
             gap: 1.25rem;
         }
 
         .hero-content {
-            max-width: 94%;
+            width: 100%;
+            max-width: 32rem;
+            margin: 0 auto;
             padding-top: 0;
             padding-bottom: 0;
             display: flex;
@@ -256,9 +258,12 @@
         }
 
         .hero-title {
-            font-size: 1.75rem;
-            line-height: 1.3;
+            font-size: 1.875rem;
+            line-height: 1.25;
             text-align: center;
+            max-width: 26rem;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         .category-page-hero .hero-section,
@@ -280,10 +285,12 @@
             font-family: 'Inter', sans-serif;
             font-size: 1rem;
             font-weight: 400;
-            line-height: 1.5rem;
+            line-height: 1.55;
             text-align: justify;
+            max-width: 28rem;
             margin-left: auto;
             margin-right: auto;
+            margin-bottom: 1.75rem;
         }
 
         .hero-image-wrapper {
@@ -310,22 +317,38 @@
         }
     }
 
-    @media (max-width: 36rem) {
-
+    @media (max-width: 48rem) {
         .hero-section {
-            padding: 1.5rem 1rem 1rem !important;
-            text-align: center;
+            padding: 1.5rem 1.5rem 1.25rem !important;
+        }
+
+        .hero-content {
+            max-width: 100%;
         }
 
         .hero-title {
             font-size: 1.75rem !important;
-            line-height: 1.3;
-            word-wrap: break-word;
-            text-wrap: balance;
-            max-width: 21rem;
-            margin-left: auto;
-            margin-right: auto;
-            text-transform: capitalize;
+            line-height: 1.25;
+            max-width: 23rem;
+        }
+
+        .hero-description {
+            max-width: 24rem;
+            font-size: 0.9375rem;
+            line-height: 1.55;
+        }
+    }
+
+    @media (max-width: 30rem) {
+        .hero-section {
+            padding: 1.25rem 1.25rem 1rem !important;
+        }
+
+        .hero-title {
+            font-size: 1.5rem !important;
+            line-height: 1.25;
+            max-width: 20rem;
+            margin-bottom: 0.75rem;
         }
 
         .hero-title br {
@@ -333,21 +356,18 @@
         }
 
         .category-page-hero .hero-title {
-            font-size: 1.5rem !important;
+            font-size: 1.375rem !important;
             max-width: 100%;
             margin-left: 0;
             margin-right: 0;
             text-align: left;
         }
 
-
-
-    }
-
-    @media (min-width: 36.0625rem) and (max-width: 48rem) {
-        .hero-section {
-            padding-left: 1.25rem;
-            padding-right: 1.25rem;
+        .hero-description {
+            max-width: 100%;
+            font-size: 0.875rem;
+            line-height: 1.5;
+            margin-bottom: 1.25rem;
         }
     }
 

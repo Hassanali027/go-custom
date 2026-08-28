@@ -418,6 +418,15 @@
             .mobile-cta { display: flex !important; margin-top: 1.875rem; }
             .blog-grid { grid-template-columns: 1fr; }
             .cta-banner { flex-direction: column; text-align: center; gap: 1.25rem; }
+            
+            .related-section {
+                padding-top: 0.625rem;
+            }
+            .related-title {
+                margin-top: 0;
+                margin-bottom: 1.25rem;
+                font-size: 1.5rem;
+            }
         }
         
         .mobile-cta { display: none; }
