@@ -14,38 +14,7 @@
     padding: 5rem 0;
 }
 
-/* 1. Hero Section */
-.about-hero {
-    background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('{{ asset('uploads/about-us-hero-bg.png') }}');
-    background-size: cover;
-    background-position: center;
-    color: #fff;
-    padding: 2.5rem 0 6.25rem 0;
-    position: relative;
-}
-.hero-text-content {
-    margin-top: 3.75rem;
-}
-.about-breadcrumb {
-    font-size: 0.875rem;
-    margin-bottom: 1.25rem;
-    opacity: 1;
-    color: #ffffff !important;
-}
-.about-hero h1 {
-    font-family: var(--font-heading);
-    font-size: 3rem;
-    font-weight: 700;
-    margin-bottom: 1.25rem;
-    color: #ffffff !important;
-}
-.about-hero p {
-    font-size: 1.125rem;
-    max-width: 37.5rem;
-    margin: 0 auto;
-    line-height: 1.6;
-    color: #ffffff !important;
-}
+
 
 /* 2. Who We Are */
 .who-we-are {
@@ -254,18 +223,6 @@
     .features-grid, .steps-grid {
         grid-template-columns: 1fr;
     }
-    .about-hero {
-        padding: 6.25rem 1.25rem;
-    }
-    .about-breadcrumb {
-        display: none !important;
-    }
-    .hero-text-content {
-        margin-top: 0;
-    }
-    .about-hero h1 {
-        font-size: 2.25rem;
-    }
     .who-we-are-text h2, .making-simple-text h2, .built-around h2, .order-process h2, .cta-text h2 {
         font-size: 1.75rem;
     }
@@ -283,15 +240,12 @@
 @include('components.header')
 
 <!-- 1. Hero Section -->
-<section class="about-hero">
-    <div class="about-container" style="text-align: left;">
-        <div class="about-breadcrumb"><i class="fa fa-home"></i> Home > About Us</div>
-    </div>
-    <div class="hero-text-content" style="text-align: center;">
-        <h1>About Us</h1>
-        <p>From box styles and materials to custom sizes, pricing, and delivery, find quick answers to the questions we hear most.</p>
-    </div>
-</section>
+<x-about-hero 
+    title="About Us"
+    description="From box styles and materials to custom sizes, pricing, and delivery, find quick answers to the questions we hear most."
+    bgImage="uploads/about us .webp"
+    breadcrumb="About Us"
+/>
 
 <!-- 2. Who We Are -->
 <section class="section-padding" style="padding: 2.5rem 0;">
