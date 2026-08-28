@@ -100,7 +100,7 @@
             
             <div class="field">
                 <label>Tags / Tag Cloud</label>
-                <input name="tags" value="{{ $v('tags') }}" placeholder="rigid boxes, luxury, packaging">
+                <input name="tags" value="{{ $v('tags') }}" placeholder="Go-Custom-boxes, luxury, packaging">
             </div>
             
             <div class="field full">

@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>@yield('title') · Rigid Boxes Admin</title>
+    <title>@yield('title') · Go-Custom-boxes Admin</title>
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Open+Sans:wght@300;400;600;700;800;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
@@ -163,9 +163,9 @@
 <div class="shell">
     <aside class="side">
         <div class="brand">
-            <img src="{{ asset('images/The Rigid Boxes Logo 1.png') }}" alt="Rigid Boxes">
+            <img src="{{ asset('uploads/header-logo.svg') }}" alt="Go-Custom-boxes">
             <div>
-                <strong>Rigid Boxes</strong>
+                <strong>Go-Custom-boxes</strong>
                 <small>Administration</small>
             </div>
         </div>
@@ -222,7 +222,7 @@
             <div class="top-left">
                 <div>
                     <h1>@yield('heading', 'Dashboard')</h1>
-                    <div class="crumb">Rigid Boxes <i class="fa-solid fa-chevron-right" style="font-size:8px;margin:0 6px"></i> Admin</div>
+                    <div class="crumb">Go-Custom-boxes <i class="fa-solid fa-chevron-right" style="font-size:8px;margin:0 6px"></i> Admin</div>
                 </div>
             </div>
             <div class="user">

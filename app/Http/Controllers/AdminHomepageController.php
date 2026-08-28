@@ -16,7 +16,7 @@ class AdminHomepageController extends Controller
     public function loadSettings(): array
     {
         $defaults = [
-            'meta_title' => 'Custom Printed Boxes & Packaging - The Rigid Boxes',
+            'meta_title' => 'Custom Printed Boxes & Packaging - Go-Custom-boxes',
             'meta_description' => 'Custom printed rigid packaging boxes at wholesale rates. Premium luxury boxes for retail, cosmetic, and gift packaging.',
             'meta_keywords' => '',
             'schema' => '',
@@ -25,7 +25,7 @@ class AdminHomepageController extends Controller
             'hero_image' => '',
             'featured_categories' => [],
             'bestseller_products' => [],
-            'content_section' => '<h2>Why Choose Rigid Boxes</h2><p>We craft high quality luxury packaging for all industries.</p>',
+            'content_section' => '<h2>Why Choose Go-Custom-boxes</h2><p>We craft high quality luxury packaging for all industries.</p>',
             'faqs' => [
                 ['question' => 'What is the Minimum Order Quantity (MOQ)?', 'answer' => 'Our minimum order quantity starts from 100 units.'],
                 ['question' => 'Do you provide free design support?', 'answer' => 'Yes, our expert design team provides 100% free design support.']

@@ -157,7 +157,7 @@
             <div class="form-grid">
                 <div class="field full">
                     <label for="meta_title">Homepage Meta Title</label>
-                    <input type="text" id="meta_title" name="meta_title" value="{{ old('meta_title', $settings['meta_title'] ?? '') }}" placeholder="e.g. Custom Printed Boxes & Packaging - The Rigid Boxes" maxlength="255">
+                    <input type="text" id="meta_title" name="meta_title" value="{{ old('meta_title', $settings['meta_title'] ?? '') }}" placeholder="e.g. Custom Printed Boxes & Packaging - Go-Custom-boxes" maxlength="255">
                     <small>Recommended length: 50-60 characters for optimal Google display.</small>
                 </div>
                 
