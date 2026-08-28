@@ -1,45 +1,62 @@
 @include('components.htmlboilerplate')
 <style>
-    /* .faq-page{
-        width: 100%;
-    max-width: 100%;
-    overflow-x: clip;
-    } */
     .faq-hero, .faq-container {
         font-family: 'DM Sans', sans-serif;
     }
-    .faq-hero h1, .faq-section-title, .faq-filter-title {
+    .faq-hero h1, .faq-section-title, .faq-tabs-container button {
         font-family: 'Open Sans', sans-serif;
     }
     .faq-hero {
-        padding: 60px 24px;
+        height: 400px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 24px;
         text-align: center;
-
+        background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('{{ asset("uploads/quote-hero-img.png") }}');
+        background-size: cover;
+        background-position: center;
+        position: relative;
     }
     .faq-breadcrumb {
+        position: absolute;
+        top: 40px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 100%;
+        max-width: 1280px;
+        padding: 0 55px;
         font-size: 13px;
-        text-transform: uppercase;
-        letter-spacing: 1px;
-        margin-bottom: 20px;
-        color: var(--section-text-color);
+        text-transform: capitalize;
+        color: #fff;
         text-align: left;
-        max-width: var(--site-container-width, 1280px);
-        margin: 0 auto 10px auto;
-        padding: 0 var(--site-container-gutter, 55px);
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+    .faq-breadcrumb svg {
+        width: 14px;
+        height: 14px;
+        fill: #fff;
+    }
+    .faq-breadcrumb a {
+        color: #fff;
+        text-decoration: none;
     }
     .faq-breadcrumb span {
-        font-weight: 700;
-        color: var(--section-text-color);
+        font-weight: 500;
+        color: #fff;
     }
     .faq-hero h1 {
         font-size: 42px;
         font-weight: 700;
         margin-bottom: 15px;
-        color: var(--section-text-color, #111);
+        color: #fff;
     }
     .faq-hero p {
         font-size: 16px;
-        color: var(--section-text-color);
+        color: #fff;
         max-width: 600px;
         margin: 0 auto;
         line-height: 1.6;
@@ -48,130 +65,75 @@
     .faq-container {
         max-width: var(--site-container-width, 1280px);
         margin: 0px auto;
-        padding: 0 var(--site-container-gutter, 55px);
+        padding: 50px var(--site-container-gutter, 55px);
         display: flex;
-        gap: 60px;
-        align-items: flex-start;
+        flex-direction: column;
+        align-items: center;
     }
 
-    /* Sidebar */
-    .faq-sidebar {
-        width: 300px;
-        flex-shrink: 0;
-    }
-    .faq-filter-title {
-        font-size: 20px;
-        font-weight: 700;
-        margin-bottom: 20px;
-        color: var(--section-text-color, #111);
-        padding-bottom: 15px;
-        border-bottom: 0.2px solid #00000099;
-    }
-    .faq-categories {
-        list-style: none;
-        padding: 0 0 20px 0;
-        margin: 0 0 40px 0;
-        border-bottom: 0.2px solid #00000099;
-    }
-    .faq-categories li {
-        margin-bottom: 5px;
-    }
-    .faq-categories button {
+    /* Tabs */
+    .faq-tabs-container {
         width: 100%;
-        text-align: left;
-        padding: 12px 20px;
-        background: transparent;
-        border: none;
-        font-size: 15px;
-        font-weight: 600;
-        color: var(--section-text-color);
-        cursor: pointer;
-        border-radius: 4px;
-        transition: all 0.3s;
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+        margin-bottom: 50px;
+        flex-wrap: wrap;
     }
-    .faq-categories button.active, .faq-categories button:hover {
-        background-color: var(--primary-color, #8D4445);
-        color: #fff;
-    }
-
-    .faq-contact-box {
-        background-color: #F0F0F0;
-        padding: 30px 25px;
-        border-radius: 8px;
-    }
-    .faq-contact-box h3 {
-        font-size: 18px;
-        font-weight: 700;
-        margin-bottom: 15px;
-        color: #111;
-    }
-    .faq-contact-box p {
+    .faq-tabs-container button {
+        padding: 12px 30px;
+        background: #fff;
+        border: 1px solid #e0e0e0;
         font-size: 14px;
-        color: #555;
-        margin-bottom: 25px;
-        line-height: 1.5;
-    }
-    .faq-contact-box .btn-contact {
-        display: block;
-        width: 100%;
-        text-align: center;
-        background-color: var(--primary-color, #8D4445);
-        color: #fff;
-        padding: 12px;
-        border-radius: 6px;
-        text-decoration: none;
         font-weight: 600;
-        transition: opacity 0.3s;
+        color: #111;
+        cursor: pointer;
+        transition: all 0.3s;
+        min-width: 160px;
+        text-align: center;
     }
-    .faq-contact-box .btn-contact:hover {
-        opacity: 0.9;
+    .faq-tabs-container button.active, .faq-tabs-container button:hover {
+        background-color: #FFB300;
+        color: #111;
+        border-color: #FFB300;
     }
 
     /* Content */
     .faq-content {
-        flex-grow: 1;
+        width: 100%;
     }
     .faq-section {
         margin-bottom: 50px;
     }
     .faq-section-title {
-        font-size: 24px;
+        font-size: 22px;
         font-weight: 700;
-        color: var(--section-text-color);
+        color: #111;
         margin-bottom: 25px;
-        position: relative;
-        padding-bottom: 10px;
     }
-    .faq-section-title::after {
-        content: '';
-        position: absolute;
-        left: 0;
-        bottom: 0;
-        width: 60px;
-        height: 3px;
-        background-color: var(--primary-color, #8D4445);
-    }
+
     .faq-accordion {
         display: flex;
         flex-direction: column;
-        gap: 15px;
+        gap: 12px;
     }
     .faq-item {
-        border: 1px solid #ddd;
-        border-radius: 6px;
+        border: 1px solid #eaeaea;
+        border-radius: 8px;
+        box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.05);
         overflow: hidden;
         transition: all 0.3s ease;
+        background-color: #fff;
     }
     .faq-item-header {
-        background-color: #fff;
-        padding: 18px 25px;
+        padding: 16px 25px;
         display: flex;
         justify-content: space-between;
         align-items: center;
         cursor: pointer;
-        font-weight: 600;
-        font-size: 15px;
-        color: #333;
+        font-weight: 500;
+        font-size: 14.5px;
+        color: #222;
         transition: background-color 0.3s;
     }
     .faq-item-header:hover {
@@ -181,15 +143,11 @@
         font-size: 20px;
         font-weight: 400;
         color: #111;
-        transition: transform 0.3s;
     }
     .faq-item.active .faq-item-header {
-        background-color: var(--primary-color, #8D4445);
-        color: #fff;
-    }
-    .faq-item.active .faq-item-icon {
-        color: #fff;
-        transform: none;
+        background-color: #fff;
+        color: #111;
+        border-bottom: 1px solid #f0f0f0;
     }
     .faq-item-body {
         background-color: #fff;
@@ -203,47 +161,25 @@
         max-height: 500px;
     }
     .faq-item-body p {
-        color: #555;
+        color: #000;
         font-size: 14.5px;
         line-height: 1.6;
         margin: 0;
     }
 
-    @media (max-width: 1100px) {
-        .faq-hero {
-            padding: 40px 5%;
-        }
-        .faq-hero h1 {
-            font-size: 34px;
-        }
-        .faq-hero p {
-            font-size: 14px;
-        }
-        .faq-container {
-            flex-direction: column;
-            margin: 40px auto;
-            padding: 0 5%;
-        }
-        .faq-sidebar {
-            display: none;
-        }
-        .faq-content {
-            width: 100%;
-        }
-        .faq-section {
-            display: block !important;
-        }
-    }
-
     @media (max-width: 767px) {
-        .faq-hero h1 {
-            font-size: 28px;
-        }
         .faq-breadcrumb {
-            display: none;
+            display: none !important;
         }
-        .faq-container {
-            margin: 30px auto;
+        .faq-hero {
+            padding: 50px 20px;
+        }
+        .faq-hero h1 {
+            font-size: clamp(18px, 6.5vw, 26px);
+            white-space: nowrap;
+        }
+        .faq-tabs-container {
+            display: none !important;
         }
         .faq-item-header {
             font-size: 14px;
@@ -256,10 +192,11 @@
     @include('components.header')
     <div class="faq-hero">
         <div class="faq-breadcrumb">
-            HOME / <span>FAQ's</span>
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
+            <a href="/">Home</a> <span>></span> <span>FAQs</span>
         </div>
         <h1>{{ $settings['faq_page_title'] ?? 'Frequently Asked Questions' }}</h1>
-        <p>Find clear answers to common questions about our luxury packaging services, processes, and policies.</p>
+        <p>From box styles and materials to custom sizes, pricing, and delivery, find quick answers to the questions we hear most.</p>
     </div>
 
     @php
@@ -267,24 +204,16 @@
     @endphp
     @if(!empty($sections))
     <div class="faq-container">
-        <aside class="faq-sidebar">
-            <h2 class="faq-filter-title">Filter By Category</h2>
-            <ul class="faq-categories">
-                <li><button class="active" data-filter="all">All</button></li>
-                @foreach($sections as $index => $section)
-                    @php 
-                        $slug = \Illuminate\Support\Str::slug($section['heading']);
-                    @endphp
-                    <li><button data-filter="{{ $slug }}">{{ $section['heading'] }}</button></li>
-                @endforeach
-            </ul>
-
-            <div class="faq-contact-box">
-                <h3>Still Have a Questions?</h3>
-                <p>If you don't find your answer, feel free to reach out.</p>
-                <a href="/contact-us/" class="btn-contact">Contact Us</a>
-            </div>
-        </aside>
+        
+        <!-- Center Tabs -->
+        <div class="faq-tabs-container">
+            @foreach($sections as $index => $section)
+                @php 
+                    $slug = \Illuminate\Support\Str::slug($section['heading']);
+                @endphp
+                <button class="{{ $index == 0 ? 'active' : '' }}" data-target="{{ $slug }}">{{ $section['heading'] }}</button>
+            @endforeach
+        </div>
 
         <div class="faq-content">
             @foreach($sections as $index => $section)
@@ -292,7 +221,7 @@
                     $slug = \Illuminate\Support\Str::slug($section['heading']);
                     $faqs = $section['faqs'] ?? [];
                 @endphp
-                <div class="faq-section" data-category="{{ $slug }}" {!! $index > 0 ? 'style="display: none;"' : '' !!}>
+                <div class="faq-section" id="{{ $slug }}">
                     <h2 class="faq-section-title">{{ $section['heading'] }}</h2>
                     <div class="faq-accordion">
                         @foreach($faqs as $faq)
@@ -341,38 +270,52 @@
             });
         });
 
-        // Filtering functionality
-        const filterBtns = document.querySelectorAll('.faq-categories button');
-        const faqSections = document.querySelectorAll('.faq-section');
+        // Smooth scroll for tabs
+        const filterBtns = document.querySelectorAll('.faq-tabs-container button');
 
         filterBtns.forEach(btn => {
             btn.addEventListener('click', function() {
-                // Update active button
+                // The IntersectionObserver will handle the active class update on scroll,
+                // but we can also set it immediately for responsiveness
                 filterBtns.forEach(b => b.classList.remove('active'));
                 this.classList.add('active');
 
-                const filter = this.getAttribute('data-filter');
-
-                // Show/hide sections based on filter
-                faqSections.forEach(section => {
-                    if (filter === 'all') {
-                        section.style.display = 'block';
-                    } else {
-                        if (section.getAttribute('data-category') === filter) {
-                            section.style.display = 'block';
-                        } else {
-                            section.style.display = 'none';
-                        }
-                    }
-                });
+                const targetId = this.getAttribute('data-target');
+                const targetSection = document.getElementById(targetId);
+                
+                if (targetSection) {
+                    // Smooth scroll to section, offset by header height if fixed
+                    const y = targetSection.getBoundingClientRect().top + window.scrollY - 100; 
+                    window.scrollTo({top: y, behavior: 'smooth'});
+                }
             });
         });
+
+        // Intersection observer to highlight tabs on scroll
+        const faqSections = document.querySelectorAll('.faq-section');
+        const observerOptions = {
+            root: null,
+            rootMargin: '-150px 0px -50% 0px',
+            threshold: 0
+        };
         
-        // Show everything if 'all' is clicked
-        const allBtn = document.querySelector('.faq-categories button[data-filter="all"]');
-        if (allBtn) {
-            allBtn.click();
-        }
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const id = entry.target.getAttribute('id');
+                    filterBtns.forEach(btn => {
+                        if (btn.getAttribute('data-target') === id) {
+                            btn.classList.add('active');
+                        } else {
+                            btn.classList.remove('active');
+                        }
+                    });
+                }
+            });
+        }, observerOptions);
+
+        faqSections.forEach(section => {
+            observer.observe(section);
+        });
     });
 </script>
-
