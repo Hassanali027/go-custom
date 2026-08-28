@@ -96,12 +96,12 @@
                     <svg viewBox="0 0 700 240" style="width:100%; height:14.375rem; overflow:visible;">
                         <defs>
                             <linearGradient id="primaryGradient" x1="0" y1="0" x2="0" y2="1">
-                                <stop offset="0%" stop-color="#8d4445" stop-opacity="0.4"/>
-                                <stop offset="100%" stop-color="#8d4445" stop-opacity="0.01"/>
+                                <stop offset="0%" stop-color="#FFB400" stop-opacity="0.4"/>
+                                <stop offset="100%" stop-color="#FFB400" stop-opacity="0.01"/>
                             </linearGradient>
                             <linearGradient id="accentGradient" x1="0" y1="0" x2="0" y2="1">
-                                <stop offset="0%" stop-color="#c16a6b" stop-opacity="0.3"/>
-                                <stop offset="100%" stop-color="#c16a6b" stop-opacity="0.01"/>
+                                <stop offset="0%" stop-color="#0B2240" stop-opacity="0.3"/>
+                                <stop offset="100%" stop-color="#0B2240" stop-opacity="0.01"/>
                             </linearGradient>
                         </defs>
                         <!-- Grid Lines -->
@@ -112,19 +112,19 @@
                         
                         <!-- Smooth Area Path 1 (Products) -->
                         <path d="M 0,180 C 110,170 230,140 350,110 C 470,80 580,50 700,30 L 700,220 L 0,220 Z" fill="url(#primaryGradient)" />
-                        <path d="M 0,180 C 110,170 230,140 350,110 C 470,80 580,50 700,30" fill="none" stroke="#8d4445" stroke-width="3" />
+                        <path d="M 0,180 C 110,170 230,140 350,110 C 470,80 580,50 700,30" fill="none" stroke="#FFB400" stroke-width="3" />
                         
                         <!-- Smooth Area Path 2 (Categories) -->
                         <path d="M 0,200 C 110,195 230,175 350,160 C 470,145 580,130 700,120 L 700,220 L 0,220 Z" fill="url(#accentGradient)" />
-                        <path d="M 0,200 C 110,195 230,175 350,160 C 470,145 580,130 700,120" fill="none" stroke="#c16a6b" stroke-width="2.5" stroke-dasharray="2" />
+                        <path d="M 0,200 C 110,195 230,175 350,160 C 470,145 580,130 700,120" fill="none" stroke="#0B2240" stroke-width="2.5" stroke-dasharray="2" />
                         
                         <!-- Data Dots -->
-                        <circle cx="0" cy="180" r="4" fill="#8d4445"/>
-                        <circle cx="140" cy="165" r="4" fill="#8d4445"/>
-                        <circle cx="280" cy="130" r="4" fill="#8d4445"/>
-                        <circle cx="420" cy="95" r="4" fill="#8d4445"/>
-                        <circle cx="560" cy="55" r="4" fill="#8d4445"/>
-                        <circle cx="700" cy="30" r="5" fill="#8d4445" stroke="#fff" stroke-width="2"/>
+                        <circle cx="0" cy="180" r="4" fill="#FFB400"/>
+                        <circle cx="140" cy="165" r="4" fill="#FFB400"/>
+                        <circle cx="280" cy="130" r="4" fill="#FFB400"/>
+                        <circle cx="420" cy="95" r="4" fill="#FFB400"/>
+                        <circle cx="560" cy="55" r="4" fill="#FFB400"/>
+                        <circle cx="700" cy="30" r="5" fill="#FFB400" stroke="#fff" stroke-width="2"/>
                     </svg>
                     <div style="display:flex; justify-content:space-between; color:var(--muted); font-size:0.6875rem; font-weight:600; padding:0 0.3125rem;">
                         <span>Feb</span><span>Mar</span><span>Apr</span><span>May</span><span>Jun</span><span>Jul</span>
@@ -147,13 +147,13 @@
                     <!-- Native SVG Donut Chart Fallback -->
                     <div id="svgDonutFallback" style="position:relative; width: 10.625rem; height: 10.625rem; display:flex; align-items:center; justify-content:center;">
                         <svg viewBox="0 0 100 100" style="width:100%; height:100%; transform: rotate(-90deg);">
-                            <circle cx="50" cy="50" r="38" fill="none" stroke="#f8eeec" stroke-width="14"/>
+                            <circle cx="50" cy="50" r="38" fill="none" stroke="#FFF3D3" stroke-width="14"/>
                             <!-- Products arc -->
-                            <circle cx="50" cy="50" r="38" fill="none" stroke="#8d4445" stroke-width="14" 
+                            <circle cx="50" cy="50" r="38" fill="none" stroke="#FFB400" stroke-width="14" 
                                     stroke-dasharray="{{ $totalItems > 0 ? (($productCount / $totalItems) * 238) : 180 }} 238" 
                                     stroke-dashoffset="0"/>
                             <!-- Categories arc -->
-                            <circle cx="50" cy="50" r="38" fill="none" stroke="#c16a6b" stroke-width="14" 
+                            <circle cx="50" cy="50" r="38" fill="none" stroke="#0B2240" stroke-width="14" 
                                     stroke-dasharray="{{ $totalItems > 0 ? (($categoryCount / $totalItems) * 238) : 50 }} 238" 
                                     stroke-dashoffset="-{{ $totalItems > 0 ? (($productCount / $totalItems) * 238) : 180 }}"/>
                         </svg>
@@ -276,7 +276,7 @@ document.addEventListener('DOMContentLoaded', function() {
             toolbar: { show: false },
             zoom: { enabled: false }
         },
-        colors: ['#8d4445', '#c16a6b', '#34272d', '#e7a2a3', '#a38d97'],
+        colors: ['#FFB400', '#0B2240', '#2f5b89', '#ffd36a', '#8fa4bd'],
         fill: {
             type: 'gradient',
             gradient: {
@@ -327,7 +327,7 @@ document.addEventListener('DOMContentLoaded', function() {
         },
         series: [productCount, categoryCount, blogCount, pageCount, authorCount],
         labels: ['Products', 'Categories', 'Blog Posts', 'Static Pages', 'Authors'],
-        colors: ['#8d4445', '#c16a6b', '#34272d', '#e7a2a3', '#a38d97'],
+        colors: ['#FFB400', '#0B2240', '#2f5b89', '#ffd36a', '#8fa4bd'],
         plotOptions: {
             pie: {
                 donut: {

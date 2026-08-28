@@ -28,7 +28,7 @@
     }
     .multiselect-trigger:hover, .custom-multiselect-container.open .multiselect-trigger {
         border-color: var(--primary);
-        box-shadow: 0 0 0 0.1875rem rgba(141,68,69,0.1);
+        box-shadow: 0 0 0 3px rgba(255,180,0,0.16);
     }
     .selected-tags {
         display: flex;
@@ -47,8 +47,8 @@
         border-radius: 0.375rem;
         display: inline-flex;
         align-items: center;
-        gap: 0.375rem;
-        border: 1px solid #f0dddd;
+        gap: 6px;
+        border: 1px solid #f2d78e;
     }
     .tag-chip i {
         cursor: pointer;

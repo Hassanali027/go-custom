@@ -228,7 +228,7 @@
             <div class="user">
                 <div class="user-copy">
                     <strong>{{ session('admin_name', 'Administrator') }}</strong>
-                    <span>{{ session('admin_email', 'admin@rigidboxes.com') }}</span>
+                    <span>{{ auth()->user()->email ?? session('admin_email', 'admin@gocustomboxes.com') }}</span>
                 </div>
                 <span class="avatar">RB</span>
                 <form action="{{ route('admin.logout') }}" method="POST" style="margin-left:0.5rem;">
