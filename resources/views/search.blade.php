@@ -8,26 +8,26 @@
     html, body { max-width: 100%; overflow-x: clip; background-color: #F6F8FA; } /* Light background for the whole page */
 
     .search-page-container {
-        max-width: 1200px;
-        margin: 40px auto;
-        padding: 0 24px;
+        max-width: 75rem;
+        margin: 2.5rem auto;
+        padding: 0 1.5rem;
         font-family: 'DM Sans', sans-serif;
     }
 
     /* Overall Summary Bar */
     .search-summary-bar {
         background-color: #FFF;
-        border-radius: 12px;
-        padding: 24px 32px;
+        border-radius: 0.75rem;
+        padding: 1.5rem 2rem;
         display: flex;
         align-items: center;
         justify-content: space-between;
-        box-shadow: 0 4px 10px rgba(0,0,0,0.02);
-        margin-bottom: 30px;
+        box-shadow: 0 0.25rem 0.625rem rgba(0,0,0,0.02);
+        margin-bottom: 1.875rem;
     }
 
     .search-summary-text {
-        font-size: 16px;
+        font-size: 1rem;
         color: #555;
     }
 
@@ -39,19 +39,19 @@
     .search-summary-badge {
         background-color: var(--primary-color);
         color: #FFF;
-        padding: 8px 16px;
-        border-radius: 20px;
+        padding: 0.5rem 1rem;
+        border-radius: 1.25rem;
         font-weight: 600;
-        font-size: 14px;
+        font-size: 0.875rem;
     }
 
     /* Section Styles */
     .search-section {
         background-color: #FFF;
-        border-radius: 12px;
-        padding: 32px;
-        box-shadow: 0 4px 10px rgba(0,0,0,0.02);
-        margin-bottom: 30px;
+        border-radius: 0.75rem;
+        padding: 2rem;
+        box-shadow: 0 0.25rem 0.625rem rgba(0,0,0,0.02);
+        margin-bottom: 1.875rem;
     }
 
     .search-section-header {
@@ -59,35 +59,35 @@
         align-items: center;
         justify-content: space-between;
         border-bottom: 1px solid #EAEAEA;
-        padding-bottom: 16px;
-        margin-bottom: 24px;
+        padding-bottom: 1rem;
+        margin-bottom: 1.5rem;
     }
 
     .search-section-title-wrapper {
         display: flex;
         align-items: center;
-        gap: 12px;
+        gap: 0.75rem;
     }
 
     .search-section-icon {
-        width: 40px;
-        height: 40px;
+        width: 2.5rem;
+        height: 2.5rem;
         background-color: var(--primary-color);
         color: #FFF;
-        border-radius: 8px;
+        border-radius: 0.5rem;
         display: flex;
         align-items: center;
         justify-content: center;
     }
 
     .search-section-icon svg {
-        width: 20px;
-        height: 20px;
+        width: 1.25rem;
+        height: 1.25rem;
         fill: currentColor;
     }
 
     .search-section-title {
-        font-size: 20px;
+        font-size: 1.25rem;
         font-weight: 700;
         color: #222;
     }
@@ -100,24 +100,24 @@
     .search-section-badge {
         background-color: #F0F4F8; /* Light gray-blue */
         color: var(--primary-color);
-        padding: 6px 12px;
-        border-radius: 20px;
+        padding: 0.375rem 0.75rem;
+        border-radius: 1.25rem;
         font-weight: 600;
-        font-size: 14px;
+        font-size: 0.875rem;
         border: 1px solid rgba(0,0,0,0.05);
     }
 
     .search-section-info {
-        font-size: 14px;
+        font-size: 0.875rem;
         color: #777;
-        margin-bottom: 24px;
+        margin-bottom: 1.5rem;
     }
 
     /* Grid for items */
     .items-grid {
         display: grid;
         grid-template-columns: repeat(4, minmax(0, 1fr));
-        gap: 24px;
+        gap: 1.5rem;
     }
 
     .item-card {
@@ -125,15 +125,15 @@
         flex-direction: column;
         text-decoration: none;
         background: #FFF;
-        border-radius: 8px;
+        border-radius: 0.5rem;
         overflow: hidden;
         border: 1px solid #F0F0F0;
         transition: transform 0.2s, box-shadow 0.2s;
     }
 
     .item-card:hover {
-        transform: translateY(-4px);
-        box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+        transform: translateY(-0.25rem);
+        box-shadow: 0 0.5rem 1.25rem rgba(0,0,0,0.05);
     }
 
     .item-image-wrapper {
@@ -148,14 +148,14 @@
         width: 100%;
         height: 100%;
         object-fit: contain;
-        padding: 16px;
+        padding: 1rem;
     }
 
     .item-title {
-        font-size: 15px;
+        font-size: 0.9375rem;
         font-weight: 600;
         color: #222;
-        padding: 16px;
+        padding: 1rem;
         text-align: center;
     }
 
@@ -163,17 +163,17 @@
     .blog-list {
         display: flex;
         flex-direction: column;
-        gap: 16px;
+        gap: 1rem;
     }
 
     .blog-item {
         display: flex;
         align-items: flex-start;
-        gap: 16px;
+        gap: 1rem;
         text-decoration: none;
-        padding: 16px;
+        padding: 1rem;
         border: 1px solid #F0F0F0;
-        border-radius: 8px;
+        border-radius: 0.5rem;
         transition: background-color 0.2s;
     }
 
@@ -182,9 +182,9 @@
     }
 
     .blog-item-img {
-        width: 120px;
-        height: 80px;
-        border-radius: 6px;
+        width: 7.5rem;
+        height: 5rem;
+        border-radius: 0.375rem;
         object-fit: cover;
         background-color: #EEE;
     }
@@ -194,14 +194,14 @@
     }
 
     .blog-item-title {
-        font-size: 16px;
+        font-size: 1rem;
         font-weight: 700;
         color: #222;
-        margin-bottom: 6px;
+        margin-bottom: 0.375rem;
     }
 
     .blog-item-excerpt {
-        font-size: 14px;
+        font-size: 0.875rem;
         color: #666;
         display: -webkit-box;
         -webkit-line-clamp: 2;
@@ -211,30 +211,30 @@
 
     .no-results {
         font-family: 'DM Sans', sans-serif;
-        font-size: 16px;
+        font-size: 1rem;
         color: #555;
         text-align: center;
-        padding: 60px 20px;
+        padding: 3.75rem 1.25rem;
     }
 
-    @media (max-width: 992px) {
+    @media (max-width: 62rem) {
         .items-grid {
             grid-template-columns: repeat(3, 1fr);
         }
     }
 
-    @media (max-width: 768px) {
+    @media (max-width: 48rem) {
         .items-grid {
             grid-template-columns: repeat(2, 1fr);
         }
         .search-summary-bar {
             flex-direction: column;
-            gap: 16px;
+            gap: 1rem;
             text-align: center;
         }
         .search-section-header {
             flex-direction: column;
-            gap: 16px;
+            gap: 1rem;
             align-items: flex-start;
         }
         .blog-item {
@@ -247,7 +247,7 @@
         }
     }
 
-    @media (max-width: 480px) {
+    @media (max-width: 30rem) {
         .items-grid {
             grid-template-columns: 1fr;
         }
@@ -270,7 +270,7 @@
 
         @if($totalCount == 0)
             <div class="no-results">
-                <svg viewBox="0 0 24 24" style="width: 64px; height: 64px; fill: #CCC; margin-bottom: 16px; display: block; margin: 0 auto 16px;">
+                <svg viewBox="0 0 24 24" style="width: 4rem; height: 4rem; fill: #CCC; margin-bottom: 1rem; display: block; margin: 0 auto 1rem;">
                     <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
                 </svg>
                 We couldn't find any results matching "<strong>{{ $q }}</strong>". Try using different keywords.
@@ -394,8 +394,8 @@
 
         @endif
     @else
-        <div class="no-results" style="background: #FFF; border-radius: 12px; margin-top: 40px; box-shadow: 0 4px 10px rgba(0,0,0,0.02);">
-            <svg viewBox="0 0 24 24" style="width: 64px; height: 64px; fill: #CCC; margin-bottom: 16px; display: block; margin: 0 auto 16px;">
+        <div class="no-results" style="background: #FFF; border-radius: 0.75rem; margin-top: 2.5rem; box-shadow: 0 0.25rem 0.625rem rgba(0,0,0,0.02);">
+            <svg viewBox="0 0 24 24" style="width: 4rem; height: 4rem; fill: #CCC; margin-bottom: 1rem; display: block; margin: 0 auto 1rem;">
                 <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
             </svg>
             Please type a keyword in the search bar above to begin your search.

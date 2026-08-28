@@ -4,7 +4,7 @@
     ───────────────────────────────────────── */
     .product-faq-section {
         background-color: #FFFFFF !important;
-        padding: 20px 0 10px;
+        padding: 1.25rem 0 0.625rem;
         width: 100%;
         font-family: 'DM Sans', sans-serif;
     }
@@ -13,30 +13,30 @@
 
     .product-faq-heading {
         font-family: 'Open Sans', sans-serif;
-        font-size: 32px;
+        font-size: 2rem;
         font-weight: 700;
         color: #0A2240;
         text-align: center;
-        margin-bottom: 40px;
+        margin-bottom: 2.5rem;
         margin-top: 0;
     }
 
     .product-faq-list {
         display: flex;
         flex-direction: column;
-        gap: 12px;
+        gap: 0.75rem;
     }
 
     .product-faq-item {
         background-color: #FFFFFF;
         border: 1px solid #EAEAEA;
-        border-radius: 8px;
+        border-radius: 0.5rem;
         overflow: hidden;
     }
 
     .product-faq-question {
         width: 100%;
-        padding: 20px 24px;
+        padding: 1.25rem 1.5rem;
         display: flex;
         justify-content: space-between;
         align-items: center;
@@ -44,7 +44,7 @@
         border: none;
         cursor: pointer;
         font-family: 'DM Sans', sans-serif;
-        font-size: 16px;
+        font-size: 1rem;
         font-weight: 500;
         color: #333333;
         text-align: left;
@@ -52,15 +52,15 @@
 
     .product-faq-icon {
         color: #0A2240;
-        font-size: 20px;
+        font-size: 1.25rem;
         font-weight: 300;
         line-height: 1;
         transition: transform 0.3s ease;
         display: flex;
         align-items: center;
         justify-content: center;
-        width: 24px;
-        height: 24px;
+        width: 1.5rem;
+        height: 1.5rem;
     }
 
     .product-faq-item.active .product-faq-icon {
@@ -71,40 +71,40 @@
         max-height: 0;
         overflow: hidden;
         transition: max-height 0.35s ease, padding 0.35s ease;
-        padding: 0 24px;
+        padding: 0 1.5rem;
         background-color: #FFFFFF;
     }
 
     .product-faq-item.active .product-faq-answer {
-        max-height: 300px;
-        padding: 0 24px 20px 24px;
+        max-height: 18.75rem;
+        padding: 0 1.5rem 1.25rem 1.5rem;
     }
 
     .product-faq-answer p {
         margin: 0;
-        font-size: 15px;
+        font-size: 0.9375rem;
         line-height: 1.6;
         color: #666666;
         text-align: justify;
     }
 
-    @media (max-width: 768px) {
+    @media (max-width: 48rem) {
         .product-faq-section {
-            padding-top: 10px;
+            padding-top: 0.625rem;
         }
         .product-faq-heading {
-            font-size: 24px;
-            margin-bottom: 30px;
+            font-size: 1.5rem;
+            margin-bottom: 1.875rem;
         }
         .product-faq-question {
-            padding: 16px 20px;
-            font-size: 15px;
+            padding: 1rem 1.25rem;
+            font-size: 0.9375rem;
         }
         .product-faq-answer {
-            padding: 0 20px;
+            padding: 0 1.25rem;
         }
         .product-faq-item.active .product-faq-answer {
-            padding: 0 20px 16px 20px;
+            padding: 0 1.25rem 1rem 1.25rem;
         }
     }
 </style>

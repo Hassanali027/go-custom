@@ -61,9 +61,9 @@
             <div class="field">
                 <label>Featured Image</label>
                 @if($editing && !empty($item['image']))
-                    <div class="single-image-wrapper" style="margin-bottom:8px; position:relative; display:inline-block;">
-                        <img src="{{ $resolveImg($item['image']) }}" style="height:60px; border-radius:4px; border:1px solid #ddd; display:block;">
-                        <span onclick="removeSingleImage(this, 'image')" style="position:absolute; top:-6px; right:-6px; background:#e74c3c; color:white; border-radius:50%; width:18px; height:18px; display:flex; align-items:center; justify-content:center; font-size:14px; font-weight:bold; cursor:pointer; box-shadow:0 1px 3px rgba(0,0,0,0.3); line-height:1;" title="Remove Image">&times;</span>
+                    <div class="single-image-wrapper" style="margin-bottom:0.5rem; position:relative; display:inline-block;">
+                        <img src="{{ $resolveImg($item['image']) }}" style="height:3.75rem; border-radius:0.25rem; border:1px solid #ddd; display:block;">
+                        <span onclick="removeSingleImage(this, 'image')" style="position:absolute; top:-0.375rem; right:-0.375rem; background:#e74c3c; color:white; border-radius:50%; width:1.125rem; height:1.125rem; display:flex; align-items:center; justify-content:center; font-size:0.875rem; font-weight:bold; cursor:pointer; box-shadow:0 1px 0.1875rem rgba(0,0,0,0.3); line-height:1;" title="Remove Image">&times;</span>
                     </div>
                 @endif
                 <input type="file" name="image" accept="image/*">
@@ -90,9 +90,9 @@
             <div class="field">
                 <label>Category Card & Navigation Icon</label>
                 @if($editing && !empty($item['icon']))
-                    <div class="single-image-wrapper" style="margin-bottom:8px; position:relative; display:inline-block;">
-                        <img src="{{ $resolveImg($item['icon']) }}" style="height:60px; border-radius:4px; border:1px solid #ddd; display:block;">
-                        <span onclick="removeSingleImage(this, 'icon')" style="position:absolute; top:-6px; right:-6px; background:#e74c3c; color:white; border-radius:50%; width:18px; height:18px; display:flex; align-items:center; justify-content:center; font-size:14px; font-weight:bold; cursor:pointer; box-shadow:0 1px 3px rgba(0,0,0,0.3); line-height:1;" title="Remove Image">&times;</span>
+                    <div class="single-image-wrapper" style="margin-bottom:0.5rem; position:relative; display:inline-block;">
+                        <img src="{{ $resolveImg($item['icon']) }}" style="height:3.75rem; border-radius:0.25rem; border:1px solid #ddd; display:block;">
+                        <span onclick="removeSingleImage(this, 'icon')" style="position:absolute; top:-0.375rem; right:-0.375rem; background:#e74c3c; color:white; border-radius:50%; width:1.125rem; height:1.125rem; display:flex; align-items:center; justify-content:center; font-size:0.875rem; font-weight:bold; cursor:pointer; box-shadow:0 1px 0.1875rem rgba(0,0,0,0.3); line-height:1;" title="Remove Image">&times;</span>
                     </div>
                 @endif
                 <input type="file" name="icon" accept="image/*">
@@ -121,9 +121,9 @@
             <div class="field">
                 <label>Hero Image</label>
                 @if($editing && !empty($item['hero_image']))
-                    <div class="single-image-wrapper" style="margin-bottom:8px; position:relative; display:inline-block;">
-                        <img src="{{ $resolveImg($item['hero_image']) }}" style="height:60px; border-radius:4px; border:1px solid #ddd; display:block;">
-                        <span onclick="removeSingleImage(this, 'hero_image')" style="position:absolute; top:-6px; right:-6px; background:#e74c3c; color:white; border-radius:50%; width:18px; height:18px; display:flex; align-items:center; justify-content:center; font-size:14px; font-weight:bold; cursor:pointer; box-shadow:0 1px 3px rgba(0,0,0,0.3); line-height:1;" title="Remove Image">&times;</span>
+                    <div class="single-image-wrapper" style="margin-bottom:0.5rem; position:relative; display:inline-block;">
+                        <img src="{{ $resolveImg($item['hero_image']) }}" style="height:3.75rem; border-radius:0.25rem; border:1px solid #ddd; display:block;">
+                        <span onclick="removeSingleImage(this, 'hero_image')" style="position:absolute; top:-0.375rem; right:-0.375rem; background:#e74c3c; color:white; border-radius:50%; width:1.125rem; height:1.125rem; display:flex; align-items:center; justify-content:center; font-size:0.875rem; font-weight:bold; cursor:pointer; box-shadow:0 1px 0.1875rem rgba(0,0,0,0.3); line-height:1;" title="Remove Image">&times;</span>
                     </div>
                 @endif
                 <input type="file" name="hero_image" accept="image/*">
@@ -132,9 +132,9 @@
             <div class="field">
                 <label>Card Hover Banner Image</label>
                 @if($editing && !empty($item['banner_image']))
-                    <div class="single-image-wrapper" style="margin-bottom:8px; position:relative; display:inline-block;">
-                        <img src="{{ $resolveImg($item['banner_image']) }}" style="height:60px; border-radius:4px; border:1px solid #ddd; display:block;">
-                        <span onclick="removeSingleImage(this, 'banner_image')" style="position:absolute; top:-6px; right:-6px; background:#e74c3c; color:white; border-radius:50%; width:18px; height:18px; display:flex; align-items:center; justify-content:center; font-size:14px; font-weight:bold; cursor:pointer; box-shadow:0 1px 3px rgba(0,0,0,0.3); line-height:1;" title="Remove Image">&times;</span>
+                    <div class="single-image-wrapper" style="margin-bottom:0.5rem; position:relative; display:inline-block;">
+                        <img src="{{ $resolveImg($item['banner_image']) }}" style="height:3.75rem; border-radius:0.25rem; border:1px solid #ddd; display:block;">
+                        <span onclick="removeSingleImage(this, 'banner_image')" style="position:absolute; top:-0.375rem; right:-0.375rem; background:#e74c3c; color:white; border-radius:50%; width:1.125rem; height:1.125rem; display:flex; align-items:center; justify-content:center; font-size:0.875rem; font-weight:bold; cursor:pointer; box-shadow:0 1px 0.1875rem rgba(0,0,0,0.3); line-height:1;" title="Remove Image">&times;</span>
                     </div>
                 @endif
                 <input type="file" name="banner_image" accept="image/*">
@@ -147,23 +147,23 @@
         <div class="form-grid">
             <div class="field full">
                 <label>Category Description</label>
-                <textarea name="description" style="min-height:180px">{{ $v('description') }}</textarea>
+                <textarea name="description" style="min-height:11.25rem">{{ $v('description') }}</textarea>
             </div>
         </div>
     </div>
 
     <div class="section">
-        <div style="display:flex; justify-content:space-between; align-items:center; gap:16px; margin-bottom:15px;">
+        <div style="display:flex; justify-content:space-between; align-items:center; gap:1rem; margin-bottom:0.9375rem;">
             <div>
                 <h3 style="margin:0;">Image & Text Feature Sections</h3>
-                <p style="margin:5px 0 0; color:#6b7280; font-size:13px;">Add as many image, title, and description rows as needed. They will alternate left and right on this category page.</p>
+                <p style="margin:0.3125rem 0 0; color:#6b7280; font-size:0.8125rem;">Add as many image, title, and description rows as needed. They will alternate left and right on this category page.</p>
             </div>
-            <button type="button" onclick="addFeatureSection()" class="btn light" style="padding:6px 12px; font-size:13px;"><i class="fa-solid fa-plus"></i> Add Section</button>
+            <button type="button" onclick="addFeatureSection()" class="btn light" style="padding:0.375rem 0.75rem; font-size:0.8125rem;"><i class="fa-solid fa-plus"></i> Add Section</button>
         </div>
-        <div id="featureSectionsContainer" style="display:grid; gap:16px;">
+        <div id="featureSectionsContainer" style="display:grid; gap:1rem;">
             @foreach($categoryFeatureSections as $index => $feature)
-                <div class="feature-section-row" style="border:1px solid #e5e7eb; border-radius:8px; padding:16px; background:#fafafa;">
-                    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+                <div class="feature-section-row" style="border:1px solid #e5e7eb; border-radius:0.5rem; padding:1rem; background:#fafafa;">
+                    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.75rem;">
                         <strong>Feature Section <span class="feature-section-number">{{ $loop->iteration }}</span></strong>
                         <button type="button" onclick="removeFeatureSection(this)" style="background:none; border:0; color:#e74c3c; cursor:pointer;" title="Remove section"><i class="fa-solid fa-trash"></i> Remove</button>
                     </div>
@@ -176,13 +176,13 @@
                         <div class="field">
                             <label>Image</label>
                             @if(!empty($feature['image']))
-                                <img src="{{ $resolveImg($feature['image']) }}" alt="" style="display:block; width:80px; height:60px; object-fit:cover; border-radius:4px; margin-bottom:8px;">
+                                <img src="{{ $resolveImg($feature['image']) }}" alt="" style="display:block; width:5rem; height:3.75rem; object-fit:cover; border-radius:0.25rem; margin-bottom:0.5rem;">
                             @endif
                             <input type="file" name="feature_section_image[]" accept="image/*">
                         </div>
                         <div class="field full">
                             <label>Description</label>
-                            <textarea name="feature_section_description[]" style="min-height:90px;">{{ $feature['description'] ?? '' }}</textarea>
+                            <textarea name="feature_section_description[]" style="min-height:5.625rem;">{{ $feature['description'] ?? '' }}</textarea>
                         </div>
                     </div>
                 </div>
@@ -191,9 +191,9 @@
     </div>
 
     <div class="section">
-        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.9375rem;">
             <h3 style="margin-bottom: 0;">Category FAQs</h3>
-            <button type="button" onclick="addFaqRow()" class="btn light" style="padding: 6px 12px; font-size: 13px;"><i class="fa-solid fa-plus"></i> Add FAQ</button>
+            <button type="button" onclick="addFaqRow()" class="btn light" style="padding: 0.375rem 0.75rem; font-size: 0.8125rem;"><i class="fa-solid fa-plus"></i> Add FAQ</button>
         </div>
         <div class="form-grid" id="faqsContainer">
             @php
@@ -206,9 +206,9 @@
                 </div>
                 <div class="field faq-answer-field">
                     <label class="faq-a-label">Answer {{ $i + 1 }}</label>
-                    <div style="display: flex; gap: 10px; align-items: flex-start;">
-                        <textarea name="faq_answer[]" style="min-height:70px; flex: 1;">{{ old('faq_answer.' . $i, $categoryFaqs[$i]['answer'] ?? '') }}</textarea>
-                        <button type="button" onclick="removeFaqRow(this)" style="background: none; border: none; color: #e74c3c; cursor: pointer; padding: 5px; margin-top: 5px;" title="Remove FAQ"><i class="fa-solid fa-trash"></i></button>
+                    <div style="display: flex; gap: 0.625rem; align-items: flex-start;">
+                        <textarea name="faq_answer[]" style="min-height:4.375rem; flex: 1;">{{ old('faq_answer.' . $i, $categoryFaqs[$i]['answer'] ?? '') }}</textarea>
+                        <button type="button" onclick="removeFaqRow(this)" style="background: none; border: none; color: #e74c3c; cursor: pointer; padding: 0.3125rem; margin-top: 0.3125rem;" title="Remove FAQ"><i class="fa-solid fa-trash"></i></button>
                     </div>
                 </div>
             @endfor
@@ -276,7 +276,7 @@
                 block_formats: 'Paragraph=p; Heading 1=h1; Heading 2=h2; Heading 3=h3; Heading 4=h4; Heading 5=h5; Heading 6=h6; Preformatted=pre',
                 branding: false,
                 promotion: false,
-                content_style: 'body { font-family:"DM Sans",sans-serif; font-size:14px; line-height:1.6; }'
+                content_style: 'body { font-family:"DM Sans",sans-serif; font-size:0.875rem; line-height:1.6; }'
             });
         }
     });
@@ -310,9 +310,9 @@
         aField.className = 'field faq-answer-field';
         aField.innerHTML = `
             <label class="faq-a-label">Answer ${newIndex}</label>
-            <div style="display: flex; gap: 10px; align-items: flex-start;">
-                <textarea name="faq_answer[]" style="min-height:70px; flex: 1;"></textarea>
-                <button type="button" onclick="removeFaqRow(this)" style="background: none; border: none; color: #e74c3c; cursor: pointer; padding: 5px; margin-top: 5px;" title="Remove FAQ"><i class="fa-solid fa-trash"></i></button>
+            <div style="display: flex; gap: 0.625rem; align-items: flex-start;">
+                <textarea name="faq_answer[]" style="min-height:4.375rem; flex: 1;"></textarea>
+                <button type="button" onclick="removeFaqRow(this)" style="background: none; border: none; color: #e74c3c; cursor: pointer; padding: 0.3125rem; margin-top: 0.3125rem;" title="Remove FAQ"><i class="fa-solid fa-trash"></i></button>
             </div>
         `;
         
@@ -336,9 +336,9 @@
         const container = document.getElementById('featureSectionsContainer');
         const section = document.createElement('div');
         section.className = 'feature-section-row';
-        section.style.cssText = 'border:1px solid #e5e7eb; border-radius:8px; padding:16px; background:#fafafa;';
+        section.style.cssText = 'border:1px solid #e5e7eb; border-radius:0.5rem; padding:1rem; background:#fafafa;';
         section.innerHTML = `
-            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.75rem;">
                 <strong>Feature Section <span class="feature-section-number"></span></strong>
                 <button type="button" onclick="removeFeatureSection(this)" style="background:none; border:0; color:#e74c3c; cursor:pointer;" title="Remove section"><i class="fa-solid fa-trash"></i> Remove</button>
             </div>
@@ -346,7 +346,7 @@
             <div class="form-grid">
                 <div class="field"><label>Heading</label><input name="feature_section_title[]" placeholder="Feature heading"></div>
                 <div class="field"><label>Image</label><input type="file" name="feature_section_image[]" accept="image/*"></div>
-                <div class="field full"><label>Description</label><textarea name="feature_section_description[]" style="min-height:90px;"></textarea></div>
+                <div class="field full"><label>Description</label><textarea name="feature_section_description[]" style="min-height:5.625rem;"></textarea></div>
             </div>`;
         container.appendChild(section);
         renumberFeatureSections();

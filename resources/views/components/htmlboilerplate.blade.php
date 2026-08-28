@@ -42,41 +42,41 @@
         p {
             font-family: 'DM Sans', sans-serif;
             color: var(--section-text-color);
-            font-size: 16px;
+            font-size: 1rem;
         }
 
         h1, h2, h3, h4, h5, h6 {
             font-family: 'Open Sans', sans-serif;
             color: var(--section-text-color);
-            font-size: 24px;
+            font-size: 1.5rem;
         }
 
         /* Shared content boundary: keep every page section aligned to header. */
         main > section > [class*="container"],
         main > section > [class*="inner"] {
             width: 100% !important;
-            max-width: 1280px !important;
+            max-width: 80rem !important;
             margin-left: auto !important;
             margin-right: auto !important;
-            padding-left: 55px !important;
-            padding-right: 55px !important;
+            padding-left: 3.4375rem !important;
+            padding-right: 3.4375rem !important;
             box-sizing: border-box !important;
             min-width: 0;
         }
 
-        @media (max-width: 768px) {
+        @media (max-width: 48rem) {
             main > section > [class*="container"],
             main > section > [class*="inner"] {
-                padding-left: 20px !important;
-                padding-right: 20px !important;
+                padding-left: 1.25rem !important;
+                padding-right: 1.25rem !important;
             }
         }
 
-        @media (max-width: 480px) {
+        @media (max-width: 30rem) {
             main > section > [class*="container"],
             main > section > [class*="inner"] {
-                padding-left: 16px !important;
-                padding-right: 16px !important;
+                padding-left: 1rem !important;
+                padding-right: 1rem !important;
             }
         }
     </style>

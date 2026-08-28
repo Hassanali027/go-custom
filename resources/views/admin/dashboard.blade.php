@@ -40,14 +40,14 @@
         @endphp
         <div class="card stat" style="position:relative; overflow:hidden;">
             <div>
-                <span style="font-size: 11px; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: 0.05em;">{{ $module['title'] }}</span>
-                <b style="font-size: 30px; margin-top: 4px; line-height:1.1;">{{ $count }}</b>
-                <div style="display: flex; align-items: center; gap: 6px; margin-top: 6px; font-size: 12px; color: #287a45; font-weight: 600;">
-                    <i class="fa-solid fa-circle" style="font-size: 6px;"></i>
+                <span style="font-size: 0.6875rem; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: 0.05em;">{{ $module['title'] }}</span>
+                <b style="font-size: 1.875rem; margin-top: 0.25rem; line-height:1.1;">{{ $count }}</b>
+                <div style="display: flex; align-items: center; gap: 0.375rem; margin-top: 0.375rem; font-size: 0.75rem; color: #287a45; font-weight: 600;">
+                    <i class="fa-solid fa-circle" style="font-size: 0.375rem;"></i>
                     <span>{{ $published }} Published</span>
                 </div>
             </div>
-            <div class="icon" style="width: 48px; height: 48px; border-radius: 12px; background: var(--soft); display: grid; place-items: center; color: var(--primary); font-size: 19px;">
+            <div class="icon" style="width: 3rem; height: 3rem; border-radius: 0.75rem; background: var(--soft); display: grid; place-items: center; color: var(--primary); font-size: 1.1875rem;">
                 <i class="fa-solid {{ $icons[$key] }}"></i>
             </div>
         </div>
@@ -55,45 +55,45 @@
 </div>
 
 <!-- Main Enterprise Analytics Grid -->
-<div class="analytics-grid" style="display: grid; grid-template-columns: 1.8fr 1fr; gap: 22px; margin-top: 22px;">
+<div class="analytics-grid" style="display: grid; grid-template-columns: 1.8fr 1fr; gap: 1.375rem; margin-top: 1.375rem;">
     
     <!-- Left Column: Growth & Activity Chart Panel -->
     <div class="panel" style="margin-top:0; padding: 0;">
-        <div class="panel-head" style="display: flex; align-items: center; justify-content: space-between; padding: 18px 22px;">
+        <div class="panel-head" style="display: flex; align-items: center; justify-content: space-between; padding: 1.125rem 1.375rem;">
             <div>
-                <h2 style="font-size: 17px; margin: 0; font-family: 'Open Sans', sans-serif;">System Activity & Growth</h2>
-                <span style="color: var(--muted); font-size: 12px; margin-top: 2px; display: block;">Real-time content creation & module analytics trend</span>
+                <h2 style="font-size: 1.0625rem; margin: 0; font-family: 'Open Sans', sans-serif;">System Activity & Growth</h2>
+                <span style="color: var(--muted); font-size: 0.75rem; margin-top: 0.125rem; display: block;">Real-time content creation & module analytics trend</span>
             </div>
             <!-- Time Switcher Pills -->
-            <div class="chart-time-pills" style="display: flex; gap: 4px; background: var(--bg); padding: 4px; border-radius: 8px; border: 1px solid var(--line);">
-                <button class="pill-btn active" onclick="updateChartTimeframe('6m')" id="btn-6m" style="border:none; background: #fff; padding: 5px 12px; border-radius: 6px; font-size: 12px; font-weight: 700; color: var(--primary); cursor: pointer; box-shadow: 0 2px 5px rgba(0,0,0,0.06);">6 Months</button>
-                <button class="pill-btn" onclick="updateChartTimeframe('30d')" id="btn-30d" style="border:none; background: transparent; padding: 5px 12px; border-radius: 6px; font-size: 12px; font-weight: 600; color: var(--muted); cursor: pointer;">30 Days</button>
-                <button class="pill-btn" onclick="updateChartTimeframe('7d')" id="btn-7d" style="border:none; background: transparent; padding: 5px 12px; border-radius: 6px; font-size: 12px; font-weight: 600; color: var(--muted); cursor: pointer;">7 Days</button>
+            <div class="chart-time-pills" style="display: flex; gap: 0.25rem; background: var(--bg); padding: 0.25rem; border-radius: 0.5rem; border: 1px solid var(--line);">
+                <button class="pill-btn active" onclick="updateChartTimeframe('6m')" id="btn-6m" style="border:none; background: #fff; padding: 0.3125rem 0.75rem; border-radius: 0.375rem; font-size: 0.75rem; font-weight: 700; color: var(--primary); cursor: pointer; box-shadow: 0 0.125rem 0.3125rem rgba(0,0,0,0.06);">6 Months</button>
+                <button class="pill-btn" onclick="updateChartTimeframe('30d')" id="btn-30d" style="border:none; background: transparent; padding: 0.3125rem 0.75rem; border-radius: 0.375rem; font-size: 0.75rem; font-weight: 600; color: var(--muted); cursor: pointer;">30 Days</button>
+                <button class="pill-btn" onclick="updateChartTimeframe('7d')" id="btn-7d" style="border:none; background: transparent; padding: 0.3125rem 0.75rem; border-radius: 0.375rem; font-size: 0.75rem; font-weight: 600; color: var(--muted); cursor: pointer;">7 Days</button>
             </div>
         </div>
 
         <!-- Quick Summary Stats Bar inside chart panel -->
-        <div style="display: grid; grid-template-columns: repeat(3, 1fr); border-bottom: 1px solid var(--line); background: #faf8f9; padding: 12px 22px;">
+        <div style="display: grid; grid-template-columns: repeat(3, 1fr); border-bottom: 1px solid var(--line); background: #faf8f9; padding: 0.75rem 1.375rem;">
             <div>
-                <span style="font-size: 10px; text-transform: uppercase; color: var(--muted); font-weight: 800; letter-spacing: 0.05em;">Total Admin Assets</span>
-                <div style="font-size: 17px; font-weight: 800; color: var(--text); margin-top: 2px;">{{ $totalItems }} Items</div>
+                <span style="font-size: 0.625rem; text-transform: uppercase; color: var(--muted); font-weight: 800; letter-spacing: 0.05em;">Total Admin Assets</span>
+                <div style="font-size: 1.0625rem; font-weight: 800; color: var(--text); margin-top: 0.125rem;">{{ $totalItems }} Items</div>
             </div>
             <div>
-                <span style="font-size: 10px; text-transform: uppercase; color: var(--muted); font-weight: 800; letter-spacing: 0.05em;">Publication Index</span>
-                <div style="font-size: 17px; font-weight: 800; color: #287a45; margin-top: 2px;">{{ $publishRate }}% Active</div>
+                <span style="font-size: 0.625rem; text-transform: uppercase; color: var(--muted); font-weight: 800; letter-spacing: 0.05em;">Publication Index</span>
+                <div style="font-size: 1.0625rem; font-weight: 800; color: #287a45; margin-top: 0.125rem;">{{ $publishRate }}% Active</div>
             </div>
             <div>
-                <span style="font-size: 10px; text-transform: uppercase; color: var(--muted); font-weight: 800; letter-spacing: 0.05em;">Database Health</span>
-                <div style="font-size: 17px; font-weight: 800; color: var(--primary); margin-top: 2px;"><i class="fa-solid fa-bolt" style="font-size: 13px; margin-right: 4px;"></i> Live Sync</div>
+                <span style="font-size: 0.625rem; text-transform: uppercase; color: var(--muted); font-weight: 800; letter-spacing: 0.05em;">Database Health</span>
+                <div style="font-size: 1.0625rem; font-weight: 800; color: var(--primary); margin-top: 0.125rem;"><i class="fa-solid fa-bolt" style="font-size: 0.8125rem; margin-right: 0.25rem;"></i> Live Sync</div>
             </div>
         </div>
 
         <!-- Dynamic Responsive Chart Container with pre-rendered SVG Area Chart fallback -->
-        <div style="padding: 20px 20px 10px; position: relative;">
-            <div id="mainActivityChart" style="min-height: 280px; width: 100%;">
+        <div style="padding: 1.25rem 1.25rem 0.625rem; position: relative;">
+            <div id="mainActivityChart" style="min-height: 17.5rem; width: 100%;">
                 <!-- Native SVG Area Chart Fallback (Guarantees chart render instantly even before JS/CDN loads) -->
-                <div id="svgAreaFallback" style="width: 100%; height: 280px; display: flex; flex-direction: column; justify-content: space-between;">
-                    <svg viewBox="0 0 700 240" style="width:100%; height:230px; overflow:visible;">
+                <div id="svgAreaFallback" style="width: 100%; height: 17.5rem; display: flex; flex-direction: column; justify-content: space-between;">
+                    <svg viewBox="0 0 700 240" style="width:100%; height:14.375rem; overflow:visible;">
                         <defs>
                             <linearGradient id="primaryGradient" x1="0" y1="0" x2="0" y2="1">
                                 <stop offset="0%" stop-color="#8d4445" stop-opacity="0.4"/>
@@ -126,7 +126,7 @@
                         <circle cx="560" cy="55" r="4" fill="#8d4445"/>
                         <circle cx="700" cy="30" r="5" fill="#8d4445" stroke="#fff" stroke-width="2"/>
                     </svg>
-                    <div style="display:flex; justify-content:space-between; color:var(--muted); font-size:11px; font-weight:600; padding:0 5px;">
+                    <div style="display:flex; justify-content:space-between; color:var(--muted); font-size:0.6875rem; font-weight:600; padding:0 0.3125rem;">
                         <span>Feb</span><span>Mar</span><span>Apr</span><span>May</span><span>Jun</span><span>Jul</span>
                     </div>
                 </div>
@@ -135,17 +135,17 @@
     </div>
 
     <!-- Right Column: Share Donut Chart & Workspace Health -->
-    <div style="display: flex; flex-direction: column; gap: 22px;">
+    <div style="display: flex; flex-direction: column; gap: 1.375rem;">
         <!-- Donut Chart Panel -->
         <div class="panel" style="margin-top:0; padding: 0;">
-            <div class="panel-head" style="padding: 16px 20px;">
-                <h2 style="font-size: 16px; margin: 0;">Content Share</h2>
-                <span style="font-size: 11px; color: var(--muted); font-weight:600;">Module Ratio</span>
+            <div class="panel-head" style="padding: 1rem 1.25rem;">
+                <h2 style="font-size: 1rem; margin: 0;">Content Share</h2>
+                <span style="font-size: 0.6875rem; color: var(--muted); font-weight:600;">Module Ratio</span>
             </div>
-            <div style="padding: 20px 15px; display: flex; justify-content: center; align-items: center; position:relative;">
-                <div id="contentShareChart" style="width: 100%; min-height: 220px; display:flex; justify-content:center; align-items:center;">
+            <div style="padding: 1.25rem 0.9375rem; display: flex; justify-content: center; align-items: center; position:relative;">
+                <div id="contentShareChart" style="width: 100%; min-height: 13.75rem; display:flex; justify-content:center; align-items:center;">
                     <!-- Native SVG Donut Chart Fallback -->
-                    <div id="svgDonutFallback" style="position:relative; width: 170px; height: 170px; display:flex; align-items:center; justify-content:center;">
+                    <div id="svgDonutFallback" style="position:relative; width: 10.625rem; height: 10.625rem; display:flex; align-items:center; justify-content:center;">
                         <svg viewBox="0 0 100 100" style="width:100%; height:100%; transform: rotate(-90deg);">
                             <circle cx="50" cy="50" r="38" fill="none" stroke="#f8eeec" stroke-width="14"/>
                             <!-- Products arc -->
@@ -158,8 +158,8 @@
                                     stroke-dashoffset="-{{ $totalItems > 0 ? (($productCount / $totalItems) * 238) : 180 }}"/>
                         </svg>
                         <div style="position:absolute; text-align:center;">
-                            <div style="font-size: 22px; font-weight: 800; color: var(--text); line-height: 1;">{{ $totalItems }}</div>
-                            <div style="font-size: 10px; color: var(--muted); font-weight: 700; text-transform:uppercase; margin-top:2px;">Total Items</div>
+                            <div style="font-size: 1.375rem; font-weight: 800; color: var(--text); line-height: 1;">{{ $totalItems }}</div>
+                            <div style="font-size: 0.625rem; color: var(--muted); font-weight: 700; text-transform:uppercase; margin-top:0.125rem;">Total Items</div>
                         </div>
                     </div>
                 </div>
@@ -168,23 +168,23 @@
 
         <!-- Workspace Health Panel -->
         <div class="panel insight-panel" style="margin-top:0;">
-            <div class="panel-head" style="padding: 16px 20px;">
-                <h2 style="font-size: 15px;">Workspace Health</h2>
-                <i class="fa-solid fa-shield-halved" style="color:var(--primary); font-size: 16px;"></i>
+            <div class="panel-head" style="padding: 1rem 1.25rem;">
+                <h2 style="font-size: 0.9375rem;">Workspace Health</h2>
+                <i class="fa-solid fa-shield-halved" style="color:var(--primary); font-size: 1rem;"></i>
             </div>
-            <div class="insight-row" style="padding: 12px 20px;">
+            <div class="insight-row" style="padding: 0.75rem 1.25rem;">
                 <span><i class="fa-solid fa-database"></i> Database Engine</span>
-                <strong style="color:#287a45; display:inline-flex; align-items:center; gap:5px;"><i class="fa-solid fa-circle" style="font-size:6px;"></i> Connected</strong>
+                <strong style="color:#287a45; display:inline-flex; align-items:center; gap:0.3125rem;"><i class="fa-solid fa-circle" style="font-size:0.375rem;"></i> Connected</strong>
             </div>
-            <div class="insight-row" style="padding: 12px 20px;">
+            <div class="insight-row" style="padding: 0.75rem 1.25rem;">
                 <span><i class="fa-solid fa-layer-group"></i> Active Modules</span>
                 <strong>{{ count($modules) }} Modules</strong>
             </div>
-            <div class="insight-row" style="padding: 12px 20px;">
+            <div class="insight-row" style="padding: 0.75rem 1.25rem;">
                 <span><i class="fa-solid fa-box-open"></i> Total Inventory</span>
                 <strong>{{ $productCount }} Products</strong>
             </div>
-            <a class="btn" href="{{ route('admin.module.create','products') }}" style="width: calc(100% - 40px); margin: 16px 20px; text-align: center; font-size: 13px;">
+            <a class="btn" href="{{ route('admin.module.create','products') }}" style="width: calc(100% - 2.5rem); margin: 1rem 1.25rem; text-align: center; font-size: 0.8125rem;">
                 <i class="fa-solid fa-plus"></i> Create New Product
             </a>
         </div>
@@ -192,25 +192,25 @@
 </div>
 
 <!-- Quick Module Management Links -->
-<div class="panel" style="margin-top: 22px;">
-    <div class="panel-head" style="padding: 18px 22px;">
+<div class="panel" style="margin-top: 1.375rem;">
+    <div class="panel-head" style="padding: 1.125rem 1.375rem;">
         <div>
-            <h2 style="font-size: 16px; margin: 0;">Content Management Shortcuts</h2>
-            <span style="color:var(--muted);font-size:12px">Direct access to manage catalog, pages and articles</span>
+            <h2 style="font-size: 1rem; margin: 0;">Content Management Shortcuts</h2>
+            <span style="color:var(--muted);font-size:0.75rem">Direct access to manage catalog, pages and articles</span>
         </div>
     </div>
-    <div style="padding:22px" class="grid">
+    <div style="padding:1.375rem" class="grid">
         @foreach($modules as $key=>$module)
             <a class="card module-link" style="text-decoration:none;color:inherit;" href="{{ route('admin.module.index',$key) }}">
                 <div style="display:flex; justify-content:space-between; align-items:flex-start;">
                     <div class="icon"><i class="fa-solid {{ $icons[$key] }}"></i></div>
-                    <span style="font-size:11px; background:var(--soft); color:var(--primary); font-weight:700; padding:4px 8px; border-radius:6px;">
+                    <span style="font-size:0.6875rem; background:var(--soft); color:var(--primary); font-weight:700; padding:0.25rem 0.5rem; border-radius:0.375rem;">
                         {{ count($data[$key] ?? []) }} items
                     </span>
                 </div>
-                <h3 style="font-family:'Open Sans';margin:16px 0 6px; font-size: 16px;">{{ $module['title'] }}</h3>
-                <p style="color:var(--muted);line-height:1.5; font-size: 13px; margin-bottom: 12px;">Manage {{ strtolower($module['title']) }} records & SEO details.</p>
-                <strong style="color:var(--primary); font-size: 13px;">Manage <i class="fa-solid fa-arrow-right" style="font-size:11px;margin-left:5px"></i></strong>
+                <h3 style="font-family:'Open Sans';margin:1rem 0 0.375rem; font-size: 1rem;">{{ $module['title'] }}</h3>
+                <p style="color:var(--muted);line-height:1.5; font-size: 0.8125rem; margin-bottom: 0.75rem;">Manage {{ strtolower($module['title']) }} records & SEO details.</p>
+                <strong style="color:var(--primary); font-size: 0.8125rem;">Manage <i class="fa-solid fa-arrow-right" style="font-size:0.6875rem;margin-left:0.3125rem"></i></strong>
             </a>
         @endforeach
     </div>
@@ -298,19 +298,19 @@ document.addEventListener('DOMContentLoaded', function() {
             categories: timeframeData['6m'].categories,
             axisBorder: { show: false },
             axisTicks: { show: false },
-            labels: { style: { colors: '#77737c', fontSize: '11px', fontWeight: 600 } }
+            labels: { style: { colors: '#77737c', fontSize: '0.6875rem', fontWeight: 600 } }
         },
         yaxis: {
             min: 0,
             forceNiceScale: true,
-            labels: { style: { colors: '#77737c', fontSize: '11px', fontWeight: 600 } }
+            labels: { style: { colors: '#77737c', fontSize: '0.6875rem', fontWeight: 600 } }
         },
         legend: {
             position: 'top',
             horizontalAlign: 'right',
             fontFamily: "'DM Sans', sans-serif",
             fontWeight: 600,
-            fontSize: '12px'
+            fontSize: '0.75rem'
         },
         tooltip: { theme: 'light' }
     };
@@ -338,14 +338,14 @@ document.addEventListener('DOMContentLoaded', function() {
                             show: true,
                             label: 'Total Items',
                             color: '#77737c',
-                            fontSize: '11px',
+                            fontSize: '0.6875rem',
                             fontWeight: 600,
                             formatter: function (w) {
                                 return w.globals.seriesTotals.reduce((a, b) => a + b, 0);
                             }
                         },
                         value: {
-                            fontSize: '20px',
+                            fontSize: '1.25rem',
                             fontWeight: '800',
                             color: '#252329',
                             show: true
@@ -356,7 +356,7 @@ document.addEventListener('DOMContentLoaded', function() {
         },
         legend: {
             position: 'bottom',
-            fontSize: '11px',
+            fontSize: '0.6875rem',
             fontFamily: "'DM Sans', sans-serif",
             fontWeight: 600
         },
@@ -380,7 +380,7 @@ document.addEventListener('DOMContentLoaded', function() {
         if (activeBtn) {
             activeBtn.style.background = '#fff';
             activeBtn.style.color = 'var(--primary)';
-            activeBtn.style.boxShadow = '0 2px 5px rgba(0,0,0,0.06)';
+            activeBtn.style.boxShadow = '0 0.125rem 0.3125rem rgba(0,0,0,0.06)';
             activeBtn.classList.add('active');
         }
 

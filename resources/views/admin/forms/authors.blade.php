@@ -45,8 +45,8 @@
             <div class="field">
                 <label>Profile Image</label>
                 @if($editing && !empty($item['image']))
-                    <div style="margin-bottom:8px">
-                        <img src="{{ $resolveImg($item['image']) }}" style="height:60px; border-radius:4px; border:1px solid #ddd">
+                    <div style="margin-bottom:0.5rem">
+                        <img src="{{ $resolveImg($item['image']) }}" style="height:3.75rem; border-radius:0.25rem; border:1px solid #ddd">
                     </div>
                 @endif
                 <input type="file" name="image" accept="image/*">

@@ -51,8 +51,8 @@
 
         .iq-page-hero {
             width: 100%;
-            max-width: 1440px;
-            height: 400px;
+            max-width: 90rem;
+            height: 25rem;
             margin: 0 auto;
             text-align: center;
             box-sizing: border-box;
@@ -63,7 +63,7 @@
 
         .iq-hero-inner {
             width: 100%;
-            max-width: 1280px;
+            max-width: 80rem;
             height: 100%;
             margin: 0 auto;
             position: relative;
@@ -89,16 +89,16 @@
 
         .iq-breadcrumb {
             position: absolute;
-            top: 40px;
-            left: 55px;
-            font-size: 15px;
+            top: 2.5rem;
+            left: 3.4375rem;
+            font-size: 0.9375rem;
             font-weight: 500;
             color: #fff;
-            letter-spacing: 0.5px;
+            letter-spacing: 0.0312rem;
             font-family: 'DM Sans', sans-serif;
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 0.5rem;
         }
 
         .iq-breadcrumb a {
@@ -106,7 +106,7 @@
             text-decoration: none;
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 0.5rem;
         }
 
         .iq-breadcrumb span {
@@ -115,29 +115,29 @@
 
         .iq-page-hero h1 {
             font-family: 'Open Sans', sans-serif;
-            font-size: clamp(32px, 4vw, 46px);
+            font-size: clamp(2rem, 4vw, 2.875rem);
             font-weight: 700;
             color: #ffffff;
-            margin-bottom: 16px;
+            margin-bottom: 1rem;
             line-height: 1.2;
         }
 
         .iq-page-hero p {
             font-family: 'DM Sans', sans-serif;
             color: #ffffff;
-            font-size: 17px;
-            max-width: 680px;
+            font-size: 1.0625rem;
+            max-width: 42.5rem;
             margin: 0 auto;
             line-height: 1.6;
         }
 
         .iq-page-container {
             width: 100%;
-            max-width: 1280px;
+            max-width: 80rem;
             margin: 0 auto;
-            padding: 45px 55px 60px 55px;
+            padding: 2.8125rem 3.4375rem 3.75rem 3.4375rem;
             display: flex;
-            gap: 30px;
+            gap: 1.875rem;
             flex-wrap: wrap;
             align-items: flex-start;
             justify-content: center;
@@ -145,45 +145,45 @@
         }
 
         .iq-page-form-card {
-            flex: 0 1 750px;
-            max-width: 750px;
+            flex: 0 1 46.875rem;
+            max-width: 46.875rem;
             width: 100%;
             background-color: var(--section-background);
-            padding: 40px;
-            border-radius: 16px;
+            padding: 2.5rem;
+            border-radius: 1rem;
             box-sizing: border-box;
             min-width: 0;
             border: 1px solid #EFEAE7;
         }
 
         .iq-page-form-card h2 {
-            font-size: clamp(22px, 3vw, 28px);
+            font-size: clamp(1.375rem, 3vw, 1.75rem);
             font-weight: 800;
             text-align: center;
-            margin-bottom: 28px;
+            margin-bottom: 1.75rem;
             color: #111111;
         }
 
         .iq-page-sidebar {
-            flex: 0 0 350px;
-            width: 350px;
-            max-width: 350px;
+            flex: 0 0 21.875rem;
+            width: 21.875rem;
+            max-width: 21.875rem;
             display: flex;
             flex-direction: column;
-            /* gap: 20px; */
+            /* gap: 1.25rem; */
             box-sizing: border-box;
-            margin-top:20px;
+            margin-top:1.25rem;
         }
 
         .iq-form-group {
             display: flex;
             flex-direction: column;
-            gap: 6px;
+            gap: 0.375rem;
         }
 
         .iq-form-group label {
             font-family: 'Open Sans', sans-serif;
-            font-size: 13px;
+            font-size: 0.8125rem;
             font-weight: 700;
             color: #2D2D2D;
         }
@@ -195,18 +195,18 @@
         .iq-form-group select,
         .iq-form-group textarea {
             width: 100%;
-            height: 44px;
-            padding: 0 14px;
-            border: 0.5px solid black;
-            border-radius: 8px;
-            font-size: 14px;
+            height: 2.75rem;
+            padding: 0 0.875rem;
+            border: 0.0312rem solid black;
+            border-radius: 0.5rem;
+            font-size: 0.875rem;
             font-family: 'DM Sans', sans-serif;
             background-color: transparent !important;
             color: #2D2D2D;
             box-sizing: border-box;
             outline: none;
             transition: border-color 0.2s ease, box-shadow 0.2s ease;
-            scroll-margin-top: 150px;
+            scroll-margin-top: 9.375rem;
         }
         
         .iq-form-group select {
@@ -215,8 +215,8 @@
             appearance: none;
             background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' width='16' height='16' fill='none' stroke='%23333' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
             background-repeat: no-repeat;
-            background-position: right 16px center;
-            padding-right: 40px;
+            background-position: right 1rem center;
+            padding-right: 2.5rem;
             cursor: pointer;
         }
 
@@ -232,7 +232,7 @@
 
         .iq-form-group textarea {
             height: auto;
-            padding: 12px 14px;
+            padding: 0.75rem 0.875rem;
             resize: vertical;
         }
 
@@ -240,52 +240,52 @@
         .iq-form-group select:focus,
         .iq-form-group textarea:focus {
             border-color: var(--primary-color, #8D4445) !important;
-            box-shadow: 0 0 0 3px rgba(141, 68, 69, 0.12) !important;
+            box-shadow: 0 0 0 0.1875rem rgba(141, 68, 69, 0.12) !important;
         }
 
         .iq-grid-2 {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 16px;
+            gap: 1rem;
         }
 
         .iq-grid-3 {
             display: grid;
             grid-template-columns: 1fr 1fr 1fr;
-            gap: 16px;
+            gap: 1rem;
         }
 
         .iq-grid-4 {
             display: grid;
             grid-template-columns: 1fr 1fr 1fr 1fr;
-            gap: 12px;
+            gap: 0.75rem;
         }
 
         .iq-sidebar-card {
             background-color: #F0F0F0;
-            padding: 24px;
-            border-radius: 12px;
+            padding: 1.5rem;
+            border-radius: 0.75rem;
             border: 1px solid #E8E2DF;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.02);
+            box-shadow: 0 0.25rem 0.75rem rgba(0,0,0,0.02);
         }
 
         .iq-sidebar-card h3 {
-            font-size: 16px;
+            font-size: 1rem;
             font-weight: 700;
-            margin-bottom: 12px;
+            margin-bottom: 0.75rem;
             color: #111111;
         }
 
         /* Responsive Breakpoints */
-        @media (max-width: 992px) {
+        @media (max-width: 62rem) {
             
             .iq-page-container {
-                padding: 0 20px 50px;
+                padding: 0 1.25rem 3.125rem;
             }
             .iq-page-form-card {
                 max-width: 100%;
                 flex: 1 1 100%;
-                padding: 32px 24px;
+                padding: 2rem 1.5rem;
                 order: 1;
             }
             .iq-page-sidebar {
@@ -293,7 +293,7 @@
                 width: 100%;
                 max-width: 100%;
                 order: 2;
-                margin-top: 5px; /* Compensates for 20px gap to equal 25px */
+                margin-top: 0.3125rem; /* Compensates for 1.25rem gap to equal 1.5625rem */
             }
             .iq-page-sidebar > h2,
             .iq-page-sidebar > p,
@@ -302,34 +302,34 @@
             }
         }
 
-        @media (max-width: 600px) {
+        @media (max-width: 37.5rem) {
             .iq-page-hero {
-                padding: 20px 20px 16px;
+                padding: 1.25rem 1.25rem 1rem;
             }
             .iq-page-hero p {
                 margin-bottom: 0;
             }
             .iq-breadcrumb {
-                margin-bottom: 16px;
+                margin-bottom: 1rem;
                 display: none;
             } 
             .iq-page-container {
-                padding: 0 0 40px;
-                gap: 20px;
+                padding: 0 0 2.5rem;
+                gap: 1.25rem;
             }
             .iq-page-form-card {
-                padding: 22px 16px;
-                border-radius: 12px;
+                padding: 1.375rem 1rem;
+                border-radius: 0.75rem;
                 background-color: #FFF9F0;
                 border: none;
-                margin-top: 36px;
+                margin-top: 2.25rem;
                 width: 100%;
             }
             .iq-page-form-card h2 {
-                font-size: 19px;
+                font-size: 1.1875rem;
                 font-weight: 800;
                 color: #000000;
-                margin-bottom: 24px;
+                margin-bottom: 1.5rem;
             }
             .iq-page-form-card .iq-form-group input,
             .iq-page-form-card .iq-form-group select,
@@ -351,32 +351,32 @@
             .iq-submit-btn {
                 background-color: #FFB400 !important;
                 color: #001533 !important;
-                max-width: 240px !important;
+                max-width: 15rem !important;
                 width: 100% !important;
-                border-radius: 8px !important;
+                border-radius: 0.5rem !important;
             }
             .iq-grid-2,
             .iq-grid-3 {
                 grid-template-columns: 1fr;
-                gap: 14px;
+                gap: 0.875rem;
             }
             .iq-grid-4 {
                 grid-template-columns: 1fr 1fr;
-                gap: 12px;
+                gap: 0.75rem;
             }
         }
 
-        @media (max-width: 400px) {
+        @media (max-width: 25rem) {
             /* Kept for future specific small screen overrides */
         }
 
         .iq-features-container {
-                max-width: 1280px;
-    margin: 0px auto 25px auto;
-    padding: 10px 55px;
+                max-width: 80rem;
+    margin: 0 auto 1.5625rem auto;
+    padding: 0.625rem 3.4375rem;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 30px;
+    gap: 1.875rem;
     text-align: center
         }
 
@@ -384,19 +384,19 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 8px;
+            gap: 0.5rem;
         }
 
         .iq-feature-item img {
-            width: 56px;
-            height: 56px;
+            width: 3.5rem;
+            height: 3.5rem;
             object-fit: contain;
-            margin-bottom: 8px;
+            margin-bottom: 0.5rem;
         }
 
         .iq-feature-item h4 {
             font-family: 'Open Sans', sans-serif;
-            font-size: 15px;
+            font-size: 0.9375rem;
             font-weight: 700;
             color: #333;
             margin: 0;
@@ -404,23 +404,23 @@
 
         .iq-feature-item p {
             font-family: 'DM Sans', sans-serif;
-            font-size: 13px;
+            font-size: 0.8125rem;
             color: #666;
             margin: 0;
             line-height: 1.5;
         }
 
-        @media (max-width: 991px) {
+        @media (max-width: 61.9375rem) {
             .iq-features-container {
                 grid-template-columns: repeat(2, 1fr);
             }
         }
 
-        @media (max-width: 576px) {
+        @media (max-width: 36rem) {
             .iq-features-container {
                 grid-template-columns: repeat(2, 1fr);
-                padding: 30px 20px;
-                gap: 20px;
+                padding: 1.875rem 1.25rem;
+                gap: 1.25rem;
             }
         }
     </style>
@@ -433,7 +433,7 @@
         <div class="iq-page-hero">
             <div class="iq-hero-inner">
                 <div class="iq-breadcrumb">
-                    <a href="/"><i class="fa-solid fa-house" style="font-size: 14px;"></i> Home</a> <i class="fa-solid fa-angle-right" style="font-size: 12px; margin: 0 2px;"></i> <span>Get a Quote</span>
+                    <a href="/"><i class="fa-solid fa-house" style="font-size: 0.875rem;"></i> Home</a> <i class="fa-solid fa-angle-right" style="font-size: 0.75rem; margin: 0 0.125rem;"></i> <span>Get a Quote</span>
                 </div>
                 <h1>Get A Free Quote</h1>
                 <p>Tell us about your packaging needs and our team will create a custom quote around your product, brand, and requirements.</p>
@@ -443,27 +443,27 @@
         <div class="iq-page-container">
             <!-- Left sidebar section -->
             <div class="iq-page-sidebar" style="padding: 0; background: transparent; box-shadow: none;">
-                <h2 style="font-family: 'Open Sans', sans-serif; font-size: 25px; font-weight: 700; color: #000; margin-bottom: 16px; margin-top: 0;">Let's Build Your Perfect Box</h2>
-                <p style="font-family: 'DM Sans', sans-serif; font-size: 15px; color: #333; line-height: 1.6; margin-bottom: 24px; text-align: justify;">
+                <h2 style="font-family: 'Open Sans', sans-serif; font-size: 1.5625rem; font-weight: 700; color: #000; margin-bottom: 1rem; margin-top: 0;">Let's Build Your Perfect Box</h2>
+                <p style="font-family: 'DM Sans', sans-serif; font-size: 0.9375rem; color: #333; line-height: 1.6; margin-bottom: 1.5rem; text-align: justify;">
                     From simple to premium, we create custom packaging designed around your product and brand. Tell us what you need, and our team will help bring your packaging vision to life with the right size, material, finish, and print. Fill out the form to get started.
                 </p>
-                <div style="width: 100%; aspect-ratio: 1; background-color: #D9D9D9; border-radius: 12px; margin-bottom: 24px; display: flex; justify-content: center; align-items: center;">
-                    <i class="fa-solid fa-image" style="font-size: 48px; color: #999;"></i>
+                <div style="width: 100%; aspect-ratio: 1; background-color: #D9D9D9; border-radius: 0.75rem; margin-bottom: 1.5rem; display: flex; justify-content: center; align-items: center;">
+                    <i class="fa-solid fa-image" style="font-size: 3rem; color: #999;"></i>
                 </div>
                 <div class="iq-sidebar-card" style="margin-bottom: 0; background-color: #F3F3F3; border: none;">
-                    <h3 style="margin-bottom: 16px; font-size: 16px;">Need Help Immediately?</h3>
-                    <div style="display: flex; flex-direction: column; gap: 12px;">
-                        <div style="display: flex; gap: 12px; align-items: center;">
-                            <div style="background-color: #FFB400; color: white; width: 32px; height: 32px; border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 14px; flex-shrink: 0;">
+                    <h3 style="margin-bottom: 1rem; font-size: 1rem;">Need Help Immediately?</h3>
+                    <div style="display: flex; flex-direction: column; gap: 0.75rem;">
+                        <div style="display: flex; gap: 0.75rem; align-items: center;">
+                            <div style="background-color: #FFB400; color: white; width: 2rem; height: 2rem; border-radius: 0.375rem; display: flex; align-items: center; justify-content: center; font-size: 0.875rem; flex-shrink: 0;">
                                 <i class="fa-solid fa-envelope"></i>
                             </div>
-                            <span style="font-size: 15px; color: #000; font-family: 'DM Sans', sans-serif; font-weight: 500;">support@gocustomboxes.com</span>
+                            <span style="font-size: 0.9375rem; color: #000; font-family: 'DM Sans', sans-serif; font-weight: 500;">support@gocustomboxes.com</span>
                         </div>
-                        <div style="display: flex; gap: 12px; align-items: center;">
-                            <div style="background-color: #FFB400; color: white; width: 32px; height: 32px; border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 14px; flex-shrink: 0;">
+                        <div style="display: flex; gap: 0.75rem; align-items: center;">
+                            <div style="background-color: #FFB400; color: white; width: 2rem; height: 2rem; border-radius: 0.375rem; display: flex; align-items: center; justify-content: center; font-size: 0.875rem; flex-shrink: 0;">
                                 <i class="fa-solid fa-phone"></i>
                             </div>
-                            <span style="font-size: 15px; color: #000; font-family: 'DM Sans', sans-serif; font-weight: 500;">847-200-0971</span>
+                            <span style="font-size: 0.9375rem; color: #000; font-family: 'DM Sans', sans-serif; font-weight: 500;">847-200-0971</span>
                         </div>
                     </div>
                 </div>
@@ -473,11 +473,11 @@
             <div class="iq-page-form-card">
                 <h2>Instant Quotes, Quick Service!</h2>
                 @if(session('success'))
-                    <div style="background-color: #d4edda; color: #155724; padding: 10px; border-radius: 5px; margin-bottom: 20px;">
+                    <div style="background-color: #d4edda; color: #155724; padding: 0.625rem; border-radius: 0.3125rem; margin-bottom: 1.25rem;">
                         {{ session('success') }}
                     </div>
                 @endif
-                <form action="{{ url('/submit-quote') }}" method="POST" enctype="multipart/form-data" style="display: flex; flex-direction: column; gap: 16px;">
+                <form action="{{ url('/submit-quote') }}" method="POST" enctype="multipart/form-data" style="display: flex; flex-direction: column; gap: 1rem;">
                     @csrf
                     <!-- Row 1 -->
                     <div class="iq-grid-2">
@@ -567,10 +567,10 @@
                         </div>
                         <div class="iq-form-group">
                             <label>Upload File Here</label>
-                            <div class="iq-upload-wrapper" style="display: flex; align-items: center; border: 1px solid #E2D9D5; border-radius: 8px; overflow: hidden; background: transparent; height: 44px;">
+                            <div class="iq-upload-wrapper" style="display: flex; align-items: center; border: 1px solid #E2D9D5; border-radius: 0.5rem; overflow: hidden; background: transparent; height: 2.75rem;">
                                 <input type="file" name="quote_file" id="quote-file-input" style="display: none;" onchange="document.getElementById('quote-file-name').value = this.files[0] ? this.files[0].name : ''">
-                                <input type="text" id="quote-file-name" placeholder="No file chosen" readonly style="flex: 1; padding: 0 14px; border: none; font-size: 14px; background: transparent; outline: none; color: #666; height: 100%;">
-                                <button type="button" class="iq-upload-btn" onclick="document.getElementById('quote-file-input').click()" style="background-color: var(--secondary-color); color: var(--primary-color); border: none; padding: 0 20px; font-size: 14px; font-weight: 700; cursor: pointer; height: 100%; font-family: 'DM Sans', sans-serif;">Upload</button>
+                                <input type="text" id="quote-file-name" placeholder="No file chosen" readonly style="flex: 1; padding: 0 0.875rem; border: none; font-size: 0.875rem; background: transparent; outline: none; color: #666; height: 100%;">
+                                <button type="button" class="iq-upload-btn" onclick="document.getElementById('quote-file-input').click()" style="background-color: var(--secondary-color); color: var(--primary-color); border: none; padding: 0 1.25rem; font-size: 0.875rem; font-weight: 700; cursor: pointer; height: 100%; font-family: 'DM Sans', sans-serif;">Upload</button>
                             </div>
                         </div>
                     </div>
@@ -582,8 +582,8 @@
                     </div>
                     
                     <!-- Submit button -->
-                    <div style="text-align: center; margin-top: 10px;">
-                        <button type="submit" class="iq-submit-btn" style="background-color: var(--secondary-color); color: var(--primary-color); border: none; border-radius: 6px; padding: 14px 40px; font-size: 16px; font-weight: 700; font-family: 'Open Sans', sans-serif; width: 100%; max-width: 320px; cursor: pointer; transition: background-color 0.2s ease;" onmouseover="this.style.backgroundColor='#e0d5d3'" onmouseout="this.style.backgroundColor='var(--secondary-color)'">Get a Quote</button>
+                    <div style="text-align: center; margin-top: 0.625rem;">
+                        <button type="submit" class="iq-submit-btn" style="background-color: var(--secondary-color); color: var(--primary-color); border: none; border-radius: 0.375rem; padding: 0.875rem 2.5rem; font-size: 1rem; font-weight: 700; font-family: 'Open Sans', sans-serif; width: 100%; max-width: 20rem; cursor: pointer; transition: background-color 0.2s ease;" onmouseover="this.style.backgroundColor='#e0d5d3'" onmouseout="this.style.backgroundColor='var(--secondary-color)'">Get a Quote</button>
                     </div>
                 </form>
             </div>

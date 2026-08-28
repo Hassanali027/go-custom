@@ -18,49 +18,49 @@
 <style>
     .custom-multiselect-container { position: relative; width: 100%; z-index: 50; }
     .multiselect-trigger {
-        min-height: 48px; padding: 8px 14px; background: #ffffff;
-        border: 1.5px solid #ddd8df; border-radius: 10px;
+        min-height: 3rem; padding: 0.5rem 0.875rem; background: #ffffff;
+        border: 0.0938rem solid #ddd8df; border-radius: 0.625rem;
         display: flex; align-items: center; justify-content: space-between;
         cursor: pointer; transition: border-color 0.2s ease, box-shadow 0.2s ease;
     }
     .multiselect-trigger:hover, .custom-multiselect-container.open .multiselect-trigger {
-        border-color: var(--primary); box-shadow: 0 0 0 3px rgba(141,68,69,0.1);
+        border-color: var(--primary); box-shadow: 0 0 0 0.1875rem rgba(141,68,69,0.1);
     }
-    .selected-tags { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; flex: 1; margin-right: 10px; }
+    .selected-tags { display: flex; flex-wrap: wrap; gap: 0.375rem; align-items: center; flex: 1; margin-right: 0.625rem; }
     .tag-chip {
-        background: var(--soft); color: var(--primary); font-size: 12px;
-        font-weight: 700; padding: 4px 10px; border-radius: 6px;
-        display: inline-flex; align-items: center; gap: 6px; border: 1px solid #f0dddd;
+        background: var(--soft); color: var(--primary); font-size: 0.75rem;
+        font-weight: 700; padding: 0.25rem 0.625rem; border-radius: 0.375rem;
+        display: inline-flex; align-items: center; gap: 0.375rem; border: 1px solid #f0dddd;
     }
-    .tag-chip i { cursor: pointer; font-size: 11px; }
+    .tag-chip i { cursor: pointer; font-size: 0.6875rem; }
     .tag-chip i:hover { color: var(--primary-dark); }
-    .dropdown-placeholder { color: var(--muted); font-size: 13px; font-weight: 500; }
+    .dropdown-placeholder { color: var(--muted); font-size: 0.8125rem; font-weight: 500; }
     .multiselect-dropdown {
-        display: none; position: absolute; top: calc(100% + 6px); left: 0; right: 0;
-        background: #ffffff; border: 1.5px solid #ddd8df; border-radius: 12px;
-        box-shadow: 0 12px 35px rgba(0,0,0,0.18); z-index: 9999; padding: 12px;
+        display: none; position: absolute; top: calc(100% + 0.375rem); left: 0; right: 0;
+        background: #ffffff; border: 0.0938rem solid #ddd8df; border-radius: 0.75rem;
+        box-shadow: 0 0.75rem 2.1875rem rgba(0,0,0,0.18); z-index: 9999; padding: 0.75rem;
     }
     .custom-multiselect-container.open .multiselect-dropdown { display: block; }
-    .dropdown-search { position: relative; margin-bottom: 8px; }
+    .dropdown-search { position: relative; margin-bottom: 0.5rem; }
     .dropdown-search input {
-        width: 100%; padding: 9px 12px 9px 34px; font-size: 13px;
-        border-radius: 8px; border: 1px solid var(--line); background: #fbfafb;
+        width: 100%; padding: 0.5625rem 0.75rem 0.5625rem 2.125rem; font-size: 0.8125rem;
+        border-radius: 0.5rem; border: 1px solid var(--line); background: #fbfafb;
     }
-    .dropdown-search i.search-icon { position: absolute; left: 11px; top: 50%; transform: translateY(-50%); color: var(--muted); font-size: 12px; }
+    .dropdown-search i.search-icon { position: absolute; left: 0.6875rem; top: 50%; transform: translateY(-50%); color: var(--muted); font-size: 0.75rem; }
     .dropdown-actions {
-        display: flex; justify-content: space-between; padding: 4px 6px 8px;
-        font-size: 11px; font-weight: 700; border-bottom: 1px solid var(--line); margin-bottom: 6px;
+        display: flex; justify-content: space-between; padding: 0.25rem 0.375rem 0.5rem;
+        font-size: 0.6875rem; font-weight: 700; border-bottom: 1px solid var(--line); margin-bottom: 0.375rem;
     }
     .dropdown-actions span { color: var(--primary); cursor: pointer; }
     .dropdown-actions span:hover { text-decoration: underline; }
-    .dropdown-options-list { max-height: 220px; overflow-y: auto; display: flex; flex-direction: column; gap: 4px; }
+    .dropdown-options-list { max-height: 13.75rem; overflow-y: auto; display: flex; flex-direction: column; gap: 0.25rem; }
     .dropdown-option-item {
-        display: flex; align-items: center; gap: 10px; padding: 8px 10px;
-        border-radius: 6px; cursor: pointer; transition: background 0.15s ease;
-        font-size: 13px; font-weight: 600; color: var(--text);
+        display: flex; align-items: center; gap: 0.625rem; padding: 0.5rem 0.625rem;
+        border-radius: 0.375rem; cursor: pointer; transition: background 0.15s ease;
+        font-size: 0.8125rem; font-weight: 600; color: var(--text);
     }
     .dropdown-option-item:hover { background: var(--soft); }
-    .dropdown-option-item input[type="checkbox"] { width: 16px; height: 16px; accent-color: var(--primary); cursor: pointer; }
+    .dropdown-option-item input[type="checkbox"] { width: 1rem; height: 1rem; accent-color: var(--primary); cursor: pointer; }
 </style>
 
 @if($errors->any())
@@ -97,9 +97,9 @@
             <div class="field">
                 <label>Featured Image</label>
                 @if($editing && !empty($item['image']))
-                    <div class="single-image-wrapper" style="margin-bottom:8px; position:relative; display:inline-block;">
-                        <img src="{{ $resolveImg($item['image']) }}" style="height:60px; border-radius:4px; border:1px solid #ddd; display:block;">
-                        <span onclick="removeSingleImage(this, 'image')" style="position:absolute; top:-6px; right:-6px; background:#e74c3c; color:white; border-radius:50%; width:18px; height:18px; display:flex; align-items:center; justify-content:center; font-size:14px; font-weight:bold; cursor:pointer; box-shadow:0 1px 3px rgba(0,0,0,0.3); line-height:1;" title="Remove Image">&times;</span>
+                    <div class="single-image-wrapper" style="margin-bottom:0.5rem; position:relative; display:inline-block;">
+                        <img src="{{ $resolveImg($item['image']) }}" style="height:3.75rem; border-radius:0.25rem; border:1px solid #ddd; display:block;">
+                        <span onclick="removeSingleImage(this, 'image')" style="position:absolute; top:-0.375rem; right:-0.375rem; background:#e74c3c; color:white; border-radius:50%; width:1.125rem; height:1.125rem; display:flex; align-items:center; justify-content:center; font-size:0.875rem; font-weight:bold; cursor:pointer; box-shadow:0 1px 0.1875rem rgba(0,0,0,0.3); line-height:1;" title="Remove Image">&times;</span>
                     </div>
                 @endif
                 <input type="file" name="image" accept="image/*">
@@ -107,9 +107,9 @@
             <div class="field">
                 <label>Hover Image</label>
                 @if($editing && !empty($item['hover_image']))
-                    <div class="single-image-wrapper" style="margin-bottom:8px; position:relative; display:inline-block;">
-                        <img src="{{ $resolveImg($item['hover_image']) }}" style="height:60px; border-radius:4px; border:1px solid #ddd; display:block;">
-                        <span onclick="removeSingleImage(this, 'hover_image')" style="position:absolute; top:-6px; right:-6px; background:#e74c3c; color:white; border-radius:50%; width:18px; height:18px; display:flex; align-items:center; justify-content:center; font-size:14px; font-weight:bold; cursor:pointer; box-shadow:0 1px 3px rgba(0,0,0,0.3); line-height:1;" title="Remove Image">&times;</span>
+                    <div class="single-image-wrapper" style="margin-bottom:0.5rem; position:relative; display:inline-block;">
+                        <img src="{{ $resolveImg($item['hover_image']) }}" style="height:3.75rem; border-radius:0.25rem; border:1px solid #ddd; display:block;">
+                        <span onclick="removeSingleImage(this, 'hover_image')" style="position:absolute; top:-0.375rem; right:-0.375rem; background:#e74c3c; color:white; border-radius:50%; width:1.125rem; height:1.125rem; display:flex; align-items:center; justify-content:center; font-size:0.875rem; font-weight:bold; cursor:pointer; box-shadow:0 1px 0.1875rem rgba(0,0,0,0.3); line-height:1;" title="Remove Image">&times;</span>
                     </div>
                 @endif
                 <input type="file" name="hover_image" accept="image/*">
@@ -117,9 +117,9 @@
             <div class="field">
                 <label>Custom Boxes Nav Image</label>
                 @if($editing && !empty($item['nav_image']))
-                    <div class="single-image-wrapper" style="margin-bottom:8px; position:relative; display:inline-block;">
-                        <img src="{{ $resolveImg($item['nav_image']) }}" style="height:60px; border-radius:4px; border:1px solid #ddd; display:block;">
-                        <span onclick="removeSingleImage(this, 'nav_image')" style="position:absolute; top:-6px; right:-6px; background:#e74c3c; color:white; border-radius:50%; width:18px; height:18px; display:flex; align-items:center; justify-content:center; font-size:14px; font-weight:bold; cursor:pointer; box-shadow:0 1px 3px rgba(0,0,0,0.3); line-height:1;" title="Remove Image">&times;</span>
+                    <div class="single-image-wrapper" style="margin-bottom:0.5rem; position:relative; display:inline-block;">
+                        <img src="{{ $resolveImg($item['nav_image']) }}" style="height:3.75rem; border-radius:0.25rem; border:1px solid #ddd; display:block;">
+                        <span onclick="removeSingleImage(this, 'nav_image')" style="position:absolute; top:-0.375rem; right:-0.375rem; background:#e74c3c; color:white; border-radius:50%; width:1.125rem; height:1.125rem; display:flex; align-items:center; justify-content:center; font-size:0.875rem; font-weight:bold; cursor:pointer; box-shadow:0 1px 0.1875rem rgba(0,0,0,0.3); line-height:1;" title="Remove Image">&times;</span>
                     </div>
                 @endif
                 <input type="file" name="nav_image" accept="image/*">
@@ -145,7 +145,7 @@
                 <div class="custom-multiselect-container" id="categoryMultiselect">
                     <div class="multiselect-trigger" onclick="toggleDropdown('categoryMultiselect')">
                         <div class="selected-tags" id="categorySelectedTags"></div>
-                        <i class="fa-solid fa-chevron-down" style="font-size:12px; color:var(--muted);"></i>
+                        <i class="fa-solid fa-chevron-down" style="font-size:0.75rem; color:var(--muted);"></i>
                     </div>
                     <div class="multiselect-dropdown">
                         <div class="dropdown-search">
@@ -169,7 +169,7 @@
                         </div>
                     </div>
                 </div>
-                <small style="margin-top:6px; display:block;">First selected category becomes the primary category.</small>
+                <small style="margin-top:0.375rem; display:block;">First selected category becomes the primary category.</small>
             </div>
 
             {{-- Related Products Multiselect --}}
@@ -185,7 +185,7 @@
                 <div class="custom-multiselect-container" id="productMultiselect">
                     <div class="multiselect-trigger" onclick="toggleDropdown('productMultiselect')">
                         <div class="selected-tags" id="productSelectedTags"></div>
-                        <i class="fa-solid fa-chevron-down" style="font-size:12px; color:var(--muted);"></i>
+                        <i class="fa-solid fa-chevron-down" style="font-size:0.75rem; color:var(--muted);"></i>
                     </div>
                     <div class="multiselect-dropdown">
                         <div class="dropdown-search">
@@ -225,7 +225,7 @@
             </div>
             <div class="field full">
                 <label>Long Description</label>
-                <textarea name="long_description" style="min-height:220px">{{ $v('long_description') }}</textarea>
+                <textarea name="long_description" style="min-height:13.75rem">{{ $v('long_description') }}</textarea>
             </div>
             <div class="field">
                 <label>Image Alt Text</label>
@@ -236,11 +236,11 @@
                 @if($editing && !empty($item['images']))
                     @php $imgs = is_string($item['images']) ? json_decode($item['images'], true) : $item['images']; @endphp
                     @if(is_array($imgs))
-                        <div style="display:flex; gap:8px; margin-bottom:8px; flex-wrap:wrap">
+                        <div style="display:flex; gap:0.5rem; margin-bottom:0.5rem; flex-wrap:wrap">
                             @foreach($imgs as $img)
                                 <div class="gallery-image-wrapper" style="position:relative; display:inline-block;">
-                                    <img src="{{ $resolveImg($img) }}" style="height:60px; border-radius:4px; border:1px solid #ddd; display:block;">
-                                    <span onclick="removeGalleryImage(this, '{{ addslashes($img) }}')" style="position:absolute; top:-6px; right:-6px; background:#e74c3c; color:white; border-radius:50%; width:18px; height:18px; display:flex; align-items:center; justify-content:center; font-size:14px; font-weight:bold; cursor:pointer; box-shadow:0 1px 3px rgba(0,0,0,0.3); line-height:1;" title="Remove Image">&times;</span>
+                                    <img src="{{ $resolveImg($img) }}" style="height:3.75rem; border-radius:0.25rem; border:1px solid #ddd; display:block;">
+                                    <span onclick="removeGalleryImage(this, '{{ addslashes($img) }}')" style="position:absolute; top:-0.375rem; right:-0.375rem; background:#e74c3c; color:white; border-radius:50%; width:1.125rem; height:1.125rem; display:flex; align-items:center; justify-content:center; font-size:0.875rem; font-weight:bold; cursor:pointer; box-shadow:0 1px 0.1875rem rgba(0,0,0,0.3); line-height:1;" title="Remove Image">&times;</span>
                                 </div>
                             @endforeach
                         </div>
@@ -265,9 +265,9 @@
     </div>
 
     <div class="section">
-        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.9375rem;">
             <h3 style="margin-bottom: 0;">Product FAQs</h3>
-            <button type="button" onclick="addFaqRow()" class="btn light" style="padding: 6px 12px; font-size: 13px;"><i class="fa-solid fa-plus"></i> Add FAQ</button>
+            <button type="button" onclick="addFaqRow()" class="btn light" style="padding: 0.375rem 0.75rem; font-size: 0.8125rem;"><i class="fa-solid fa-plus"></i> Add FAQ</button>
         </div>
         <div class="form-grid" id="faqsContainer">
             @php
@@ -280,9 +280,9 @@
                 </div>
                 <div class="field faq-answer-field">
                     <label class="faq-a-label">Answer {{ $i + 1 }}</label>
-                    <div style="display: flex; gap: 10px; align-items: flex-start;">
-                        <textarea name="faq_answer[]" style="min-height:70px; flex: 1;">{{ old('faq_answer.' . $i, $productFaqs[$i]['answer'] ?? '') }}</textarea>
-                        <button type="button" onclick="removeFaqRow(this)" style="background: none; border: none; color: #e74c3c; cursor: pointer; padding: 5px; margin-top: 5px;" title="Remove FAQ"><i class="fa-solid fa-trash"></i></button>
+                    <div style="display: flex; gap: 0.625rem; align-items: flex-start;">
+                        <textarea name="faq_answer[]" style="min-height:4.375rem; flex: 1;">{{ old('faq_answer.' . $i, $productFaqs[$i]['answer'] ?? '') }}</textarea>
+                        <button type="button" onclick="removeFaqRow(this)" style="background: none; border: none; color: #e74c3c; cursor: pointer; padding: 0.3125rem; margin-top: 0.3125rem;" title="Remove FAQ"><i class="fa-solid fa-trash"></i></button>
                     </div>
                 </div>
             @endfor
@@ -327,7 +327,7 @@
             </label>
             <label class="check">
                 <input type="checkbox" name="show_as_custom_box" value="1" @checked($v('show_as_custom_box'))>
-                Show as Custom Box
+                Show as Popular Product
             </label>
         </div>
     </div>
@@ -350,7 +350,7 @@
                 block_formats: 'Paragraph=p; Heading 1=h1; Heading 2=h2; Heading 3=h3; Heading 4=h4; Heading 5=h5; Heading 6=h6; Preformatted=pre',
                 branding: false,
                 promotion: false,
-                content_style: 'body { font-family:"DM Sans",sans-serif; font-size:14px; line-height:1.6; }'
+                content_style: 'body { font-family:"DM Sans",sans-serif; font-size:0.875rem; line-height:1.6; }'
             });
         }
     });
@@ -455,9 +455,9 @@
         aField.className = 'field faq-answer-field';
         aField.innerHTML = `
             <label class="faq-a-label">Answer ${newIndex}</label>
-            <div style="display: flex; gap: 10px; align-items: flex-start;">
-                <textarea name="faq_answer[]" style="min-height:70px; flex: 1;"></textarea>
-                <button type="button" onclick="removeFaqRow(this)" style="background: none; border: none; color: #e74c3c; cursor: pointer; padding: 5px; margin-top: 5px;" title="Remove FAQ"><i class="fa-solid fa-trash"></i></button>
+            <div style="display: flex; gap: 0.625rem; align-items: flex-start;">
+                <textarea name="faq_answer[]" style="min-height:4.375rem; flex: 1;"></textarea>
+                <button type="button" onclick="removeFaqRow(this)" style="background: none; border: none; color: #e74c3c; cursor: pointer; padding: 0.3125rem; margin-top: 0.3125rem;" title="Remove FAQ"><i class="fa-solid fa-trash"></i></button>
             </div>
         `;
         

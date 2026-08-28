@@ -3,10 +3,10 @@
         display: none;
     }
     
-    @media (max-width: 992px) {
+    @media (max-width: 62rem) {
         .faq-mobile-section {
             display: block;
-            padding: 20px 16px 40px;
+            padding: 1.25rem 1rem 2.5rem;
             background: var(--background-color, #FAF8F8);
             width: 100%;
             box-sizing: border-box;
@@ -15,12 +15,12 @@
         .faq-mobile-section h2 {
             font-family: 'Open Sans', sans-serif;
             font-weight: 700;
-            font-size: 32px;
+            font-size: 2rem;
             color: var(--primary-color, #0B2240);
-            margin-bottom: 20px;
+            margin-bottom: 1.25rem;
         }
         .faq-icon {
-            font-size: 24px;
+            font-size: 1.5rem;
             font-weight: 400;
             color: #000;
             line-height: 1;
@@ -29,22 +29,22 @@
             border-top: none !important;
             display: flex;
             flex-direction: column;
-            gap: 12px;
+            gap: 0.75rem;
         }
         .faq-mobile-section .tf-accordion-item {
             border: 1px solid #EAEAEA !important;
-            border-radius: 8px;
+            border-radius: 0.5rem;
             background: #fff;
-            padding: 4px 16px;
+            padding: 0.25rem 1rem;
         }
         .faq-mobile-section .tf-accordion-btn {
             height: auto !important;
-            min-height: 53px;
-            padding: 10px 0 !important;
+            min-height: 3.3125rem;
+            padding: 0.625rem 0 !important;
             color: #000 !important;
             font-family: 'Inter', sans-serif !important;
             font-weight: 400 !important;
-            font-size: 16px !important;
+            font-size: 1rem !important;
             font-style: normal !important;
         }
         .faq-mobile-section .tf-accordion-content-inner {
@@ -53,8 +53,8 @@
             font-family: 'Inter', sans-serif;
             font-weight: 400;
             font-style: normal;
-            font-size: 14px !important;
-            padding-bottom: 12px;
+            font-size: 0.875rem !important;
+            padding-bottom: 0.75rem;
         }
     }
 </style>

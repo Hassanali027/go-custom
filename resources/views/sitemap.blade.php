@@ -13,42 +13,42 @@
     <link rel="stylesheet" href="{{ asset('css/footer.css') }}">
     <style>
         body { margin:0; font-family:'DM Sans',sans-serif; background-color: #faf8f8; color: #000; }
-        .sitemap-container { max-width: 1200px; width: 100%; margin: 0 auto; padding: 40px 20px; box-sizing: border-box; }
+        .sitemap-container { max-width: 75rem; width: 100%; margin: 0 auto; padding: 2.5rem 1.25rem; box-sizing: border-box; }
         
-        .breadcrumb { font-size: 12px; color: #000; margin-bottom: 20px; text-transform: uppercase; letter-spacing: 1px; }
+        .breadcrumb { font-size: 0.75rem; color: #000; margin-bottom: 1.25rem; text-transform: uppercase; letter-spacing: 1px; }
         .breadcrumb a { color: #000; text-decoration: none; }
         
-        .page-title { text-align: center; font-family: 'Open Sans', sans-serif; font-size: 36px; font-weight: 800; margin-bottom: 60px; }
+        .page-title { text-align: center; font-family: 'Open Sans', sans-serif; font-size: 2.25rem; font-weight: 800; margin-bottom: 3.75rem; }
         
-        .sitemap-section { margin-bottom: 50px; }
+        .sitemap-section { margin-bottom: 3.125rem; }
         .section-title { 
             font-family: 'Open Sans', sans-serif; 
-            font-size: 24px; 
+            font-size: 1.5rem; 
             font-weight: 700; 
-            margin-bottom: 30px; 
+            margin-bottom: 1.875rem; 
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 0.625rem;
         }
         .section-title::before {
             content: "";
             display: block;
-            width: 5px;
-            height: 24px;
+            width: 0.3125rem;
+            height: 1.5rem;
             background-color: #8D4445;
         }
 
-        .grid-1 { display: grid; grid-template-columns: 1fr; gap: 30px; }
-        .grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 30px; }
-        .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; }
+        .grid-1 { display: grid; grid-template-columns: 1fr; gap: 1.875rem; }
+        .grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.875rem; }
+        .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2.5rem; }
 
-        .list-group { margin-bottom: 30px; }
-        .list-title { font-weight: 700; font-size: 16px; margin-bottom: 15px; font-family: 'Open Sans', sans-serif; }
+        .list-group { margin-bottom: 1.875rem; }
+        .list-title { font-weight: 700; font-size: 1rem; margin-bottom: 0.9375rem; font-family: 'Open Sans', sans-serif; }
         .list-title a { color: #000; text-decoration: none; transition: color 0.2s; }
         .list-title a:hover { color: #8D4445; }
         
         ul.sitemap-list { list-style: none; padding: 0; margin: 0; }
-        ul.sitemap-list li { margin-bottom: 10px; font-size: 14px; position: relative; padding-left: 12px; }
+        ul.sitemap-list li { margin-bottom: 0.625rem; font-size: 0.875rem; position: relative; padding-left: 0.75rem; }
         ul.sitemap-list li::before {
             content: "-";
             position: absolute;
@@ -58,12 +58,12 @@
         ul.sitemap-list a { color: #333; text-decoration: none; transition: color 0.2s; }
         ul.sitemap-list a:hover { color: #8D4445; }
 
-        @media (max-width: 991px) {
+        @media (max-width: 61.9375rem) {
             .grid-3 { grid-template-columns: repeat(2, 1fr); }
         }
-        @media (max-width: 767px) {
+        @media (max-width: 47.9375rem) {
             .grid-3, .grid-2 { grid-template-columns: 1fr; }
-            .page-title { font-size: 28px; }
+            .page-title { font-size: 1.75rem; }
         }
     </style>
 </head>

@@ -4,13 +4,13 @@
     ───────────────────────────────────────── */
     .text-content-section {
         background: var(--background-color);
-        padding: 0 0 25px 0;
+        padding: 0 0 1.5625rem 0;
     }
 
     .text-content-container {
-        max-width: 1440px;
+        max-width: 90rem;
         margin: 0 auto;
-        padding: 0 24px;
+        padding: 0 1.5rem;
         box-sizing: border-box;
         display: flex;
         justify-content: center;
@@ -18,35 +18,35 @@
 
     .text-content-card {
         width: 100%;
-        max-width: 1030px;
+        max-width: 64.375rem;
         background: #FAF5EC;
-        border-radius: 10px;
+        border-radius: 0.625rem;
         border: none;
-        padding: 48px 20px 48px 56px;
+        padding: 3rem 1.25rem 3rem 3.5rem;
         box-sizing: border-box;
-        max-height: 787px;
+        max-height: 49.1875rem;
     }
 
     .text-content-inner {
-        max-height: calc(787px - 96px);
+        max-height: calc(49.1875rem - 6rem);
         overflow-y: auto;
-        padding-right: 26px;
+        padding-right: 1.625rem;
         scrollbar-width: thin;
         scrollbar-color: var(--primary-color) #F0F0F0;
     }
 
     .text-content-inner::-webkit-scrollbar {
-        width: 10px;
+        width: 0.625rem;
     }
 
     .text-content-inner::-webkit-scrollbar-track {
         background: #F0F0F0;
-        border-radius: 20px;
+        border-radius: 1.25rem;
     }
 
     .text-content-inner::-webkit-scrollbar-thumb {
         background: var(--primary-color);
-        border-radius: 20px;
+        border-radius: 1.25rem;
     }
 
     .text-content-inner::-webkit-scrollbar-thumb:hover {
@@ -55,19 +55,19 @@
 
     .text-content-heading {
         font-family: 'Open Sans', sans-serif;
-        font-size: 24px;
+        font-size: 1.5rem;
         font-weight: 700;
         color: #000000;
-        margin-bottom: 20px;
+        margin-bottom: 1.25rem;
         line-height: 1.4;
     }
 
     .text-content-body p {
         font-family: 'Open Sans', sans-serif;
-        font-size: 16px;
+        font-size: 1rem;
         color: #000000;
         line-height: 1.7;
-        margin-bottom: 14px;
+        margin-bottom: 0.875rem;
     }
 
     .text-content-body p:last-child {
@@ -77,7 +77,7 @@
     .text-content-body ul,
     .text-content-body ol {
         padding-left: 2rem;
-        margin: 0 0 14px 0;
+        margin: 0 0 0.875rem 0;
     }
 
     .text-content-body ul {
@@ -90,11 +90,11 @@
 
     .text-content-body li {
         font-family: 'Open Sans', sans-serif;
-        font-size: 16px;
+        font-size: 1rem;
         color: #333;
         line-height: 1.7;
-        padding-left: 4px;
-        margin-bottom: 4px;
+        padding-left: 0.25rem;
+        margin-bottom: 0.25rem;
     }
 
     .text-content-body li::marker {
@@ -134,36 +134,36 @@
         text-decoration-color: #5b2829 !important;
     }
 
-    @media (max-width: 992px) {
+    @media (max-width: 62rem) {
         .text-content-card {
-            padding: 32px 12px 32px 24px;
-            height: 460px;
+            padding: 2rem 0.75rem 2rem 1.5rem;
+            height: 28.75rem;
         }
         .text-content-inner {
             height: 100%;
             overflow-y: auto;
-            padding-right: 14px;
+            padding-right: 0.875rem;
         }
     }
 
-    @media (max-width: 768px) {
+    @media (max-width: 48rem) {
         .text-content-section {
-            padding: 0 0 24px 0;
+            padding: 0 0 1.5rem 0;
         }
         .text-content-container {
-            padding: 0 16px;
+            padding: 0 1rem;
         }
         .text-content-card {
-            padding: 24px 8px 24px 18px;
-            border-radius: 10px;
+            padding: 1.5rem 0.5rem 1.5rem 1.125rem;
+            border-radius: 0.625rem;
             border: none;
-            height: 634px;
+            height: 39.625rem;
             position: relative;
         }
         .text-content-inner {
             height: 100%;
             overflow-y: scroll;
-            padding-right: 20px;
+            padding-right: 1.25rem;
             /* Hide native scrollbar on mobile */
             -ms-overflow-style: none;
             scrollbar-width: none;
@@ -174,33 +174,33 @@
         /* Custom scrollbar track */
         .tc-scrollbar-track {
             position: absolute;
-            top: 18px;
-            right: 6px;
-            width: 6px;
-            bottom: 18px;
+            top: 1.125rem;
+            right: 0.375rem;
+            width: 0.375rem;
+            bottom: 1.125rem;
             background: #EBEBEB;
-            border-radius: 10px;
+            border-radius: 0.625rem;
             display: none;
         }
         /* Custom scrollbar thumb */
         .tc-scrollbar-thumb {
             position: absolute;
-            width: 6px;
+            width: 0.375rem;
             background: #0B2240;
-            border-radius: 10px;
+            border-radius: 0.625rem;
             cursor: pointer;
             transition: background 0.2s;
         }
         .text-content-heading {
-            font-size: 18px;
+            font-size: 1.125rem;
             line-height: 1.35;
-            margin-bottom: 14px;
+            margin-bottom: 0.875rem;
         }
         .text-content-body p,
         .text-content-body li {
-            font-size: 13.5px;
+            font-size: 0.8438rem;
             line-height: 1.55;
-            margin-bottom: 10px;
+            margin-bottom: 0.625rem;
             text-align: justify;
         }
     }
