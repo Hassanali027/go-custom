@@ -179,6 +179,7 @@
             flex-direction: column;
             width: 100% !important;
             max-width: 380px !important;
+            height: 604px !important;
             margin: 0 auto !important;
             padding: 45px 0 0 !important;
             overflow: visible !important;
@@ -241,7 +242,7 @@
             display: block !important;
             width: 350.3px !important;
             height: 159.3px !important;
-            bottom: -18.15px !important;
+            bottom: -68.15px !important;
             right: auto !important;
             left: 50% !important;
             transform: translateX(-50%) !important;
@@ -256,6 +257,7 @@
             display: block;
             position: relative;
             z-index: 1;
+            bottom: -35px;
         }
         .cta-text-card > :not(.cta-ellipse) {
             position: relative;

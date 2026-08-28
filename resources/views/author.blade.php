@@ -163,17 +163,15 @@
         }
 
         .author-image {
-            width: 261px;
-            height: 261px;
-            border-radius: 8px;
-            object-fit: cover;
-            object-position: top;
+            width: 383px;
+            height: auto;
+            display: block;
         }
 
         .author-info {
             flex: 1;
             max-width: 100%;
-            padding-top: 10px;
+            padding-top: 75px;
         }
 
         .author-name {
@@ -360,6 +358,7 @@
 
         .card-heading a {
             outline: none;
+            font-weight: 500;
         }
 
         .card-heading a:focus, .card-heading a:active {
@@ -387,7 +386,7 @@
             align-items: center;
             gap: 8px;
             margin-top: 16px;
-            color: var(--color-link);
+            color: var(--primary-color);
             font-family: 'DM Sans', sans-serif;
             font-size: 14px;
             font-weight: 600;
@@ -429,7 +428,7 @@
             }
 
             .hero-content {
-                gap: 48px;
+                gap: 6px;
             }
 
             .author-image {
@@ -488,6 +487,7 @@
             .hero-section {
                 min-height: auto;
                 padding: 48px 0;
+                border-radius: 0;
             }
 
             .hero-content {
@@ -497,18 +497,23 @@
             }
 
             .author-image {
-                width: 180px;
-                height: 180px;
+                width: 267px;
+                height: auto;
             }
 
             .author-info {
                 max-width: 100%;
+                padding-top: 0px;
             }
 
             .author-name {
                 font-size: 36px;
                 line-height: 48px;
-                text-align: center;
+                text-align: left;
+            }
+            
+            .author-title {
+                text-align: left;
             }
 
             .author-bio {
@@ -573,11 +578,6 @@
                 --container-padding: 20px;
             }
 
-            .author-image {
-                width: 160px;
-                height: 160px;
-            }
-
             .author-name {
                 font-size: 28px;
                 line-height: 38px;
@@ -605,15 +605,11 @@
                 gap: 24px;
             }
 
-            .author-image {
-                width: 140px;
-                height: 140px;
-            }
-
             .author-name {
                 font-size: 24px;
                 line-height: 32px;
                 margin-bottom: 8px;
+                text-align:center;
             }
 
             .author-title {
@@ -626,6 +622,7 @@
                 font-size: 14px;
                 line-height: 20px;
                 margin-bottom: 16px;
+                color:black;
             }
 
             .section-title {
@@ -641,11 +638,14 @@
             .card-heading {
                 font-size: 18px;
                 line-height: 24px;
+                font-weight: 500;
             }
 
             .card-description {
-                font-size: 14px;
-                line-height: 20px;
+                font-size: 17px;
+                line-height: 23px;
+                font-weight: bold;
+                color: black;
             }
 
             .card-image-wrapper {
@@ -740,7 +740,22 @@
                     <div class="author-image-wrapper">
                         @if(!empty($author['image']))
                             @php $img = \Illuminate\Support\Str::startsWith($author['image'], ['http', 'storage/', 'uploads/', 'images/']) ? asset($author['image']) : asset('storage/'.$author['image']); @endphp
-                            <img src="{{ $img }}" alt="{{ $author['title'] }}" class="author-image" onerror="this.style.display='none'" loading="lazy">
+                            <svg class="author-image" viewBox="0 0 310 310" preserveAspectRatio="xMidYMid meet" style="overflow: visible;">
+                                <defs>
+                                    <clipPath id="hex-clip">
+                                        <path d="M 129 32.12 A 42 42 0 0 1 171 32.12 L 241.58 72.88 A 42 42 0 0 1 262.58 109.25 L 262.58 190.75 A 42 42 0 0 1 241.58 227.12 L 171 267.88 A 42 42 0 0 1 129 267.88 L 58.42 227.12 A 42 42 0 0 1 37.42 190.75 L 37.42 109.25 A 42 42 0 0 1 58.42 72.88 Z" />
+                                    </clipPath>
+                                </defs>
+                                
+                                <!-- Yellow Shadow -->
+                                <path d="M 129 32.12 A 42 42 0 0 1 171 32.12 L 241.58 72.88 A 42 42 0 0 1 262.58 109.25 L 262.58 190.75 A 42 42 0 0 1 241.58 227.12 L 171 267.88 A 42 42 0 0 1 129 267.88 L 58.42 227.12 A 42 42 0 0 1 37.42 190.75 L 37.42 109.25 A 42 42 0 0 1 58.42 72.88 Z" fill="#FFB400" transform="translate(0, 16)" stroke="#FFB400" stroke-width="8" stroke-linejoin="round" />
+                                
+                                <!-- Image -->
+                                <image href="{{ $img }}" x="37" y="32" width="226" height="250" clip-path="url(#hex-clip)" preserveAspectRatio="xMidYMin slice" />
+                                
+                                <!-- Dark Blue Border -->
+                                <path d="M 129 32.12 A 42 42 0 0 1 171 32.12 L 241.58 72.88 A 42 42 0 0 1 262.58 109.25 L 262.58 190.75 A 42 42 0 0 1 241.58 227.12 L 171 267.88 A 42 42 0 0 1 129 267.88 L 58.42 227.12 A 42 42 0 0 1 37.42 190.75 L 37.42 109.25 A 42 42 0 0 1 58.42 72.88 Z" fill="none" stroke="#0F203C" stroke-width="8" stroke-linejoin="round" />
+                            </svg>
                         @endif
                     </div>
                     <div class="author-info">
@@ -791,16 +806,31 @@
                             <div class="card-content">
                                 <h3 class="card-heading"><a href="{{ url('/blog/' . $item['slug']) }}" style="color:inherit; text-decoration:none;" onclick="event.stopPropagation();">{{ $item['title'] }}</a></h3>
                                 <p class="card-description">{{ Str::limit(html_entity_decode(html_entity_decode(strip_tags($item['excerpt'] ?: $item['content']))), 120) }}</p>
-                                <a href="{{ url('/blog/' . $item['slug']) }}" class="read-more" onclick="event.stopPropagation();">Read Full Article</a>
+                                <a href="{{ url('/blog/' . $item['slug']) }}" class="read-more" onclick="event.stopPropagation();">
+                                    Read Blog 
+                                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M3 8h10M9 4l4 4-4 4"/>
+                                    </svg>
+                                </a>
                             </div>
                         </article>
                         @endforeach
+                    </div>
+                    <div class="load-more-container" style="width: 100%; display: flex; justify-content: center; margin-top: 40px;">
+                        <button class="btn-load-more" style="width: 202px; height: 54px; background-color: #FFB400; color: #000; font-family: 'Open Sans', sans-serif; font-size: 16px; font-weight: 600; border: none; border-radius: 4px; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background-color 0.3s, box-shadow 0.3s; box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.15);">
+                            Load more
+                        </button>
                     </div>
                 @else
                     <p style="font-family: 'Open Sans', sans-serif; font-size: 16px; color: #555;">No published blogs found for this author yet.</p>
                 @endif
             </div>
         </section>
+
+        <!-- CTA Section -->
+        <div class="container" style="margin-top: 40px; margin-bottom: 40px;">
+            <x-cta />
+        </div>
     </main>
 
     <!-- Footer Component -->
