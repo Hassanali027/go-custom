@@ -105,7 +105,7 @@
 
         /* Form Column */
         .contact-form-box {
-            background-color: var(--light-cream);
+            background-color: #FFF8E7;
             padding: 2.5rem;
             border-radius: 0.5rem;
             height: 39.625rem;
@@ -122,7 +122,7 @@
 
         .contact-form-box > p {
             text-align: center;
-            color: var(--text-light);
+            color: #000;
             font-size: 0.875rem;
             line-height: 1.6;
             margin-bottom: 1.875rem;
@@ -185,7 +185,7 @@
         .submit-btn-wrap {
             grid-column: 1 / -1;
             text-align: center;
-            margin-top: 0.625rem;
+            margin-top: 2rem;
         }
 
         .submit-btn {

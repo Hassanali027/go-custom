@@ -216,6 +216,7 @@
         color: #000;
         line-height: 1.65;
         margin: 0;
+        text-align: justify;
     }
 
     /* Responsive Styles */

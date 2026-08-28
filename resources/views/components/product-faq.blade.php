@@ -84,7 +84,7 @@
         margin: 0;
         font-size: 0.9375rem;
         line-height: 1.6;
-        color: #666666;
+        color: #000;
         text-align: justify;
     }
 
