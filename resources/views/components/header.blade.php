@@ -331,7 +331,7 @@
         padding: 1.75rem 2rem 1.25rem;
         background: #FAF5F2; /* Cream background matching screenshot */
         border: none;
-        border-radius: 0.90rem;
+        
         box-shadow: 0 0.75rem 2.25rem rgba(0, 0, 0, 0.1);
         box-sizing: border-box;
         opacity: 0;
@@ -369,7 +369,7 @@
     }
 
     .mega-menu-item:hover {
-        color: #8D4445;
+        color: #0B2545;
         background: rgba(141, 68, 69, 0.06);
         transform: translateX(0.1875rem);
     }
@@ -386,7 +386,7 @@
     .mega-menu-icon svg {
         width: 1.375rem;
         height: 1.375rem;
-        stroke: #8D4445;
+        stroke: #0B2545;
         fill: none;
     }
 
@@ -427,7 +427,7 @@
     .mega-menu-footer-icon svg {
         width: 1.375rem;
         height: 1.375rem;
-        stroke: var(--primary-color);
+        stroke: #0B2545;
     }
 
     .mega-menu-cta {
@@ -459,7 +459,7 @@
         padding: 1.375rem 1.75rem;
         background: #fff;
         border: 1px solid #e5e5e5;
-        border-radius: 0.5rem;
+        
     }
     .mega-menu--products .mega-menu-footer { display: none; }
     .mega-menu--products .mega-menu-grid {
@@ -501,11 +501,9 @@
         color: #000;
     }
 
-    /* Modifier for Material menu (Same height & style as Resources + Red/Orange line on top) */
+    /* Material menu uses the same clean style as the other dropdowns. */
     .mega-menu.mega-menu--material {
-        border-top: 3.5px solid #E35A24 !important;
-        border-top-left-radius: 0 !important;
-        border-top-right-radius: 0 !important;
+        border-top: none !important;
     }
 
     .custom-boxes-menu {
@@ -1223,7 +1221,7 @@
 
 <script>
     (function() {
-        const giftBoxSvg = `<svg viewBox="0 0 24 24" fill="none" stroke="#8D4445" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        const giftBoxSvg = `<svg viewBox="0 0 24 24" fill="none" stroke="#0B2545" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
             <rect x="3" y="8" width="18" height="4" rx="1"></rect>
             <path d="M12 8v13"></path>
             <path d="M19 12v7a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-7"></path>
@@ -1270,7 +1268,12 @@
                             : asset('storage/' . $productNavImage))
                         : '';
                 @endphp
-                { title: @json($product->title), slug: @json($product->slug), image: @json($productImage) },
+                {
+                    title: @json($product->title),
+                    slug: @json($product->slug),
+                    image: @json($productImage),
+                    fallbackImage: @json(asset('uploads/gift-box.png'))
+                },
                 @endforeach
             ],
             "resources": [
@@ -1297,34 +1300,34 @@
         function getCategoryIcon(title, slug) {
             const t = ((title || '') + ' ' + (slug || '')).toLowerCase();
             if (t.includes('apparel') || t.includes('shirt') || t.includes('cloth') || t.includes('garment')) {
-                return `<svg viewBox="0 0 24 24" fill="none" stroke="#8D4445" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20.38 3.46 16 2a4 4 0 0 1-8 0L3.62 3.46a2 2 0 0 0-1.34 2.23l.58 3.47a1 1 0 0 0 .99.84H6v10a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V10h2.15a1 1 0 0 0 .99-.84l.58-3.47a2 2 0 0 0-1.34-2.23z"/></svg>`;
+                return `<svg viewBox="0 0 24 24" fill="none" stroke="#0B2545" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20.38 3.46 16 2a4 4 0 0 1-8 0L3.62 3.46a2 2 0 0 0-1.34 2.23l.58 3.47a1 1 0 0 0 .99.84H6v10a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V10h2.15a1 1 0 0 0 .99-.84l.58-3.47a2 2 0 0 0-1.34-2.23z"/></svg>`;
             }
             if (t.includes('bakery') || t.includes('cake') || t.includes('pastry') || t.includes('cookie') || t.includes('bread') || t.includes('donut')) {
-                return `<svg viewBox="0 0 24 24" fill="none" stroke="#8D4445" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="10" width="18" height="11" rx="2"/><path d="M7 10V7a5 5 0 0 1 10 0v3"/><path d="M12 14v3"/><circle cx="12" cy="4" r="1"/></svg>`;
+                return `<svg viewBox="0 0 24 24" fill="none" stroke="#0B2545" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="10" width="18" height="11" rx="2"/><path d="M7 10V7a5 5 0 0 1 10 0v3"/><path d="M12 14v3"/><circle cx="12" cy="4" r="1"/></svg>`;
             }
             if (t.includes('cbd') || t.includes('tincture') || t.includes('vape') || t.includes('oil') || t.includes('dropper') || t.includes('serum')) {
-                return `<svg viewBox="0 0 24 24" fill="none" stroke="#8D4445" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M10 2h4"/><path d="M12 2v4"/><path d="M7 8h10a1 1 0 0 1 1 1v11a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2V9a1 1 0 0 1 1-1Z"/><path d="M10 14h4"/></svg>`;
+                return `<svg viewBox="0 0 24 24" fill="none" stroke="#0B2545" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M10 2h4"/><path d="M12 2v4"/><path d="M7 8h10a1 1 0 0 1 1 1v11a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2V9a1 1 0 0 1 1-1Z"/><path d="M10 14h4"/></svg>`;
             }
             if (t.includes('stationery') || t.includes('pen') || t.includes('pencil') || t.includes('card') || t.includes('paper') || t.includes('notebook')) {
-                return `<svg viewBox="0 0 24 24" fill="none" stroke="#8D4445" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"/><path d="m15 5 4 4"/></svg>`;
+                return `<svg viewBox="0 0 24 24" fill="none" stroke="#0B2545" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"/><path d="m15 5 4 4"/></svg>`;
             }
             if (t.includes('roll') || t.includes('pre roll') || t.includes('cigar') || t.includes('cigarette')) {
-                return `<svg viewBox="0 0 24 24" fill="none" stroke="#8D4445" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="6" width="18" height="12" rx="2"/><path d="M3 12h18"/><circle cx="7" cy="12" r="1"/><circle cx="17" cy="12" r="1"/></svg>`;
+                return `<svg viewBox="0 0 24 24" fill="none" stroke="#0B2545" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="6" width="18" height="12" rx="2"/><path d="M3 12h18"/><circle cx="7" cy="12" r="1"/><circle cx="17" cy="12" r="1"/></svg>`;
             }
             if (t.includes('cosmetic') || t.includes('beauty') || t.includes('makeup') || t.includes('cream') || t.includes('lotion') || t.includes('perfume') || t.includes('fragrance') || t.includes('skincare')) {
-                return `<svg viewBox="0 0 24 24" fill="none" stroke="#8D4445" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3h6v4H9z"/><rect x="7" y="7" width="10" height="14" rx="2"/><path d="M10 12h4"/><path d="M12 12v4"/></svg>`;
+                return `<svg viewBox="0 0 24 24" fill="none" stroke="#0B2545" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3h6v4H9z"/><rect x="7" y="7" width="10" height="14" rx="2"/><path d="M10 12h4"/><path d="M12 12v4"/></svg>`;
             }
             if (t.includes('jewelry') || t.includes('jewel') || t.includes('ring') || t.includes('diamond') || t.includes('watch') || t.includes('necklace')) {
-                return `<svg viewBox="0 0 24 24" fill="none" stroke="#8D4445" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h12l4 6-10 12L2 9Z"/><path d="M11 3 8 9l4 12 4-12-3-6"/><path d="M2 9h20"/></svg>`;
+                return `<svg viewBox="0 0 24 24" fill="none" stroke="#0B2545" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h12l4 6-10 12L2 9Z"/><path d="M11 3 8 9l4 12 4-12-3-6"/><path d="M2 9h20"/></svg>`;
             }
             if (t.includes('chocolate') || t.includes('candy') || t.includes('sweet') || t.includes('snack')) {
-                return `<svg viewBox="0 0 24 24" fill="none" stroke="#8D4445" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 10h18"/><path d="M3 16h18"/><path d="M9 4v16"/><path d="M15 4v16"/></svg>`;
+                return `<svg viewBox="0 0 24 24" fill="none" stroke="#0B2545" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 10h18"/><path d="M3 16h18"/><path d="M9 4v16"/><path d="M15 4v16"/></svg>`;
             }
             if (t.includes('food') || t.includes('pizza') || t.includes('meal') || t.includes('burger') || t.includes('restaurant')) {
-                return `<svg viewBox="0 0 24 24" fill="none" stroke="#8D4445" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg>`;
+                return `<svg viewBox="0 0 24 24" fill="none" stroke="#0B2545" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg>`;
             }
             if (t.includes('gift')) {
-                return `<svg viewBox="0 0 24 24" fill="none" stroke="#8D4445" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="8" width="18" height="4" rx="1"/><path d="M12 8v13"/><path d="M19 12v7a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-7"/><path d="M7.5 8a2.5 2.5 0 0 1 0-5A4.8 8 0 0 1 12 8a4.8 8 0 0 1 4.5-5 2.5 2.5 0 0 1 0 5"/></svg>`;
+                return `<svg viewBox="0 0 24 24" fill="none" stroke="#0B2545" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="8" width="18" height="4" rx="1"/><path d="M12 8v13"/><path d="M19 12v7a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-7"/><path d="M7.5 8a2.5 2.5 0 0 1 0-5A4.8 8 0 0 1 12 8a4.8 8 0 0 1 4.5-5 2.5 2.5 0 0 1 0 5"/></svg>`;
             }
             return giftBoxSvg;
         }
@@ -1348,7 +1351,9 @@
                 
                 let iconHtml = '';
                 if (isProductMenu && item.image) {
-                    iconHtml = `<img src="${item.image}" alt="" loading="lazy">`;
+                    iconHtml = `<img src="${item.image}" alt="" loading="lazy" onerror="this.onerror=null;this.src='${item.fallbackImage}'">`;
+                } else if (isProductMenu) {
+                    iconHtml = `<img src="${item.fallbackImage}" alt="" loading="lazy">`;
                 } else if (item.icon) {
                     iconHtml = `<img src="${item.icon}" alt="" loading="lazy">`;
                 } else {

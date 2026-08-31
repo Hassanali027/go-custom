@@ -2195,13 +2195,11 @@
 
                     // Combine both and ensure no duplicates, limit to 8
                     $featuredCategories = $homeCategories->merge($settingCategories)->unique('id')->take(8)->all();
-
-                    // Fallback if none are selected
-                    if (empty($featuredCategories)) {
-                    $featuredCategories = array_slice($categories, 0, 8);
-                    }
                     @endphp
 
+                    @if(empty($featuredCategories))
+                    <p style="grid-column: 1 / -1; text-align: center; color: #667085; padding: 1.5rem 0;">Select categories from Home Page Settings to show them here.</p>
+                    @endif
                     @foreach ($featuredCategories as $cat)
                     @php
                     $catSlug = $cat['slug'] ?? Str::slug($cat['title']);
@@ -3082,9 +3080,9 @@
 
                     <div class="wcc-collage">
                         <div class="wcc-col">
-                            <img src="{{ asset('uploads/custom-navy-blue-rigid-gift-box.webp') }}" alt="Custom navy blue rigid gift box" class="wcc-img"
-                                style="height: 13.0625rem;">
                             <img src="{{ asset('uploads/custom-maroon-heart-chocolate-box.webp') }}" alt="Custom maroon heart chocolate box" class="wcc-img"
+                                style="height: 13.0625rem;">
+                            <img src="{{ asset('uploads/custom-navy-blue-rigid-gift-box.webp') }}" alt="Custom navy blue rigid gift box" class="wcc-img"
                                 style="height: 8.25rem;">
                         </div>
                         <div class="wcc-col">

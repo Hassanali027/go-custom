@@ -115,7 +115,7 @@
                 <input type="file" name="hover_image" accept="image/*">
             </div>
             <div class="field">
-                <label>Custom Boxes Nav Image</label>
+                <label>Popular Product Icon</label>
                 @if($editing && !empty($item['nav_image']))
                     <div class="single-image-wrapper" style="margin-bottom:0.5rem; position:relative; display:inline-block;">
                         <img src="{{ $resolveImg($item['nav_image']) }}" style="height:3.75rem; border-radius:0.25rem; border:1px solid #ddd; display:block;">
@@ -123,7 +123,7 @@
                     </div>
                 @endif
                 <input type="file" name="nav_image" accept="image/*">
-                <small>Custom Boxes dropdown mein ye image show hogi. Khali chhorne par Featured Image use hogi.</small>
+                <small>Popular Product dropdown mein product name ke saath ye icon show hoga. Khali chhorne par Featured Image use hogi.</small>
             </div>
         </div>
     </div>

@@ -17,6 +17,7 @@
             height: auto;
             display: block;
         }
+
     }
     
 
@@ -149,18 +150,26 @@
     .category-page-hero .hero-title {
         font-family: 'Open Sans', sans-serif;
         font-size: 2rem;
-        line-height: 1.35;
-        max-width: 28.75rem;
+        line-height: 1.2;
+        max-width: 34rem;
         text-align: left;
+        margin-bottom: 0.75rem;
     }
 
     .category-page-hero .hero-description {
-        max-width: 28.75rem;
+        max-width: 34rem;
         text-align: left;
+        line-height: 1.45;
+        margin-bottom: 1.25rem;
     }
 
     .category-page-hero .hero-title br {
         display: none;
+    }
+
+    .category-page-hero .hero-section {
+        padding-top: 1.5rem;
+        padding-bottom: 1.5rem;
     }
 
     .hero-description {
@@ -232,6 +241,17 @@
         max-height: 110%;
         transform: none;
         transform-origin: center;
+    }
+
+    @media (min-width: 75.0625rem) {
+        .category-page-hero .hero-image-wrapper {
+            width: 34rem;
+        }
+
+        .category-page-hero .hero-image-wrapper img {
+            max-width: 34rem;
+            max-height: 100%;
+        }
     }
 
     @media (max-width: 75rem) and (min-width: 62.0625rem) {
@@ -468,7 +488,7 @@
                     font-family: 'DM Sans', sans-serif;
                     font-size: 0.9375rem;
                     text-transform: capitalize;
-                    color: #555;
+                    color: #000;
                 }
                 .hero-breadcrumb a {
                     color: inherit;
