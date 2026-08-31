@@ -61,13 +61,17 @@
             padding: 0;
         }
 
+        html, body {
+            overflow-x: hidden !important;
+            max-width: 100vw;
+        }
+
         body {
             font-family: 'DM Sans', sans-serif;
             background-color: #FAF8F8;
             color: var(--color-text-primary);
             line-height: 1.6;
             -webkit-font-smoothing: antialiased;
-            overflow-x: clip;
         }
 
         h1, h2, h3, h4, h5, h6 {
@@ -498,17 +502,11 @@
         /* Features Badges Section */
         .features-badges-section {
             background-color: #EFEFEF;
-            padding: 1.25rem 0 0.625rem 0;
-            margin-top: -0.75rem;
-            max-width: var(--container-width);
+            padding: 1.25rem 0;
             width: 100%;
-            margin-left: auto;
-            margin-right: auto;
-            border-radius: 0.75rem;
             position: relative;
             z-index: 10;
         }
-        }
 
         .badges-horizontal {
             display: flex;
@@ -518,93 +516,15 @@
             flex-wrap: wrap;
         }
 
-        .feature-item {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-            gap: 0.5rem;
-        }
-
-        .feature-icon {
-            width: 8.6875rem;
-            height: 6.5rem;
-            object-fit: contain;
-        }
-
-        .feature-text {
-            font-family: 'DM Sans', sans-serif;
-            font-size: 0.875rem;
-            font-weight: 600;
-            color: #000;
-        }
-
-        .badges-horizontal {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 1.25rem;
-            flex-wrap: wrap;
-        }
-
-        .trust-badges-wrapper {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-            gap: 0.625rem;
-        }
-
-        .trust-badges-image {
-            width: 13.75rem;
-            height: 2.25rem;
-            display: inline-block;
-            object-fit: contain;
-        }
-
-        .features-badges-wrapper {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-            gap: 0.625rem;
-        }
-
-        .features-badges-image {
-            width: 13.75rem;
-            height: 2.25rem;
-            display: inline-block;
-            object-fit: contain;
-        }
-
-        .shipping-badge-wrapper {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-            gap: 0.625rem;
-        }
-
-        .shipping-badge-image {
-            width: 13.75rem;
-            height: 2.25rem;
-            display: inline-block;
-            object-fit: contain;
-        }
-
+        .trust-badges-wrapper,
+        .features-badges-wrapper,
+        .shipping-badge-wrapper,
         .fourth-badge-wrapper {
             display: flex;
             flex-direction: column;
             align-items: center;
             text-align: center;
             gap: 0.625rem;
-        }
-
-        .fourth-badge-image {
-            width: 13.75rem;
-            height: 2.25rem;
-            display: inline-block;
-            object-fit: contain;
         }
 
         .badge-label {
@@ -618,9 +538,10 @@
         }
 
         .badge-icon-svg {
-            width: 2.375rem;
-            height: 2.375rem;
-            flex: 0 0 2.375rem;
+            width: 3.5rem;
+            height: 3.5rem;
+            flex: 0 0 3.5rem;
+            object-fit: contain;
             color: #666;
         }
 
@@ -1444,6 +1365,12 @@
             .hero-container {
                 gap: 1.25rem;
             }
+            .hero-section {
+                padding-bottom: 1rem !important;
+            }
+            .specs-section {
+                margin-top: 0.5rem !important;
+            }
         }
         @media (max-width: 30rem) {
             :root { --margin-sides: 1rem; }
@@ -2186,7 +2113,7 @@
                     }
                 }
             </script>
-            <div class="hero-form hero-quote-box" style="background-color: #FFF8E7; padding: 1.25rem 1.875rem; border-radius: 0.75rem; box-shadow: 0 0.25rem 0.75rem rgba(0,0,0,0.05); height: 38.875rem;">
+            <div class="hero-form hero-quote-box" style="background-color: #FFF8E7; padding: 1.25rem 1.875rem 2.5rem; border-radius: 0.75rem; box-shadow: 0 0.25rem 0.75rem rgba(0,0,0,0.05); height: auto;">
                 <h3 style="text-align: center; font-family: 'Open Sans', sans-serif; font-size: 1.5rem; font-weight: 700; color: #000; margin-bottom: 0.9375rem;">Instant Quotes, Quick Service</h3>
                 
                 <form action="{{ url('/submit-quote') }}" method="POST" enctype="multipart/form-data">
@@ -2481,7 +2408,7 @@
                         <textarea name="message" class="quote-input" rows="4" placeholder="Enter your message"></textarea>
                     </div>
 
-                    <div style="text-align: center;">
+                    <div style="text-align: center; padding-bottom: 2.5rem;">
                         <button type="submit" class="quote-submit-btn">Get Free Quote</button>
                     </div>
                 </form>
@@ -2493,20 +2420,20 @@
     <section class="features-badges-section">
         <div class="container">
             <div class="badges-horizontal">
-                <div class="trust-badges-wrapper">
-                    <img src="{{ asset('uploads/no-die-charges.svg') }}" class="badge-icon-svg" alt="No Die and Plate Charges">
-                    <span class="badge-label">No Die &amp; Plate Charges</span>
-                </div>
                 <div class="features-badges-wrapper">
-                    <img src="{{ asset('uploads/compitative-pricing.svg') }}" class="badge-icon-svg" alt="Competitive Pricing">
+                    <img src="{{ asset('uploads/competitive-icon.svg') }}" class="badge-icon-svg" alt="Competitive Pricing">
                     <span class="badge-label">Competitive Pricing</span>
                 </div>
+                <div class="trust-badges-wrapper">
+                    <img src="{{ asset('uploads/no-die-icon.svg') }}" class="badge-icon-svg" alt="No Die or Plate Charges">
+                    <span class="badge-label">No Die or Plate Charges</span>
+                </div>
                 <div class="shipping-badge-wrapper">
-                    <img src="{{ asset('uploads/fast-turn.svg') }}" class="badge-icon-svg" alt="Quick Turnaround Time">
-                    <span class="badge-label">Quick Turnaround Time</span>
+                    <img src="{{ asset('uploads/fast-turn-icon.svg') }}" class="badge-icon-svg" alt="Fast Turn Arounds">
+                    <span class="badge-label">Fast Turn Arounds</span>
                 </div>
                 <div class="fourth-badge-wrapper">
-                    <img src="{{ asset('uploads/free-shiping.svg') }}" class="badge-icon-svg" alt="Free Shipping">
+                    <img src="{{ asset('uploads/free-ship-icon.svg') }}" class="badge-icon-svg" alt="Free Shipping">
                     <span class="badge-label">Free Shipping</span>
                 </div>
             </div>
@@ -2595,7 +2522,7 @@
     @include('components.coating-finishing')
 
     <!-- How It Works Component (Simple 4-Step Order Process) -->
-    @include('components.howitworks')
+    @include('components.howitworks', ['hideOnMobile' => true])
 
     <!-- Product Testimonials -->
     @include('components.product-testimonials')

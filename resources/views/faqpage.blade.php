@@ -128,7 +128,8 @@
     <x-about-hero 
         :title="$settings['faq_page_title'] ?? 'Frequently Asked Questions'"
         description="From box styles and materials to custom sizes, pricing, and delivery, find quick answers to the questions we hear most."
-        bgImage="uploads/quote-hero-img.png"
+        bgImage="uploads/faqs-hero.webp"
+        mobileBgImage="uploads/faqs-mobile-hero.webp"
         breadcrumb="FAQs"
     />
 

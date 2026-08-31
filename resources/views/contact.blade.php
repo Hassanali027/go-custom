@@ -399,7 +399,8 @@
         <x-about-hero 
             title="Contact Us"
             description="Have a question, need help with a project, or ready to create custom packaging? Our team is here to help you find the right solution."
-            bgImage="uploads/about-us-banner.webp"
+            bgImage="uploads/contact-us-hero.webp"
+            mobileBgImage="uploads/contact-us-mobile.webp"
             breadcrumb="Contact Us"
             overlay="rgba(10, 34, 64, 0.5)"
         />

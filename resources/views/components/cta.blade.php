@@ -267,7 +267,7 @@
 
     @media (max-width: 36rem) {
         .cta-section {
-            padding: 0 0 1.875rem !important;
+            padding: 1.875rem 0 1.875rem !important;
         }
     }
 </style>

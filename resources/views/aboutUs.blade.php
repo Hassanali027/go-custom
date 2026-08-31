@@ -243,7 +243,8 @@
 <x-about-hero 
     title="About Us"
     description="From box styles and materials to custom sizes, pricing, and delivery, find quick answers to the questions we hear most."
-    bgImage="uploads/about us .webp"
+    bgImage="uploads/about-us-hero.webp"
+    mobileBgImage="uploads/about-us-mobile.webp"
     breadcrumb="About Us"
 />
 
