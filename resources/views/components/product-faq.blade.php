@@ -93,7 +93,8 @@
             padding-top: 0.625rem;
         }
         .product-faq-heading {
-            font-size: 1.5rem;
+            font-size: clamp(1rem, 5.5vw, 1.5rem) !important;
+            white-space: nowrap !important;
             margin-bottom: 1.875rem;
         }
         .product-faq-question {

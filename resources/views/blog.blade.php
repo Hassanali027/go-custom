@@ -284,7 +284,8 @@
         <x-about-hero 
             title="Blog"
             description="Discover packaging ideas, industry trends, design inspiration, and practical tips to help your brand stand out."
-            bgImage="uploads/about-us-banner.webp"
+            bgImage="uploads/blog-hero.webp"
+            mobileBgImage="uploads/blog-hero-mobile.webp"
             breadcrumb="Blog"
             overlay="rgba(10, 34, 64, 0.6)"
         />

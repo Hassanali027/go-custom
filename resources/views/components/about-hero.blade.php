@@ -3,7 +3,8 @@
     'subtitle' => null,
     'description' => null,
     'desc' => null,
-    'bgImage' => 'uploads/about us .webp',
+    'bgImage' => 'uploads/about-us-hero.webp',
+    'mobileBgImage' => null,
     'bg' => null,
     'breadcrumb' => 'About Us',
     'breadcrumbs' => [],
@@ -13,8 +14,9 @@
 @php
     $finalTitle = $title ?? 'About Us';
     $finalDesc = $description ?? $desc ?? $subtitle ?? '';
-    $rawBg = $bg ?? $bgImage ?? 'uploads/about us .webp';
+    $rawBg = $bg ?? $bgImage ?? 'uploads/about-us-hero.webp';
     $finalBg = \Illuminate\Support\Str::startsWith($rawBg, ['http://', 'https://']) ? $rawBg : asset($rawBg);
+    $finalMobileBg = $mobileBgImage ? (\Illuminate\Support\Str::startsWith($mobileBgImage, ['http://', 'https://']) ? $mobileBgImage : asset($mobileBgImage)) : $finalBg;
 @endphp
 
 <style>
@@ -95,6 +97,7 @@
 
     @media (max-width: 48rem) {
         .about-hero-component {
+            background-image: linear-gradient({{ $overlay }}, {{ $overlay }}), url('{{ $finalMobileBg }}');
             padding: 5rem 1.25rem;
         }
         .about-hero-container {

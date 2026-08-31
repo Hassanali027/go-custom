@@ -353,7 +353,8 @@
         <x-about-hero 
             title="Get A Free Quote"
             description="Tell us about your packaging needs and our team will create a custom quote around your product, brand, and requirements."
-            bgImage="uploads/quote-hero-img.png"
+            bgImage="uploads/qoutation-page-hero.webp"
+            mobileBgImage="uploads/qoutation-page-mobile.webp"
             breadcrumb="Get a Quote"
         />
 

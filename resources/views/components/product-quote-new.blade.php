@@ -8,7 +8,9 @@
         overflow: hidden;
         font-family: 'DM Sans', sans-serif;
         box-sizing: border-box;
-        height: 44.0625rem;
+        min-height: 44.0625rem;
+        height: auto;
+        padding: 1.5rem 0;
         display: flex;
         align-items: center;
         position: relative;
@@ -27,9 +29,10 @@
     .pqn-form-col {
         flex: 0 0 50.75rem;
         max-width: 50.75rem;
-        height: 41.0625rem;
+        min-height: 41.0625rem;
+        height: auto;
         background-color: #FFF8E7;
-        padding: 2.5rem;
+        padding: 2.5rem 2.5rem 3.75rem;
         border-radius: 1rem;
         margin: 1.5rem 0;
         box-sizing: border-box;
@@ -154,6 +157,7 @@
     .pqn-btn-wrapper {
         text-align: center;
         margin-top: 1.875rem;
+        margin-bottom: 0.5rem;
     }
     
     .pqn-sidebar-col {

@@ -4,6 +4,8 @@
         background: transparent;
         padding: 0 0 1.5rem;
         font-family: 'Open Sans', sans-serif;
+        overflow: hidden;
+        width: 100%;
     }
 
     .customize-container {
@@ -118,6 +120,7 @@
 
     .customize-content {
         width: 100%;
+        overflow: hidden;
     }
 
     .customize-grid {

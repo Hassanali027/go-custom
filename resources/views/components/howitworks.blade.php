@@ -99,17 +99,29 @@
         grid-template-columns: repeat(2, 1fr);
         gap: 2.5rem 1.25rem;
     }
+    .hiw-title {
+        font-size: clamp(1rem, 3.8vw, 1.75rem);
+    }
 }
 @media (max-width: 48rem) {
     .how-it-works-section {
         display: block;
     }
+    .hiw-container {
+        padding: 0 1rem !important;
+    }
     .hiw-subtitle {
         text-align: justify;
     }
     .hiw-title {
-        font-size: 1.25rem;
-        white-space: nowrap;
+        font-size: clamp(1.2rem, 5.2vw, 1.55rem) !important;
+        font-weight: 700 !important;
+        white-space: nowrap !important;
+        overflow: visible !important;
+        max-width: 100% !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
+        letter-spacing: -0.01em;
     }
     .hide-on-mobile-home {
         display: none !important;
@@ -117,7 +129,7 @@
 }
 </style>
 
-<section class="how-it-works-section {{ request()->is('/') ? 'hide-on-mobile-home' : '' }}">
+<section class="how-it-works-section {{ request()->is('/') || (isset($hideOnMobile) && $hideOnMobile) ? 'hide-on-mobile-home' : '' }}">
     <div class="hiw-container">
         <div class="hiw-label">HOW IT WORKS</div>
         <h2 class="hiw-title">Simple 4&ndash;Step Order Process</h2>
