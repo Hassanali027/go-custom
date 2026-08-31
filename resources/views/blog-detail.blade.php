@@ -119,6 +119,14 @@
             text-align: justify;
         }
 
+        .main-content h1,
+        .main-content h2,
+        .main-content h3,
+        .main-content h4,
+        .main-content h5,
+        .main-content h6 {
+            text-align: left;
+        }
         .main-content h2 {
             font-family: var(--font-heading);
             font-size: 1.75rem;
@@ -143,7 +151,7 @@
 
         /* Key Takeaways Box (Mapping from .callout-box) */
         .callout-box {
-            background-color: #FDF9EE;
+            background-color: #FFF8E7;
             border-radius: 0.75rem;
             padding: 1.875rem;
             margin-bottom: 2.5rem;
@@ -223,11 +231,11 @@
         }
 
         .author-share-card {
-            border: 1px solid #EAEAEA;
-            border-radius: 0.5rem;
-            padding: 1.5rem;
+            border: none;
+            border-radius: 0;
+            padding: 0;
             margin-bottom: 1.875rem;
-            background: #fff;
+            background: transparent;
         }
         .author-share-card .widget { margin-bottom: 0; }
         .card-divider {
@@ -242,7 +250,7 @@
         }
         .author-profile {
             display: flex;
-            align-items: center;
+            align-items: flex-start;
             gap: 0.9375rem;
             margin-bottom: 0.9375rem;
         }
@@ -251,6 +259,8 @@
             height: 3.75rem;
             border-radius: 50%;
             object-fit: cover;
+            flex-shrink: 0;
+            margin-top: 0.125rem;
         }
         .author-name {
             font-family: var(--font-heading);
@@ -267,7 +277,7 @@
             font-size: 0.875rem;
             color: #000;
             line-height: 1.5;
-            text-align: justify;
+            text-align: left;
         }
 
         /* TOC */
@@ -317,7 +327,8 @@
 
         /* Related Blogs */
         .related-section {
-            padding: 1.25rem 0 0 0;
+            padding: 0;
+            margin-top: -2rem;
         }
         .related-title {
             font-family: var(--font-heading);
@@ -329,31 +340,36 @@
         
         .blog-grid {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
+            grid-template-columns: repeat(3, minmax(0, 23.875rem));
+            justify-content: center;
             gap: 1.875rem;
         }
 
         .blog-card {
             border: 1px solid var(--border-color);
-            border-radius: 0.75rem;
+            border-radius: 1rem;
             overflow: hidden;
             display: flex;
             flex-direction: column;
             background: #fff;
             transition: transform 0.3s;
+            max-width: 23.875rem;
+            min-height: 27.125rem;
         }
         .blog-card:hover {
             transform: translateY(-0.3125rem);
             box-shadow: 0 0.625rem 1.5625rem rgba(0,0,0,0.05);
         }
         .blog-card img {
-            width: 100%;
+            width: calc(100% - 1.75rem);
             height: 13.75rem;
             object-fit: cover;
-            border-bottom: 1px solid var(--border-color);
+            border-radius: 0.75rem;
+            margin: 0.875rem auto 0;
+            display: block;
         }
         .card-content {
-            padding: 1.5rem;
+            padding: 1.25rem 1.5rem 1.5rem;
             display: flex;
             flex-direction: column;
             flex: 1;
@@ -361,14 +377,14 @@
         .card-meta {
             display: flex;
             justify-content: space-between;
-            font-size: 0.75rem;
-            color: #888;
-            margin-bottom: 0.9375rem;
+            font-size: 0.9375rem;
+            color: #1a1a1a;
+            margin-bottom: 0.75rem;
             font-weight: 500;
         }
         .blog-card h3 {
             font-family: var(--font-heading);
-            font-size: 1.125rem;
+            font-size: 1.25rem !important;
             font-weight: 700;
             margin: 0 0 0.9375rem 0;
             line-height: 1.4;
@@ -383,6 +399,8 @@
             gap: 0.3125rem;
         }
         .card-link i { color: var(--yellow); }
+
+        .mobile-share-divider { display: none; }
 
         @media (max-width: 61.9375rem) {
             .content-layout { grid-template-columns: 1fr; gap: 0; }
@@ -401,8 +419,8 @@
                 height: 18.75rem;
                 margin-bottom: 1.5625rem;
             }
-            .article-title { 
-                font-size: 1.5rem; 
+            .article-title {
+                font-size: 1.625rem !important;
                 line-height: 2.125rem;
                 text-align: left;
                 width: 100%;
@@ -414,18 +432,37 @@
                 line-height: 1.6;
             }
             .toc-widget { display: none !important; }
+            .sidebar {
+                border: 1px solid #EAEAEA;
+                border-left: 1px solid #EAEAEA;
+                border-radius: 0.75rem;
+                padding: 1.5rem;
+                margin-top: 1.875rem;
+            }
+            .mobile-share-divider {
+                display: block;
+                border: none;
+                border-top: 1px dotted #ccc;
+                margin: 1.5rem 0;
+            }
+            .author-share-card { margin-bottom: 1.5rem; }
             .desktop-cta { display: none !important; }
             .mobile-cta { display: flex !important; margin-top: 1.875rem; }
             .blog-grid { grid-template-columns: 1fr; }
             .cta-banner { flex-direction: column; text-align: center; gap: 1.25rem; }
             
             .related-section {
-                padding-top: 0.625rem;
+                padding-top: 0;
+                margin-top: 1.5rem;
             }
             .related-title {
                 margin-top: 0;
                 margin-bottom: 1.25rem;
                 font-size: 1.5rem;
+            }
+            .blog-card h3 {
+                word-spacing: 0.25rem;
+                line-height: 1.6;
             }
         }
         
@@ -489,9 +526,21 @@
                     <span>8 min read</span>
                 </div>
                 
+                @php $keyTakeaways = trim($blog['key_takeaways'] ?? ''); @endphp
+
+                @if(!empty($keyTakeaways))
+                    <div class="callout-box">
+                        <div class="callout-label">KEY TAKEAWAYS</div>
+                        <div class="callout-content">
+                            {!! $keyTakeaways !!}
+                        </div>
+                    </div>
+                @endif
+
                 @if(!empty($blog['content']))
                     {!! $blog['content'] !!}
                 @else
+                    @if(empty($keyTakeaways))
                     <div class="callout-box">
                         <div class="callout-label">KEY TAKEAWAYS</div>
                         <div class="callout-content">
@@ -504,6 +553,7 @@
                             </ul>
                         </div>
                     </div>
+                    @endif
 
                     <p>Packaging has evolved far beyond a simple way to protect a product. Today, it plays an important role in how customers recognize, experience, and remember a brand. From the moment a package arrives at a customer's doorstep to the satisfaction of opening it, every detail can influence how a product is perceived.</p>
 
@@ -576,6 +626,8 @@
                 </div>
                 
                 <hr style="border: none; border-top: 1px dotted #ccc; margin: 1.875rem 0;" class="toc-widget">
+
+                <hr class="mobile-share-divider">
 
                 <!-- Share Widget -->
                 <div class="widget">

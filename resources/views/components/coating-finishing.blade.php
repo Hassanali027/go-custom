@@ -144,9 +144,9 @@
     .custom-card {
         flex: 0 0 auto;
         width: 13.75rem;
-        background: #FFF;
+        background: transparent;
         border-radius: 0.75rem;
-        padding: 0.75rem;
+        padding: 0;
         display: flex;
         flex-direction: column;
         transition: opacity 0.2s ease, transform 0.2s ease;
@@ -246,11 +246,9 @@
             display: flex !important;
             flex-direction: row !important;
             gap: 0.75rem !important;
-            overflow-x: auto !important;
-            scrollbar-width: none;
-            -ms-overflow-style: none;
+            width: max-content !important;
             padding-bottom: 0.625rem !important;
-            animation: none !important;
+            animation: marqueeTrain 30s linear infinite !important;
         }
         
         .customize-grid::-webkit-scrollbar {
@@ -258,7 +256,7 @@
         }
 
         .clone-card {
-            display: none !important;
+            display: block !important;
         }
 
         .custom-card {

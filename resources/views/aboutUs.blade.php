@@ -108,7 +108,7 @@
 .built-around p.subtitle {
     font-size: 0.875rem;
     color: #000 !important;
-    margin-bottom: 3.125rem;
+    margin-bottom: 1.75rem;
 }
 .features-grid {
     display: grid;
@@ -120,7 +120,6 @@
     padding: 1.875rem 1.25rem;
     border-radius: 0.75rem;
     text-align: center;
-    min-height: 18.75rem;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -141,10 +140,11 @@
 }
 .feature-card h3 {
     font-family: var(--font-heading);
-    font-size: 1.125rem;
+    font-size: 1.125rem !important;
     font-weight: 700;
     margin-bottom: 0.9375rem;
     color: #000;
+    white-space: nowrap;
 }
 .feature-card p {
     font-size: 0.875rem;
@@ -156,13 +156,13 @@
 /* 6. Our Valued Customers */
 .valued-customers {
     text-align: center;
-    padding: 2.5rem 0 !important;
+    padding: 1.25rem 0 !important;
 }
 .valued-customers h2 {
     font-family: var(--font-heading);
     font-size: 1.75rem;
     font-weight: 700;
-    margin-bottom: 2.5rem;
+    margin-bottom: 1.5rem;
 }
 .logo-grid {
     display: grid;

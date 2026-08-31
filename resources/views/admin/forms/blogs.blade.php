@@ -107,7 +107,12 @@
                 <label>Excerpt</label>
                 <textarea name="excerpt">{{ $v('excerpt') }}</textarea>
             </div>
-            
+
+            <div class="field full">
+                <label>Key Takeaways</label>
+                <textarea name="key_takeaways">{{ $v('key_takeaways') }}</textarea>
+            </div>
+
             <div class="field full">
                 <label>Article Content</label>
                 <textarea name="content" style="min-height:18.75rem">{{ $v('content') }}</textarea>
@@ -175,7 +180,7 @@
         if (typeof tinymce !== 'undefined') {
             tinymce.init({
                 ...window.tinyMceUploadConfig,
-                selector: 'textarea[name="content"], textarea[name="excerpt"], textarea[name="author_description"]',
+                selector: 'textarea[name="content"], textarea[name="excerpt"], textarea[name="key_takeaways"], textarea[name="author_description"]',
                 height: 360,
                 plugins: 'code advlist autolink lists link image charmap preview anchor searchreplace visualblocks fullscreen insertdatetime media table help wordcount',
                 toolbar: 'undo redo | blocks | bold italic underline strikethrough | forecolor backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image media table | code fullscreen preview',
@@ -185,7 +190,7 @@
                 content_style: 'body { font-family:"DM Sans",sans-serif; font-size:0.875rem; line-height:1.6; }'
             });
             // Keep the full article editor taller while the short rich-text fields stay compact.
-            ['excerpt', 'author_description'].forEach(function (name) {
+            ['excerpt', 'key_takeaways', 'author_description'].forEach(function (name) {
                 const editor = tinymce.get(name);
                 if (editor) editor.theme.resizeTo(null, 260);
             });

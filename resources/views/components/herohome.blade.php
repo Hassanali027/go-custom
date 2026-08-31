@@ -201,10 +201,7 @@
         transition: background-color 0.3s, color 0.3s, transform 0.2s;
     }
 
-    .hero-btn:hover {
-        background: var(--primary-color); color: #fff;
-        transform: translateY(-0.125rem);
-    }
+
 
     .hero-image-wrapper {
         position: absolute;

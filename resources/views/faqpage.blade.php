@@ -10,7 +10,7 @@
     .faq-container {
         max-width: var(--site-container-width, 80rem);
         margin: 0 auto;
-        padding: 3.125rem var(--site-container-gutter, 3.4375rem);
+        padding: 1.5rem var(--site-container-gutter, 3.4375rem) 1.25rem var(--site-container-gutter, 3.4375rem);
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -22,7 +22,7 @@
         display: flex;
         justify-content: center;
         gap: 0.9375rem;
-        margin-bottom: 3.125rem;
+        margin-bottom: 1.5rem;
         flex-wrap: wrap;
     }
     .faq-tabs-container button {
@@ -48,13 +48,16 @@
         width: 100%;
     }
     .faq-section {
-        margin-bottom: 3.125rem;
+        margin-bottom: 2.5rem;
+    }
+    .faq-section:last-child {
+        margin-bottom: 0;
     }
     .faq-section-title {
         font-size: 1.375rem;
         font-weight: 700;
         color: #111;
-        margin-bottom: 1.5625rem;
+        margin-bottom: 1rem;
     }
 
     .faq-accordion {

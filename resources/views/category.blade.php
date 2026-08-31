@@ -88,9 +88,9 @@
         min-width: 0;
         max-width: 25rem;
         width: 100%;
-        border-radius: 1.25rem;
-        overflow: hidden;
-        box-shadow: 0 0.625rem 1.875rem rgba(0,0,0,0.06);
+        border-radius: 0;
+        overflow: visible;
+        box-shadow: none;
         background-color: transparent;
     }
 
@@ -98,9 +98,9 @@
         width: 100%;
         height: auto;
         aspect-ratio: 1 / 1;
-        object-fit: cover;
+        object-fit: contain;
         display: block;
-        border-radius: 1.25rem;
+        border-radius: 0;
     }
 
     @media (max-width: 62rem) {

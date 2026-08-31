@@ -19,7 +19,6 @@ class TenFaqsSeeder extends Seeder
             ['question' => 'How long does production take?', 'answer' => 'Production time depends on the quantity and complexity of your order. Our team confirms the timeline once your artwork and specifications are approved.'],
             ['question' => 'Do you offer sustainable packaging materials?', 'answer' => 'Yes. Kraft, recyclable paperboard, responsibly sourced materials, and eco-conscious finishing options are available.'],
             ['question' => 'Can I get a sample before placing a bulk order?', 'answer' => 'Sample options are available for many projects. Contact us with your product and packaging requirements to discuss the best route.'],
-            ['question' => 'How can I request a quote?', 'answer' => 'Send your box dimensions, quantity, product details, artwork, and preferred material or finish. We will prepare a custom quotation for you.'],
         ];
 
         DB::table('homepage_contents')->updateOrInsert(

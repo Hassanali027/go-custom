@@ -59,7 +59,7 @@
             display: flex;
             gap: 1.875rem;
             flex-wrap: wrap;
-            align-items: flex-start;
+            align-items: stretch;
             justify-content: center;
             box-sizing: border-box;
         }
@@ -68,17 +68,17 @@
             flex: 0 1 46.875rem;
             max-width: 46.875rem;
             width: 100%;
-            background-color: var(--section-background);
+            background-color: #FFF8E7;
             padding: 2.5rem;
             border-radius: 1rem;
             box-sizing: border-box;
             min-width: 0;
-            border: 1px solid #EFEAE7;
+            border: none;
         }
 
         .iq-page-form-card h2 {
             font-size: clamp(1.375rem, 3vw, 1.75rem);
-            font-weight: 800;
+            font-weight: 700;
             text-align: center;
             margin-bottom: 1.75rem;
             color: #111111;
@@ -93,6 +93,35 @@
             /* gap: 1.25rem; */
             box-sizing: border-box;
             margin-top:1.25rem;
+        }
+
+        .iq-page-form-card {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .iq-page-form-card form {
+            flex: 1;
+        }
+
+        .iq-msg-group {
+            flex: 1;
+        }
+
+        .iq-msg-group textarea {
+            flex: 1;
+            min-height: 6rem;
+        }
+
+        .iq-sidebar-img {
+            width: 100%;
+            flex: 1 1 auto;
+            min-height: 0;
+            aspect-ratio: 1;
+            object-fit: contain;
+            border-radius: 0.75rem;
+            margin-bottom: 1.5rem;
+            display: block;
         }
 
         .iq-form-group {
@@ -117,11 +146,11 @@
             width: 100%;
             height: 2.75rem;
             padding: 0 0.875rem;
-            border: 0.0312rem solid black;
+            border: 1px solid #DDD6CB;
             border-radius: 0.5rem;
             font-size: 0.875rem;
             font-family: 'DM Sans', sans-serif;
-            background-color: transparent !important;
+            background-color: #FFF8E7 !important;
             color: #2D2D2D;
             box-sizing: border-box;
             outline: none;
@@ -159,8 +188,8 @@
         .iq-form-group input:focus,
         .iq-form-group select:focus,
         .iq-form-group textarea:focus {
-            border-color: var(--primary-color, #8D4445) !important;
-            box-shadow: 0 0 0 0.1875rem rgba(141, 68, 69, 0.12) !important;
+            border-color: var(--primary-color, #0B2545) !important;
+            box-shadow: 0 0 0 0.1875rem rgba(11, 37, 69, 0.12) !important;
         }
 
         .iq-grid-2 {
@@ -365,9 +394,7 @@
                 <p style="font-family: 'DM Sans', sans-serif; font-size: 0.9375rem; color: #333; line-height: 1.6; margin-bottom: 1.5rem; text-align: justify;">
                     From simple to premium, we create custom packaging designed around your product and brand. Tell us what you need, and our team will help bring your packaging vision to life with the right size, material, finish, and print. Fill out the form to get started.
                 </p>
-                <div style="width: 100%; aspect-ratio: 1; background-color: #D9D9D9; border-radius: 0.75rem; margin-bottom: 1.5rem; display: flex; justify-content: center; align-items: center;">
-                    <i class="fa-solid fa-image" style="font-size: 3rem; color: #999;"></i>
-                </div>
+                <img src="{{ asset('uploads/Apparel Box .png') }}" alt="Custom packaging boxes" class="iq-sidebar-img">
                 <div class="iq-sidebar-card" style="margin-bottom: 0; background-color: #F3F3F3; border: none;">
                     <h3 style="margin-bottom: 1rem; font-size: 1rem;">Need Help Immediately?</h3>
                     <div style="display: flex; flex-direction: column; gap: 0.75rem;">
@@ -389,7 +416,7 @@
 
             <!-- Right form section -->
             <div class="iq-page-form-card">
-                <h2>Instant Quotes, Quick Service!</h2>
+                <h2>Instant Quotes, Quick Service</h2>
                 @if(session('success'))
                     <div style="background-color: #d4edda; color: #155724; padding: 0.625rem; border-radius: 0.3125rem; margin-bottom: 1.25rem;">
                         {{ session('success') }}
@@ -460,7 +487,7 @@
                         <div class="iq-form-group">
                             <label>Color Options</label>
                             <select name="color">
-                                <option value="">Color Options</option>
+                                <option value="">Choose option</option>
                                 <option value="1 Color">1 Color</option>
                                 <option value="2 Colors">2 Colors</option>
                                 <option value="3 Colors">3 Colors</option>
@@ -485,7 +512,7 @@
                         </div>
                         <div class="iq-form-group">
                             <label>Upload File Here</label>
-                            <div class="iq-upload-wrapper" style="display: flex; align-items: center; border: 1px solid #E2D9D5; border-radius: 0.5rem; overflow: hidden; background: transparent; height: 2.75rem;">
+                            <div class="iq-upload-wrapper" style="display: flex; align-items: center; border: 1px solid #DDD6CB; border-radius: 0.5rem; overflow: hidden; background: #FFF8E7; height: 2.75rem;">
                                 <input type="file" name="quote_file" id="quote-file-input" style="display: none;" onchange="document.getElementById('quote-file-name').value = this.files[0] ? this.files[0].name : ''">
                                 <input type="text" id="quote-file-name" placeholder="No file chosen" readonly style="flex: 1; padding: 0 0.875rem; border: none; font-size: 0.875rem; background: transparent; outline: none; color: #666; height: 100%;">
                                 <button type="button" class="iq-upload-btn" onclick="document.getElementById('quote-file-input').click()" style="background-color: var(--secondary-color); color: var(--primary-color); border: none; padding: 0 1.25rem; font-size: 0.875rem; font-weight: 700; cursor: pointer; height: 100%; font-family: 'DM Sans', sans-serif;">Upload</button>
@@ -494,7 +521,7 @@
                     </div>
 
                     <!-- Row 6: Message -->
-                    <div class="iq-form-group">
+                    <div class="iq-form-group iq-msg-group">
                         <label>Message</label>
                         <textarea name="message" rows="4" placeholder="Enter your message"></textarea>
                     </div>

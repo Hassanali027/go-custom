@@ -158,12 +158,12 @@
             color: #000;
         }
 
-        .contact-form input, 
+        .contact-form input,
         .contact-form textarea {
             padding: 0.75rem 0.9375rem;
             border: 1px solid #E0DCD5;
             border-radius: 0.375rem;
-            background: #fff;
+            background: #FFF8E7;
             font-family: 'DM Sans', sans-serif;
             font-size: 0.875rem;
             outline: none;

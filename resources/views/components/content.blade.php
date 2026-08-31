@@ -4,7 +4,7 @@
     ───────────────────────────────────────── */
     .text-content-section {
         background: var(--background-color);
-        padding: 0 0 1.5625rem 0;
+        padding: 1.25rem 0 1.5625rem 0;
     }
 
     .text-content-container {
@@ -19,7 +19,7 @@
     .text-content-card {
         width: 100%;
         max-width: 64.375rem;
-        background: #FAF5EC;
+        background: #FFF8E7;
         border-radius: 0.625rem;
         border: none;
         padding: 3rem 1.25rem 3rem 3.5rem;
@@ -155,15 +155,15 @@
             padding: 0 1rem;
         }
         .text-content-card {
-            padding: 1.5rem 0.5rem 1.5rem 1.125rem;
+            padding: 1.5rem 0 1.5rem 1.25rem;
             border-radius: 0.625rem;
             border: none;
-            height: 39.625rem;
+            max-height: 39.625rem;
             position: relative;
         }
         .text-content-inner {
-            height: 100%;
-            overflow-y: scroll;
+            max-height: calc(39.625rem - 3rem);
+            overflow-y: auto;
             padding-right: 1.25rem;
             /* Hide native scrollbar on mobile */
             -ms-overflow-style: none;
@@ -240,7 +240,10 @@
         var thumb = document.getElementById('tcThumb');
         if (!inner || !track || !thumb) return;
 
-        track.style.display = 'block';
+        // Only show the custom scrollbar when the content actually overflows.
+        var hasOverflow = inner.scrollHeight > inner.clientHeight + 2;
+        track.style.display = hasOverflow ? 'block' : 'none';
+        if (!hasOverflow) return;
 
         function updateThumb() {
             var trackH = track.offsetHeight;

@@ -2482,6 +2482,14 @@
                 opacity: 0.3;
             }
 
+            .sfr-img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                border-radius: 0.75rem;
+                display: block;
+            }
+
             .sfr-text {
                 font-family: 'Open Sans', sans-serif;
                 font-weight: 800;
@@ -2519,10 +2527,6 @@
                     max-width: 20.375rem;
                     aspect-ratio: 326 / 218.69;
                     margin: 0 auto;
-                    background-image: url('{{ asset(' uploads/Iframe.png') }}');
-                    background-size: 100% 100%;
-                    background-position: center;
-                    background-repeat: no-repeat;
                     border-radius: 0.75rem;
                     flex: none !important;
                 }
@@ -2577,19 +2581,7 @@
                         <a href="/request-quote/" class="see-feel-btn desktop-btn">Get Instant Quote</a>
                     </div>
                     <div class="see-feel-right">
-                        <div class="sfr-icon">
-                            <svg width="123" height="108" viewBox="0 0 24 24" fill="currentColor">
-                                <path
-                                    d="M21 19V5C21 3.9 20.1 3 19 3H5C3.9 3 3 3.9 3 5V19C3 20.1 3.9 21 5 21H19C20.1 21 21 20.1 21 19ZM8.5 13.5L11 16.51L14.5 12L19 18H5L8.5 13.5Z" />
-                            </svg>
-                        </div>
-                        <span class="sfr-text">or</span>
-                        <div class="sfr-icon">
-                            <svg width="96.35" height="96.35" viewBox="0 0 24 24" fill="currentColor">
-                                <path
-                                    d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM10 16.5V7.5L16 12L10 16.5Z" />
-                            </svg>
-                        </div>
+                        <img src="{{ asset('uploads/Iframe.png') }}" alt="Sustainable packaging materials" class="sfr-img">
                     </div>
                     <a href="/request-quote/" class="see-feel-btn mobile-btn">Get Instant Quote</a>
                 </div>

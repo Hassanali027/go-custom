@@ -8,7 +8,7 @@
     }
 
     .cta-container {
-        max-width: 90rem;
+        max-width: 80rem;
         margin: 0 auto;
         padding: 0 1.5rem;
         box-sizing: border-box;
@@ -19,7 +19,7 @@
 
     .cta-banner {
         width: 100%;
-        max-width: 77.5rem;
+        max-width: 100%;
         margin: 0 auto;
         display: flex;
         position: relative;
