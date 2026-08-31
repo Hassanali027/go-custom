@@ -13,7 +13,7 @@ class RequestedCategoryContentSeeder extends Seeder
             'apparel-boxes' => [
                 'name' => 'Apparel Boxes', 'focus' => 'clothing, fashion accessories, and premium apparel',
                 'benefit' => 'keep garments neatly presented while strengthening your fashion brand',
-                'images' => ['Image (Apparel product packaging solution).png', 'Image (Apparel product packaging solution) (1).png', 'Image (Apparel product packaging solution) (2).png', 'Image (Apparel product packaging solution) (3).png'],
+                'images' => ['Apparel Box .png', 'apparel-boxes.webp', 'custom-navy-blue-rigid-gift-box.webp', 'custom-cream-square-luxury-box.webp'],
             ],
             'bakery-boxes' => [
                 'name' => 'Bakery Boxes', 'focus' => 'cakes, pastries, cookies, and baked treats',
