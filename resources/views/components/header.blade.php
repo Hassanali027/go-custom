@@ -686,6 +686,8 @@
             box-shadow: 0 0.25rem 0.9375rem rgba(0,0,0,0.05);
             border: 1px solid #f0f0f0 !important;
             padding: 0 !important;
+            outline: none !important;
+            -webkit-tap-highlight-color: transparent;
         }
 
         .search-trigger-btn svg, .mobile-menu-btn svg {
@@ -846,7 +848,7 @@
             transform: translateY(-50%);
             width: 1.125rem;
             height: 1.125rem;
-            fill: #888;
+            fill: #0B2545;
         }
 
         .mobile-search .clear-icon {
@@ -856,18 +858,7 @@
             transform: translateY(-50%);
             width: 1.125rem;
             height: 1.125rem;
-            fill: #888;
-            cursor: pointer;
-        }
-
-        .mobile-search .clear-icon {
-            position: absolute;
-            right: 0.75rem;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 1.125rem;
-            height: 1.125rem;
-            fill: #aaa;
+            fill: #0B2545;
             cursor: pointer;
         }
 
@@ -1092,7 +1083,11 @@
 
     <div id="desktopSearchForm" style="display: none; position: absolute; right: 11.25rem; top: 100%; margin-top: 0.625rem; width: 20rem; background: #fff; border-radius: 3.125rem; box-shadow: 0 0.9375rem 2.1875rem rgba(0,0,0,0.1); padding: 0.375rem; z-index: 1001; border: 1px solid #eaeaea;">
         <form action="/search" method="GET" style="display: flex; width: 100%; position: relative; align-items: center;">
-            <input type="text" name="q" placeholder="Search products..." style="flex: 1; height: 2.875rem; padding: 0 1.25rem 0 1.5rem; border: none; border-radius: 3.125rem; outline: none; font-family: inherit; font-size: 0.9375rem; color: #333;" autocomplete="off">
+            <input type="text" name="q" placeholder="Search products..." style="flex: 1; height: 2.875rem; padding: 0 2.5rem 0 1.5rem; border: none; border-radius: 3.125rem; outline: none; font-family: inherit; font-size: 0.9375rem; color: #333;" autocomplete="off" oninput="this.nextElementSibling.style.display = this.value ? 'block' : 'none';">
+            <svg class="clear-icon" viewBox="0 0 24 24" style="display: none; position: absolute; right: 3.5rem; width: 1.25rem; height: 1.25rem; cursor: pointer; fill: none; stroke: #0B2545; stroke-width: 2;" onclick="this.previousElementSibling.value=''; this.style.display='none'; this.previousElementSibling.focus();">
+                <circle cx="12" cy="12" r="10"></circle>
+                <path stroke-linecap="round" stroke-linejoin="round" d="M15 9l-6 6M9 9l6 6"></path>
+            </svg>
             <button type="submit" style="width: 2.875rem; height: 2.875rem; background-color: var(--secondary-color); color: var(--primary-color); border: none; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; flex-shrink: 0; transition: transform 0.2s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
             </button>
@@ -1140,8 +1135,9 @@
                     <path fill="currentColor" d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
                 </svg>
                 <input type="text" name="q" placeholder="Search products..." oninput="this.nextElementSibling.style.display = this.value ? 'block' : 'none';">
-                <svg class="clear-icon" viewBox="0 0 24 24" style="display: none; fill: none; stroke: #8D4445; stroke-width: 2;" onclick="this.previousElementSibling.value=''; this.style.display='none'; this.previousElementSibling.focus();">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path>
+                <svg class="clear-icon" viewBox="0 0 24 24" style="display: none; fill: none; stroke: #0B2545; stroke-width: 2;" onclick="this.previousElementSibling.value=''; this.style.display='none'; this.previousElementSibling.focus();">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M15 9l-6 6M9 9l6 6"></path>
                 </svg>
             </form>
 
