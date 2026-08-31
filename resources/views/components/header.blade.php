@@ -10,10 +10,22 @@
         --topbar-bg: #0B2240;
         --section-text-color: #000000;
         --section-background: #FFFBF0;
-        --heading-h1-size: 2rem;
-        --heading-h2-size: 1.75rem;
-        --heading-h3-size: 1.5rem;
+        --heading-h1-size: 40px;
+        --heading-h2-size: 32px;
+        --heading-h3-size: 26px;
         --heading-h4-size: 1.25rem;
+    }
+
+    body h1 {
+        font-size: var(--heading-h1-size) !important;
+    }
+
+    body h2 {
+        font-size: var(--heading-h2-size) !important;
+    }
+
+    body h3 {
+        font-size: var(--heading-h3-size) !important;
     }
 
     .header-container {
