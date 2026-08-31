@@ -247,10 +247,15 @@
             scrollbar-width: none;
             -ms-overflow-style: none;
             padding-bottom: 0.625rem !important;
+            animation: none !important;
         }
         
         .customize-grid::-webkit-scrollbar {
             display: none;
+        }
+
+        .clone-card {
+            display: none !important;
         }
 
         .custom-card {
@@ -392,6 +397,12 @@
             printing_options: [1, 0, 2, 3, 7, 5, 6, 4]
         };
 
+        const grid = document.querySelector('.customize-grid');
+        if (grid && grid.children.length === 8) {
+            grid.innerHTML += grid.innerHTML;
+            Array.from(grid.children).slice(8).forEach(child => child.classList.add('clone-card'));
+        }
+
         const customizeCards = Array.from(document.querySelectorAll('.customize-grid .custom-card'));
         const customizeSidebar = document.querySelector('.customize-sidebar');
         const customizeUploadsUrl = "{{ asset('') }}";
@@ -493,14 +504,25 @@
 
                 cardOrder.forEach(function(cardIndex, position) {
                     if (!cardSet[position]) return;
-                    const card = customizeCards[cardIndex];
                     const [imagePath, title] = cardSet[position];
+                    
+                    const card = customizeCards[cardIndex];
                     const image = card.querySelector('img');
                     image.src = customizeUploadsUrl + imagePath;
                     image.alt = title;
                     card.querySelector('.custom-card-title').textContent = title;
                     card.style.order = position + 1;
                     card.style.display = 'flex';
+                    
+                    if (customizeCards[cardIndex + 8]) {
+                        const cloneCard = customizeCards[cardIndex + 8];
+                        const cloneImage = cloneCard.querySelector('img');
+                        cloneImage.src = customizeUploadsUrl + imagePath;
+                        cloneImage.alt = title;
+                        cloneCard.querySelector('.custom-card-title').textContent = title;
+                        cloneCard.style.order = position + 1 + 8;
+                        cloneCard.style.display = 'flex';
+                    }
                 });
 
                 requestAnimationFrame(() => {
