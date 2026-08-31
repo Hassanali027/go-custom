@@ -2,7 +2,7 @@
     .quote-section {
         background: #FFFFFF;
         width: 100%;
-        padding: 0 0 1.25rem 0 !important;
+        padding: 0 0 0.75rem 0 !important;
         margin-top: 0 !important;
         font-family: 'DM Sans', sans-serif;
         position: relative;
@@ -14,7 +14,7 @@
         padding: 0 1.5rem;
         box-sizing: border-box;
         display: flex;
-        align-items: flex-start;
+        align-items: stretch;
         gap: 7.5rem;
     }
 
@@ -175,10 +175,10 @@
         flex: 1;
         display: flex;
         flex-direction: column;
-        justify-content: flex-start;
+        justify-content: space-between;
         padding-top: 1rem;
         padding-bottom: 1rem;
-        gap: 2.25rem;
+        gap: 1.5rem;
     }
 
     .qf-feature {
@@ -372,7 +372,7 @@
                 </div>
                 <div class="qf-feature-text">
                     <h3>Competitive Pricing</h3>
-                    <p>High quality printing that fits your budget.</p>
+                    <p>High quality printing with transparent wholesale rates that fit your budget.</p>
                 </div>
             </div>
 
@@ -383,7 +383,7 @@
                 </div>
                 <div class="qf-feature-text">
                     <h3>No Die or Plate Charges</h3>
-                    <p>No hidden charges, slow or custom designs.</p>
+                    <p>No hidden charges on dies, plates or custom designs — ever.</p>
                 </div>
             </div>
 
@@ -394,7 +394,7 @@
                 </div>
                 <div class="qf-feature-text">
                     <h3>Fast Turnarounds</h3>
-                    <p>Get your packaging rapidly when you need it.</p>
+                    <p>Rush production options as fast as 4–6 business days.</p>
                 </div>
             </div>
 
@@ -405,7 +405,7 @@
                 </div>
                 <div class="qf-feature-text">
                     <h3>Free Shipping</h3>
-                    <p>Anywhere in the USA, we ship with zero hidden fees.</p>
+                    <p>Anywhere in the USA, with zero hidden fees and full tracking.</p>
                 </div>
             </div>
         </div>

@@ -144,9 +144,9 @@
     .custom-card {
         flex: 0 0 auto;
         width: 13.75rem;
-        background: #FFF;
+        background: transparent;
         border-radius: 0.75rem;
-        padding: 0.75rem;
+        padding: 0;
         display: flex;
         flex-direction: column;
         transition: opacity 0.2s ease, transform 0.2s ease;

@@ -10,13 +10,13 @@ class ImportPremiumBoxesSeeder extends Seeder
 {
     public function run(): void
     {
-        DB::statement('SET FOREIGN_KEY_CHECKS=0;');
+        if (DB::getDriverName() === 'mysql') { DB::statement('SET FOREIGN_KEY_CHECKS=0;'); }
         DB::table('admin_category_product')->truncate();
         DB::table('admin_category_faqs')->truncate();
         DB::table('admin_product_faqs')->truncate();
         DB::table('admin_products')->truncate();
         DB::table('admin_categories')->truncate();
-        DB::statement('SET FOREIGN_KEY_CHECKS=1;');
+        if (DB::getDriverName() === 'mysql') { DB::statement('SET FOREIGN_KEY_CHECKS=1;'); }
 
         $structure = [
             'Box by Industry' => [

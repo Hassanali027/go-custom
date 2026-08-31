@@ -7,13 +7,15 @@
         --background-color: #FFFFFF;
         --footer-color: #0B2240;
         --header-bg: #FFFFFF;
-        --topbar-bg: #0B2240;
+        --topbar-bg: #0B2545;
         --section-text-color: #000000;
         --section-background: #FFFBF0;
         --heading-h1-size: 40px;
         --heading-h2-size: 32px;
         --heading-h3-size: 26px;
         --heading-h4-size: 1.25rem;
+        --heading-h5-size: 1.125rem;
+        --heading-h6-size: 1rem;
     }
 
     body h1 {
@@ -26,6 +28,38 @@
 
     body h3 {
         font-size: var(--heading-h3-size) !important;
+    }
+
+    body h4 {
+        font-size: var(--heading-h4-size) !important;
+    }
+
+    body h5 {
+        font-size: var(--heading-h5-size) !important;
+    }
+
+    body h6 {
+        font-size: var(--heading-h6-size) !important;
+    }
+
+    /* Global mobile heading sizes — desktop values are too large on phones */
+    @media (max-width: 48rem) {
+        :root {
+            --heading-h1-size: 28px;
+            --heading-h2-size: 24px;
+            --heading-h3-size: 20px;
+            --heading-h4-size: 1.125rem;
+            --heading-h5-size: 1rem;
+            --heading-h6-size: 0.9375rem;
+        }
+    }
+
+    @media (max-width: 30rem) {
+        :root {
+            --heading-h1-size: 26px;
+            --heading-h2-size: 22px;
+            --heading-h3-size: 19px;
+        }
     }
 
     .header-container {

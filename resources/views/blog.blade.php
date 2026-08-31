@@ -111,14 +111,17 @@
         /* Blog Grid */
         .blog-grid {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
+            grid-template-columns: repeat(3, minmax(0, 23.875rem));
+            justify-content: center;
             gap: 1.875rem;
             margin-bottom: 3.125rem;
         }
 
         .blog-card {
             border: 1px solid #EAEAEA;
-            border-radius: 0.75rem;
+            border-radius: 1rem;
+            max-width: 23.875rem;
+            min-height: 27.125rem;
             overflow: hidden;
             display: flex;
             flex-direction: column;
@@ -134,14 +137,16 @@
         }
 
         .blog-card img {
-            width: 100%;
-            height: 15rem;
+            width: calc(100% - 1.75rem);
+            height: 13.75rem;
             object-fit: cover;
-            border-bottom: 1px solid #EAEAEA;
+            border-radius: 0.75rem;
+            margin: 0.875rem auto 0;
+            display: block;
         }
 
         .card-content {
-            padding: 1.5rem;
+            padding: 1.25rem 1.5rem 1.5rem;
             display: flex;
             flex-direction: column;
             flex: 1;
@@ -150,15 +155,15 @@
         .card-meta {
             display: flex;
             justify-content: space-between;
-            font-size: 0.75rem;
-            color: #888;
-            margin-bottom: 0.9375rem;
+            font-size: 0.9375rem;
+            color: #1a1a1a;
+            margin-bottom: 0.75rem;
             font-weight: 500;
         }
 
         .blog-card h3 {
             font-family: var(--font-heading);
-            font-size: 1.25rem;
+            font-size: 1.25rem !important;
             font-weight: 700;
             margin: 0 0 1.25rem 0;
             color: var(--text-dark);
@@ -177,7 +182,7 @@
         }
         
         .card-link i {
-            color: var(--yellow);
+            color: var(--dark-blue);
         }
 
         /* Load More */
@@ -346,7 +351,7 @@
 
                 <!-- Grid -->
                 <div class="blog-grid">
-                    @foreach($displayBlogs as $item)
+                    @foreach($displayBlogs as $index => $item)
                         @php
                             $item = (array) $item;
                             $bTitle = $item['title'] ?? 'The Ultimate Guide To Choosing The Right Custom Packaging For Your Brand';
@@ -355,7 +360,7 @@
                             $bImg = !empty($item['image']) ? asset($item['image']) : asset('uploads/about-us-banner.webp');
                             $bUrl = url('/blog/' . $bSlug);
                         @endphp
-                        <div class="blog-card" onclick="window.location.href='{{ $bUrl }}';">
+                        <div class="blog-card {{ $index >= 9 ? 'blog-card-hidden' : '' }}" onclick="window.location.href='{{ $bUrl }}';" @if($index >= 9) style="display:none;" @endif>
                             <img src="{{ $bImg }}" alt="{{ $bTitle }}" onerror="this.src='{{ asset('uploads/about-us-banner.webp') }}'">
                             <div class="card-content">
                                 <div class="card-meta">
@@ -370,9 +375,23 @@
                 </div>
 
                 <!-- Load More -->
+                @if(count($displayBlogs) > 9)
                 <div class="load-more-wrap">
-                    <button class="read-btn" style="border:none; cursor:pointer; width: 12.625rem; height: 3.375rem;">Load more</button>
+                    <button type="button" class="read-btn" id="blogLoadMore" style="border:none; cursor:pointer; width: 12.625rem; height: 3.375rem;">Load more</button>
                 </div>
+                <script>
+                    document.getElementById('blogLoadMore').addEventListener('click', function () {
+                        var hidden = document.querySelectorAll('.blog-card-hidden');
+                        for (var i = 0; i < 9 && i < hidden.length; i++) {
+                            hidden[i].style.display = '';
+                            hidden[i].classList.remove('blog-card-hidden');
+                        }
+                        if (document.querySelectorAll('.blog-card-hidden').length === 0) {
+                            this.parentElement.style.display = 'none';
+                        }
+                    });
+                </script>
+                @endif
 
             </div>
         </section>
