@@ -80,8 +80,7 @@ class RequestedCategoryContentSeeder extends Seeder
                 ['title' => "Smart {$name} for shipping and display", 'description' => "From accurate sizing to secure inserts, we develop {$name} that look polished on shelves and remain dependable during storage and delivery.", 'image' => $images[3]],
             ];
 
-            DB::table('admin_categories')->where('id', $category->id)->update([
-                'title' => $name,
+            $defaults = [
                 'hero_title' => "Custom {$name} Designed for Better Presentation",
                 'hero_badge' => $name,
                 'hero_description' => "Discover custom {$name} made for {$focus}. Choose your size, material, printing, and finishing to create packaging that {$benefit}.",
@@ -92,17 +91,30 @@ class RequestedCategoryContentSeeder extends Seeder
                 'products_description' => "Browse {$name} assigned to this category and choose a packaging solution tailored to your product and brand.",
                 'feature_title' => "Packaging Solutions with Custom {$name}",
                 'feature_sections' => json_encode($sections),
-                'updated_at' => now(),
-            ]);
+            ];
 
-            DB::table('admin_category_faqs')->where('category_id', $category->id)->delete();
-            DB::table('admin_category_faqs')->insert([
-                $this->faq($category->id, "What products are suitable for {$name}?", "{$name} work especially well for {$focus}. Size, structure, and inserts can be adjusted for your exact product."),
-                $this->faq($category->id, "Can I customize the size and design of {$name}?", "Yes. You can customize dimensions, structure, artwork, colours, logo placement, inserts, and the complete visual design."),
-                $this->faq($category->id, "Which printing and finishing options are available?", "Options include CMYK and Pantone printing, foil stamping, embossing, debossing, spot UV, matte or gloss lamination, and specialty coatings."),
-                $this->faq($category->id, "What is the minimum order quantity for {$name}?", "The minimum quantity depends on size, material, print, and finishing choices. Send your requirements to receive an exact quote."),
-                $this->faq($category->id, "How long does production and delivery take?", "Turnaround varies by quantity and customization. After artwork approval, our team confirms the production schedule and delivery estimate with you."),
-            ]);
+            // Seed only blank values. Admin-panel content must never be replaced on future deployments.
+            $missingValues = [];
+            foreach ($defaults as $field => $value) {
+                if (blank($category->{$field} ?? null)) {
+                    $missingValues[$field] = $value;
+                }
+            }
+
+            if ($missingValues) {
+                $missingValues['updated_at'] = now();
+                DB::table('admin_categories')->where('id', $category->id)->update($missingValues);
+            }
+
+            if (!DB::table('admin_category_faqs')->where('category_id', $category->id)->exists()) {
+                DB::table('admin_category_faqs')->insert([
+                    $this->faq($category->id, "What products are suitable for {$name}?", "{$name} work especially well for {$focus}. Size, structure, and inserts can be adjusted for your exact product."),
+                    $this->faq($category->id, "Can I customize the size and design of {$name}?", "Yes. You can customize dimensions, structure, artwork, colours, logo placement, inserts, and the complete visual design."),
+                    $this->faq($category->id, "Which printing and finishing options are available?", "Options include CMYK and Pantone printing, foil stamping, embossing, debossing, spot UV, matte or gloss lamination, and specialty coatings."),
+                    $this->faq($category->id, "What is the minimum order quantity for {$name}?", "The minimum quantity depends on size, material, print, and finishing choices. Send your requirements to receive an exact quote."),
+                    $this->faq($category->id, "How long does production and delivery take?", "Turnaround varies by quantity and customization. After artwork approval, our team confirms the production schedule and delivery estimate with you."),
+                ]);
+            }
         }
     }
 

@@ -105,16 +105,6 @@
                 <input type="file" name="image" accept="image/*">
             </div>
             <div class="field">
-                <label>Hover Image</label>
-                @if($editing && !empty($item['hover_image']))
-                    <div class="single-image-wrapper" style="margin-bottom:0.5rem; position:relative; display:inline-block;">
-                        <img src="{{ $resolveImg($item['hover_image']) }}" style="height:3.75rem; border-radius:0.25rem; border:1px solid #ddd; display:block;">
-                        <span onclick="removeSingleImage(this, 'hover_image')" style="position:absolute; top:-0.375rem; right:-0.375rem; background:#e74c3c; color:white; border-radius:50%; width:1.125rem; height:1.125rem; display:flex; align-items:center; justify-content:center; font-size:0.875rem; font-weight:bold; cursor:pointer; box-shadow:0 1px 0.1875rem rgba(0,0,0,0.3); line-height:1;" title="Remove Image">&times;</span>
-                    </div>
-                @endif
-                <input type="file" name="hover_image" accept="image/*">
-            </div>
-            <div class="field">
                 <label>Popular Product Icon</label>
                 @if($editing && !empty($item['nav_image']))
                     <div class="single-image-wrapper" style="margin-bottom:0.5rem; position:relative; display:inline-block;">

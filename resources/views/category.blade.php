@@ -300,26 +300,8 @@
         transition: transform 0.4s ease;
     }
 
-    .box-image-wrapper .hover-img {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        opacity: 0;
-    }
-
-    .box-card:hover .box-image-wrapper img:not(.hover-img) {
+    .box-card:hover .box-image-wrapper img {
         transform: scale(1.05);
-    }
-
-    .box-card:hover .box-image-wrapper .hover-img {
-        opacity: 1;
-        transform: scale(1.05);
-    }
-
-    .box-card:hover .box-image-wrapper:has(.hover-img) .main-img {
-        opacity: 0;
     }
 
     .box-title {
@@ -727,24 +709,9 @@
                                 $pImg = 'uploads/allcategory-cta.webp';
                             }
                             
-                            $pHoverImg = '';
-                            if (!empty($p['hover_image'])) {
-                                $pHoverImg = $p['hover_image'];
-                            } elseif (count($pGalleryRaw) > 1) {
-                                $pHoverImg = $pGalleryRaw[1];
-                            } elseif (count($pGalleryRaw) > 0 && $pImg != $pGalleryRaw[0]) {
-                                $pHoverImg = $pGalleryRaw[0];
-                            } else {
-                                $pHoverImg = $pImg;
-                            }
-
                             $pImg = \Illuminate\Support\Str::startsWith($pImg, ['storage/', 'uploads/', 'images/'])
                                 ? $pImg
                                 : 'storage/' . $pImg;
-                                
-                            $pHoverImg = \Illuminate\Support\Str::startsWith($pHoverImg, ['storage/', 'uploads/', 'images/'])
-                                ? $pHoverImg
-                                : 'storage/' . $pHoverImg;
 
                             $pSlug = $p['slug'] ?? \Illuminate\Support\Str::slug($p['title']);
                         @endphp
@@ -752,10 +719,6 @@
                             <div class="box-image-wrapper">
                                 <img src="{{ asset($pImg) }}?v={{ @filemtime(public_path($pImg)) ?: 1 }}" alt="{{ $p['title'] }}" class="main-img"
                                     onerror="this.src='https://placehold.co/284x284/dddddd/555555?text={{ urlencode($p['title']) }}'" loading="lazy">
-                                @if($pHoverImg && $pHoverImg !== $pImg)
-                                <img src="{{ asset($pHoverImg) }}?v={{ @filemtime(public_path($pHoverImg)) ?: 1 }}" alt="{{ $p['title'] }} Hover" class="hover-img"
-                                    onerror="this.src='https://placehold.co/284x284/dddddd/555555?text={{ urlencode($p['title']) }}'" loading="lazy">
-                                @endif
                             </div>
                             <span class="box-title">{{ $p['title'] }}</span>
                         </a>

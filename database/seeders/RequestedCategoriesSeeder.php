@@ -41,36 +41,36 @@ class RequestedCategoriesSeeder extends Seeder
         ];
 
         foreach ($groups as $group) {
-            DB::table('admin_categories')->updateOrInsert(
-                ['slug' => $group['slug']],
-                [
+            $parent = DB::table('admin_categories')->where('slug', $group['slug'])->first();
+            if (!$parent) {
+                $parentId = DB::table('admin_categories')->insertGetId([
                     'title' => $group['title'],
+                    'slug' => $group['slug'],
                     'parent_id' => null,
                     'status' => 'published',
                     'show_in_nav' => 1,
                     'show_home' => 0,
                     'updated_at' => now(),
                     'created_at' => now(),
-                ]
-            );
-
-            $parentId = DB::table('admin_categories')
-                ->where('slug', $group['slug'])
-                ->value('id');
+                ]);
+            } else {
+                $parentId = $parent->id;
+            }
 
             foreach ($group['children'] as $child) {
-                DB::table('admin_categories')->updateOrInsert(
-                    ['slug' => $child['slug']],
-                    [
+                $existingChild = DB::table('admin_categories')->where('slug', $child['slug'])->exists();
+                if (!$existingChild) {
+                    DB::table('admin_categories')->insert([
                         'title' => $child['title'],
+                        'slug' => $child['slug'],
                         'parent_id' => $parentId,
                         'status' => 'published',
                         'show_in_nav' => 1,
                         'show_home' => 0,
                         'updated_at' => now(),
                         'created_at' => now(),
-                    ]
-                );
+                    ]);
+                }
             }
         }
     }
