@@ -424,14 +424,14 @@
                 ['uploads/Water Based Inks.webp', 'Water Based Inks']
             ],
             coating: [
-                ['uploads/Anti-scratch-Lamination-.webp', 'Anti-scratch Lamination'],
-                ['uploads/Aqueous-Coating-.webp', 'Aqueous Coating'],
-                ['uploads/Lamination.webp', 'Lamination'],
-                ['uploads/Soft-Touch-Coating-.webp', 'Soft-Touch Coating'],
-                ['uploads/Soft-Touch-Silk-Lamination-.webp', 'Soft-Touch Silk Lamination'],
-                ['uploads/Spot-Gloss-UV.webp', 'Spot Gloss UV'],
-                ['uploads/Spot-Gloss-UV-2.webp', 'Spot Gloss UV-2'],
-                ['uploads/UV-Coating-.webp', 'UV Coating']
+                ['uploads/gloss-lamination.webp', 'Gloss Lamination'],
+                ['uploads/embossing.webp', 'Embossing'],
+                ['uploads/Debossing.webp', 'Debossing'],
+                ['uploads/holographic-foiling.webp?v={{ @filemtime(public_path('uploads/holographic-foiling.webp')) ?: time() }}', 'Holographic Foiling'],
+                ['uploads/silver-foiling.webp', 'Silver Foiling'],
+                ['uploads/spot-uv.webp', 'Spot UV'],
+                ['uploads/matte-lamination.webp', 'Matte Lamination'],
+                ['uploads/gold-foiling.webp?v={{ @filemtime(public_path('uploads/gold-foiling.webp')) ?: time() }}', 'Gold Foiling']
             ],
             corrugated: [
                 ['uploads/corrugated-divider.webp', 'Corrugated Divider'],

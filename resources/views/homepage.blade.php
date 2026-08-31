@@ -2774,8 +2774,7 @@
                         <span class="uy-label">Matte Lamination</span>
                     </div>
                     <div class="uy-card uy-holo">
-                        <img src="{{ asset('uploads/addon-Holographic.webp') }}" alt="Holographic Foiling"
-                            onerror="this.src='https://placehold.co/293x231/333/fff?text=Holographic+Foiling'">
+                        <img src="{{ asset('uploads/holographic-foiling.webp') }}?v={{ @filemtime(public_path('uploads/holographic-foiling.webp')) ?: time() }}" alt="Holographic Foiling">
                         <span class="uy-label">Holographic Foiling</span>
                     </div>
                     <div class="uy-card uy-silver">
@@ -2789,8 +2788,7 @@
                         <span class="uy-label">Spot UV</span>
                     </div>
                     <div class="uy-card uy-gold">
-                        <img src="{{ asset('uploads/addon-gold-foil.webp') }}" alt="Gold Foiling"
-                            onerror="this.src='https://placehold.co/293x231/333/d4af37?text=Gold+Foiling'">
+                        <img src="{{ asset('uploads/gold-foiling.webp') }}?v={{ @filemtime(public_path('uploads/gold-foiling.webp')) ?: time() }}" alt="Gold Foiling">
                         <span class="uy-label">Gold Foiling</span>
                     </div>
                 </div>
@@ -3084,15 +3082,15 @@
 
                     <div class="wcc-collage">
                         <div class="wcc-col">
-                            <img src="{{ asset('uploads/Bakery-Boxes.webp') }}" alt="Packaging 1" class="wcc-img"
+                            <img src="{{ asset('uploads/custom-navy-blue-rigid-gift-box.webp') }}" alt="Custom navy blue rigid gift box" class="wcc-img"
                                 style="height: 13.0625rem;">
-                            <img src="{{ asset('uploads/black-kraft.webp') }}" alt="Packaging 2" class="wcc-img"
+                            <img src="{{ asset('uploads/custom-maroon-heart-chocolate-box.webp') }}" alt="Custom maroon heart chocolate box" class="wcc-img"
                                 style="height: 8.25rem;">
                         </div>
                         <div class="wcc-col">
-                            <img src="{{ asset('uploads/blind-emboss.webp') }}" alt="Packaging 3" class="wcc-img"
+                            <img src="{{ asset('uploads/custom-green-gable-packaging-box.webp') }}" alt="Custom green gable packaging box" class="wcc-img"
                                 style="height: 8.25rem;">
-                            <img src="{{ asset('uploads/addon-gold-foil.webp') }}" alt="Packaging 4" class="wcc-img"
+                            <img src="{{ asset('uploads/custom-cream-square-luxury-box.webp') }}" alt="Custom cream square luxury box" class="wcc-img"
                                 style="height: 13.0625rem;">
                         </div>
                     </div>

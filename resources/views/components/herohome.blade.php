@@ -221,6 +221,36 @@
         object-position: center;
     }
 
+    /* Give the homepage artwork the same strong visual presence as the reference. */
+    .home-hero-wrapper .hero-image-wrapper {
+        right: 3.4375rem;
+        width: 36rem;
+    }
+
+    .home-hero-wrapper .hero-image-wrapper img {
+        max-width: 36rem;
+        max-height: 110%;
+        transform: none;
+        transform-origin: center;
+    }
+
+    @media (max-width: 75rem) and (min-width: 62.0625rem) {
+        .home-hero-wrapper .hero-content {
+            max-width: 27rem;
+        }
+
+        .home-hero-wrapper .hero-image-wrapper {
+            right: 3.4375rem;
+            width: 27rem;
+        }
+
+        .home-hero-wrapper .hero-image-wrapper img {
+            max-width: 27rem;
+            max-height: 100%;
+            transform: none;
+        }
+    }
+
     @media (max-width: 93.75rem) and (min-width: 62.0625rem) {
         .hero-section {
             grid-template-columns: minmax(0, 1fr) minmax(20rem, 38%);
@@ -310,6 +340,17 @@
             max-width: 18.9375rem;
             max-height: 18.625rem;
             aspect-ratio: auto;
+        }
+
+        .home-hero-wrapper .hero-image-wrapper {
+            right: auto;
+            width: 100%;
+        }
+
+        .home-hero-wrapper .hero-image-wrapper img {
+            max-width: 21rem;
+            max-height: none;
+            transform: none;
         }
 
         .hero-btn-outline {
