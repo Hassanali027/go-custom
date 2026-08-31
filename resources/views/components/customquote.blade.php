@@ -205,14 +205,15 @@
 
     .qf-feature-text h3 {
         font-family: 'Open Sans', sans-serif;
-        font-size: 1.125rem;
+        font-size: 1.125rem !important;
         font-weight: 700;
         color: var(--primary-color, #0B2240);
         margin: 0 0 0.25rem 0;
+        line-height: 1.3;
     }
 
     .qf-feature-text p {
-        font-size: 0.875rem;
+        font-size: 0.875rem !important;
         color: #666666;
         margin: 0;
         line-height: 1.5;

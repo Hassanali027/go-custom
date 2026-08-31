@@ -2,7 +2,7 @@
     .product-quote-section-new {
         max-width: 90rem;
         width: 100%;
-        margin: 0 auto 3.75rem;
+        margin: 0 auto;
         background-color: #0A2240;
         border-radius: 0; /* Removed border-radius */
         overflow: hidden;

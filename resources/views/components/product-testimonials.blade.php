@@ -108,17 +108,21 @@
     
     @media (max-width: 48rem) {
         .product-testimonials-section {
-            padding: 0.9375rem 1.25rem;
+            padding: 1.25rem 0;
         }
         .product-testimonials-viewport {
             margin-bottom: 1.25rem;
+            width: 100%;
         }
         .product-testimonials-container {
-            padding: 0 1.25rem;
+            padding: 0 1rem;
+            width: 100%;
+            box-sizing: border-box;
         }
         .product-testimonial-card {
             flex: 0 0 100%; /* Show 1 per view on mobile */
             height: 15.8125rem;
+            box-sizing: border-box;
         }
         .product-testimonials-track {
             gap: 0;
@@ -128,6 +132,10 @@
         }
         .product-testimonials-title {
             margin-bottom: 1.25rem;
+            white-space: nowrap;
+            font-size: clamp(1.125rem, 4.8vw, 1.4rem);
+            text-align: center;
+            width: 100%;
         }
     }
 </style>

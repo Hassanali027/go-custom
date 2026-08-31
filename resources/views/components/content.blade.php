@@ -4,7 +4,7 @@
     ───────────────────────────────────────── */
     .text-content-section {
         background: var(--background-color);
-        padding: 0 0 1.5625rem 0;
+        padding: 3.75rem 0 1.5625rem 0;
     }
 
     .text-content-container {
@@ -155,7 +155,7 @@
             padding: 0 1rem;
         }
         .text-content-card {
-            padding: 1.5rem 0.5rem 1.5rem 1.125rem;
+            padding: 1.5rem 0 1.5rem 1.25rem;
             border-radius: 0.625rem;
             border: none;
             height: 39.625rem;

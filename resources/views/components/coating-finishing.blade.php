@@ -246,11 +246,9 @@
             display: flex !important;
             flex-direction: row !important;
             gap: 0.75rem !important;
-            overflow-x: auto !important;
-            scrollbar-width: none;
-            -ms-overflow-style: none;
+            width: max-content !important;
             padding-bottom: 0.625rem !important;
-            animation: none !important;
+            animation: marqueeTrain 30s linear infinite !important;
         }
         
         .customize-grid::-webkit-scrollbar {
@@ -258,7 +256,7 @@
         }
 
         .clone-card {
-            display: none !important;
+            display: block !important;
         }
 
         .custom-card {

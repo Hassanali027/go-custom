@@ -35,7 +35,7 @@ class BlogSeeder extends Seeder
                 'slug' => 'eco-friendly-rigid-packaging-sustainable-materials',
                 'status' => 'published',
                 'show_home' => true,
-                'image' => 'uploads/eco-go-green.png',
+                'image' => 'uploads/eco-circular-packaging.png',
                 'author_name' => 'Joe Danley',
                 'publish_date' => '2026-03-10',
                 'blog_category' => 'sustainability',
@@ -55,7 +55,7 @@ class BlogSeeder extends Seeder
                 'slug' => 'custom-inserts-trays-protect-products-shipping',
                 'status' => 'published',
                 'show_home' => true,
-                'image' => 'uploads/addon-gold-inside-box.jfif',
+                'image' => 'uploads/corrugated-insert.webp',
                 'author_name' => 'Ahmed Khan',
                 'publish_date' => '2026-03-15',
                 'blog_category' => 'design',
@@ -73,6 +73,10 @@ class BlogSeeder extends Seeder
         ];
 
         foreach ($blogs as $blog) {
+            $author = DB::table('admin_authors')->where('title', $blog['author_name'])->first();
+            if ($author) {
+                $blog['author_id'] = $author->id;
+            }
             DB::table('admin_blogs')->updateOrInsert(
                 ['slug' => $blog['slug']],
                 $blog

@@ -242,7 +242,7 @@
         }
         .author-profile {
             display: flex;
-            align-items: center;
+            align-items: flex-start;
             gap: 0.9375rem;
             margin-bottom: 0.9375rem;
         }
@@ -251,6 +251,8 @@
             height: 3.75rem;
             border-radius: 50%;
             object-fit: cover;
+            flex-shrink: 0;
+            margin-top: 0.125rem;
         }
         .author-name {
             font-family: var(--font-heading);
@@ -317,7 +319,8 @@
 
         /* Related Blogs */
         .related-section {
-            padding: 1.25rem 0 0 0;
+            padding: 0;
+            margin-top: -2rem;
         }
         .related-title {
             font-family: var(--font-heading);
@@ -420,12 +423,17 @@
             .cta-banner { flex-direction: column; text-align: center; gap: 1.25rem; }
             
             .related-section {
-                padding-top: 0.625rem;
+                padding-top: 0;
+                margin-top: -1.5rem;
             }
             .related-title {
                 margin-top: 0;
                 margin-bottom: 1.25rem;
                 font-size: 1.5rem;
+            }
+            .blog-card h3 {
+                word-spacing: 0.25rem;
+                line-height: 1.6;
             }
         }
         
