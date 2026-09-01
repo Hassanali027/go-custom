@@ -2102,7 +2102,11 @@
                 $pGalleryRaw = array_map($normalizeImg, $pGalleryRaw);
 
                 $pTitle = $product['title'] ?? 'Custom Packaging Box';
-                $pGallery = array_values(array_unique(array_merge([$pMainImg], $pGalleryRaw)));
+                // The featured image is already shown above. Keep thumbnails for additional gallery images only.
+                $pGallery = array_values(array_filter(
+                    array_unique($pGalleryRaw),
+                    fn ($galleryImage) => $galleryImage !== $pMainImg
+                ));
             @endphp
             <div class="hero-images">
                 <div class="main-image">
@@ -2111,11 +2115,11 @@
                     </div>
                     <img id="product-main-image" src="{{ asset($pMainImg) }}?v={{ @filemtime(public_path($pMainImg)) ?: 1 }}" alt="{{ $pTitle }}" onerror="this.src='https://placehold.co/600x500/eeeeee/555555?text={{ urlencode($pTitle) }}'">
                 </div>
-                @if(count($pGallery) > 1)
+                @if(count($pGallery))
                 <div class="thumbnails">
                     @foreach($pGallery as $galleryIndex => $galleryImage)
                         @php $galleryImage = \Illuminate\Support\Str::startsWith($galleryImage, ['storage/', 'uploads/', 'images/']) ? $galleryImage : 'storage/' . $galleryImage; @endphp
-                        <div class="thumb {{ $galleryIndex === 0 ? 'active' : '' }}" onclick="switchProductImage(this, '{{ asset($galleryImage) }}?v={{ @filemtime(public_path($galleryImage)) ?: 1 }}')">
+                        <div class="thumb" onclick="switchProductImage(this, '{{ asset($galleryImage) }}?v={{ @filemtime(public_path($galleryImage)) ?: 1 }}')">
                             <img src="{{ asset($galleryImage) }}?v={{ @filemtime(public_path($galleryImage)) ?: 1 }}" alt="{{ $pTitle }} thumbnail {{ $galleryIndex + 1 }}" style="width: 100%; height: 100%; object-fit: contain; border-radius: 0.375rem;" loading="lazy">
                         </div>
                     @endforeach
