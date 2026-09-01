@@ -184,7 +184,7 @@
         .thumbnails {
             display: flex;
             gap: 1rem;
-            justify-content: space-between;
+            justify-content: flex-start;
             width: 100%;
         }
         
