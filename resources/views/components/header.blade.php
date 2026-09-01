@@ -1056,7 +1056,7 @@
         <ul class="header-nav" style="display: flex; align-items: center; justify-content: center; margin: 0; padding: 0; list-style: none; flex-grow: 1; gap: 1.75rem;">
             <li><a href="/" style="color: #000000; text-decoration: none; font-weight: 700; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 0.9375rem;">Home</a></li>
             <li class="has-mega" data-mega-type="custom-boxes">
-                <a href="#" class="mega-trigger" aria-haspopup="true" onclick="event.preventDefault();" style="color: #000000; text-decoration: none; font-weight: 700; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 0.9375rem;">Popular product</a>
+                <a href="{{ url('/popular-products/') }}" class="mega-trigger" aria-haspopup="true" style="color: #000000; text-decoration: none; font-weight: 700; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 0.9375rem;">Popular product</a>
             </li>
             @foreach($navParentItems as $navParent)
             <li class="has-mega" data-mega-type="{{ $navParent['slug'] }}">

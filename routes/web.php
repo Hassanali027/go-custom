@@ -69,6 +69,39 @@ Route::get('/product/{slug}', function ($slug) {
     return redirect('/' . $slug, 301);
 });
 
+// A category-style listing for products selected as Popular Product in the admin panel.
+Route::get('/popular-products', function () {
+    $popularProducts = DB::table('admin_products')
+        ->where('status', 'published')
+        ->where('show_as_custom_box', 1)
+        ->orderBy('id')
+        ->get()
+        ->map(fn ($product) => (array) $product)
+        ->all();
+
+    $category = [
+        'title' => 'Popular Products',
+        'slug' => 'popular-products',
+        'meta_title' => 'Popular Custom Packaging Products | Go-Custom-boxes',
+        'meta_description' => 'Explore our popular custom packaging products and find the right box for your brand.',
+        'hero_title' => 'Popular Custom Packaging Products',
+        'hero_badge' => 'Popular Products',
+        'hero_description' => 'Browse the packaging products selected by our team for their quality, presentation, and versatile custom options.',
+        'hero_image' => $popularProducts[0]['image'] ?? 'uploads/Home-Banner.webp',
+        'products_heading' => 'Popular Products',
+        'products_description' => 'Explore our most popular custom packaging solutions for every product and brand.',
+        'feature_sections' => '[]',
+    ];
+
+    return view('category', [
+        'slug' => 'popular-products',
+        'category' => $category,
+        'categories' => [],
+        'products' => $popularProducts,
+        'faqs' => [],
+    ]);
+});
+
 Route::get('/contact-us/', function () {
     return view('contact');
 });
