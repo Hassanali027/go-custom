@@ -20,6 +20,7 @@ class AdminFooterController extends Controller
             'company_address' => '4000 N Montrose Ave<br>550 Chicago, IL 60641',
             'footer_categories' => [],
             'footer_quick_links' => [],
+            'footer_policy_pages' => [],
             'social_facebook' => 'https://www.facebook.com/premiumboxesusa',
             'social_twitter' => '',
             'social_instagram' => 'https://www.instagram.com/premiumboxes.usa/',
@@ -67,8 +68,9 @@ class AdminFooterController extends Controller
     {
         $settings = $this->getSettings();
         $categories = DB::table('admin_categories')->get()->map(fn($r) => (array)$r)->all();
+        $pages = DB::table('admin_pages')->where('status', 'published')->orderBy('title')->get()->map(fn($r) => (array)$r)->all();
         
-        return view('admin.footer_settings', compact('settings', 'categories'));
+        return view('admin.footer_settings', compact('settings', 'categories', 'pages'));
     }
 
     public function update(Request $request)
@@ -78,6 +80,7 @@ class AdminFooterController extends Controller
             'company_phone' => 'nullable|string|max:100',
             'company_address' => 'nullable|string',
             'footer_categories' => 'nullable|array',
+            'footer_policy_pages' => 'nullable|array',
             'footer_quick_links_names' => 'nullable|array',
             'footer_quick_links_urls' => 'nullable|array',
             'social_facebook' => 'nullable|url|max:255',
@@ -100,6 +103,7 @@ class AdminFooterController extends Controller
         $settings['social_linkedin'] = $request->input('social_linkedin');
         $settings['social_youtube'] = $request->input('social_youtube');
         $settings['footer_categories'] = array_map('intval', (array) $request->input('footer_categories', []));
+        $settings['footer_policy_pages'] = array_values(array_map('intval', (array) $request->input('footer_policy_pages', [])));
 
         $quickLinks = [];
         $names = (array) $request->input('footer_quick_links_names', []);
@@ -119,7 +123,7 @@ class AdminFooterController extends Controller
             $valueType = 'text';
             $section = 'company_info';
 
-            if (in_array($key, ['footer_categories', 'footer_quick_links'])) {
+            if (in_array($key, ['footer_categories', 'footer_quick_links', 'footer_policy_pages'])) {
                 $section = 'footer';
                 $valueType = 'json';
                 $value = json_encode($value);

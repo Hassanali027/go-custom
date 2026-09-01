@@ -106,9 +106,17 @@
                         Policy <span class="toggle-icon">+</span>
                     </span>
                     <ul class="footer-links accordion-content">
-                        <li><a href="/privacy-policy/">Privacy Policy</a></li>
-                        <li><a href="/terms-and-conditions/">Terms & Conditions</a></li>
-                        <li><a href="/refund-policy/">Refund Policy</a></li>
+                        @php
+                            $policyPageIds = array_values(array_filter(array_map('intval', (array) ($siteSettings['footer_policy_pages'] ?? []))));
+                            $policyPagesById = $policyPageIds
+                                ? \Illuminate\Support\Facades\DB::table('admin_pages')->where('status', 'published')->whereIn('id', $policyPageIds)->get()->keyBy('id')
+                                : collect();
+                            $policyPages = collect($policyPageIds)->map(fn ($id) => $policyPagesById->get($id))->filter();
+                        @endphp
+                        @forelse($policyPages as $policyPage)
+                            <li><a href="{{ url('/' . ltrim($policyPage->slug, '/')) }}/">{{ $policyPage->title }}</a></li>
+                        @empty
+                        @endforelse
                     </ul>
                     
                     <div class="desktop-social-section" style="margin-top: 3.9375rem;">

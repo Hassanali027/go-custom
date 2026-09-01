@@ -2581,7 +2581,7 @@
                         <a href="/request-quote/" class="see-feel-btn desktop-btn">Get Instant Quote</a>
                     </div>
                     <div class="see-feel-right">
-                        <img src="{{ asset('uploads/Iframe.png') }}" alt="Sustainable packaging materials" class="sfr-img">
+                        <img src="{{ asset('uploads/see-and-feel.jpeg') }}?v={{ @filemtime(public_path('uploads/see-and-feel.jpeg')) ?: 1 }}" alt="Sustainable packaging materials" class="sfr-img">
                     </div>
                     <a href="/request-quote/" class="see-feel-btn mobile-btn">Get Instant Quote</a>
                 </div>
