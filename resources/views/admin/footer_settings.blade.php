@@ -161,6 +161,34 @@
                 <input type="email" name="company_email" class="form-input" value="{{ old('company_email', $settings['company_email'] ?? '') }}">
             </div>
             
+            <div class="form-group" style="position:relative; z-index:40;">
+                <label class="form-label">Policy Pages (from Dynamic Pages)</label>
+                @php $selectedPolicyPageIds = array_map('intval', (array) ($settings['footer_policy_pages'] ?? [])); @endphp
+                <div class="custom-multiselect-container" id="policyPageMultiselect">
+                    <div class="multiselect-trigger" onclick="toggleDropdown('policyPageMultiselect')">
+                        <div class="selected-tags" data-placeholder="Click to select policy pages..."></div>
+                        <i class="fa-solid fa-chevron-down" style="font-size:0.75rem; color:#888;"></i>
+                    </div>
+                    <div class="multiselect-dropdown">
+                        <div class="dropdown-search">
+                            <i class="fa-solid fa-magnifying-glass search-icon"></i>
+                            <input type="text" placeholder="Search dynamic pages..." onkeyup="filterOptions(this, 'policyPageOptionsList')">
+                        </div>
+                        <div class="dropdown-options-list" id="policyPageOptionsList">
+                            @forelse($pages as $page)
+                                <label class="dropdown-option-item">
+                                    <input type="checkbox" name="footer_policy_pages[]" value="{{ $page['id'] }}" data-title="{{ $page['title'] }}" {{ in_array((int) $page['id'], $selectedPolicyPageIds) ? 'checked' : '' }} onchange="updateMultiselectDisplay('policyPageMultiselect')">
+                                    <span>{{ $page['title'] }}</span>
+                                </label>
+                            @empty
+                                <p style="color:#888; padding:0.5rem; font-size:0.75rem;">Create and publish a Dynamic Page first.</p>
+                            @endforelse
+                        </div>
+                    </div>
+                </div>
+                <small style="margin-top:0.375rem; display:block; color:#777;">Selected pages will appear under the Policy column in the footer.</small>
+            </div>
+
             <div class="form-group">
                 <label class="form-label">Company Phone Number</label>
                 <input type="text" name="company_phone" class="form-input" value="{{ old('company_phone', $settings['company_phone'] ?? '') }}">
@@ -309,6 +337,7 @@
 
         // Initialize multiselect
         updateMultiselectDisplay('categoryMultiselect');
+        updateMultiselectDisplay('policyPageMultiselect');
     });
 
     function toggleDropdown(containerId) {
@@ -329,7 +358,7 @@
         
         tagsBox.innerHTML = '';
         if (checkedInputs.length === 0) {
-            tagsBox.innerHTML = '<span class="dropdown-placeholder">Click to select categories...</span>';
+            tagsBox.innerHTML = '<span class="dropdown-placeholder">' + (tagsBox.dataset.placeholder || 'Click to select categories...') + '</span>';
         } else {
             checkedInputs.forEach(cb => {
                 const title = cb.getAttribute('data-title');
