@@ -116,9 +116,6 @@
                         @forelse($policyPages as $policyPage)
                             <li><a href="{{ url('/' . ltrim($policyPage->slug, '/')) }}/">{{ $policyPage->title }}</a></li>
                         @empty
-                            <li><a href="/privacy-policy/">Privacy Policy</a></li>
-                            <li><a href="/terms-and-conditions/">Terms &amp; Conditions</a></li>
-                            <li><a href="/refund-policy/">Refund Policy</a></li>
                         @endforelse
                     </ul>
                     

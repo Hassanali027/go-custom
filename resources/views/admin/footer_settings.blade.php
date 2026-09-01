@@ -210,7 +210,7 @@
         <div style="margin-bottom:1.875rem;">
             <h3 style="font-size:1.125rem; margin-bottom:0.9375rem; padding-bottom:0.5rem; border-bottom:1px solid #eaeaea;">Footer Settings</h3>
 
-            <div class="form-group" style="position:relative; z-index:40;">
+            <div class="form-group" style="position:relative; z-index:100;">
                 <label class="form-label">Policy Pages (from Dynamic Pages)</label>
                 @php $selectedPolicyPages = array_map('intval', (array) ($settings['footer_policy_pages'] ?? [])); @endphp
                 <div class="custom-multiselect-container" id="policyPageMultiselect">
