@@ -17,7 +17,7 @@
     /* Clothing Features Section */
     .clothing-features-section {
         background-color: #FDF7E5; 
-        padding: 3.125rem 0;
+        padding: 1rem 0;
         font-family: 'DM Sans', sans-serif;
     }
 
@@ -28,7 +28,7 @@
         box-sizing: border-box;
         display: flex;
         flex-direction: column;
-        gap: 2.5rem;
+        gap: 1.5rem;
     }
 
     .clothing-features-title {
@@ -51,7 +51,7 @@
         max-width: 75rem;
         margin: 0 auto;
         width: 100%;
-        gap: 2.5rem;
+        gap: 1.5rem;
         box-sizing: border-box;
     }
 
@@ -109,7 +109,7 @@
         }
         .clothing-features-inner {
             padding: 0 0.625rem;
-            gap: 2.5rem;
+            gap: 1.5rem;
         }
         .clothing-feature-card, .clothing-feature-card.reverse {
             flex-direction: column-reverse;
@@ -154,7 +154,7 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
-        gap: 2.5rem;
+        gap: 1.5rem;
     }
 
     .category-hero-content {
