@@ -107,21 +107,24 @@
                     </span>
                     <ul class="footer-links accordion-content">
                         @php
-                            $policyPageIds = array_map('intval', (array) ($siteSettings['footer_policy_pages'] ?? []));
+                            $policyPageSettings = (array) ($siteSettings['footer_policy_pages'] ?? []);
+                            if (array_is_list($policyPageSettings)) {
+                                $policyPageSettings = ['privacy' => $policyPageSettings[0] ?? null, 'terms' => $policyPageSettings[1] ?? null, 'refund' => $policyPageSettings[2] ?? null];
+                            }
+                            $policyPageIds = array_filter(array_map('intval', $policyPageSettings));
                             $policyPagesById = $policyPageIds
                                 ? \Illuminate\Support\Facades\DB::table('admin_pages')->where('status', 'published')->whereIn('id', $policyPageIds)->get()->keyBy('id')
                                 : collect();
-                            $policyPages = collect($policyPageIds)->map(fn ($id) => $policyPagesById->get($id))->filter();
+                            $policyLinks = [
+                                'privacy' => ['label' => 'Privacy Policy', 'fallback' => '/privacy-policy/'],
+                                'terms' => ['label' => 'Terms & Conditions', 'fallback' => '/terms-and-conditions/'],
+                                'refund' => ['label' => 'Refund Policy', 'fallback' => '/refund-policy/'],
+                            ];
                         @endphp
-                        @if($policyPages->isNotEmpty())
-                            @foreach($policyPages as $policyPage)
-                                <li><a href="{{ url('/' . ltrim($policyPage->slug, '/')) }}/">{{ $policyPage->title }}</a></li>
-                            @endforeach
-                        @else
-                            <li><a href="/privacy-policy/">Privacy Policy</a></li>
-                            <li><a href="/terms-and-conditions/">Terms & Conditions</a></li>
-                            <li><a href="/refund-policy/">Refund Policy</a></li>
-                        @endif
+                        @foreach($policyLinks as $key => $policyLink)
+                            @php $policyPage = $policyPagesById->get((int) ($policyPageSettings[$key] ?? 0)); @endphp
+                            <li><a href="{{ $policyPage ? url('/' . ltrim($policyPage->slug, '/')) . '/' : $policyLink['fallback'] }}">{{ $policyLink['label'] }}</a></li>
+                        @endforeach
                     </ul>
                     
                     <div class="desktop-social-section" style="margin-top: 3.9375rem;">
