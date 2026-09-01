@@ -2357,7 +2357,7 @@
                     $productsById = collect($products)->keyBy('id');
                     $bestSellers = collect($bestSellerProductIds)
                     ->map(fn ($id) => $productsById->get($id))
-                    ->filter()
+                    ->filter(fn ($product) => $product && ($product['status'] ?? '') === 'published')
                     ->values();
                     @endphp
                     @foreach($bestSellers as $item)
