@@ -153,6 +153,7 @@ class AdminContentController extends Controller
             $featureTitles = (array) $request->input('feature_section_title', []);
             $featureDescriptions = (array) $request->input('feature_section_description', []);
             $existingFeatureImages = (array) $request->input('feature_section_existing_image', []);
+            $featureImageUploads = (array) $request->file('feature_section_image', []);
             $uploadPath = public_path('uploads');
 
             foreach ($featureTitles as $index => $featureTitle) {
@@ -160,16 +161,15 @@ class AdminContentController extends Controller
                 $featureDescription = trim((string) ($featureDescriptions[$index] ?? ''));
                 $featureImage = $existingFeatureImages[$index] ?? null;
 
-                if ($request->hasFile("feature_section_image.{$index}")) {
-                    $file = $request->file("feature_section_image.{$index}");
-                    if ($file && $file->isValid()) {
-                        if (!is_dir($uploadPath)) {
-                            mkdir($uploadPath, 0775, true);
-                        }
-                        $fileName = 'category-feature-' . time() . '-' . $index . '.' . $file->getClientOriginalExtension();
-                        $file->move($uploadPath, $fileName);
-                        $featureImage = 'uploads/' . $fileName;
+                $file = $featureImageUploads[$index] ?? null;
+                if ($file && $file->isValid()) {
+                    if (!is_dir($uploadPath)) {
+                        mkdir($uploadPath, 0775, true);
                     }
+                    // A UUID prevents uploads in different categories from sharing/overwriting one file.
+                    $fileName = 'category-feature-' . Str::uuid() . '.' . $file->getClientOriginalExtension();
+                    $file->move($uploadPath, $fileName);
+                    $featureImage = 'uploads/' . $fileName;
                 }
 
                 if ($featureTitle !== '' || $featureDescription !== '' || !empty($featureImage)) {
