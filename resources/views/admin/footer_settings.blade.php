@@ -162,33 +162,6 @@
             </div>
             
             <div class="form-group">
-                <label class="form-label">Policy Pages (from Dynamic Pages)</label>
-                @php
-                    $policyPageSettings = (array) ($settings['footer_policy_pages'] ?? []);
-                    // Supports the earlier multi-select format while moving to fixed policy links.
-                    if (array_is_list($policyPageSettings)) {
-                        $policyPageSettings = [
-                            'privacy' => $policyPageSettings[0] ?? null,
-                            'terms' => $policyPageSettings[1] ?? null,
-                            'refund' => $policyPageSettings[2] ?? null,
-                        ];
-                    }
-                @endphp
-                @foreach(['privacy' => 'Privacy Policy Page', 'terms' => 'Terms & Conditions Page', 'refund' => 'Refund Policy Page'] as $key => $label)
-                    <div style="margin-bottom:0.625rem;">
-                        <label style="display:block; margin-bottom:0.25rem; font-size:0.8125rem; font-weight:700;">{{ $label }}</label>
-                        <select name="footer_policy_pages[{{ $key }}]" class="form-input">
-                            <option value="">— Select a Dynamic Page —</option>
-                            @foreach($pages as $page)
-                                <option value="{{ $page['id'] }}" {{ (int) ($policyPageSettings[$key] ?? 0) === (int) $page['id'] ? 'selected' : '' }}>{{ $page['title'] }}</option>
-                            @endforeach
-                        </select>
-                    </div>
-                @endforeach
-                <small style="margin-top:0.375rem; display:block; color:#777;">Footer names stay fixed; only their linked Dynamic Pages change.</small>
-            </div>
-
-            <div class="form-group">
                 <label class="form-label">Company Phone Number</label>
                 <input type="text" name="company_phone" class="form-input" value="{{ old('company_phone', $settings['company_phone'] ?? '') }}">
             </div>
@@ -236,6 +209,34 @@
 
         <div style="margin-bottom:1.875rem;">
             <h3 style="font-size:1.125rem; margin-bottom:0.9375rem; padding-bottom:0.5rem; border-bottom:1px solid #eaeaea;">Footer Settings</h3>
+
+            <div class="form-group" style="position:relative; z-index:40;">
+                <label class="form-label">Policy Pages (from Dynamic Pages)</label>
+                @php $selectedPolicyPages = array_map('intval', (array) ($settings['footer_policy_pages'] ?? [])); @endphp
+                <div class="custom-multiselect-container" id="policyPageMultiselect">
+                    <div class="multiselect-trigger" onclick="toggleDropdown('policyPageMultiselect')">
+                        <div class="selected-tags" data-placeholder="Click to select policy pages..."></div>
+                        <i class="fa-solid fa-chevron-down" style="font-size:0.75rem; color:#888;"></i>
+                    </div>
+                    <div class="multiselect-dropdown">
+                        <div class="dropdown-search">
+                            <i class="fa-solid fa-magnifying-glass search-icon"></i>
+                            <input type="text" placeholder="Search dynamic pages..." onkeyup="filterOptions(this, 'policyPageOptionsList')">
+                        </div>
+                        <div class="dropdown-options-list" id="policyPageOptionsList">
+                            @forelse($pages as $page)
+                                <label class="dropdown-option-item">
+                                    <input type="checkbox" name="footer_policy_pages[]" value="{{ $page['id'] }}" data-title="{{ $page['title'] }}" {{ in_array((int) $page['id'], $selectedPolicyPages) ? 'checked' : '' }} onchange="updateMultiselectDisplay('policyPageMultiselect')">
+                                    <span>{{ $page['title'] }}</span>
+                                </label>
+                            @empty
+                                <p style="color:#888; padding:0.5rem; font-size:0.75rem;">Create and publish a Dynamic Page first.</p>
+                            @endforelse
+                        </div>
+                    </div>
+                </div>
+                <small style="margin-top:0.375rem; display:block; color:#777;">Exactly the selected page titles and links will appear in the footer Policy column.</small>
+            </div>
             
             <div class="form-group">
                 <label class="form-label">Footer Categories (Multiple)</label>
@@ -336,6 +337,7 @@
 
         // Initialize multiselect
         updateMultiselectDisplay('categoryMultiselect');
+        updateMultiselectDisplay('policyPageMultiselect');
     });
 
     function toggleDropdown(containerId) {

@@ -20,7 +20,7 @@ class AdminFooterController extends Controller
             'company_address' => '4000 N Montrose Ave<br>550 Chicago, IL 60641',
             'footer_categories' => [],
             'footer_quick_links' => [],
-            'footer_policy_pages' => ['privacy' => null, 'terms' => null, 'refund' => null],
+            'footer_policy_pages' => [],
             'social_facebook' => 'https://www.facebook.com/premiumboxesusa',
             'social_twitter' => '',
             'social_instagram' => 'https://www.instagram.com/premiumboxes.usa/',
@@ -81,7 +81,6 @@ class AdminFooterController extends Controller
             'company_address' => 'nullable|string',
             'footer_categories' => 'nullable|array',
             'footer_policy_pages' => 'nullable|array',
-            'footer_policy_pages.*' => 'nullable|integer',
             'footer_quick_links_names' => 'nullable|array',
             'footer_quick_links_urls' => 'nullable|array',
             'social_facebook' => 'nullable|url|max:255',
@@ -104,12 +103,7 @@ class AdminFooterController extends Controller
         $settings['social_linkedin'] = $request->input('social_linkedin');
         $settings['social_youtube'] = $request->input('social_youtube');
         $settings['footer_categories'] = array_map('intval', (array) $request->input('footer_categories', []));
-        $policyPageInput = (array) $request->input('footer_policy_pages', []);
-        $settings['footer_policy_pages'] = [
-            'privacy' => !empty($policyPageInput['privacy']) ? (int) $policyPageInput['privacy'] : null,
-            'terms' => !empty($policyPageInput['terms']) ? (int) $policyPageInput['terms'] : null,
-            'refund' => !empty($policyPageInput['refund']) ? (int) $policyPageInput['refund'] : null,
-        ];
+        $settings['footer_policy_pages'] = array_values(array_map('intval', (array) $request->input('footer_policy_pages', [])));
 
         $quickLinks = [];
         $names = (array) $request->input('footer_quick_links_names', []);

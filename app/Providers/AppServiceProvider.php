@@ -42,7 +42,7 @@ class AppServiceProvider extends ServiceProvider
                     'company_address' => '4000 N Montrose Ave<br>550 Chicago, IL 60641',
                     'footer_categories' => [],
                     'footer_quick_links' => [],
-                    'footer_policy_pages' => ['privacy' => null, 'terms' => null, 'refund' => null]
+                    'footer_policy_pages' => []
                 ];
                 
                 $rows = DB::table('homepage_contents')
@@ -71,7 +71,7 @@ class AppServiceProvider extends ServiceProvider
                     'company_address' => '4000 N Montrose Ave<br>550 Chicago, IL 60641',
                     'footer_categories' => [],
                     'footer_quick_links' => [],
-                    'footer_policy_pages' => ['privacy' => null, 'terms' => null, 'refund' => null]
+                    'footer_policy_pages' => []
                 ]);
             }
         });
