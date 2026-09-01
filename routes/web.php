@@ -278,7 +278,28 @@ Route::get('/{slug}', function ($slug) {
 
         if (!empty($productArr['id'])) {
             $faqs = DB::table('admin_product_faqs')->where('product_id', $productArr['id'])->get()->map(fn($r)=>(array)$r)->all();
-            $relatedProducts = DB::table('admin_products')->where('id', '!=', $productArr['id'])->limit(4)->get()->map(fn($r)=>(array)$r)->all();
+            $relatedIds = is_string($productArr['related'] ?? null)
+                ? (json_decode($productArr['related'], true) ?: [])
+                : (array) ($productArr['related'] ?? []);
+            $relatedIds = collect($relatedIds)
+                ->map(fn ($id) => (int) $id)
+                ->reject(fn ($id) => $id === (int) $productArr['id'])
+                ->unique()
+                ->values();
+
+            if ($relatedIds->isNotEmpty()) {
+                $relatedById = DB::table('admin_products')
+                    ->whereIn('id', $relatedIds->all())
+                    ->where('status', 'published')
+                    ->get()
+                    ->keyBy('id');
+                $relatedProducts = $relatedIds
+                    ->map(fn ($id) => $relatedById->get($id))
+                    ->filter()
+                    ->map(fn ($product) => (array) $product)
+                    ->values()
+                    ->all();
+            }
         }
 
         return view('product', [

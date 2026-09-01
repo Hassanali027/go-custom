@@ -2574,13 +2574,12 @@
     @include('components.product-faq')
 
     <!-- Related Products -->
+    @php $rProds = !empty($relatedProducts) ? $relatedProducts : []; @endphp
+    @if(count($rProds))
     <section class="related-products">
         <div class="container">
             <h2>Related Products</h2>
             <div class="products-grid">
-                @php
-                    $rProds = !empty($relatedProducts) ? $relatedProducts : [];
-                @endphp
                 @foreach($rProds as $rp)
                     @php
                         $rpImg = '';
@@ -2615,6 +2614,7 @@
             </div>
         </div>
     </section>
+    @endif
 
     <script>
         function switchTab(tabId) {
