@@ -78,7 +78,7 @@
         -ms-overflow-style: none;
         padding-bottom: 0;
     }
-    
+
     .customize-sidebar::-webkit-scrollbar {
         display: none;
     }
@@ -108,7 +108,7 @@
     .customize-tab:hover,
     .customize-tab:focus-visible {
         color: #fff;
-        background: #112a46; /* Matching the active tab from the Figma image */
+        background: #112a46; /* Matching active tab background */
         border-bottom: 0.1875rem solid #112a46;
     }
     
@@ -299,6 +299,7 @@
         <!-- Customize Packaging Section -->
         <section class="customize-section">
             <div class="customize-container">
+
                 <span class="customize-title" style="display: block;">Coating and Finishing</span>
                 <p class="customize-subtitle">Discover our top packaging style recommendations, meticulously crafted to enhance your products' presentation and appeal.</p>
 
@@ -312,6 +313,7 @@
                         <button type="button" class="customize-tab" data-customize-tab="fluted_grades">Fluted Grades</button>
                         <button type="button" class="customize-tab" data-customize-tab="rigid_materials">Rigid Materials</button>
                         <button type="button" class="customize-tab" data-customize-tab="printing_options">Printing Options</button>
+                        <button type="button" class="customize-tab" data-customize-tab="box_liner_board">Box Liner Board</button>
                     </aside>
 
                     <!-- Right Content Grid -->
@@ -319,84 +321,67 @@
                         <div class="customize-grid">
                             <div class="custom-card">
                                 <div class="custom-img-wrapper">
-                                    <img src="{{ asset('uploads/duplex-chipboard.webp') }}" alt="Duplex Chipboard" loading="lazy">
-
+                                    <img src="{{ asset('uploads/gloss-lamination.webp') }}" alt="Gloss Lamination" loading="lazy">
                                 </div>
-                                <span class="custom-card-title">Duplex Chipboard</span>
+                                <span class="custom-card-title">Gloss Lamination</span>
                             </div>
 
                             <div class="custom-card">
                                 <div class="custom-img-wrapper">
-                                    <img src="{{ asset('uploads/grey-board.webp') }}" alt="Grey Chipboard Cardboard"
-                                        onerror="this.src='https://placehold.co/200x200/DDDDDD/888888?text=Grey+Cardboard'" loading="lazy">
+                                    <img src="{{ asset('uploads/matte-lamination.webp') }}" alt="Matte Lamination" loading="lazy">
                                 </div>
-                                <span class="custom-card-title">Grey Chipboard Cardboard</span>
+                                <span class="custom-card-title">Matte Lamination</span>
                             </div>
 
                             <div class="custom-card">
                                 <div class="custom-img-wrapper">
-                                    <img src="{{ asset('uploads/black-kraft.webp') }}" alt="Black-Kraft"
-                                        onerror="this.src='https://placehold.co/200x200/333333/FFFFFF?text=Black-Kraft'" loading="lazy">
+                                    <img src="{{ asset('uploads/Soft-Touch-Coating-.webp') }}" alt="Soft Touch Coating" loading="lazy">
                                 </div>
-                                <span class="custom-card-title">Black-Kraft</span>
+                                <span class="custom-card-title">Soft Touch Coating</span>
                             </div>
 
                             <div class="custom-card">
                                 <div class="custom-img-wrapper">
-                                    <img src="{{ asset('uploads/finish-material-holographic.webp') }}" alt="Holographic"
-                                        onerror="this.src='https://placehold.co/200x200/FFCCEE/555555?text=Holographic'">
+                                    <img src="{{ asset('uploads/Soft-Touch-Silk-Lamination-.webp') }}" alt="Soft Touch Silk Lamination" loading="lazy">
                                 </div>
-                                <span class="custom-card-title">Holographic</span>
+                                <span class="custom-card-title">Soft Touch Silk Lamination</span>
                             </div>
 
                             <div class="custom-card">
                                 <div class="custom-img-wrapper">
-                                    <img src="{{ asset('uploads/metallic-paper.webp') }}" alt="Metallic Paper"
-                                        onerror="this.src='https://placehold.co/200x200/FFDD55/555555?text=Metallic+Paper'">
+                                    <img src="{{ asset('uploads/Aqueous-Coating-.webp') }}" alt="Aqueous Coating" loading="lazy">
                                 </div>
-                                <span class="custom-card-title">Metallic Paper</span>
+                                <span class="custom-card-title">Aqueous Coating</span>
                             </div>
 
                             <div class="custom-card">
                                 <div class="custom-img-wrapper">
-                                    <img src="{{ asset('uploads/natural-brown-.webp') }}" alt="Natural Brown Kraft"
-                                        onerror="this.src='https://placehold.co/200x200/A08060/FFFFFF?text=Brown+Kraft'">
+                                    <img src="{{ asset('uploads/UV-Coating-.webp') }}" alt="UV Coating" loading="lazy">
                                 </div>
-                                <span class="custom-card-title">Natural Brown Kraft</span>
+                                <span class="custom-card-title">UV Coating</span>
                             </div>
 
                             <div class="custom-card">
                                 <div class="custom-img-wrapper">
-                                    <img src="{{ asset('uploads/sbs-c2s.webp') }}" alt="SBS C2S"
-                                        onerror="this.src='https://placehold.co/200x200/F5F5F5/888888?text=SBS+C2S'">
+                                    <img src="{{ asset('uploads/Anti-scratch-Lamination-.webp') }}" alt="Anti-Scratch Lamination" loading="lazy">
                                 </div>
-                                <span class="custom-card-title">SBS C2S</span>
+                                <span class="custom-card-title">Anti-Scratch Lamination</span>
                             </div>
 
                             <div class="custom-card">
                                 <div class="custom-img-wrapper">
-                                    <img src="{{ asset('uploads/textured-.webp') }}" alt="Textured"
-                                        onerror="this.src='https://placehold.co/200x200/CCBBAA/333?text=Textured'">
+                                    <img src="{{ asset('uploads/Kemi-White-Board-.webp') }}" alt="Kemi White Board" loading="lazy">
                                 </div>
-                                <span class="custom-card-title">Textured</span>
+                                <span class="custom-card-title">Kemi White Board</span>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
-@if(!request()->is('*category*'))
-<script>
-        const customizeCardOrders = {
-            coating: [4, 5, 6, 7, 0, 1, 2, 3],
-            special_finishes: [0, 1, 2, 3, 4, 5, 6],
-            paperboard: [0, 1, 2, 3, 4, 5, 6, 7],
-            corrugated: [7, 6, 5, 4, 3, 2, 1, 0],
-            fluted_grades: [2, 3, 0, 1, 6, 7],
-            rigid_materials: [0, 1, 2, 3, 4, 5, 6, 7],
-            printing_options: [1, 0, 2, 3, 7, 5, 6, 4]
-        };
 
+<script>
+    (function() {
         const grid = document.querySelector('.customize-grid');
         if (grid && grid.children.length === 8) {
             grid.innerHTML += grid.innerHTML;
@@ -406,16 +391,41 @@
         const customizeCards = Array.from(document.querySelectorAll('.customize-grid .custom-card'));
         const customizeSidebar = document.querySelector('.customize-sidebar');
         const customizeUploadsUrl = "{{ asset('') }}";
+
         const customizeCardSets = {
+            coating: [
+                ['uploads/new-aqueous-coating.webp', 'Aqueous Coating'],
+                ['uploads/new-gloss-finish.webp', 'Gloss Finish'],
+                ['uploads/new-matte-finish.webp', 'Matte Finish'],
+                ['uploads/new-soft-touch-coating.webp', 'Soft Touch Coating'],
+                ['uploads/new-uv-coating.webp', 'UV Coating']
+            ],
+            special_finishes: [
+                ['uploads/debossing.webp', 'Debossing'],
+                ['uploads/embossing.webp', 'Embossing'],
+                ['uploads/gold-foiling.webp', 'Gold Foiling'],
+                ['uploads/holographic.webp', 'Holographic'],
+                ['uploads/silver-foiling.webp', 'Silver Foiling'],
+                ['uploads/spot-uv.webp', 'Spot UV']
+            ],
             paperboard: [
-                ['uploads/duplex-chipboard.webp', 'Duplex Chipboard'],
-                ['uploads/grey-board.webp', 'Grey Chipboard Cardboard'],
-                ['uploads/black-kraft.webp', 'Black-Kraft'],
-                ['uploads/finish-material-holographic.webp', 'Holographic'],
-                ['uploads/metallic-paper.webp', 'Metallic Paper'],
-                ['uploads/natural-brown-.webp', 'Natural Brown Kraft'],
-                ['uploads/sbs-c2s.webp', 'SBS C2S'],
-                ['uploads/textured-.webp', 'Textured']
+                ['uploads/Black Kraft.webp', 'Black Kraft'],
+                ['uploads/CCNB-.webp', 'CCNB'],
+                ['uploads/Fully-Recycled-CCNB.webp', 'Fully-Recycled CCNB'],
+                ['uploads/Natural-Brown-Kraft-.webp', 'Natural Brown Kraft'],
+                ['uploads/SBS-C1S.webp', 'SBS-C1S'],
+                ['uploads/SBS-C2S-.webp', 'SBS C2S'],
+                ['uploads/Uncoated Unbleached Kraft (UUK).webp', 'Uncoated Unbleached Kraft (UUK)'],
+                ['uploads/White-Kraft-.webp', 'White Kraft']
+            ],
+            fluted_grades: [
+                ['uploads/A-Flute.webp', 'A-Flute'],
+                ['uploads/B-Flute.webp', 'B-Flute'],
+                ['uploads/C-Flute.webp', 'C-Flute'],
+                ['uploads/Double-Wall.webp', 'Double-Wall'],
+                ['uploads/E-Flute.webp', 'E-Flute'],
+                ['uploads/F-Flute.webp', 'F-Flute'],
+                ['uploads/Triple-Wall.webp', 'Triple-Wall']
             ],
             printing_options: [
                 ['uploads/Digital Print.webp', 'Digital Print'],
@@ -427,42 +437,17 @@
                 ['uploads/Screen Printing.webp', 'Screen Printing'],
                 ['uploads/UV Print.webp', 'UV Print']
             ],
-            fluted_grades: [
-                ['uploads/Fluorescent Color Inks.webp', 'Fluorescent Color Inks'],
-                ['uploads/Oil Based Inks.webp', 'Oil Based Inks'],
-                ['uploads/Pantone Metallic.webp', 'Pantone Metallic'],
-                ['uploads/Pantone.webp', 'Pantone'],
-                ['uploads/Soy Vegetable Based Inks.webp', 'Soy Vegetable Based Inks'],
-                ['uploads/Water Based Inks.webp', 'Water Based Inks']
-            ],
-            coating: [
-                ['uploads/gloss-lamination.webp', 'Gloss Lamination'],
-                ['uploads/embossing.webp', 'Embossing'],
-                ['uploads/Debossing.webp', 'Debossing'],
-                ['uploads/holographic-foiling.webp?v={{ @filemtime(public_path('uploads/holographic-foiling.webp')) ?: time() }}', 'Holographic Foiling'],
-                ['uploads/silver-foiling.webp', 'Silver Foiling'],
-                ['uploads/spot-uv.webp', 'Spot UV'],
-                ['uploads/matte-lamination.webp', 'Matte Lamination'],
-                ['uploads/gold-foiling.webp?v={{ @filemtime(public_path('uploads/gold-foiling.webp')) ?: time() }}', 'Gold Foiling']
+            box_liner_board: [
+                ['uploads/Kemi-White-Board-.webp', 'Kemi White Board'],
+                ['uploads/Natural-(Brown)-Kraft-Linerboard-.webp', 'Natural (Brown) Kraft Linerboard'],
+                ['uploads/Oyster-White-Board- (2).webp', 'Oyster White Board']
             ],
             corrugated: [
-                ['uploads/corrugated-divider.webp', 'Corrugated Divider'],
-                ['uploads/folding-divider.webp', 'Folding Divider'],
-                ['uploads/hips-insert.webp', 'HIPS Insert'],
                 ['uploads/kraft-corrugated.webp', 'Kraft Corrugated'],
-                ['uploads/kraft-paperboard.webp', 'Kraft Paperboard'],
-                ['uploads/petg-insert.webp', 'PETG Insert'],
-                ['uploads/pvc-insert.webp', 'PVC Insert'],
-                ['uploads/white-corrugated.webp', 'White Corrugated']
-            ],
-            special_finishes: [
-                ['uploads/blind-deboss.webp', 'Blind Debossing'],
-                ['uploads/blind-embossing.webp', 'Blind Embossing'],
-                ['uploads/cold-foil.webp', 'Cold Foil Printing'],
-                ['uploads/combo-emboss.webp', 'Combination Embossing'],
-                ['uploads/hot-foil.webp', 'Hot Foil Stamping'],
-                ['uploads/registered-emboss.webp', 'Registered Embossing'],
-                ['uploads/window-patch.webp', 'Window Patching']
+                ['uploads/white-corrugated.webp', 'White Corrugated'],
+                ['uploads/corrugated-divider.webp', 'Corrugated Divider'],
+                ['uploads/natural-kraft-corrugated-insert.webp', 'Natural Kraft Corrugated Insert'],
+                ['uploads/standard-white-corrugated-insert.webp', 'Standard White Corrugated Insert']
             ],
             rigid_materials: [
                 ['uploads/duplex-chipboard.webp', 'Duplex Chipboard'],
@@ -476,59 +461,58 @@
             ]
         };
 
-        // Preload all customization images in the background so tabs switch instantly
-        window.addEventListener('load', function() {
-            setTimeout(function() {
-                for (let key in customizeCardSets) {
-                    if (customizeCardSets.hasOwnProperty(key)) {
-                        customizeCardSets[key].forEach(function(item) {
-                            let img = new Image();
-                            img.src = customizeUploadsUrl + item[0];
-                        });
-                    }
+        // Preload image assets
+        setTimeout(function() {
+            for (let key in customizeCardSets) {
+                if (customizeCardSets.hasOwnProperty(key)) {
+                    customizeCardSets[key].forEach(function(item) {
+                        let img = new Image();
+                        img.src = customizeUploadsUrl + item[0];
+                    });
                 }
-            }, 500); // Start preloading half a second after page load
-        });
+            }
+        }, 500);
 
         function setCustomizeCardOrder(option) {
-            const cardSet = customizeCardSets[option] || customizeCardSets.materials;
-            const cardOrder = customizeCardOrders[option] || customizeCardOrders.materials;
+            const cardSet = customizeCardSets[option] || customizeCardSets.coating;
+            const halfLength = Math.floor(customizeCards.length / 2);
+
+            // Reset marquee animation to start from 0% position
+            if (grid) {
+                grid.style.animation = "none";
+                void grid.offsetHeight;
+                grid.style.animation = "";
+            }
 
             customizeCards.forEach(card => {
-                card.style.opacity = '0';
-                card.style.transform = 'scale(0.98)';
+                card.style.opacity = "0";
+                card.style.transform = "scale(0.98)";
             });
 
             setTimeout(() => {
-                customizeCards.forEach(card => card.style.display = 'none');
-
-                cardOrder.forEach(function(cardIndex, position) {
-                    if (!cardSet[position]) return;
-                    const [imagePath, title] = cardSet[position];
+                customizeCards.forEach((card, index) => {
+                    // Match second half identically to first half for 100% seamless marquee loop
+                    const firstHalfIndex = index % halfLength;
+                    const item = cardSet[firstHalfIndex % cardSet.length];
+                    const [imagePath, title] = item;
                     
-                    const card = customizeCards[cardIndex];
-                    const image = card.querySelector('img');
-                    image.src = customizeUploadsUrl + imagePath;
-                    image.alt = title;
-                    card.querySelector('.custom-card-title').textContent = title;
-                    card.style.order = position + 1;
-                    card.style.display = 'flex';
-                    
-                    if (customizeCards[cardIndex + 8]) {
-                        const cloneCard = customizeCards[cardIndex + 8];
-                        const cloneImage = cloneCard.querySelector('img');
-                        cloneImage.src = customizeUploadsUrl + imagePath;
-                        cloneImage.alt = title;
-                        cloneCard.querySelector('.custom-card-title').textContent = title;
-                        cloneCard.style.order = position + 1 + 8;
-                        cloneCard.style.display = 'flex';
+                    const image = card.querySelector("img");
+                    if (image) {
+                        image.src = customizeUploadsUrl + imagePath;
+                        image.alt = title;
                     }
+                    const titleEl = card.querySelector(".custom-card-title");
+                    if (titleEl) {
+                        titleEl.textContent = title;
+                    }
+                    card.style.order = index + 1;
+                    card.style.display = "flex";
                 });
 
                 requestAnimationFrame(() => {
                     customizeCards.forEach(card => {
-                        card.style.opacity = '1';
-                        card.style.transform = 'scale(1)';
+                        card.style.opacity = "1";
+                        card.style.transform = "scale(1)";
                     });
                 });
             }, 200);
@@ -587,6 +571,5 @@
                 });
             });
         }
-
+    })();
 </script>
-@endif
