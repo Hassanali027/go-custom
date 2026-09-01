@@ -398,7 +398,7 @@
             align-items: center;
             gap: 0.3125rem;
         }
-        .card-link i { color: var(--yellow); }
+        .card-link i { color: var(--dark-blue); }
 
         .mobile-share-divider { display: none; }
 
@@ -766,3 +766,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 </body>
 </html>
+
+
+
+

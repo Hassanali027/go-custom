@@ -354,7 +354,7 @@
         .iq-feature-item p {
             font-family: 'DM Sans', sans-serif;
             font-size: 0.8125rem;
-            color: #666;
+            color: #000000;
             margin: 0;
             line-height: 1.5;
         }
@@ -391,7 +391,7 @@
             <!-- Left sidebar section -->
             <div class="iq-page-sidebar" style="padding: 0; background: transparent; box-shadow: none;">
                 <h2 style="font-family: 'Open Sans', sans-serif; font-size: 1.5625rem; font-weight: 700; color: #000; margin-bottom: 1rem; margin-top: 0;">Let's Build Your Perfect Box</h2>
-                <p style="font-family: 'DM Sans', sans-serif; font-size: 0.9375rem; color: #333; line-height: 1.6; margin-bottom: 1.5rem; text-align: justify;">
+                <p style="font-family: 'DM Sans', sans-serif; font-size: 0.9375rem; color: #000000; line-height: 1.6; margin-bottom: 1.5rem; text-align: justify;">
                     From simple to premium, we create custom packaging designed around your product and brand. Tell us what you need, and our team will help bring your packaging vision to life with the right size, material, finish, and print. Fill out the form to get started.
                 </p>
                 <img src="{{ asset('uploads/Apparel Box .png') }}" alt="Custom packaging boxes" class="iq-sidebar-img">

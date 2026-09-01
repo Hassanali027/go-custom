@@ -326,6 +326,7 @@
             width: 100%;
             height: 100%;
             border: 0;
+            border-radius: 19px;
         }
 
         @media (max-width: 61.9375rem) {
@@ -512,3 +513,4 @@
     @include('components.footer')
 </body>
 </html>
+

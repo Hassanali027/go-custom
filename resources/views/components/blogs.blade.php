@@ -84,6 +84,9 @@
         transition: box-shadow 0.3s, transform 0.3s;
         position: relative;
         -webkit-tap-highlight-color: transparent;
+        min-height: 27.125rem;
+        box-shadow: 0 0.25rem 0.9375rem rgba(0,0,0,0.03);
+        cursor: pointer;
     }
 
     .blog-card:hover {
@@ -92,10 +95,12 @@
     }
 
     .blog-card__image {
-        width: 100%;
-        height: 15rem;
+        width: calc(100% - 1.75rem);
+        height: 13.75rem;
         object-fit: cover;
-        border-bottom: 1px solid #EAEAEA;
+        border-radius: 0.75rem;
+        margin: 0.875rem auto 0;
+        display: block;
     }
 
     .blog-card__content {
@@ -123,7 +128,11 @@
         margin-bottom: 0.75rem;
         text-decoration: none;
         transition: color 0.3s;
-    }
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+            }
 
     .blog-card__title::after {
         content: '';
@@ -131,10 +140,12 @@
         inset: 0;
         z-index: 1;
         -webkit-tap-highlight-color: transparent;
+        height: 100%;
     }
 
     .blog-card a {
         -webkit-tap-highlight-color: transparent;
+        height: 100%;
     }
 
     .blog-card:hover .blog-card__title {
@@ -142,6 +153,10 @@
     }
 
     .blog-card__desc {
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
         font-size: 0.875rem;
         color: var(--section-text-color);
         line-height: 1.6;
@@ -269,6 +284,10 @@
         }
 
         .blog-card__desc {
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
             font-size: 0.8438rem;
             margin-bottom: 1.125rem;
         }
@@ -357,7 +376,7 @@
                             <p class="blog-card__desc">{{ Str::limit(html_entity_decode(html_entity_decode(strip_tags($bExcerpt))), 90) }}</p>
                             <div>
                                 <a href="{{ $bUrl }}" class="blog-card__readmore" onclick="event.stopPropagation();">
-                                    Read More
+                                    Read Blog
                                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
                                 </a>
                             </div>
@@ -377,7 +396,7 @@
                         <p class="blog-card__desc">Explore how eco-friendly rigid boxes are transforming luxury packaging with sustainable</p>
                         <div>
                             <a href="{{ url('/blog-detail') }}" class="blog-card__readmore">
-                                Read More
+                                Read Blog
                                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
                             </a>
                         </div>
@@ -432,3 +451,4 @@
         });
     })();
 </script>
+
