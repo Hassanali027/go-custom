@@ -71,6 +71,7 @@ Route::get('/product/{slug}', function ($slug) {
 
 // A category-style listing for products selected as Popular Product in the admin panel.
 Route::get('/popular-products', function () {
+    $popularSettings = (new \App\Http\Controllers\AdminHomepageController())->loadSettings();
     $popularProducts = DB::table('admin_products')
         ->where('status', 'published')
         ->where('show_as_custom_box', 1)
@@ -84,10 +85,14 @@ Route::get('/popular-products', function () {
         'slug' => 'popular-products',
         'meta_title' => 'Popular Custom Packaging Products | Go-Custom-boxes',
         'meta_description' => 'Explore our popular custom packaging products and find the right box for your brand.',
-        'hero_title' => 'Popular Custom Packaging Products',
+        'hero_title' => $popularSettings['popular_hero_title'] ?: 'Popular Custom Packaging Products',
         'hero_badge' => 'Popular Products',
-        'hero_description' => 'Browse the packaging products selected by our team for their quality, presentation, and versatile custom options.',
-        'hero_image' => $popularProducts[0]['image'] ?? 'uploads/Home-Banner.webp',
+        'hero_description' => $popularSettings['popular_hero_description'] ?: 'Browse the packaging products selected by our team for their quality, presentation, and versatile custom options.',
+        'hero_image' => $popularSettings['popular_hero_image'] ?: ($popularProducts[0]['image'] ?? 'uploads/Home-Banner.webp'),
+        'hero_primary_button_text' => $popularSettings['popular_hero_primary_button_text'] ?: 'Get Instant Quote',
+        'hero_primary_button_url' => $popularSettings['popular_hero_primary_button_url'] ?: '/request-quote/',
+        'hero_secondary_button_text' => $popularSettings['popular_hero_secondary_button_text'] ?: 'Shop Now',
+        'hero_secondary_button_url' => $popularSettings['popular_hero_secondary_button_url'] ?: '/popular-products/',
         'products_heading' => 'Popular Products',
         'products_description' => 'Explore our most popular custom packaging solutions for every product and brand.',
         'feature_sections' => '[]',

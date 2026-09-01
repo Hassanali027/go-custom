@@ -23,6 +23,13 @@ class AdminHomepageController extends Controller
             'hero_title' => 'Custom Printed Boxes & Packaging Manufacturer',
             'hero_description' => 'Get premium custom rigid boxes and packaging solutions designed for your brand.',
             'hero_image' => '',
+            'popular_hero_title' => 'Popular Custom Packaging Products',
+            'popular_hero_description' => 'Browse the packaging products selected by our team for their quality, presentation, and versatile custom options.',
+            'popular_hero_image' => '',
+            'popular_hero_primary_button_text' => 'Get Instant Quote',
+            'popular_hero_primary_button_url' => '/request-quote/',
+            'popular_hero_secondary_button_text' => 'Shop Now',
+            'popular_hero_secondary_button_url' => '/popular-products/',
             'featured_categories' => [],
             'bestseller_products' => [],
             'content_section' => '<h2>Why Choose Go-Custom-boxes</h2><p>We craft high quality luxury packaging for all industries.</p>',
@@ -85,6 +92,13 @@ class AdminHomepageController extends Controller
             'hero_title' => 'nullable|string|max:255',
             'hero_description' => 'nullable|string',
             'hero_image' => 'nullable|image|mimes:jpeg,png,jpg,webp,svg|max:5120',
+            'popular_hero_title' => 'nullable|string|max:255',
+            'popular_hero_description' => 'nullable|string',
+            'popular_hero_image' => 'nullable|image|mimes:jpeg,png,jpg,webp,svg|max:5120',
+            'popular_hero_primary_button_text' => 'nullable|string|max:80',
+            'popular_hero_primary_button_url' => 'nullable|string|max:255',
+            'popular_hero_secondary_button_text' => 'nullable|string|max:80',
+            'popular_hero_secondary_button_url' => 'nullable|string|max:255',
             'featured_categories' => 'nullable|array',
             'bestseller_products' => 'nullable|array',
             'content_section' => 'nullable|string',
@@ -100,6 +114,9 @@ class AdminHomepageController extends Controller
         $settings['schema'] = $request->input('schema');
         $settings['hero_title'] = $request->input('hero_title');
         $settings['hero_description'] = $request->input('hero_description');
+        foreach (['popular_hero_title', 'popular_hero_description', 'popular_hero_primary_button_text', 'popular_hero_primary_button_url', 'popular_hero_secondary_button_text', 'popular_hero_secondary_button_url'] as $field) {
+            $settings[$field] = $request->input($field);
+        }
 
         if ($request->input('remove_hero_image') == '1') {
             $settings['hero_image'] = null;
@@ -109,6 +126,16 @@ class AdminHomepageController extends Controller
             $fileName = $file->getClientOriginalName();
             $file->move(public_path('uploads'), $fileName);
             $settings['hero_image'] = 'uploads/' . $fileName;
+        }
+
+        if ($request->input('remove_popular_hero_image') == '1') {
+            $settings['popular_hero_image'] = null;
+        }
+        if ($request->hasFile('popular_hero_image')) {
+            $file = $request->file('popular_hero_image');
+            $fileName = 'popular-hero-' . \Illuminate\Support\Str::uuid() . '.' . $file->getClientOriginalExtension();
+            $file->move(public_path('uploads'), $fileName);
+            $settings['popular_hero_image'] = 'uploads/' . $fileName;
         }
 
         $settings['featured_categories'] = array_map('intval', (array) $request->input('featured_categories', []));
@@ -137,7 +164,7 @@ class AdminHomepageController extends Controller
 
             if (in_array($key, ['meta_title', 'meta_description', 'meta_keywords', 'schema'])) {
                 $section = 'seo';
-            } elseif (in_array($key, ['hero_title', 'hero_description', 'hero_image'])) {
+            } elseif (in_array($key, ['hero_title', 'hero_description', 'hero_image', 'popular_hero_title', 'popular_hero_description', 'popular_hero_image', 'popular_hero_primary_button_text', 'popular_hero_primary_button_url', 'popular_hero_secondary_button_text', 'popular_hero_secondary_button_url'])) {
                 $section = 'hero';
             } elseif (in_array($key, ['featured_categories', 'bestseller_products', 'faqs'])) {
                 $section = 'list';

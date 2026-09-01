@@ -216,6 +216,35 @@
         </div>
     </div>
 
+    <!-- POPULAR PRODUCTS HERO -->
+    <div class="panel">
+        <div class="panel-head">
+            <h2 style="font-size:1.0625rem;"><i class="fa-solid fa-box-open" style="color:var(--primary); margin-right:0.5rem;"></i> Popular Products Page Hero</h2>
+            <span style="color:var(--muted); font-size:0.75rem;">Controls the hero shown on the Popular Products category-style page</span>
+        </div>
+        <div class="section">
+            <div class="form-grid">
+                <div class="field full"><label>Hero Title</label><input name="popular_hero_title" value="{{ old('popular_hero_title', $settings['popular_hero_title'] ?? '') }}"></div>
+                <div class="field full"><label>Hero Description</label><textarea name="popular_hero_description" rows="3">{{ old('popular_hero_description', $settings['popular_hero_description'] ?? '') }}</textarea></div>
+                <div class="field full">
+                    <label>Hero Image</label>
+                    @if(!empty($settings['popular_hero_image']))
+                        @php $popularHeroImage = \Illuminate\Support\Str::startsWith($settings['popular_hero_image'], ['uploads/', 'storage/', 'images/']) ? asset($settings['popular_hero_image']) : asset('storage/' . $settings['popular_hero_image']); @endphp
+                        <div class="single-image-wrapper" style="margin-bottom:0.625rem; display:flex; align-items:center; gap:0.75rem; background:var(--soft); padding:0.625rem 0.875rem; border-radius:0.625rem; width:fit-content; position:relative;">
+                            <img src="{{ $popularHeroImage }}" alt="Popular Products Hero" style="height:3.75rem; object-fit:contain; border-radius:0.375rem;">
+                            <span onclick="removeSingleImage(this, 'popular_hero_image')" style="position:absolute; top:-0.375rem; right:-0.375rem; background:#e74c3c; color:white; border-radius:50%; width:1.125rem; height:1.125rem; display:flex; align-items:center; justify-content:center; font-size:0.875rem; font-weight:bold; cursor:pointer;">&times;</span>
+                        </div>
+                    @endif
+                    <input type="file" name="popular_hero_image" accept="image/*">
+                </div>
+                <div class="field"><label>Primary Button Text</label><input name="popular_hero_primary_button_text" value="{{ old('popular_hero_primary_button_text', $settings['popular_hero_primary_button_text'] ?? 'Get Instant Quote') }}"></div>
+                <div class="field"><label>Primary Button Link</label><input name="popular_hero_primary_button_url" value="{{ old('popular_hero_primary_button_url', $settings['popular_hero_primary_button_url'] ?? '/request-quote/') }}"></div>
+                <div class="field"><label>Secondary Button Text</label><input name="popular_hero_secondary_button_text" value="{{ old('popular_hero_secondary_button_text', $settings['popular_hero_secondary_button_text'] ?? 'Shop Now') }}"></div>
+                <div class="field"><label>Secondary Button Link</label><input name="popular_hero_secondary_button_url" value="{{ old('popular_hero_secondary_button_url', $settings['popular_hero_secondary_button_url'] ?? '/popular-products/') }}"></div>
+            </div>
+        </div>
+    </div>
+
     <!-- SECTION 3: SELECT CATEGORIES (SEARCHABLE MULTI-SELECT DROPDOWN) -->
     <div class="panel" style="overflow: visible; position: relative; z-index: 30;">
         <div class="panel-head">

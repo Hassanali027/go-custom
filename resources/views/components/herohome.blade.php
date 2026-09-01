@@ -515,8 +515,8 @@
 
             <div class="hero-buttons" style="position: relative; display: flex; gap: 1rem; align-items: center;">
                 <div class="hero-glow-circle"></div>
-                <a href="/request-quote/" class="hero-btn" style="display: inline-flex; align-items: center;">Get Instant Quote <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-left: 0.375rem;"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a>
-                <a href="{{ url('/popular-products/') }}" class="hero-btn-outline" style="display: inline-flex; align-items: center; justify-content: center; width: 12.1875rem; height: 3.5rem; box-sizing: border-box; font-family: 'DM Sans', sans-serif; font-size: 1rem; font-weight: 700; color: var(--primary-color); border: 0.125rem solid var(--primary-color); border-radius: 0.25rem; text-decoration: none; transition: 0.3s;">Shop Now</a>
+                <a href="{{ $settings['hero_primary_button_url'] ?? '/request-quote/' }}" class="hero-btn" style="display: inline-flex; align-items: center;">{{ $settings['hero_primary_button_text'] ?? 'Get Instant Quote' }} <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-left: 0.375rem;"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a>
+                <a href="{{ $settings['hero_secondary_button_url'] ?? url('/popular-products/') }}" class="hero-btn-outline" style="display: inline-flex; align-items: center; justify-content: center; width: 12.1875rem; height: 3.5rem; box-sizing: border-box; font-family: 'DM Sans', sans-serif; font-size: 1rem; font-weight: 700; color: var(--primary-color); border: 0.125rem solid var(--primary-color); border-radius: 0.25rem; text-decoration: none; transition: 0.3s;">{{ $settings['hero_secondary_button_text'] ?? 'Shop Now' }}</a>
             </div>
         </div>
 
