@@ -154,7 +154,9 @@ class AdminContentController extends Controller
             $featureDescriptions = (array) $request->input('feature_section_description', []);
             $existingFeatureImages = (array) $request->input('feature_section_existing_image', []);
             $featureImageUploads = (array) $request->file('feature_section_image', []);
-            $uploadPath = public_path('uploads');
+            $featureCategoryKey = preg_replace('/[^A-Za-z0-9_-]/', '-', (string) $id);
+            $featureUploadRelativePath = 'uploads/category-features/' . $featureCategoryKey;
+            $uploadPath = public_path($featureUploadRelativePath);
 
             foreach ($featureTitles as $index => $featureTitle) {
                 $featureTitle = trim((string) $featureTitle);
@@ -166,10 +168,10 @@ class AdminContentController extends Controller
                     if (!is_dir($uploadPath)) {
                         mkdir($uploadPath, 0775, true);
                     }
-                    // A UUID prevents uploads in different categories from sharing/overwriting one file.
+                    // Category folder + UUID ensures an upload can never overwrite another category's image.
                     $fileName = 'category-feature-' . Str::uuid() . '.' . $file->getClientOriginalExtension();
                     $file->move($uploadPath, $fileName);
-                    $featureImage = 'uploads/' . $fileName;
+                    $featureImage = $featureUploadRelativePath . '/' . $fileName;
                 }
 
                 if ($featureTitle !== '' || $featureDescription !== '' || !empty($featureImage)) {

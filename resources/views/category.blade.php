@@ -748,6 +748,7 @@
                             $featureImagePath = \Illuminate\Support\Str::startsWith($featureImage, ['storage/', 'uploads/', 'images/'])
                                 ? $featureImage
                                 : 'storage/' . $featureImage;
+                            $featureImageVersion = @filemtime(public_path($featureImagePath)) ?: 1;
                         @endphp
                         <div class="clothing-feature-card {{ $loop->odd ? '' : 'reverse' }}">
                             <div class="clothing-feature-text">
@@ -756,7 +757,7 @@
                             </div>
                             @if(!empty($featureImage))
                                 <div class="clothing-feature-image">
-                                    <img src="{{ asset($featureImagePath) }}" alt="{{ $feature['title'] ?? $category['title'] }}" loading="lazy">
+                                    <img src="{{ asset($featureImagePath) }}?v={{ $featureImageVersion }}" alt="{{ $feature['title'] ?? $category['title'] }}" loading="lazy">
                                 </div>
                             @endif
                         </div>
