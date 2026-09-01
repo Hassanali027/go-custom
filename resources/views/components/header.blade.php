@@ -317,7 +317,8 @@
         position: relative;
     }
 
-    .header-nav li a {
+    .header-nav li a,
+    .header-nav li .mega-trigger {
         color: #fff;
         text-decoration: none;
         font-size: 1rem;
@@ -333,11 +334,18 @@
         margin: 0;
     }
 
-    .header-nav li a:hover {
+    .header-nav li .mega-trigger {
+        background: transparent;
+        border: 0;
+        cursor: pointer;
+    }
+
+    .header-nav li a:hover,
+    .header-nav li .mega-trigger:hover {
         opacity: 0.85;
     }
 
-    .header-nav li.has-mega > a::after {
+    .header-nav li.has-mega > .mega-trigger::after {
         content: '';
         display: inline-block;
         width: 0.375rem;
@@ -1060,11 +1068,11 @@
             </li>
             @foreach($navParentItems as $navParent)
             <li class="has-mega" data-mega-type="{{ $navParent['slug'] }}">
-                <a href="#" class="mega-trigger" aria-haspopup="true" onclick="event.preventDefault();" style="color: #000000; text-decoration: none; font-weight: 700; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 0.9375rem;">{{ $navLabels[$navParent['slug']] ?? $navParent['title'] }}</a>
+                <button type="button" class="mega-trigger" aria-haspopup="true" style="color: #000000; text-decoration: none; font-weight: 700; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 0.9375rem;">{{ $navLabels[$navParent['slug']] ?? $navParent['title'] }}</button>
             </li>
             @endforeach
             <li class="has-mega" data-mega-type="resources">
-                <a href="#" class="mega-trigger" aria-haspopup="true" onclick="event.preventDefault();" style="color: #000000; text-decoration: none; font-weight: 700; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 0.9375rem;">Resources</a>
+                <button type="button" class="mega-trigger" aria-haspopup="true" style="color: #000000; text-decoration: none; font-weight: 700; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 0.9375rem;">Resources</button>
             </li>
         </ul>
         
