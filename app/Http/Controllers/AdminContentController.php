@@ -146,6 +146,11 @@ class AdminContentController extends Controller
             }
         }
 
+        if ($module === 'products') {
+            // `related` is excluded above with other array inputs, so explicitly persist it as JSON below.
+            $payload['related'] = array_map('intval', (array) $request->input('related', []));
+        }
+
         if ($module === 'categories') {
             $payload['parent_id'] = $request->filled('parent_id') ? $request->input('parent_id') : null;
 
