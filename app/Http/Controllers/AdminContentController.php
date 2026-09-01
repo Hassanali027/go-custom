@@ -194,8 +194,9 @@ class AdminContentController extends Controller
                 if (in_array($field, $fields)) {
                     $file = $request->file($field);
                     $ext = $file->getClientOriginalExtension();
-                    $baseName = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
-                    $fileName = $baseName . '.' . $ext;
+                    $baseName = Str::slug(pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME)) ?: 'image';
+                    // Unique suffix ensures one record's upload can never overwrite another's.
+                    $fileName = $baseName . '-' . Str::uuid() . '.' . $ext;
                     $uploadPath = public_path('uploads');
                     if (!is_dir($uploadPath)) {
                         mkdir($uploadPath, 0775, true);
@@ -221,8 +222,9 @@ class AdminContentController extends Controller
                 $newImages = collect($galleryFiles)
                     ->map(function ($file) use ($uploadPath) {
                         $ext = $file->getClientOriginalExtension();
-                        $baseName = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
-                        $fileName = $baseName . '.' . $ext;
+                        $baseName = Str::slug(pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME)) ?: 'image';
+                        // Unique suffix prevents one gallery upload from overwriting another's file.
+                        $fileName = $baseName . '-' . Str::uuid() . '.' . $ext;
                         $file->move($uploadPath, $fileName);
                         return 'uploads/' . $fileName;
                     })
