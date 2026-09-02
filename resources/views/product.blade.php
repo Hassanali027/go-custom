@@ -2394,16 +2394,7 @@
 
                     <div class="form-bottom-grid">
                         <div class="input-group">
-                            @php
-                                $quoteProducts = \Illuminate\Support\Facades\DB::table('admin_products')
-                                    ->where('status', 'published')->orderBy('title')->pluck('title');
-                            @endphp
-                            <input type="text" name="box_style" class="quote-input" list="product-box-style-options" placeholder="Select Your Box Style" value="{{ $product['title'] ?? '' }}" autocomplete="off" required>
-                            <datalist id="product-box-style-options">
-                                @foreach($quoteProducts as $quoteProductTitle)
-                                    <option value="{{ $quoteProductTitle }}"></option>
-                                @endforeach
-                            </datalist>
+                            <x-searchable-product-select input-class="quote-input" :value="$product['title'] ?? ''" :required="true" />
                         </div>
                         <div class="input-group">
                             <select name="paper_stock" class="quote-input" required>

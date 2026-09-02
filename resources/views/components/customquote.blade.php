@@ -310,16 +310,7 @@
                 <!-- Row 3: Product, paper stock and color -->
                 <div class="qf-group qf-span-4 qf-span-6-m">
                     <label>Select Box Style</label>
-                    @php
-                        $quoteProducts = \Illuminate\Support\Facades\DB::table('admin_products')
-                            ->where('status', 'published')->orderBy('title')->pluck('title');
-                    @endphp
-                    <input type="text" name="box_style" list="custom-quote-box-styles" placeholder="Search or select product" autocomplete="off">
-                    <datalist id="custom-quote-box-styles">
-                        @foreach($quoteProducts as $quoteProductTitle)
-                            <option value="{{ $quoteProductTitle }}"></option>
-                        @endforeach
-                    </datalist>
+                    <x-searchable-product-select placeholder="Search or select product" />
                 </div>
                 <div class="qf-group qf-span-4 qf-span-6-m">
                     <label>Select Paper Stock</label>

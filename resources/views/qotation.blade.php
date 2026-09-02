@@ -476,16 +476,7 @@
                     <div class="iq-grid-3">
                         <div class="iq-form-group">
                             <label>Select Box Style</label>
-                            @php
-                                $quoteProducts = \Illuminate\Support\Facades\DB::table('admin_products')
-                                    ->where('status', 'published')->orderBy('title')->pluck('title');
-                            @endphp
-                            <input type="text" name="box_style" list="quote-page-box-styles" placeholder="Search or select product" autocomplete="off">
-                            <datalist id="quote-page-box-styles">
-                                @foreach($quoteProducts as $quoteProductTitle)
-                                    <option value="{{ $quoteProductTitle }}"></option>
-                                @endforeach
-                            </datalist>
+                            <x-searchable-product-select input-class="iq-product-search-input" placeholder="Search or select product" />
                         </div>
                         <div class="iq-form-group">
                             <label>Select Paper Stock</label>
