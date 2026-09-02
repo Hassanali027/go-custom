@@ -161,6 +161,7 @@
         text-align: left;
         line-height: 1.45;
         margin-bottom: 1.25rem;
+        text-align: justify;
     }
 
     .category-page-hero .hero-title br {

@@ -1,3 +1,5 @@
+@php($productPageOnly = $productPageOnly ?? false)
+
 <style>
     /* Customize Section */
     .customize-section {
@@ -311,8 +313,10 @@
                         <button type="button" class="customize-tab" data-customize-tab="paperboard">Paperboard</button>
                         <button type="button" class="customize-tab" data-customize-tab="corrugated">Corrugated</button>
                         <button type="button" class="customize-tab" data-customize-tab="fluted_grades">Fluted Grades</button>
-                        <button type="button" class="customize-tab" data-customize-tab="rigid_materials">Rigid Materials</button>
-                        <button type="button" class="customize-tab" data-customize-tab="printing_options">Printing Options</button>
+                        @unless($productPageOnly)
+                            <button type="button" class="customize-tab" data-customize-tab="rigid_materials">Rigid Materials</button>
+                            <button type="button" class="customize-tab" data-customize-tab="printing_options">Printing Options</button>
+                        @endunless
                     </aside>
 
                     <!-- Right Content Grid -->

@@ -139,7 +139,7 @@
             <!-- Step 1 -->
             <div class="hiw-step">
                 <div class="hiw-img-wrap">
-                    <img src="{{ asset('uploads/explore-one.svg') }}" alt="Explore" class="hiw-img"
+                    <img src="{{ asset('uploads/explore.webp') }}" alt="Explore" class="hiw-img"
                          onerror="this.src='https://placehold.co/150x120/0a2240/F6B72D?text=1.+Explore'">
                 </div>
                 <h3 class="hiw-step-title">1. Explore</h3>
@@ -149,7 +149,7 @@
             <!-- Step 2 -->
             <div class="hiw-step">
                 <div class="hiw-img-wrap">
-                    <img src="{{ asset('uploads/explore-two.svg') }}" alt="Choose" class="hiw-img"
+                    <img src="{{ asset('uploads/choose.webp') }}" alt="Choose" class="hiw-img"
                          onerror="this.src='https://placehold.co/150x120/0a2240/F6B72D?text=2.+Choose'">
                 </div>
                 <h3 class="hiw-step-title">2. Choose</h3>
@@ -159,7 +159,7 @@
             <!-- Step 3 -->
             <div class="hiw-step">
                 <div class="hiw-img-wrap">
-                    <img src="{{ asset('uploads/explore-three.svg') }}" alt="Design" class="hiw-img"
+                    <img src="{{ asset('uploads/design.webp') }}" alt="Design" class="hiw-img"
                          onerror="this.src='https://placehold.co/150x120/0a2240/F6B72D?text=3.+Design'">
                 </div>
                 <h3 class="hiw-step-title">3. Design</h3>
@@ -169,7 +169,7 @@
             <!-- Step 4 -->
             <div class="hiw-step">
                 <div class="hiw-img-wrap">
-                    <img src="{{ asset('uploads/explore-four.svg') }}" alt="Order" class="hiw-img"
+                    <img src="{{ asset('uploads/order.webp') }}" alt="Order" class="hiw-img"
                          onerror="this.src='https://placehold.co/150x120/0a2240/F6B72D?text=4.+Order'">
                 </div>
                 <h3 class="hiw-step-title">4. Order</h3>

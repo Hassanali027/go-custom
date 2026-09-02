@@ -177,11 +177,11 @@
                 transform: translateY(-0.3125rem);
                 box-shadow: 0 0.625rem 1.25rem rgba(0, 0, 0, 0.08);
             }
-            
+
             .industry-card:hover .industry-card__image-wrap img {
                 transform: scale(1.05);
             }
-            
+
             .industry-card:hover .industry-card__arrow {
                 transform: rotate(-45deg) translate(0.125rem, -0.125rem);
             }
@@ -2199,7 +2199,8 @@
                     @endphp
 
                     @if(empty($featuredCategories))
-                    <p style="grid-column: 1 / -1; text-align: center; color: #667085; padding: 1.5rem 0;">Select categories from Home Page Settings to show them here.</p>
+                    <p style="grid-column: 1 / -1; text-align: center; color: #667085; padding: 1.5rem 0;">Select
+                        categories from Home Page Settings to show them here.</p>
                     @endif
                     @foreach ($featuredCategories as $cat)
                     @php
@@ -2582,7 +2583,8 @@
                         <a href="/request-quote/" class="see-feel-btn desktop-btn">Get Instant Quote</a>
                     </div>
                     <div class="see-feel-right">
-                        <img src="{{ asset('uploads/see-and-feel.jpeg') }}?v={{ @filemtime(public_path('uploads/see-and-feel.jpeg')) ?: 1 }}" alt="Sustainable packaging materials" class="sfr-img">
+                        <img src="{{ asset('uploads/see-and-feel.jpeg') }}?v={{ @filemtime(public_path('uploads/see-and-feel.jpeg')) ?: 1 }}"
+                            alt="Sustainable packaging materials" class="sfr-img">
                     </div>
                     <a href="/request-quote/" class="see-feel-btn mobile-btn">Get Instant Quote</a>
                 </div>
@@ -2745,17 +2747,17 @@
 
                 <div class="uy-grid">
                     <div class="uy-card uy-gloss">
-                        <img src="{{ asset('uploads/gloss-lamination.webp') }}" alt="Gloss Lamination"
+                        <img src="{{ asset('uploads/gloss-home.webp') }}" alt="Gloss Lamination"
                             onerror="this.src='https://placehold.co/610x231/111/fff?text=Gloss+Lamination'">
                         <span class="uy-label">Gloss Lamination</span>
                     </div>
                     <div class="uy-card uy-embossing">
-                        <img src="{{ asset('uploads/embossing.webp') }}" alt="Embossing"
+                        <img src="{{ asset('uploads/embossing-home.png') }}" alt="Embossing"
                             onerror="this.src='https://placehold.co/610x231/f0f0f0/333?text=Embossing'">
                         <span class="uy-label">Embossing</span>
                     </div>
                     <div class="uy-card uy-debossing">
-                        <img src="{{ asset('uploads/debossing.webp') }}" alt="Debossing"
+                        <img src="{{ asset('uploads/debossing-home-img.webp') }}" alt="Debossing"
                             onerror="this.src='https://placehold.co/610x231/333/fff?text=Debossing'">
                         <span class="uy-label">Debossing</span>
                     </div>
@@ -2765,21 +2767,23 @@
                         <span class="uy-label">Matte Lamination</span>
                     </div>
                     <div class="uy-card uy-holo">
-                        <img src="{{ asset('uploads/holographic-foiling.webp') }}?v={{ @filemtime(public_path('uploads/holographic-foiling.webp')) ?: time() }}" alt="Holographic Foiling">
+                        <img src="{{ asset('uploads/holographic-foiling.webp') }}?v={{ @filemtime(public_path('uploads/holographic-foiling.webp')) ?: time() }}"
+                            alt="Holographic Foiling">
                         <span class="uy-label">Holographic Foiling</span>
                     </div>
                     <div class="uy-card uy-silver">
-                        <img src="{{ asset('uploads/silver-Foiling.webp') }}" alt="Silver Foiling"
+                        <img src="{{ asset('uploads/silver-Foiling-home.jpg') }}" alt="Silver Foiling"
                             onerror="this.src='https://placehold.co/293x231/444/fff?text=Silver+Foiling'">
                         <span class="uy-label">Silver Foiling</span>
                     </div>
                     <div class="uy-card uy-spot">
-                        <img src="{{ asset('uploads/Spot-Gloss-UV.webp') }}" alt="Spot UV"
+                        <img src="{{ asset('uploads/Spot-uv-home.png') }}" alt="Spot UV"
                             onerror="this.src='https://placehold.co/293x231/111/fff?text=Spot+UV'">
                         <span class="uy-label">Spot UV</span>
                     </div>
                     <div class="uy-card uy-gold">
-                        <img src="{{ asset('uploads/gold-foiling.webp') }}?v={{ @filemtime(public_path('uploads/gold-foiling.webp')) ?: time() }}" alt="Gold Foiling">
+                        <img src="{{ asset('uploads/gold-foiling-home.png') }}?v={{ @filemtime(public_path('uploads/gold-foiling.webp')) ?: time() }}"
+                            alt="Gold Foiling">
                         <span class="uy-label">Gold Foiling</span>
                     </div>
                 </div>
@@ -3042,6 +3046,7 @@
                 .why-choose-inner {
                     padding: 0 1rem;
                 }
+
                 .wcc-title {
                     font-size: 1.25rem;
                     margin-bottom: 0.25rem;
@@ -3073,16 +3078,16 @@
 
                     <div class="wcc-collage">
                         <div class="wcc-col">
-                            <img src="{{ asset('uploads/custom-maroon-heart-chocolate-box.webp') }}" alt="Custom maroon heart chocolate box" class="wcc-img"
-                                style="height: 13.0625rem;">
-                            <img src="{{ asset('uploads/custom-navy-blue-rigid-gift-box.webp') }}" alt="Custom navy blue rigid gift box" class="wcc-img"
-                                style="height: 8.25rem;">
+                            <img src="{{ asset('uploads/custom-maroon-heart-chocolate-box.webp') }}"
+                                alt="Custom maroon heart chocolate box" class="wcc-img" style="height: 13.0625rem;">
+                            <img src="{{ asset('uploads/custom-navy-blue-rigid-gift-box.webp') }}"
+                                alt="Custom navy blue rigid gift box" class="wcc-img" style="height: 8.25rem;">
                         </div>
                         <div class="wcc-col">
-                            <img src="{{ asset('uploads/custom-green-gable-packaging-box.webp') }}" alt="Custom green gable packaging box" class="wcc-img"
-                                style="height: 8.25rem;">
-                            <img src="{{ asset('uploads/custom-cream-square-luxury-box.webp') }}" alt="Custom cream square luxury box" class="wcc-img"
-                                style="height: 13.0625rem;">
+                            <img src="{{ asset('uploads/custom-green-gable-packaging-box.webp') }}"
+                                alt="Custom green gable packaging box" class="wcc-img" style="height: 8.25rem;">
+                            <img src="{{ asset('uploads/custom-cream-square-luxury-box.webp') }}"
+                                alt="Custom cream square luxury box" class="wcc-img" style="height: 13.0625rem;">
                         </div>
                     </div>
                 </div>

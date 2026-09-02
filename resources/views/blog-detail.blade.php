@@ -369,7 +369,8 @@
         }
         .blog-card img {
             width: calc(100% - 1.75rem);
-            height: auto;
+            height: 13.75rem;
+            object-fit: cover;
             border-radius: 0.75rem;
             margin: 0.875rem auto 0;
             display: block;
