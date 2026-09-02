@@ -364,7 +364,20 @@
         
         <!-- Right Sidebar Column -->
         <div class="pqn-sidebar-col">
-            <img src="{{ asset('uploads/request-kit-sec-img.png') }}" alt="Premium Box" class="pqn-product-img" onerror="this.src='https://placehold.co/300x200/ffffff/0a2240?text=Premium+Box'">
+            @php
+                $sampleKitImage = $product['image'] ?? '';
+                if (empty($sampleKitImage) && !empty($product['images'])) {
+                    $sampleKitGallery = is_string($product['images'])
+                        ? (json_decode($product['images'], true) ?: [])
+                        : (array) $product['images'];
+                    $sampleKitImage = $sampleKitGallery[0] ?? '';
+                }
+                if (!empty($sampleKitImage) && !\Illuminate\Support\Str::startsWith($sampleKitImage, ['storage/', 'uploads/', 'images/'])) {
+                    $sampleKitImage = 'storage/' . $sampleKitImage;
+                }
+                $sampleKitImage = $sampleKitImage ?: 'uploads/request-kit-sec-img.png';
+            @endphp
+            <img src="{{ asset($sampleKitImage) }}" alt="{{ $product['title'] ?? 'Premium Box' }}" class="pqn-product-img" onerror="this.src='https://placehold.co/300x200/ffffff/0a2240?text=Premium+Box'">
             
             <div class="pqn-features-grid">
                 <div class="pqn-feature-card">

@@ -40,7 +40,7 @@
             max-width: 100% !important;
             box-sizing: border-box !important;
             padding-right: 2.35rem !important;
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23FFB400'%3E%3Cpath d='M7 9l5 6 5-6z'/%3E%3C/svg%3E") !important;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23FFFFFF'%3E%3Cpath d='M7 9l5 6 5-6z'/%3E%3C/svg%3E") !important;
             background-repeat: no-repeat !important;
             background-position: right .75rem center !important;
             background-size: 1.15rem !important;

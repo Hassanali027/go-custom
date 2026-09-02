@@ -102,6 +102,7 @@
         .hero-container .hero-quote-box {
             display: flex !important;
             flex-direction: column !important;
+            align-self: stretch;
         }
 
         .hero-quote-box form {
@@ -110,21 +111,26 @@
             flex-direction: column;
         }
 
+        .hero-quote-box form > div:last-child {
+            margin-top: auto !important;
+        }
+
         .hero-quote-box form > .input-group {
-            flex: 1;
+            flex: none;
             display: flex;
             flex-direction: column;
         }
 
         .hero-quote-box form > .input-group textarea.quote-input {
-            flex: 1;
-            height: auto !important;
-            min-height: 6.6875rem !important;
+            flex: none;
+            height: 3.75rem !important;
+            min-height: 3.75rem !important;
+            max-height: 3.75rem !important;
         }
 
         .hero-images {
-            flex: 0 0 43%;
-            max-width: 43%;
+            flex: 0 0 35%;
+            max-width: 35%;
             display: flex;
             flex-direction: column;
             justify-content: flex-start;
@@ -154,6 +160,27 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
+            cursor: pointer;
+        }
+
+        .image-magnifier-lens {
+            position: absolute;
+            width: 11.25rem;
+            height: 11.25rem;
+            display: none;
+            border: 1px solid rgba(11, 34, 64, 0.75);
+            background-color: #fff;
+            background-repeat: no-repeat;
+            background-size: 250% auto;
+            box-shadow: 0 0.25rem 0.75rem rgba(0, 0, 0, 0.2);
+            opacity: 0;
+            pointer-events: none;
+            z-index: 5;
+        }
+
+        .main-image.is-magnifying .image-magnifier-lens {
+            display: block;
+            opacity: 1;
         }
 
         .in-stock-tag {
@@ -2102,11 +2129,8 @@
                 $pGalleryRaw = array_map($normalizeImg, $pGalleryRaw);
 
                 $pTitle = $product['title'] ?? 'Custom Packaging Box';
-                // The featured image is already shown above. Keep thumbnails for additional gallery images only.
-                $pGallery = array_values(array_filter(
-                    array_unique($pGalleryRaw),
-                    fn ($galleryImage) => $galleryImage !== $pMainImg
-                ));
+                // Always show the active/featured image first in the thumbnail row.
+                $pGallery = array_values(array_unique(array_filter(array_merge([$pMainImg], $pGalleryRaw))));
             @endphp
             <div class="hero-images">
                 <div class="main-image">
@@ -2114,12 +2138,13 @@
                         <span class="stock-dot"></span> In Stock
                     </div>
                     <img id="product-main-image" src="{{ asset($pMainImg) }}?v={{ @filemtime(public_path($pMainImg)) ?: 1 }}" alt="{{ $pTitle }}" onerror="this.src='https://placehold.co/600x500/eeeeee/555555?text={{ urlencode($pTitle) }}'">
+                    <span class="image-magnifier-lens" aria-hidden="true"></span>
                 </div>
                 @if(count($pGallery))
                 <div class="thumbnails">
                     @foreach($pGallery as $galleryIndex => $galleryImage)
                         @php $galleryImage = \Illuminate\Support\Str::startsWith($galleryImage, ['storage/', 'uploads/', 'images/']) ? $galleryImage : 'storage/' . $galleryImage; @endphp
-                        <div class="thumb" onclick="switchProductImage(this, '{{ asset($galleryImage) }}?v={{ @filemtime(public_path($galleryImage)) ?: 1 }}')">
+                        <div class="thumb {{ $galleryImage === $pMainImg ? 'active' : '' }}" onclick="switchProductImage(this, '{{ asset($galleryImage) }}?v={{ @filemtime(public_path($galleryImage)) ?: 1 }}')">
                             <img src="{{ asset($galleryImage) }}?v={{ @filemtime(public_path($galleryImage)) ?: 1 }}" alt="{{ $pTitle }} thumbnail {{ $galleryIndex + 1 }}" style="width: 100%; height: 100%; object-fit: contain; border-radius: 0.375rem;" loading="lazy">
                         </div>
                     @endforeach
@@ -2163,13 +2188,13 @@
                             display: grid; 
                             grid-template-columns: repeat(3, 1fr); 
                             gap: 0.375rem;
-                            margin-bottom: 1.25rem;
+                            margin-bottom: 1.5rem;
                         }
                         .hero-quote-box .form-grid-4 {
                             display: grid; 
                             grid-template-columns: 1.55fr 1.55fr 1.55fr 1fr; 
                             gap: 0.375rem;
-                            margin-bottom: 1.25rem;
+                            margin-bottom: 1.5rem;
                         }
                         .hero-quote-box .form-grid-2-upload {
                             display: grid; 
@@ -2287,8 +2312,9 @@
                         }
                         .hero-quote-box textarea.form-control,
                         .hero-quote-box textarea.quote-input {
-                            height: 5rem !important;
-                            min-height: 5rem !important;
+                            height: 3.75rem !important;
+                            min-height: 3.75rem !important;
+                            max-height: 3.75rem !important;
                             resize: none !important;
                             padding: 0.875rem !important;
                         }
@@ -2327,8 +2353,9 @@
                         .hero-quote-box .form-bottom-grid {
                             display: grid;
                             grid-template-columns: repeat(6, minmax(0, 1fr));
-                            gap: 0.375rem;
-                            margin-bottom: 1.25rem;
+                            column-gap: 0.375rem;
+                            row-gap: 1.5rem;
+                            margin-bottom: 1.5rem;
                         }
                         .hero-quote-box .form-bottom-grid > :nth-child(1),
                         .hero-quote-box .form-bottom-grid > :nth-child(2),
@@ -2559,7 +2586,7 @@
     </section>
 
     <!-- Customize Packaging Component (Coating and Finishing) -->
-    @include('components.coating-finishing')
+    @include('components.coating-finishing', ['productPageOnly' => true])
 
     <!-- How It Works Component (Simple 4-Step Order Process) -->
     @include('components.howitworks', ['hideOnMobile' => true])
@@ -3104,6 +3131,35 @@ function toggleFaq(element) {
             });
             clickedControl.style.setProperty('border', '1px solid #8d4445', 'important');
         }, true);
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const imageWrap = document.querySelector('.main-image');
+            const image = document.getElementById('product-main-image');
+            const lens = imageWrap?.querySelector('.image-magnifier-lens');
+            if (!imageWrap || !image || !lens) return;
+
+            function moveLens(event) {
+                const rect = image.getBoundingClientRect();
+                const lensSize = lens.offsetWidth || 180;
+                const x = Math.max(0, Math.min(event.clientX - rect.left, rect.width));
+                const y = Math.max(0, Math.min(event.clientY - rect.top, rect.height));
+
+                lens.style.left = `${Math.max(0, Math.min(x - lensSize / 2, rect.width - lensSize))}px`;
+                lens.style.top = `${Math.max(0, Math.min(y - lensSize / 2, rect.height - lensSize))}px`;
+                lens.style.backgroundImage = `url("${image.currentSrc || image.src}")`;
+                lens.style.backgroundPosition = `${(x / rect.width) * 100}% ${(y / rect.height) * 100}%`;
+            }
+
+            imageWrap.addEventListener('mouseenter', function (event) {
+                imageWrap.classList.add('is-magnifying');
+                moveLens(event);
+            });
+            imageWrap.addEventListener('mousemove', moveLens);
+            imageWrap.addEventListener('mouseleave', function () {
+                imageWrap.classList.remove('is-magnifying');
+            });
+        });
     </script>
     <script>
         let isScrollingToInvalid = false;
