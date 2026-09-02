@@ -2336,8 +2336,9 @@
                             grid-column: span 2;
                         }
                         .hero-quote-box .form-bottom-grid > :nth-child(4),
-                        .hero-quote-box .form-bottom-grid > :nth-child(5) {
-                            grid-column: span 3;
+                        .hero-quote-box .form-bottom-grid > :nth-child(5),
+                        .hero-quote-box .form-bottom-grid > :nth-child(6) {
+                            grid-column: span 2;
                         }
                         @media (max-width: 48rem) {
                             .hero-quote-box .form-bottom-grid {
@@ -2346,10 +2347,11 @@
                             .hero-quote-box .form-bottom-grid > :nth-child(1),
                             .hero-quote-box .form-bottom-grid > :nth-child(2),
                             .hero-quote-box .form-bottom-grid > :nth-child(3),
-                            .hero-quote-box .form-bottom-grid > :nth-child(4) {
+                            .hero-quote-box .form-bottom-grid > :nth-child(4),
+                            .hero-quote-box .form-bottom-grid > :nth-child(5) {
                                 grid-column: span 1;
                             }
-                            .hero-quote-box .form-bottom-grid > :nth-child(5) {
+                            .hero-quote-box .form-bottom-grid > :nth-child(6) {
                                 grid-column: span 2;
                             }
                             .hero-quote-box .quote-submit-btn {
@@ -2392,16 +2394,31 @@
 
                     <div class="form-bottom-grid">
                         <div class="input-group">
-                            <select name="material" class="quote-input" required>
-                                <option value="" disabled selected>Select Material</option>
+                            @php
+                                $quoteProducts = \Illuminate\Support\Facades\DB::table('admin_products')
+                                    ->where('status', 'published')->orderBy('title')->pluck('title');
+                            @endphp
+                            <input type="text" name="box_style" class="quote-input" list="product-box-style-options" placeholder="Select Your Box Style" value="{{ $product['title'] ?? '' }}" autocomplete="off" required>
+                            <datalist id="product-box-style-options">
+                                @foreach($quoteProducts as $quoteProductTitle)
+                                    <option value="{{ $quoteProductTitle }}"></option>
+                                @endforeach
+                            </datalist>
+                        </div>
+                        <div class="input-group">
+                            <select name="paper_stock" class="quote-input" required>
+                                <option value="" disabled selected>Select Paper Stock</option>
                                 <option>12pt Cardboard Stock</option>
                                 <option>14pt Cardboard Stock</option>
                                 <option>16pt Cardboard Stock</option>
                                 <option>18pt Cardboard Stock</option>
                                 <option>20pt Cardboard Stock</option>
+                                <option>22pt Cardboard Stock</option>
+                                <option>24pt Cardboard Stock</option>
                                 <option>Kraft Stock</option>
+                                <option>Recycled BuxBoard</option>
                                 <option>Corrugated Stock</option>
-                                <option>Rigid Stock</option>
+                                <option>No Printing Required</option>
                             </select>
                         </div>
                         <div class="input-group">
@@ -2415,14 +2432,17 @@
                             </select>
                         </div>
                         <div class="input-group">
-                            <select name="turnaround" class="quote-input" required>
-                                <option value="" disabled selected>Turn Around Time</option>
-                                <option>Standard (8-10 Days)</option>
-                                <option>Rush (4-6 Days)</option>
-                            </select>
+                            <input type="number" name="quantity" class="quote-input" placeholder="Quantity" required>
                         </div>
                         <div class="input-group">
-                            <input type="number" name="quantity" class="quote-input" placeholder="Quantity" required>
+                            <select name="paper_coating" class="quote-input">
+                                <option value="" selected>Select Paper Coating</option>
+                                <option>Aqueous Coating</option>
+                                <option>Semi Gloss</option>
+                                <option>Gloss UV</option>
+                                <option>Matte UV</option>
+                                <option>Semi Matte</option>
+                            </select>
                         </div>
                         <div class="input-group">
                             <div class="file-upload-wrap">
@@ -2431,7 +2451,6 @@
                                 <button type="button" class="upload-btn" style="pointer-events: none;">Upload</button>
                             </div>
                         </div>
-                        <input type="hidden" name="box_style" value="{{ $product['title'] ?? 'Custom Box' }}">
                     </div>
 
                     <div style="margin-bottom: 1.5rem;" class="input-group">

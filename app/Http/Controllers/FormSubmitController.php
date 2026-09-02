@@ -46,6 +46,7 @@ class FormSubmitController extends Controller
             'units' => 'required|string|max:255',
             'box_style' => 'nullable|string|max:255',
             'material' => 'nullable|string|max:255',
+            'paper_stock' => 'nullable|string|max:255',
             'color' => 'nullable|string|max:255',
             'paper_coating' => 'nullable|string|max:255',
             'cad_sample' => 'nullable|string|max:255',

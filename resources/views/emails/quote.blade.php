@@ -125,6 +125,13 @@
             <td style="border: 1px solid #ddd; padding: 0.75rem; text-align: left; font-size: 0.875rem; color: #333333; background-color: #ffffff;">{{ $data['material'] }}</td>
         </tr>
         @endif
+
+        @if(!empty($data['paper_stock']) && $data['paper_stock'] !== 'N/A')
+        <tr>
+            <th style="border: 1px solid #ddd; padding: 0.75rem; text-align: left; font-size: 0.875rem; background-color: #8D4445; color: #ffffff; width: 30%; font-weight: bold;">Paper Stock:</th>
+            <td style="border: 1px solid #ddd; padding: 0.75rem; text-align: left; font-size: 0.875rem; color: #333333; background-color: #ffffff;">{{ $data['paper_stock'] }}</td>
+        </tr>
+        @endif
         
         @if(!empty($data['color']) && $data['color'] !== 'N/A')
         <tr>

@@ -307,41 +307,54 @@
                     </select>
                 </div>
 
-                <!-- Row 3 & 4: Material, Color, Turn Around, Quantity -->
+                <!-- Row 3: Product, paper stock and color -->
                 <div class="qf-group qf-span-4 qf-span-6-m">
-                    <label>Select Material</label>
-                    <select name="material">
+                    <label>Select Box Style</label>
+                    @php
+                        $quoteProducts = \Illuminate\Support\Facades\DB::table('admin_products')
+                            ->where('status', 'published')->orderBy('title')->pluck('title');
+                    @endphp
+                    <input type="text" name="box_style" list="custom-quote-box-styles" placeholder="Search or select product" autocomplete="off">
+                    <datalist id="custom-quote-box-styles">
+                        @foreach($quoteProducts as $quoteProductTitle)
+                            <option value="{{ $quoteProductTitle }}"></option>
+                        @endforeach
+                    </datalist>
+                </div>
+                <div class="qf-group qf-span-4 qf-span-6-m">
+                    <label>Select Paper Stock</label>
+                    <select name="paper_stock">
                         <option value="">Choose option</option>
-                        <option value="Rigid Board">Rigid Board</option>
-                        <option value="Cardboard">Cardboard</option>
-                        <option value="Kraft Paper">Kraft Paper</option>
-                        <option value="Corrugated">Corrugated</option>
+                        <option>12pt Cardboard Stock</option><option>14pt Cardboard Stock</option>
+                        <option>16pt Cardboard Stock</option><option>18pt Cardboard Stock</option>
+                        <option>20pt Cardboard Stock</option><option>22pt Cardboard Stock</option>
+                        <option>24pt Cardboard Stock</option><option>Kraft Stock</option>
+                        <option>Recycled BuxBoard</option><option>Corrugated Stock</option>
+                        <option>No Printing Required</option>
                     </select>
                 </div>
                 <div class="qf-group qf-span-4 qf-span-6-m">
                     <label>Color Options</label>
                     <select name="color">
                         <option value="">Choose option</option>
-                        <option value="1 Color">1 Color</option>
-                        <option value="2 Colors">2 Colors</option>
-                        <option value="3 Colors">3 Colors</option>
-                        <option value="Full Color">Full Color</option>
-                    </select>
-                </div>
-                <div class="qf-group qf-span-4 qf-span-6-m">
-                    <label>Turn Around Time</label>
-                    <select name="turn_around_time">
-                        <option value="">Choose option</option>
-                        <option value="Standard (8-10 Days)">Standard (8-10 Days)</option>
-                        <option value="Rush (4-6 Days)">Rush (4-6 Days)</option>
+                        <option value="1 Color">1 Color</option><option value="2 Colors">2 Colors</option>
+                        <option value="3 Colors">3 Colors</option><option value="Full Color">Full Color</option>
                     </select>
                 </div>
                 <div class="qf-group qf-span-4 qf-span-6-m">
                     <label>Quantity *</label>
                     <input type="number" name="quantity" placeholder="Enter quantity" oninput="this.value = this.value.replace(/[^0-9]/g, '')" required>
                 </div>
+                <div class="qf-group qf-span-4 qf-span-6-m">
+                    <label>Paper Coating</label>
+                    <select name="paper_coating">
+                        <option value="">Select Paper Coating</option>
+                        <option>Aqueous Coating</option><option>Semi Gloss</option>
+                        <option>Gloss UV</option><option>Matte UV</option><option>Semi Matte</option>
+                    </select>
+                </div>
                 
-                <div class="qf-group qf-span-8 qf-span-12-m">
+                <div class="qf-group qf-span-4 qf-span-12-m">
                     <label>Upload File Here</label>
                     <div class="qf-file-wrap">
                         <input type="file" name="quote_file" id="qf-file-input" style="display: none;" onchange="document.getElementById('qf-file-name').value = this.files[0] ? this.files[0].name : ''">
