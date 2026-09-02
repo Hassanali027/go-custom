@@ -95,10 +95,17 @@
             margin-top:1.25rem;
         }
 
+        /* Keep the sidebar title on one line, as in the Figma layout. */
+        .iq-page-sidebar > h2 {
+            font-size: 1.5rem !important;
+            white-space: nowrap;
+        }
+
         .iq-page-form-card {
             display: flex;
             flex-direction: column;
         }
+
 
         .iq-page-form-card form {
             flex: 1;
@@ -566,8 +573,8 @@
                 <p>High-quality printing that fits your budget.</p>
             </div>
             <div class="iq-feature-item">
-                <img src="{{ asset('uploads/no-die-icon.svg') }}" alt="No Die or Plate Charges">
-                <h4>No Die or Plate Charges</h4>
+                <img src="{{ asset('uploads/no-die-icon.svg') }}" alt="No Setup Fees">
+                <h4>No Setup Fees</h4>
                 <p>No hidden charges, save on custom designs.</p>
             </div>
             <div class="iq-feature-item">

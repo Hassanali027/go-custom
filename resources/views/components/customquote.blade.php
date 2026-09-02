@@ -190,7 +190,7 @@
         flex: 1;
         display: flex;
         flex-direction: column;
-        justify-content: flex-start;
+        justify-content: center;
         padding-top: 1rem;
         padding-bottom: 1rem;
         gap: 1.25rem;
@@ -401,7 +401,7 @@
                     <img src="{{ asset('uploads/no-die-icon.svg') }}" alt="No Die or Plate Charges">
                 </div>
                 <div class="qf-feature-text">
-                    <h3>No Die or Plate Charges</h3>
+                    <h3>No Setup Fees</h3>
                     <p>No hidden charges on dies, plates or custom designs — ever.</p>
                 </div>
             </div>
