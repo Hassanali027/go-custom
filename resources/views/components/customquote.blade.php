@@ -15,7 +15,7 @@
         box-sizing: border-box;
         display: flex;
         align-items: stretch;
-        gap: 7.5rem;
+        gap:3.5rem;
     }
 
     /* ── Left column: Form Card ── */
@@ -103,6 +103,14 @@
         border-color: var(--secondary-color, #FFB400);
     }
 
+    .qf-group input[type="number"]::-webkit-inner-spin-button,
+    .qf-group input[type="number"]::-webkit-outer-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+
+    .qf-group input[type="number"] { -moz-appearance: textfield; }
+
     .qf-group textarea {
         height: auto;
         min-height: 5rem;
@@ -122,6 +130,7 @@
 
     .qf-file-wrap input[type="text"] {
         flex: 1;
+        min-width: 0;
         border: none;
         background: transparent;
         color: rgba(255, 255, 255, 0.4);
@@ -137,6 +146,12 @@
         border: none;
         height: 100%;
         padding: 0 1.25rem;
+        min-width: 5.25rem;
+        flex: 0 0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        white-space: nowrap;
         font-weight: 600;
         font-size: 0.875rem;
         cursor: pointer;
@@ -175,10 +190,10 @@
         flex: 1;
         display: flex;
         flex-direction: column;
-        justify-content: space-between;
+        justify-content: flex-start;
         padding-top: 1rem;
         padding-bottom: 1rem;
-        gap: 1.5rem;
+        gap: 1.25rem;
     }
 
     .qf-feature {

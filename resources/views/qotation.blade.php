@@ -105,12 +105,14 @@
         }
 
         .iq-msg-group {
-            flex: 1;
+            flex: none;
         }
 
         .iq-msg-group textarea {
-            flex: 1;
-            min-height: 6rem;
+            flex: none;
+            height: 5rem !important;
+            min-height: 5rem !important;
+            max-height: 5rem !important;
         }
 
         .iq-sidebar-img {
@@ -177,6 +179,13 @@
         }
         .iq-form-group input[type="number"] {
             -moz-appearance: textfield;
+        }
+
+        .iq-upload-wrapper input[type="text"] { min-width: 0; }
+        .iq-upload-btn {
+            min-width: 5.25rem;
+            flex: 0 0 auto;
+            white-space: nowrap;
         }
 
         .iq-form-group textarea {
