@@ -326,11 +326,11 @@
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 2rem;
-            align-items: stretch;
+            align-items: start;
         }
 
         .map-column {
-            min-height: 400px;
+            height: 400px;
             border-radius: 19px;
             overflow: hidden;
             box-shadow: 0 4px 15px rgba(0,0,0,0.1);
@@ -339,7 +339,6 @@
         #contact-map {
             width: 100%;
             height: 100%;
-            min-height: 400px;
         }
 
         .faq-column {
@@ -349,7 +348,7 @@
 
         .faq-column .product-faq-section {
             padding: 0;
-            height: 100%;
+            height: auto;
         }
 
         .faq-column .product-faq-section .container {
