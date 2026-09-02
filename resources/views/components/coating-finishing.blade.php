@@ -313,7 +313,6 @@
                         <button type="button" class="customize-tab" data-customize-tab="fluted_grades">Fluted Grades</button>
                         <button type="button" class="customize-tab" data-customize-tab="rigid_materials">Rigid Materials</button>
                         <button type="button" class="customize-tab" data-customize-tab="printing_options">Printing Options</button>
-                        <button type="button" class="customize-tab" data-customize-tab="box_liner_board">Box Liner Board</button>
                     </aside>
 
                     <!-- Right Content Grid -->
@@ -383,12 +382,6 @@
 <script>
     (function() {
         const grid = document.querySelector('.customize-grid');
-        if (grid && grid.children.length === 8) {
-            grid.innerHTML += grid.innerHTML;
-            Array.from(grid.children).slice(8).forEach(child => child.classList.add('clone-card'));
-        }
-
-        const customizeCards = Array.from(document.querySelectorAll('.customize-grid .custom-card'));
         const customizeSidebar = document.querySelector('.customize-sidebar');
         const customizeUploadsUrl = "{{ asset('') }}";
 
@@ -437,11 +430,6 @@
                 ['uploads/Screen Printing.webp', 'Screen Printing'],
                 ['uploads/UV Print.webp', 'UV Print']
             ],
-            box_liner_board: [
-                ['uploads/Kemi-White-Board-.webp', 'Kemi White Board'],
-                ['uploads/Natural-(Brown)-Kraft-Linerboard-.webp', 'Natural (Brown) Kraft Linerboard'],
-                ['uploads/Oyster-White-Board- (2).webp', 'Oyster White Board']
-            ],
             corrugated: [
                 ['uploads/kraft-corrugated.webp', 'Kraft Corrugated'],
                 ['uploads/white-corrugated.webp', 'White Corrugated'],
@@ -450,14 +438,8 @@
                 ['uploads/standard-white-corrugated-insert.webp', 'Standard White Corrugated Insert']
             ],
             rigid_materials: [
-                ['uploads/duplex-chipboard.webp', 'Duplex Chipboard'],
-                ['uploads/grey-board.webp', 'Grey Chipboard Cardboard'],
-                ['uploads/black-kraft.webp', 'Black-Kraft'],
-                ['uploads/finish-material-holographic.webp', 'Holographic'],
-                ['uploads/metallic-paper.webp', 'Metallic Paper'],
-                ['uploads/natural-brown-.webp', 'Natural Brown Kraft'],
-                ['uploads/sbs-c2s.webp', 'SBS C2S'],
-                ['uploads/textured-.webp', 'Textured']
+                ['uploads/Duplex-Chipboards.webp', 'Duplex Chipboard'],
+                ['uploads/Grey-ChipboardCardboards.webp', 'Grey Chipboard Cardboard']
             ]
         };
 
@@ -475,47 +457,56 @@
 
         function setCustomizeCardOrder(option) {
             const cardSet = customizeCardSets[option] || customizeCardSets.coating;
-            const halfLength = Math.floor(customizeCards.length / 2);
 
-            // Reset marquee animation to start from 0% position
             if (grid) {
-                grid.style.animation = "none";
-                void grid.offsetHeight;
-                grid.style.animation = "";
-            }
+                // Fade out existing cards
+                const currentCards = Array.from(grid.children);
+                currentCards.forEach(card => {
+                    card.style.opacity = "0";
+                    card.style.transform = "scale(0.98)";
+                });
 
-            customizeCards.forEach(card => {
-                card.style.opacity = "0";
-                card.style.transform = "scale(0.98)";
-            });
+                setTimeout(() => {
+                    // Reset marquee animation
+                    grid.style.animation = "none";
+                    void grid.offsetHeight;
+                    grid.style.animation = "";
 
-            setTimeout(() => {
-                customizeCards.forEach((card, index) => {
-                    // Match second half identically to first half for 100% seamless marquee loop
-                    const firstHalfIndex = index % halfLength;
-                    const item = cardSet[firstHalfIndex % cardSet.length];
-                    const [imagePath, title] = item;
+                    // Ensure the base loop has at least 10 cards and is a multiple of cardSet length
+                    let repeatCount = Math.ceil(10 / cardSet.length);
+                    let baseHTML = '';
                     
-                    const image = card.querySelector("img");
-                    if (image) {
-                        image.src = customizeUploadsUrl + imagePath;
-                        image.alt = title;
+                    for (let i = 0; i < repeatCount; i++) {
+                        cardSet.forEach(item => {
+                            const [imagePath, title] = item;
+                            baseHTML += `
+                                <div class="custom-card" style="opacity: 0; transform: scale(0.98);">
+                                    <div class="custom-img-wrapper">
+                                        <img src="${customizeUploadsUrl}${imagePath}" alt="${title}" loading="lazy">
+                                    </div>
+                                    <span class="custom-card-title">${title}</span>
+                                </div>
+                            `;
+                        });
                     }
-                    const titleEl = card.querySelector(".custom-card-title");
-                    if (titleEl) {
-                        titleEl.textContent = title;
-                    }
-                    card.style.order = index + 1;
-                    card.style.display = "flex";
-                });
 
-                requestAnimationFrame(() => {
-                    customizeCards.forEach(card => {
-                        card.style.opacity = "1";
-                        card.style.transform = "scale(1)";
+                    // Duplicate base HTML for seamless marquee
+                    grid.innerHTML = baseHTML + baseHTML;
+                    
+                    const children = Array.from(grid.children);
+                    const halfLength = children.length / 2;
+                    children.slice(halfLength).forEach(child => child.classList.add('clone-card'));
+
+                    // Fade in new cards
+                    requestAnimationFrame(() => {
+                        void grid.offsetWidth; // Force reflow
+                        children.forEach(card => {
+                            card.style.opacity = "1";
+                            card.style.transform = "scale(1)";
+                        });
                     });
-                });
-            }, 200);
+                }, 200);
+            }
         }
 
         document.querySelectorAll('.customize-tab').forEach(function(tab) {

@@ -44,6 +44,7 @@
             min-height: 3.3125rem;
             background: transparent;
             border: none;
+            position: relative;
             padding: 0.625rem 0;
             display: flex;
             justify-content: space-between;
@@ -70,6 +71,16 @@
             transform: rotate(180deg);
         }
 
+        .faq-mobile-section .tf-accordion-item.active .tf-accordion-btn::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background-color: #888;
+        }
+
         .faq-mobile-section .tf-accordion-content {
             max-height: 0;
             overflow: hidden;
@@ -77,6 +88,7 @@
         }
 
         .faq-mobile-section .tf-accordion-content-inner {
+            padding-top: 1.5rem;
             padding-bottom: 1.25rem;
             font-size: 0.9062rem;
             line-height: 1.5;

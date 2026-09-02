@@ -218,12 +218,12 @@
     .hero-image-wrapper img {
         width: 100%;
         max-width: 28.5rem;
-        height: auto;
+        height: 100%;
         max-height: 100%;
         border-radius: 1rem;
         box-shadow: none;
         background-color: transparent;
-        object-fit: contain;
+        object-fit: fill;
         object-position: center;
     }
 
@@ -430,10 +430,15 @@
         }
 
         .hero-description {
-            max-width: 100%;
+            width: 90vw;
+            max-width: 100vw;
+            position: relative;
+            left: 50%;
+            transform: translateX(-50%);
             font-size: 0.875rem;
             line-height: 1.5;
             margin-bottom: 1.25rem;
+            text-align: justify;
         }
     }
 
@@ -516,7 +521,9 @@
             <div class="hero-buttons" style="position: relative; display: flex; gap: 1rem; align-items: center;">
                 <div class="hero-glow-circle"></div>
                 <a href="{{ $settings['hero_primary_button_url'] ?? '/request-quote/' }}" class="hero-btn" style="display: inline-flex; align-items: center;">{{ $settings['hero_primary_button_text'] ?? 'Get Instant Quote' }} <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-left: 0.375rem;"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a>
+                @if(request()->is('/'))
                 <a href="{{ $settings['hero_secondary_button_url'] ?? url('/popular-products/') }}" class="hero-btn-outline" style="display: inline-flex; align-items: center; justify-content: center; width: 12.1875rem; height: 3.5rem; box-sizing: border-box; font-family: 'DM Sans', sans-serif; font-size: 1rem; font-weight: 700; color: var(--primary-color); border: 0.125rem solid var(--primary-color); border-radius: 0.25rem; text-decoration: none; transition: 0.3s;">{{ $settings['hero_secondary_button_text'] ?? 'Shop Now' }}</a>
+                @endif
             </div>
         </div>
 

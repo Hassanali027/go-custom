@@ -347,7 +347,10 @@
     @media (max-width: 48rem) {
         .boxes-grid {
             grid-template-columns: repeat(2, 1fr);
-            gap: 1rem;
+            gap: 1.5vw !important;
+        }
+        .box-image-wrapper {
+            margin-bottom: 1.5vw !important;
         }
     }
 
@@ -362,12 +365,15 @@
         
         .boxes-grid {
             grid-template-columns: repeat(2, 1fr) !important;
-            gap: 1rem;
+            gap: 1.5vw !important;
+        }
+        .box-image-wrapper {
+            margin-bottom: 1.5vw !important;
         }
         
         .popular-boxes-section {
             padding-top: 1.25rem;
-            padding-bottom: 2.5rem;
+            padding-bottom: 1.5rem;
         }
         
         .section-title {

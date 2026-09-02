@@ -163,13 +163,14 @@
         background: transparent;
         border: none;
         padding: 0;
+        position: relative;
         display: flex;
         justify-content: space-between;
         align-items: center;
         cursor: pointer;
         font-family: 'DM Sans', sans-serif;
         font-weight: 500;
-        font-size: 0.9375rem;
+        font-size: 1.125rem;
         color: var(--primary-color, #000);
         text-align: left;
     }
@@ -186,6 +187,16 @@
         transform: rotate(180deg);
     }
 
+    .tf-accordion-item.active .tf-accordion-btn::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 1px;
+        background-color: #888;
+    }
+
     .tf-accordion-content {
         max-height: 0;
         overflow: hidden;
@@ -193,6 +204,7 @@
     }
 
     .tf-accordion-content-inner {
+        padding-top: 1.5rem;
         padding-bottom: 1.25rem;
         font-size: 0.9062rem;
         line-height: 1.5;
@@ -222,6 +234,14 @@
             min-width: 0;
             contain: none;
             box-sizing: border-box;
+        }
+        .testimonials-col h2 {
+            width: 90vw;
+            max-width: 100vw;
+            position: relative;
+            left: 50%;
+            transform: translateX(-50%);
+            text-align: center;
         }
         .faq-col { display: none; }
         .testimonial-cards-wrap {

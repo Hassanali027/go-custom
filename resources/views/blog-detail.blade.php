@@ -60,13 +60,20 @@
         .breadcrumb span { margin: 0 0.5rem; color: #999; }
 
         /* Hero Image */
-        .hero-img {
+        .hero-img-wrapper {
             width: 100%;
             height: 26.875rem;
-            object-fit: cover;
             border-radius: 0.75rem;
             margin-bottom: 2.5rem;
-            background: #f5f5f5;
+            overflow: hidden;
+            display: block;
+        }
+        .hero-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: top;
+            display: block;
         }
 
         /* Title & Meta */
@@ -362,8 +369,7 @@
         }
         .blog-card img {
             width: calc(100% - 1.75rem);
-            height: 13.75rem;
-            object-fit: cover;
+            height: auto;
             border-radius: 0.75rem;
             margin: 0.875rem auto 0;
             display: block;
@@ -406,13 +412,13 @@
             .content-layout { grid-template-columns: 1fr; gap: 0; }
             .sidebar { position: static; margin-top: 0; }
             .blog-grid { grid-template-columns: repeat(2, 1fr); }
-            .hero-img { height: 21.875rem; }
+            .hero-img-wrapper { height: 21.875rem; }
         }
         @media (max-width: 48rem) {
             .container { padding: 0 1rem; }
             .blog-detail-section { padding-top: 0; }
             .breadcrumb { display: none !important; }
-            .hero-img { 
+            .hero-img-wrapper { 
                 width: 100vw; 
                 margin-left: calc(-50vw + 50%); 
                 border-radius: 0; 
@@ -506,8 +512,9 @@
         </div>
 
         <!-- Hero Image -->
-        <img src="{{ $fImg }}" alt="{{ $fTitle }}" class="hero-img" onerror="this.src='{{ asset('uploads/about-us-banner.webp') }}'">
-
+        <div class="hero-img-wrapper">
+            <img src="{{ $fImg }}" alt="{{ $fTitle }}" class="hero-img" onerror="this.src='{{ asset('uploads/about-us-banner.webp') }}'">        
+        </div>
         <!-- 2 Column Layout -->
         <div class="content-layout">
             

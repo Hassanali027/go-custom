@@ -281,7 +281,7 @@
                 <span class="cta-heading" style="display: block;">Get Your Custom<br class="mobile-br"> <span class="desktop-only-space"> </span>Packaging Today</span>
                 <p class="cta-desc">Deliver elegance, protection, and a<br class="mobile-br"> memorable unboxing experience with<br class="mobile-br"> fully customized rigid box solutions.</p>
                 <a href="/request-quote/" class="cta-btn">
-                    Get Started Today
+                    Get a Quote
                     <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <path d="M3 8h10M9 4l4 4-4 4"/>
                     </svg>

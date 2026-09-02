@@ -1314,6 +1314,7 @@
 
             .industry-card__bottom {
                 padding: 0.5rem 0.625rem 0.75rem;
+                min-height: auto;
             }
 
             .industry-card__text {
@@ -2984,7 +2985,7 @@
 
             @media (max-width: 42.5rem) {
                 .why-choose-section-custom {
-                    padding: 0.3125rem 0 1.875rem 0;
+                    padding: 0.3125rem 0 0.5rem 0;
                 }
 
                 .why-choose-inner {
