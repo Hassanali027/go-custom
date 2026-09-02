@@ -57,10 +57,9 @@
 
         .featured-img {
             width: 100%;
-            height: 26.875rem;
-            object-fit: cover;
+            height: auto;
             border-radius: 0.75rem;
-            background-color: #f5f5f5;
+            background-color: transparent;
         }
 
         .featured-copy h2 {
@@ -244,8 +243,7 @@
             }
             .featured-img {
                 width: 100%;
-                aspect-ratio: 1 / 1;
-                object-fit: cover;
+                height: auto;
                 border-radius: 1rem;
             }
             .featured-copy {
@@ -291,6 +289,7 @@
             description="Discover packaging ideas, industry trends, design inspiration, and practical tips to help your brand stand out."
             bgImage="uploads/blog-hero.webp"
             mobileBgImage="uploads/blog-hero-mobile.webp"
+          
             breadcrumb="Blog"
             overlay="rgba(10, 34, 64, 0.6)"
         />
