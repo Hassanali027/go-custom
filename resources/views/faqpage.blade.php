@@ -138,12 +138,44 @@
 
     @php
         $sections = $settings['faq_page_sections'] ?? [];
+        
+        if (empty($sections)) {
+            $sections = [
+                [
+                    'heading' => 'General Information',
+                    'faqs' => [
+                        ['question' => 'What is your minimum order quantity (MOQ)?', 'answer' => 'Our minimum order quantity typically starts at 100 boxes, but we can accommodate smaller runs depending on the specific requirements of your project.'],
+                        ['question' => 'Do you offer eco-friendly packaging options?', 'answer' => 'Yes, we are committed to sustainability. We offer a wide range of eco-friendly materials, including Kraft paper and recyclable cardboard.'],
+                        ['question' => 'How long does shipping take?', 'answer' => 'Standard shipping usually takes 8-12 business days after final design approval. Expedited shipping options are available upon request.']
+                    ]
+                ],
+                [
+                    'heading' => 'Design & Customization',
+                    'faqs' => [
+                        ['question' => 'Can I get a physical sample before placing a full order?', 'answer' => 'Absolutely! We offer physical prototyping so you can review the design, material, and structural integrity before proceeding with mass production.'],
+                        ['question' => 'What file formats do you accept for artwork?', 'answer' => 'We prefer high-resolution vector files such as AI, PDF, or EPS to ensure the best printing quality.'],
+                        ['question' => 'Do you provide design assistance?', 'answer' => 'Yes, our team of expert designers can help you bring your vision to life or optimize your existing artwork for printing.']
+                    ]
+                ],
+                [
+                    'heading' => 'Pricing & Ordering',
+                    'faqs' => [
+                        ['question' => 'How do I get a quote?', 'answer' => 'You can request a quote directly through our website by filling out the "Get a Quote" form with your specifications, or by contacting our sales team via email or phone.'],
+                        ['question' => 'Are there any hidden fees?', 'answer' => 'No, we believe in transparent pricing. The quote you receive will include all costs associated with manufacturing and shipping.'],
+                        ['question' => 'What payment methods do you accept?', 'answer' => 'We accept all major credit cards, PayPal, and wire transfers for larger orders.']
+                    ]
+                ]
+            ];
+        }
     @endphp
     @if(!empty($sections))
     <div class="faq-container">
-        
-
-        <div class="faq-content">
+        <div class="faq-tabs-container">
+            @foreach($sections as $index => $section)
+                @php $slug = \Illuminate\Support\Str::slug($section['heading']); @endphp
+                <button class="{{ $index === 0 ? 'active' : '' }}" data-target="{{ $slug }}">{{ $section['heading'] }}</button>
+            @endforeach
+        </div>        <div class="faq-content">
             @foreach($sections as $index => $section)
                 @php 
                     $slug = \Illuminate\Support\Str::slug($section['heading']);

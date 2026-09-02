@@ -21,13 +21,18 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 3.75rem;
-    align-items: center;
+    align-items: stretch;
+}
+.who-we-are-text {
+    height: 100%;
 }
 .who-we-are-text h2 {
     font-family: var(--font-heading);
     font-size: 2.25rem;
     font-weight: 700;
+    margin-top: 0;
     margin-bottom: 1.25rem;
+    line-height: 1.2;
 }
 .who-we-are-text p {
     font-size: 1rem;
@@ -35,6 +40,9 @@
     margin-bottom: 1.25rem;
     color: #000;
     text-align: justify;
+}
+.who-we-are-text p:last-child {
+    margin-bottom: 0;
 }
 .who-we-are-grid {
     display: flex;
@@ -52,10 +60,10 @@
     border-radius: 0.5rem;
 }
 .img-tall {
-    aspect-ratio: 250 / 290;
+    flex: 1.6;
 }
 .img-short {
-    aspect-ratio: 250 / 150;
+    flex: 1;
 }
 
 /* 3. Making Custom Packaging Simple */
@@ -255,6 +263,7 @@
             <h2>Who We Are</h2>
             <p>At Go Custom Boxes, we believe packaging is more than something that holds a product. It's an important part of your brand experience. Every box is an opportunity to make a strong first impression, communicate your brand identity, and give customers an experience worth remembering.</p>
             <p>We work with businesses to create custom packaging that balances design, durability, and functionality. From choosing the right material and dimensions to selecting printing and finishing options, we focus on the details that make your packaging truly fit your product.</p>
+            <p>Our commitment extends beyond just providing boxes. We strive to offer sustainable, eco-friendly materials that help you reduce your environmental footprint without compromising on quality or aesthetics. By partnering with us, you gain a dedicated team ready to support your vision from the initial concept all the way to final delivery, ensuring every detail is perfectly executed.</p>
         </div>
         <div class="who-we-are-grid">
             <div class="who-we-are-col">

@@ -219,12 +219,12 @@
     .hero-image-wrapper img {
         width: 100%;
         max-width: 28.5rem;
-        height: 100%;
+        height: auto;
         max-height: 100%;
         border-radius: 1rem;
         box-shadow: none;
         background-color: transparent;
-        object-fit: fill;
+        object-fit: contain;
         object-position: center;
     }
 
