@@ -19,18 +19,20 @@
 
     .cta-banner {
         width: 100%;
-        max-width: 100%;
+        max-width: 72rem;
         margin: 0 auto;
         display: flex;
         position: relative;
+        overflow: hidden;
+        border-radius: 2rem;
     }
 
     .cta-text-card {
         width: 100%;
-        min-height: 25.75rem;
+        min-height: 23rem;
         background: linear-gradient(to right, #FDD471, #FFB400);
-        border-radius: 2.5rem;
-        padding: 2.9375rem 33.75rem 2.9375rem 5.375rem;
+        border-radius: 2rem;
+        padding: 3rem 31rem 3rem 5rem;
         box-sizing: border-box;
         display: flex;
         flex-direction: column;
@@ -74,19 +76,19 @@
 
     .cta-heading {
         font-family: 'Open Sans', sans-serif;
-        font-size: 2rem;
+        font-size: 1.875rem;
         font-weight: 800;
         color: var(--primary-color);
         line-height: 1.25;
-        margin-bottom: 1rem;
+        margin-bottom: 0.875rem;
     }
 
     .cta-desc {
         font-family: 'DM Sans', sans-serif;
-        font-size: 1rem;
+        font-size: 0.9375rem;
         color: #333;
         line-height: 1.6;
-        margin-bottom: 2rem;
+        margin-bottom: 1.5rem;
         max-width: 30rem;
     }
 
@@ -97,9 +99,9 @@
         background: var(--primary-color);
         color: var(--secondary-color);
         font-family: 'DM Sans', sans-serif;
-        font-size: 0.9375rem;
+        font-size: 0.875rem;
         font-weight: 700;
-        padding: 0.875rem 1.75rem;
+        padding: 0.875rem 1.5rem;
         border-radius: 0.25rem;
         text-decoration: none;
         border: none;
@@ -117,27 +119,20 @@
     .cta-image-wrapper {
         position: absolute;
         right: 2rem;
-        top: 2.75rem;
-        width: 33.75rem;
-        height: 20.25rem;
+        top: 2rem;
+        width: 29rem;
+        height: 18rem;
     }
 
     .cta-desktop-ellipse {
-        position: absolute;
-        width: 29.125rem;
-        height: 14.75rem;
-        bottom: -3.125rem;
-        right: 1.75rem;
-        z-index: 0;
-        pointer-events: none;
-        opacity: 1.32;
+        display: none;
     }
 
     .cta-image-wrapper .cta-main-img {
         position: relative;
         z-index: 1;
         width: 100%;
-        height: 89%;
+        height: 100%;
         object-fit: contain;
         object-position: center;
         display: block;
@@ -145,14 +140,14 @@
 
     @media (max-width: 68.75rem) {
         .cta-text-card {
-            padding: 2.9375rem 28.75rem 2.9375rem 2.5rem;
+            padding: 2.5rem 24rem 2.5rem 3rem;
         }
         .cta-image-wrapper {
-            right: 2.5rem;
+            right: 1.5rem;
             top: 50%;
             transform: translateY(-50%);
-            width: 23.75rem;
-            height: 14.25rem; /* Maintain aspect ratio (380 / (540/324)) */
+            width: 21rem;
+            height: 13.25rem;
         }
     }
 
