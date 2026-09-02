@@ -22,7 +22,7 @@
 <style>
     .about-hero-component {
         background-image: linear-gradient({{ $overlay }}, {{ $overlay }}), url('{{ $finalBg }}');
-        background-size: cover;
+        background-size: 100% 100%;
         background-position: center;
         background-repeat: no-repeat;
         color: #fff;
@@ -99,6 +99,7 @@
         .about-hero-component {
             background-image: linear-gradient({{ $overlay }}, {{ $overlay }}), url('{{ $finalMobileBg }}');
             padding: 5rem 1.25rem;
+            background-size: 100% 100%;
         }
         .about-hero-container {
             padding: 0 !important;
