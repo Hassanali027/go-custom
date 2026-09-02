@@ -50,12 +50,14 @@
             z-index: 1000;
             max-height: 15rem;
             overflow-y: auto;
+            overflow-x: hidden;
             overscroll-behavior: contain;
             background: #fff;
             border: 1px solid #d8d8d8;
             border-radius: 0 0 .5rem .5rem;
             box-shadow: 0 .5rem 1rem rgba(0,0,0,.14);
             scrollbar-width: thin;
+            box-sizing: border-box;
         }
         .product-search-select.is-open .product-search-options { display: block; }
         .product-search-option {
@@ -72,7 +74,7 @@
             cursor: pointer;
         }
         .product-search-option:hover,
-        .product-search-option:focus { background: #75ca3d; color: #fff; outline: none; }
+        .product-search-option:focus { background: #FFB400; color: #0B2240; outline: none; }
         .product-search-empty { padding: .8rem; color: #666; background: #fff; }
     </style>
     <script>
