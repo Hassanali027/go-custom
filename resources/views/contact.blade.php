@@ -316,17 +316,50 @@
             fill: #000;
         }
 
-        /* Map Section */
-        .map-section {
-            width: 100%;
-            height: 25rem;
+        /* Map and FAQ Section */
+        .map-faq-section {
+            margin: 4rem 0;
+            margin-top: 0.5rem; 
         }
         
-        .map-section iframe {
+        .map-faq-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            align-items: stretch;
+        }
+
+        .map-column {
+            min-height: 400px;
+            border-radius: 19px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        #contact-map {
             width: 100%;
             height: 100%;
-            border: 0;
-            border-radius: 19px;
+            min-height: 400px;
+        }
+
+        .faq-column {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .faq-column .product-faq-section {
+            padding: 0;
+            height: 100%;
+        }
+
+        .faq-column .product-faq-section .container {
+            padding: 0;
+            max-width: 100%;
+            margin: 0;
+        }
+
+        .faq-column .product-faq-heading {
+            text-align: left;
         }
 
         @media (max-width: 61.9375rem) {
@@ -368,12 +401,12 @@
                 gap: 0.625rem;
                 transition: background 0.3s;
             }
-            .map-section {
-                height: 28.75rem;
-                max-width: 22.75rem;
-                margin: 0 auto;
-                border-radius: 0.625rem;
-                overflow: hidden;
+            .map-faq-container {
+                grid-template-columns: 1fr;
+            }
+            .map-column {
+                min-height: 300px;
+                height: 300px;
             }
             .contact-form-box h2 {
                 font-family: 'Open Sans', sans-serif;
@@ -401,7 +434,7 @@
             title="Contact Us"
             description="Have a question, need help with a project, or ready to create custom packaging? Our team is here to help you find the right solution."
             bgImage="uploads/contact-us-hero.webp"
-            mobileBgImage="uploads/contact-us-mobile.webp"
+            mobileBgImage="uploads/contact-us-hero-image-mbl.webp"
             breadcrumb="Contact Us"
             overlay="rgba(10, 34, 64, 0.5)"
         />
@@ -498,15 +531,20 @@
             </div>
         </section>
 
-        <!-- Map Section -->
-        <section class="map-section">
-            <div class="container" style="height: 100%;">
-                <iframe title="Location map" src="https://www.openstreetmap.org/export/embed.html?bbox=-95.621%2C29.737%2C-95.592%2C29.757&amp;layer=mapnik&amp;marker=29.7469%2C-95.6066" loading="lazy"></iframe>
+        <!-- Map and FAQ Section -->
+        <section class="map-faq-section">
+            <div class="container map-faq-container">
+                <!-- Map Column -->
+                <div class="map-column">
+                    <iframe id="contact-map" src="https://maps.google.com/maps?q=LabelPouches&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" title="LabelPouches Map"></iframe>
+                </div>
+
+                <!-- FAQ Column -->
+                <div class="faq-column">
+                    @include('components.product-faq')
+                </div>
             </div>
         </section>
-
-        <!-- FAQ Section -->
-        @include('components.product-faq')
 
     </main>
 
