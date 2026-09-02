@@ -74,13 +74,13 @@
         background-color: #fff;
     }
     .faq-item-header {
-        padding: 1rem 1.5625rem;
+        padding: 1.125rem 1.5625rem;
         display: flex;
         justify-content: space-between;
         align-items: center;
         cursor: pointer;
         font-weight: 500;
-        font-size: 0.9062rem;
+        font-size: 1.125rem;
         color: #222;
         transition: background-color 0.3s;
     }
@@ -110,7 +110,7 @@
     }
     .faq-item-body p {
         color: #000;
-        font-size: 0.9062rem;
+        font-size: 1rem;
         line-height: 1.6;
         margin: 0;
     }
@@ -120,8 +120,8 @@
             display: none !important;
         }
         .faq-item-header {
-            font-size: 0.875rem;
-            padding: 0.9375rem 1.25rem;
+            font-size: 1rem;
+            padding: 1rem 1.25rem;
         }
     }
 </style>
@@ -170,12 +170,7 @@
     @endphp
     @if(!empty($sections))
     <div class="faq-container">
-        <div class="faq-tabs-container">
-            @foreach($sections as $index => $section)
-                @php $slug = \Illuminate\Support\Str::slug($section['heading']); @endphp
-                <button class="{{ $index === 0 ? 'active' : '' }}" data-target="{{ $slug }}">{{ $section['heading'] }}</button>
-            @endforeach
-        </div>        <div class="faq-content">
+        <div class="faq-content">
             @foreach($sections as $index => $section)
                 @php 
                     $slug = \Illuminate\Support\Str::slug($section['heading']);
