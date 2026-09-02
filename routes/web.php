@@ -158,14 +158,29 @@ Route::get('/author/{slug?}', function ($slug = null) {
     } else {
         $author = DB::table('admin_authors')->first();
     }
-    if (!$author) abort(404);
-    $author = (array) $author;
-    $blogs = DB::table('admin_blogs')
-        ->leftJoin('admin_authors', 'admin_blogs.author_id', '=', 'admin_authors.id')
-        ->select('admin_blogs.*', 'admin_authors.title as author_name', 'admin_authors.image as author_image', 'admin_authors.slug as author_slug')
-        ->where('admin_blogs.author_id', $author['id'])
-        ->where('admin_blogs.status', 'published')
-        ->get()->map(fn($r) => (array) $r)->all();
+
+    // Keep author links working while the admin author list has not been populated yet.
+    if (!$author) {
+        $author = [
+            'id' => null,
+            'title' => $slug ? \Illuminate\Support\Str::headline($slug) : 'Our Packaging Expert',
+            'description' => 'Packaging insights, ideas, and guidance from the Go Custom Boxes team.',
+            'image' => null,
+            'facebook' => null,
+            'twitter' => null,
+            'linkedin' => null,
+        ];
+        $blogs = [];
+    } else {
+        $author = (array) $author;
+        $blogs = DB::table('admin_blogs')
+            ->leftJoin('admin_authors', 'admin_blogs.author_id', '=', 'admin_authors.id')
+            ->select('admin_blogs.*', 'admin_authors.title as author_name', 'admin_authors.image as author_image', 'admin_authors.slug as author_slug')
+            ->where('admin_blogs.author_id', $author['id'])
+            ->where('admin_blogs.status', 'published')
+            ->get()->map(fn($r) => (array) $r)->all();
+    }
+
     return view('author', compact('author', 'blogs'));
 });
 
