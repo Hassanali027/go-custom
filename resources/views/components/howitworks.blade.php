@@ -169,7 +169,7 @@
             <!-- Step 4 -->
             <div class="hiw-step">
                 <div class="hiw-img-wrap">
-                    <img src="{{ asset('uploads/order-home.webp') }}" alt="Order" class="hiw-img"
+                    <img src="{{ asset('uploads/order-home-step.webp') }}" alt="Order" class="hiw-img"
                          onerror="this.src='https://placehold.co/150x120/0a2240/F6B72D?text=4.+Order'">
                 </div>
                 <h3 class="hiw-step-title">4. Order</h3>
