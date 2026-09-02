@@ -343,6 +343,17 @@
             flex-direction: column;
             align-items: center;
             gap: 0.5rem;
+            background-color: #ffffff;
+            padding: 2rem 1.5rem;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            border: 1px solid #f0f0f0;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .iq-feature-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
         }
 
         .iq-feature-item img {
@@ -399,13 +410,13 @@
         <div class="iq-page-container">
             <!-- Left sidebar section -->
             <div class="iq-page-sidebar" style="padding: 0; background: transparent; box-shadow: none;">
-                <h2 style="font-family: 'Open Sans', sans-serif; font-size: 1.5625rem; font-weight: 700; color: #000; margin-bottom: 1rem; margin-top: 0;">Let's Build Your Perfect Box</h2>
+                <h2 style="font-family: 'Open Sans', sans-serif; font-size: 1.1rem; font-weight: 700; color: #000; margin-bottom: 1rem; margin-top: 0; white-space: nowrap;">Let's Build Your Perfect Box</h2>
                 <p style="font-family: 'DM Sans', sans-serif; font-size: 0.9375rem; color: #000000; line-height: 1.6; margin-bottom: 1.5rem; text-align: justify;">
                     From simple to premium, we create custom packaging designed around your product and brand. Tell us what you need, and our team will help bring your packaging vision to life with the right size, material, finish, and print. Fill out the form to get started.
                 </p>
                 <img src="{{ asset('uploads/Apparel Box .png') }}" alt="Custom packaging boxes" class="iq-sidebar-img">
                 <div class="iq-sidebar-card" style="margin-bottom: 0; background-color: #F3F3F3; border: none;">
-                    <h3 style="margin-bottom: 1rem; font-size: 1rem;">Need Help Immediately?</h3>
+                    <h3 style="margin-bottom: 1rem; font-size: 1rem;">Need Help?</h3>
                     <div style="display: flex; flex-direction: column; gap: 0.75rem;">
                         <div style="display: flex; gap: 0.75rem; align-items: center;">
                             <div style="background-color: #FFB400; color: white; width: 2rem; height: 2rem; border-radius: 0.375rem; display: flex; align-items: center; justify-content: center; font-size: 0.875rem; flex-shrink: 0;">
