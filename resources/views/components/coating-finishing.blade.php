@@ -478,6 +478,7 @@
 
                     // Ensure the base loop has at least 10 cards and is a multiple of cardSet length
                     let repeatCount = Math.ceil(10 / cardSet.length);
+                    let totalBaseCards = cardSet.length * repeatCount;
                     let baseHTML = '';
                     
                     for (let i = 0; i < repeatCount; i++) {
@@ -496,6 +497,9 @@
 
                     // Duplicate base HTML for seamless marquee
                     grid.innerHTML = baseHTML + baseHTML;
+                    
+                    // Adjust animation duration to keep speed constant (e.g., 3s per card)
+                    grid.style.animationDuration = (totalBaseCards * 3) + "s";
                     
                     const children = Array.from(grid.children);
                     const halfLength = children.length / 2;
