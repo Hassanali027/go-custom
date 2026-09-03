@@ -42,7 +42,8 @@ class AppServiceProvider extends ServiceProvider
                     'company_address' => '4000 N Montrose Ave<br>550 Chicago, IL 60641',
                     'footer_categories' => [],
                     'footer_quick_links' => [],
-                    'footer_policy_pages' => []
+                    'footer_policy_pages' => [],
+                    'footer_description' => 'The Rigid Boxes is a leading custom packaging manufacturer, delivering premium boxes and packaging solutions tailored to your brand. From design to delivery, we ensure unmatched quality, style, and customer service.'
                 ];
                 
                 $rows = DB::table('homepage_contents')
@@ -71,7 +72,8 @@ class AppServiceProvider extends ServiceProvider
                     'company_address' => '4000 N Montrose Ave<br>550 Chicago, IL 60641',
                     'footer_categories' => [],
                     'footer_quick_links' => [],
-                    'footer_policy_pages' => []
+                    'footer_policy_pages' => [],
+                    'footer_description' => 'The Rigid Boxes is a leading custom packaging manufacturer, delivering premium boxes and packaging solutions tailored to your brand. From design to delivery, we ensure unmatched quality, style, and customer service.'
                 ]);
             }
         });

@@ -113,6 +113,12 @@
         box-sizing: border-box;
         height: 3rem;
     }
+
+    .pqn-fixed-box-style {
+        display: flex;
+        align-items: center;
+        cursor: default;
+    }
     
     textarea.pqn-input {
         height: 6rem;
@@ -349,9 +355,10 @@
                 <div class="pqn-form-row">
                     <div class="pqn-form-group">
                         <label class="pqn-label">Box Style *</label>
-                        <select name="box_style" class="pqn-input" required>
-                            <option value="{{ $product['title'] ?? 'Select your box style' }}" selected>{{ $product['title'] ?? 'Select your box style' }}</option>
-                        </select>
+                        <input type="hidden" name="box_style" value="{{ $product['title'] ?? 'Custom Packaging Box' }}">
+                        <div class="pqn-input pqn-fixed-box-style" aria-label="Box Style">
+                            {{ $product['title'] ?? 'Custom Packaging Box' }}
+                        </div>
                     </div>
                     <div class="pqn-form-group">
                         <label class="pqn-label">Quantity *</label>

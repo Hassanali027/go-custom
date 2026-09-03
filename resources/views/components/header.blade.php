@@ -134,6 +134,13 @@
         flex-shrink: 0;
     }
 
+    /* Align the desktop logo artwork with the page's left content guide. */
+    @media (min-width: 61.9376rem) {
+        .header-main .header-logo {
+            transform: translateX(-0.5rem);
+        }
+    }
+
     .header-search {
         width: clamp(15rem, 20vw, 20.625rem);
         max-width: 100%;

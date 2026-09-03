@@ -2277,6 +2277,11 @@
                             color: #736d66 !important;
                             opacity: 1 !important;
                         }
+                        .hero-quote-box .product-fixed-box-style {
+                            display: flex !important;
+                            align-items: center !important;
+                            cursor: default !important;
+                        }
                         .hero-quote-box .file-upload-wrap {
                             display: flex !important;
                             height: 3rem !important;
@@ -2412,7 +2417,10 @@
 
                     <div class="form-bottom-grid">
                         <div class="input-group">
-                            <x-searchable-product-select input-class="quote-input" :value="$product['title'] ?? ''" :required="true" />
+                            <input type="hidden" name="box_style" value="{{ $product['title'] ?? 'Custom Packaging Box' }}">
+                            <div class="quote-input product-fixed-box-style" aria-label="Box Style">
+                                {{ $product['title'] ?? 'Custom Packaging Box' }}
+                            </div>
                         </div>
                         <div class="input-group">
                             <select name="paper_stock" class="quote-input" required>
