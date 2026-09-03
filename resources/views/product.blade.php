@@ -171,7 +171,7 @@
             border: 1px solid rgba(11, 34, 64, 0.75);
             background-color: #fff;
             background-repeat: no-repeat;
-            background-size: 250% auto;
+            background-size: 350% auto;
             box-shadow: 0 0.25rem 0.75rem rgba(0, 0, 0, 0.2);
             opacity: 0;
             pointer-events: none;
