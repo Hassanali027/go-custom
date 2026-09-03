@@ -177,7 +177,7 @@
             height: 37.75rem !important;
             margin: 0 auto !important;
             padding: 2.8125rem 0 0 !important;
-            overflow: visible !important;
+            overflow: hidden !important;
             background: linear-gradient(to right, #FDD471, #FFB400) !important;
             border-radius: 1.25rem !important;
             box-sizing: border-box !important;
@@ -227,14 +227,15 @@
             width: 100%;
             max-width: 23.75rem;
             height: 14.25rem;
-            margin: 0 auto 0;
+            margin: 0 auto;
             border-radius: 0 0 1.25rem 1.25rem;
             overflow: visible !important;
             display: flex;
             justify-content: center;
+            align-items: flex-end;
         }
         .cta-desktop-ellipse {
-            display: block !important;
+            display: none !important;
             width: 21.8938rem !important;
             height: 9.9563rem !important;
             bottom: -4.2594rem !important;
@@ -247,12 +248,14 @@
         .cta-image-wrapper .cta-main-img {
             height: 100%;
             width: 100%;
-            object-fit: cover;
-            border-radius: 0 0 1.25rem 1.25rem;
+            object-fit: contain;
+            object-position: center bottom;
+            border-radius: 0;
             display: block;
+            margin: 0 auto;
             position: relative;
             z-index: 1;
-            bottom: -2.1875rem;
+            bottom: 0;
         }
         .cta-text-card > :not(.cta-ellipse) {
             position: relative;
