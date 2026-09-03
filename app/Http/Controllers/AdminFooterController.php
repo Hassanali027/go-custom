@@ -21,6 +21,7 @@ class AdminFooterController extends Controller
             'footer_categories' => [],
             'footer_quick_links' => [],
             'footer_policy_pages' => [],
+            'footer_description' => 'The Rigid Boxes is a leading custom packaging manufacturer, delivering premium boxes and packaging solutions tailored to your brand. From design to delivery, we ensure unmatched quality, style, and customer service.',
             'social_facebook' => 'https://www.facebook.com/premiumboxesusa',
             'social_twitter' => '',
             'social_instagram' => 'https://www.instagram.com/premiumboxes.usa/',
@@ -84,6 +85,7 @@ class AdminFooterController extends Controller
             'company_address' => 'nullable|string',
             'footer_categories' => 'nullable|array',
             'footer_policy_pages' => 'nullable|array',
+            'footer_description' => 'nullable|string|max:2000',
             'footer_quick_links_names' => 'nullable|array',
             'footer_quick_links_urls' => 'nullable|array',
             'social_facebook' => 'nullable|url|max:255',
@@ -107,6 +109,7 @@ class AdminFooterController extends Controller
         $settings['social_youtube'] = $request->input('social_youtube');
         $settings['footer_categories'] = array_map('intval', (array) $request->input('footer_categories', []));
         $settings['footer_policy_pages'] = array_values(array_map('intval', (array) $request->input('footer_policy_pages', [])));
+        $settings['footer_description'] = $request->input('footer_description');
 
         $quickLinks = [];
         $names = (array) $request->input('footer_quick_links_names', []);
@@ -130,6 +133,8 @@ class AdminFooterController extends Controller
                 $section = 'footer';
                 $valueType = 'json';
                 $value = json_encode($value);
+            } elseif ($key === 'footer_description') {
+                $section = 'footer';
             } elseif (str_starts_with($key, 'social_')) {
                 $section = 'social_links';
             }

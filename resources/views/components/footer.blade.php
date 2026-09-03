@@ -44,7 +44,7 @@
                         <img src="{{ asset('uploads/footer-logo (2).svg') }}" alt="Footer Logo" class="logo-image">
                     </div>
                     <p class="brand-description">
-                        The Rigid Boxes is a leading custom packaging manufacturer, delivering premium boxes and packaging solutions tailored to your brand. From design to delivery, we ensure unmatched quality, style, and customer service.
+                        {{ $siteSettings['footer_description'] ?? 'The Rigid Boxes is a leading custom packaging manufacturer, delivering premium boxes and packaging solutions tailored to your brand. From design to delivery, we ensure unmatched quality, style, and customer service.' }}
                     </p>
                 </div>
 
