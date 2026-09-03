@@ -166,6 +166,16 @@
             transition: border-color 0.2s ease, box-shadow 0.2s ease;
             scroll-margin-top: 9.375rem;
         }
+
+        .iq-form-group input:-webkit-autofill,
+        .iq-form-group input:-webkit-autofill:hover, 
+        .iq-form-group input:-webkit-autofill:focus, 
+        .iq-form-group input:-webkit-autofill:active {
+            -webkit-box-shadow: 0 0 0 30px #FFF8E7 inset !important;
+            -webkit-text-fill-color: #2D2D2D !important;
+            transition: background-color 5000s ease-in-out 0s;
+        }
+
         
         .iq-form-group select {
             -webkit-appearance: none;

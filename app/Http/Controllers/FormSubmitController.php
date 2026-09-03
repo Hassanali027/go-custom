@@ -28,7 +28,13 @@ class FormSubmitController extends Controller
             'message' => 'nullable|string'
         ]);
 
-        Mail::to($this->adminEmail)->send(new ContactFormMail($validated));
+        dispatch(function () use ($validated) {
+            try {
+                Mail::to($this->adminEmail)->send(new ContactFormMail($validated));
+            } catch (\Exception $e) {
+                \Illuminate\Support\Facades\Log::error('Mail error: ' . $e->getMessage());
+            }
+        })->afterResponse();
 
         if ($request->expectsJson()) {
             return response()->json(['success' => 'Thank you for contacting us! Your message has been sent successfully.']);
@@ -66,12 +72,18 @@ class FormSubmitController extends Controller
             $validated['quote_file_path'] = $path;
         }
 
-        Mail::to($this->adminEmail)->send(new QuoteFormMail($validated));
+        dispatch(function () use ($validated) {
+            try {
+                Mail::to($this->adminEmail)->send(new QuoteFormMail($validated));
+            } catch (\Exception $e) {
+                \Illuminate\Support\Facades\Log::error('Mail error: ' . $e->getMessage());
+            }
+        })->afterResponse();
 
         if ($request->expectsJson()) {
-            return response()->json(['success' => 'Thank you! Your request for a quote has been submitted successfully.']);
+            return response()->json(['success' => 'Quote submitted successfully!']);
         }
-        return back()->with('success', 'Thank you! Your request for a quote has been submitted successfully.');
+        return back()->with('success', 'Quote submitted successfully!');
     }
 
     public function submitNewsletter(Request $request)
@@ -80,7 +92,13 @@ class FormSubmitController extends Controller
             'email' => 'required|email|max:255'
         ]);
 
-        Mail::to($this->adminEmail)->send(new NewsletterMail($validated['email']));
+        dispatch(function () use ($validated) {
+            try {
+                Mail::to($this->adminEmail)->send(new NewsletterMail($validated['email']));
+            } catch (\Exception $e) {
+                \Illuminate\Support\Facades\Log::error('Mail error: ' . $e->getMessage());
+            }
+        })->afterResponse();
 
         if ($request->expectsJson()) {
             return response()->json(['success' => 'Thank you for subscribing to our newsletter!']);

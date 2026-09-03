@@ -334,9 +334,17 @@
             <h2 class="quote-form-title">Get Custom Quote</h2>
 
             @if(session('success'))
-                <div class="quote-success-message" role="alert">
+                <div class="quote-success-message" role="alert" id="quote-success-message">
                     {{ session('success') }}
                 </div>
+                <script>
+                    document.addEventListener('DOMContentLoaded', function() {
+                        const successMsg = document.getElementById('quote-success-message');
+                        if (successMsg) {
+                            successMsg.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                        }
+                    });
+                </script>
             @endif
 
             <form action="{{ url('/submit-quote') }}" method="POST" enctype="multipart/form-data" class="qf-main-grid">

@@ -308,41 +308,23 @@ document.addEventListener('DOMContentLoaded', function() {
             .then(data => {
                 if(submitBtn) submitBtn.innerHTML = originalBtnText;
 
-                const quoteFormCard = form.closest('.quote-form-card');
-                
-                // The homepage quote form shows its confirmation directly below its heading.
-                // Other forms retain the existing global confirmation popup.
-                const popup = document.getElementById('successPopup');
-                if(popup && !quoteFormCard) {
-                    popup.querySelector('p').innerText = data.success || 'Submitted successfully!';
-                    popup.style.display = 'flex';
-                }
-                
-                // Handle Inline Message
-                let inlineMsg = quoteFormCard
-                    ? quoteFormCard.querySelector('.ajax-inline-success')
-                    : form.querySelector('.ajax-inline-success');
+                let inlineMsg = form.querySelector('.ajax-inline-success');
                 if(!inlineMsg) {
                     inlineMsg = document.createElement('div');
-                    inlineMsg.className = quoteFormCard
-                        ? 'quote-success-message ajax-inline-success'
-                        : 'ajax-inline-success';
+                    inlineMsg.className = 'quote-success-message ajax-inline-success';
                     inlineMsg.style.transition = 'opacity 0.5s';
-                    
-                    // Keep the message outside every form's fields/grid.
-                    // On the homepage quote form this places it directly below the heading.
                     form.parentNode.insertBefore(inlineMsg, form);
                 }
                 inlineMsg.innerText = data.success || 'Submitted successfully!';
                 inlineMsg.style.display = 'block';
                 inlineMsg.style.opacity = '1';
+                inlineMsg.scrollIntoView({ behavior: 'smooth', block: 'center' });
                 
                 // Reset form
                 form.reset();
                 
                 // Hide after 20 seconds
                 setTimeout(() => {
-                    if(popup) popup.style.display = 'none';
                     if(inlineMsg) {
                         inlineMsg.style.opacity = '0';
                         setTimeout(() => inlineMsg.style.display = 'none', 500);
