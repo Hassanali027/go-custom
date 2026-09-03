@@ -130,7 +130,7 @@
         flex-direction: row;
         gap: 1.25rem;
         width: max-content;
-        animation: marqueeTrain 30s linear infinite;
+        animation: marqueeTrain 20s linear infinite;
         padding-bottom: 0.625rem;
     }
     
@@ -476,7 +476,7 @@
                     void grid.offsetHeight;
                     grid.style.animation = "";
 
-                    // Ensure the base loop has at least 10 cards and is a multiple of cardSet length
+                    // Ensure the base loop has at least 10 cards and is a full multiple of the cardSet length to prevent visual glitches
                     let repeatCount = Math.ceil(10 / cardSet.length);
                     let totalBaseCards = cardSet.length * repeatCount;
                     let baseHTML = '';
@@ -498,8 +498,8 @@
                     // Duplicate base HTML for seamless marquee
                     grid.innerHTML = baseHTML + baseHTML;
                     
-                    // Adjust animation duration to keep speed constant (e.g., 3s per card)
-                    grid.style.animationDuration = (totalBaseCards * 3) + "s";
+                    // Maintain a strict uniform speed: exactly 2 seconds per card distance
+                    grid.style.animationDuration = (totalBaseCards * 2) + "s";
                     
                     const children = Array.from(grid.children);
                     const halfLength = children.length / 2;

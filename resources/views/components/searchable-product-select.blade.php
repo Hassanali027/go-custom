@@ -74,8 +74,8 @@
             overflow-y: auto;
             overflow-x: hidden;
             overscroll-behavior: contain;
-            background: #fff;
-            border: 1px solid #d8d8d8;
+            background: #0A2240;
+            border: 1px solid #445975;
             border-radius: 0 0 .5rem .5rem;
             box-shadow: 0 .5rem 1rem rgba(0,0,0,.14);
             scrollbar-width: thin;
@@ -87,9 +87,9 @@
             width: 100%;
             padding: .7rem .85rem;
             border: 0;
-            border-bottom: 1px solid #eee;
-            background: #fff;
-            color: #0b2240;
+            border-bottom: 1px solid #1E3758;
+            background: #0A2240;
+            color: #fff;
             text-align: left;
             font: inherit;
             line-height: 1.35;
