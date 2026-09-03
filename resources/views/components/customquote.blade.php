@@ -117,9 +117,20 @@
         color: #FFFFFF;
     }
 
+    .qf-group select.is-placeholder {
+        color: #4B5563 !important;
+        -webkit-text-fill-color: #4B5563 !important;
+    }
+
     .qf-group input::placeholder,
-    .qf-group textarea::placeholder {
-        color: rgba(255, 255, 255, 0.4);
+    .qf-group textarea::placeholder,
+    .product-search-input::placeholder {
+        color: #4B5563 !important;
+        -webkit-text-fill-color: #4B5563 !important;
+        opacity: 1;
+        font-size: 0.8125rem;
+        font-weight: 300;
+        letter-spacing: 0.02em;
     }
 
     .qf-group input:-webkit-autofill,
@@ -495,3 +506,11 @@
 
     </div>
 </section>
+<script>
+document.querySelectorAll('.qf-group select').forEach(function(sel) {
+    sel.classList.add('is-placeholder');
+    sel.addEventListener('change', function() {
+        sel.classList.remove('is-placeholder');
+    });
+});
+</script>
