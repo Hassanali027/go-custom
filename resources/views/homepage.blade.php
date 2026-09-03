@@ -2767,7 +2767,7 @@
                         <span class="uy-label">Matte Lamination</span>
                     </div>
                     <div class="uy-card uy-holo">
-                        <img src="{{ asset('uploads/holographic-foiling.webp') }}?v={{ @filemtime(public_path('uploads/holographic-foiling.webp')) ?: time() }}"
+                        <img src="{{ asset('uploads/holographic-homepage.webp') }}?v={{ @filemtime(public_path('uploads/holographic-foiling.webp')) ?: time() }}"
                             alt="Holographic Foiling">
                         <span class="uy-label">Holographic Foiling</span>
                     </div>
