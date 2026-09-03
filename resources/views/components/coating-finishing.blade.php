@@ -435,11 +435,9 @@
                 ['uploads/UV Print.webp', 'UV Print']
             ],
             corrugated: [
-                ['uploads/kraft-corrugated.webp', 'Kraft Corrugated'],
-                ['uploads/white-corrugated.webp', 'White Corrugated'],
-                ['uploads/corrugated-divider.webp', 'Corrugated Divider'],
-                ['uploads/natural-kraft-corrugated-insert.webp', 'Natural Kraft Corrugated Insert'],
-                ['uploads/standard-white-corrugated-insert.webp', 'Standard White Corrugated Insert']
+                ['uploads/kemi-white-board.webp', 'Kemi White Board'],
+                ['uploads/natural-kraft-linerboard.webp', 'Natural Kraft Linerboard'],
+                ['uploads/oyster-white-board.webp', 'Oyster White Board']
             ],
             rigid_materials: [
                 ['uploads/Duplex-Chipboards.webp', 'Duplex Chipboard'],
