@@ -97,6 +97,15 @@
         color: rgba(255, 255, 255, 0.4);
     }
 
+    .qf-group input:-webkit-autofill,
+    .qf-group input:-webkit-autofill:hover, 
+    .qf-group input:-webkit-autofill:focus, 
+    .qf-group input:-webkit-autofill:active {
+        -webkit-box-shadow: 0 0 0 30px #0B2240 inset !important;
+        -webkit-text-fill-color: #ffffff !important;
+        transition: background-color 5000s ease-in-out 0s;
+    }
+
     .qf-group input:focus,
     .qf-group select:focus,
     .qf-group textarea:focus {
