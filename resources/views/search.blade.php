@@ -259,15 +259,6 @@
 <main class="search-page-container">
 
     @if(!empty($q))
-        <div class="search-summary-bar">
-            <div class="search-summary-text">
-                Search results for: <strong>"{{ $q }}"</strong> — We have found <strong>{{ $totalCount }}</strong> result(s)
-            </div>
-            <div class="search-summary-badge">
-                {{ $totalCount }} Results
-            </div>
-        </div>
-
         @if($totalCount == 0)
             <div class="no-results">
                 <svg viewBox="0 0 24 24" style="width: 4rem; height: 4rem; fill: #CCC; margin-bottom: 1rem; display: block; margin: 0 auto 1rem;">
