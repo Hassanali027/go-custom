@@ -398,7 +398,7 @@
                 ['uploads/new-uv-coating.webp', 'UV Coating']
             ],
             special_finishes: [
-                ['uploads/debossing.webp', 'Debossing'],
+                ['uploads/Debossing.webp', 'Debossing'],
                 ['uploads/embossing.webp', 'Embossing'],
                 ['uploads/gold-foiling.webp', 'Gold Foiling'],
                 ['uploads/holographic.webp', 'Holographic'],
