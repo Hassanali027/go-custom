@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <link rel="icon" href="{{ asset('uploads/favicon-rigid-boxes.webp') }}" type="image/webp">
+    <link rel="icon" href="{{ asset('uploads/go-custom-boxes-favicon.png') }}" type="image/png">
     @include('components.canonical')
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -2466,7 +2466,7 @@
 
             .see-feel-right {
                 flex: 1;
-                background: #EBEBEB;
+                background: transparent;
                 border-radius: 0.75rem;
                 aspect-ratio: 16/10;
                 display: flex;
@@ -2487,7 +2487,7 @@
             .sfr-img {
                 width: 100%;
                 height: 100%;
-                object-fit: cover;
+                object-fit: contain;
                 border-radius: 0.75rem;
                 display: block;
             }
@@ -2576,14 +2576,14 @@
                 <div class="see-feel-box">
                     <div class="see-feel-left">
                         <span class="see-feel-heading">See – and Feel – the Difference</span>
-                        <p class="see-feel-desc">Explore the quality behind every package with our curated collection of
-                            sustainable packaging materials. Experience different textures, finishes, paper stocks, and
-                            print techniques firsthand to find the perfect combination for packaging that looks
-                            exceptional, feels premium, and reflects your brand.</p>
+                        <p class="see-feel-desc">Discover premium packaging designed to make every product feel special.
+                            Explore elegant box styles, refined finishes, custom details, and thoughtful structures
+                            created to enhance presentation, protect your products, and give your brand a polished,
+                            memorable look from the first impression.</p>
                         <a href="/request-quote/" class="see-feel-btn desktop-btn">Get Instant Quote</a>
                     </div>
                     <div class="see-feel-right">
-                        <img src="{{ asset('uploads/see-and-feel.jpeg') }}?v={{ @filemtime(public_path('uploads/see-and-feel.jpeg')) ?: 1 }}"
+                        <img src="{{ asset('uploads/see-feel-image.webp') }}?v={{ @filemtime(public_path('uploads/see-and-feel.jpeg')) ?: 1 }}"
                             alt="Sustainable packaging materials" class="sfr-img">
                     </div>
                     <a href="/request-quote/" class="see-feel-btn mobile-btn">Get Instant Quote</a>
@@ -2767,17 +2767,17 @@
                         <span class="uy-label">Matte Lamination</span>
                     </div>
                     <div class="uy-card uy-holo">
-                        <img src="{{ asset('uploads/holographic-foiling.webp') }}?v={{ @filemtime(public_path('uploads/holographic-foiling.webp')) ?: time() }}"
+                        <img src="{{ asset('uploads/holographic-homepage.webp') }}?v={{ @filemtime(public_path('uploads/holographic-foiling.webp')) ?: time() }}"
                             alt="Holographic Foiling">
                         <span class="uy-label">Holographic Foiling</span>
                     </div>
                     <div class="uy-card uy-silver">
-                        <img src="{{ asset('uploads/silver-Foiling-home.jpg') }}" alt="Silver Foiling"
+                        <img src="{{ asset('uploads/silver-foiling-home.jpg') }}" alt="Silver Foiling"
                             onerror="this.src='https://placehold.co/293x231/444/fff?text=Silver+Foiling'">
                         <span class="uy-label">Silver Foiling</span>
                     </div>
                     <div class="uy-card uy-spot">
-                        <img src="{{ asset('uploads/Spot-uv-home.png') }}" alt="Spot UV"
+                        <img src="{{ asset('uploads/spot-uv-home.png') }}" alt="Spot UV"
                             onerror="this.src='https://placehold.co/293x231/111/fff?text=Spot+UV'">
                         <span class="uy-label">Spot UV</span>
                     </div>
