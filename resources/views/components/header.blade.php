@@ -1228,7 +1228,7 @@
             <a href="/request-quote/" class="mobile-get-quote-btn" style="display:flex; width: 100%; text-align: center; justify-content: center; margin: 1.875rem 0; background: #FFB800; color: #002147; padding: 0.75rem 1.25rem; border-radius: 0.25rem; font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 700; font-size: 1rem; text-decoration: none;">Get Instant Quote</a>
 
             <div class="mobile-contact" style="margin-top: 0; gap: 0; display: flex; flex-direction: column; align-items: flex-start;">
-                <h3 style="font-family: 'DM Sans', sans-serif; font-size: 1.125rem; margin-bottom: 1.25rem; color: #fff; text-align: left;">Get In Touch</h3>
+                <span style="font-family: 'DM Sans', sans-serif; font-size: 1.125rem; font-weight: 700; margin-bottom: 1.25rem; color: #fff; text-align: left;">Get In Touch</span>
                 
                 <div class="mobile-contact-item" style="display: flex; align-items: flex-start; justify-content: flex-start !important; gap: 0.9375rem; margin-bottom: 1.25rem; width: 100%; text-align: left;">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width: 1.25rem; height: 1.25rem; stroke: var(--secondary-color); flex-shrink: 0; margin-top: 0.125rem;">

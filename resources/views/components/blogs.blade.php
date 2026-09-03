@@ -96,8 +96,10 @@
 
     .blog-card__image {
         width: calc(100% - 1.75rem);
-        height: 13.75rem;
-        object-fit: cover;
+        height: auto;
+        aspect-ratio: 2 / 1;
+        object-fit: contain;
+        background: transparent;
         border-radius: 0.75rem;
         margin: 0.875rem auto 0;
         display: block;
