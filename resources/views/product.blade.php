@@ -146,10 +146,10 @@
         
         .main-image {
             width: 100%;
-            max-height: 28.5rem;
-            aspect-ratio: 396 / 340;
+            max-height: 40rem;
+            aspect-ratio: 396 / 371;
             margin: 0; /* Left align */
-            background-color: #FFFFFF;
+            background-color: transparent;
             border-radius: 0.75rem;
             border: 1px solid var(--primary-color);
             overflow: hidden;
@@ -162,7 +162,7 @@
         .main-image img {
             width: 100%;
             height: 100%;
-            object-fit: contain;
+            object-fit: cover;
             cursor: pointer;
         }
 
