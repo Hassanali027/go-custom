@@ -10,6 +10,17 @@
     RewriteCond %{THE_REQUEST} \s/+public(?:[/?\s]) [NC]
     RewriteRule ^public(?:/(.*))?$ /$1 [R=301,L,NE]
 
+    # Canonical public URLs end with a trailing slash, except the homepage
+    # and real files such as sitemap.xml, images, CSS, and JavaScript.
+    RewriteCond %{REQUEST_METHOD} ^(?:GET|HEAD)$ [NC]
+    RewriteCond %{REQUEST_URI} !^/$
+    RewriteCond %{REQUEST_URI} !/$
+    RewriteCond %{REQUEST_URI} !^/admin(?:/|$) [NC]
+    RewriteCond %{REQUEST_URI} !^/api(?:/|$) [NC]
+    RewriteCond %{REQUEST_URI} !^/(?:storage|uploads|images|css|js|build)(?:/|$) [NC]
+    RewriteCond %{REQUEST_URI} !\.[^/]+$ [NC]
+    RewriteRule ^ %{REQUEST_URI}/ [R=301,L,NE]
+
     # Allow SSL/domain validation files to remain accessible from the project root.
     RewriteRule ^\.well-known/ - [L]
 
