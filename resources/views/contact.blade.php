@@ -113,7 +113,7 @@
             background-color: #FFF8E7;
             padding: 2.5rem;
             border-radius: 0.5rem;
-            height: 39.625rem;
+            min-height: 39.625rem;
         }
 
         .contact-form-box h2 {
@@ -181,6 +181,15 @@
             border-color: var(--yellow);
         }
 
+        .contact-form input:-webkit-autofill,
+        .contact-form input:-webkit-autofill:hover, 
+        .contact-form input:-webkit-autofill:focus, 
+        .contact-form input:-webkit-autofill:active {
+            -webkit-box-shadow: 0 0 0 30px #FFF8E7 inset !important;
+            -webkit-text-fill-color: var(--text-dark) !important;
+            transition: background-color 5000s ease-in-out 0s;
+        }
+
         .contact-form textarea {
             height: 5.75rem;
             min-height: 5.75rem;
@@ -222,7 +231,7 @@
             color: #fff;
             display: flex;
             flex-direction: column;
-            height: 39.625rem;
+            min-height: 39.625rem;
         }
 
         .contact-info-box h3 {
