@@ -48,8 +48,10 @@
     }
     
     .pqn-icon-box {
-        width: 3.75rem;
-        height: 3.75rem;
+        margin-top: 12px;
+
+        width: 4rem;
+        height: 4rem;
         background-color: #ffffff;
         border-radius: 0.5rem;
         display: flex;

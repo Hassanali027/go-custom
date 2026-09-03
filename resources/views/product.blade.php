@@ -116,37 +116,40 @@
         }
 
         .hero-quote-box form > .input-group {
-            flex: none;
             display: flex;
             flex-direction: column;
         }
 
         .hero-quote-box form > .input-group textarea.quote-input {
-            flex: none;
-            height: 3.75rem !important;
-            min-height: 3.75rem !important;
-            max-height: 3.75rem !important;
+            flex: 1;
+            height: 100% !important;
+            min-height: 5.5rem !important;
+            max-height: none !important;
         }
 
         .hero-images {
-            flex: 0 0 35%;
-            max-width: 35%;
+            flex: 0 0 44%;
+            min-width: 0;
+            max-width: 44%;
             display: flex;
             flex-direction: column;
             justify-content: flex-start;
-            gap: 0.4375rem;
+            align-self: flex-start;
+            gap: 0.5rem;
         }
         
         .hero-details {
-            flex: 0 1 50%;
-            max-width: 43.75rem;
+            flex: 1 1 0;
+            min-width: 0;
+            max-width: 50%;
         }
         
         .main-image {
             width: 100%;
-            aspect-ratio: 396 / 371;
+            max-height: 28.5rem;
+            aspect-ratio: 396 / 340;
             margin: 0; /* Left align */
-            background-color: transparent;
+            background-color: #FFFFFF;
             border-radius: 0.75rem;
             border: 1px solid var(--primary-color);
             overflow: hidden;
@@ -159,7 +162,7 @@
         .main-image img {
             width: 100%;
             height: 100%;
-            object-fit: cover;
+            object-fit: contain;
             cursor: pointer;
         }
 
@@ -171,7 +174,7 @@
             border: 1px solid rgba(11, 34, 64, 0.75);
             background-color: #fff;
             background-repeat: no-repeat;
-            background-size: 250% auto;
+            background-size: 350% auto;
             box-shadow: 0 0.25rem 0.75rem rgba(0, 0, 0, 0.2);
             opacity: 0;
             pointer-events: none;
@@ -210,15 +213,14 @@
         
         .thumbnails {
             display: flex;
-            gap: 1rem;
+            gap: 0.75rem;
             justify-content: flex-start;
             width: 100%;
         }
         
         .thumb {
-            width: calc((100% - 3rem) / 4);
-            height: auto;
-            aspect-ratio: 87 / 84;
+            width: calc((100% - 2.25rem) / 4);
+            aspect-ratio: 1 / 1;
             background-color: #FFFFFF;
             border-radius: 0.5rem;
             cursor: pointer;
@@ -274,7 +276,7 @@
 
         /* Product Form */
         .hero-form {
-            flex: 1.2;
+            flex: 1 1 0;
             min-width: 0;
             max-width: 100%;
             padding: 0;
@@ -1391,9 +1393,6 @@
             .hero-container {
                 gap: 3.125rem;
             }
-            .hero-images {
-                max-width: 43%;
-            }
         }
         @media (max-width: 90rem) {
             :root { --margin-sides: 3.4375rem; }
@@ -1403,17 +1402,11 @@
             .hero-container {
                 gap: 1.875rem;
             }
-            .hero-images {
-                max-width: 43%;
-            }
         }
         @media (max-width: 64rem) {
             :root { --margin-sides: 3.4375rem; }
             .hero-container {
                 gap: 1.5625rem;
-            }
-            .hero-images {
-                max-width: 43%;
             }
         }
         @media (max-width: 48rem) {
@@ -2187,14 +2180,14 @@
                         .hero-quote-box .form-grid-3 {
                             display: grid; 
                             grid-template-columns: repeat(3, 1fr); 
-                            gap: 0.375rem;
-                            margin-bottom: 1.5rem;
+                            gap: 0.625rem;
+                            margin-bottom: 1.125rem;
                         }
                         .hero-quote-box .form-grid-4 {
                             display: grid; 
                             grid-template-columns: 1.55fr 1.55fr 1.55fr 1fr; 
-                            gap: 0.375rem;
-                            margin-bottom: 1.5rem;
+                            gap: 0.625rem;
+                            margin-bottom: 1.125rem;
                         }
                         .hero-quote-box .form-grid-2-upload {
                             display: grid; 
@@ -2226,8 +2219,7 @@
                         }
                         .hero-quote-box .quote-input,
                         .hero-quote-box input.form-control,
-                        .hero-quote-box select.form-control,
-                        .hero-quote-box textarea.form-control {
+                        .hero-quote-box select.form-control {
                             width: 100% !important;
                             background-color: #FFF8E7 !important;
                             border: 1px solid #D9D0C2 !important;
@@ -2235,11 +2227,11 @@
                             color: #333333 !important;
                             font-family: 'Inter', sans-serif !important;
                             font-weight: 400 !important;
-                            font-size: 0.6875rem !important;
-                            line-height: 1rem !important;
+                            font-size: 0.875rem !important;
+                            line-height: 1.375rem !important;
                             letter-spacing: 0 !important;
-                            height: 2.25rem !important;
-                            padding: 0.5rem 0.8125rem !important;
+                            height: 3rem !important;
+                            padding: 0.75rem 0.9375rem !important;
                             box-sizing: border-box !important;
                             outline: none !important;
                             box-shadow: none !important;
@@ -2287,7 +2279,7 @@
                         }
                         .hero-quote-box .file-upload-wrap {
                             display: flex !important;
-                            height: 2.25rem !important;
+                            height: 3rem !important;
                             position: relative !important;
                         }
                         .hero-quote-box .file-upload-wrap input[type="text"] {
@@ -2295,16 +2287,18 @@
                             border-right: none !important;
                             background-color: #FFF8E7 !important;
                             flex: 1 !important;
+                            height: 3rem !important;
+                            font-size: 0.875rem !important;
                         }
                         .hero-quote-box .file-upload-wrap .upload-btn {
                             background-color: #FFB800 !important;
                             color: #000000 !important;
                             font-weight: 700 !important;
-                            font-size: 0.75rem !important;
+                            font-size: 0.875rem !important;
                             border: 1px solid #FFB800 !important;
                             border-radius: 0 0.5rem 0.5rem 0 !important;
                             padding: 0 1.5rem !important;
-                            height: 2.25rem !important;
+                            height: 3rem !important;
                             cursor: pointer !important;
                             display: flex !important;
                             align-items: center !important;
@@ -2312,11 +2306,21 @@
                         }
                         .hero-quote-box textarea.form-control,
                         .hero-quote-box textarea.quote-input {
-                            height: 3.75rem !important;
-                            min-height: 3.75rem !important;
-                            max-height: 3.75rem !important;
-                            resize: none !important;
-                            padding: 0.875rem !important;
+                            width: 100% !important;
+                            background-color: #FFF8E7 !important;
+                            border: 1px solid #D9D0C2 !important;
+                            border-radius: 0.375rem !important;
+                            color: #333333 !important;
+                            font-family: 'Inter', sans-serif !important;
+                            font-weight: 400 !important;
+                            font-size: 0.875rem !important;
+                            line-height: 1.375rem !important;
+                            height: 4.5rem !important;
+                            min-height: 4.5rem !important;
+                            max-height: 7rem !important;
+                            resize: vertical !important;
+                            padding: 0.75rem 0.9375rem !important;
+                            box-sizing: border-box !important;
                         }
                         .hero-quote-box .quote-submit-btn {
                             background-color: #FFB800 !important;
@@ -2324,11 +2328,11 @@
                             border: none !important;
                             border-radius: 0.5rem !important;
                             font-weight: 700 !important;
-                            font-size: 0.8125rem !important;
+                            font-size: 0.9375rem !important;
                             cursor: pointer !important;
                             width: 16.5rem !important;
                             max-width: 100% !important;
-                            height: 2.4375rem !important;
+                            height: 2.875rem !important;
                             display: flex !important;
                             align-items: center !important;
                             justify-content: center !important;
@@ -2343,7 +2347,7 @@
                             flex-direction: column;
                         }
                         .hero-quote-box .input-group label {
-                            font-size: 0.6875rem;
+                            font-size: 0.75rem;
                             font-weight: 700;
                             color: #333;
                             margin-bottom: 0.375rem;
@@ -2352,35 +2356,22 @@
                         }
                         .hero-quote-box .form-bottom-grid {
                             display: grid;
-                            grid-template-columns: repeat(6, minmax(0, 1fr));
-                            column-gap: 0.375rem;
-                            row-gap: 1.5rem;
-                            margin-bottom: 1.5rem;
+                            grid-template-columns: 1fr 1fr;
+                            column-gap: 0.625rem;
+                            row-gap: 1.125rem;
+                            margin-bottom: 1.125rem;
                         }
-                        .hero-quote-box .form-bottom-grid > :nth-child(1),
-                        .hero-quote-box .form-bottom-grid > :nth-child(2),
-                        .hero-quote-box .form-bottom-grid > :nth-child(3) {
-                            grid-column: span 2;
-                        }
-                        .hero-quote-box .form-bottom-grid > :nth-child(4),
-                        .hero-quote-box .form-bottom-grid > :nth-child(5),
-                        .hero-quote-box .form-bottom-grid > :nth-child(6) {
-                            grid-column: span 2;
+                        .hero-quote-box .form-bottom-grid > * {
+                            grid-column: span 1;
                         }
                         @media (max-width: 48rem) {
                             .hero-quote-box .form-bottom-grid {
-                                grid-template-columns: 1fr 1fr;
+                                grid-template-columns: 1fr;
                             }
-                            .hero-quote-box .form-bottom-grid > :nth-child(1),
-                            .hero-quote-box .form-bottom-grid > :nth-child(2),
-                            .hero-quote-box .form-bottom-grid > :nth-child(3),
-                            .hero-quote-box .form-bottom-grid > :nth-child(4),
-                            .hero-quote-box .form-bottom-grid > :nth-child(5) {
+                            .hero-quote-box .form-bottom-grid > * {
                                 grid-column: span 1;
                             }
-                            .hero-quote-box .form-bottom-grid > :nth-child(6) {
-                                grid-column: span 2;
-                            }
+                        }
                             .hero-quote-box .quote-submit-btn {
                                 width: 14.75rem !important;
                             }
@@ -2471,11 +2462,11 @@
                         </div>
                     </div>
 
-                    <div style="margin-bottom: 1.5rem;" class="input-group">
-                        <textarea name="message" class="quote-input" rows="4" placeholder="Enter your message"></textarea>
+                    <div style="margin-bottom: 0.875rem; flex: 1; display: flex; flex-direction: column;" class="input-group">
+                        <textarea name="message" class="quote-input" placeholder="Enter your message"></textarea>
                     </div>
 
-                    <div style="text-align: center; padding-bottom: 0;">
+                    <div style="text-align: center; padding-bottom: 0; margin-top: auto;">
                         <button type="submit" class="quote-submit-btn">Get Free Quote</button>
                     </div>
                 </form>

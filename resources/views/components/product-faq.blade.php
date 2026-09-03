@@ -126,6 +126,9 @@
             @endphp
             
             @foreach($faqs as $faq)
+                @if(request()->is('contact-us') && $faq['q'] === 'What is your turnaround time?')
+                    @continue
+                @endif
             <div class="product-faq-item">
                 <button class="product-faq-question" type="button">
                     <span>{{ $faq['q'] }}</span>
