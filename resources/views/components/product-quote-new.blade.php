@@ -134,6 +134,18 @@
         outline: none;
         border-color: #0A2240;
     }
+
+    /* Keep browser autofill/pasted values readable in the sample-kit form. */
+    .pqn-input:-webkit-autofill,
+    .pqn-input:-webkit-autofill:hover,
+    .pqn-input:-webkit-autofill:focus,
+    .pqn-input:-webkit-autofill:active {
+        -webkit-text-fill-color: #333 !important;
+        -webkit-box-shadow: 0 0 0 62.5rem #FFF8E7 inset !important;
+        box-shadow: 0 0 0 62.5rem #FFF8E7 inset !important;
+        caret-color: #333;
+        transition: background-color 9999s ease-out 0s;
+    }
     
     .pqn-btn {
         background-color: #F6B72D;

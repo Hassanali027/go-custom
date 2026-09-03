@@ -34,6 +34,21 @@
 @once
     <style>
         .product-search-select { position: relative; width: 100%; min-width: 0; box-sizing: border-box; }
+        .product-search-select::after {
+            display: none;
+            content: '';
+            position: absolute;
+            top: 50%;
+            right: 1rem;
+            width: 0;
+            height: 0;
+            border-left: .375rem solid transparent;
+            border-right: .375rem solid transparent;
+            border-top: .4375rem solid #fff;
+            transform: translateY(-50%);
+            pointer-events: none;
+            z-index: 2;
+        }
         .product-search-input {
             display: block !important;
             width: 100% !important;
@@ -44,6 +59,7 @@
             background-repeat: no-repeat !important;
             background-position: right .75rem center !important;
             background-size: 1.15rem !important;
+            text-overflow: ellipsis;
         }
         .product-search-options {
             display: none;
@@ -79,9 +95,21 @@
             line-height: 1.35;
             cursor: pointer;
         }
+        .product-search-option[hidden] { display: none !important; }
         .product-search-option:hover,
-        .product-search-option:focus { background: #f1f1f1; color: #0b2240; outline: none; }
+        .product-search-option:focus { background: #256bd0; color: #fff; outline: none; }
         .product-search-empty { padding: .8rem; color: #666; background: #fff; }
+
+        @media (max-width: 48rem) {
+            .qf-group .product-search-input {
+                padding-right: 2.5rem !important;
+                background-image: none !important;
+            }
+            .product-search-select::after {
+                display: block;
+                right: .75rem;
+            }
+        }
     </style>
     <script>
         document.addEventListener('DOMContentLoaded', function () {

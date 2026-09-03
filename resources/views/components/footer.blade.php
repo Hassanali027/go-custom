@@ -220,6 +220,27 @@
     cursor: pointer; font-weight: 600; transition: background 0.2s;
 }
 .success-popup-box button:hover { background: #6b3334; }
+.ajax-inline-success {
+    width: 100%;
+    box-sizing: border-box;
+    margin: 0 0 1.25rem;
+    padding: 1rem 1.25rem;
+    border: 1px solid var(--primary-color, #0B2240);
+    border-radius: 0.75rem;
+    background: #FFFFFF;
+    color: var(--primary-color, #0B2240);
+    font-family: 'Open Sans', sans-serif;
+    font-size: 0.9375rem;
+    font-weight: 700;
+    line-height: 1.4;
+    text-align: center;
+}
+.quote-success-message.ajax-inline-success {
+    margin: -0.25rem 0 1.875rem;
+    padding: 1.6rem 1.25rem;
+    border-radius: 1.125rem;
+    font-size: 1.125rem;
+}
 @keyframes popIn {
     0% { transform: scale(0.8); opacity: 0; }
     100% { transform: scale(1); opacity: 1; }
@@ -286,29 +307,31 @@ document.addEventListener('DOMContentLoaded', function() {
             .then(response => response.json())
             .then(data => {
                 if(submitBtn) submitBtn.innerHTML = originalBtnText;
+
+                const quoteFormCard = form.closest('.quote-form-card');
                 
-                // Show Global Popup
+                // The homepage quote form shows its confirmation directly below its heading.
+                // Other forms retain the existing global confirmation popup.
                 const popup = document.getElementById('successPopup');
-                if(popup) {
+                if(popup && !quoteFormCard) {
                     popup.querySelector('p').innerText = data.success || 'Submitted successfully!';
                     popup.style.display = 'flex';
                 }
                 
                 // Handle Inline Message
-                let inlineMsg = form.querySelector('.ajax-inline-success');
+                let inlineMsg = quoteFormCard
+                    ? quoteFormCard.querySelector('.ajax-inline-success')
+                    : form.querySelector('.ajax-inline-success');
                 if(!inlineMsg) {
                     inlineMsg = document.createElement('div');
-                    inlineMsg.className = 'ajax-inline-success';
-                    inlineMsg.style.backgroundColor = '#d4edda';
-                    inlineMsg.style.color = '#155724';
-                    inlineMsg.style.padding = '0.625rem';
-                    inlineMsg.style.borderRadius = '0.3125rem';
-                    inlineMsg.style.marginBottom = '1.25rem';
-                    inlineMsg.style.fontSize = '0.875rem';
+                    inlineMsg.className = quoteFormCard
+                        ? 'quote-success-message ajax-inline-success'
+                        : 'ajax-inline-success';
                     inlineMsg.style.transition = 'opacity 0.5s';
                     
-                    // Insert at the top of the form
-                    form.insertBefore(inlineMsg, form.firstChild);
+                    // Keep the message outside every form's fields/grid.
+                    // On the homepage quote form this places it directly below the heading.
+                    form.parentNode.insertBefore(inlineMsg, form);
                 }
                 inlineMsg.innerText = data.success || 'Submitted successfully!';
                 inlineMsg.style.display = 'block';

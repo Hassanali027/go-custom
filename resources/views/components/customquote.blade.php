@@ -29,6 +29,8 @@
         color: #FFFFFF;
         height: auto;
         min-height: 0;
+        display: flex;
+        flex-direction: column;
     }
 
     .quote-form-title {
@@ -41,11 +43,32 @@
         margin-top: 0;
     }
 
+    .quote-success-message {
+        display: block;
+        width: 100%;
+        box-sizing: border-box;
+        clear: both;
+        background: #FFFFFF;
+        border: 1px solid var(--primary-color, #0B2240);
+        color: var(--primary-color, #0B2240);
+        padding: 1.6rem 1.25rem;
+        border-radius: 1.125rem;
+        margin: -0.25rem 0 1.875rem;
+        font-family: 'Open Sans', sans-serif;
+        font-size: 1.125rem;
+        font-weight: 700;
+        line-height: 1.35;
+        text-align: center;
+        flex: 0 0 auto;
+        align-self: stretch;
+    }
+
     /* Form grid system */
     .qf-main-grid {
         display: grid;
         grid-template-columns: repeat(12, 1fr);
         gap: 1.25rem;
+        width: 100%;
     }
     .qf-span-3 { grid-column: span 3; }
     .qf-span-4 { grid-column: span 4; }
@@ -70,7 +93,9 @@
         background: transparent;
         border: 1px solid rgba(255, 255, 255, 0.2);
         border-radius: 0.375rem;
-        color: #FFFFFF;
+        color: #FFFFFF !important;
+        -webkit-text-fill-color: #FFFFFF;
+        caret-color: #FFFFFF;
         font-family: 'DM Sans', sans-serif;
         font-size: 0.875rem;
         padding: 0 0.75rem;
@@ -309,7 +334,7 @@
             <h2 class="quote-form-title">Get Custom Quote</h2>
 
             @if(session('success'))
-                <div style="background-color: #d4edda; color: #155724; padding: 0.625rem; border-radius: 0.3125rem; margin-bottom: 1.25rem; font-size: 0.875rem;">
+                <div class="quote-success-message" role="alert">
                     {{ session('success') }}
                 </div>
             @endif
@@ -356,7 +381,7 @@
                 <!-- Row 3: Product, paper stock and color -->
                 <div class="qf-group qf-span-4 qf-span-6-m">
                     <label>Select Box Style</label>
-                    <x-searchable-product-select placeholder="Search or select product" />
+                    <x-searchable-product-select placeholder="Select your box style" />
                 </div>
                 <div class="qf-group qf-span-4 qf-span-6-m">
                     <label>Select Paper Stock</label>
