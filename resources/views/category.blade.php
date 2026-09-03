@@ -723,7 +723,7 @@
                         @endphp
                         <a href="{{ url('/' . $pSlug) }}/" class="box-card">
                             <div class="box-image-wrapper">
-                                <img src="{{ asset($pImg) }}?v={{ @filemtime(public_path($pImg)) ?: 1 }}" alt="{{ $p['title'] }}" class="main-img"
+                                <img src="{{ asset($pImg) }}" alt="{{ $p['title'] }}" class="main-img"
                                     onerror="this.src='https://placehold.co/284x284/dddddd/555555?text={{ urlencode($p['title']) }}'" loading="lazy">
                             </div>
                             <span class="box-title">{{ $p['title'] }}</span>
@@ -754,7 +754,6 @@
                             $featureImagePath = \Illuminate\Support\Str::startsWith($featureImage, ['storage/', 'uploads/', 'images/'])
                                 ? $featureImage
                                 : 'storage/' . $featureImage;
-                            $featureImageVersion = @filemtime(public_path($featureImagePath)) ?: 1;
                         @endphp
                         <div class="clothing-feature-card {{ $loop->odd ? '' : 'reverse' }}">
                             <div class="clothing-feature-text">
@@ -763,7 +762,7 @@
                             </div>
                             @if(!empty($featureImage))
                                 <div class="clothing-feature-image">
-                                    <img src="{{ asset($featureImagePath) }}?v={{ $featureImageVersion }}" alt="{{ $feature['title'] ?? $category['title'] }}" loading="lazy">
+                                    <img src="{{ asset($featureImagePath) }}" alt="{{ $feature['title'] ?? $category['title'] }}" loading="lazy">
                                 </div>
                             @endif
                         </div>
