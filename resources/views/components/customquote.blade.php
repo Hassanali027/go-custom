@@ -267,6 +267,26 @@
         .quote-features {
             display: none;
         }
+        .qf-group select {
+            padding-right: 1.25rem !important;
+            padding-left: 0.375rem !important;
+            background-position: right 0.25rem center !important;
+            font-size: 0.6875rem !important;
+        }
+        .qf-group input {
+            padding-left: 0.375rem !important;
+            padding-right: 0.375rem !important;
+            font-size: 0.6875rem !important;
+        }
+        .qf-file-wrap input[type="text"] {
+            padding: 0 0.375rem !important;
+            font-size: 0.6875rem !important;
+        }
+        .qf-file-btn {
+            padding: 0 0.625rem !important;
+            min-width: auto !important;
+            font-size: 0.75rem !important;
+        }
     }
 </style>
 
@@ -360,7 +380,7 @@
                     </select>
                 </div>
                 
-                <div class="qf-group qf-span-4 qf-span-12-m">
+                <div class="qf-group qf-span-4 qf-span-6-m">
                     <label>Upload File Here</label>
                     <div class="qf-file-wrap">
                         <input type="file" name="quote_file" id="qf-file-input" style="display: none;" onchange="document.getElementById('qf-file-name').value = this.files[0] ? this.files[0].name : ''">

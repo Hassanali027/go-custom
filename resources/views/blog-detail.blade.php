@@ -682,6 +682,7 @@
                         @php
                             $bTitle = $rb->title ?? 'The Ultimate Guide To Choosing The Right Custom Packaging For Your Brand';
                             $bAuthor = $rb->author_name ?? 'Joe Stanley';
+                            $bAuthorSlug = $rb->author_slug ?? \Illuminate\Support\Str::slug($bAuthor);
                             $bSlug = $rb->slug ?? 'blog-detail';
                             $bImg = !empty($rb->image) ? asset($rb->image) : asset('uploads/about-us-banner.webp');
                             $bUrl = url('/blog/' . $bSlug);
@@ -690,7 +691,7 @@
                             <img src="{{ $bImg }}" alt="{{ $bTitle }}" onerror="this.src='{{ asset('uploads/about-us-banner.webp') }}'">
                             <div class="card-content">
                                 <div class="card-meta">
-                                    <span>{{ $bAuthor }}</span>
+                                    <a href="{{ url('/author/' . $bAuthorSlug) }}" onclick="event.stopPropagation();" style="text-decoration: none; color: inherit;"><span>{{ $bAuthor }}</span></a>
                                     <span>8 min read</span>
                                 </div>
                                 <h3>{{ $bTitle }}</h3>
@@ -705,7 +706,7 @@
                         <img src="{{ asset('uploads/about-us-banner.webp') }}" alt="Packaging Box">
                         <div class="card-content">
                             <div class="card-meta">
-                                <span>Joe Stanley</span>
+                                <a href="{{ url('/author/joe-stanley') }}" onclick="event.stopPropagation();" style="text-decoration: none; color: inherit;"><span>Joe Stanley</span></a>
                                 <span>8 min read</span>
                             </div>
                             <h3>The Ultimate Guide To Choosing The Right Custom Packaging For Your Brand</h3>

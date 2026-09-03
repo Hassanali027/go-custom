@@ -15,6 +15,18 @@
     width: 100%;
     padding: 0 3.4375rem;
     box-sizing: border-box;
+    position: relative;
+    z-index: 1;
+}
+.hiw-bg-dots {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 25rem;
+    max-width: 50%;
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.8;
 }
 @media (max-width: 48rem) {
     .hiw-container {
@@ -130,6 +142,7 @@
 </style>
 
 <section class="how-it-works-section {{ request()->is('/') || (isset($hideOnMobile) && $hideOnMobile) ? 'hide-on-mobile-home' : '' }}">
+    <img src="{{ asset('uploads/request-sample-kit-dots.svg') }}" alt="" class="hiw-bg-dots">
     <div class="hiw-container">
         <div class="hiw-label">HOW IT WORKS</div>
         <h2 class="hiw-title">Simple 4&ndash;Step Order Process</h2>
