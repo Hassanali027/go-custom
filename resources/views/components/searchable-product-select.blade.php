@@ -80,7 +80,7 @@
             cursor: pointer;
         }
         .product-search-option:hover,
-        .product-search-option:focus { background: #FFB400; color: #0B2240; outline: none; }
+        .product-search-option:focus { background: #f1f1f1; color: #0b2240; outline: none; }
         .product-search-empty { padding: .8rem; color: #666; background: #fff; }
     </style>
     <script>
