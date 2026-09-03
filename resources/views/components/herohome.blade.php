@@ -508,7 +508,10 @@
                 }
             </style>
             <div class="hero-breadcrumb">
-                <a href="/"><i class="fa-solid fa-house" style="font-size: 0.8125rem;"></i> Home</a> <span style="margin: 0 0.25rem;">&gt;</span> <strong>{{ !empty($settings['title']) ? strtolower($settings['title']) : (!empty($category['title']) ? strtolower($category['title']) : 'category') }}</strong>
+                <a href="/" style="display: inline-flex; align-items: center; gap: 0.25rem;">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width: 1.125rem; height: 1.125rem;"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+                    Home
+                </a> <span style="margin: 0 0.25rem;">&gt;</span> <strong>{{ !empty($settings['title']) ? strtolower($settings['title']) : (!empty($category['title']) ? strtolower($category['title']) : 'category') }}</strong>
             </div>
             @endif
             <h1 class="hero-title">
