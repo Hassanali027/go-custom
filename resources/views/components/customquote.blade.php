@@ -97,6 +97,15 @@
         color: rgba(255, 255, 255, 0.4);
     }
 
+    .qf-group input:-webkit-autofill,
+    .qf-group input:-webkit-autofill:hover, 
+    .qf-group input:-webkit-autofill:focus, 
+    .qf-group input:-webkit-autofill:active {
+        -webkit-box-shadow: 0 0 0 30px #0B2240 inset !important;
+        -webkit-text-fill-color: #ffffff !important;
+        transition: background-color 5000s ease-in-out 0s;
+    }
+
     .qf-group input:focus,
     .qf-group select:focus,
     .qf-group textarea:focus {
@@ -188,12 +197,14 @@
     /* ── Right column: Features ── */
     .quote-features {
         flex: 1;
+        align-self: stretch;
         display: flex;
         flex-direction: column;
-        justify-content: center;
-        padding-top: 1rem;
-        padding-bottom: 1rem;
-        gap: 1.25rem;
+        justify-content: space-between;
+        padding: 2.25rem 0;
+        box-sizing: border-box;
+        min-height: 0;
+        gap: 0;
     }
 
     .qf-feature {
@@ -266,6 +277,26 @@
         .qf-span-12-m { grid-column: span 12; }
         .quote-features {
             display: none;
+        }
+        .qf-group select {
+            padding-right: 1.25rem !important;
+            padding-left: 0.375rem !important;
+            background-position: right 0.25rem center !important;
+            font-size: 0.6875rem !important;
+        }
+        .qf-group input {
+            padding-left: 0.375rem !important;
+            padding-right: 0.375rem !important;
+            font-size: 0.6875rem !important;
+        }
+        .qf-file-wrap input[type="text"] {
+            padding: 0 0.375rem !important;
+            font-size: 0.6875rem !important;
+        }
+        .qf-file-btn {
+            padding: 0 0.625rem !important;
+            min-width: auto !important;
+            font-size: 0.75rem !important;
         }
     }
 </style>
@@ -360,7 +391,7 @@
                     </select>
                 </div>
                 
-                <div class="qf-group qf-span-4 qf-span-12-m">
+                <div class="qf-group qf-span-4 qf-span-6-m">
                     <label>Upload File Here</label>
                     <div class="qf-file-wrap">
                         <input type="file" name="quote_file" id="qf-file-input" style="display: none;" onchange="document.getElementById('qf-file-name').value = this.files[0] ? this.files[0].name : ''">

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="icon" href="{{ asset('uploads/favicon-rigid-boxes.webp') }}" type="image/webp">
+    <link rel="icon" href="{{ asset('uploads/go-custom-boxes-favicon.png') }}" type="image/png">
     @include('components.canonical')
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -302,16 +302,32 @@
                 background-color: transparent !important;
                 border: 1px solid #D5C7B8 !important;
             }
+            .iq-page-form-card .iq-form-group select {
+                padding-right: 1.25rem !important;
+                padding-left: 0.375rem !important;
+                background-position: right 0.25rem center !important;
+                font-size: 0.6875rem !important;
+            }
+            .iq-page-form-card .iq-form-group input {
+                padding-left: 0.375rem !important;
+                padding-right: 0.375rem !important;
+                font-size: 0.6875rem !important;
+            }
             .iq-upload-wrapper {
                 background-color: transparent !important;
                 border: 1px solid #D5C7B8 !important;
             }
             .iq-upload-wrapper input[type="text"] {
                 border: none !important;
+                padding: 0 0.375rem !important;
+                font-size: 0.6875rem !important;
             }
             .iq-upload-btn {
                 background-color: #FFB400 !important;
                 color: #000 !important;
+                padding: 0 0.625rem !important;
+                min-width: auto !important;
+                font-size: 0.75rem !important;
             }
             .iq-submit-btn {
                 background-color: #FFB400 !important;
@@ -321,10 +337,7 @@
                 border-radius: 0.5rem !important;
             }
             .iq-grid-2,
-            .iq-grid-3 {
-                grid-template-columns: 1fr;
-                gap: 0.875rem;
-            }
+            .iq-grid-3,
             .iq-grid-4 {
                 grid-template-columns: 1fr 1fr;
                 gap: 0.75rem;
@@ -499,7 +512,7 @@
                         </div>
                     </div>
 
-                    <!-- Row 4: Product, paper stock and color -->
+                    <!-- Row 4 and 5: Product, paper stock, color, Quantity, coating and file upload -->
                     <div class="iq-grid-3">
                         <div class="iq-form-group">
                             <label>Select Box Style</label>
@@ -525,10 +538,6 @@
                                 <option value="3 Colors">3 Colors</option><option value="Full Color">Full Color</option>
                             </select>
                         </div>
-                    </div>
-
-                    <!-- Row 5: Quantity, coating and file upload -->
-                    <div class="iq-grid-3">
                         <div class="iq-form-group">
                             <label>Quantity *</label>
                             <input type="number" name="quantity" placeholder="Enter quantity" oninput="this.value = this.value.replace(/[^0-9]/g, '')" required>

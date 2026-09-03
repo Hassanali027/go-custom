@@ -11,7 +11,12 @@ use Illuminate\Support\Facades\Storage;
 
 class FormSubmitController extends Controller
 {
-    private $adminEmail = 'quote@therigidbox.com';
+    private $adminEmail;
+
+    public function __construct()
+    {
+        $this->adminEmail = config('mail.to.address');
+    }
 
     public function submitContact(Request $request)
     {
