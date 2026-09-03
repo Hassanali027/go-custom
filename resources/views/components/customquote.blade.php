@@ -188,12 +188,14 @@
     /* ── Right column: Features ── */
     .quote-features {
         flex: 1;
+        align-self: stretch;
         display: flex;
         flex-direction: column;
-        justify-content: center;
-        padding-top: 1rem;
-        padding-bottom: 1rem;
-        gap: 1.25rem;
+        justify-content: space-between;
+        padding: 2.25rem 0;
+        box-sizing: border-box;
+        min-height: 0;
+        gap: 0;
     }
 
     .qf-feature {

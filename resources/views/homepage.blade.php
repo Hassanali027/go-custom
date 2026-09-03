@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <link rel="icon" href="{{ asset('uploads/favicon-rigid-boxes.webp') }}" type="image/webp">
+    <link rel="icon" href="{{ asset('uploads/go-custom-boxes-favicon.png') }}" type="image/png">
     @include('components.canonical')
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -2772,12 +2772,12 @@
                         <span class="uy-label">Holographic Foiling</span>
                     </div>
                     <div class="uy-card uy-silver">
-                        <img src="{{ asset('uploads/silver-Foiling-home.jpg') }}" alt="Silver Foiling"
+                        <img src="{{ asset('uploads/silver-foiling-home.jpg') }}" alt="Silver Foiling"
                             onerror="this.src='https://placehold.co/293x231/444/fff?text=Silver+Foiling'">
                         <span class="uy-label">Silver Foiling</span>
                     </div>
                     <div class="uy-card uy-spot">
-                        <img src="{{ asset('uploads/Spot-uv-home.png') }}" alt="Spot UV"
+                        <img src="{{ asset('uploads/spot-uv-home.png') }}" alt="Spot UV"
                             onerror="this.src='https://placehold.co/293x231/111/fff?text=Spot+UV'">
                         <span class="uy-label">Spot UV</span>
                     </div>
