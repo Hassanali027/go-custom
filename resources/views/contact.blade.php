@@ -334,6 +334,31 @@
             border-radius: 19px;
             overflow: hidden;
             box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            position: relative;
+        }
+
+        .open-maps-btn {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background: #fff;
+            color: #1a73e8;
+            padding: 8px 12px;
+            border-radius: 2px;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            font-family: 'DM Sans', sans-serif;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.3);
+            z-index: 10;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            transition: background 0.3s;
+        }
+        
+        .open-maps-btn:hover {
+            background: #f8f9fa;
         }
 
         #contact-map {
@@ -535,7 +560,10 @@
             <div class="container map-faq-container">
                 <!-- Map Column -->
                 <div class="map-column">
-                    <iframe id="contact-map" src="https://maps.google.com/maps?q=LabelPouches&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" title="LabelPouches Map"></iframe>
+                    <a href="https://www.google.com/maps/place/LabelPouches/@41.99806,-87.684407,13z/data=!4m6!3m5!1s0x880fd1f71b5875cf:0xee620728700effbf!8m2!3d41.9980605!4d-87.6844075!16s%2Fg%2F11xgy7x13f?entry=ttu&g_ep=EgoyMDI2MDgwNS4xIKXMDSoASAFQAw%3D%3D" target="_blank" class="open-maps-btn">
+                        Open in Maps <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                    </a>
+                    <iframe id="contact-map" src="https://maps.google.com/maps?q=41.9980605,-87.6844075&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" title="LabelPouches Map"></iframe>
                 </div>
 
                 <!-- FAQ Column -->
