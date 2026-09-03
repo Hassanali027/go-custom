@@ -379,12 +379,14 @@
                 <div class="tf-accordion">
                     @foreach($displayFaqs as $faq)
                         <div class="tf-accordion-item">
-                            <button class="tf-accordion-btn" type="button" onclick="toggleTfFaq(this)">
+                            <h3 style="margin: 0; padding: 0;">
+<button class="tf-accordion-btn" type="button" onclick="toggleTfFaq(this)">
                                 {{ is_array($faq) ? ($faq['question'] ?? '') : ($faq->question ?? '') }}
                                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                     <polyline points="6 9 12 15 18 9"></polyline>
                                 </svg>
                             </button>
+</h3>
                             <div class="tf-accordion-content">
                                 <div class="tf-accordion-content-inner">{!! nl2br(e(is_array($faq) ? ($faq['answer'] ?? '') : ($faq->answer ?? ''))) !!}</div>
                             </div>

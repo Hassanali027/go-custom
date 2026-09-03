@@ -181,10 +181,12 @@
                     <div class="faq-accordion">
                         @foreach($faqs as $faq)
                             <div class="faq-item">
-                                <div class="faq-item-header">
-                                    {{ $faq['question'] }}
-                                    <span class="faq-item-icon">+</span>
-                                </div>
+                                <h3 style="margin: 0; padding: 0;">
+                                    <div class="faq-item-header">
+                                        {{ $faq['question'] }}
+                                        <span class="faq-item-icon">+</span>
+                                    </div>
+                                </h3>
                                 <div class="faq-item-body">
                                     <p>{!! nl2br(e($faq['answer'])) !!}</p>
                                 </div>
@@ -207,7 +209,7 @@
         const faqHeaders = document.querySelectorAll('.faq-item-header');
         faqHeaders.forEach(header => {
             header.addEventListener('click', function() {
-                const item = this.parentElement;
+                const item = this.closest('.faq-item');
                 const wasActive = item.classList.contains('active');
                 
                 // Close all other items in the same section
