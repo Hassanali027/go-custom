@@ -123,23 +123,23 @@
                         <span class="footer-heading" style="display: block; margin-bottom: 1.25rem;">Follow Us</span>
                         <div class="social-links desktop-social-links" style="display: flex; justify-content: flex-start; gap: 0.9375rem;">
                             <a href="{{ $siteSettings['social_facebook'] ?? '#' }}" target="_blank" rel="noopener" class="social-icon" aria-label="Facebook">
-                                <img src="{{ asset('images/social-facebook.png') }}" alt="Facebook" class="social-icon-img" loading="lazy">
+                                <img src="{{ asset('images/social-facebook.png') }}" alt="Facebook" class="social-icon-img">
                             </a>
                             
                             <a href="{{ $siteSettings['social_instagram'] ?? '#' }}" target="_blank" rel="noopener" class="social-icon" aria-label="Instagram">
-                                <img src="{{ asset('images/social-instagram.png') }}" alt="Instagram" class="social-icon-img" loading="lazy">
+                                <img src="{{ asset('images/social-instagram.png') }}" alt="Instagram" class="social-icon-img">
                             </a>
                             
                             <a href="{{ $siteSettings['social_linkedin'] ?? '#' }}" target="_blank" rel="noopener" class="social-icon" aria-label="LinkedIn">
-                                <img src="{{ asset('images/social-linkedin.png') }}" alt="LinkedIn" class="social-icon-img" loading="lazy">
+                                <img src="{{ asset('images/social-linkedin.png') }}" alt="LinkedIn" class="social-icon-img">
                             </a>
                             
                             <a href="{{ $siteSettings['social_pinterest'] ?? '#' }}" target="_blank" rel="noopener" class="social-icon" aria-label="Pinterest">
-                                <img src="{{ asset('images/bi_pinterest.png') }}" alt="Pinterest" class="social-icon-img" loading="lazy">
+                                <img src="{{ asset('images/bi_pinterest.png') }}" alt="Pinterest" class="social-icon-img">
                             </a>
                             
                             <a href="{{ $siteSettings['social_youtube'] ?? '#' }}" target="_blank" rel="noopener" class="social-icon" aria-label="YouTube">
-                                <img src="{{ asset('images/social-youtube.png') }}" alt="YouTube" class="social-icon-img" loading="lazy">
+                                <img src="{{ asset('images/social-youtube.png') }}" alt="YouTube" class="social-icon-img">
                             </a>
                         </div>
                     </div>
@@ -153,23 +153,23 @@
             <div class="footer-bottom-content">
                 <div class="social-links mobile-social-links">
                     <a href="{{ $siteSettings['social_facebook'] ?? '#' }}" target="_blank" rel="noopener" class="social-icon" aria-label="Facebook">
-                        <img src="{{ asset('images/social-facebook.png') }}" alt="Facebook" class="social-icon-img" loading="lazy">
+                        <img src="{{ asset('images/social-facebook.png') }}" alt="Facebook" class="social-icon-img">
                     </a>
                     
                     <a href="{{ $siteSettings['social_instagram'] ?? '#' }}" target="_blank" rel="noopener" class="social-icon" aria-label="Instagram">
-                        <img src="{{ asset('images/social-instagram.png') }}" alt="Instagram" class="social-icon-img" loading="lazy">
+                        <img src="{{ asset('images/social-instagram.png') }}" alt="Instagram" class="social-icon-img">
                     </a>
                     
                     <a href="{{ $siteSettings['social_linkedin'] ?? '#' }}" target="_blank" rel="noopener" class="social-icon" aria-label="LinkedIn">
-                        <img src="{{ asset('images/social-linkedin.png') }}" alt="LinkedIn" class="social-icon-img" loading="lazy">
+                        <img src="{{ asset('images/social-linkedin.png') }}" alt="LinkedIn" class="social-icon-img">
                     </a>
                     
                     <a href="{{ $siteSettings['social_pinterest'] ?? '#' }}" target="_blank" rel="noopener" class="social-icon" aria-label="Pinterest">
-                        <img src="{{ asset('images/bi_pinterest.png') }}" alt="Pinterest" class="social-icon-img" loading="lazy">
+                        <img src="{{ asset('images/bi_pinterest.png') }}" alt="Pinterest" class="social-icon-img">
                     </a>
                     
                     <a href="{{ $siteSettings['social_youtube'] ?? '#' }}" target="_blank" rel="noopener" class="social-icon" aria-label="YouTube">
-                        <img src="{{ asset('images/social-youtube.png') }}" alt="YouTube" class="social-icon-img" loading="lazy">
+                        <img src="{{ asset('images/social-youtube.png') }}" alt="YouTube" class="social-icon-img">
                     </a>
                 </div>
                 <p class="copyright">© 2026 Go Custom Boxes. All rights reserved.</p>
