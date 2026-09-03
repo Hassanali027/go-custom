@@ -39,9 +39,14 @@ class AdminHomepageController extends Controller
             ]
         ];
 
-        // 1. Try reading from MySQL database table `homepage_contents`
+        // Homepage settings must never load footer/company/social settings.
+        // Keeping the two sets separate prevents a homepage save from moving
+        // footer records into the wrong section.
         try {
-            $rows = DB::table('homepage_contents')->get();
+            $rows = DB::table('homepage_contents')
+                ->whereIn('section', ['general', 'seo', 'hero', 'list', 'content'])
+                ->whereIn('field_key', array_keys($defaults))
+                ->get();
             if ($rows->count() > 0) {
                 $settings = [];
                 foreach ($rows as $row) {
@@ -66,7 +71,7 @@ class AdminHomepageController extends Controller
         if (file_exists($path)) {
             $data = json_decode(file_get_contents($path), true);
             if (is_array($data)) {
-                return array_merge($defaults, $data);
+                return array_merge($defaults, array_intersect_key($data, $defaults));
             }
         }
 
@@ -157,8 +162,20 @@ class AdminHomepageController extends Controller
         }
         $settings['faqs'] = $faqs;
 
-        // Save into MySQL database table `homepage_contents`
+        // Save only homepage-specific fields. Footer settings are managed by
+        // AdminFooterController and must remain untouched here.
+        $homepageKeys = [
+            'meta_title', 'meta_description', 'meta_keywords', 'schema',
+            'hero_title', 'hero_description', 'hero_image',
+            'popular_hero_title', 'popular_hero_description', 'popular_hero_image',
+            'popular_hero_primary_button_text', 'popular_hero_primary_button_url',
+            'popular_hero_secondary_button_text', 'popular_hero_secondary_button_url',
+            'featured_categories', 'bestseller_products', 'content_section', 'faqs',
+        ];
         foreach ($settings as $key => $value) {
+            if (!in_array($key, $homepageKeys, true)) {
+                continue;
+            }
             $valueType = 'text';
             $section = 'general';
 
@@ -176,7 +193,7 @@ class AdminHomepageController extends Controller
             }
 
             DB::table('homepage_contents')->updateOrInsert(
-                ['field_key' => $key],
+                ['section' => $section, 'field_key' => $key],
                 [
                     'section' => $section,
                     'value' => $value,

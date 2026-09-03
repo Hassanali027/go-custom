@@ -29,13 +29,24 @@ class AdminFooterController extends Controller
             'social_youtube' => ''
         ];
 
+        // Start with the local backup, then let database values take priority.
+        // This also keeps a complete footer available when an older database
+        // contains only part of the footer settings.
+        $settings = [];
+        $path = $this->getSettingsPath();
+        if (file_exists($path)) {
+            $data = json_decode(file_get_contents($path), true);
+            if (is_array($data)) {
+                $settings = $data;
+            }
+        }
+
         try {
             $rows = DB::table('homepage_contents')
                 ->whereIn('section', ['footer', 'company_info', 'social_links'])
                 ->get();
                 
             if ($rows->count() > 0) {
-                $settings = [];
                 foreach ($rows as $row) {
                     $key = $row->field_key;
                     $val = $row->value;
@@ -50,18 +61,10 @@ class AdminFooterController extends Controller
                 return array_merge($defaults, $settings);
             }
         } catch (\Exception $e) {
-            // Fallback
+            // The backup loaded above is used when the database is unavailable.
         }
 
-        $path = $this->getSettingsPath();
-        if (file_exists($path)) {
-            $data = json_decode(file_get_contents($path), true);
-            if (is_array($data)) {
-                return array_merge($defaults, $data);
-            }
-        }
-
-        return $defaults;
+        return array_merge($defaults, $settings);
     }
 
     public function edit()
@@ -132,7 +135,7 @@ class AdminFooterController extends Controller
             }
 
             DB::table('homepage_contents')->updateOrInsert(
-                ['field_key' => $key],
+                ['section' => $section, 'field_key' => $key],
                 [
                     'section' => $section,
                     'value' => $value,
