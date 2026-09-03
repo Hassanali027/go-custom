@@ -320,7 +320,8 @@
                     @if (count($displayFaqs) > 0)
                         @foreach ($displayFaqs as $faq)
                             <div class="faq-item">
-                                <button class="faq-question" onclick="toggleFaq(this)" aria-expanded="false">
+                                <h3 style="margin: 0; padding: 0;">
+<button class="faq-question" onclick="toggleFaq(this)" aria-expanded="false">
                                     <span class="faq-question-text">{{ $faq['question'] ?? '' }}</span>
                                     <span class="faq-icon">
                                         <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"
@@ -330,6 +331,7 @@
                                         </svg>
                                     </span>
                                 </button>
+</h3>
                                 <div class="faq-answer">
                                     <p>{{ $faq['answer'] ?? '' }}</p>
                                 </div>
@@ -337,7 +339,8 @@
                         @endforeach
                     @else
                         <div class="faq-item">
-                            <button class="faq-question" onclick="toggleFaq(this)" aria-expanded="false">
+                            <h3 style="margin: 0; padding: 0;">
+<button class="faq-question" onclick="toggleFaq(this)" aria-expanded="false">
                                 <span class="faq-question-text">What type of retail boxes are best for luxury product
                                     packaging?</span>
                                 <span class="faq-icon">
@@ -348,6 +351,7 @@
                                     </svg>
                                 </span>
                             </button>
+</h3>
                             <div class="faq-answer">
                                 <p>Rigid boxes with premium finishes such as soft-touch lamination, foil stamping, or
                                     embossing are ideal for luxury product packaging. They offer structural strength and
@@ -356,7 +360,8 @@
                         </div>
 
                         <div class="faq-item">
-                            <button class="faq-question" onclick="toggleFaq(this)" aria-expanded="false">
+                            <h3 style="margin: 0; padding: 0;">
+<button class="faq-question" onclick="toggleFaq(this)" aria-expanded="false">
                                 <span class="faq-question-text">Which retail boxes offer the most protection for fragile
                                     items?</span>
                                 <span class="faq-icon">
@@ -367,6 +372,7 @@
                                     </svg>
                                 </span>
                             </button>
+</h3>
                             <div class="faq-answer">
                                 <p>Rigid set-up boxes with custom foam or cardboard inserts provide the highest level of
                                     protection for fragile items. The thick chipboard walls absorb impact while inserts
@@ -375,7 +381,8 @@
                         </div>
 
                         <div class="faq-item">
-                            <button class="faq-question" onclick="toggleFaq(this)" aria-expanded="false">
+                            <h3 style="margin: 0; padding: 0;">
+<button class="faq-question" onclick="toggleFaq(this)" aria-expanded="false">
                                 <span class="faq-question-text">Do retail boxes have customizable shapes and
                                     structures?</span>
                                 <span class="faq-icon">
@@ -386,6 +393,7 @@
                                     </svg>
                                 </span>
                             </button>
+</h3>
                             <div class="faq-answer">
                                 <p>Yes, retail boxes can be fully customized in shape, size, and structure. Options
                                     include tuck-end, sleeve, magnetic closure, drawer, and die-cut window styles, each

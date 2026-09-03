@@ -13,7 +13,7 @@
             font-family: 'DM Sans', sans-serif;
         }
 
-        .faq-mobile-section h2 {
+        .faq-mobile-section .faq-mobile-h2 {
             font-family: 'Open Sans', sans-serif;
             font-weight: 700;
             font-size: clamp(1.15rem, 5.2vw, 1.45rem);
@@ -104,7 +104,7 @@
 @endphp
 @if(count($displayFaqsMobile))
     <section class="faq-mobile-section">
-        <h2>Frequently Asked Questions</h2>
+        <div class="faq-mobile-h2">Frequently Asked Questions</div>
         <div class="tf-accordion">
             @foreach($displayFaqsMobile as $faq)
                 <div class="tf-accordion-item">

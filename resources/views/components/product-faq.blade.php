@@ -130,10 +130,12 @@
                     @continue
                 @endif
             <div class="product-faq-item">
-                <button class="product-faq-question" type="button">
+                <h3 style="margin: 0; padding: 0;">
+<button class="product-faq-question" type="button">
                     <span>{{ $faq['q'] }}</span>
                     <span class="product-faq-icon">+</span>
                 </button>
+</h3>
                 <div class="product-faq-answer">
                     <p>{{ $faq['a'] }}</p>
                 </div>

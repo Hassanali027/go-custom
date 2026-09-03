@@ -2676,7 +2676,8 @@
             }
         }
 function toggleFaq(element) {
-    const answer = element.nextElementSibling;
+    const faqItemNode = element.closest('.faq-item');
+    const answer = faqItemNode.querySelector('.faq-answer');
     const icon = element.querySelector('.faq-icon');
 
     // Close all other FAQs
@@ -2684,7 +2685,7 @@ function toggleFaq(element) {
         if (item !== answer) {
             item.style.display = 'none';
 
-            const header = item.previousElementSibling;
+            const header = item.closest('.faq-item').querySelector('.faq-question');
             const headerIcon = header.querySelector('.faq-icon');
 
             header.style.backgroundColor = '';
