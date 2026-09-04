@@ -123,7 +123,7 @@
         max-width: 27rem;
         width: 100%;
         aspect-ratio: 1.16 / 1;
-        border-radius: 1rem 1rem 0 0;
+        border-radius: 1rem;
         overflow: visible;
         box-shadow: none;
         background-color: transparent;
@@ -134,7 +134,7 @@
         height: 100%;
         object-fit: cover;
         display: block;
-        border-radius: 1rem 1rem 0 0;
+        border-radius: 1rem;
     }
 
     @media (max-width: 62rem) {
