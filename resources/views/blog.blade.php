@@ -337,12 +337,13 @@
                         $fAuthor = $featuredBlog['author_name'] ?? 'Joe Stanley';
                         $fAuthorSlug = $featuredBlog['author_slug'] ?? \Illuminate\Support\Str::slug($fAuthor);
                         $fDate = !empty($featuredBlog['publish_date']) ? date('M d, Y', strtotime($featuredBlog['publish_date'])) : 'Aug 12, 2026';
+                        $fExcerptText = trim(strip_tags(html_entity_decode(html_entity_decode($fExcerpt, ENT_QUOTES | ENT_HTML5, 'UTF-8'), ENT_QUOTES | ENT_HTML5, 'UTF-8')));
                     @endphp
                     <div class="featured-post">
                         <img src="{{ $fImg }}" alt="{{ $fTitle }}" class="featured-img" onerror="this.src='{{ asset('uploads/about-us-banner.webp') }}'">
                         <div class="featured-copy">
                             <h2>{{ $fTitle }}</h2>
-                            <p class="excerpt">{{ Str::limit(html_entity_decode(strip_tags($fExcerpt)), 150) }}</p>
+                            <p class="excerpt">{{ Str::limit($fExcerptText, 150) }}</p>
                             <div class="meta">
                                 <a href="{{ url('/author/' . $fAuthorSlug) }}" style="text-decoration: none; color: inherit;">{{ $fAuthor }}</a> &nbsp;|&nbsp; {{ $fDate }}
                             </div>
