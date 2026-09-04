@@ -171,6 +171,16 @@
             line-height: 1.4;
         }
 
+        .card-description {
+            color: #3f3f3f;
+            line-height: 1.6;
+            margin: 0 0 1.25rem;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
         .card-link {
             margin-top: auto;
             color: var(--dark-blue);
@@ -363,6 +373,10 @@
                             $bSlug = $item['slug'] ?? 'blog-detail';
                             $bImg = !empty($item['image']) ? asset($item['image']) : asset('uploads/about-us-banner.webp');
                             $bUrl = url('/blog/' . $bSlug);
+                            $bExcerpt = !empty(trim((string) ($item['excerpt'] ?? '')))
+                                ? $item['excerpt']
+                                : ($item['content'] ?? '');
+                            $bExcerptText = trim(strip_tags(html_entity_decode(html_entity_decode((string) $bExcerpt, ENT_QUOTES | ENT_HTML5, 'UTF-8'), ENT_QUOTES | ENT_HTML5, 'UTF-8')));
                         @endphp
                         <div class="blog-card {{ $index >= 9 ? 'blog-card-hidden' : '' }}" onclick="window.location.href='{{ $bUrl }}';" @if($index >= 9) style="display:none;" @endif>
                             <img src="{{ $bImg }}" alt="{{ $bTitle }}" onerror="this.src='{{ asset('uploads/about-us-banner.webp') }}'">
@@ -372,6 +386,9 @@
                                     <span>8 min read</span>
                                 </div>
                                 <h3>{{ $bTitle }}</h3>
+                                @if($bExcerptText)
+                                    <p class="card-description">{{ Str::limit($bExcerptText, 120) }}</p>
+                                @endif
                                 <a href="{{ $bUrl }}" class="card-link" onclick="event.stopPropagation();">Read Blog <i class="fa-solid fa-arrow-right"></i></a>
                             </div>
                         </div>
