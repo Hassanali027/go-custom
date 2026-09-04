@@ -496,6 +496,8 @@
     
     $fTitle = $blog['title'] ?? '7 Packaging Trends That Will Shape Brands in 2026';
     $fImg = !empty($blog['image']) ? asset($blog['image']) : asset('uploads/about-us-banner.webp');
+    $articleSubtitle = trim(strip_tags(html_entity_decode(html_entity_decode((string) ($blog['excerpt'] ?? ''), ENT_QUOTES | ENT_HTML5, 'UTF-8'), ENT_QUOTES | ENT_HTML5, 'UTF-8')));
+    $articleSubtitle = $articleSubtitle ?: 'Discover the latest packaging trends shaping modern brands, from sustainable materials to premium finishes and memorable unboxing experiences.';
 @endphp
 
 <main class="blog-detail-section">
@@ -527,7 +529,7 @@
                 
                 <!-- Title & Meta -->
                 <h1 class="article-title">{{ $fTitle }}</h1>
-                <p class="article-subtitle">{{ $blog['excerpt'] ?? 'Discover the latest packaging trends shaping modern brands, from sustainable materials to premium finishes and memorable unboxing experiences.' }}</p>
+                <p class="article-subtitle">{{ $articleSubtitle }}</p>
                 
                 <div class="article-meta">
                     <span>Published: {{ $publishDate }}</span>
