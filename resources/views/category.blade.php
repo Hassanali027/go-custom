@@ -44,20 +44,24 @@
     .mobile-br { display: none; }
     .desktop-br { display: block; }
 
-    .clothing-feature-card {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
+    .clothing-features-columns {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 3rem;
         max-width: 75rem;
         margin: 0 auto;
         width: 100%;
-        gap: 1.5rem;
-        box-sizing: border-box;
     }
 
-    .clothing-feature-card.reverse {
-        flex-direction: row-reverse;
+    .clothing-feature-column {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 2.5rem;
+        min-width: 0;
     }
+
+    .clothing-feature-mobile-stack { display: none; }
 
     .clothing-feature-text {
         flex: 1 1 0;
@@ -111,25 +115,35 @@
             padding: 0 0.625rem;
             gap: 1.5rem;
         }
-        .clothing-feature-card, .clothing-feature-card.reverse {
-            flex-direction: column-reverse;
+        .clothing-features-columns {
+            display: none;
+        }
+
+        .clothing-feature-mobile-stack {
+            display: flex;
+            flex-direction: column;
             gap: 1.875rem;
         }
+
+        .clothing-feature-mobile-pair {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 1.25rem;
+            width: 100%;
+        }
+
         .clothing-feature-text, .clothing-feature-image {
             max-width: 100%;
             width: 100%;
             flex: none !important;
         }
-        .clothing-feature-text {
-            text-align: justify;
-        }
+
+        .clothing-feature-text { text-align: justify; }
         .clothing-feature-text p {
             text-align: justify;
         }
-        .clothing-feature-image {
-            max-width: 30rem;
-            margin: 0 auto;
-        }
+        .clothing-feature-image { max-width: 30rem; margin: 0; }
         .clothing-features-title {
             font-size: 1.4375rem;
             line-height: 1.4;
@@ -748,25 +762,73 @@
                         <h2 class="clothing-features-title">{{ $category['feature_title'] }}</h2>
                     @endif
 
-                    @foreach($featureSections as $feature)
-                        @php
-                            $featureImage = $feature['image'] ?? '';
-                            $featureImagePath = \Illuminate\Support\Str::startsWith($featureImage, ['storage/', 'uploads/', 'images/'])
-                                ? $featureImage
-                                : 'storage/' . $featureImage;
-                        @endphp
-                        <div class="clothing-feature-card {{ $loop->odd ? '' : 'reverse' }}">
-                            <div class="clothing-feature-text">
-                                @if(!empty($feature['title']))<h3>{{ $feature['title'] }}</h3>@endif
-                                @if(!empty($feature['description']))<p>{{ $feature['description'] }}</p>@endif
-                            </div>
-                            @if(!empty($featureImage))
-                                <div class="clothing-feature-image">
-                                    <img src="{{ asset($featureImagePath) }}" alt="{{ $feature['title'] ?? $category['title'] }}" loading="lazy">
-                                </div>
-                            @endif
+                    <div class="clothing-features-columns">
+                        <div class="clothing-feature-column">
+                            @foreach($featureSections as $feature)
+                                @php
+                                    $featureImage = $feature['image'] ?? '';
+                                    $featureImagePath = \Illuminate\Support\Str::startsWith($featureImage, ['storage/', 'uploads/', 'images/']) ? $featureImage : 'storage/' . $featureImage;
+                                @endphp
+                                @if($loop->odd)
+                                    <div class="clothing-feature-text">
+                                        @if(!empty($feature['title']))<h3>{{ $feature['title'] }}</h3>@endif
+                                        @if(!empty($feature['description']))<p>{{ $feature['description'] }}</p>@endif
+                                    </div>
+                                @elseif(!empty($featureImage))
+                                    <div class="clothing-feature-image">
+                                        <img src="{{ asset($featureImagePath) }}" alt="{{ $feature['title'] ?? $category['title'] }}" loading="lazy">
+                                    </div>
+                                @endif
+                            @endforeach
                         </div>
-                    @endforeach
+
+                        <div class="clothing-feature-column">
+                            @foreach($featureSections as $feature)
+                                @php
+                                    $featureImage = $feature['image'] ?? '';
+                                    $featureImagePath = \Illuminate\Support\Str::startsWith($featureImage, ['storage/', 'uploads/', 'images/']) ? $featureImage : 'storage/' . $featureImage;
+                                @endphp
+                                @if($loop->odd && !empty($featureImage))
+                                    <div class="clothing-feature-image">
+                                        <img src="{{ asset($featureImagePath) }}" alt="{{ $feature['title'] ?? $category['title'] }}" loading="lazy">
+                                    </div>
+                                @elseif($loop->even)
+                                    <div class="clothing-feature-text">
+                                        @if(!empty($feature['title']))<h3>{{ $feature['title'] }}</h3>@endif
+                                        @if(!empty($feature['description']))<p>{{ $feature['description'] }}</p>@endif
+                                    </div>
+                                @endif
+                            @endforeach
+                        </div>
+                    </div>
+
+                    <div class="clothing-feature-mobile-stack">
+                        @foreach($featureSections as $feature)
+                            @php
+                                $featureImage = $feature['image'] ?? '';
+                                $featureImagePath = \Illuminate\Support\Str::startsWith($featureImage, ['storage/', 'uploads/', 'images/']) ? $featureImage : 'storage/' . $featureImage;
+                            @endphp
+                            <div class="clothing-feature-mobile-pair">
+                                @if($loop->odd)
+                                    <div class="clothing-feature-text">
+                                        @if(!empty($feature['title']))<h3>{{ $feature['title'] }}</h3>@endif
+                                        @if(!empty($feature['description']))<p>{{ $feature['description'] }}</p>@endif
+                                    </div>
+                                @endif
+                                @if(!empty($featureImage))
+                                    <div class="clothing-feature-image">
+                                        <img src="{{ asset($featureImagePath) }}" alt="{{ $feature['title'] ?? $category['title'] }}" loading="lazy">
+                                    </div>
+                                @endif
+                                @if($loop->even)
+                                    <div class="clothing-feature-text">
+                                        @if(!empty($feature['title']))<h3>{{ $feature['title'] }}</h3>@endif
+                                        @if(!empty($feature['description']))<p>{{ $feature['description'] }}</p>@endif
+                                    </div>
+                                @endif
+                            </div>
+                        @endforeach
+                    </div>
                 </div>
             </section>
         @endif

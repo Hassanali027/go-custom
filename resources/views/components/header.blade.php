@@ -1381,7 +1381,9 @@
             const isProductMenu = type === 'custom-boxes';
             const isResourcesMenu = type === 'resources';
             const isMaterialMenu = type === 'box-by-material';
-            megaMenu.classList.toggle('mega-menu--products', isProductMenu);
+            // Popular products use the same full-width grid and positioning
+            // as the Industry mega menu; only their image data is different.
+            megaMenu.classList.remove('mega-menu--products');
             megaMenu.classList.toggle('mega-menu--resources', isResourcesMenu || isMaterialMenu);
             megaMenu.classList.toggle('mega-menu--material', isMaterialMenu);
 

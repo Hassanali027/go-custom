@@ -168,8 +168,8 @@
 
         .image-magnifier-lens {
             position: absolute;
-            width: 11.25rem;
-            height: 11.25rem;
+            width: 9rem;
+            height: 9rem;
             display: none;
             border: 1px solid rgba(11, 34, 64, 0.75);
             background-color: #fff;
