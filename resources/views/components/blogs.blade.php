@@ -147,7 +147,7 @@
 
     .blog-card a {
         -webkit-tap-highlight-color: transparent;
-        height: 100%;
+        height: auto;
     }
 
     .blog-card:hover .blog-card__title {
@@ -160,10 +160,15 @@
         -webkit-box-orient: vertical;
         overflow: hidden;
         font-size: 0.875rem;
-        color: var(--section-text-color);
+        color: #3f3f3f;
         line-height: 1.6;
         margin-bottom: 1.5rem;
-        flex: 1;
+        flex: 0 0 auto;
+        min-height: 2.8rem;
+    }
+
+    .blog-card__desc + div {
+        margin-top: auto;
     }
 
     .blog-card__author {
@@ -362,7 +367,14 @@
                         $authorSlug = $authorSlug ?: \Illuminate\Support\Str::slug($bAuthor);
 
                         $bDate = !empty($blog->publish_date) ? date('M d, Y', strtotime($blog->publish_date)) : (!empty($blog->created_at) ? date('M d, Y', strtotime($blog->created_at)) : 'Nov 15, 2024');
-                        $bExcerpt = $blog->excerpt ?? 'Explore how eco-friendly rigid boxes are transforming luxury packaging with sustainable';
+                        // Older blog records may not have an excerpt. In that case, show a
+                        // short, plain-text preview from the article itself instead of leaving
+                        // the home-page card blank.
+                        $bExcerpt = !empty(trim((string) ($blog->excerpt ?? '')))
+                            ? $blog->excerpt
+                            : (!empty(trim((string) ($blog->content ?? '')))
+                                ? $blog->content
+                                : 'Explore how eco-friendly rigid boxes are transforming luxury packaging with sustainable solutions.');
                         $bSlug = $blog->slug ?? 'blog-detail';
                         $bImg = !empty($blog->image) ? asset($blog->image) : asset('uploads/industry-custom-luxury-box.jfif');
                         $bUrl = url('/blog/' . $bSlug);

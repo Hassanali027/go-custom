@@ -42,7 +42,8 @@
         p {
             font-family: 'DM Sans', sans-serif;
             color: var(--section-text-color);
-            font-size: 1rem;
+            /* Keep paragraph copy consistent throughout every public page. */
+            font-size: 16px !important;
         }
 
         h1, h2, h3, h4, h5, h6 {

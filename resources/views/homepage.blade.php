@@ -2314,7 +2314,7 @@
 
             .bs-desc {
                 font-family: 'DM Sans', sans-serif;
-                font-size: 0.9375rem;
+               
                 color: #000;
                 margin-bottom: 0;
             }
@@ -2434,7 +2434,7 @@
 
             .see-feel-desc {
                 font-family: 'DM Sans', sans-serif;
-                font-size: 0.875rem;
+                
                 margin-bottom: 1.875rem;
                 line-height: 1.6;
                 color: rgba(255, 255, 255, 0.85);
@@ -2622,7 +2622,7 @@
             .uy-desc {
                 text-align: center;
                 font-family: 'DM Sans', sans-serif;
-                font-size: 0.9375rem;
+                
                 /* color: #555; */
                 max-width: 37.5rem;
                 margin: 0 auto 2.5rem auto;

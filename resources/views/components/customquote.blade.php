@@ -275,7 +275,6 @@
     }
 
     .qf-feature-text p {
-        font-size: 0.875rem !important;
         color: #666666;
         margin: 0;
         line-height: 1.5;

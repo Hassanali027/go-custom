@@ -525,8 +525,9 @@
         width: 15.625rem;
         height: auto;
         padding: 1rem 1.25rem;
-        background: #fff;
-        border: 1px solid #e5e5e5;
+        /* Match the Industry mega menu palette. */
+        background: #FAF5F2;
+        border: none;
         border-radius: 0.5rem;
     }
     .mega-menu--resources .mega-menu-footer { display: none; }
@@ -541,13 +542,13 @@
     .mega-menu--resources .mega-menu-item {
         padding: 0.5rem 0.75rem;
         font-size: 1rem;
-        color: #000;
+        color: #1A1A1A;
         font-weight: 500;
         gap: 0;
     }
     .mega-menu--resources .mega-menu-item:hover {
-        background: rgba(0, 0, 0, 0.05);
-        color: #000;
+        background: rgba(141, 68, 69, 0.06);
+        color: #0B2545;
     }
 
     /* Material menu uses the same clean style as the other dropdowns. */
