@@ -839,23 +839,15 @@
                                 $featureImagePath = \Illuminate\Support\Str::startsWith($featureImage, ['storage/', 'uploads/', 'images/']) ? $featureImage : 'storage/' . $featureImage;
                             @endphp
                             <div class="clothing-feature-mobile-pair">
-                                @if($loop->odd)
-                                    <div class="clothing-feature-text">
-                                        @if(!empty($feature['title']))<h3>{{ $feature['title'] }}</h3>@endif
-                                        @if(!empty($feature['description']))<p>{{ $feature['description'] }}</p>@endif
-                                    </div>
-                                @endif
                                 @if(!empty($featureImage))
                                     <div class="clothing-feature-image">
                                         <img src="{{ asset($featureImagePath) }}" alt="{{ $feature['title'] ?? $category['title'] }}" loading="lazy">
                                     </div>
                                 @endif
-                                @if($loop->even)
-                                    <div class="clothing-feature-text">
-                                        @if(!empty($feature['title']))<h3>{{ $feature['title'] }}</h3>@endif
-                                        @if(!empty($feature['description']))<p>{{ $feature['description'] }}</p>@endif
-                                    </div>
-                                @endif
+                                <div class="clothing-feature-text">
+                                    @if(!empty($feature['title']))<h3>{{ $feature['title'] }}</h3>@endif
+                                    @if(!empty($feature['description']))<p>{{ $feature['description'] }}</p>@endif
+                                </div>
                             </div>
                         @endforeach
                     </div>
