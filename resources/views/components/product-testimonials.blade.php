@@ -108,7 +108,7 @@
     
     @media (max-width: 48rem) {
         .product-testimonials-section {
-            padding: 1.25rem 0;
+            padding: 0 0 1.25rem;
         }
         .product-testimonials-viewport {
             margin-bottom: 1.25rem;
@@ -131,7 +131,7 @@
             text-align: justify;
         }
         .product-testimonials-title {
-            margin-bottom: 1.25rem;
+            margin-bottom: 0.5rem;
             white-space: nowrap;
             font-size: clamp(1.125rem, 4.8vw, 1.4rem);
             text-align: center;
