@@ -22,7 +22,7 @@
     }
 
     .clothing-features-inner {
-        max-width: 80rem;
+        max-width: 86rem;
         margin: 0 auto;
         padding: 0 2.5rem;
         box-sizing: border-box;
@@ -47,8 +47,9 @@
     .clothing-features-columns {
         display: grid;
         grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 3rem;
-        max-width: 75rem;
+        align-items: start;
+        gap: 5rem;
+        max-width: 82rem;
         margin: 0 auto;
         width: 100%;
     }
@@ -57,8 +58,37 @@
         display: flex;
         flex-direction: column;
         align-items: flex-start;
-        gap: 2.5rem;
+        gap: 0;
         min-width: 0;
+    }
+
+    /* The two columns deliberately use different offsets so their items
+       stagger against one another instead of forming compressed rows. */
+    .clothing-feature-column--left > :nth-child(1) {
+        margin-top: clamp(5rem, 9vw, 8rem);
+        margin-bottom: clamp(4rem, 6vw, 5.5rem);
+    }
+
+    .clothing-feature-column--left > :nth-child(2) {
+        margin-bottom: clamp(5rem, 8vw, 7rem);
+    }
+
+    .clothing-feature-column--left > :nth-child(3) {
+        margin-bottom: clamp(4.5rem, 7vw, 6.5rem);
+    }
+
+    .clothing-feature-column--right > :nth-child(1) {
+        align-self: flex-end;
+        margin-bottom: clamp(5rem, 8vw, 7rem);
+    }
+
+    .clothing-feature-column--right > :nth-child(2) {
+        margin-bottom: clamp(6rem, 9vw, 8rem);
+    }
+
+    .clothing-feature-column--right > :nth-child(3) {
+        align-self: flex-end;
+        margin-bottom: clamp(5rem, 8vw, 7rem);
     }
 
     .clothing-feature-mobile-stack { display: none; }
@@ -90,9 +120,10 @@
     .clothing-feature-image {
         flex: 1 1 0;
         min-width: 0;
-        max-width: 25rem;
+        max-width: 27rem;
         width: 100%;
-        border-radius: 0;
+        aspect-ratio: 1.16 / 1;
+        border-radius: 1rem 1rem 0 0;
         overflow: visible;
         box-shadow: none;
         background-color: transparent;
@@ -100,11 +131,10 @@
 
     .clothing-feature-image img {
         width: 100%;
-        height: auto;
-        aspect-ratio: 1 / 1;
-        object-fit: contain;
+        height: 100%;
+        object-fit: cover;
         display: block;
-        border-radius: 0;
+        border-radius: 1rem 1rem 0 0;
     }
 
     @media (max-width: 62rem) {
@@ -763,7 +793,7 @@
                     @endif
 
                     <div class="clothing-features-columns">
-                        <div class="clothing-feature-column">
+                        <div class="clothing-feature-column clothing-feature-column--left">
                             @foreach($featureSections as $feature)
                                 @php
                                     $featureImage = $feature['image'] ?? '';
@@ -782,7 +812,7 @@
                             @endforeach
                         </div>
 
-                        <div class="clothing-feature-column">
+                        <div class="clothing-feature-column clothing-feature-column--right">
                             @foreach($featureSections as $feature)
                                 @php
                                     $featureImage = $feature['image'] ?? '';
