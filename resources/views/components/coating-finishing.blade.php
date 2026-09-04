@@ -74,7 +74,8 @@
         align-items: center;
         justify-content: space-between;
         gap: 0;
-        border-bottom: 1px solid #ccc; /* Bottom border for navbar */
+        border-bottom: 1px solid #ccc;
+        /* Bottom border for navbar */
         overflow-x: auto;
         scrollbar-width: none;
         -ms-overflow-style: none;
@@ -103,17 +104,19 @@
         align-items: center;
         justify-content: center;
         white-space: nowrap;
-        margin-bottom: -1px; /* Overlap the container's bottom border */
+        margin-bottom: -1px;
+        /* Overlap the container's bottom border */
     }
 
     .customize-tab.active,
     .customize-tab:hover,
     .customize-tab:focus-visible {
         color: #fff;
-        background: #112a46; /* Matching active tab background */
+        background: #112a46;
+        /* Matching active tab background */
         border-bottom: 0.1875rem solid #112a46;
     }
-    
+
     .customize-tab:not(.active):hover {
         background: #f0f0f0;
         color: #111;
@@ -132,15 +135,22 @@
         width: max-content;
         animation: marqueeTrain 20s linear infinite;
         padding-bottom: 0.625rem;
+        will-change: transform;
+        transform: translateZ(0);
     }
-    
+
     .customize-grid:hover {
         animation-play-state: paused;
     }
 
     @keyframes marqueeTrain {
-        0% { transform: translateX(0); }
-        100% { transform: translateX(calc(-50% - 0.625rem)); }
+        0% {
+            transform: translateX(0);
+        }
+
+        100% {
+            transform: translateX(calc(-50% - 0.625rem));
+        }
     }
 
     .custom-card {
@@ -151,7 +161,7 @@
         padding: 0;
         display: flex;
         flex-direction: column;
-        transition: opacity 0.2s ease, transform 0.2s ease;
+        transition: opacity 0.25s ease;
         text-align: center;
     }
 
@@ -163,6 +173,8 @@
         overflow: hidden;
         margin-bottom: 0.875rem;
         background: #f7f7f7;
+        isolation: isolate;
+        contain: layout paint;
     }
 
     .custom-img-wrapper img {
@@ -173,6 +185,8 @@
         height: 100%;
         object-fit: cover;
         object-position: center;
+        display: block;
+        border-radius: 0.5rem;
     }
 
     .custom-card .h4-style {
@@ -198,6 +212,7 @@
 
     @media (max-width: 36rem) {
         .customize-section {
+            background: #ffffff;
             padding: 1.875rem 0 2.25rem;
         }
 
@@ -252,7 +267,7 @@
             padding-bottom: 0.625rem !important;
             animation: marqueeTrain 30s linear infinite !important;
         }
-        
+
         .customize-grid::-webkit-scrollbar {
             display: none;
         }
@@ -298,93 +313,76 @@
         }
     }
 </style>
-        <!-- Customize Packaging Section -->
-        <section class="customize-section">
-            <div class="customize-container">
+<!-- Customize Packaging Section -->
+<section class="customize-section">
+    <div class="customize-container">
 
-                <span class="customize-title" style="display: block;">Coating and Finishing</span>
-                <p class="customize-subtitle">Discover our top packaging style recommendations, meticulously crafted to enhance your products' presentation and appeal.</p>
+        <span class="customize-title" style="display: block;">Coating and Finishing</span>
+        <p class="customize-subtitle">Discover our top packaging style recommendations, meticulously crafted to enhance
+            your products' presentation and appeal.</p>
 
-                <div class="customize-layout">
-                    <!-- Left Sidebar Tabs -->
-                    <aside class="customize-sidebar">
-                        <button type="button" class="customize-tab active" data-customize-tab="coating">Coating</button>
-                        <button type="button" class="customize-tab" data-customize-tab="special_finishes">Special Finishes</button>
-                        <button type="button" class="customize-tab" data-customize-tab="paperboard">Paperboard</button>
-                        <button type="button" class="customize-tab" data-customize-tab="corrugated">Corrugated</button>
-                        <button type="button" class="customize-tab" data-customize-tab="fluted_grades">Fluted Grades</button>
-                        @unless($productPageOnly)
-                            <button type="button" class="customize-tab" data-customize-tab="rigid_materials">Rigid Materials</button>
-                            <button type="button" class="customize-tab" data-customize-tab="printing_options">Printing Options</button>
-                        @endunless
-                    </aside>
+        <div class="customize-layout">
+            <!-- Left Sidebar Tabs -->
+            <aside class="customize-sidebar">
+                <button type="button" class="customize-tab active" data-customize-tab="coating">Coating</button>
+                <button type="button" class="customize-tab" data-customize-tab="special_finishes">Special
+                    Finishes</button>
+                <button type="button" class="customize-tab" data-customize-tab="paperboard">Paperboard</button>
+                <button type="button" class="customize-tab" data-customize-tab="corrugated">Corrugated</button>
+                <button type="button" class="customize-tab" data-customize-tab="fluted_grades">Fluted Grades</button>
+                @unless($productPageOnly)
+                <button type="button" class="customize-tab" data-customize-tab="rigid_materials">Rigid
+                    Materials</button>
+                <button type="button" class="customize-tab" data-customize-tab="printing_options">Printing
+                    Options</button>
+                @endunless
+            </aside>
 
-                    <!-- Right Content Grid -->
-                    <div class="customize-content">
-                        <div class="customize-grid">
-                            <div class="custom-card">
-                                <div class="custom-img-wrapper">
-                                    <img src="{{ asset('uploads/gloss-lamination.webp') }}" alt="Gloss Lamination" loading="lazy">
-                                </div>
-                                <span class="custom-card-title">Gloss Lamination</span>
-                            </div>
-
-                            <div class="custom-card">
-                                <div class="custom-img-wrapper">
-                                    <img src="{{ asset('uploads/matte-lamination.webp') }}" alt="Matte Lamination" loading="lazy">
-                                </div>
-                                <span class="custom-card-title">Matte Lamination</span>
-                            </div>
-
-                            <div class="custom-card">
-                                <div class="custom-img-wrapper">
-                                    <img src="{{ asset('uploads/Soft-Touch-Coating-.webp') }}" alt="Soft Touch Coating" loading="lazy">
-                                </div>
-                                <span class="custom-card-title">Soft Touch Coating</span>
-                            </div>
-
-                            <div class="custom-card">
-                                <div class="custom-img-wrapper">
-                                    <img src="{{ asset('uploads/Soft-Touch-Silk-Lamination-.webp') }}" alt="Soft Touch Silk Lamination" loading="lazy">
-                                </div>
-                                <span class="custom-card-title">Soft Touch Silk Lamination</span>
-                            </div>
-
-                            <div class="custom-card">
-                                <div class="custom-img-wrapper">
-                                    <img src="{{ asset('uploads/Aqueous-Coating-.webp') }}" alt="Aqueous Coating" loading="lazy">
-                                </div>
-                                <span class="custom-card-title">Aqueous Coating</span>
-                            </div>
-
-                            <div class="custom-card">
-                                <div class="custom-img-wrapper">
-                                    <img src="{{ asset('uploads/UV-Coating-.webp') }}" alt="UV Coating" loading="lazy">
-                                </div>
-                                <span class="custom-card-title">UV Coating</span>
-                            </div>
-
-                            <div class="custom-card">
-                                <div class="custom-img-wrapper">
-                                    <img src="{{ asset('uploads/Anti-scratch-Lamination-.webp') }}" alt="Anti-Scratch Lamination" loading="lazy">
-                                </div>
-                                <span class="custom-card-title">Anti-Scratch Lamination</span>
-                            </div>
-
-                            <div class="custom-card">
-                                <div class="custom-img-wrapper">
-                                    <img src="{{ asset('uploads/Kemi-White-Board-.webp') }}" alt="Kemi White Board" loading="lazy">
-                                </div>
-                                <span class="custom-card-title">Kemi White Board</span>
-                            </div>
+            <!-- Right Content Grid -->
+            <div class="customize-content">
+                <div class="customize-grid">
+                    <div class="custom-card">
+                        <div class="custom-img-wrapper">
+                            <img src="{{ asset('uploads/new-aqueous-coating.webp') }}" alt="Aqueous Coating" loading="lazy" decoding="async">
                         </div>
+                        <span class="custom-card-title">Aqueous Coating</span>
+                    </div>
+
+                    <div class="custom-card">
+                        <div class="custom-img-wrapper">
+                            <img src="{{ asset('uploads/new-gloss-finish.webp') }}" alt="Gloss Finish" loading="lazy" decoding="async">
+                        </div>
+                        <span class="custom-card-title">Gloss Finish</span>
+                    </div>
+
+                    <div class="custom-card">
+                        <div class="custom-img-wrapper">
+                            <img src="{{ asset('uploads/new-matte-finish.webp') }}" alt="Matte Finish" loading="lazy" decoding="async">
+                        </div>
+                        <span class="custom-card-title">Matte Finish</span>
+                    </div>
+
+                    <div class="custom-card">
+                        <div class="custom-img-wrapper">
+                            <img src="{{ asset('uploads/new-soft-touch-coating.webp') }}" alt="Soft Touch Coating" loading="lazy" decoding="async">
+                        </div>
+                        <span class="custom-card-title">Soft Touch Coating</span>
+                    </div>
+
+                    <div class="custom-card">
+                        <div class="custom-img-wrapper">
+                            <img src="{{ asset('uploads/new-uv-coating.webp') }}" alt="UV Coating" loading="lazy" decoding="async">
+                        </div>
+                        <span class="custom-card-title">UV Coating</span>
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
+    </div>
+</section>
 
 <script>
-    (function() {
+    (function () {
         const grid = document.querySelector('.customize-grid');
         const customizeSidebar = document.querySelector('.customize-sidebar');
         const customizeUploadsUrl = "{{ asset('') }}";
@@ -445,17 +443,6 @@
             ]
         };
 
-        // Preload image assets
-        setTimeout(function() {
-            for (let key in customizeCardSets) {
-                if (customizeCardSets.hasOwnProperty(key)) {
-                    customizeCardSets[key].forEach(function(item) {
-                        let img = new Image();
-                        img.src = customizeUploadsUrl + item[0];
-                    });
-                }
-            }
-        }, 500);
 
         function setCustomizeCardOrder(option) {
             const cardSet = customizeCardSets[option] || customizeCardSets.coating;
@@ -465,7 +452,6 @@
                 const currentCards = Array.from(grid.children);
                 currentCards.forEach(card => {
                     card.style.opacity = "0";
-                    card.style.transform = "scale(0.98)";
                 });
 
                 setTimeout(() => {
@@ -478,14 +464,14 @@
                     let repeatCount = Math.ceil(10 / cardSet.length);
                     let totalBaseCards = cardSet.length * repeatCount;
                     let baseHTML = '';
-                    
+
                     for (let i = 0; i < repeatCount; i++) {
                         cardSet.forEach(item => {
                             const [imagePath, title] = item;
                             baseHTML += `
-                                <div class="custom-card" style="opacity: 0; transform: scale(0.98);">
+                                <div class="custom-card" style="opacity: 0;">
                                     <div class="custom-img-wrapper">
-                                        <img src="${customizeUploadsUrl}${imagePath}" alt="${title}" loading="lazy">
+                                        <img src="${customizeUploadsUrl}${imagePath}" alt="${title}" loading="lazy" decoding="async">
                                     </div>
                                     <span class="custom-card-title">${title}</span>
                                 </div>
@@ -495,10 +481,10 @@
 
                     // Duplicate base HTML for seamless marquee
                     grid.innerHTML = baseHTML + baseHTML;
-                    
+
                     // Maintain a strict uniform speed: exactly 2 seconds per card distance
                     grid.style.animationDuration = (totalBaseCards * 2) + "s";
-                    
+
                     const children = Array.from(grid.children);
                     const halfLength = children.length / 2;
                     children.slice(halfLength).forEach(child => child.classList.add('clone-card'));
@@ -508,19 +494,18 @@
                         void grid.offsetWidth; // Force reflow
                         children.forEach(card => {
                             card.style.opacity = "1";
-                            card.style.transform = "scale(1)";
                         });
                     });
                 }, 200);
             }
         }
 
-        document.querySelectorAll('.customize-tab').forEach(function(tab) {
-            tab.addEventListener('pointerdown', function(event) {
+        document.querySelectorAll('.customize-tab').forEach(function (tab) {
+            tab.addEventListener('pointerdown', function (event) {
                 event.stopPropagation();
             });
-            tab.addEventListener('click', function() {
-                document.querySelectorAll('.customize-tab').forEach(function(item) {
+            tab.addEventListener('click', function () {
+                document.querySelectorAll('.customize-tab').forEach(function (item) {
                     item.classList.remove('active');
                     item.setAttribute('aria-selected', 'false');
                 });
@@ -550,20 +535,20 @@
             let dragStartScrollLeft = 0;
             let isDraggingTabs = false;
 
-            customizeSidebar.addEventListener('pointerdown', function(event) {
+            customizeSidebar.addEventListener('pointerdown', function (event) {
                 dragStartX = event.clientX;
                 dragStartScrollLeft = customizeSidebar.scrollLeft;
                 isDraggingTabs = true;
                 customizeSidebar.setPointerCapture(event.pointerId);
             });
 
-            customizeSidebar.addEventListener('pointermove', function(event) {
+            customizeSidebar.addEventListener('pointermove', function (event) {
                 if (!isDraggingTabs) return;
                 customizeSidebar.scrollLeft = dragStartScrollLeft - (event.clientX - dragStartX);
             });
 
-            ['pointerup', 'pointercancel'].forEach(function(eventName) {
-                customizeSidebar.addEventListener(eventName, function() {
+            ['pointerup', 'pointercancel'].forEach(function (eventName) {
+                customizeSidebar.addEventListener(eventName, function () {
                     isDraggingTabs = false;
                 });
             });
