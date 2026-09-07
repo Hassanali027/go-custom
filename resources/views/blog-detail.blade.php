@@ -364,6 +364,18 @@
             transition: transform 0.3s;
             max-width: 23.875rem;
             min-height: 27.125rem;
+            position: relative;
+            cursor: pointer;
+        }
+        .blog-card-hit-area {
+            position: absolute;
+            inset: 0;
+            z-index: 1;
+        }
+        .blog-card .card-meta a,
+        .blog-card .card-link {
+            position: relative;
+            z-index: 2;
         }
         .blog-card:hover {
             transform: translateY(-0.3125rem);
@@ -692,7 +704,8 @@
                             $bImg = !empty($rb->image) ? asset($rb->image) : asset('uploads/about-us-banner.webp');
                             $bUrl = url('/blog/' . $bSlug);
                         @endphp
-                        <div class="blog-card" onclick="window.location.href='{{ $bUrl }}';">
+                        <article class="blog-card">
+                            <a href="{{ $bUrl }}" class="blog-card-hit-area" aria-label="Read {{ $bTitle }}"></a>
                             <img src="{{ $bImg }}" alt="{{ $bTitle }}" onerror="this.src='{{ asset('uploads/about-us-banner.webp') }}'">
                             <div class="card-content">
                                 <div class="card-meta">
@@ -700,9 +713,9 @@
                                     <span>8 min read</span>
                                 </div>
                                 <h3>{{ $bTitle }}</h3>
-                                <a href="{{ $bUrl }}" class="card-link" onclick="event.stopPropagation();">Read Blog <i class="fa-solid fa-arrow-right"></i></a>
+                                <a href="{{ $bUrl }}" class="card-link">Read Blog <i class="fa-solid fa-arrow-right"></i></a>
                             </div>
-                        </div>
+                        </article>
                     @endforeach
                 @else
                     <!-- Fallback / Dummy blogs if empty -->
