@@ -42,6 +42,16 @@
         font-size: var(--heading-h6-size) !important;
     }
 
+    /* Global breadcrumb uniform styling */
+    [class*="breadcrumb"], 
+    [class*="breadcrumb"] a, 
+    [class*="breadcrumb"] span, 
+    [class*="breadcrumb"] strong, 
+    [class*="breadcrumb"] b {
+        font-weight: 600 !important;
+        font-size: 0.8125rem !important;
+    }
+
     /* Global mobile heading sizes — desktop values are too large on phones */
     @media (max-width: 48rem) {
         :root {

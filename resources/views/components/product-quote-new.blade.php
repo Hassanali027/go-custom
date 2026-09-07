@@ -102,7 +102,7 @@
     }
     
     .pqn-input {
-        background-color: #FFF8E7;
+        background-color: #FAFAFA;
         border: 1px solid #c4b5a5;
         border-radius: 0.375rem;
         padding: 0.75rem 0.9375rem;
@@ -270,7 +270,7 @@
     }
     
     .pqn-trust-badge img {
-        height: 2.1875rem;
+        height: 2.8875rem;
         object-fit: contain;
     }
     
