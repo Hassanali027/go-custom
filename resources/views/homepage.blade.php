@@ -2822,7 +2822,7 @@
 
             .wcc-title {
                 font-family: 'Open Sans', sans-serif;
-                font-size: 1.75rem;
+                font-size: 1.75rem !important;
                 font-weight: 700;
                 color: #000;
                 margin-bottom: 0.9375rem;
