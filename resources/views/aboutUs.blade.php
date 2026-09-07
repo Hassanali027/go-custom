@@ -132,6 +132,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
+    box-shadow: 0 0.25rem 1rem rgba(0, 0, 0, 0.08);
 }
 .feature-icon {
     background: #0b1c31;
@@ -185,6 +186,7 @@
     align-items: center;
     justify-content: center;
     height: 7.1875rem;
+    box-shadow: 0 0.25rem 1rem rgba(0, 0, 0, 0.08);
 }
 .logo-box img {
     max-height: 6.75rem;
