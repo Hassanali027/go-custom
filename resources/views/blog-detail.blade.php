@@ -337,20 +337,20 @@
         /* Related Blogs */
         .related-section {
             padding: 0;
-            margin-top: -2rem;
+            margin-top: -1rem;
         }
         .related-title {
             font-family: var(--font-heading);
             font-size: 2rem;
             font-weight: 700;
-            margin-bottom: 2.5rem;
-            text-align: center;
+            margin-bottom: 1.75rem;
+            text-align: left;
         }
         
         .blog-grid {
             display: grid;
             grid-template-columns: repeat(3, minmax(0, 23.875rem));
-            justify-content: center;
+            justify-content: start;
             gap: 1.875rem;
         }
 
