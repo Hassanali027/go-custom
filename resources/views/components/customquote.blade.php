@@ -136,10 +136,17 @@
     .qf-group input:-webkit-autofill,
     .qf-group input:-webkit-autofill:hover, 
     .qf-group input:-webkit-autofill:focus, 
-    .qf-group input:-webkit-autofill:active {
-        -webkit-box-shadow: 0 0 0 30px #0B2240 inset !important;
+    .qf-group input:-webkit-autofill:active,
+    .qf-group select:-webkit-autofill,
+    .qf-group select:-webkit-autofill:hover,
+    .qf-group select:-webkit-autofill:focus,
+    .qf-group textarea:-webkit-autofill,
+    .qf-group textarea:-webkit-autofill:hover,
+    .qf-group textarea:-webkit-autofill:focus {
+        -webkit-box-shadow: 0 0 0px 1000px #0B2240 inset !important;
+        box-shadow: 0 0 0px 1000px #0B2240 inset !important;
         -webkit-text-fill-color: #ffffff !important;
-        transition: background-color 5000s ease-in-out 0s;
+        transition: background-color 5000s ease-in-out 0s, color 5000s ease-in-out 0s;
     }
 
     .qf-group input:focus,

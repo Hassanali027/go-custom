@@ -173,6 +173,7 @@
         }
 
         .contact-form input {
+            background: #fafafa;
             height: 3rem;
         }
 
@@ -191,6 +192,7 @@
         }
 
         .contact-form textarea {
+            background: #fafafa;
             height: 5.75rem;
             min-height: 5.75rem;
             resize: vertical;
