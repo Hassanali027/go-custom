@@ -63,7 +63,7 @@
         .hero-img-wrapper {
             width: 100%;
             height: auto;
-            aspect-ratio: 2 / 1;
+            aspect-ratio: 2.35 / 1;
             border-radius: 0.75rem;
             margin-bottom: 2.5rem;
             overflow: hidden;
@@ -415,7 +415,7 @@
             .content-layout { grid-template-columns: 1fr; gap: 0; }
             .sidebar { position: static; margin-top: 0; }
             .blog-grid { grid-template-columns: repeat(2, 1fr); }
-            .hero-img-wrapper { height: auto; aspect-ratio: 2 / 1; }
+            .hero-img-wrapper { height: auto; aspect-ratio: 2.35 / 1; }
         }
         @media (max-width: 48rem) {
             .container { padding: 0 1rem; }

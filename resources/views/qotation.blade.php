@@ -60,7 +60,9 @@
             gap: 1.875rem;
             flex-wrap: wrap;
             align-items: stretch;
-            justify-content: center;
+            /* Match the header's inner edges: sidebar under the logo and
+               form card under the Get a Quote button. */
+            justify-content: space-between;
             box-sizing: border-box;
         }
 
@@ -272,6 +274,7 @@
             }
             .iq-page-sidebar > h2,
             .iq-page-sidebar > p,
+            .iq-page-sidebar > .iq-sidebar-img,
             .iq-page-sidebar > div:not(.iq-sidebar-card) {
                 display: none !important;
             }
@@ -291,6 +294,10 @@
             .iq-page-container {
                 padding: 0 0 2.5rem;
                 gap: 1.25rem;
+            }
+            .iq-page-sidebar {
+                padding-left: 0.75rem !important;
+                padding-right: 0.75rem !important;
             }
             .iq-page-form-card {
                 padding: 1.375rem 1rem;
