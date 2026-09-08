@@ -417,7 +417,7 @@
                         <option>20pt Cardboard Stock</option><option>22pt Cardboard Stock</option>
                         <option>24pt Cardboard Stock</option><option>Kraft Stock</option>
                         <option>Recycled BuxBoard</option><option>Corrugated Stock</option>
-                        <option>No Printing Required</option>
+
                     </select>
                 </div>
                 <div class="qf-group qf-span-4 qf-span-6-m">
