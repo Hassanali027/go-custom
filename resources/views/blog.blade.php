@@ -114,13 +114,13 @@
             justify-content: center;
             gap: 1.875rem;
             margin-bottom: 3.125rem;
+            align-items: start;
         }
 
         .blog-card {
             border: 1px solid #EAEAEA;
             border-radius: 1rem;
             max-width: 23.875rem;
-            min-height: 27.125rem;
             overflow: hidden;
             display: flex;
             flex-direction: column;
@@ -147,7 +147,7 @@
         }
 
         .card-content {
-            padding: 1.25rem 1.5rem 1.5rem;
+            padding: 1.25rem 1.5rem 0.75rem;
             display: flex;
             flex-direction: column;
             flex: 1;
@@ -182,7 +182,7 @@
         }
 
         .card-link {
-            margin-top: auto;
+            margin-top: 0.5rem;
             color: var(--dark-blue);
             font-weight: 700;
             font-size: 0.875rem;
@@ -386,9 +386,7 @@
                                     <span>8 min read</span>
                                 </div>
                                 <h3>{{ $bTitle }}</h3>
-                                @if($bExcerptText)
-                                    <p class="card-description">{{ Str::limit($bExcerptText, 120) }}</p>
-                                @endif
+
                                 <a href="{{ $bUrl }}" class="card-link" onclick="event.stopPropagation();">Read Blog <i class="fa-solid fa-arrow-right"></i></a>
                             </div>
                         </div>
