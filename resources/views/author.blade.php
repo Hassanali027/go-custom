@@ -268,131 +268,126 @@
            ========================================================================== */
 
         .blog-card {
-            width: 100%;
-            background-color: var(--color-content-bg);
-            border-radius: 0.5rem;
+            background: #fff;
+            border: 1px solid #EAEAEA;
+            border-radius: 1rem;
             overflow: hidden;
-            box-shadow: 0 0.75rem 1.5rem rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            text-decoration: none;
-            display: block;
+            display: flex;
+            flex-direction: column;
+            transition: box-shadow 0.3s, transform 0.3s;
+            position: relative;
+            -webkit-tap-highlight-color: transparent;
+            min-height: 27.125rem;
+            box-shadow: 0 0.25rem 0.9375rem rgba(0,0,0,0.03);
+            cursor: pointer;
         }
 
         .blog-card:hover {
+            box-shadow: 0 0.625rem 1.5625rem rgba(0,0,0,0.08);
             transform: translateY(-0.25rem);
-            box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.15);
         }
 
-        .card-image-wrapper {
-            width: 100%;
-            height: 14.5625rem;
-            overflow: hidden;
-            background-color: #F5F5F5;
+        .blog-card__image {
+            width: calc(100% - 1.75rem);
+            height: auto;
+            aspect-ratio: 2 / 1;
+            object-fit: contain;
+            background: transparent;
+            border-radius: 0.75rem;
+            margin: 0.875rem auto 0;
+            display: block;
         }
 
-        .card-image {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.3s ease;
-        }
-
-        .blog-card:hover .card-image {
-            transform: scale(1.05);
-        }
-
-        .card-content {
+        .blog-card__content {
             padding: 1.5rem;
-        }
-
-        .card-meta {
             display: flex;
+            flex-direction: column;
+            flex: 1;
+        }
+
+        .blog-card__meta {
+            display: flex;
+            justify-content: space-between;
             align-items: center;
-            gap: 1rem;
-            margin-bottom: 1rem;
-            font-family: 'DM Sans', sans-serif;
-            font-size: 0.875rem;
-            color: var(--color-text-secondary);
+            font-size: 0.8125rem;
+            color: #666;
+            margin-bottom: 0.875rem;
         }
 
-        .card-author {
-            color: var(--color-text-secondary);
-        }
-
-        .card-date {
-            color: var(--color-text-secondary);
-        }
-
-        .card-heading {
+        .blog-card__title {
             font-family: 'Open Sans', sans-serif;
-            font-weight: 700;
-            font-style: bold;
             font-size: 1.25rem;
-            line-height: 1.625rem;
-            letter-spacing: 0%;
-            text-transform: capitalize;
-            color: var(--color-text-primary);
+            font-weight: 700;
+            color: #111;
+            line-height: 1.3;
             margin-bottom: 0.75rem;
+            text-decoration: none;
+            transition: color 0.3s;
             display: -webkit-box;
             -webkit-line-clamp: 2;
-            transition: color 0.2s ease;
-        }
-
-        .blog-card:hover .card-heading,
-        .card-heading:hover,
-        .card-heading a:hover {
-            color: #8d4445 !important;
-        }
             -webkit-box-orient: vertical;
             overflow: hidden;
         }
 
-        .card-heading a {
-            outline: none;
+        .blog-card__title::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            z-index: 1;
+            -webkit-tap-highlight-color: transparent;
+            height: 100%;
+        }
+
+        .blog-card a {
+            -webkit-tap-highlight-color: transparent;
+            height: auto;
+        }
+
+        .blog-card:hover .blog-card__title {
+            color: var(--primary-color, #8D4445);
+        }
+
+        .blog-card__desc {
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            font-size: 0.875rem;
+            color: #3f3f3f;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+            flex: 0 0 auto;
+            min-height: 2.8rem;
+        }
+
+        .blog-card__desc + div {
+            margin-top: auto;
+        }
+
+        .blog-card__author {
+            color: var(--section-text-color, #111);
             font-weight: 500;
         }
 
-        .card-heading a:focus, .card-heading a:active {
-            outline: none;
-            box-shadow: none;
+        .blog-card__date {
+            color: var(--section-text-color, #111);
         }
 
-        .card-description {
-            font-family: 'DM Sans', sans-serif;
-            font-weight: 400;
-            font-style: regular;
-            font-size: 1rem;
-            line-height: 1.375rem;
-            letter-spacing: 0%;
-            text-align: justify;
-            color: var(--color-text-secondary);
-            display: -webkit-box;
-            -webkit-line-clamp: 3;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
-        }
-
-        .read-more {
+        .blog-card__readmore {
             display: inline-flex;
             align-items: center;
-            gap: 0.5rem;
-            margin-top: 1rem;
-            color: var(--primary-color);
-            font-family: 'DM Sans', sans-serif;
-            font-size: 0.875rem;
-            font-weight: 600;
+            gap: 0.375rem;
+            font-size: 0.9375rem;
+            font-weight: 700;
+            color: var(--primary-color, #8D4445);
             text-decoration: none;
-            transition: gap 0.3s ease;
-            outline: none;
-        }
-        
-        .read-more:focus, .read-more:active {
-            outline: none;
-            box-shadow: none;
+            transition: color 0.3s;
+            position: relative;
+            z-index: 2;
         }
 
-        .blog-card:hover .read-more {
-            gap: 0.75rem;
+        .blog-card:hover .blog-card__readmore {
+            color: var(--primary-color, #8D4445);
         }
 
         /* ==========================================================================
@@ -622,25 +617,21 @@
                 margin-bottom: 1.5rem;
             }
 
-            .card-content {
-                padding: 1.25rem;
+            .blog-card__content {
+                padding: 1.125rem 1rem 1.25rem;
             }
 
-            .card-heading {
+            .blog-card__title {
                 font-size: 1.125rem;
-                line-height: 1.5rem;
-                font-weight: 500;
             }
 
-            .card-description {
-                font-size: 1.0625rem;
-                line-height: 1.4375rem;
-                font-weight: bold;
-                color: black;
+            .blog-card__desc {
+                font-size: 0.8438rem;
+                margin-bottom: 1.125rem;
             }
 
-            .card-image-wrapper {
-                height: 13.75rem;
+            .blog-card__image {
+                height: 13.125rem;
             }
         }
 
@@ -655,7 +646,7 @@
                 line-height: 1.875rem;
             }
 
-            .card-image-wrapper {
+            .blog-card__image {
                 height: 12.5rem;
             }
         }
@@ -797,29 +788,32 @@
                 @if(isset($blogs) && count($blogs) > 0)
                     <div class="blog-grid">
                         @foreach($blogs as $item)
-                        <article class="blog-card" onclick="window.location.href='{{ url('/blog/' . $item['slug']) }}';" style="cursor: pointer;">
-                            <div class="card-image-wrapper">
-                                @php $blogImg = !empty($item['image']) ? (\Illuminate\Support\Str::startsWith($item['image'], ['http', 'storage/', 'uploads/', 'images/']) ? asset($item['image']) : asset('storage/'.$item['image'])) : asset('images/below-hero.png'); @endphp
-                                <img src="{{ $blogImg }}" alt="{{ $item['title'] }}" class="card-image" onerror="this.src='{{ asset('images/below-hero.png') }}'" loading="lazy">
-                            </div>
-                            <div class="card-content">
-                                <h3 class="card-heading"><a href="{{ url('/blog/' . $item['slug']) }}" style="color:inherit; text-decoration:none;" onclick="event.stopPropagation();">{{ $item['title'] }}</a></h3>
-                                <p class="card-description">{{ Str::limit(html_entity_decode(html_entity_decode(strip_tags($item['excerpt'] ?: $item['content']))), 120) }}</p>
-                                <a href="{{ url('/blog/' . $item['slug']) }}" class="read-more" onclick="event.stopPropagation();">
-                                    Read Blog 
-                                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                        <path d="M3 8h10M9 4l4 4-4 4"/>
-                                    </svg>
-                                </a>
+                        @php
+                            $bDate = !empty($item['publish_date']) ? date('M d, Y', strtotime($item['publish_date'])) : (!empty($item['created_at']) ? date('M d, Y', strtotime($item['created_at'])) : 'Nov 15, 2024');
+                            $bExcerpt = !empty(trim((string) ($item['excerpt'] ?? ''))) ? $item['excerpt'] : (!empty(trim((string) ($item['content'] ?? ''))) ? $item['content'] : '');
+                            $bUrl = url('/blog/' . $item['slug']);
+                            $blogImg = !empty($item['image']) ? (\Illuminate\Support\Str::startsWith($item['image'], ['http', 'storage/', 'uploads/', 'images/']) ? asset($item['image']) : asset('storage/'.$item['image'])) : asset('images/below-hero.png');
+                        @endphp
+                        <article class="blog-card" onclick="window.location.href='{{ $bUrl }}';" style="cursor: pointer;">
+                            <img src="{{ $blogImg }}" alt="{{ $item['title'] }}" class="blog-card__image" onerror="this.src='{{ asset('images/below-hero.png') }}'" loading="lazy">
+                            <div class="blog-card__content">
+                                <div class="blog-card__meta">
+                                    <a href="{{ url('/author/' . $author['slug']) }}" class="blog-card__author" style="color:inherit;text-decoration:none;z-index:2;position:relative;" onclick="event.stopPropagation();">{{ $author['title'] }}</a>
+                                    <span class="blog-card__date">{{ $bDate }}</span>
+                                </div>
+                                <a href="{{ $bUrl }}" class="blog-card__title" onclick="event.stopPropagation();">{{ $item['title'] }}</a>
+                                <p class="blog-card__desc">{{ Str::limit(html_entity_decode(html_entity_decode(strip_tags($bExcerpt))), 90) }}</p>
+                                <div>
+                                    <a href="{{ $bUrl }}" class="blog-card__readmore" onclick="event.stopPropagation();">
+                                        Read Blog
+                                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                                    </a>
+                                </div>
                             </div>
                         </article>
                         @endforeach
                     </div>
-                    <div class="load-more-container" style="width: 100%; display: flex; justify-content: center; margin-top: 2.5rem;">
-                        <button class="btn-load-more" style="width: 12.625rem; height: 3.375rem; background-color: #FFB400; color: #000; font-family: 'Open Sans', sans-serif; font-size: 1rem; font-weight: 600; border: none; border-radius: 0.25rem; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background-color 0.3s, box-shadow 0.3s; box-shadow: 0 0.25rem 0.625rem rgba(0, 0, 0, 0.15);">
-                            Load more
-                        </button>
-                    </div>
+
                 @else
                     <p style="font-family: 'Open Sans', sans-serif; font-size: 1rem; color: #555;">No published blogs found for this author yet.</p>
                 @endif
