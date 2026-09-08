@@ -43,8 +43,8 @@
             --color-text-primary: #000000;
             --color-text-secondary: #666666;
             --color-border: #E5E5E5;
-            --color-link: #8D4445;
-            --color-link-hover: #5F2D2F;
+            --color-link: #0B2240;
+            --color-link-hover: #07162b;
 
             /* Spacing */
             --container-max-width: 77.5rem;
@@ -391,47 +391,8 @@
         }
 
         /* ==========================================================================
-           RESPONSIVE DESIGN - ZOOM LEVELS (100%, 110%, 125%, 150%)
+           RESPONSIVE DESIGN - ZOOM LEVELS
            ========================================================================== */
-
-        /* Base: 100% zoom - 90rem container */
-        @media screen and (max-width: 100rem) {
-        }
-
-        /* Adapt for 110% zoom (effectively 81.8125rem viewport) */
-        @media screen and (max-width: 90rem) {
-
-            .author-name {
-                font-size: 3rem;
-                line-height: 4.25rem;
-            }
-        }
-
-        /* Adapt for 125% zoom (effectively 72rem viewport) */
-        @media screen and (max-width: 80rem) {
-            :root {
-                --card-gap: 1.5rem;
-            }
-
-            .hero-content {
-                gap: 0.375rem;
-            }
-
-            .author-image {
-                width: 13.75rem;
-                height: 13.75rem;
-            }
-
-            .author-name {
-                font-size: 2.75rem;
-                line-height: 3.75rem;
-            }
-
-            .author-bio {
-                font-size: 1.0625rem;
-                line-height: 1.625rem;
-            }
-        }
 
         /* Large Tablets - 3 column to 2 column */
         @media screen and (max-width: 64rem) {
