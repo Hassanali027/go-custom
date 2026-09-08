@@ -288,11 +288,12 @@
             </div>
             <div class="field">
                 <label>Robots</label>
+                @php $productRobots = str_replace(' ', '', (string) ($v('robots', 'index,follow') ?: 'index,follow')); @endphp
                 <select name="robots">
-                    <option value="index,follow" @selected($v('robots', 'index,follow') === 'index,follow')>index, follow</option>
-                    <option value="index,nofollow" @selected($v('robots') === 'index,nofollow')>index, nofollow</option>
-                    <option value="noindex,follow" @selected($v('robots') === 'noindex,follow')>noindex, follow</option>
-                    <option value="noindex,nofollow" @selected($v('robots') === 'noindex,nofollow')>noindex, nofollow</option>
+                    <option value="index,follow" @selected($productRobots === 'index,follow')>index, follow</option>
+                    <option value="index,nofollow" @selected($productRobots === 'index,nofollow')>index, nofollow</option>
+                    <option value="noindex,follow" @selected($productRobots === 'noindex,follow')>noindex, follow</option>
+                    <option value="noindex,nofollow" @selected($productRobots === 'noindex,nofollow')>noindex, nofollow</option>
                 </select>
             </div>
             <div class="field full">

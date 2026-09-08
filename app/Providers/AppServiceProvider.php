@@ -6,6 +6,7 @@ use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\URL;
+use Illuminate\Support\Facades\Blade;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -16,6 +17,17 @@ class AppServiceProvider extends ServiceProvider
 
     public function boot()
     {
+        // Add Laravel 9+ Blade directives (@selected, @checked, @disabled) for Laravel 8
+        Blade::directive('selected', function ($condition) {
+            return "<?php if ({$condition}): echo 'selected'; endif; ?>";
+        });
+        Blade::directive('checked', function ($condition) {
+            return "<?php if ({$condition}): echo 'checked'; endif; ?>";
+        });
+        Blade::directive('disabled', function ($condition) {
+            return "<?php if ({$condition}): echo 'disabled'; endif; ?>";
+        });
+
         // Shared hosts sometimes point APP_URL at "/public". Keep generated
         // links, assets, canonicals and schemas on the clean domain instead.
         $configuredUrl = rtrim((string) config('app.url'), '/');
@@ -43,7 +55,7 @@ class AppServiceProvider extends ServiceProvider
                     'footer_categories' => [],
                     'footer_quick_links' => [],
                     'footer_policy_pages' => [],
-                    'footer_description' => 'The Rigid Boxes is a leading custom packaging manufacturer, delivering premium boxes and packaging solutions tailored to your brand. From design to delivery, we ensure unmatched quality, style, and customer service.'
+                    'footer_description' => 'Go Custom Boxes is a leading custom packaging manufacturer, delivering premium boxes and packaging solutions tailored to your brand. From design to delivery, we ensure unmatched quality, style, and customer service.'
                 ];
                 
                 $rows = DB::table('homepage_contents')
@@ -73,7 +85,7 @@ class AppServiceProvider extends ServiceProvider
                     'footer_categories' => [],
                     'footer_quick_links' => [],
                     'footer_policy_pages' => [],
-                    'footer_description' => 'The Rigid Boxes is a leading custom packaging manufacturer, delivering premium boxes and packaging solutions tailored to your brand. From design to delivery, we ensure unmatched quality, style, and customer service.'
+                    'footer_description' => 'Go Custom Boxes is a leading custom packaging manufacturer, delivering premium boxes and packaging solutions tailored to your brand. From design to delivery, we ensure unmatched quality, style, and customer service.'
                 ]);
             }
         });
