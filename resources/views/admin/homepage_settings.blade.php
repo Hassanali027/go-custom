@@ -190,7 +190,7 @@
                 <div class="field full">
                     <label for="schema">Homepage Schema JSON-LD</label>
                     <textarea id="schema" name="schema" rows="12" placeholder='{"@context":"https://schema.org","@type":"WebPage"}'>{{ old('schema', $settings['schema'] ?? '') }}</textarea>
-                    <small>Optional custom schema. Enter valid JSON-LD; it will be added to the homepage frontend.</small>
+                    <small>Enter raw JSON-LD or the complete &lt;script type=&quot;application/ld+json&quot;&gt; block. When provided, this custom schema replaces the automatic homepage schema.</small>
                 </div>
             </div>
         </div>

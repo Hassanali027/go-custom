@@ -1,5 +1,6 @@
 @php
     $schemaSiteUrl = rtrim(url('/'), '/');
+    $schemaIsHomepage = trim(request()->path(), '/') === '';
     $schemaPageUrl = $canonicalUrl ?? (
         trim(request()->path(), '/') === ''
             ? $schemaSiteUrl
@@ -334,22 +335,31 @@
     if (is_array($schemaCustomRaw)) {
         $schemaCustomPayload = $schemaCustomRaw;
     } elseif (is_string($schemaCustomRaw) && trim($schemaCustomRaw) !== '') {
-        $schemaCustomDecoded = json_decode($schemaCustomRaw, true);
+        $schemaCustomJson = trim($schemaCustomRaw);
+        if (preg_match(
+            '#^\s*<script\b[^>]*type\s*=\s*(["\'])application/ld\+json\1[^>]*>(.*?)</script>\s*$#is',
+            $schemaCustomJson,
+            $schemaCustomMatch
+        )) {
+            $schemaCustomJson = trim($schemaCustomMatch[2]);
+        }
+        $schemaCustomDecoded = json_decode($schemaCustomJson, true);
         if (json_last_error() === JSON_ERROR_NONE && is_array($schemaCustomDecoded)) {
             $schemaCustomPayload = $schemaCustomDecoded;
         }
     }
 @endphp
-<script type="application/ld+json">
-{!! json_encode(
-    $schemaPayload,
-    JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE
-) !!}
-</script>
 @if($schemaCustomPayload !== null)
 <script type="application/ld+json">
 {!! json_encode(
     $schemaCustomPayload,
+    JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE
+) !!}
+</script>
+@elseif(!$schemaIsHomepage)
+<script type="application/ld+json">
+{!! json_encode(
+    $schemaPayload,
     JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE
 ) !!}
 </script>

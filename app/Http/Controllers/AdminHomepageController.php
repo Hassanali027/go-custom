@@ -90,12 +90,23 @@ class AdminHomepageController extends Controller
 
     public function update(Request $request)
     {
+        $schemaInput = trim((string) $request->input('schema', ''));
+        if ($schemaInput !== '' && preg_match(
+            '#^\s*<script\b[^>]*type\s*=\s*(["\'])application/ld\+json\1[^>]*>(.*?)</script>\s*$#is',
+            $schemaInput,
+            $schemaMatch
+        )) {
+            $schemaInput = trim($schemaMatch[2]);
+        }
+        $request->merge(['schema' => $schemaInput !== '' ? $schemaInput : null]);
+
         $request->validate([
             'meta_title' => 'nullable|string|max:255',
             'meta_description' => 'nullable|string|max:1000',
             'meta_keywords' => 'nullable|string|max:1000',
             'robots' => 'required|in:index,follow,index,nofollow,noindex,follow,noindex,nofollow',
-            'schema' => 'nullable|json',
+            // Accept both raw JSON-LD and a complete <script type="application/ld+json"> block.
+            'schema' => 'nullable|string|max:50000',
             'hero_title' => 'nullable|string|max:255',
             'hero_description' => 'nullable|string',
             'hero_image' => 'nullable|image|mimes:jpeg,png,jpg,webp,svg|max:5120',
