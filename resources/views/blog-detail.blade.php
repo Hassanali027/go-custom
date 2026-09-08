@@ -352,6 +352,7 @@
             grid-template-columns: repeat(3, minmax(0, 23.875rem));
             justify-content: start;
             gap: 1.875rem;
+            align-items: start;
         }
 
         .blog-card {
