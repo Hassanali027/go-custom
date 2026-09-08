@@ -174,6 +174,20 @@
                 </div>
 
                 <div class="field full">
+                    <label for="robots">Homepage Robots Tag</label>
+                    @php
+                        $homepageRobots = old('robots', $settings['robots'] ?? 'index,follow');
+                    @endphp
+                    <select id="robots" name="robots">
+                        <option value="index,follow" @selected($homepageRobots === 'index,follow')>index, follow</option>
+                        <option value="index,nofollow" @selected($homepageRobots === 'index,nofollow')>index, nofollow</option>
+                        <option value="noindex,follow" @selected($homepageRobots === 'noindex,follow')>noindex, follow</option>
+                        <option value="noindex,nofollow" @selected($homepageRobots === 'noindex,nofollow')>noindex, nofollow</option>
+                    </select>
+                    <small>Controls whether search engines index the homepage and follow its links.</small>
+                </div>
+
+                <div class="field full">
                     <label for="schema">Homepage Schema JSON-LD</label>
                     <textarea id="schema" name="schema" rows="12" placeholder='{"@context":"https://schema.org","@type":"WebPage"}'>{{ old('schema', $settings['schema'] ?? '') }}</textarea>
                     <small>Optional custom schema. Enter valid JSON-LD; it will be added to the homepage frontend.</small>

@@ -11,6 +11,7 @@
         box-sizing: border-box;
     }
     .product-testimonials-title {
+        display: block;
         text-align: center;
         font-size: 1.75rem;
         font-weight: 700;
@@ -142,7 +143,7 @@
 
 <section class="product-testimonials-section">
     <div class="product-testimonials-container">
-        <h2 class="product-testimonials-title">What Our Clients Say</h2>
+        <span class="product-testimonials-title">What Our Clients Say</span>
         
         <div class="product-testimonials-viewport">
             <div class="product-testimonials-track" id="ptTrack">
