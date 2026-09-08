@@ -176,7 +176,7 @@
                 <div class="field full">
                     <label for="robots">Homepage Robots Tag</label>
                     @php
-                        $homepageRobots = old('robots', $settings['robots'] ?? 'index,follow');
+                        $homepageRobots = str_replace(' ', '', (string) old('robots', $settings['robots'] ?? 'index,follow'));
                     @endphp
                     <select id="robots" name="robots">
                         <option value="index,follow" @selected($homepageRobots === 'index,follow')>index, follow</option>

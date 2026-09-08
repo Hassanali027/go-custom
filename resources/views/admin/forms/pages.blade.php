@@ -98,9 +98,14 @@
             
             <div class="field">
                 <label>Robots</label>
+                @php
+                    $pageRobots = str_replace(' ', '', (string) ($v('robots', 'index,follow') ?: 'index,follow'));
+                @endphp
                 <select name="robots">
-                    <option value="index,follow">index, follow</option>
-                    <option value="noindex,nofollow">noindex, nofollow</option>
+                    <option value="index,follow" @selected($pageRobots === 'index,follow')>index, follow</option>
+                    <option value="index,nofollow" @selected($pageRobots === 'index,nofollow')>index, nofollow</option>
+                    <option value="noindex,follow" @selected($pageRobots === 'noindex,follow')>noindex, follow</option>
+                    <option value="noindex,nofollow" @selected($pageRobots === 'noindex,nofollow')>noindex, nofollow</option>
                 </select>
             </div>
             
