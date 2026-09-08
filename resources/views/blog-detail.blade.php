@@ -279,7 +279,7 @@
         }
         .author-role {
             font-size: 0.8125rem;
-            color: #666;
+            color: #000;
             margin-top: 0.3125rem;
         }
         .author-bio {

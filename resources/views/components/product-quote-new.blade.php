@@ -77,7 +77,7 @@
     .pqn-header-text p {
         margin: 0;
         font-size: 0.875rem;
-        color: #555;
+        color: #000;
         line-height: 1.5;
     }
     

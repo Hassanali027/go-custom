@@ -195,7 +195,7 @@
             background: #fafafa;
             height: 5.75rem;
             min-height: 5.75rem;
-            resize: vertical;
+            resize: none;
         }
 
         .submit-btn-wrap {

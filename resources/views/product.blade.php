@@ -2095,7 +2095,7 @@
             <div class="desktop-title-desc">
                 <h1 style="font-size: 2.25rem; margin-bottom: 0.625rem; color: #000; line-height: 1.2; font-family: 'Open Sans', sans-serif;">{{ $pTitle }}</h1>
                 
-                <p class="desc-text" style="color: #333; font-size: 0.9375rem; line-height: 1.6; margin-bottom: 1.5625rem; text-align: justify;">
+                <p class="desc-text" style="color: #000; font-size: 0.9375rem; line-height: 1.6; margin-bottom: 1.5625rem; text-align: justify;">
                     {{ $descText }}
                 </p>
             </div>

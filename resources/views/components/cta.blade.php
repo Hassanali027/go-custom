@@ -86,7 +86,7 @@
     .cta-desc {
         font-family: 'DM Sans', sans-serif;
         font-size: 0.9375rem;
-        color: #333;
+        color: #000;
         line-height: 1.6;
         margin-bottom: 1.5rem;
         max-width: 30rem;

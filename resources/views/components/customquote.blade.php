@@ -282,7 +282,7 @@
     }
 
     .qf-feature-text p {
-        color: #666666;
+        color: #000;
         margin: 0;
         line-height: 1.5;
     }

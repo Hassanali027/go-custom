@@ -82,7 +82,7 @@
     .tf-quote {
         font-size: 0.9062rem;
         line-height: 1.6;
-        color: #333;
+        color: #000;
         margin-bottom: 1.25rem;
         font-style: normal;
     }
