@@ -91,13 +91,6 @@ class AdminHomepageController extends Controller
     public function update(Request $request)
     {
         $schemaInput = trim((string) $request->input('schema', ''));
-        if ($schemaInput !== '' && preg_match(
-            '#^\s*<script\b[^>]*type\s*=\s*(["\'])application/ld\+json\1[^>]*>(.*?)</script>\s*$#is',
-            $schemaInput,
-            $schemaMatch
-        )) {
-            $schemaInput = trim($schemaMatch[2]);
-        }
         $request->merge(['schema' => $schemaInput !== '' ? $schemaInput : null]);
 
         $request->validate([

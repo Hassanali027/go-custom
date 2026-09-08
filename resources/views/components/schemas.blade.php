@@ -330,33 +330,47 @@
         ?? $schemaBlog['schema']
         ?? (($settings ?? [])['schema'] ?? null)
         ?? ($schema ?? null);
-    $schemaCustomPayload = null;
 
-    if (is_array($schemaCustomRaw)) {
-        $schemaCustomPayload = $schemaCustomRaw;
-    } elseif (is_string($schemaCustomRaw) && trim($schemaCustomRaw) !== '') {
-        $schemaCustomJson = trim($schemaCustomRaw);
-        if (preg_match(
-            '#^\s*<script\b[^>]*type\s*=\s*(["\'])application/ld\+json\1[^>]*>(.*?)</script>\s*$#is',
-            $schemaCustomJson,
-            $schemaCustomMatch
-        )) {
-            $schemaCustomJson = trim($schemaCustomMatch[2]);
-        }
-        $schemaCustomDecoded = json_decode($schemaCustomJson, true);
-        if (json_last_error() === JSON_ERROR_NONE && is_array($schemaCustomDecoded)) {
-            $schemaCustomPayload = $schemaCustomDecoded;
+    $hasCustomSchema = false;
+    $customSchemaHtml = '';
+
+    if (!empty($schemaCustomRaw)) {
+        if (is_array($schemaCustomRaw)) {
+            $customSchemaHtml = '<script type="application/ld+json">' . "\n" . json_encode(
+                $schemaCustomRaw,
+                JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE
+            ) . "\n</script>";
+            $hasCustomSchema = true;
+        } elseif (is_string($schemaCustomRaw) && trim($schemaCustomRaw) !== '') {
+            $rawTrimmed = trim($schemaCustomRaw);
+            if (stripos($rawTrimmed, '<script') !== false) {
+                $customSchemaHtml = $rawTrimmed;
+            } else {
+                $decoded = json_decode($rawTrimmed, true);
+                if (json_last_error() === JSON_ERROR_NONE && (is_array($decoded) || is_object($decoded))) {
+                    $customSchemaHtml = '<script type="application/ld+json">' . "\n" . json_encode(
+                        $decoded,
+                        JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE
+                    ) . "\n</script>";
+                } else {
+                    $customSchemaHtml = '<script type="application/ld+json">' . "\n" . $rawTrimmed . "\n</script>";
+                }
+            }
+            $hasCustomSchema = true;
         }
     }
 @endphp
-@if($schemaCustomPayload !== null)
+@if(!$schemaIsHomepage)
 <script type="application/ld+json">
 {!! json_encode(
-    $schemaCustomPayload,
+    $schemaPayload,
     JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE
 ) !!}
 </script>
-@elseif(!$schemaIsHomepage)
+@endif
+@if($hasCustomSchema)
+{!! $customSchemaHtml !!}
+@elseif($schemaIsHomepage)
 <script type="application/ld+json">
 {!! json_encode(
     $schemaPayload,
