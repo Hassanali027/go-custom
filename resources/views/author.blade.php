@@ -277,7 +277,6 @@
             transition: box-shadow 0.3s, transform 0.3s;
             position: relative;
             -webkit-tap-highlight-color: transparent;
-            min-height: 27.125rem;
             box-shadow: 0 0.25rem 0.9375rem rgba(0,0,0,0.03);
             cursor: pointer;
         }
@@ -299,7 +298,7 @@
         }
 
         .blog-card__content {
-            padding: 1.5rem;
+            padding: 1.5rem 1.5rem 0.75rem;
             display: flex;
             flex-direction: column;
             flex: 1;
@@ -323,10 +322,6 @@
             margin-bottom: 0.75rem;
             text-decoration: none;
             transition: color 0.3s;
-            display: -webkit-box;
-            -webkit-line-clamp: 2;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
         }
 
         .blog-card__title::after {
@@ -360,8 +355,8 @@
             min-height: 2.8rem;
         }
 
-        .blog-card__desc + div {
-            margin-top: auto;
+        .blog-card__title + div {
+            margin-top: 0.5rem;
         }
 
         .blog-card__author {
@@ -802,7 +797,7 @@
                                     <span class="blog-card__date">{{ $bDate }}</span>
                                 </div>
                                 <a href="{{ $bUrl }}" class="blog-card__title" onclick="event.stopPropagation();">{{ $item['title'] }}</a>
-                                <p class="blog-card__desc">{{ Str::limit(html_entity_decode(html_entity_decode(strip_tags($bExcerpt))), 90) }}</p>
+
                                 <div>
                                     <a href="{{ $bUrl }}" class="blog-card__readmore" onclick="event.stopPropagation();">
                                         Read Blog
