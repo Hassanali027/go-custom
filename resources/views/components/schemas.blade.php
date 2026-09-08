@@ -6,7 +6,7 @@
             ? $schemaSiteUrl
             : rtrim(url('/' . trim(request()->path(), '/')), '/') . '/'
     );
-    $schemaLogo = asset('uploads/logo-rigid-boxes.svg');
+    $schemaLogo = asset('uploads/header-logo.svg');
     $schemaSettings = $siteSettings ?? [];
 
     $schemaImageUrl = function ($path) {
@@ -40,7 +40,7 @@
         ?? ($schemaAuthor['title'] ?? null)
         ?? (($settings ?? [])['meta_title'] ?? null)
         ?? (trim(request()->path(), '/') === ''
-            ? 'The Rigid Boxes'
+            ? 'Go Custom Boxes'
             : ucwords(str_replace(['-', '/'], [' ', ' - '], trim(request()->path(), '/'))));
 
     $schemaPageDescription = $metaDescription
@@ -48,7 +48,7 @@
         ?? ($schemaCategory['meta_description'] ?? $schemaCategory['description'] ?? null)
         ?? ($schemaBlog['meta_description'] ?? $schemaBlog['excerpt'] ?? null)
         ?? (($settings ?? [])['meta_description'] ?? null)
-        ?? 'Custom rigid boxes and premium packaging solutions designed for brands and products.';
+        ?? 'Custom printed boxes and premium packaging solutions designed for brands and products.';
     $schemaPageDescription = trim(strip_tags((string) $schemaPageDescription));
 
     $schemaAddress = trim(preg_replace('/\s+/', ' ', strip_tags(str_replace(
@@ -66,13 +66,13 @@
         [
             '@type' => 'Organization',
             '@id' => $schemaOrganizationId,
-            'name' => 'The Rigid Boxes',
+            'name' => 'Go Custom Boxes',
             'url' => $schemaSiteUrl,
             'logo' => [
                 '@type' => 'ImageObject',
                 'url' => $schemaLogo,
             ],
-            'description' => 'Custom rigid box and premium packaging manufacturer.',
+            'description' => 'Custom printed packaging and boxes manufacturer.',
             'contactPoint' => [
                 '@type' => 'ContactPoint',
                 'telephone' => $schemaSettings['company_phone'] ?? '',
@@ -84,11 +84,11 @@
         [
             '@type' => 'LocalBusiness',
             '@id' => $schemaBusinessId,
-            'name' => 'The Rigid Boxes',
+            'name' => 'Go Custom Boxes',
             'url' => $schemaSiteUrl,
             'logo' => $schemaLogo,
             'image' => asset('uploads/Home-Banner.webp'),
-            'description' => 'Custom rigid boxes and premium packaging solutions for businesses.',
+            'description' => 'Custom printed boxes and premium packaging solutions for businesses.',
             'telephone' => $schemaSettings['company_phone'] ?? '',
             'email' => $schemaSettings['company_email'] ?? '',
             'priceRange' => '$$',
@@ -103,7 +103,7 @@
             '@type' => 'WebSite',
             '@id' => $schemaWebsiteId,
             'url' => $schemaSiteUrl,
-            'name' => 'The Rigid Boxes',
+            'name' => 'Go Custom Boxes',
             'publisher' => ['@id' => $schemaOrganizationId],
             'potentialAction' => [
                 '@type' => 'SearchAction',
@@ -274,7 +274,7 @@
             'sku' => !empty($schemaProduct['id']) ? (string) $schemaProduct['id'] : null,
             'brand' => [
                 '@type' => 'Brand',
-                'name' => 'The Rigid Boxes',
+                'name' => 'Go Custom Boxes',
             ],
             'mainEntityOfPage' => ['@id' => $schemaWebPageId],
         ], fn ($value) => $value !== null && $value !== '' && $value !== []);
@@ -283,7 +283,7 @@
     if (!empty($schemaBlog)) {
         $schemaBlogAuthor = $schemaBlog['joined_author_name']
             ?? $schemaBlog['author_name']
-            ?? 'The Rigid Boxes';
+            ?? 'Go Custom Boxes';
         $schemaGraph[] = array_filter([
             '@type' => 'BlogPosting',
             '@id' => $schemaPageUrl . '#article',
