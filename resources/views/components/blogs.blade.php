@@ -35,7 +35,7 @@
 
     .blogs-subtitle {
         font-size: 1rem;
-        color: #444;
+        color: #000;
         line-height: 1.5;
     }
 
@@ -160,7 +160,7 @@
         -webkit-box-orient: vertical;
         overflow: hidden;
         font-size: 0.875rem;
-        color: #3f3f3f;
+        color: #000;
         line-height: 1.6;
         margin-bottom: 1.5rem;
         flex: 0 0 auto;

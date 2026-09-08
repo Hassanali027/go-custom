@@ -112,7 +112,7 @@
         font-family: 'DM Sans', sans-serif;
         font-size: 1rem;
         line-height: 1.7;
-        color: black;
+        color: #000;
         margin: 0;
         text-align: justify;
     }
@@ -300,7 +300,7 @@
     .section-subtitle {
         font-family: 'DM Sans', sans-serif;
         font-size: 15px;
-        color: black;
+        color: #000;
         margin-bottom: 40px;
     }
 

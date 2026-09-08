@@ -73,7 +73,7 @@
 
         .featured-copy p.excerpt {
             font-size: 1rem;
-            color: var(--text-light);
+            color: #000;
             line-height: 1.6;
             margin: 0 0 1.25rem 0;
         }
@@ -172,7 +172,7 @@
         }
 
         .card-description {
-            color: #3f3f3f;
+            color: #000;
             line-height: 1.6;
             margin: 0 0 1.25rem;
             display: -webkit-box;

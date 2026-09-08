@@ -2317,7 +2317,7 @@
 
             .bs-desc {
                 font-family: 'DM Sans', sans-serif;
-               
+
                 color: #000;
                 margin-bottom: 0;
             }
@@ -2437,7 +2437,7 @@
 
             .see-feel-desc {
                 font-family: 'DM Sans', sans-serif;
-                
+
                 margin-bottom: 1.875rem;
                 line-height: 1.6;
                 color: rgba(255, 255, 255, 0.85);
@@ -2625,8 +2625,8 @@
             .uy-desc {
                 text-align: center;
                 font-family: 'DM Sans', sans-serif;
-                
-                /* color: #555; */
+
+                color: #000;
                 max-width: 37.5rem;
                 margin: 0 auto 2.5rem auto;
                 line-height: 1.5;
@@ -2837,7 +2837,7 @@
                 text-align: justify;
                 font-family: 'DM Sans', sans-serif;
                 font-size: 0.875rem;
-                /* color: #555; */
+                color: #000;
                 margin-bottom: 1.5625rem;
                 line-height: 1.5;
             }
@@ -2914,7 +2914,7 @@
                 text-align: justify;
                 font-family: 'DM Sans', sans-serif;
                 font-size: 0.8125rem;
-                /* color: #444; */
+                color: #000;
                 line-height: 1.5;
                 margin: 0;
             }
