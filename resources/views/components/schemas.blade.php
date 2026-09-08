@@ -1,11 +1,12 @@
 @php
     $schemaSiteUrl = rtrim(url('/'), '/');
+    $schemaIsHomepage = trim(request()->path(), '/') === '';
     $schemaPageUrl = $canonicalUrl ?? (
         trim(request()->path(), '/') === ''
             ? $schemaSiteUrl
             : rtrim(url('/' . trim(request()->path(), '/')), '/') . '/'
     );
-    $schemaLogo = asset('uploads/logo-rigid-boxes.svg');
+    $schemaLogo = asset('uploads/header-logo.svg');
     $schemaSettings = $siteSettings ?? [];
 
     $schemaImageUrl = function ($path) {
@@ -39,7 +40,7 @@
         ?? ($schemaAuthor['title'] ?? null)
         ?? (($settings ?? [])['meta_title'] ?? null)
         ?? (trim(request()->path(), '/') === ''
-            ? 'The Rigid Boxes'
+            ? 'Go Custom Boxes'
             : ucwords(str_replace(['-', '/'], [' ', ' - '], trim(request()->path(), '/'))));
 
     $schemaPageDescription = $metaDescription
@@ -47,7 +48,7 @@
         ?? ($schemaCategory['meta_description'] ?? $schemaCategory['description'] ?? null)
         ?? ($schemaBlog['meta_description'] ?? $schemaBlog['excerpt'] ?? null)
         ?? (($settings ?? [])['meta_description'] ?? null)
-        ?? 'Custom rigid boxes and premium packaging solutions designed for brands and products.';
+        ?? 'Custom printed boxes and premium packaging solutions designed for brands and products.';
     $schemaPageDescription = trim(strip_tags((string) $schemaPageDescription));
 
     $schemaAddress = trim(preg_replace('/\s+/', ' ', strip_tags(str_replace(
@@ -65,13 +66,13 @@
         [
             '@type' => 'Organization',
             '@id' => $schemaOrganizationId,
-            'name' => 'The Rigid Boxes',
+            'name' => 'Go Custom Boxes',
             'url' => $schemaSiteUrl,
             'logo' => [
                 '@type' => 'ImageObject',
                 'url' => $schemaLogo,
             ],
-            'description' => 'Custom rigid box and premium packaging manufacturer.',
+            'description' => 'Custom printed packaging and boxes manufacturer.',
             'contactPoint' => [
                 '@type' => 'ContactPoint',
                 'telephone' => $schemaSettings['company_phone'] ?? '',
@@ -83,11 +84,11 @@
         [
             '@type' => 'LocalBusiness',
             '@id' => $schemaBusinessId,
-            'name' => 'The Rigid Boxes',
+            'name' => 'Go Custom Boxes',
             'url' => $schemaSiteUrl,
             'logo' => $schemaLogo,
             'image' => asset('uploads/Home-Banner.webp'),
-            'description' => 'Custom rigid boxes and premium packaging solutions for businesses.',
+            'description' => 'Custom printed boxes and premium packaging solutions for businesses.',
             'telephone' => $schemaSettings['company_phone'] ?? '',
             'email' => $schemaSettings['company_email'] ?? '',
             'priceRange' => '$$',
@@ -102,7 +103,7 @@
             '@type' => 'WebSite',
             '@id' => $schemaWebsiteId,
             'url' => $schemaSiteUrl,
-            'name' => 'The Rigid Boxes',
+            'name' => 'Go Custom Boxes',
             'publisher' => ['@id' => $schemaOrganizationId],
             'potentialAction' => [
                 '@type' => 'SearchAction',
@@ -273,7 +274,7 @@
             'sku' => !empty($schemaProduct['id']) ? (string) $schemaProduct['id'] : null,
             'brand' => [
                 '@type' => 'Brand',
-                'name' => 'The Rigid Boxes',
+                'name' => 'Go Custom Boxes',
             ],
             'mainEntityOfPage' => ['@id' => $schemaWebPageId],
         ], fn ($value) => $value !== null && $value !== '' && $value !== []);
@@ -282,7 +283,7 @@
     if (!empty($schemaBlog)) {
         $schemaBlogAuthor = $schemaBlog['joined_author_name']
             ?? $schemaBlog['author_name']
-            ?? 'The Rigid Boxes';
+            ?? 'Go Custom Boxes';
         $schemaGraph[] = array_filter([
             '@type' => 'BlogPosting',
             '@id' => $schemaPageUrl . '#article',
@@ -329,27 +330,50 @@
         ?? $schemaBlog['schema']
         ?? (($settings ?? [])['schema'] ?? null)
         ?? ($schema ?? null);
-    $schemaCustomPayload = null;
 
-    if (is_array($schemaCustomRaw)) {
-        $schemaCustomPayload = $schemaCustomRaw;
-    } elseif (is_string($schemaCustomRaw) && trim($schemaCustomRaw) !== '') {
-        $schemaCustomDecoded = json_decode($schemaCustomRaw, true);
-        if (json_last_error() === JSON_ERROR_NONE && is_array($schemaCustomDecoded)) {
-            $schemaCustomPayload = $schemaCustomDecoded;
+    $hasCustomSchema = false;
+    $customSchemaHtml = '';
+
+    if (!empty($schemaCustomRaw)) {
+        if (is_array($schemaCustomRaw)) {
+            $customSchemaHtml = '<script type="application/ld+json">' . "\n" . json_encode(
+                $schemaCustomRaw,
+                JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE
+            ) . "\n</script>";
+            $hasCustomSchema = true;
+        } elseif (is_string($schemaCustomRaw) && trim($schemaCustomRaw) !== '') {
+            $rawTrimmed = trim($schemaCustomRaw);
+            if (stripos($rawTrimmed, '<script') !== false) {
+                $customSchemaHtml = $rawTrimmed;
+            } else {
+                $decoded = json_decode($rawTrimmed, true);
+                if (json_last_error() === JSON_ERROR_NONE && (is_array($decoded) || is_object($decoded))) {
+                    $customSchemaHtml = '<script type="application/ld+json">' . "\n" . json_encode(
+                        $decoded,
+                        JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE
+                    ) . "\n</script>";
+                } else {
+                    $customSchemaHtml = '<script type="application/ld+json">' . "\n" . $rawTrimmed . "\n</script>";
+                }
+            }
+            $hasCustomSchema = true;
         }
     }
 @endphp
+@if(!$schemaIsHomepage)
 <script type="application/ld+json">
 {!! json_encode(
     $schemaPayload,
     JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE
 ) !!}
 </script>
-@if($schemaCustomPayload !== null)
+@endif
+@if($hasCustomSchema)
+{!! $customSchemaHtml !!}
+@elseif($schemaIsHomepage)
 <script type="application/ld+json">
 {!! json_encode(
-    $schemaCustomPayload,
+    $schemaPayload,
     JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE
 ) !!}
 </script>

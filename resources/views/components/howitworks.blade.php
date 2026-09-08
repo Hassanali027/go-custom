@@ -54,6 +54,7 @@
     }
 
     .hiw-title {
+        display: block;
         font-size: 2rem;
         font-weight: 700;
         font-family: 'Open Sans', sans-serif;
@@ -104,8 +105,9 @@
         filter: drop-shadow(0 0.625rem 0.9375rem rgba(0, 0, 0, 0.25));
     }
 
-    .hiw-step-title {
-        font-size: 1.125rem;
+.hiw-step-title {
+    display: block;
+    font-size: 1.125rem;
         font-weight: 700;
         font-family: 'Open Sans', sans-serif;
         margin-bottom: 0.75rem;
@@ -168,7 +170,7 @@
     <img src="{{ asset('uploads/request-sample-kit-dots.svg') }}" alt="" class="hiw-bg-dots">
     <div class="hiw-container">
         <div class="hiw-label">HOW IT WORKS</div>
-        <h2 class="hiw-title">Simple 4&ndash;Step Order Process</h2>
+        <span class="hiw-title">Simple 4&ndash;Step Order Process</span>
         <p class="hiw-subtitle">Ordering custom printed boxes is quick and easy, from your first idea to delivery at
             your door.</p>
 
@@ -179,7 +181,7 @@
                     <img src="{{ asset('uploads/explore.webp') }}" alt="Explore" class="hiw-img"
                         onerror="this.src='https://placehold.co/150x120/0a2240/F6B72D?text=1.+Explore'">
                 </div>
-                <h3 class="hiw-step-title">1. Explore</h3>
+                <span class="hiw-step-title">1. Explore</span>
                 <p class="hiw-step-desc">Select your custom box, retail display or packaging accessory to get started.
                 </p>
             </div>
@@ -190,7 +192,7 @@
                     <img src="{{ asset('uploads/choose.webp') }}" alt="Choose" class="hiw-img"
                         onerror="this.src='https://placehold.co/150x120/0a2240/F6B72D?text=2.+Choose'">
                 </div>
-                <h3 class="hiw-step-title">2. Choose</h3>
+                <span class="hiw-step-title">2. Choose</span>
                 <p class="hiw-step-desc">Explore standard sizes and quantities to view pricing and start your design.
                 </p>
             </div>
@@ -201,7 +203,7 @@
                     <img src="{{ asset('uploads/design.webp') }}" alt="Design" class="hiw-img"
                         onerror="this.src='https://placehold.co/150x120/0a2240/F6B72D?text=3.+Design'">
                 </div>
-                <h3 class="hiw-step-title">3. Design</h3>
+                <span class="hiw-step-title">3. Design</span>
                 <p class="hiw-step-desc">Upload your artwork or create your own design using our templates.</p>
             </div>
 
@@ -211,7 +213,7 @@
                     <img src="{{ asset('uploads/order-home-step.webp') }}" alt="Order" class="hiw-img"
                         onerror="this.src='https://placehold.co/150x120/0a2240/F6B72D?text=4.+Order'">
                 </div>
-                <h3 class="hiw-step-title">4. Order</h3>
+                <span class="hiw-step-title">4. Order</span>
                 <p class="hiw-step-desc">We'll review your file, follow up with you if needed, and bring your vision to
                     life.</p>
             </div>

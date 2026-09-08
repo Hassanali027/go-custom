@@ -272,7 +272,8 @@
         object-fit: contain;
     }
 
-    .qf-feature-text h3 {
+    .qf-feature-title {
+        display: block;
         font-family: 'Open Sans', sans-serif;
         font-size: 1.125rem !important;
         font-weight: 700;
@@ -471,7 +472,7 @@
                     <img src="{{ asset('uploads/competitive-icon.svg') }}" alt="Competitive Pricing">
                 </div>
                 <div class="qf-feature-text">
-                    <h3>Competitive Pricing</h3>
+                    <span class="qf-feature-title">Competitive Pricing</span>
                     <p>High quality printing with transparent wholesale rates that fit your budget.</p>
                 </div>
             </div>
@@ -482,7 +483,7 @@
                     <img src="{{ asset('uploads/no-die-icon.svg') }}" alt="No Die or Plate Charges">
                 </div>
                 <div class="qf-feature-text">
-                    <h3>No Setup Fees</h3>
+                    <span class="qf-feature-title">No Setup Fees</span>
                     <p>No hidden charges on dies, plates or custom designs — ever.</p>
                 </div>
             </div>
@@ -493,7 +494,7 @@
                     <img src="{{ asset('uploads/fast-turn-icon.svg') }}" alt="Fast Turnarounds">
                 </div>
                 <div class="qf-feature-text">
-                    <h3>Fast Turnarounds</h3>
+                    <span class="qf-feature-title">Fast Turnarounds</span>
                     <p>Rush production options as fast as 4–6 business days.</p>
                 </div>
             </div>
@@ -504,7 +505,7 @@
                     <img src="{{ asset('uploads/free-ship-icon.svg') }}" alt="Free Shipping">
                 </div>
                 <div class="qf-feature-text">
-                    <h3>Free Shipping</h3>
+                    <span class="qf-feature-title">Free Shipping</span>
                     <p>Anywhere in the USA, with zero hidden fees and full tracking.</p>
                 </div>
             </div>

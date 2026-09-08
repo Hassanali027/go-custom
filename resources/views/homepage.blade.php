@@ -13,6 +13,7 @@
     @if(!empty($settings['meta_keywords']))
     <meta name="keywords" content="{{ $settings['meta_keywords'] }}">
     @endif
+    <meta name="robots" content="{{ $settings['robots'] ?? 'index,follow' }}">
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -94,7 +95,8 @@
             text-align: center;
         }
 
-        .custom-boxes-container h2 {
+        .custom-boxes-heading {
+            display: block;
             font-family: 'Open Sans', sans-serif;
             font-weight: 700;
             font-size: 2rem;
@@ -1283,7 +1285,7 @@
                 padding: 0 0.75rem !important;
             }
 
-            .custom-boxes-container h2 {
+            .custom-boxes-heading {
                 font-size: 1.5rem;
             }
 
@@ -2179,7 +2181,7 @@
         <section class="custom-boxes-section">
             <div class="custom-boxes-container">
 
-                <h2>Great Unboxing Starts with the Right Structure</h2>
+                <span class="custom-boxes-heading">Great Unboxing Starts with the Right Structure</span>
                 <p class="section-desc">Box opening changes customer’s experience instantly. Right structure anticipates
                     a customer’s pleasant unboxing experience. Explore our rigid box styles and choose the one that
                     matches your vision.</p>
@@ -2305,6 +2307,7 @@
             }
 
             .bs-heading {
+                display: block;
                 font-family: 'Open Sans', sans-serif;
                 font-size: 1.75rem;
                 font-weight: 700;
@@ -2349,7 +2352,7 @@
         </style>
         <section class="best-seller-section">
             <div class="best-seller-container">
-                <h2 class="bs-heading">Best Seller Product</h2>
+                <span class="bs-heading">Best Seller Product</span>
                 <p class="bs-desc">Custom packaging for every industry, from retail and beauty to
                     electronics&mdash;designed to fit your style and requirements.</p>
 
@@ -2821,6 +2824,7 @@
             }
 
             .wcc-title {
+                display: block;
                 font-family: 'Open Sans', sans-serif;
                 font-size: 1.75rem !important;
                 font-weight: 700;
@@ -3072,7 +3076,7 @@
 
                 <!-- LEFT CONTENT & COLLAGE -->
                 <div class="wcc-left">
-                    <h2 class="wcc-title">Why Choose Go Custom Boxes</h2>
+                    <span class="wcc-title">Why Choose Go Custom Boxes</span>
                     <p class="wcc-desc">From concept to production, we make custom packaging simple, reliable, and
                         tailored to your brand with quality materials and attention to detail.</p>
 

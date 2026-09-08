@@ -230,8 +230,10 @@
             <div class="field">
                 <label>Robots</label>
                 <select name="robots">
-                    <option value="index,follow">index, follow</option>
-                    <option value="noindex,nofollow">noindex, nofollow</option>
+                    <option value="index,follow" @selected($v('robots', 'index,follow') === 'index,follow')>index, follow</option>
+                    <option value="index,nofollow" @selected($v('robots') === 'index,nofollow')>index, nofollow</option>
+                    <option value="noindex,follow" @selected($v('robots') === 'noindex,follow')>noindex, follow</option>
+                    <option value="noindex,nofollow" @selected($v('robots') === 'noindex,nofollow')>noindex, nofollow</option>
                 </select>
             </div>
             

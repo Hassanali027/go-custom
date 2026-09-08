@@ -120,7 +120,7 @@ class AdminContentController extends Controller
         $request->validate([
             'title' => 'required|string|max:255',
             'slug' => 'nullable|string|max:255',
-            'schema' => 'nullable|json',
+            'schema' => 'nullable|string|max:50000',
         ]);
         $table = ['products'=>'admin_products','categories'=>'admin_categories','blogs'=>'admin_blogs','pages'=>'admin_pages','authors'=>'admin_authors'][$module];
         $columns = [

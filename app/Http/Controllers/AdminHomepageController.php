@@ -19,6 +19,7 @@ class AdminHomepageController extends Controller
             'meta_title' => 'Custom Printed Boxes & Packaging - Go-Custom-boxes',
             'meta_description' => 'Custom printed rigid packaging boxes at wholesale rates. Premium luxury boxes for retail, cosmetic, and gift packaging.',
             'meta_keywords' => '',
+            'robots' => 'index,follow',
             'schema' => '',
             'hero_title' => 'Custom Printed Boxes & Packaging Manufacturer',
             'hero_description' => 'Get premium custom rigid boxes and packaging solutions designed for your brand.',
@@ -89,11 +90,16 @@ class AdminHomepageController extends Controller
 
     public function update(Request $request)
     {
+        $schemaInput = trim((string) $request->input('schema', ''));
+        $request->merge(['schema' => $schemaInput !== '' ? $schemaInput : null]);
+
         $request->validate([
             'meta_title' => 'nullable|string|max:255',
             'meta_description' => 'nullable|string|max:1000',
             'meta_keywords' => 'nullable|string|max:1000',
-            'schema' => 'nullable|json',
+            'robots' => 'required|in:index,follow,index,nofollow,noindex,follow,noindex,nofollow',
+            // Accept both raw JSON-LD and a complete <script type="application/ld+json"> block.
+            'schema' => 'nullable|string|max:50000',
             'hero_title' => 'nullable|string|max:255',
             'hero_description' => 'nullable|string',
             'hero_image' => 'nullable|image|mimes:jpeg,png,jpg,webp,svg|max:5120',
@@ -116,6 +122,7 @@ class AdminHomepageController extends Controller
         $settings['meta_title'] = $request->input('meta_title');
         $settings['meta_description'] = $request->input('meta_description');
         $settings['meta_keywords'] = $request->input('meta_keywords');
+        $settings['robots'] = $request->input('robots', 'index,follow');
         $settings['schema'] = $request->input('schema');
         $settings['hero_title'] = $request->input('hero_title');
         $settings['hero_description'] = $request->input('hero_description');
@@ -165,7 +172,7 @@ class AdminHomepageController extends Controller
         // Save only homepage-specific fields. Footer settings are managed by
         // AdminFooterController and must remain untouched here.
         $homepageKeys = [
-            'meta_title', 'meta_description', 'meta_keywords', 'schema',
+            'meta_title', 'meta_description', 'meta_keywords', 'robots', 'schema',
             'hero_title', 'hero_description', 'hero_image',
             'popular_hero_title', 'popular_hero_description', 'popular_hero_image',
             'popular_hero_primary_button_text', 'popular_hero_primary_button_url',
@@ -179,7 +186,7 @@ class AdminHomepageController extends Controller
             $valueType = 'text';
             $section = 'general';
 
-            if (in_array($key, ['meta_title', 'meta_description', 'meta_keywords', 'schema'])) {
+            if (in_array($key, ['meta_title', 'meta_description', 'meta_keywords', 'robots', 'schema'])) {
                 $section = 'seo';
             } elseif (in_array($key, ['hero_title', 'hero_description', 'hero_image', 'popular_hero_title', 'popular_hero_description', 'popular_hero_image', 'popular_hero_primary_button_text', 'popular_hero_primary_button_url', 'popular_hero_secondary_button_text', 'popular_hero_secondary_button_url'])) {
                 $section = 'hero';
