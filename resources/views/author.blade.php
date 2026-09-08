@@ -813,11 +813,7 @@
                         </article>
                         @endforeach
                     </div>
-                    <div class="load-more-container" style="width: 100%; display: flex; justify-content: center; margin-top: 2.5rem;">
-                        <button class="btn-load-more" style="width: 12.625rem; height: 3.375rem; background-color: #FFB400; color: #000; font-family: 'Open Sans', sans-serif; font-size: 1rem; font-weight: 600; border: none; border-radius: 0.25rem; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background-color 0.3s, box-shadow 0.3s; box-shadow: 0 0.25rem 0.625rem rgba(0, 0, 0, 0.15);">
-                            Load more
-                        </button>
-                    </div>
+
                 @else
                     <p style="font-family: 'Open Sans', sans-serif; font-size: 1rem; color: #555;">No published blogs found for this author yet.</p>
                 @endif
