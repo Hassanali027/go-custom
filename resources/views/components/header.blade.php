@@ -1082,7 +1082,7 @@
         <ul class="header-nav" style="display: flex; align-items: center; justify-content: center; margin: 0; padding: 0; list-style: none; flex-grow: 1; gap: 1.75rem;">
             <li><a href="/" style="color: #000000; text-decoration: none; font-weight: 700; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 0.9375rem;">Home</a></li>
             <li class="has-mega" data-mega-type="custom-boxes">
-                <a href="{{ url('/popular-products/') }}" class="mega-trigger" aria-haspopup="true" style="color: #000000; text-decoration: none; font-weight: 700; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 0.9375rem;">Popular product</a>
+                <a href="{{ url('/popular-products/') }}" class="mega-trigger" aria-haspopup="true" style="color: #000000; text-decoration: none; font-weight: 700; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 0.9375rem;">Hot product</a>
             </li>
             @foreach($navParentItems as $navParent)
             <li class="has-mega" data-mega-type="{{ $navParent['slug'] }}">
@@ -1175,8 +1175,8 @@
                 </li>
                 <li class="mobile-nav-item has-dropdown">
                     <div class="mobile-nav-header" onclick="this.parentElement.classList.toggle('open')">
-                        <a href="#" class="mobile-nav-link-top" onclick="event.preventDefault(); event.stopPropagation(); this.parentElement.parentElement.classList.toggle('open');">Popular product</a>
-                        <button type="button" class="mobile-dropdown-toggle" aria-label="Toggle Popular product dropdown">
+                        <a href="#" class="mobile-nav-link-top" onclick="event.preventDefault(); event.stopPropagation(); this.parentElement.parentElement.classList.toggle('open');">Hot product</a>
+                        <button type="button" class="mobile-dropdown-toggle" aria-label="Toggle Hot product dropdown">
                             <svg class="chevron-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                                 <polyline points="6 9 12 15 18 9"></polyline>
                             </svg>
