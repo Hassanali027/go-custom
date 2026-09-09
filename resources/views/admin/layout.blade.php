@@ -210,7 +210,7 @@
         </nav>
         <div class="side-bottom">
             <nav class="nav">
-                <a href="/" target="_blank">
+                <a href="/" target="_blank" rel="noopener noreferrer">
                     <i class="fa-solid fa-arrow-up-right-from-square"></i>
                     <span>View Website</span>
                 </a>

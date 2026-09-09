@@ -95,18 +95,18 @@
 
 @php
     $brandLogos = [
-        ['file' => 'trusted-true-girl.svg', 'alt' => 'TrueGirl'],
-        ['file' => 'trusted-jeeter-mart.svg', 'alt' => 'Jester Mart'],
-        ['file' => 'trusted-bass-pro-shop.svg', 'alt' => 'Bass Pro Shops'],
-        ['file' => 'trusted-hulu-motor.svg', 'alt' => 'The Hulu Motel'],
-        ['file' => 'trusted-red-bull-logo.png', 'alt' => 'Red Bull'],
-        ['file' => 'trusted-kinky.webp', 'alt' => 'Kinky'],
-        ['file' => 'trusted-voli-logo.webp', 'alt' => 'Voli'],
-        ['file' => 'trusted-burger-bar.svg', 'alt' => 'Burger Bar'],
-        ['file' => 'trusted-flowgardens-logo.webp', 'alt' => 'Flowgardens'],
-        ['file' => 'trusted-her-piece-peace-logo.webp', 'alt' => 'Her Piece Peace'],
-        ['file' => 'trusted-neat-logo.webp', 'alt' => 'Neat'],
-        ['file' => 'trusted-springtastic-logo.webp', 'alt' => 'Springtastic'],
+        ['file' => 'trusted-true-girl.svg', 'alt' => 'TrueGirl logo'],
+        ['file' => 'trusted-jeeter-mart.svg', 'alt' => 'Jeeter Mart logo'],
+        ['file' => 'trusted-bass-pro-shop.svg', 'alt' => 'Bass Pro Shops logo'],
+        ['file' => 'trusted-hulu-motor.svg', 'alt' => 'The Hulu Motel logo'],
+        ['file' => 'trusted-red-bull-logo.png', 'alt' => 'Red Bull logo'],
+        ['file' => 'trusted-kinky.webp', 'alt' => 'Kinky logo'],
+        ['file' => 'trusted-voli-logo.webp', 'alt' => 'Voli logo'],
+        ['file' => 'trusted-burger-bar.svg', 'alt' => 'Burger Bar logo'],
+        ['file' => 'trusted-flowgardens-logo.webp', 'alt' => 'Flowgardens logo'],
+        ['file' => 'trusted-her-piece-peace-logo.webp', 'alt' => 'Her Piece Peace logo'],
+        ['file' => 'trusted-neat-logo.webp', 'alt' => 'Neat logo'],
+        ['file' => 'trusted-springtastic-logo.webp', 'alt' => 'Springtastic logo'],
     ];
 @endphp
 
@@ -118,7 +118,7 @@
                     <div class="brand-logos-set" @if ($isDuplicate) aria-hidden="true" @endif>
                         @foreach ($brandLogos as $brandLogo)
                             <div class="brand-logo-item">
-                                <img src="{{ asset('uploads/' . $brandLogo['file']) }}" alt="{{ $isDuplicate ? '' : $brandLogo['alt'] }}">
+                                <img src="{{ asset('uploads/' . $brandLogo['file']) }}" alt="{{ $brandLogo['alt'] }}">
                             </div>
                         @endforeach
                     </div>

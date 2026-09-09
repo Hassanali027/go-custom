@@ -274,8 +274,8 @@
     <div class="cta-container">
         <div class="cta-banner">
             <div class="cta-text-card">
-                <img src="{{ asset('uploads/cta-ellipse-1.png') }}" alt="" class="cta-ellipse cta-ellipse-1">
-                <img src="{{ asset('uploads/cta-ellipse-2.png') }}" alt="" class="cta-ellipse cta-ellipse-2">
+                <img src="{{ asset('uploads/cta-ellipse-1.png') }}" alt="Decorative yellow ellipse" class="cta-ellipse cta-ellipse-1">
+                <img src="{{ asset('uploads/cta-ellipse-2.png') }}" alt="Decorative blue ellipse" class="cta-ellipse cta-ellipse-2">
                 <span class="cta-heading" style="display: block;">Get Your Custom<br class="mobile-br"> <span class="desktop-only-space"> </span>Packaging Today</span>
                 <p class="cta-desc">Deliver elegance, protection, and a<br class="mobile-br"> memorable unboxing experience with<br class="mobile-br"> fully customized rigid box solutions.</p>
                 <a href="/request-quote/" class="cta-btn">
@@ -286,7 +286,7 @@
                 </a>
             </div>
             <div class="cta-image-wrapper">
-                <img src="{{ asset('uploads/Ellipse 793.png') }}" alt="" class="cta-desktop-ellipse">
+                <img src="{{ asset('uploads/Ellipse 793.png') }}" alt="Decorative packaging background ellipse" class="cta-desktop-ellipse">
                 <img src="{{ asset('uploads/cta-img.webp') }}" class="cta-main-img" alt="Custom Packaging" onerror="this.src='https://placehold.co/540x324/f5bd00/112a46?text=Custom+Packaging'">
             </div>
         </div>

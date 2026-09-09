@@ -149,7 +149,7 @@
                         <div class="list-group">
                             <ul class="sitemap-list">
                                 @foreach($chunk as $blog)
-                                    <li><a href="/blog/{{ $blog->slug }}">{{ $blog->title }}</a></li>
+                                    <li><a href="/blog/{{ $blog->slug }}/">{{ $blog->title }}</a></li>
                                 @endforeach
                             </ul>
                         </div>

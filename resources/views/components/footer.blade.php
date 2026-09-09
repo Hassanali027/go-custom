@@ -138,9 +138,12 @@
                                 <img src="{{ asset('images/bi_pinterest.png') }}" alt="Pinterest" class="social-icon-img">
                             </a>
                             
-                            <a href="{{ $siteSettings['social_youtube'] ?? '#' }}" target="_blank" rel="noopener" class="social-icon" aria-label="YouTube">
-                                <img src="{{ asset('images/social-youtube.png') }}" alt="YouTube" class="social-icon-img">
-                            </a>
+                            @if(!empty($siteSettings['social_youtube']))
+                                <a href="{{ $siteSettings['social_youtube'] }}" target="_blank" rel="noopener" class="social-icon" aria-label="YouTube">
+                                    <span class="visually-hidden">YouTube</span>
+                                    <img src="{{ asset('images/social-youtube.png') }}" alt="YouTube" class="social-icon-img">
+                                </a>
+                            @endif
                         </div>
                     </div>
                 </div>
@@ -168,9 +171,12 @@
                         <img src="{{ asset('images/bi_pinterest.png') }}" alt="Pinterest" class="social-icon-img">
                     </a>
                     
-                    <a href="{{ $siteSettings['social_youtube'] ?? '#' }}" target="_blank" rel="noopener" class="social-icon" aria-label="YouTube">
-                        <img src="{{ asset('images/social-youtube.png') }}" alt="YouTube" class="social-icon-img">
-                    </a>
+                    @if(!empty($siteSettings['social_youtube']))
+                        <a href="{{ $siteSettings['social_youtube'] }}" target="_blank" rel="noopener" class="social-icon" aria-label="YouTube">
+                            <span class="visually-hidden">YouTube</span>
+                            <img src="{{ asset('images/social-youtube.png') }}" alt="YouTube" class="social-icon-img">
+                        </a>
+                    @endif
                 </div>
                 <p class="copyright">© 2026 Go Custom Boxes. All rights reserved.</p>
                 <div class="payment-methods">

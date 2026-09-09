@@ -755,7 +755,7 @@
                         </p>
                         <div class="author-social">
                             @if(!empty($author['linkedin']))
-                            <a href="{{ $author['linkedin'] }}" class="social-link" aria-label="LinkedIn Profile" target="_blank">
+                            <a href="{{ $author['linkedin'] }}" class="social-link" aria-label="LinkedIn Profile" target="_blank" rel="noopener noreferrer">
                                 <svg class="author-social-icon" viewBox="0 0 24 24" fill="currentColor">
                                     <path
                                         d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
@@ -764,13 +764,13 @@
                             </a>
                             @endif
                             @if(!empty($author['twitter']))
-                            <a href="{{ $author['twitter'] }}" class="social-link" aria-label="Twitter Profile" target="_blank">
+                            <a href="{{ $author['twitter'] }}" class="social-link" aria-label="Twitter Profile" target="_blank" rel="noopener noreferrer">
                                 <i class="fa-brands fa-twitter author-social-icon"></i>
                                 Twitter
                             </a>
                             @endif
                             @if(!empty($author['facebook']))
-                            <a href="{{ $author['facebook'] }}" class="social-link" aria-label="Facebook Profile" target="_blank">
+                            <a href="{{ $author['facebook'] }}" class="social-link" aria-label="Facebook Profile" target="_blank" rel="noopener noreferrer">
                                 <i class="fa-brands fa-facebook author-social-icon"></i>
                                 Facebook
                             </a>
@@ -791,14 +791,14 @@
                         @php
                             $bDate = !empty($item['publish_date']) ? date('M d, Y', strtotime($item['publish_date'])) : (!empty($item['created_at']) ? date('M d, Y', strtotime($item['created_at'])) : 'Nov 15, 2024');
                             $bExcerpt = !empty(trim((string) ($item['excerpt'] ?? ''))) ? $item['excerpt'] : (!empty(trim((string) ($item['content'] ?? ''))) ? $item['content'] : '');
-                            $bUrl = url('/blog/' . $item['slug']);
+                            $bUrl = url('/blog/' . $item['slug']) . '/';
                             $blogImg = !empty($item['image']) ? (\Illuminate\Support\Str::startsWith($item['image'], ['http', 'storage/', 'uploads/', 'images/']) ? asset($item['image']) : asset('storage/'.$item['image'])) : asset('images/below-hero.png');
                         @endphp
                         <article class="blog-card" onclick="window.location.href='{{ $bUrl }}';" style="cursor: pointer;">
                             <img src="{{ $blogImg }}" alt="{{ $item['title'] }}" class="blog-card__image" onerror="this.src='{{ asset('images/below-hero.png') }}'" loading="lazy">
                             <div class="blog-card__content">
                                 <div class="blog-card__meta">
-                                    <a href="{{ url('/author/' . $author['slug']) }}" class="blog-card__author" style="color:inherit;text-decoration:none;z-index:2;position:relative;" onclick="event.stopPropagation();">{{ $author['title'] }}</a>
+                                    <a href="{{ url('/author/' . $author['slug']) }}/" class="blog-card__author" style="color:inherit;text-decoration:none;z-index:2;position:relative;" onclick="event.stopPropagation();">{{ $author['title'] }}</a>
                                     <span class="blog-card__date">{{ $bDate }}</span>
                                 </div>
                                 <a href="{{ $bUrl }}" class="blog-card__title" onclick="event.stopPropagation();">{{ $item['title'] }}</a>

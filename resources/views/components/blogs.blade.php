@@ -377,13 +377,13 @@
                                 : 'Explore how eco-friendly rigid boxes are transforming luxury packaging with sustainable solutions.');
                         $bSlug = $blog->slug ?? 'blog-detail';
                         $bImg = !empty($blog->image) ? asset($blog->image) : asset('uploads/industry-custom-luxury-box.jfif');
-                        $bUrl = url('/blog/' . $bSlug);
+                        $bUrl = url('/blog/' . $bSlug) . '/';
                     @endphp
                     <article class="blog-card" onclick="window.location.href='{{ $bUrl }}';" style="cursor: pointer;">
                         <img src="{{ $bImg }}" alt="{{ $bTitle }}" class="blog-card__image" onerror="this.src='https://placehold.co/400x240/dddddd/555555?text=Blog+Image'">
                         <div class="blog-card__content">
                             <div class="blog-card__meta">
-                                <a href="{{ url('/author/' . $authorSlug) }}" class="blog-card__author" style="color:inherit;text-decoration:none;z-index:2;position:relative;" onclick="event.stopPropagation();">{{ $bAuthor }}</a>
+                                <a href="{{ url('/author/' . $authorSlug) }}/" class="blog-card__author" style="color:inherit;text-decoration:none;z-index:2;position:relative;" onclick="event.stopPropagation();">{{ $bAuthor }}</a>
                                 <span class="blog-card__date">{{ $bDate }}</span>
                             </div>
                             <a href="{{ $bUrl }}" class="blog-card__title" onclick="event.stopPropagation();">{{ $bTitle }}</a>

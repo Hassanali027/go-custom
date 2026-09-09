@@ -1014,6 +1014,18 @@
             margin-right: 0.3125rem;
         }
     }
+
+    .visually-hidden {
+        position: absolute !important;
+        width: 1px !important;
+        height: 1px !important;
+        padding: 0 !important;
+        margin: -1px !important;
+        overflow: hidden !important;
+        clip: rect(0, 0, 0, 0) !important;
+        white-space: nowrap !important;
+        border: 0 !important;
+    }
 </style>
 
 <header class="site-header">
@@ -1032,10 +1044,10 @@
             <div style="display: flex; align-items: center; gap: 0.9375rem;">
                 <span>Follow Us:</span>
                 <div style="display: flex; gap: 0.625rem;">
-                    <a href="{{ $siteSettings['social_facebook'] ?? '#' }}" target="_blank" rel="noopener" aria-label="Facebook" style="background: #fff; color: var(--topbar-bg); border-radius: 0.5rem; width: 1.875rem; height: 1.875rem; display: flex; align-items: center; justify-content: center;"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg></a>
-                    <a href="{{ $siteSettings['social_instagram'] ?? '#' }}" target="_blank" rel="noopener" aria-label="Instagram" style="background: #fff; color: var(--topbar-bg); border-radius: 0.5rem; width: 1.875rem; height: 1.875rem; display: flex; align-items: center; justify-content: center;"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
-                    <a href="{{ $siteSettings['social_linkedin'] ?? '#' }}" target="_blank" rel="noopener" aria-label="LinkedIn" style="background: #fff; color: var(--topbar-bg); border-radius: 0.5rem; width: 1.875rem; height: 1.875rem; display: flex; align-items: center; justify-content: center;"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg></a>
-                    <a href="{{ $siteSettings['social_youtube'] ?? '#' }}" target="_blank" rel="noopener" aria-label="YouTube" style="background: #fff; color: var(--topbar-bg); border-radius: 0.5rem; width: 1.875rem; height: 1.875rem; display: flex; align-items: center; justify-content: center;"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M22.54 6.42a2.78 2.78 0 00-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 00-1.94 2A29 29 0 001 11.75a29 29 0 00.46 5.33 2.78 2.78 0 001.94 2c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 001.94-2 29 29 0 00.46-5.33 29 29 0 00-.46-5.33zM9.75 15.02V8.48l6.19 3.27-6.19 3.27z"/></svg></a>
+                    @if(!empty($siteSettings['social_facebook']))<a href="{{ $siteSettings['social_facebook'] }}" target="_blank" rel="noopener" aria-label="Facebook" style="background: #fff; color: var(--topbar-bg); border-radius: 0.5rem; width: 1.875rem; height: 1.875rem; display: flex; align-items: center; justify-content: center;"><span class="visually-hidden">Facebook</span><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg></a>@endif
+                    @if(!empty($siteSettings['social_instagram']))<a href="{{ $siteSettings['social_instagram'] }}" target="_blank" rel="noopener" aria-label="Instagram" style="background: #fff; color: var(--topbar-bg); border-radius: 0.5rem; width: 1.875rem; height: 1.875rem; display: flex; align-items: center; justify-content: center;"><span class="visually-hidden">Instagram</span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>@endif
+                    @if(!empty($siteSettings['social_linkedin']))<a href="{{ $siteSettings['social_linkedin'] }}" target="_blank" rel="noopener" aria-label="LinkedIn" style="background: #fff; color: var(--topbar-bg); border-radius: 0.5rem; width: 1.875rem; height: 1.875rem; display: flex; align-items: center; justify-content: center;"><span class="visually-hidden">LinkedIn</span><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg></a>@endif
+                    @if(!empty($siteSettings['social_youtube']))<a href="{{ $siteSettings['social_youtube'] }}" target="_blank" rel="noopener" aria-label="YouTube" style="background: #fff; color: var(--topbar-bg); border-radius: 0.5rem; width: 1.875rem; height: 1.875rem; display: flex; align-items: center; justify-content: center;"><span class="visually-hidden">YouTube</span><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M22.54 6.42a2.78 2.78 0 00-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 00-1.94 2A29 29 0 001 11.75a29 29 0 00.46 5.33 2.78 2.78 0 001.94 2c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 001.94-2 29 29 0 00.46-5.33 29 29 0 00-.46-5.33zM9.75 15.02V8.48l6.19 3.27-6.19 3.27z"/></svg></a>@endif
                 </div>
             </div>
         </div>
@@ -1077,12 +1089,13 @@
     <div class="header-main header-container" style="display: flex; align-items: center; height: 5rem;">
         <a href="/" class="header-logo" style="flex-shrink: 0; display: flex; align-items: center; margin-right: 1.875rem;">
             <img src="{{ asset('uploads/header-logo.svg') }}" alt="The Rigid Boxes" class="header-logo-img" width="205" height="70" fetchpriority="high">
+            <span class="visually-hidden">Go Custom Boxes home</span>
         </a>
         
         <ul class="header-nav" style="display: flex; align-items: center; justify-content: center; margin: 0; padding: 0; list-style: none; flex-grow: 1; gap: 1.75rem;">
             <li><a href="/" style="color: #000000; text-decoration: none; font-weight: 700; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 0.9375rem;">Home</a></li>
             <li class="has-mega" data-mega-type="custom-boxes">
-                <a href="{{ url('/popular-products/') }}" class="mega-trigger" aria-haspopup="true" style="color: #000000; text-decoration: none; font-weight: 700; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 0.9375rem;">Popular product</a>
+                <a href="{{ url('/popular-products') }}/" class="mega-trigger" aria-haspopup="true" style="color: #000000; text-decoration: none; font-weight: 700; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 0.9375rem;">Popular product</a>
             </li>
             @foreach($navParentItems as $navParent)
             <li class="has-mega" data-mega-type="{{ $navParent['slug'] }}">
@@ -1152,6 +1165,7 @@
             </button>
             <a href="/" class="header-logo" style="margin: 0 0 0 auto !important; display: flex !important; align-items: center !important; justify-content: flex-end !important; text-decoration: none !important; max-width: calc(100% - 3.125rem) !important;">
                 <img src="{{ asset('uploads/hamberger-logo.svg') }}" alt="Go Custom Boxes" style="height: 3.75rem !important; max-height: 3.75rem !important; width: auto !important; max-width: 100% !important; object-fit: contain !important; display: block !important;">
+                <span class="visually-hidden">Go Custom Boxes home</span>
             </a>
         </div>
 
@@ -1235,10 +1249,10 @@
                         $faqSlug = strtolower(ltrim($faqSlug, '/'));
                     @endphp
                     <ul class="mobile-submenu">
-                        <li><a href="/{{ $faqSlug }}">FAQ's</a></li>
-                        <li><a href="/blog">Blog</a></li>
-                        <li><a href="/about-us">About Us</a></li>
-                        <li><a href="/contact-us">Contact Us</a></li>
+                        <li><a href="/{{ $faqSlug }}/">FAQ's</a></li>
+                        <li><a href="/blog/">Blog</a></li>
+                        <li><a href="/about-us/">About Us</a></li>
+                        <li><a href="/contact-us/">Contact Us</a></li>
                     </ul>
                 </li>
             </ul>
@@ -1418,7 +1432,7 @@
                     iconHtml = getCategoryIcon(title, slug);
                 }
                 
-                return `<a href="/${slug}" class="mega-menu-item">
+                return `<a href="/${slug}/" class="mega-menu-item">
                     <div class="mega-menu-icon">${iconHtml}</div>
                     <span>${title}</span>
                 </a>`;

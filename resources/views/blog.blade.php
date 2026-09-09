@@ -343,7 +343,7 @@
                         $fExcerpt = $featuredBlog['excerpt'] ?? '';
                         $fSlug = $featuredBlog['slug'] ?? '';
                         $fImg = !empty($featuredBlog['image']) ? asset($featuredBlog['image']) : asset('uploads/about-us-banner.webp');
-                        $fUrl = url('/blog/' . $fSlug);
+                        $fUrl = url('/blog/' . $fSlug) . '/';
                         $fAuthor = $featuredBlog['author_name'] ?? 'Joe Stanley';
                         $fAuthorSlug = $featuredBlog['author_slug'] ?? \Illuminate\Support\Str::slug($fAuthor);
                         $fDate = !empty($featuredBlog['publish_date']) ? date('M d, Y', strtotime($featuredBlog['publish_date'])) : 'Aug 12, 2026';
@@ -355,7 +355,7 @@
                             <h2>{{ $fTitle }}</h2>
                             <p class="excerpt">{{ Str::limit($fExcerptText, 150) }}</p>
                             <div class="meta">
-                                <a href="{{ url('/author/' . $fAuthorSlug) }}" style="text-decoration: none; color: inherit;">{{ $fAuthor }}</a> &nbsp;|&nbsp; {{ $fDate }}
+                                <a href="{{ url('/author/' . $fAuthorSlug) }}/" style="text-decoration: none; color: inherit;">{{ $fAuthor }}</a> &nbsp;|&nbsp; {{ $fDate }}
                             </div>
                             <a href="{{ $fUrl }}" class="read-btn">Read Blog <i class="fa-solid fa-arrow-right"></i></a>
                         </div>
@@ -372,7 +372,7 @@
                             $bAuthorSlug = $item['author_slug'] ?? \Illuminate\Support\Str::slug($bAuthor);
                             $bSlug = $item['slug'] ?? 'blog-detail';
                             $bImg = !empty($item['image']) ? asset($item['image']) : asset('uploads/about-us-banner.webp');
-                            $bUrl = url('/blog/' . $bSlug);
+                            $bUrl = url('/blog/' . $bSlug) . '/';
                             $bExcerpt = !empty(trim((string) ($item['excerpt'] ?? '')))
                                 ? $item['excerpt']
                                 : ($item['content'] ?? '');
@@ -382,7 +382,7 @@
                             <img src="{{ $bImg }}" alt="{{ $bTitle }}" onerror="this.src='{{ asset('uploads/about-us-banner.webp') }}'">
                             <div class="card-content">
                                 <div class="card-meta">
-                                    <a href="{{ url('/author/' . $bAuthorSlug) }}" onclick="event.stopPropagation();" style="text-decoration: none; color: inherit;"><span>{{ $bAuthor }}</span></a>
+                                    <a href="{{ url('/author/' . $bAuthorSlug) }}/" onclick="event.stopPropagation();" style="text-decoration: none; color: inherit;"><span>{{ $bAuthor }}</span></a>
                                     <span>8 min read</span>
                                 </div>
                                 <h3>{{ $bTitle }}</h3>

@@ -298,7 +298,7 @@
 
 <section class="product-quote-section-new">
     <!-- Dots background top right of section -->
-    <img src="{{ asset('uploads/request-sample-kit-dots.svg') }}" alt="" class="pqn-section-dots">
+    <img src="{{ asset('uploads/request-sample-kit-dots.svg') }}" alt="Decorative dotted background pattern" class="pqn-section-dots">
 
     <div class="container" style="position: relative; z-index: 1; display: flex;">
         <div class="pqn-grid">
