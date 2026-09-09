@@ -72,6 +72,7 @@
         display: grid;
         grid-template-columns: repeat(3, 1fr);
         gap: 1.5rem;
+        align-items: start;
     }
 
     .blog-card {
@@ -84,7 +85,6 @@
         transition: box-shadow 0.3s, transform 0.3s;
         position: relative;
         -webkit-tap-highlight-color: transparent;
-        min-height: 27.125rem;
         box-shadow: 0 0.25rem 0.9375rem rgba(0,0,0,0.03);
         cursor: pointer;
     }
@@ -106,7 +106,7 @@
     }
 
     .blog-card__content {
-        padding: 1.5rem;
+        padding: 1.5rem 1.5rem 0.75rem;
         display: flex;
         flex-direction: column;
         flex: 1;
@@ -130,11 +130,7 @@
         margin-bottom: 0.75rem;
         text-decoration: none;
         transition: color 0.3s;
-        display: -webkit-box;
-        -webkit-line-clamp: 2;
-        -webkit-box-orient: vertical;
-        overflow: hidden;
-            }
+    }
 
     .blog-card__title::after {
         content: '';
@@ -167,8 +163,8 @@
         min-height: 2.8rem;
     }
 
-    .blog-card__desc + div {
-        margin-top: auto;
+    .blog-card__title + div {
+        margin-top: 0.5rem;
     }
 
     .blog-card__author {
@@ -283,7 +279,7 @@
         }
 
         .blog-card__content {
-            padding: 1.125rem 1rem 1.25rem;
+            padding: 1.125rem 1rem 0.75rem;
         }
 
         .blog-card__title {
@@ -387,7 +383,7 @@
                                 <span class="blog-card__date">{{ $bDate }}</span>
                             </div>
                             <a href="{{ $bUrl }}" class="blog-card__title" onclick="event.stopPropagation();">{{ $bTitle }}</a>
-                            <p class="blog-card__desc">{{ Str::limit(html_entity_decode(html_entity_decode(strip_tags($bExcerpt))), 90) }}</p>
+
                             <div>
                                 <a href="{{ $bUrl }}" class="blog-card__readmore" onclick="event.stopPropagation();">
                                     Read Blog
@@ -407,7 +403,7 @@
                             <span class="blog-card__date">Nov 15, 2024</span>
                         </div>
                         <a href="{{ url('/blog-detail') }}" class="blog-card__title">Sustainable Packaging Trends For 2026</a>
-                        <p class="blog-card__desc">Explore how eco-friendly rigid boxes are transforming luxury packaging with sustainable</p>
+
                         <div>
                             <a href="{{ url('/blog-detail') }}" class="blog-card__readmore">
                                 Read Blog

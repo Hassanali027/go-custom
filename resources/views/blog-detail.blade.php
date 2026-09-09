@@ -352,6 +352,7 @@
             grid-template-columns: repeat(3, minmax(0, 23.875rem));
             justify-content: start;
             gap: 1.875rem;
+            align-items: start;
         }
 
         .blog-card {
@@ -363,7 +364,6 @@
             background: #fff;
             transition: transform 0.3s;
             max-width: 23.875rem;
-            min-height: 27.125rem;
             position: relative;
             cursor: pointer;
         }
@@ -390,7 +390,7 @@
             display: block;
         }
         .card-content {
-            padding: 1.25rem 1.5rem 1.5rem;
+            padding: 1.25rem 1.5rem 0.75rem;
             display: flex;
             flex-direction: column;
             flex: 1;
@@ -411,7 +411,7 @@
             line-height: 1.4;
         }
         .card-link {
-            margin-top: auto;
+            margin-top: 0.5rem;
             color: var(--dark-blue);
             font-weight: 700;
             font-size: 0.875rem;
