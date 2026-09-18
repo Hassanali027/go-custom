@@ -35,6 +35,7 @@
     }
 
     .product-faq-question {
+        position: relative;
         width: 100%;
         padding: 1.25rem 1.5rem;
         display: flex;
@@ -46,8 +47,25 @@
         font-family: 'DM Sans', sans-serif;
         font-size: 1rem;
         font-weight: 500;
-        color: #333333;
+        color: #0A2240;
         text-align: left;
+    }
+
+    .product-faq-question-text {
+        color: #0A2240 !important;
+        font-weight: 600;
+        font-size: 1.125rem;
+        line-height: 1.5;
+    }
+
+    .product-faq-item.active .product-faq-question::after {
+        content: '';
+        position: absolute;
+        left: 1.5rem;
+        right: 1.5rem;
+        bottom: 0;
+        height: 2px;
+        background-color: #0A2240;
     }
 
     .product-faq-icon {
@@ -77,7 +95,7 @@
 
     .product-faq-item.active .product-faq-answer {
         max-height: 18.75rem;
-        padding: 0 1.5rem 1.25rem 1.5rem;
+        padding: 1.25rem 1.5rem;
     }
 
     .product-faq-answer p {
@@ -100,6 +118,13 @@
         .product-faq-question {
             padding: 1rem 1.25rem;
             font-size: 0.9375rem;
+        }
+        .product-faq-question-text {
+            font-size: 1rem;
+        }
+        .product-faq-item.active .product-faq-question::after {
+            left: 1.25rem;
+            right: 1.25rem;
         }
         .product-faq-answer {
             padding: 0 1.25rem;
@@ -132,7 +157,7 @@
             <div class="product-faq-item">
                 <h3 style="margin: 0; padding: 0;">
 <button class="product-faq-question" type="button">
-                    <span>{{ $faq['q'] }}</span>
+                    <span class="product-faq-question-text">{{ $faq['q'] }}</span>
                     <span class="product-faq-icon">+</span>
                 </button>
 </h3>

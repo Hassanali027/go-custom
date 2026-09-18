@@ -2149,7 +2149,7 @@
             </div>
 
             <div class="mobile-title-desc">
-                <h1 style="font-size: 1.75rem; margin-bottom: 0.625rem; color: #000; line-height: 1.2; font-family: 'Open Sans', sans-serif; font-weight: 700;">{{ $pTitle }}</h1>
+                <div class="mobile-product-title" style="font-size: 1.75rem; margin-bottom: 0.625rem; color: #000; line-height: 1.2; font-family: 'Open Sans', sans-serif; font-weight: 700;">{{ $pTitle }}</div>
                 <p class="desc-text" style="color: #333; font-size: 0.9375rem; line-height: 1.6; margin-bottom: 1.25rem; text-align: justify;">
                     {{ $descText }}
                 </p>
@@ -2173,7 +2173,7 @@
                 }
             </script>
             <div class="hero-form hero-quote-box" style="background-color: #FFF8E7; padding: 1rem 0.8125rem 1.5rem; border-radius: 0.5rem; box-shadow: none; height: auto;">
-                <h3 style="text-align: center; font-family: 'Open Sans', sans-serif; font-size: 1.125rem; line-height: 1.4; font-weight: 700; color: #000; margin-bottom: 1.375rem;">Instant Quotes, Quick Service</h3>
+                <span style="display: block; text-align: center; font-family: 'Open Sans', sans-serif; font-size: 1.125rem; line-height: 1.4; font-weight: 700; color: #000; margin-bottom: 1.375rem;">Instant Quotes, Quick Service</span>
                 
                 <form action="{{ url('/submit-quote') }}" method="POST" enctype="multipart/form-data">
                     @csrf
@@ -2539,7 +2539,7 @@
                 }
             }
         </style>
-        <h2 style="font-family: 'Inter', sans-serif; font-size: 1.5rem; font-weight: 700; color: #000; margin-bottom: 1.25rem; padding-left: 0;">Product Specifications</h2>
+        <span style="display: block; font-family: 'Inter', sans-serif; font-size: 1.5rem; font-weight: 700; color: #000; margin-bottom: 1.25rem; padding-left: 0;">Product Specifications</span>
         <div style="border-radius: 0.5rem; overflow: hidden; border: 1px solid #DDDDDD;">
             <table class="specs-table" style="border-style: hidden; width: 100%;">
                 <tr>
@@ -2552,7 +2552,7 @@
                 </tr>
                 <tr>
                     <td>MOQ</td>
-                    <td>{{ $product['moq'] ?? 'Starting from 100 Boxes' }}</td>
+                    <td>{{ $product['moq'] ?? 'NO MOQ' }}</td>
                 </tr>
                 <tr>
                     <td>Paper Stock</td>
@@ -2576,7 +2576,7 @@
                 </tr>
                 <tr>
                     <td>Turnaround</td>
-                    <td>{{ $product['turnaround'] ?? '12 - 16 days' }}</td>
+                    <td>{{ $product['turnaround'] ?? '4-6 days Rush' }}</td>
                 </tr>
                 <tr>
                     <td>Shipping</td>

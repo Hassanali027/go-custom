@@ -66,7 +66,8 @@
         height: 2.875rem;
     }
     
-    .pqn-header-text h2 {
+    .pqn-header-title {
+        display: block;
         margin: 0 0 0.625rem 0;
         font-size: 1.625rem;
         font-weight: 700;
@@ -309,7 +310,7 @@
                     <img src="{{ asset('uploads/request-kit-icon.svg') }}" alt="Request Kit" onerror="this.src='https://placehold.co/40x40/0a2240/ffffff?text=Box'">
                 </div>
                 <div class="pqn-header-text">
-                    <h2>Request A Sample Kit</h2>
+                    <span class="pqn-header-title">Request A Sample Kit</span>
                     <p>Fill out the form below and we'll send you a sample kit tailored to your needs.</p>
                 </div>
             </div>
@@ -394,7 +395,7 @@
                 </div>
                 <div class="pqn-feature-card">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
-                    <span class="pqn-feature-text">3D Design<br>Services</span>
+                    <span class="pqn-feature-text">Free 3D Design<br>Services</span>
                 </div>
                 <div class="pqn-feature-card">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
