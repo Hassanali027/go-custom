@@ -81,6 +81,10 @@
         height: 1.5rem;
     }
 
+    .product-faq-icon::before {
+        content: '+';
+    }
+
     .product-faq-item.active .product-faq-icon {
         transform: rotate(45deg); /* Turns plus into cross */
     }
@@ -158,7 +162,7 @@
                 <h3 style="margin: 0; padding: 0;">
 <button class="product-faq-question" type="button">
                     <span class="product-faq-question-text">{{ $faq['q'] }}</span>
-                    <span class="product-faq-icon">+</span>
+                    <span class="product-faq-icon" aria-hidden="true"></span>
                 </button>
 </h3>
                 <div class="product-faq-answer">
