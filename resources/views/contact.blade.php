@@ -555,11 +555,11 @@
 
                         <h4 class="social-media-title">Social Media</h4>
                         <div class="social-icons">
-                            <a href="#" class="social-icon" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
-                            <a href="#" class="social-icon" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
-                            <a href="#" class="social-icon" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
-                            <a href="#" class="social-icon" aria-label="Pinterest"><i class="fa-brands fa-pinterest-p"></i></a>
-                            <a href="#" class="social-icon" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+                            @if(!empty($siteSettings['social_facebook']))<a href="{{ $siteSettings['social_facebook'] }}" class="social-icon" aria-label="Facebook" target="_blank" rel="noopener"><span class="visually-hidden">Facebook</span><i class="fa-brands fa-facebook-f"></i></a>@endif
+                            @if(!empty($siteSettings['social_instagram']))<a href="{{ $siteSettings['social_instagram'] }}" class="social-icon" aria-label="Instagram" target="_blank" rel="noopener"><span class="visually-hidden">Instagram</span><i class="fa-brands fa-instagram"></i></a>@endif
+                            @if(!empty($siteSettings['social_linkedin']))<a href="{{ $siteSettings['social_linkedin'] }}" class="social-icon" aria-label="LinkedIn" target="_blank" rel="noopener"><span class="visually-hidden">LinkedIn</span><i class="fa-brands fa-linkedin-in"></i></a>@endif
+                            @if(!empty($siteSettings['social_pinterest']))<a href="{{ $siteSettings['social_pinterest'] }}" class="social-icon" aria-label="Pinterest" target="_blank" rel="noopener"><span class="visually-hidden">Pinterest</span><i class="fa-brands fa-pinterest-p"></i></a>@endif
+                            @if(!empty($siteSettings['social_youtube']))<a href="{{ $siteSettings['social_youtube'] }}" class="social-icon" aria-label="YouTube" target="_blank" rel="noopener"><span class="visually-hidden">YouTube</span><i class="fa-brands fa-youtube"></i></a>@endif
                         </div>
                     </div>
                 </div>
@@ -571,7 +571,7 @@
             <div class="container map-faq-container">
                 <!-- Map Column -->
                 <div class="map-column">
-                    <a href="https://www.google.com/maps/place/LabelPouches/@41.99806,-87.684407,13z/data=!4m6!3m5!1s0x880fd1f71b5875cf:0xee620728700effbf!8m2!3d41.9980605!4d-87.6844075!16s%2Fg%2F11xgy7x13f?entry=ttu&g_ep=EgoyMDI2MDgwNS4xIKXMDSoASAFQAw%3D%3D" target="_blank" class="open-maps-btn">
+                    <a href="https://www.google.com/maps/place/LabelPouches/@41.99806,-87.684407,13z/data=!4m6!3m5!1s0x880fd1f71b5875cf:0xee620728700effbf!8m2!3d41.9980605!4d-87.6844075!16s%2Fg%2F11xgy7x13f?entry=ttu&g_ep=EgoyMDI2MDgwNS4xIKXMDSoASAFQAw%3D%3D" target="_blank" rel="noopener noreferrer" class="open-maps-btn">
                         Open in Maps <i class="fa-solid fa-arrow-up-right-from-square"></i>
                     </a>
                     <iframe id="contact-map" src="https://maps.google.com/maps?q=41.9980605,-87.6844075&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" title="LabelPouches Map"></iframe>

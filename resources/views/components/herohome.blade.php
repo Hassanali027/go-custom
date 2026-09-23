@@ -526,7 +526,7 @@
                 <div class="hero-glow-circle"></div>
                 <a href="{{ $settings['hero_primary_button_url'] ?? '/request-quote/' }}" class="hero-btn" style="display: inline-flex; align-items: center;">{{ $settings['hero_primary_button_text'] ?? 'Get Instant Quote' }} <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-left: 0.375rem;"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></a>
                 @if(request()->is('/'))
-                <a href="{{ $settings['hero_secondary_button_url'] ?? url('/popular-products/') }}" class="hero-btn-outline" style="display: inline-flex; align-items: center; justify-content: center; width: 12.1875rem; height: 3.5rem; box-sizing: border-box; font-family: 'DM Sans', sans-serif; font-size: 1rem; font-weight: 700; color: var(--primary-color); border: 0.125rem solid var(--primary-color); border-radius: 0.25rem; text-decoration: none; transition: 0.3s;">{{ $settings['hero_secondary_button_text'] ?? 'Shop Now' }}</a>
+                <a href="{{ $settings['hero_secondary_button_url'] ?? (url('/popular-products') . '/') }}" class="hero-btn-outline" style="display: inline-flex; align-items: center; justify-content: center; width: 12.1875rem; height: 3.5rem; box-sizing: border-box; font-family: 'DM Sans', sans-serif; font-size: 1rem; font-weight: 700; color: var(--primary-color); border: 0.125rem solid var(--primary-color); border-radius: 0.25rem; text-decoration: none; transition: 0.3s;">{{ $settings['hero_secondary_button_text'] ?? 'Shop Now' }}</a>
                 @endif
             </div>
         </div>
@@ -534,10 +534,26 @@
         <div class="hero-image-wrapper">
             <div class="hero-glow-circle-right"></div>
             @php
-                $hImg = !empty($settings['hero_image']) ? $settings['hero_image'] : (!empty($category['hero_image']) ? $category['hero_image'] : 'uploads/Home-Banner.webp');
-                $hImgPath = \Illuminate\Support\Str::startsWith($hImg, ['storage/', 'uploads/', 'images/']) ? $hImg : 'storage/' . $hImg;
+                $hImg = trim((string) (!empty($settings['hero_image']) ? $settings['hero_image'] : (!empty($category['hero_image']) ? $category['hero_image'] : 'uploads/Home-Banner.webp')));
+                if (\Illuminate\Support\Str::startsWith($hImg, ['http://', 'https://'])) {
+                    $hImgUrl = preg_replace('#/public/(uploads|images|storage)/#i', '/$1/', $hImg);
+                    $hImgUrl = preg_replace('#(\.(?:png|jpe?g|webp|svg|gif))/$#i', '$1', $hImgUrl);
+                    $hImgHost = strtolower((string) parse_url($hImgUrl, PHP_URL_HOST));
+                    $hImgLocalPath = ltrim((string) parse_url($hImgUrl, PHP_URL_PATH), '/');
+                    if ($hImgHost === strtolower(request()->getHost()) && !is_file(public_path($hImgLocalPath))) {
+                        $hImgUrl = asset('uploads/Home-Banner.webp');
+                    }
+                } else {
+                    $hImg = preg_replace('#^/?public/#i', '', ltrim($hImg, '/'));
+                    $hImg = rtrim($hImg, '/');
+                    $hImgPath = \Illuminate\Support\Str::startsWith($hImg, ['storage/', 'uploads/', 'images/']) ? $hImg : 'storage/' . $hImg;
+                    if (!is_file(public_path($hImgPath))) {
+                        $hImgPath = 'uploads/Home-Banner.webp';
+                    }
+                    $hImgUrl = asset($hImgPath);
+                }
             @endphp
-            <img src="{{ asset($hImgPath) }}" alt="{{ strip_tags($settings['hero_title'] ?? ($category['hero_title'] ?? 'Custom Rigid Packaging Boxes')) }}" fetchpriority="high" onerror="this.src='{{ asset('uploads/Home-Banner.webp') }}'">
+            <img src="{{ $hImgUrl }}" alt="{{ strip_tags($settings['hero_title'] ?? ($category['hero_title'] ?? 'Custom Rigid Packaging Boxes')) }}" fetchpriority="high" onerror="this.src='{{ asset('uploads/Home-Banner.webp') }}'">
         </div>
     </section>
 </div>

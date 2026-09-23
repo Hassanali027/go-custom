@@ -167,7 +167,7 @@
 
 <section
     class="how-it-works-section {{ request()->is('/') || (isset($hideOnMobile) && $hideOnMobile) ? 'hide-on-mobile-home' : '' }}">
-    <img src="{{ asset('uploads/request-sample-kit-dots.svg') }}" alt="" class="hiw-bg-dots">
+    <img src="{{ asset('uploads/request-sample-kit-dots.svg') }}" alt="Decorative dotted background pattern" class="hiw-bg-dots">
     <div class="hiw-container">
         <div class="hiw-label">HOW IT WORKS</div>
         <span class="hiw-title">Simple 4&ndash;Step Order Process</span>

@@ -509,6 +509,7 @@
     $fTitle = $blog['title'] ?? '7 Packaging Trends That Will Shape Brands in 2026';
     $fImg = !empty($blog['image']) ? asset($blog['image']) : asset('uploads/about-us-banner.webp');
     $articleSubtitle = trim(strip_tags(html_entity_decode(html_entity_decode((string) ($blog['excerpt'] ?? ''), ENT_QUOTES | ENT_HTML5, 'UTF-8'), ENT_QUOTES | ENT_HTML5, 'UTF-8')));
+    $shareUrl = rtrim(url()->current(), '/') . '/';
     $articleSubtitle = $articleSubtitle ?: 'Discover the latest packaging trends shaping modern brands, from sustainable materials to premium finishes and memorable unboxing experiences.';
 @endphp
 
@@ -524,7 +525,7 @@
                 </svg> Home
             </a> 
             <span style="color: #666; font-size: 0.75rem;">&gt;</span>
-            <a href="{{ url('/blog') }}">Blog</a> 
+            <a href="{{ url('/blog') }}/">Blog</a>
             <span style="color: #666; font-size: 0.75rem;">&gt;</span>
             {{ Str::limit($fTitle, 18) }}
         </div>
@@ -613,7 +614,7 @@
                         <div class="cta-banner-text">Need custom packaging for your product?</div>
                         <div class="cta-banner-sub">Get pricing, samples, and expert advice — no commitment required.</div>
                     </div>
-                    <a href="{{ url('/contact-us') }}" class="cta-btn">Get a Free Quote</a>
+                    <a href="{{ url('/contact-us') }}/" class="cta-btn">Get a Free Quote</a>
                 </div>
 
             </div>
@@ -658,14 +659,14 @@
                 <div class="widget">
                     <div class="widget-title">Share Article</div>
                     <div class="share-icons">
-                        <a href="#" class="share-icon"><i class="fa-solid fa-link"></i></a>
-                        <a href="#" class="share-icon"><i class="fa-brands fa-linkedin-in"></i></a>
-                        <a href="#" class="share-icon">
+                        <a href="{{ $shareUrl }}" class="share-icon" aria-label="Copy article link"><span class="visually-hidden">Copy article link</span><i class="fa-solid fa-link"></i></a>
+                        <a href="https://www.linkedin.com/sharing/share-offsite/?url={{ urlencode($shareUrl) }}" class="share-icon" aria-label="Share article on LinkedIn" target="_blank" rel="noopener"><span class="visually-hidden">Share article on LinkedIn</span><i class="fa-brands fa-linkedin-in"></i></a>
+                        <a href="https://twitter.com/intent/tweet?url={{ urlencode($shareUrl) }}&text={{ urlencode($blog['title'] ?? 'Blog article') }}" class="share-icon" aria-label="Share article on X" target="_blank" rel="noopener"><span class="visually-hidden">Share article on X</span>
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
                                 <path d="M12.6.75h2.454l-5.36 6.142L16 15.25h-4.937l-3.867-5.07-4.425 5.07H.316l5.733-6.57L0 .75h5.063l3.495 4.633L12.601.75Zm-.86 13.028h1.36L4.323 2.145H2.865l8.875 11.633Z"/>
                             </svg>
                         </a>
-                        <a href="#" class="share-icon"><i class="fa-brands fa-facebook-f"></i></a>
+                        <a href="https://www.facebook.com/sharer/sharer.php?u={{ urlencode($shareUrl) }}" class="share-icon" aria-label="Share article on Facebook" target="_blank" rel="noopener"><span class="visually-hidden">Share article on Facebook</span><i class="fa-brands fa-facebook-f"></i></a>
                     </div>
                 </div>
 
@@ -681,7 +682,7 @@
                 <div class="cta-banner-text">Need custom packaging for your product?</div>
                 <div class="cta-banner-sub">Get pricing, samples, and expert advice — no commitment required.</div>
             </div>
-            <a href="{{ url('/contact-us') }}" class="cta-btn">Get a Free Quote</a>
+            <a href="{{ url('/contact-us') }}/" class="cta-btn">Get a Free Quote</a>
         </div>
 
     </div>
@@ -702,14 +703,14 @@
                             $bAuthorSlug = $rb->author_slug ?? \Illuminate\Support\Str::slug($bAuthor);
                             $bSlug = $rb->slug ?? 'blog-detail';
                             $bImg = !empty($rb->image) ? asset($rb->image) : asset('uploads/about-us-banner.webp');
-                            $bUrl = url('/blog/' . $bSlug);
+                            $bUrl = url('/blog/' . $bSlug) . '/';
                         @endphp
                         <article class="blog-card">
-                            <a href="{{ $bUrl }}" class="blog-card-hit-area" aria-label="Read {{ $bTitle }}"></a>
+                            <a href="{{ $bUrl }}" class="blog-card-hit-area" aria-label="Read {{ $bTitle }}"><span class="visually-hidden">Read {{ $bTitle }}</span></a>
                             <img src="{{ $bImg }}" alt="{{ $bTitle }}" onerror="this.src='{{ asset('uploads/about-us-banner.webp') }}'">
                             <div class="card-content">
                                 <div class="card-meta">
-                                    <a href="{{ url('/author/' . $bAuthorSlug) }}" onclick="event.stopPropagation();" style="text-decoration: none; color: inherit;"><span>{{ $bAuthor }}</span></a>
+                                    <a href="{{ url('/author/' . $bAuthorSlug) }}/" onclick="event.stopPropagation();" style="text-decoration: none; color: inherit;"><span>{{ $bAuthor }}</span></a>
                                     <span>8 min read</span>
                                 </div>
                                 <h3>{{ $bTitle }}</h3>
@@ -724,7 +725,7 @@
                         <img src="{{ asset('uploads/about-us-banner.webp') }}" alt="Packaging Box">
                         <div class="card-content">
                             <div class="card-meta">
-                                <a href="{{ url('/author/joe-stanley') }}" onclick="event.stopPropagation();" style="text-decoration: none; color: inherit;"><span>Joe Stanley</span></a>
+                                <a href="{{ url('/author/joe-stanley') }}/" onclick="event.stopPropagation();" style="text-decoration: none; color: inherit;"><span>Joe Stanley</span></a>
                                 <span>8 min read</span>
                             </div>
                             <h3>The Ultimate Guide To Choosing The Right Custom Packaging For Your Brand</h3>

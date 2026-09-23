@@ -291,9 +291,9 @@
             <p>Our purpose is to make custom packaging easier, more accessible, and more effective for businesses of all sizes. We help turn packaging ideas into practical, well-designed boxes that reflect each brand's unique identity.</p>
             <p>From selecting the right materials and dimensions to choosing printing and finishing options, we guide every project with care and attention to detail. Our goal is simple: create packaging that protects your product, strengthens your brand, and leaves a lasting impression.</p>
             <div class="callout-box">
-                <span style="font-size: 1.75rem; font-weight: 900; font-family: serif; line-height: 0; position: relative; top: 0.5rem;">&ldquo;</span> 
+                <span style="font-size: 1.75rem; font-weight: 900; font-family: serif; line-height: 0; position: relative; top: -0.3rem;">&ldquo;</span> 
                 <span>Durable and high-quality materials for product protection.</span>
-                <span style="font-size: 1.75rem; font-weight: 900; font-family: serif; line-height: 0; position: relative; top: 0.5rem;">&rdquo;</span>
+                <span style="font-size: 1.75rem; font-weight: 900; font-family: serif; line-height: 0; position: relative; top: 1rem;">&rdquo;</span>
             </div>
         </div>
     </div>
@@ -317,7 +317,7 @@
                     <img src="{{ asset('uploads/fast-and-flexible.svg') }}" alt="Fast & Flexible" onerror="this.src='https://placehold.co/30x30/transparent/white?text=F'">
                 </div>
                 <h3>Fast & Flexible</h3>
-                <p>Average production time is just 7 days. Rush options are available on select products to help keep your packaging on schedule.</p>
+                <p>Average production time is just 4-6 days. Rush options are available on select products to help keep your packaging on schedule.</p>
             </div>
             <div class="feature-card">
                 <div class="feature-icon">
