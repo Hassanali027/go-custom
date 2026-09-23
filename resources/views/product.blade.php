@@ -163,27 +163,9 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            cursor: pointer;
-        }
-
-        .image-magnifier-lens {
-            position: absolute;
-            width: 9rem;
-            height: 9rem;
-            display: none;
-            border: 1px solid rgba(11, 34, 64, 0.75);
-            background-color: #fff;
-            background-repeat: no-repeat;
-            background-size: 350% auto;
-            box-shadow: 0 0.25rem 0.75rem rgba(0, 0, 0, 0.2);
-            opacity: 0;
-            pointer-events: none;
-            z-index: 5;
-        }
-
-        .main-image.is-magnifying .image-magnifier-lens {
-            display: block;
-            opacity: 1;
+            cursor: default;
+            transition: transform 0.25s cubic-bezier(0.25, 1, 0.5, 1), transform-origin 0.05s ease-out;
+            will-change: transform, transform-origin;
         }
 
         .in-stock-tag {
@@ -2132,8 +2114,7 @@
                     <div class="in-stock-tag">
                         <span class="stock-dot"></span> In Stock
                     </div>
-                    <img id="product-main-image" src="{{ asset($pMainImg) }}" alt="{{ $pTitle }}" onerror="this.src='https://placehold.co/600x500/eeeeee/555555?text={{ urlencode($pTitle) }}'">
-                    <span class="image-magnifier-lens" aria-hidden="true"></span>
+                    <img id="product-main-image" src="{{ asset($pMainImg) }}" alt="" title="" onerror="this.src='https://placehold.co/600x500/eeeeee/555555?text={{ urlencode($pTitle) }}'">
                 </div>
                 @if(count($pGallery))
                 <div class="thumbnails">
@@ -2149,7 +2130,7 @@
             </div>
 
             <div class="mobile-title-desc">
-                <h1 style="font-size: 1.75rem; margin-bottom: 0.625rem; color: #000; line-height: 1.2; font-family: 'Open Sans', sans-serif; font-weight: 700;">{{ $pTitle }}</h1>
+                <h2 style="font-size: 1.75rem; margin-bottom: 0.625rem; color: #000; line-height: 1.2; font-family: 'Open Sans', sans-serif; font-weight: 700;">{{ $pTitle }}</h2>
                 <p class="desc-text" style="color: #333; font-size: 0.9375rem; line-height: 1.6; margin-bottom: 1.25rem; text-align: justify;">
                     {{ $descText }}
                 </p>
@@ -2552,7 +2533,7 @@
                 </tr>
                 <tr>
                     <td>MOQ</td>
-                    <td>{{ $product['moq'] ?? 'Starting from 100 Boxes' }}</td>
+                    <td>{{ $product['moq'] ?? 'NO MOQ' }}</td>
                 </tr>
                 <tr>
                     <td>Paper Stock</td>
@@ -2576,7 +2557,7 @@
                 </tr>
                 <tr>
                     <td>Turnaround</td>
-                    <td>{{ $product['turnaround'] ?? '12 - 16 days' }}</td>
+                    <td>{{ $product['turnaround'] ?? '4 - 6 days, RUSH' }}</td>
                 </tr>
                 <tr>
                     <td>Shipping</td>
@@ -3138,29 +3119,39 @@ function toggleFaq(element) {
         document.addEventListener('DOMContentLoaded', function () {
             const imageWrap = document.querySelector('.main-image');
             const image = document.getElementById('product-main-image');
-            const lens = imageWrap?.querySelector('.image-magnifier-lens');
-            if (!imageWrap || !image || !lens) return;
+            if (!imageWrap || !image) return;
 
-            function moveLens(event) {
-                const rect = image.getBoundingClientRect();
-                const lensSize = lens.offsetWidth || 180;
-                const x = Math.max(0, Math.min(event.clientX - rect.left, rect.width));
-                const y = Math.max(0, Math.min(event.clientY - rect.top, rect.height));
+            function handleZoom(e) {
+                const rect = imageWrap.getBoundingClientRect();
+                const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+                const clientY = e.touches ? e.touches[0].clientY : e.clientY;
 
-                lens.style.left = `${Math.max(0, Math.min(x - lensSize / 2, rect.width - lensSize))}px`;
-                lens.style.top = `${Math.max(0, Math.min(y - lensSize / 2, rect.height - lensSize))}px`;
-                lens.style.backgroundImage = `url("${image.currentSrc || image.src}")`;
-                lens.style.backgroundPosition = `${(x / rect.width) * 100}% ${(y / rect.height) * 100}%`;
+                const x = clientX - rect.left;
+                const y = clientY - rect.top;
+
+                const xPercent = Math.max(0, Math.min(100, (x / rect.width) * 100));
+                const yPercent = Math.max(0, Math.min(100, (y / rect.height) * 100));
+
+                image.style.transformOrigin = `${xPercent}% ${yPercent}%`;
+                image.style.transform = 'scale(1.5)';
             }
 
-            imageWrap.addEventListener('mouseenter', function (event) {
-                imageWrap.classList.add('is-magnifying');
-                moveLens(event);
+            function resetZoom() {
+                image.style.transition = 'transform 0.3s ease-out, transform-origin 0.3s ease-out';
+                image.style.transform = 'scale(1)';
+                image.style.transformOrigin = 'center center';
+            }
+
+            imageWrap.addEventListener('mouseenter', function (e) {
+                image.style.transition = 'transform 0.2s ease-out, transform-origin 0.05s linear';
+                handleZoom(e);
             });
-            imageWrap.addEventListener('mousemove', moveLens);
-            imageWrap.addEventListener('mouseleave', function () {
-                imageWrap.classList.remove('is-magnifying');
-            });
+
+            imageWrap.addEventListener('mousemove', handleZoom);
+
+            imageWrap.addEventListener('mouseleave', resetZoom);
+            imageWrap.addEventListener('touchend', resetZoom);
+            imageWrap.addEventListener('touchcancel', resetZoom);
         });
     </script>
     <script>

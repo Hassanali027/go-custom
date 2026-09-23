@@ -46,12 +46,12 @@
         font-family: 'DM Sans', sans-serif;
         font-size: 1rem;
         font-weight: 500;
-        color: #333333;
+        color: var(--primary-color);
         text-align: left;
     }
 
     .product-faq-icon {
-        color: #0A2240;
+        color: var(--primary-color);
         font-size: 1.25rem;
         font-weight: 300;
         line-height: 1;
