@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Validation\Rule;
 
 class AdminHomepageController extends Controller
 {
@@ -97,7 +98,7 @@ class AdminHomepageController extends Controller
             'meta_title' => 'nullable|string|max:255',
             'meta_description' => 'nullable|string|max:1000',
             'meta_keywords' => 'nullable|string|max:1000',
-            'robots' => 'required|in:index,follow,index,nofollow,noindex,follow,noindex,nofollow',
+            'robots' => ['required', Rule::in(['index,follow', 'index,nofollow', 'noindex,follow', 'noindex,nofollow'])],
             // Accept both raw JSON-LD and a complete <script type="application/ld+json"> block.
             'schema' => 'nullable|string|max:50000',
             'hero_title' => 'nullable|string|max:255',
