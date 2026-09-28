@@ -2181,10 +2181,8 @@
         <section class="custom-boxes-section">
             <div class="custom-boxes-container">
 
-                <span class="custom-boxes-heading">Great Unboxing Starts with the Right Structure</span>
-                <p class="section-desc">Box opening changes customer’s experience instantly. Right structure anticipates
-                    a customer’s pleasant unboxing experience. Explore our rigid box styles and choose the one that
-                    matches your vision.</p>
+                <span class="custom-boxes-heading">Packaging Solutions for Brands To Stand Out</span>
+                <p class="section-desc">Businesses look for packaging solutions that boost visual brand identity and elevate customers’ experience. We have a huge range of precision-crafted solutions. Explore this section to get the desired packaging.</p>
 
                 <div class="cards-grid">
                     @php
@@ -2578,11 +2576,8 @@
             <div class="see-feel-inner">
                 <div class="see-feel-box">
                     <div class="see-feel-left">
-                        <span class="see-feel-heading">See – and Feel – the Difference</span>
-                        <p class="see-feel-desc">Discover premium packaging designed to make every product feel special.
-                            Explore elegant box styles, refined finishes, custom details, and thoughtful structures
-                            created to enhance presentation, protect your products, and give your brand a polished,
-                            memorable look from the first impression.</p>
+                        <span class="see-feel-heading">Designed to Impress, Crafted to Represent Your Brand</span>
+                        <p class="see-feel-desc">Custom boxes with logos are not just about tailor packaging. It is beyond that. Research data shows that customers get influenced by packaging while making buying decisions. Hence, we design your packaging with visual hierarchy that tells your brand story. We are determined to crafting personalized solutions with product-focused approach. Give your product an attention grabbing appearance and a risk-free protection.</p>
                         <a href="/request-quote/" class="see-feel-btn desktop-btn">Get Instant Quote</a>
                     </div>
                     <div class="see-feel-right">
@@ -2744,9 +2739,8 @@
 
         <section class="uniquely-yours-section">
             <div class="uniquely-yours-container">
-                <span class="uy-heading">Make Your Box Uniquely Yours</span>
-                <p class="uy-desc">From size and material to finishes and custom details, create packaging that's made
-                    specifically for your brand.</p>
+                <span class="uy-heading">Finishing Touches That Make Customers Take Notice</span>
+                <p class="uy-desc">We have refined finishes that give your packaging a polished and distinctive look.</p>
 
                 <div class="uy-grid">
                     <div class="uy-card uy-gloss">
@@ -3076,9 +3070,9 @@
 
                 <!-- LEFT CONTENT & COLLAGE -->
                 <div class="wcc-left">
-                    <span class="wcc-title">Why Choose Go Custom Boxes</span>
-                    <p class="wcc-desc">From concept to production, we make custom packaging simple, reliable, and
-                        tailored to your brand with quality materials and attention to detail.</p>
+                    <span class="wcc-title">The GoCustomBoxes Advantage
+</span>
+                    <p class="wcc-desc">GoCustomBoxes is the top packaging manufacturer in the USA. With 15 years of experience, we create impactful packaging that is detail-oriented and function-focused.  Join us if you want to get:<p>
 
                     <div class="wcc-collage">
                         <div class="wcc-col">
@@ -3104,9 +3098,10 @@
                         <div class="wcc-icon-wrap">
                             <img src="{{ asset('uploads/premium-quality.svg') }}" alt="Premium Quality">
                         </div>
-                        <span class="wcc-feature-title">Premium Quality</span>
-                        <p class="wcc-feature-desc">Every order undergoes a 12-point quality inspection. We use only
-                            premium-grade materials that look and feel exceptional.</p>
+                        <span class="wcc-feature-title">Built for Brand Impact
+</span>
+                        <p class="wcc-feature-desc">Let your customers have a long-lasting impression at first glance. We make the first interaction impactful with high-quality materials, luxurious finishes, and refined details.
+        </p>
                     </div>
 
                     <!-- Feature 2 -->
@@ -3114,9 +3109,8 @@
                         <div class="wcc-icon-wrap">
                             <img src="{{ asset('uploads/fast-flexible.svg') }}" alt="Fast & Flexible">
                         </div>
-                        <span class="wcc-feature-title">Fast &amp; Flexible</span>
-                        <p class="wcc-feature-desc">Average production time is just 7 days. Rush options are available
-                            on select products to help keep your packaging on schedule.</p>
+                        <span class="wcc-feature-title">Production Without Delays</span>
+                        <p class="wcc-feature-desc">We have a reliable production process. As we receive approved samples, the process will be started without any further delays. Want to launch new products? No need to worry about timeline. We have a fast turnaround time.</p>
                     </div>
 
                     <!-- Feature 3 -->
@@ -3124,10 +3118,8 @@
                         <div class="wcc-icon-wrap">
                             <img src="{{ asset('uploads/design-support.svg') }}" alt="Design & Support">
                         </div>
-                        <span class="wcc-feature-title">Design &amp; Support</span>
-                        <p class="wcc-feature-desc">Enjoy unlimited design revisions and dedicated support from a
-                            packaging expert who understands your brand, specifications, and preferences from start to
-                            finish.</p>
+                        <span class="wcc-feature-title">Designs That Sell</span>
+                        <p class="wcc-feature-desc">That’s where experience matters. We have professionals with polished skills. They turn ordinary designs into branded packaging.</p>
                     </div>
 
                     <!-- Feature 4 -->
@@ -3135,9 +3127,10 @@
                         <div class="wcc-icon-wrap">
                             <img src="{{ asset('uploads/plant-care.svg') }}" alt="Clear & Sustainable">
                         </div>
-                        <span class="wcc-feature-title">Clear &amp; Sustainable</span>
-                        <p class="wcc-feature-desc">No hidden fees or surprise charges. Get transparent pricing and
-                            recyclable packaging made from responsibly sourced materials.</p>
+                        <span class="wcc-feature-title">Quality at Every Stage
+</span>
+                        <p class="wcc-feature-desc">Customer satisfaction is our priority. We have a dedicated quality check team to supervise each box. We ensure every box has gone through a quality check before delivery.
+<p>
                     </div>
 
                 </div>

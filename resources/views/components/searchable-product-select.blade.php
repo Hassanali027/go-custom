@@ -44,7 +44,7 @@
             height: 0;
             border-left: .375rem solid transparent;
             border-right: .375rem solid transparent;
-            border-top: .4375rem solid #fff;
+            border-top: .4375rem solid #333;
             transform: translateY(-50%);
             pointer-events: none;
             z-index: 2;
@@ -55,7 +55,7 @@
             max-width: 100% !important;
             box-sizing: border-box !important;
             padding-right: 2.35rem !important;
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23FFFFFF'%3E%3Cpath d='M7 9l5 6 5-6z'/%3E%3C/svg%3E") !important;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23333333'%3E%3Cpath d='M7 9l5 6 5-6z'/%3E%3C/svg%3E") !important;
             background-repeat: no-repeat !important;
             background-position: right .75rem center !important;
             background-size: 1.15rem !important;
@@ -74,8 +74,8 @@
             overflow-y: auto;
             overflow-x: hidden;
             overscroll-behavior: contain;
-            background: #0A2240;
-            border: 1px solid #445975;
+            background: #FFF8E7;
+            border: 1px solid #DDD6CB;
             border-radius: 0 0 .5rem .5rem;
             box-shadow: 0 .5rem 1rem rgba(0,0,0,.14);
             scrollbar-width: thin;
@@ -87,9 +87,9 @@
             width: 100%;
             padding: .7rem .85rem;
             border: 0;
-            border-bottom: 1px solid #1E3758;
-            background: #0A2240;
-            color: #fff;
+            border-bottom: 1px solid #DDD6CB;
+            background: #FFF8E7;
+            color: #2D2D2D;
             text-align: left;
             font: inherit;
             line-height: 1.35;
@@ -97,8 +97,8 @@
         }
         .product-search-option[hidden] { display: none !important; }
         .product-search-option:hover,
-        .product-search-option:focus { background: #256bd0; color: #fff; outline: none; }
-        .product-search-empty { padding: .8rem; color: #666; background: #fff; }
+        .product-search-option:focus { background: #EFE7D6; color: #2D2D2D; outline: none; }
+        .product-search-empty { padding: .8rem; color: #666; background: #FFF8E7; }
 
         @media (max-width: 48rem) {
             .qf-group .product-search-input {
