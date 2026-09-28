@@ -102,7 +102,7 @@ Route::get('/popular-products', function () {
         'category' => $category,
         'categories' => [],
         'products' => $popularProducts,
-        'faqs' => [],
+        'faqs' => $popularSettings['popular_faqs'] ?? [],
     ]);
 });
 

@@ -272,6 +272,53 @@
         </div>
     </div>
 
+    <!-- POPULAR PRODUCTS FAQS -->
+    <div class="panel">
+        <div class="panel-head" style="display: flex; align-items: center; justify-content: space-between;">
+            <div>
+                <h2 style="font-size: 1.0625rem;"><i class="fa-solid fa-circle-question" style="color:var(--primary); margin-right: 0.5rem;"></i> Popular Products Page FAQs</h2>
+                <span style="color:var(--muted); font-size: 0.75rem;">Add question & answer pairs for the Popular Products page</span>
+            </div>
+            <button type="button" class="btn light" onclick="addPopularFaqRow()" style="font-size: 0.75rem; padding: 0.375rem 0.75rem;">
+                <i class="fa-solid fa-plus"></i> Add Question
+            </button>
+        </div>
+        <div class="section">
+            <div id="popularFaqContainer" style="display: flex; flex-direction: column; gap: 1rem;">
+                @php $popularFaqs = (array) ($settings['popular_faqs'] ?? []); @endphp
+                @forelse($popularFaqs as $index => $faq)
+                    <div class="faq-row" style="background: #faf8f9; padding: 1.125rem; border-radius: 0.75rem; border: 1px solid var(--line); position: relative;">
+                        <button type="button" onclick="this.closest('.faq-row').remove()" style="position: absolute; top: 0.75rem; right: 0.75rem; border: none; background: #fff0f0; color: #a52b2b; width: 1.75rem; height: 1.75rem; border-radius: 0.375rem; cursor: pointer;" title="Delete FAQ">
+                            <i class="fa-solid fa-trash" style="font-size: 0.75rem;"></i>
+                        </button>
+                        <div class="field" style="margin-bottom: 0.625rem; width: calc(100% - 2.5rem);">
+                            <label>Question</label>
+                            <input type="text" name="popular_faq_questions[]" value="{{ $faq['question'] ?? '' }}" placeholder="Enter Question...">
+                        </div>
+                        <div class="field">
+                            <label>Answer</label>
+                            <textarea name="popular_faq_answers[]" rows="2" placeholder="Enter Answer...">{{ $faq['answer'] ?? '' }}</textarea>
+                        </div>
+                    </div>
+                @empty
+                    <div class="faq-row" style="background: #faf8f9; padding: 1.125rem; border-radius: 0.75rem; border: 1px solid var(--line); position: relative;">
+                        <button type="button" onclick="this.closest('.faq-row').remove()" style="position: absolute; top: 0.75rem; right: 0.75rem; border: none; background: #fff0f0; color: #a52b2b; width: 1.75rem; height: 1.75rem; border-radius: 0.375rem; cursor: pointer;" title="Delete FAQ">
+                            <i class="fa-solid fa-trash" style="font-size: 0.75rem;"></i>
+                        </button>
+                        <div class="field" style="margin-bottom: 0.625rem; width: calc(100% - 2.5rem);">
+                            <label>Question</label>
+                            <input type="text" name="popular_faq_questions[]" placeholder="Enter Question...">
+                        </div>
+                        <div class="field">
+                            <label>Answer</label>
+                            <textarea name="popular_faq_answers[]" rows="2" placeholder="Enter Answer..."></textarea>
+                        </div>
+                    </div>
+                @endforelse
+            </div>
+        </div>
+    </div>
+
     <!-- SECTION 3: SELECT CATEGORIES (SEARCHABLE MULTI-SELECT DROPDOWN) -->
     <div class="panel" style="overflow: visible; position: relative; z-index: 30;">
         <div class="panel-head">
@@ -521,6 +568,27 @@
             <div class="field">
                 <label>Answer</label>
                 <textarea name="faq_answers[]" rows="2" placeholder="Enter Answer..."></textarea>
+            </div>
+        `;
+        container.appendChild(row);
+    }
+
+    function addPopularFaqRow() {
+        const container = document.getElementById('popularFaqContainer');
+        const row = document.createElement('div');
+        row.className = 'faq-row';
+        row.style.cssText = 'background: #faf8f9; padding: 1.125rem; border-radius: 0.75rem; border: 1px solid var(--line); position: relative;';
+        row.innerHTML = `
+            <button type="button" onclick="this.closest('.faq-row').remove()" style="position: absolute; top: 0.75rem; right: 0.75rem; border: none; background: #fff0f0; color: #a52b2b; width: 1.75rem; height: 1.75rem; border-radius: 0.375rem; cursor: pointer;" title="Delete FAQ">
+                <i class="fa-solid fa-trash" style="font-size: 0.75rem;"></i>
+            </button>
+            <div class="field" style="margin-bottom: 0.625rem; width: calc(100% - 2.5rem);">
+                <label>Question</label>
+                <input type="text" name="popular_faq_questions[]" placeholder="Enter Question...">
+            </div>
+            <div class="field">
+                <label>Answer</label>
+                <textarea name="popular_faq_answers[]" rows="2" placeholder="Enter Answer..."></textarea>
             </div>
         `;
         container.appendChild(row);

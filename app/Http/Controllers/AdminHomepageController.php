@@ -33,6 +33,7 @@ class AdminHomepageController extends Controller
             'popular_hero_image' => '',
             'popular_hero_primary_button_text' => 'Get Instant Quote',
             'popular_hero_primary_button_url' => '/request-quote/',
+            'popular_faqs' => [],
             'featured_categories' => [],
             'bestseller_products' => [],
             'content_section' => '<h2>Why Choose Go-Custom-boxes</h2><p>We craft high quality luxury packaging for all industries.</p>',
@@ -113,6 +114,8 @@ class AdminHomepageController extends Controller
             'popular_hero_image' => 'nullable|image|mimes:jpeg,png,jpg,webp,svg|max:5120',
             'popular_hero_primary_button_text' => 'nullable|string|max:80',
             'popular_hero_primary_button_url' => 'nullable|string|max:255',
+            'popular_faq_questions' => 'nullable|array',
+            'popular_faq_answers' => 'nullable|array',
             'featured_categories' => 'nullable|array',
             'bestseller_products' => 'nullable|array',
             'content_section' => 'nullable|string',
@@ -172,6 +175,21 @@ class AdminHomepageController extends Controller
         }
         $settings['faqs'] = $faqs;
 
+        // Reconstruct Popular FAQs array
+        $popularFaqs = [];
+        $popularQuestions = (array) $request->input('popular_faq_questions', []);
+        $popularAnswers = (array) $request->input('popular_faq_answers', []);
+
+        foreach ($popularQuestions as $i => $q) {
+            if (!empty(trim($q))) {
+                $popularFaqs[] = [
+                    'question' => trim($q),
+                    'answer' => trim($popularAnswers[$i] ?? '')
+                ];
+            }
+        }
+        $settings['popular_faqs'] = $popularFaqs;
+
         // Save only homepage-specific fields. Footer settings are managed by
         // AdminFooterController and must remain untouched here.
         $homepageKeys = [
@@ -180,6 +198,7 @@ class AdminHomepageController extends Controller
             'popular_meta_title', 'popular_meta_description', 'popular_meta_keywords',
             'popular_hero_title', 'popular_hero_description', 'popular_hero_image',
             'popular_hero_primary_button_text', 'popular_hero_primary_button_url',
+            'popular_faqs',
             'featured_categories', 'bestseller_products', 'content_section', 'faqs',
         ];
         foreach ($settings as $key => $value) {
@@ -193,7 +212,7 @@ class AdminHomepageController extends Controller
                 $section = 'seo';
             } elseif (in_array($key, ['hero_title', 'hero_description', 'hero_image', 'popular_hero_title', 'popular_hero_description', 'popular_hero_image', 'popular_hero_primary_button_text', 'popular_hero_primary_button_url'])) {
                 $section = 'hero';
-            } elseif (in_array($key, ['featured_categories', 'bestseller_products', 'faqs'])) {
+            } elseif (in_array($key, ['featured_categories', 'bestseller_products', 'faqs', 'popular_faqs'])) {
                 $section = 'list';
                 $valueType = 'json';
                 $value = json_encode($value);
