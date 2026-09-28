@@ -230,95 +230,6 @@
         </div>
     </div>
 
-    <!-- POPULAR PRODUCTS SEO -->
-    <div class="panel">
-        <div class="panel-head">
-            <h2 style="font-size:1.0625rem;"><i class="fa-solid fa-magnifying-glass" style="color:var(--primary); margin-right:0.5rem;"></i> Popular Products Page SEO</h2>
-            <span style="color:var(--muted); font-size:0.75rem;">Meta title, description & keywords for the /popular-products/ page</span>
-        </div>
-        <div class="section">
-            <div class="form-grid">
-                <div class="field full"><label>Meta Title <small style="color:var(--muted); font-weight:400;">(50–60 characters recommended)</small></label><input name="popular_meta_title" value="{{ old('popular_meta_title', $settings['popular_meta_title'] ?? '') }}" maxlength="255"></div>
-                <div class="field full"><label>Meta Description <small style="color:var(--muted); font-weight:400;">(150–160 characters recommended)</small></label><textarea name="popular_meta_description" rows="3" maxlength="1000">{{ old('popular_meta_description', $settings['popular_meta_description'] ?? '') }}</textarea></div>
-                <div class="field full"><label>Meta Keywords <small style="color:var(--muted); font-weight:400;">(optional, comma separated)</small></label><input name="popular_meta_keywords" value="{{ old('popular_meta_keywords', $settings['popular_meta_keywords'] ?? '') }}"></div>
-            </div>
-        </div>
-    </div>
-
-    <!-- POPULAR PRODUCTS HERO -->
-    <div class="panel">
-        <div class="panel-head">
-            <h2 style="font-size:1.0625rem;"><i class="fa-solid fa-box-open" style="color:var(--primary); margin-right:0.5rem;"></i> Popular Products Page Hero</h2>
-            <span style="color:var(--muted); font-size:0.75rem;">Controls the hero shown on the Popular Products category-style page</span>
-        </div>
-        <div class="section">
-            <div class="form-grid">
-                <div class="field full"><label>Hero Title</label><input name="popular_hero_title" value="{{ old('popular_hero_title', $settings['popular_hero_title'] ?? '') }}"></div>
-                <div class="field full"><label>Hero Description</label><textarea name="popular_hero_description" rows="3">{{ old('popular_hero_description', $settings['popular_hero_description'] ?? '') }}</textarea></div>
-                <div class="field full">
-                    <label>Hero Image</label>
-                    @if(!empty($settings['popular_hero_image']))
-                        @php $popularHeroImage = \Illuminate\Support\Str::startsWith($settings['popular_hero_image'], ['uploads/', 'storage/', 'images/']) ? asset($settings['popular_hero_image']) : asset('storage/' . $settings['popular_hero_image']); @endphp
-                        <div class="single-image-wrapper" style="margin-bottom:0.625rem; display:flex; align-items:center; gap:0.75rem; background:var(--soft); padding:0.625rem 0.875rem; border-radius:0.625rem; width:fit-content; position:relative;">
-                            <img src="{{ $popularHeroImage }}" alt="Popular Products Hero" style="height:3.75rem; object-fit:contain; border-radius:0.375rem;">
-                            <span onclick="removeSingleImage(this, 'popular_hero_image')" style="position:absolute; top:-0.375rem; right:-0.375rem; background:#e74c3c; color:white; border-radius:50%; width:1.125rem; height:1.125rem; display:flex; align-items:center; justify-content:center; font-size:0.875rem; font-weight:bold; cursor:pointer;">&times;</span>
-                        </div>
-                    @endif
-                    <input type="file" name="popular_hero_image" accept="image/*">
-                </div>
-                <div class="field"><label>Primary Button Text</label><input name="popular_hero_primary_button_text" value="{{ old('popular_hero_primary_button_text', $settings['popular_hero_primary_button_text'] ?? 'Get Instant Quote') }}"></div>
-                <div class="field"><label>Primary Button Link</label><input name="popular_hero_primary_button_url" value="{{ old('popular_hero_primary_button_url', $settings['popular_hero_primary_button_url'] ?? '/request-quote/') }}"></div>
-            </div>
-        </div>
-    </div>
-
-    <!-- POPULAR PRODUCTS FAQS -->
-    <div class="panel">
-        <div class="panel-head" style="display: flex; align-items: center; justify-content: space-between;">
-            <div>
-                <h2 style="font-size: 1.0625rem;"><i class="fa-solid fa-circle-question" style="color:var(--primary); margin-right: 0.5rem;"></i> Popular Products Page FAQs</h2>
-                <span style="color:var(--muted); font-size: 0.75rem;">Add question & answer pairs for the Popular Products page</span>
-            </div>
-            <button type="button" class="btn light" onclick="addPopularFaqRow()" style="font-size: 0.75rem; padding: 0.375rem 0.75rem;">
-                <i class="fa-solid fa-plus"></i> Add Question
-            </button>
-        </div>
-        <div class="section">
-            <div id="popularFaqContainer" style="display: flex; flex-direction: column; gap: 1rem;">
-                @php $popularFaqs = (array) ($settings['popular_faqs'] ?? []); @endphp
-                @forelse($popularFaqs as $index => $faq)
-                    <div class="faq-row" style="background: #faf8f9; padding: 1.125rem; border-radius: 0.75rem; border: 1px solid var(--line); position: relative;">
-                        <button type="button" onclick="this.closest('.faq-row').remove()" style="position: absolute; top: 0.75rem; right: 0.75rem; border: none; background: #fff0f0; color: #a52b2b; width: 1.75rem; height: 1.75rem; border-radius: 0.375rem; cursor: pointer;" title="Delete FAQ">
-                            <i class="fa-solid fa-trash" style="font-size: 0.75rem;"></i>
-                        </button>
-                        <div class="field" style="margin-bottom: 0.625rem; width: calc(100% - 2.5rem);">
-                            <label>Question</label>
-                            <input type="text" name="popular_faq_questions[]" value="{{ $faq['question'] ?? '' }}" placeholder="Enter Question...">
-                        </div>
-                        <div class="field">
-                            <label>Answer</label>
-                            <textarea name="popular_faq_answers[]" rows="2" placeholder="Enter Answer...">{{ $faq['answer'] ?? '' }}</textarea>
-                        </div>
-                    </div>
-                @empty
-                    <div class="faq-row" style="background: #faf8f9; padding: 1.125rem; border-radius: 0.75rem; border: 1px solid var(--line); position: relative;">
-                        <button type="button" onclick="this.closest('.faq-row').remove()" style="position: absolute; top: 0.75rem; right: 0.75rem; border: none; background: #fff0f0; color: #a52b2b; width: 1.75rem; height: 1.75rem; border-radius: 0.375rem; cursor: pointer;" title="Delete FAQ">
-                            <i class="fa-solid fa-trash" style="font-size: 0.75rem;"></i>
-                        </button>
-                        <div class="field" style="margin-bottom: 0.625rem; width: calc(100% - 2.5rem);">
-                            <label>Question</label>
-                            <input type="text" name="popular_faq_questions[]" placeholder="Enter Question...">
-                        </div>
-                        <div class="field">
-                            <label>Answer</label>
-                            <textarea name="popular_faq_answers[]" rows="2" placeholder="Enter Answer..."></textarea>
-                        </div>
-                    </div>
-                @endforelse
-            </div>
-        </div>
-    </div>
-
     <!-- SECTION 3: SELECT CATEGORIES (SEARCHABLE MULTI-SELECT DROPDOWN) -->
     <div class="panel" style="overflow: visible; position: relative; z-index: 30;">
         <div class="panel-head">
@@ -573,26 +484,6 @@
         container.appendChild(row);
     }
 
-    function addPopularFaqRow() {
-        const container = document.getElementById('popularFaqContainer');
-        const row = document.createElement('div');
-        row.className = 'faq-row';
-        row.style.cssText = 'background: #faf8f9; padding: 1.125rem; border-radius: 0.75rem; border: 1px solid var(--line); position: relative;';
-        row.innerHTML = `
-            <button type="button" onclick="this.closest('.faq-row').remove()" style="position: absolute; top: 0.75rem; right: 0.75rem; border: none; background: #fff0f0; color: #a52b2b; width: 1.75rem; height: 1.75rem; border-radius: 0.375rem; cursor: pointer;" title="Delete FAQ">
-                <i class="fa-solid fa-trash" style="font-size: 0.75rem;"></i>
-            </button>
-            <div class="field" style="margin-bottom: 0.625rem; width: calc(100% - 2.5rem);">
-                <label>Question</label>
-                <input type="text" name="popular_faq_questions[]" placeholder="Enter Question...">
-            </div>
-            <div class="field">
-                <label>Answer</label>
-                <textarea name="popular_faq_answers[]" rows="2" placeholder="Enter Answer..."></textarea>
-            </div>
-        `;
-        container.appendChild(row);
-    }
 </script>
 
 <script>

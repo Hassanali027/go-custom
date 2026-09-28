@@ -854,6 +854,13 @@
         @endif
 
         {{-- ═══════════════════════════════════════
+             CONTENT SECTION
+        ═══════════════════════════════════════ --}}
+        @if(!empty($category['content_section']))
+            @include('components.content', ['settings' => $category])
+        @endif
+
+        {{-- ═══════════════════════════════════════
              TESTIMONIALS & FAQ SECTION
         ═══════════════════════════════════════ --}}
         @include('components.testimonials_faq')

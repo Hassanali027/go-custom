@@ -179,6 +179,10 @@
                 <i class="fa-solid fa-house"></i>
                 <span>Home Page Settings</span>
             </a>
+            <a class="{{ request()->routeIs('admin.popularproducts.edit') ? 'active' : '' }}" href="{{ route('admin.popularproducts.edit') }}">
+                <i class="fa-solid fa-star"></i>
+                <span>Popular Products Page</span>
+            </a>
             <a class="{{ request()->routeIs('admin.footer.edit') ? 'active' : '' }}" href="{{ route('admin.footer.edit') }}">
                 <i class="fa-solid fa-gear"></i>
                 <span>Footer & Company</span>

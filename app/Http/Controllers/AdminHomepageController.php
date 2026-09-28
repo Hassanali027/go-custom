@@ -33,6 +33,7 @@ class AdminHomepageController extends Controller
             'popular_hero_image' => '',
             'popular_hero_primary_button_text' => 'Get Instant Quote',
             'popular_hero_primary_button_url' => '/request-quote/',
+            'popular_content_section' => '',
             'popular_faqs' => [],
             'featured_categories' => [],
             'bestseller_products' => [],
@@ -237,5 +238,108 @@ class AdminHomepageController extends Controller
         file_put_contents($this->getSettingsPath(), json_encode($settings, JSON_PRETTY_PRINT));
 
         return redirect()->route('admin.homepage.edit')->with('success', 'Home Page Settings updated and saved to Database table successfully.');
+    }
+    public function popularProductsEdit()
+    {
+        $settings = $this->loadSettings();
+        return view('admin.popular_products_settings', compact('settings'));
+    }
+
+    public function popularProductsUpdate(Request $request)
+    {
+        $settings = $this->loadSettings();
+
+        // Validate
+        $request->validate([
+            'popular_meta_title' => 'nullable|string|max:255',
+            'popular_meta_description' => 'nullable|string|max:1000',
+            'popular_meta_keywords' => 'nullable|string|max:255',
+            'popular_hero_title' => 'nullable|string|max:255',
+            'popular_hero_description' => 'nullable|string',
+            'popular_hero_image' => 'nullable|image|mimes:jpeg,png,jpg,webp,svg|max:5120',
+            'popular_hero_primary_button_text' => 'nullable|string|max:80',
+            'popular_hero_primary_button_url' => 'nullable|string|max:255',
+            'popular_content_section' => 'nullable|string',
+            'popular_faq_questions' => 'nullable|array',
+            'popular_faq_answers' => 'nullable|array',
+        ]);
+
+        // Handle Image Deletion
+        if ($request->input('remove_popular_hero_image') == '1' && !empty($settings['popular_hero_image'])) {
+            Storage::disk('public')->delete($settings['popular_hero_image']);
+            $settings['popular_hero_image'] = '';
+        }
+
+        // Handle Image Upload
+        if ($request->hasFile('popular_hero_image')) {
+            $file = $request->file('popular_hero_image');
+            $originalName = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
+            $extension = $file->getClientOriginalExtension();
+            // Store directly without UUID
+            $filename = $originalName . '.' . $extension;
+            $path = $file->storeAs('uploads', $filename, 'public');
+            if (!empty($settings['popular_hero_image'])) {
+                Storage::disk('public')->delete($settings['popular_hero_image']);
+            }
+            $settings['popular_hero_image'] = $path;
+        }
+
+        // Text Fields
+        foreach (['popular_meta_title', 'popular_meta_description', 'popular_meta_keywords', 'popular_hero_title', 'popular_hero_description', 'popular_hero_primary_button_text', 'popular_hero_primary_button_url', 'popular_content_section'] as $field) {
+            $settings[$field] = $request->input($field);
+        }
+
+        // Reconstruct Popular FAQs array
+        $popularFaqs = [];
+        $popularQuestions = (array) $request->input('popular_faq_questions', []);
+        $popularAnswers = (array) $request->input('popular_faq_answers', []);
+
+        foreach ($popularQuestions as $i => $q) {
+            if (!empty(trim($q))) {
+                $popularFaqs[] = [
+                    'question' => trim($q),
+                    'answer' => trim($popularAnswers[$i] ?? '')
+                ];
+            }
+        }
+        $settings['popular_faqs'] = $popularFaqs;
+
+        // Save popular settings to DB
+        $popularKeys = [
+            'popular_meta_title', 'popular_meta_description', 'popular_meta_keywords',
+            'popular_hero_title', 'popular_hero_description', 'popular_hero_image',
+            'popular_hero_primary_button_text', 'popular_hero_primary_button_url',
+            'popular_content_section',
+            'popular_faqs'
+        ];
+        foreach ($settings as $key => $value) {
+            if (!in_array($key, $popularKeys)) continue;
+
+            $section = 'seo';
+            if (in_array($key, ['popular_hero_title', 'popular_hero_description', 'popular_hero_image', 'popular_hero_primary_button_text', 'popular_hero_primary_button_url'])) {
+                $section = 'hero';
+            } elseif ($key === 'popular_faqs') {
+                $section = 'list';
+            } elseif ($key === 'popular_content_section') {
+                $section = 'content';
+            }
+
+            $valueType = is_array($value) ? 'json' : 'text';
+            $dbValue = is_array($value) ? json_encode($value) : $value;
+
+            DB::table('homepage_contents')->updateOrInsert(
+                ['section' => $section, 'field_key' => $key],
+                [
+                    'section' => $section,
+                    'value' => $dbValue ?? '',
+                    'value_type' => $valueType,
+                    'updated_at' => now(),
+                    'created_at' => now()
+                ]
+            );
+        }
+
+        file_put_contents($this->getSettingsPath(), json_encode($settings, JSON_PRETTY_PRINT));
+        return redirect()->route('admin.popularproducts.edit')->with('success', 'Popular Products Page Settings updated successfully!');
     }
 }

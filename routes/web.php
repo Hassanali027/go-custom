@@ -95,6 +95,7 @@ Route::get('/popular-products', function () {
         'products_heading' => 'Popular Products',
         'products_description' => 'Explore our most popular custom packaging solutions for every product and brand.',
         'feature_sections' => '[]',
+        'content_section' => $popularSettings['popular_content_section'] ?? '',
     ];
 
     return view('category', [
@@ -203,6 +204,8 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::get('/', [AdminContentController::class, 'dashboard'])->name('dashboard');
         Route::get('/homepage-settings', [AdminHomepageController::class, 'edit'])->name('homepage.edit');
         Route::post('/homepage-settings', [AdminHomepageController::class, 'update'])->name('homepage.update');
+        Route::get('/popular-products-settings', [AdminHomepageController::class, 'popularProductsEdit'])->name('popularproducts.edit');
+        Route::post('/popular-products-settings', [AdminHomepageController::class, 'popularProductsUpdate'])->name('popularproducts.update');
         Route::get('/footer-settings', [AdminFooterController::class, 'edit'])->name('footer.edit');
         Route::post('/footer-settings', [AdminFooterController::class, 'update'])->name('footer.update');
         Route::get('/faq-page-settings', [AdminFaqPageController::class, 'edit'])->name('faqpage.edit');
