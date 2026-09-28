@@ -230,6 +230,21 @@
         </div>
     </div>
 
+    <!-- POPULAR PRODUCTS SEO -->
+    <div class="panel">
+        <div class="panel-head">
+            <h2 style="font-size:1.0625rem;"><i class="fa-solid fa-magnifying-glass" style="color:var(--primary); margin-right:0.5rem;"></i> Popular Products Page SEO</h2>
+            <span style="color:var(--muted); font-size:0.75rem;">Meta title, description & keywords for the /popular-products/ page</span>
+        </div>
+        <div class="section">
+            <div class="form-grid">
+                <div class="field full"><label>Meta Title <small style="color:var(--muted); font-weight:400;">(50–60 characters recommended)</small></label><input name="popular_meta_title" value="{{ old('popular_meta_title', $settings['popular_meta_title'] ?? '') }}" maxlength="255"></div>
+                <div class="field full"><label>Meta Description <small style="color:var(--muted); font-weight:400;">(150–160 characters recommended)</small></label><textarea name="popular_meta_description" rows="3" maxlength="1000">{{ old('popular_meta_description', $settings['popular_meta_description'] ?? '') }}</textarea></div>
+                <div class="field full"><label>Meta Keywords <small style="color:var(--muted); font-weight:400;">(optional, comma separated)</small></label><input name="popular_meta_keywords" value="{{ old('popular_meta_keywords', $settings['popular_meta_keywords'] ?? '') }}"></div>
+            </div>
+        </div>
+    </div>
+
     <!-- POPULAR PRODUCTS HERO -->
     <div class="panel">
         <div class="panel-head">
@@ -253,8 +268,6 @@
                 </div>
                 <div class="field"><label>Primary Button Text</label><input name="popular_hero_primary_button_text" value="{{ old('popular_hero_primary_button_text', $settings['popular_hero_primary_button_text'] ?? 'Get Instant Quote') }}"></div>
                 <div class="field"><label>Primary Button Link</label><input name="popular_hero_primary_button_url" value="{{ old('popular_hero_primary_button_url', $settings['popular_hero_primary_button_url'] ?? '/request-quote/') }}"></div>
-                <div class="field"><label>Secondary Button Text</label><input name="popular_hero_secondary_button_text" value="{{ old('popular_hero_secondary_button_text', $settings['popular_hero_secondary_button_text'] ?? 'Shop Now') }}"></div>
-                <div class="field"><label>Secondary Button Link</label><input name="popular_hero_secondary_button_url" value="{{ old('popular_hero_secondary_button_url', $settings['popular_hero_secondary_button_url'] ?? '/popular-products/') }}"></div>
             </div>
         </div>
     </div>
