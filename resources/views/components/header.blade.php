@@ -10,10 +10,10 @@
         --topbar-bg: #0B2545;
         --section-text-color: #000000;
         --section-background: #FFFBF0;
-        --heading-h1-size: 40px;
-        --heading-h2-size: 32px;
-        --heading-h3-size: 26px;
-        --heading-h4-size: 1.25rem;
+        --heading-h1-size: 32px;
+        --heading-h2-size: 24px;
+        --heading-h3-size: 20px;
+        --heading-h4-size: 18px;
         --heading-h5-size: 1.125rem;
         --heading-h6-size: 1rem;
     }

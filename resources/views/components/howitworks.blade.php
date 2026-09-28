@@ -170,9 +170,8 @@
     <img src="{{ asset('uploads/request-sample-kit-dots.svg') }}" alt="Decorative dotted background pattern" class="hiw-bg-dots">
     <div class="hiw-container">
         <div class="hiw-label">HOW IT WORKS</div>
-        <span class="hiw-title">Simple 4&ndash;Step Order Process</span>
-        <p class="hiw-subtitle">Ordering custom printed boxes is quick and easy, from your first idea to delivery at
-            your door.</p>
+        <span class="hiw-title">From Requirements to Ready-to-Ship Packaging</span>
+        <p class="hiw-subtitle">Without going to complicated procedure, just follow these simple steps to place your order. We have a hassle-free and smooth process for your convenience.</p>
 
         <div class="hiw-grid">
             <!-- Step 1 -->
@@ -181,8 +180,9 @@
                     <img src="{{ asset('uploads/explore.webp') }}" alt="Explore" class="hiw-img"
                         onerror="this.src='https://placehold.co/150x120/0a2240/F6B72D?text=1.+Explore'">
                 </div>
-                <span class="hiw-step-title">1. Explore</span>
-                <p class="hiw-step-desc">Select your custom box, retail display or packaging accessory to get started.
+                <span class="hiw-step-title">1. Select Your Box Solution</span>
+                <p class="hiw-step-desc">We cover a wide range of packaging requirements. Select your required packaging solution considering your brand and product needs.
+
                 </p>
             </div>
 
@@ -192,8 +192,10 @@
                     <img src="{{ asset('uploads/choose.webp') }}" alt="Choose" class="hiw-img"
                         onerror="this.src='https://placehold.co/150x120/0a2240/F6B72D?text=2.+Choose'">
                 </div>
-                <span class="hiw-step-title">2. Choose</span>
-                <p class="hiw-step-desc">Explore standard sizes and quantities to view pricing and start your design.
+                <span class="hiw-step-title">2. Get Personalized Quote
+</span>
+                <p class="hiw-step-desc">Get an estimate of the cost by sharing complete product details with customizations. We will share a custom quote with you.
+
                 </p>
             </div>
 
@@ -203,8 +205,9 @@
                     <img src="{{ asset('uploads/design.webp') }}" alt="Design" class="hiw-img"
                         onerror="this.src='https://placehold.co/150x120/0a2240/F6B72D?text=3.+Design'">
                 </div>
-                <span class="hiw-step-title">3. Design</span>
-                <p class="hiw-step-desc">Upload your artwork or create your own design using our templates.</p>
+                <span class="hiw-step-title">3. Confirm Your Design
+</span>
+                <p class="hiw-step-desc">Design confirmation is essential. Assess box dimensions, product fit, material quality, and finish with our free prototypes.</p>
             </div>
 
             <!-- Step 4 -->
@@ -213,9 +216,9 @@
                     <img src="{{ asset('uploads/order-home-step.webp') }}" alt="Order" class="hiw-img"
                         onerror="this.src='https://placehold.co/150x120/0a2240/F6B72D?text=4.+Order'">
                 </div>
-                <span class="hiw-step-title">4. Order</span>
-                <p class="hiw-step-desc">We'll review your file, follow up with you if needed, and bring your vision to
-                    life.</p>
+                <span class="hiw-step-title">4. Manufacture & Deliver</span>
+                <p class="hiw-step-desc">As soon as we receive approval, manufacturing will be started and your package will be ready to deliver.
+</p>
             </div>
         </div>
     </div>
