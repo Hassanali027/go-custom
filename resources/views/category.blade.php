@@ -117,6 +117,19 @@
         text-align: justify;
     }
 
+    .clothing-feature-text a,
+    .clothing-feature-text p a {
+        color: var(--primary-color, #5b2829);
+        text-decoration: underline;
+        text-decoration-color: var(--primary-color, #5b2829);
+        font-weight: 600;
+        transition: opacity 0.2s ease;
+    }
+    .clothing-feature-text a:hover,
+    .clothing-feature-text p a:hover {
+        opacity: 0.8;
+    }
+
     .clothing-feature-image {
         flex: 1 1 0;
         min-width: 0;
@@ -800,7 +813,9 @@
                                 @if($loop->odd)
                                     <div class="clothing-feature-text">
                                         @if(!empty($feature['title']))<h3>{{ $feature['title'] }}</h3>@endif
-                                        @if(!empty($feature['description']))<p>{{ $feature['description'] }}</p>@endif
+                                        @if(!empty($feature['description']))
+                                            {!! \Illuminate\Support\Str::contains($feature['description'], ['<p>', '<a', '<div']) ? $feature['description'] : '<p>' . nl2br($feature['description']) . '</p>' !!}
+                                        @endif
                                     </div>
                                 @elseif(!empty($featureImage))
                                     <div class="clothing-feature-image">
@@ -823,7 +838,9 @@
                                 @elseif($loop->even)
                                     <div class="clothing-feature-text">
                                         @if(!empty($feature['title']))<h3>{{ $feature['title'] }}</h3>@endif
-                                        @if(!empty($feature['description']))<p>{{ $feature['description'] }}</p>@endif
+                                        @if(!empty($feature['description']))
+                                            {!! \Illuminate\Support\Str::contains($feature['description'], ['<p>', '<a', '<div']) ? $feature['description'] : '<p>' . nl2br($feature['description']) . '</p>' !!}
+                                        @endif
                                     </div>
                                 @endif
                             @endforeach
@@ -844,7 +861,9 @@
                                 @endif
                                 <div class="clothing-feature-text">
                                     @if(!empty($feature['title']))<h3>{{ $feature['title'] }}</h3>@endif
-                                    @if(!empty($feature['description']))<p>{{ $feature['description'] }}</p>@endif
+                                    @if(!empty($feature['description']))
+                                        {!! \Illuminate\Support\Str::contains($feature['description'], ['<p>', '<a', '<div']) ? $feature['description'] : '<p>' . nl2br($feature['description']) . '</p>' !!}
+                                    @endif
                                 </div>
                             </div>
                         @endforeach

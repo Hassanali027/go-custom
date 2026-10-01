@@ -167,6 +167,7 @@
         </div>
         <div id="featureSectionsContainer" style="display:grid; gap:1rem;">
             @foreach($categoryFeatureSections as $index => $feature)
+                @php $editorId = 'feature_desc_' . $index . '_' . \Illuminate\Support\Str::random(5); @endphp
                 <div class="feature-section-row" style="border:1px solid #e5e7eb; border-radius:0.5rem; padding:1rem; background:#fafafa;">
                     <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.75rem;">
                         <strong>Feature Section <span class="feature-section-number">{{ $loop->iteration }}</span></strong>
@@ -186,8 +187,11 @@
                             <input type="file" name="feature_section_image[]" accept="image/*">
                         </div>
                         <div class="field full">
-                            <label>Description</label>
-                            <textarea name="feature_section_description[]" style="min-height:5.625rem;">{{ $feature['description'] ?? '' }}</textarea>
+                            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.25rem;">
+                                <label style="margin:0;">Description <small style="font-weight:normal; color:#6b7280;">(Select word & click 🔗 Link to insert anchor tag)</small></label>
+                                <button type="button" onclick="insertAnchorLink('{{ $editorId }}')" class="btn light" style="padding:0.15rem 0.5rem; font-size:0.75rem; line-height:1.2;" title="Insert Anchor Link"><i class="fa-solid fa-link"></i> Add Link</button>
+                            </div>
+                            <textarea id="{{ $editorId }}" name="feature_section_description[]" class="feature-desc-editor" style="min-height:5.625rem;">{{ $feature['description'] ?? '' }}</textarea>
                         </div>
                     </div>
                 </div>
@@ -273,6 +277,44 @@
 </form>
 
 <script>
+    function initFeatureEditor(id) {
+        if (typeof tinymce === 'undefined') return;
+        if (tinymce.get(id)) {
+            tinymce.get(id).remove();
+        }
+        tinymce.init({
+            selector: '#' + id,
+            height: 180,
+            menubar: false,
+            plugins: 'code autolink link lists',
+            toolbar: 'undo redo | bold italic underline | link unlink | bullist numlist | code',
+            branding: false,
+            promotion: false,
+            content_style: 'body { font-family: sans-serif; font-size: 14px; line-height: 1.5; }',
+            setup: function (editor) {
+                editor.on('change keyup blur', function () {
+                    editor.save();
+                });
+            }
+        });
+    }
+
+    function insertAnchorLink(editorId) {
+        if (typeof tinymce !== 'undefined' && tinymce.get(editorId)) {
+            tinymce.get(editorId).execCommand('mceLink');
+            return;
+        }
+        var textarea = document.getElementById(editorId);
+        if (!textarea) return;
+        var url = prompt('Enter URL for link:', 'https://');
+        if (!url) return;
+        var start = textarea.selectionStart;
+        var end = textarea.selectionEnd;
+        var selected = textarea.value.substring(start, end) || 'Link Text';
+        var linkTag = '<a href="' + url + '">' + selected + '</a>';
+        textarea.value = textarea.value.substring(0, start) + linkTag + textarea.value.substring(end);
+    }
+
     document.addEventListener('DOMContentLoaded', function () {
         if (typeof tinymce !== 'undefined') {
             tinymce.init({
@@ -286,10 +328,24 @@
                 promotion: false,
                 content_style: 'body { font-family:"DM Sans",sans-serif; font-size:0.875rem; line-height:1.6; }'
             });
+
+            document.querySelectorAll('.feature-desc-editor').forEach(function(el) {
+                if (el.id) {
+                    initFeatureEditor(el.id);
+                }
+            });
+        }
+
+        const form = document.querySelector('form.panel');
+        if (form) {
+            form.addEventListener('submit', function() {
+                if (typeof tinymce !== 'undefined') {
+                    tinymce.triggerSave();
+                }
+            });
         }
     });
-</script>
-<script>
+
     function removeSingleImage(btn, fieldName) {
         if (!confirm('Are you sure you want to remove this image?')) return;
         const wrapper = btn.closest('.single-image-wrapper');
@@ -343,6 +399,7 @@
     function addFeatureSection() {
         const container = document.getElementById('featureSectionsContainer');
         const section = document.createElement('div');
+        const uniqueId = 'feature_desc_' + Date.now() + '_' + Math.random().toString(36).substr(2, 5);
         section.className = 'feature-section-row';
         section.style.cssText = 'border:1px solid #e5e7eb; border-radius:0.5rem; padding:1rem; background:#fafafa;';
         section.innerHTML = `
@@ -354,14 +411,28 @@
             <div class="form-grid">
                 <div class="field"><label>Heading</label><input name="feature_section_title[]" placeholder="Feature heading"></div>
                 <div class="field"><label>Image</label><input type="file" name="feature_section_image[]" accept="image/*"></div>
-                <div class="field full"><label>Description</label><textarea name="feature_section_description[]" style="min-height:5.625rem;"></textarea></div>
+                <div class="field full">
+                    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.25rem;">
+                        <label style="margin:0;">Description <small style="font-weight:normal; color:#6b7280;">(Select word & click 🔗 Link to insert anchor tag)</small></label>
+                        <button type="button" onclick="insertAnchorLink('${uniqueId}')" class="btn light" style="padding:0.15rem 0.5rem; font-size:0.75rem; line-height:1.2;" title="Insert Anchor Link"><i class="fa-solid fa-link"></i> Add Link</button>
+                    </div>
+                    <textarea id="${uniqueId}" name="feature_section_description[]" class="feature-desc-editor" style="min-height:5.625rem;"></textarea>
+                </div>
             </div>`;
         container.appendChild(section);
         renumberFeatureSections();
+        setTimeout(function() {
+            initFeatureEditor(uniqueId);
+        }, 50);
     }
 
     function removeFeatureSection(btn) {
-        btn.closest('.feature-section-row').remove();
+        const row = btn.closest('.feature-section-row');
+        const textarea = row.querySelector('.feature-desc-editor');
+        if (textarea && textarea.id && typeof tinymce !== 'undefined' && tinymce.get(textarea.id)) {
+            tinymce.get(textarea.id).remove();
+        }
+        row.remove();
         renumberFeatureSections();
     }
 

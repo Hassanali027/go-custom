@@ -105,34 +105,34 @@
 
     .text-content-body a,
     .text-content-body a * {
-        color: #5b2829 !important;
+        color: var(--primary-color) !important;
         text-decoration: underline !important;
-        text-decoration-color: #5b2829 !important;
+        text-decoration-color: var(--primary-color) !important;
     }
 
     .text-content-body a:hover,
     .text-content-body a:hover * {
-        color: #5b2829 !important;
+        color: var(--primary-color) !important;
         text-decoration: underline !important;
-        text-decoration-color: #5b2829 !important;
+        text-decoration-color: var(--primary-color) !important;
     }
 
     .text-content-body ul li a,
     .text-content-body ol li a,
     .text-content-body ul li a *,
     .text-content-body ol li a * {
-        color: #5b2829 !important;
+        color: var(--primary-color) !important;
         text-decoration: underline !important;
-        text-decoration-color: #5b2829 !important;
+        text-decoration-color: var(--primary-color) !important;
     }
 
     .text-content-body ul li a:hover,
     .text-content-body ol li a:hover,
     .text-content-body ul li a:hover *,
     .text-content-body ol li a:hover * {
-        color: #5b2829 !important;
+        color: var(--primary-color) !important;
         text-decoration: underline !important;
-        text-decoration-color: #5b2829 !important;
+        text-decoration-color: var(--primary-color) !important;
     }
 
     @media (max-width: 62rem) {
