@@ -64,8 +64,18 @@ class FormSubmitController extends Controller
             'turn_around_time' => 'nullable|string|max:255',
             'quantity' => 'required|integer|min:1',
             'quote_file' => 'nullable|file|max:10240', // 10MB max
-            'message' => 'nullable|string'
+            'message' => 'nullable|string',
+            'form_source' => 'nullable|string|max:50'
         ]);
+
+        if (empty($validated['form_source'])) {
+            $referer = $request->headers->get('referer', '');
+            if (str_contains($referer, '/product/') || $request->is('product/*')) {
+                $validated['form_source'] = 'product';
+            } else {
+                $validated['form_source'] = 'quote';
+            }
+        }
 
         if ($request->hasFile('quote_file')) {
             $path = $request->file('quote_file')->store('quotes', 'public');

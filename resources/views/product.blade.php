@@ -2399,6 +2399,7 @@
                     </div>
 
                     <input type="hidden" name="box_style" value="{{ $product['title'] ?? 'Custom Packaging Box' }}">
+                    <input type="hidden" name="form_source" value="product">
 
                     <div class="form-bottom-grid">
                         <div class="input-group">

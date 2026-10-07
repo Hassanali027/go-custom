@@ -370,6 +370,7 @@
                 </div>
                 
                 <!-- Hidden inputs for validation -->
+                <input type="hidden" name="form_source" value="product">
                 <input type="hidden" name="width" value="N/A">
                 <input type="hidden" name="length" value="N/A">
                 <input type="hidden" name="depth" value="N/A">

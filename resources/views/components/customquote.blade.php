@@ -389,6 +389,7 @@
 
             <form action="{{ url('/submit-quote') }}" method="POST" enctype="multipart/form-data" class="qf-main-grid">
                 @csrf
+                <input type="hidden" name="form_source" value="quote">
 
                 <!-- Row 1: Name, Email, Phone -->
                 <div class="qf-group qf-span-4 qf-span-12-m">
