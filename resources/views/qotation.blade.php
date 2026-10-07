@@ -474,6 +474,11 @@
             <!-- Right form section -->
             <div class="iq-page-form-card">
                 <h2>Instant Quotes, Quick Service</h2>
+                @if(request('from_search') && request('box_style'))
+                    <p style="margin: 0 0 1.25rem; padding: 0.875rem 1rem; border-left: 0.25rem solid #FFB400; background: #FFF8E7; color: #111; font-size: 0.9375rem; font-weight: 500; line-height: 1.6;">
+                        We don’t currently list <strong>"{{ request('box_style') }}"</strong> on our website, but we can manufacture it to your requirements. Submit your specifications below to request a custom quote.
+                    </p>
+                @endif
                 @if(session('success'))
                     <div style="background-color: #d4edda; color: #155724; padding: 0.625rem; border-radius: 0.3125rem; margin-bottom: 1.25rem;">
                         {{ session('success') }}

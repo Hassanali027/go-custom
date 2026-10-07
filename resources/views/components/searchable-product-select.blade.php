@@ -3,14 +3,12 @@
     'inputClass' => '',
     'placeholder' => 'Select Your Box Style',
     'value' => '',
-    'required' => false,
+    'required' => true,
 ])
 
 @php
-    $searchableProducts = \Illuminate\Support\Facades\DB::table('admin_products')
-        ->where('status', 'published')
-        ->orderBy('title')
-        ->pluck('title');
+    $value = $value !== '' ? $value : request('box_style', '');
+    $searchableProducts = \App\Support\QuoteProductOptions::all();
 @endphp
 
 <div class="product-search-select" data-product-search-select>
@@ -20,6 +18,8 @@
            placeholder="{{ $placeholder }}"
            value="{{ $value }}"
            autocomplete="off"
+           data-product-search-input
+           data-product-selected="{{ $value !== '' ? '1' : '0' }}"
            @if($required) required @endif>
     <div class="product-search-options" role="listbox">
         @foreach($searchableProducts as $searchableProductTitle)
@@ -119,6 +119,7 @@
                 const input = wrapper.querySelector('.product-search-input');
                 const options = Array.from(wrapper.querySelectorAll('.product-search-option'));
                 const empty = wrapper.querySelector('.product-search-empty');
+                const form = wrapper.closest('form');
 
                 function filterOptions() {
                     const query = input.value.trim().toLowerCase();
@@ -134,14 +135,29 @@
 
                 input.addEventListener('focus', filterOptions);
                 input.addEventListener('click', filterOptions);
-                input.addEventListener('input', filterOptions);
+                input.addEventListener('input', function () {
+                    input.dataset.productSelected = '0';
+                    filterOptions();
+                });
                 options.forEach(function (option) {
                     option.addEventListener('click', function () {
                         input.value = option.dataset.value;
+                        input.dataset.productSelected = '1';
                         wrapper.classList.remove('is-open');
                         input.dispatchEvent(new Event('change', { bubbles: true }));
                     });
                 });
+
+                if (form && input.hasAttribute('required')) {
+                    form.addEventListener('submit', function (event) {
+                        if (input.dataset.productSelected === '1' && input.value.trim() !== '') return;
+
+                        event.preventDefault();
+                        event.stopImmediatePropagation();
+                        input.focus();
+                        alert('Please select a Box Style from the list.');
+                    }, true);
+                }
             });
 
             document.addEventListener('click', function (event) {

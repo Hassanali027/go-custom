@@ -43,6 +43,10 @@ Route::get('/search', function (\Illuminate\Http\Request $request) {
             ->where('title', 'like', "%{$q}%")
             ->orWhere('description', 'like', "%{$q}%")
             ->get()->map(fn($r)=>(array)$r)->all();
+
+        if (count($products) === 0) {
+            return redirect('/request-quote?from_search=1&box_style=' . urlencode(ucfirst(strtolower(trim($q)))));
+        }
             
         $categories = DB::table('admin_categories')
             ->where('title', 'like', "%{$q}%")

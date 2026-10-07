@@ -2400,10 +2400,7 @@
 
                     <div class="form-bottom-grid">
                         <div class="input-group">
-                            <input type="hidden" name="box_style" value="{{ $product['title'] ?? 'Custom Packaging Box' }}">
-                            <div class="quote-input product-fixed-box-style" aria-label="Box Style">
-                                {{ $product['title'] ?? 'Custom Packaging Box' }}
-                            </div>
+                            <x-searchable-product-select input-class="quote-input" value="{{ $product['title'] ?? 'Custom Packaging Box' }}" />
                         </div>
                         <div class="input-group">
                             <select name="paper_stock" class="quote-input" required>

@@ -356,10 +356,7 @@
                 <div class="pqn-form-row">
                     <div class="pqn-form-group">
                         <label class="pqn-label">Box Style *</label>
-                        <input type="hidden" name="box_style" value="{{ $product['title'] ?? 'Custom Packaging Box' }}">
-                        <div class="pqn-input pqn-fixed-box-style" aria-label="Box Style">
-                            {{ $product['title'] ?? 'Custom Packaging Box' }}
-                        </div>
+                        <x-searchable-product-select input-class="pqn-input" value="{{ $product['title'] ?? 'Custom Packaging Box' }}" />
                     </div>
                     <div class="pqn-form-group">
                         <label class="pqn-label">Quantity *</label>
