@@ -2398,10 +2398,9 @@
                         </div>
                     </div>
 
+                    <input type="hidden" name="box_style" value="{{ $product['title'] ?? 'Custom Packaging Box' }}">
+
                     <div class="form-bottom-grid">
-                        <div class="input-group">
-                            <x-searchable-product-select input-class="quote-input" value="{{ $product['title'] ?? 'Custom Packaging Box' }}" />
-                        </div>
                         <div class="input-group">
                             <select name="paper_stock" class="quote-input" required>
                                 <option value="" disabled selected>Select Paper Stock</option>
@@ -2415,7 +2414,16 @@
                                 <option>Kraft Stock</option>
                                 <option>Recycled BuxBoard</option>
                                 <option>Corrugated Stock</option>
-
+                            </select>
+                        </div>
+                        <div class="input-group">
+                            <select name="paper_coating" class="quote-input">
+                                <option value="" selected>Select Paper Coating</option>
+                                <option>Aqueous Coating</option>
+                                <option>Semi Gloss</option>
+                                <option>Gloss UV</option>
+                                <option>Matte UV</option>
+                                <option>Semi Matte</option>
                             </select>
                         </div>
                         <div class="input-group">
@@ -2432,13 +2440,10 @@
                             <input type="number" name="quantity" class="quote-input" placeholder="Quantity" required>
                         </div>
                         <div class="input-group">
-                            <select name="paper_coating" class="quote-input">
-                                <option value="" selected>Select Paper Coating</option>
-                                <option>Aqueous Coating</option>
-                                <option>Semi Gloss</option>
-                                <option>Gloss UV</option>
-                                <option>Matte UV</option>
-                                <option>Semi Matte</option>
+                            <select name="cad_sample" class="quote-input">
+                                <option value="" selected>Select CAD Sample</option>
+                                <option value="Yes">Yes</option>
+                                <option value="No">No</option>
                             </select>
                         </div>
                         <div class="input-group">
