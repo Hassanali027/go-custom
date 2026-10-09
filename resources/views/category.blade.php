@@ -775,11 +775,14 @@
                                 : 'storage/' . $pImg;
 
                             $pSlug = $p['slug'] ?? \Illuminate\Support\Str::slug($p['title']);
+                            
+                            $imgName = pathinfo(parse_url(asset($pImg), PHP_URL_PATH), PATHINFO_FILENAME);
+                            $imgCleanName = ucwords(str_replace(['-', '_'], ' ', preg_replace('/-[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}/i', '', $imgName)));
                         @endphp
                         <a href="{{ url('/' . $pSlug) }}/" class="box-card">
                             <div class="box-image-wrapper">
-                                <img src="{{ asset($pImg) }}" alt="{{ $p['title'] }}" class="main-img"
-                                    onerror="this.src='https://placehold.co/284x284/dddddd/555555?text={{ urlencode($p['title']) }}'" loading="lazy">
+                                <img src="{{ asset($pImg) }}" alt="{{ $imgCleanName }}" title="{{ $imgCleanName }}" class="main-img"
+                                    onerror="this.src='https://placehold.co/284x284/dddddd/555555?text={{ urlencode($imgCleanName) }}'" loading="lazy">
                             </div>
                             <span class="box-title">{{ $p['title'] }}</span>
                         </a>
@@ -818,8 +821,18 @@
                                         @endif
                                     </div>
                                 @elseif(!empty($featureImage))
+                                    @php
+                                        $featureDisplayTitle = !empty($feature['title']) ? $feature['title'] : ($category['title'] ?? '');
+                                        if (empty($featureDisplayTitle)) {
+                                            $featureImgName = pathinfo(parse_url(asset($featureImagePath), PHP_URL_PATH), PATHINFO_FILENAME);
+                                            $cleanName = preg_replace('/-[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}/i', '', $featureImgName);
+                                            $cleanName = preg_replace('/-[0-9a-fA-F]{8,}/i', '', $cleanName);
+                                            $cleanName = preg_replace('/[-_]\d+$/', '', $cleanName);
+                                            $featureDisplayTitle = ucwords(trim(str_replace(['-', '_'], ' ', $cleanName)));
+                                        }
+                                    @endphp
                                     <div class="clothing-feature-image">
-                                        <img src="{{ asset($featureImagePath) }}" alt="{{ $feature['title'] ?? $category['title'] }}" loading="lazy">
+                                        <img src="{{ asset($featureImagePath) }}" alt="{{ $featureDisplayTitle }}" title="{{ $featureDisplayTitle }}" loading="lazy">
                                     </div>
                                 @endif
                             @endforeach
@@ -832,8 +845,18 @@
                                     $featureImagePath = \Illuminate\Support\Str::startsWith($featureImage, ['storage/', 'uploads/', 'images/']) ? $featureImage : 'storage/' . $featureImage;
                                 @endphp
                                 @if($loop->odd && !empty($featureImage))
+                                    @php
+                                        $featureDisplayTitle = !empty($feature['title']) ? $feature['title'] : ($category['title'] ?? '');
+                                        if (empty($featureDisplayTitle)) {
+                                            $featureImgName = pathinfo(parse_url(asset($featureImagePath), PHP_URL_PATH), PATHINFO_FILENAME);
+                                            $cleanName = preg_replace('/-[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}/i', '', $featureImgName);
+                                            $cleanName = preg_replace('/-[0-9a-fA-F]{8,}/i', '', $cleanName);
+                                            $cleanName = preg_replace('/[-_]\d+$/', '', $cleanName);
+                                            $featureDisplayTitle = ucwords(trim(str_replace(['-', '_'], ' ', $cleanName)));
+                                        }
+                                    @endphp
                                     <div class="clothing-feature-image">
-                                        <img src="{{ asset($featureImagePath) }}" alt="{{ $feature['title'] ?? $category['title'] }}" loading="lazy">
+                                        <img src="{{ asset($featureImagePath) }}" alt="{{ $featureDisplayTitle }}" title="{{ $featureDisplayTitle }}" loading="lazy">
                                     </div>
                                 @elseif($loop->even)
                                     <div class="clothing-feature-text">
@@ -855,8 +878,18 @@
                             @endphp
                             <div class="clothing-feature-mobile-pair">
                                 @if(!empty($featureImage))
+                                    @php
+                                        $featureDisplayTitle = !empty($feature['title']) ? $feature['title'] : ($category['title'] ?? '');
+                                        if (empty($featureDisplayTitle)) {
+                                            $featureImgName = pathinfo(parse_url(asset($featureImagePath), PHP_URL_PATH), PATHINFO_FILENAME);
+                                            $cleanName = preg_replace('/-[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}/i', '', $featureImgName);
+                                            $cleanName = preg_replace('/-[0-9a-fA-F]{8,}/i', '', $cleanName);
+                                            $cleanName = preg_replace('/[-_]\d+$/', '', $cleanName);
+                                            $featureDisplayTitle = ucwords(trim(str_replace(['-', '_'], ' ', $cleanName)));
+                                        }
+                                    @endphp
                                     <div class="clothing-feature-image">
-                                        <img src="{{ asset($featureImagePath) }}" alt="{{ $feature['title'] ?? $category['title'] }}" loading="lazy">
+                                        <img src="{{ asset($featureImagePath) }}" alt="{{ $featureDisplayTitle }}" title="{{ $featureDisplayTitle }}" loading="lazy">
                                     </div>
                                 @endif
                                 <div class="clothing-feature-text">

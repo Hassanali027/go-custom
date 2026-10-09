@@ -2218,7 +2218,7 @@
                     @endphp
                     <a href="{{ $catUrl }}" class="industry-card">
                         <div class="industry-card__image-wrap">
-                            <img src="{{ asset($cImg) }}" alt="{{ $cat['title'] }}"
+                            <img src="{{ asset($cImg) }}" alt="{{ $cat['title'] }}" title="{{ $cat['title'] }}"
                                 onerror="this.src='https://placehold.co/275x266/dddddd/555555?text={{ urlencode($cat['title']) }}'">
                         </div>
                         <div class="industry-card__bottom">
@@ -2375,7 +2375,7 @@
                     @endphp
                     <a href="{{ $catUrl }}" class="bs-card">
                         <div class="bs-card__img-wrap">
-                            <img src="{{ asset($bsImg) }}" alt="{{ $item['title'] }}"
+                            <img src="{{ asset($bsImg) }}" alt="{{ $item['title'] }}" title="{{ $item['title'] }}"
                                 onerror="this.src='https://placehold.co/300x300/dddddd/555555?text={{ urlencode($item['title']) }}'">
                         </div>
                         <span class="bs-card__title">{{ $item['title'] }}</span>

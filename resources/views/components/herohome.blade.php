@@ -532,7 +532,7 @@
         </div>
 
         <div class="hero-image-wrapper">
-            <div class="hero-glow-circle-right"></div>
+            <div ></div>
             @php
                 $hImg = trim((string) (!empty($settings['hero_image']) ? $settings['hero_image'] : (!empty($category['hero_image']) ? $category['hero_image'] : 'uploads/Home-Banner.webp')));
                 if (\Illuminate\Support\Str::startsWith($hImg, ['http://', 'https://'])) {
@@ -552,8 +552,11 @@
                     }
                     $hImgUrl = asset($hImgPath);
                 }
+                
+                $hImgName = pathinfo(parse_url($hImgUrl, PHP_URL_PATH), PATHINFO_FILENAME);
+                $hImgCleanName = ucwords(str_replace(['-', '_'], ' ', preg_replace('/-[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}/i', '', $hImgName)));
             @endphp
-            <img src="{{ $hImgUrl }}" alt="{{ strip_tags($settings['hero_title'] ?? ($category['hero_title'] ?? 'Custom Rigid Packaging Boxes')) }}" fetchpriority="high" onerror="this.src='{{ asset('uploads/Home-Banner.webp') }}'">
+            <img src="{{ $hImgUrl }}" alt="{{ $hImgCleanName }}" title="{{ $hImgCleanName }}" fetchpriority="high" onerror="this.src='{{ asset('uploads/Home-Banner.webp') }}'">
         </div>
     </section>
 </div>

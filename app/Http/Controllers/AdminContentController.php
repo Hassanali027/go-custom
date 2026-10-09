@@ -160,7 +160,7 @@ class AdminContentController extends Controller
             $existingFeatureImages = (array) $request->input('feature_section_existing_image', []);
             $featureImageUploads = (array) $request->file('feature_section_image', []);
             $featureCategoryKey = preg_replace('/[^A-Za-z0-9_-]/', '-', (string) $id);
-            $featureUploadRelativePath = 'uploads/category-features/' . $featureCategoryKey;
+            $featureUploadRelativePath = 'uploads';
             $uploadPath = public_path($featureUploadRelativePath);
 
             foreach ($featureTitles as $index => $featureTitle) {
@@ -173,10 +173,9 @@ class AdminContentController extends Controller
                     if (!is_dir($uploadPath)) {
                         mkdir($uploadPath, 0775, true);
                     }
-                    // Category folder + UUID ensures an upload can never overwrite another category's image.
-                    $fileName = 'category-feature-' . Str::uuid() . '.' . $file->getClientOriginalExtension();
+                    $fileName = $file->getClientOriginalName();
                     $file->move($uploadPath, $fileName);
-                    $featureImage = $featureUploadRelativePath . '/' . $fileName;
+                    $featureImage = 'uploads/' . $fileName;
                 }
 
                 if ($featureTitle !== '' || $featureDescription !== '' || !empty($featureImage)) {
@@ -198,10 +197,7 @@ class AdminContentController extends Controller
             if ($request->hasFile($field)) {
                 if (in_array($field, $fields)) {
                     $file = $request->file($field);
-                    $ext = $file->getClientOriginalExtension();
-                    $baseName = Str::slug(pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME)) ?: 'image';
-                    // Unique suffix ensures one record's upload can never overwrite another's.
-                    $fileName = $baseName . '.' . $ext;
+                    $fileName = $file->getClientOriginalName();
                     $uploadPath = public_path('uploads');
                     if (!is_dir($uploadPath)) {
                         mkdir($uploadPath, 0775, true);
@@ -226,10 +222,7 @@ class AdminContentController extends Controller
                 }
                 $newImages = collect($galleryFiles)
                     ->map(function ($file) use ($uploadPath) {
-                        $ext = $file->getClientOriginalExtension();
-                        $baseName = Str::slug(pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME)) ?: 'image';
-                        // Unique suffix prevents one gallery upload from overwriting another's file.
-                        $fileName = $baseName . '.' . $ext;
+                        $fileName = $file->getClientOriginalName();
                         $file->move($uploadPath, $fileName);
                         return 'uploads/' . $fileName;
                     })
@@ -243,6 +236,15 @@ class AdminContentController extends Controller
         if ($existing) DB::table($table)->where('id',$existing->id)->update($payload); else { $payload['created_at']=now(); $id=DB::table($table)->insertGetId($payload); }
         if ($module==='products') { DB::table('admin_category_product')->where('product_id',$id)->delete(); foreach((array)$request->input('categories',[]) as $cat) if($cat) DB::table('admin_category_product')->insert(['product_id'=>$id,'category_id'=>$cat]); DB::table('admin_product_faqs')->where('product_id',$id)->delete(); foreach((array)$request->input('faq_question',[]) as $i=>$q) if($q && !empty($request->input('faq_answer')[$i]??'')) DB::table('admin_product_faqs')->insert(['product_id'=>$id,'question'=>$q,'answer'=>$request->input('faq_answer')[$i],'created_at'=>now(),'updated_at'=>now()]); }
         if ($module==='categories') { DB::table('admin_category_faqs')->where('category_id',$id)->delete(); foreach((array)$request->input('faq_question',[]) as $i=>$q) if($q && !empty($request->input('faq_answer')[$i]??'')) DB::table('admin_category_faqs')->insert(['category_id'=>$id,'question'=>$q,'answer'=>$request->input('faq_answer')[$i],'created_at'=>now(),'updated_at'=>now()]); }
+        if ($module==='pages') { 
+            $faqs = []; 
+            foreach((array)$request->input('faq_question',[]) as $i=>$q) { 
+                if($q && !empty($request->input('faq_answer')[$i]??'')) { 
+                    $faqs[] = ['question' => $q, 'answer' => $request->input('faq_answer')[$i]]; 
+                } 
+            } 
+            DB::table('admin_pages')->where('id', $existing ? $existing->id : $id)->update(['faqs' => json_encode($faqs)]); 
+        }
         return redirect()->route('admin.module.index', $module)->with('success', $this->modules()[$module]['singular'].' saved successfully.');
     }
 

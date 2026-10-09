@@ -579,7 +579,17 @@
 
                 <!-- FAQ Column -->
                 <div class="faq-column">
-                    @include('components.product-faq')
+                    @php
+                        $contactPage = \Illuminate\Support\Facades\DB::table('admin_pages')
+                            ->where('appearance', 'Contact')
+                            ->orWhere('title', 'like', '%Contact Us%')
+                            ->first();
+                        $contactFaqs = [];
+                        if ($contactPage && !empty($contactPage->faqs)) {
+                            $contactFaqs = json_decode($contactPage->faqs, true) ?: [];
+                        }
+                    @endphp
+                    @include('components.product-faq', ['displayFaqs' => $contactFaqs])
                 </div>
             </div>
         </section>

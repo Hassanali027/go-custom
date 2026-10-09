@@ -2114,7 +2114,11 @@
                     <div class="in-stock-tag">
                         <span class="stock-dot"></span> In Stock
                     </div>
-                    <img id="product-main-image" src="{{ asset($pMainImg) }}" alt="" title="" onerror="this.src='https://placehold.co/600x500/eeeeee/555555?text={{ urlencode($pTitle) }}'">
+                    @php
+                        $pMainImgName = pathinfo(parse_url(asset($pMainImg), PHP_URL_PATH), PATHINFO_FILENAME);
+                        $pMainImgCleanName = !empty($pTitle) ? $pTitle : ucwords(str_replace(['-', '_'], ' ', preg_replace('/-[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}/i', '', $pMainImgName)));
+                    @endphp
+                    <img id="product-main-image" src="{{ asset($pMainImg) }}" alt="{{ $pMainImgCleanName }}" title="{{ $pMainImgCleanName }}" onerror="this.src='https://placehold.co/600x500/eeeeee/555555?text={{ urlencode($pMainImgCleanName) }}'">
                 </div>
                 @if(count($pGallery))
                 <div class="thumbnails">
@@ -2524,10 +2528,6 @@
         <div style="border-radius: 0.5rem; overflow: hidden; border: 1px solid #DDDDDD;">
             <table class="specs-table" style="border-style: hidden; width: 100%;">
                 <tr>
-                    <td>Box Style</td>
-                    <td>{{ $product['box_style'] ?? 'Lipstick Boxes' }}</td>
-                </tr>
-                <tr>
                     <td>Retail Boxes</td>
                     <td>All Custom Sizes & Shapes</td>
                 </tr>
@@ -2620,11 +2620,14 @@
                             : 'storage/' . $rpImg;
                         
                         $rpSlug = $rp['slug'] ?? \Illuminate\Support\Str::slug($rp['title']);
+                        
+                        $rpImgName = pathinfo(parse_url(asset($rpImg), PHP_URL_PATH), PATHINFO_FILENAME);
+                        $rpImgCleanName = !empty($rp['title']) ? $rp['title'] : ucwords(str_replace(['-', '_'], ' ', preg_replace('/-[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}/i', '', $rpImgName)));
                     @endphp
                     <div class="product-card">
                         <a href="{{ url('/' . $rpSlug) }}/" style="text-decoration:none; color:inherit;">
                             <div class="product-image">
-                                <img src="{{ asset($rpImg) }}" alt="{{ $rp['title'] }}" style="width: 100%; height: 100%; object-fit: cover;" onerror="this.src='https://placehold.co/284x284/eeeeee/555555?text={{ urlencode($rp['title']) }}'">
+                                <img src="{{ asset($rpImg) }}" alt="{{ $rpImgCleanName }}" title="{{ $rpImgCleanName }}" style="width: 100%; height: 100%; object-fit: cover;" onerror="this.src='https://placehold.co/284x284/eeeeee/555555?text={{ urlencode($rpImgCleanName) }}'">
                             </div>
                             <h4>{{ $rp['title'] }}</h4>
                         </a>
