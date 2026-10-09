@@ -188,6 +188,9 @@
             background-position: right 1rem center;
             padding-right: 2.5rem;
             cursor: pointer;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            overflow: hidden;
         }
 
         /* Remove number input spinner arrows */
@@ -359,6 +362,9 @@
                 grid-template-columns: 1fr 1fr;
                 gap: 0.75rem;
             }
+            .iq-upload-group {
+                grid-column: span 2;
+            }
         }
 
         @media (max-width: 25rem) {
@@ -474,6 +480,11 @@
             <!-- Right form section -->
             <div class="iq-page-form-card">
                 <h2>Instant Quotes, Quick Service</h2>
+                @if(request('from_search') && request('box_style'))
+                    <p style="margin: 0 0 1.25rem; padding: 0.875rem 1rem; border-left: 0.25rem solid #FFB400; background: #FFF8E7; color: #111; font-size: 0.9375rem; font-weight: 500; line-height: 1.6;">
+                        We don’t currently list <strong>"{{ request('box_style') }}"</strong> on our website, but we can manufacture it to your requirements. Submit your specifications below to request a custom quote.
+                    </p>
+                @endif
                 @if(session('success'))
                     <div style="background-color: #d4edda; color: #155724; padding: 0.625rem; border-radius: 0.3125rem; margin-bottom: 1.25rem;">
                         {{ session('success') }}
@@ -481,6 +492,7 @@
                 @endif
                 <form action="{{ url('/submit-quote') }}" method="POST" enctype="multipart/form-data" style="display: flex; flex-direction: column; gap: 1rem;">
                     @csrf
+                    <input type="hidden" name="form_source" value="quote">
                     <!-- Row 1 -->
                     <div class="iq-grid-2">
                         <div class="iq-form-group">
@@ -529,8 +541,8 @@
                         </div>
                     </div>
 
-                    <!-- Row 4 and 5: Product, paper stock, color, Quantity, coating and file upload -->
-                    <div class="iq-grid-3">
+                    <!-- Row 4: Product, Paper Stock, Coating, Color Options -->
+                    <div class="iq-grid-4">
                         <div class="iq-form-group">
                             <label>Select Box Style</label>
                             <x-searchable-product-select input-class="iq-product-search-input" placeholder="Search or select product" />
@@ -544,20 +556,7 @@
                                 <option>20pt Cardboard Stock</option><option>22pt Cardboard Stock</option>
                                 <option>24pt Cardboard Stock</option><option>Kraft Stock</option>
                                 <option>Recycled BuxBoard</option><option>Corrugated Stock</option>
-
                             </select>
-                        </div>
-                        <div class="iq-form-group">
-                            <label>Color Options</label>
-                            <select name="color">
-                                <option value="">Choose option</option>
-                                <option value="1 Color">1 Color</option><option value="2 Colors">2 Colors</option>
-                                <option value="3 Colors">3 Colors</option><option value="Full Color">Full Color</option>
-                            </select>
-                        </div>
-                        <div class="iq-form-group">
-                            <label>Quantity *</label>
-                            <input type="number" name="quantity" placeholder="Enter quantity" oninput="this.value = this.value.replace(/[^0-9]/g, '')" required>
                         </div>
                         <div class="iq-form-group">
                             <label>Paper Coating</label>
@@ -568,6 +567,30 @@
                             </select>
                         </div>
                         <div class="iq-form-group">
+                            <label>Color Options</label>
+                            <select name="color">
+                                <option value="">Choose option</option>
+                                <option value="1 Color">1 Color</option><option value="2 Colors">2 Colors</option>
+                                <option value="3 Colors">3 Colors</option><option value="Full Color">Full Color</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Row 5: Quantity, CAD Sample, File Upload -->
+                    <div class="iq-grid-3">
+                        <div class="iq-form-group">
+                            <label>Quantity *</label>
+                            <input type="number" name="quantity" placeholder="Enter quantity" oninput="this.value = this.value.replace(/[^0-9]/g, '')" required>
+                        </div>
+                        <div class="iq-form-group">
+                            <label>Select CAD Sample</label>
+                            <select name="cad_sample">
+                                <option value="">Select CAD Sample</option>
+                                <option value="Yes">Yes</option>
+                                <option value="No">No</option>
+                            </select>
+                        </div>
+                        <div class="iq-form-group iq-upload-group">
                             <label>Upload File Here</label>
                             <div class="iq-upload-wrapper" style="display: flex; align-items: center; border: 1px solid #DDD6CB; border-radius: 0.5rem; overflow: hidden; background: #FFF8E7; height: 2.75rem;">
                                 <input type="file" name="quote_file" id="quote-file-input" style="display: none;" onchange="document.getElementById('quote-file-name').value = this.files[0] ? this.files[0].name : ''">

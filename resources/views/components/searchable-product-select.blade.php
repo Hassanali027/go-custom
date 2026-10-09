@@ -3,25 +3,31 @@
     'inputClass' => '',
     'placeholder' => 'Select Your Box Style',
     'value' => '',
-    'required' => false,
+    'required' => true,
 ])
 
 @php
-    $searchableProducts = \Illuminate\Support\Facades\DB::table('admin_products')
-        ->where('status', 'published')
-        ->orderBy('title')
-        ->pluck('title');
+    $value = $value !== '' ? $value : request('box_style', '');
+    $searchableProducts = \App\Support\QuoteProductOptions::all();
 @endphp
 
 <div class="product-search-select" data-product-search-select>
-    <input type="text"
+    <input type="hidden"
            name="{{ $name }}"
+           value="{{ $value }}"
+           data-product-search-value
+           data-product-selected="{{ $value !== '' ? '1' : '0' }}">
+    <input type="text"
            class="{{ $inputClass }} product-search-input"
            placeholder="{{ $placeholder }}"
            value="{{ $value }}"
            autocomplete="off"
-           @if($required) required @endif>
+           readonly
+           data-product-search-input
+           aria-haspopup="listbox"
+           aria-expanded="false">
     <div class="product-search-options" role="listbox">
+        <input type="search" class="product-search-filter" placeholder="Search product..." autocomplete="off" aria-label="Search product">
         @foreach($searchableProducts as $searchableProductTitle)
             <button type="button" class="product-search-option" data-value="{{ $searchableProductTitle }}">
                 {{ $searchableProductTitle }}
@@ -60,6 +66,42 @@
             background-position: right .75rem center !important;
             background-size: 1.15rem !important;
             text-overflow: ellipsis;
+            cursor: pointer;
+        }
+        .product-search-select .product-search-filter,
+        .product-search-options .product-search-filter,
+        input.product-search-filter {
+            display: block;
+            width: calc(100% - 1rem);
+            height: 2.75rem;
+            margin: .5rem;
+            padding: 0 .75rem;
+            border: 1px solid #CDA434 !important;
+            border-radius: .4rem;
+            background: #ffffff !important;
+            color: #1a1a1a !important;
+            -webkit-text-fill-color: #1a1a1a !important;
+            caret-color: #1a1a1a !important;
+            font: inherit;
+            font-size: 0.875rem !important;
+            box-sizing: border-box;
+            outline: none;
+        }
+        .product-search-select .product-search-filter::placeholder,
+        .product-search-options .product-search-filter::placeholder,
+        input.product-search-filter::placeholder {
+            color: #736d66 !important;
+            -webkit-text-fill-color: #736d66 !important;
+            opacity: 1 !important;
+        }
+        .product-search-select .product-search-filter:focus,
+        .product-search-options .product-search-filter:focus,
+        input.product-search-filter:focus {
+            box-shadow: 0 0 0 .15rem rgba(205,164,52,.2) !important;
+            border-color: #CDA434 !important;
+            color: #1a1a1a !important;
+            -webkit-text-fill-color: #1a1a1a !important;
+            caret-color: #1a1a1a !important;
         }
         .product-search-options {
             display: none;
@@ -100,16 +142,6 @@
         .product-search-option:focus { background: #EFE7D6; color: #2D2D2D; outline: none; }
         .product-search-empty { padding: .8rem; color: #666; background: #FFF8E7; }
 
-        @media (max-width: 48rem) {
-            .qf-group .product-search-input {
-                padding-right: 2.5rem !important;
-                background-image: none !important;
-            }
-            .product-search-select::after {
-                display: block;
-                right: .75rem;
-            }
-        }
     </style>
     <script>
         document.addEventListener('DOMContentLoaded', function () {
@@ -117,11 +149,14 @@
                 if (wrapper.dataset.ready) return;
                 wrapper.dataset.ready = '1';
                 const input = wrapper.querySelector('.product-search-input');
+                const valueInput = wrapper.querySelector('[data-product-search-value]');
+                const filterInput = wrapper.querySelector('.product-search-filter');
                 const options = Array.from(wrapper.querySelectorAll('.product-search-option'));
                 const empty = wrapper.querySelector('.product-search-empty');
+                const form = wrapper.closest('form');
 
                 function filterOptions() {
-                    const query = input.value.trim().toLowerCase();
+                    const query = filterInput.value.trim().toLowerCase();
                     let visible = 0;
                     options.forEach(function (option) {
                         const show = option.dataset.value.toLowerCase().includes(query);
@@ -130,23 +165,46 @@
                     });
                     empty.hidden = visible !== 0;
                     wrapper.classList.add('is-open');
+                    input.setAttribute('aria-expanded', 'true');
                 }
 
-                input.addEventListener('focus', filterOptions);
-                input.addEventListener('click', filterOptions);
-                input.addEventListener('input', filterOptions);
+                function openOptions() {
+                    filterOptions();
+                    filterInput.focus();
+                }
+
+                input.addEventListener('focus', openOptions);
+                input.addEventListener('click', openOptions);
+                filterInput.addEventListener('input', filterOptions);
                 options.forEach(function (option) {
                     option.addEventListener('click', function () {
                         input.value = option.dataset.value;
+                        valueInput.value = option.dataset.value;
+                        valueInput.dataset.productSelected = '1';
                         wrapper.classList.remove('is-open');
+                        input.setAttribute('aria-expanded', 'false');
                         input.dispatchEvent(new Event('change', { bubbles: true }));
                     });
                 });
+
+                if (form && {{ $required ? 'true' : 'false' }}) {
+                    form.addEventListener('submit', function (event) {
+                        if (valueInput.dataset.productSelected === '1' && valueInput.value.trim() !== '') return;
+
+                        event.preventDefault();
+                        event.stopImmediatePropagation();
+                        openOptions();
+                        alert('Please select a Box Style from the list.');
+                    }, true);
+                }
             });
 
             document.addEventListener('click', function (event) {
                 document.querySelectorAll('[data-product-search-select].is-open').forEach(function (wrapper) {
-                    if (!wrapper.contains(event.target)) wrapper.classList.remove('is-open');
+                    if (!wrapper.contains(event.target)) {
+                        wrapper.classList.remove('is-open');
+                        wrapper.querySelector('.product-search-input').setAttribute('aria-expanded', 'false');
+                    }
                 });
             });
         });

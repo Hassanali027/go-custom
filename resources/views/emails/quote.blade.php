@@ -26,13 +26,6 @@
             color: #333333;
             background-color: #ffffff;
         }
-        .header {
-            text-align: center;
-            color: #3498DB;
-            font-family: Arial, sans-serif;
-            margin-bottom: 1.25rem;
-            font-size: 1.5rem;
-        }
         body {
             background-color: #f9f9f9;
             padding: 1.25rem;
@@ -42,6 +35,16 @@
 <body style="background-color: #f9f9f9; padding: 1.25rem;">
     <h2 style="text-align: center; color: #3498DB; font-family: Arial, sans-serif; margin-bottom: 1.25rem; font-size: 1.5rem;">New Quote Request Received</h2>
     <table style="width: 100%; border-collapse: collapse; font-family: Arial, sans-serif; max-width: 50rem; margin: 0 auto;">
+        @php
+            $productName = $data['product_name'] ?? $data['box_style'] ?? null;
+        @endphp
+        @if(!empty($productName) && $productName !== 'N/A')
+        <tr>
+            <th style="border: 1px solid #ddd; padding: 0.75rem; text-align: left; font-size: 0.875rem; background-color: #3498DB; color: #ffffff; width: 30%; font-weight: bold;">Product Name:</th>
+            <td style="border: 1px solid #ddd; padding: 0.75rem; text-align: left; font-size: 0.875rem; color: #333333; background-color: #ffffff;">{{ $productName }}</td>
+        </tr>
+        @endif
+
         @if(!empty($data['name']) && $data['name'] !== 'N/A')
         <tr>
             <th style="border: 1px solid #ddd; padding: 0.75rem; text-align: left; font-size: 0.875rem; background-color: #3498DB; color: #ffffff; width: 30%; font-weight: bold;">Client Name:</th>
@@ -83,6 +86,13 @@
             <td style="border: 1px solid #ddd; padding: 0.75rem; text-align: left; font-size: 0.875rem; color: #333333; background-color: #ffffff;">{{ $data['physical_address'] }}</td>
         </tr>
         @endif
+
+        @if(!empty($data['length']) && $data['length'] !== 'N/A')
+        <tr>
+            <th style="border: 1px solid #ddd; padding: 0.75rem; text-align: left; font-size: 0.875rem; background-color: #3498DB; color: #ffffff; width: 30%; font-weight: bold;">Length:</th>
+            <td style="border: 1px solid #ddd; padding: 0.75rem; text-align: left; font-size: 0.875rem; color: #333333; background-color: #ffffff;">{{ $data['length'] }}</td>
+        </tr>
+        @endif
         
         @if(!empty($data['width']) && $data['width'] !== 'N/A')
         <tr>
@@ -91,16 +101,9 @@
         </tr>
         @endif
         
-        @if(!empty($data['length']) && $data['length'] !== 'N/A')
-        <tr>
-            <th style="border: 1px solid #ddd; padding: 0.75rem; text-align: left; font-size: 0.875rem; background-color: #3498DB; color: #ffffff; width: 30%; font-weight: bold;">Length:</th>
-            <td style="border: 1px solid #ddd; padding: 0.75rem; text-align: left; font-size: 0.875rem; color: #333333; background-color: #ffffff;">{{ $data['length'] }}</td>
-        </tr>
-        @endif
-        
         @if(!empty($data['depth']) && $data['depth'] !== 'N/A')
         <tr>
-            <th style="border: 1px solid #ddd; padding: 0.75rem; text-align: left; font-size: 0.875rem; background-color: #3498DB; color: #ffffff; width: 30%; font-weight: bold;">Depth:</th>
+            <th style="border: 1px solid #ddd; padding: 0.75rem; text-align: left; font-size: 0.875rem; background-color: #3498DB; color: #ffffff; width: 30%; font-weight: bold;">Height:</th>
             <td style="border: 1px solid #ddd; padding: 0.75rem; text-align: left; font-size: 0.875rem; color: #333333; background-color: #ffffff;">{{ $data['depth'] }}</td>
         </tr>
         @endif
@@ -111,14 +114,7 @@
             <td style="border: 1px solid #ddd; padding: 0.75rem; text-align: left; font-size: 0.875rem; color: #333333; background-color: #ffffff;">{{ $data['units'] }}</td>
         </tr>
         @endif
-        
-        @if(!empty($data['box_style']) && $data['box_style'] !== 'N/A')
-        <tr>
-            <th style="border: 1px solid #ddd; padding: 0.75rem; text-align: left; font-size: 0.875rem; background-color: #3498DB; color: #ffffff; width: 30%; font-weight: bold;">Box Style:</th>
-            <td style="border: 1px solid #ddd; padding: 0.75rem; text-align: left; font-size: 0.875rem; color: #333333; background-color: #ffffff;">{{ $data['box_style'] }}</td>
-        </tr>
-        @endif
-        
+
         @if(!empty($data['material']) && $data['material'] !== 'N/A')
         <tr>
             <th style="border: 1px solid #ddd; padding: 0.75rem; text-align: left; font-size: 0.875rem; background-color: #3498DB; color: #ffffff; width: 30%; font-weight: bold;">Material:</th>
@@ -128,7 +124,7 @@
 
         @if(!empty($data['paper_stock']) && $data['paper_stock'] !== 'N/A')
         <tr>
-            <th style="border: 1px solid #ddd; padding: 0.75rem; text-align: left; font-size: 0.875rem; background-color: #3498DB; color: #ffffff; width: 30%; font-weight: bold;">Paper Stock:</th>
+            <th style="border: 1px solid #ddd; padding: 0.75rem; text-align: left; font-size: 0.875rem; background-color: #3498DB; color: #ffffff; width: 30%; font-weight: bold;">Stock:</th>
             <td style="border: 1px solid #ddd; padding: 0.75rem; text-align: left; font-size: 0.875rem; color: #333333; background-color: #ffffff;">{{ $data['paper_stock'] }}</td>
         </tr>
         @endif
@@ -142,12 +138,12 @@
         
         @if(!empty($data['paper_coating']) && $data['paper_coating'] !== 'N/A')
         <tr>
-            <th style="border: 1px solid #ddd; padding: 0.75rem; text-align: left; font-size: 0.875rem; background-color: #3498DB; color: #ffffff; width: 30%; font-weight: bold;">Paper Coating:</th>
+            <th style="border: 1px solid #ddd; padding: 0.75rem; text-align: left; font-size: 0.875rem; background-color: #3498DB; color: #ffffff; width: 30%; font-weight: bold;">Coating:</th>
             <td style="border: 1px solid #ddd; padding: 0.75rem; text-align: left; font-size: 0.875rem; color: #333333; background-color: #ffffff;">{{ $data['paper_coating'] }}</td>
         </tr>
         @endif
         
-        @if(!empty($data['cad_sample']) && $data['cad_sample'] !== 'N/A')
+        @if(isset($data['cad_sample']) && $data['cad_sample'] !== '' && $data['cad_sample'] !== 'N/A')
         <tr>
             <th style="border: 1px solid #ddd; padding: 0.75rem; text-align: left; font-size: 0.875rem; background-color: #3498DB; color: #ffffff; width: 30%; font-weight: bold;">CAD Sample:</th>
             <td style="border: 1px solid #ddd; padding: 0.75rem; text-align: left; font-size: 0.875rem; color: #333333; background-color: #ffffff;">{{ $data['cad_sample'] }}</td>
@@ -167,18 +163,22 @@
             <td style="border: 1px solid #ddd; padding: 0.75rem; text-align: left; font-size: 0.875rem; color: #333333; background-color: #ffffff;">{{ $data['quantity'] }}</td>
         </tr>
         @endif
+
+        <tr>
+            <th style="border: 1px solid #ddd; padding: 0.75rem; text-align: left; font-size: 0.875rem; background-color: #3498DB; color: #ffffff; width: 30%; font-weight: bold;">File:</th>
+            <td style="border: 1px solid #ddd; padding: 0.75rem; text-align: left; font-size: 0.875rem; color: #333333; background-color: #ffffff;">
+                @if(!empty($data['quote_file_path']) && $data['quote_file_path'] !== 'N/A')
+                    A file was attached to this request.
+                @else
+                    No file uploaded
+                @endif
+            </td>
+        </tr>
         
         @if(!empty($data['message']) && $data['message'] !== 'N/A')
         <tr>
             <th style="border: 1px solid #ddd; padding: 0.75rem; text-align: left; font-size: 0.875rem; background-color: #3498DB; color: #ffffff; width: 30%; font-weight: bold;">Message:</th>
             <td style="border: 1px solid #ddd; padding: 0.75rem; text-align: left; font-size: 0.875rem; color: #333333; background-color: #ffffff;">{{ $data['message'] }}</td>
-        </tr>
-        @endif
-        
-        @if(!empty($data['quote_file_path']) && $data['quote_file_path'] !== 'N/A')
-        <tr>
-            <th style="border: 1px solid #ddd; padding: 0.75rem; text-align: left; font-size: 0.875rem; background-color: #3498DB; color: #ffffff; width: 30%; font-weight: bold;">Attachment:</th>
-            <td style="border: 1px solid #ddd; padding: 0.75rem; text-align: left; font-size: 0.875rem; color: #333333; background-color: #ffffff;">A file was attached to this request.</td>
         </tr>
         @endif
     </table>

@@ -87,7 +87,7 @@
         color: #FFFFFF;
     }
 
-    .qf-group input,
+    .qf-group input:not(.product-search-filter),
     .qf-group select,
     .qf-group textarea {
         background: transparent;
@@ -103,13 +103,33 @@
         outline: none;
         transition: border-color 0.2s;
     }
+
+    .qf-group .product-search-filter {
+        background: #ffffff !important;
+        color: #1a1a1a !important;
+        -webkit-text-fill-color: #1a1a1a !important;
+        caret-color: #1a1a1a !important;
+    }
     
-    .qf-group select {
-        appearance: none;
-        -webkit-appearance: none;
-        background-image: url('data:image/svg+xml;utf8,<svg fill="white" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/></svg>');
-        background-repeat: no-repeat;
-        background-position: right 0.5rem center;
+    .qf-group select,
+    .qf-group .product-search-input {
+        appearance: none !important;
+        -webkit-appearance: none !important;
+        -moz-appearance: none !important;
+        background-image: url('data:image/svg+xml;utf8,<svg fill="white" height="20" viewBox="0 0 24 24" width="20" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/></svg>') !important;
+        background-repeat: no-repeat !important;
+        background-position: right 0.65rem center !important;
+        background-size: 1.15rem auto !important;
+        padding-right: 2.2rem !important;
+        padding-left: 0.75rem !important;
+        text-overflow: ellipsis !important;
+        white-space: nowrap !important;
+        overflow: hidden !important;
+        cursor: pointer !important;
+    }
+
+    .qf-group .product-search-select::after {
+        display: none !important;
     }
 
     .qf-group select option {
@@ -321,13 +341,15 @@
         .quote-features {
             display: none;
         }
-        .qf-group select {
-            padding-right: 1.25rem !important;
+        .qf-group select,
+        .qf-group .product-search-input {
+            padding-right: 1.6rem !important;
             padding-left: 0.375rem !important;
-            background-position: right 0.25rem center !important;
+            background-position: right 0.3rem center !important;
+            background-size: 0.95rem auto !important;
             font-size: 0.6875rem !important;
         }
-        .qf-group input {
+        .qf-group input:not(.product-search-input):not(.product-search-filter) {
             padding-left: 0.375rem !important;
             padding-right: 0.375rem !important;
             font-size: 0.6875rem !important;
@@ -367,6 +389,7 @@
 
             <form action="{{ url('/submit-quote') }}" method="POST" enctype="multipart/form-data" class="qf-main-grid">
                 @csrf
+                <input type="hidden" name="form_source" value="quote">
 
                 <!-- Row 1: Name, Email, Phone -->
                 <div class="qf-group qf-span-4 qf-span-12-m">
@@ -404,12 +427,12 @@
                     </select>
                 </div>
 
-                <!-- Row 3: Product, paper stock and color -->
-                <div class="qf-group qf-span-4 qf-span-6-m">
+                <!-- Row 3: Product, Paper Stock, Paper Coating, Color Options -->
+                <div class="qf-group qf-span-3 qf-span-6-m">
                     <label>Select Box Style</label>
                     <x-searchable-product-select placeholder="Select your box style" />
                 </div>
-                <div class="qf-group qf-span-4 qf-span-6-m">
+                <div class="qf-group qf-span-3 qf-span-6-m">
                     <label>Select Paper Stock</label>
                     <select name="paper_stock">
                         <option value="">Choose option</option>
@@ -418,10 +441,17 @@
                         <option>20pt Cardboard Stock</option><option>22pt Cardboard Stock</option>
                         <option>24pt Cardboard Stock</option><option>Kraft Stock</option>
                         <option>Recycled BuxBoard</option><option>Corrugated Stock</option>
-
                     </select>
                 </div>
-                <div class="qf-group qf-span-4 qf-span-6-m">
+                <div class="qf-group qf-span-3 qf-span-6-m">
+                    <label>Paper Coating</label>
+                    <select name="paper_coating">
+                        <option value="">Choose option</option>
+                        <option>Aqueous Coating</option><option>Semi Gloss</option>
+                        <option>Gloss UV</option><option>Matte UV</option><option>Semi Matte</option>
+                    </select>
+                </div>
+                <div class="qf-group qf-span-3 qf-span-6-m">
                     <label>Color Options</label>
                     <select name="color">
                         <option value="">Choose option</option>
@@ -429,20 +459,21 @@
                         <option value="3 Colors">3 Colors</option><option value="Full Color">Full Color</option>
                     </select>
                 </div>
+
+                <!-- Row 4: Quantity, CAD Sample, File Upload -->
                 <div class="qf-group qf-span-4 qf-span-6-m">
                     <label>Quantity *</label>
                     <input type="number" name="quantity" placeholder="Enter quantity" oninput="this.value = this.value.replace(/[^0-9]/g, '')" required>
                 </div>
                 <div class="qf-group qf-span-4 qf-span-6-m">
-                    <label>Paper Coating</label>
-                    <select name="paper_coating">
-                        <option value="">Select Paper Coating</option>
-                        <option>Aqueous Coating</option><option>Semi Gloss</option>
-                        <option>Gloss UV</option><option>Matte UV</option><option>Semi Matte</option>
+                    <label>Select CAD Sample</label>
+                    <select name="cad_sample">
+                        <option value="">Select CAD Sample</option>
+                        <option value="Yes">Yes</option>
+                        <option value="No">No</option>
                     </select>
                 </div>
-                
-                <div class="qf-group qf-span-4 qf-span-6-m">
+                <div class="qf-group qf-span-4 qf-span-12-m">
                     <label>Upload File Here</label>
                     <div class="qf-file-wrap">
                         <input type="file" name="quote_file" id="qf-file-input" style="display: none;" onchange="document.getElementById('qf-file-name').value = this.files[0] ? this.files[0].name : ''">
