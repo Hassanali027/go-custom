@@ -1,4 +1,30 @@
-@php($productPageOnly = $productPageOnly ?? false)
+@php
+    $productPageOnly = $productPageOnly ?? false;
+
+    $initialCoatingItems = [
+        ['uploads/new-aqueous-coating.webp', 'Aqueous Coating'],
+        ['uploads/new-gloss-finish.webp', 'Gloss Finish'],
+        ['uploads/new-matte-finish.webp', 'Matte Finish'],
+        ['uploads/new-soft-touch-coating.webp', 'Soft Touch Coating'],
+        ['uploads/new-uv-coating.webp', 'UV Coating']
+    ];
+    $repeatCount = (int) ceil(10 / count($initialCoatingItems));
+    $baseLoop = [];
+    for ($i = 0; $i < $repeatCount; $i++) {
+        foreach ($initialCoatingItems as $item) {
+            $baseLoop[] = $item;
+        }
+    }
+    $totalBase = count($baseLoop);
+    $initialMarqueeCards = array_merge($baseLoop, $baseLoop);
+@endphp
+
+<!-- Preload coating images for instant rendering on iPhone and mobile view -->
+<link rel="preload" as="image" href="{{ asset('uploads/new-aqueous-coating.webp') }}" type="image/webp">
+<link rel="preload" as="image" href="{{ asset('uploads/new-gloss-finish.webp') }}" type="image/webp">
+<link rel="preload" as="image" href="{{ asset('uploads/new-matte-finish.webp') }}" type="image/webp">
+<link rel="preload" as="image" href="{{ asset('uploads/new-soft-touch-coating.webp') }}" type="image/webp">
+<link rel="preload" as="image" href="{{ asset('uploads/new-uv-coating.webp') }}" type="image/webp">
 
 <style>
     /* Customize Section */
@@ -8,6 +34,8 @@
         font-family: 'Open Sans', sans-serif;
         overflow: hidden;
         width: 100%;
+        -webkit-backface-visibility: hidden;
+        backface-visibility: hidden;
     }
 
     .customize-container {
@@ -19,7 +47,6 @@
 
     /* Unified Container Responsive Padding */
     @media (max-width: 68.75rem) {
-
         .popular-boxes-inner,
         .customize-container {
             padding-left: 2rem;
@@ -28,7 +55,6 @@
     }
 
     @media (max-width: 48rem) {
-
         .popular-boxes-inner,
         .customize-container {
             padding-left: 1.25rem;
@@ -37,7 +63,6 @@
     }
 
     @media (max-width: 36rem) {
-
         .popular-boxes-inner,
         .customize-container {
             padding-left: 1rem;
@@ -75,11 +100,15 @@
         justify-content: space-between;
         gap: 0;
         border-bottom: 1px solid #ccc;
-        /* Bottom border for navbar */
         overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
         scrollbar-width: none;
         -ms-overflow-style: none;
         padding-bottom: 0;
+        touch-action: pan-y pan-x;
+        overscroll-behavior-x: contain;
+        user-select: none;
+        -webkit-user-select: none;
     }
 
     .customize-sidebar::-webkit-scrollbar {
@@ -105,7 +134,7 @@
         justify-content: center;
         white-space: nowrap;
         margin-bottom: -1px;
-        /* Overlap the container's bottom border */
+        -webkit-tap-highlight-color: transparent;
     }
 
     .customize-tab.active,
@@ -113,7 +142,6 @@
     .customize-tab:focus-visible {
         color: #fff;
         background: #112a46;
-        /* Matching active tab background */
         border-bottom: 0.1875rem solid #112a46;
     }
 
@@ -126,6 +154,10 @@
     .customize-content {
         width: 100%;
         overflow: hidden;
+        position: relative;
+        -webkit-mask-image: -webkit-radial-gradient(white, black);
+        transform: translateZ(0);
+        -webkit-transform: translateZ(0);
     }
 
     .customize-grid {
@@ -136,20 +168,29 @@
         animation: marqueeTrain 20s linear infinite;
         padding-bottom: 0.625rem;
         will-change: transform;
-        transform: translateZ(0);
+        transform: translate3d(0, 0, 0);
+        -webkit-transform: translate3d(0, 0, 0);
+        -webkit-backface-visibility: hidden;
+        backface-visibility: hidden;
+        -webkit-perspective: 1000;
+        perspective: 1000;
     }
 
-    .customize-grid:hover {
-        animation-play-state: paused;
+    @media (hover: hover) and (pointer: fine) {
+        .customize-grid:hover {
+            animation-play-state: paused;
+        }
     }
 
     @keyframes marqueeTrain {
         0% {
-            transform: translateX(0);
+            transform: translate3d(0, 0, 0);
+            -webkit-transform: translate3d(0, 0, 0);
         }
 
         100% {
-            transform: translateX(calc(-50% - 0.625rem));
+            transform: translate3d(calc(-50% - 0.625rem), 0, 0);
+            -webkit-transform: translate3d(calc(-50% - 0.625rem), 0, 0);
         }
     }
 
@@ -161,8 +202,10 @@
         padding: 0;
         display: flex;
         flex-direction: column;
-        transition: opacity 0.25s ease;
+        transition: opacity 0.2s ease;
         text-align: center;
+        transform: translateZ(0);
+        -webkit-transform: translateZ(0);
     }
 
     .custom-img-wrapper {
@@ -174,7 +217,10 @@
         margin-bottom: 0.875rem;
         background: #f7f7f7;
         isolation: isolate;
-        contain: layout paint;
+        -webkit-mask-image: -webkit-radial-gradient(white, black);
+        mask-image: radial-gradient(white, black);
+        transform: translateZ(0);
+        -webkit-transform: translateZ(0);
     }
 
     .custom-img-wrapper img {
@@ -187,6 +233,11 @@
         object-position: center;
         display: block;
         border-radius: 0.5rem;
+        -webkit-backface-visibility: hidden;
+        backface-visibility: hidden;
+        transform: translateZ(0);
+        -webkit-transform: translateZ(0);
+        image-rendering: -webkit-optimize-contrast;
     }
 
     .custom-card .h4-style {
@@ -214,6 +265,8 @@
         .customize-section {
             background: #ffffff;
             padding: 1.875rem 0 2.25rem;
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
         }
 
         .customize-title {
@@ -236,9 +289,14 @@
             gap: 0 !important;
             padding-bottom: 0 !important;
             overflow-x: auto !important;
+            -webkit-overflow-scrolling: touch !important;
             scrollbar-width: none;
             -ms-overflow-style: none;
             border-bottom: 1px solid #ccc !important;
+            touch-action: pan-y pan-x !important;
+            overscroll-behavior-x: contain !important;
+            user-select: none !important;
+            -webkit-user-select: none !important;
         }
 
         .customize-sidebar::-webkit-scrollbar {
@@ -257,6 +315,13 @@
             white-space: nowrap !important;
             border-radius: 0 !important;
             margin-bottom: -1px;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .customize-content {
+            -webkit-mask-image: -webkit-radial-gradient(white, black);
+            transform: translateZ(0);
+            -webkit-transform: translateZ(0);
         }
 
         .customize-grid {
@@ -265,7 +330,14 @@
             gap: 0.75rem !important;
             width: max-content !important;
             padding-bottom: 0.625rem !important;
-            animation: marqueeTrain 30s linear infinite !important;
+            animation: marqueeTrainMobile 22s linear infinite;
+            will-change: transform;
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+        }
+
+        .customize-grid:hover {
+            animation-play-state: running !important;
         }
 
         .customize-grid::-webkit-scrollbar {
@@ -273,7 +345,7 @@
         }
 
         .clone-card {
-            display: block !important;
+            display: flex !important;
         }
 
         .custom-card {
@@ -284,14 +356,20 @@
             box-shadow: none !important;
             background: transparent !important;
             text-align: center !important;
+            transform: translateZ(0) !important;
+            -webkit-transform: translateZ(0) !important;
         }
 
         .custom-img-wrapper {
             width: 100% !important;
             border-radius: 0.5rem !important;
             margin-bottom: 0.625rem !important;
-            background: transparent !important;
-            overflow: hidden;
+            background: #f7f7f7 !important;
+            overflow: hidden !important;
+            -webkit-mask-image: -webkit-radial-gradient(white, black) !important;
+            mask-image: radial-gradient(white, black) !important;
+            transform: translateZ(0) !important;
+            -webkit-transform: translateZ(0) !important;
         }
 
         .custom-card .h4-style {
@@ -312,7 +390,20 @@
             display: block;
         }
     }
+
+    @keyframes marqueeTrainMobile {
+        0% {
+            transform: translate3d(0, 0, 0);
+            -webkit-transform: translate3d(0, 0, 0);
+        }
+
+        100% {
+            transform: translate3d(calc(-50% - 0.375rem), 0, 0);
+            -webkit-transform: translate3d(calc(-50% - 0.375rem), 0, 0);
+        }
+    }
 </style>
+
 <!-- Customize Packaging Section -->
 <section class="customize-section">
     <div class="customize-container">
@@ -325,56 +416,27 @@
             <!-- Left Sidebar Tabs -->
             <aside class="customize-sidebar">
                 <button type="button" class="customize-tab active" data-customize-tab="coating">Coating</button>
-                <button type="button" class="customize-tab" data-customize-tab="special_finishes">Special
-                    Finishes</button>
+                <button type="button" class="customize-tab" data-customize-tab="special_finishes">Special Finishes</button>
                 <button type="button" class="customize-tab" data-customize-tab="paperboard">Paperboard</button>
                 <button type="button" class="customize-tab" data-customize-tab="corrugated">Corrugated</button>
                 <button type="button" class="customize-tab" data-customize-tab="fluted_grades">Fluted Grades</button>
                 @unless($productPageOnly)
-                <button type="button" class="customize-tab" data-customize-tab="rigid_materials">Rigid
-                    Materials</button>
-                <button type="button" class="customize-tab" data-customize-tab="printing_options">Printing
-                    Options</button>
+                <button type="button" class="customize-tab" data-customize-tab="rigid_materials">Rigid Materials</button>
+                <button type="button" class="customize-tab" data-customize-tab="printing_options">Printing Options</button>
                 @endunless
             </aside>
 
-            <!-- Right Content Grid -->
+            <!-- Right Content Grid: Pre-rendered in HTML for Instant Mobile Loading -->
             <div class="customize-content">
-                <div class="customize-grid">
-                    <div class="custom-card">
-                        <div class="custom-img-wrapper">
-                            <img src="{{ asset('uploads/new-aqueous-coating.webp') }}" alt="Aqueous Coating" loading="lazy" decoding="async">
+                <div class="customize-grid" style="animation-duration: {{ $totalBase * 2 }}s;">
+                    @foreach($initialMarqueeCards as $idx => $card)
+                        <div class="custom-card{{ $idx >= $totalBase ? ' clone-card' : '' }}" style="opacity: 1;">
+                            <div class="custom-img-wrapper">
+                                <img src="{{ asset($card[0]) }}" alt="{{ $card[1] }}" width="200" height="200" decoding="async" fetchpriority="{{ $idx < 4 ? 'high' : 'low' }}">
+                            </div>
+                            <span class="custom-card-title">{{ $card[1] }}</span>
                         </div>
-                        <span class="custom-card-title">Aqueous Coating</span>
-                    </div>
-
-                    <div class="custom-card">
-                        <div class="custom-img-wrapper">
-                            <img src="{{ asset('uploads/new-gloss-finish.webp') }}" alt="Gloss Finish" loading="lazy" decoding="async">
-                        </div>
-                        <span class="custom-card-title">Gloss Finish</span>
-                    </div>
-
-                    <div class="custom-card">
-                        <div class="custom-img-wrapper">
-                            <img src="{{ asset('uploads/new-matte-finish.webp') }}" alt="Matte Finish" loading="lazy" decoding="async">
-                        </div>
-                        <span class="custom-card-title">Matte Finish</span>
-                    </div>
-
-                    <div class="custom-card">
-                        <div class="custom-img-wrapper">
-                            <img src="{{ asset('uploads/new-soft-touch-coating.webp') }}" alt="Soft Touch Coating" loading="lazy" decoding="async">
-                        </div>
-                        <span class="custom-card-title">Soft Touch Coating</span>
-                    </div>
-
-                    <div class="custom-card">
-                        <div class="custom-img-wrapper">
-                            <img src="{{ asset('uploads/new-uv-coating.webp') }}" alt="UV Coating" loading="lazy" decoding="async">
-                        </div>
-                        <span class="custom-card-title">UV Coating</span>
-                    </div>
+                    @endforeach
                 </div>
             </div>
         </div>
@@ -386,6 +448,7 @@
         const grid = document.querySelector('.customize-grid');
         const customizeSidebar = document.querySelector('.customize-sidebar');
         const customizeUploadsUrl = "{{ asset('') }}";
+        let currentActiveTab = 'coating';
 
         const customizeCardSets = {
             coating: [
@@ -443,35 +506,71 @@
             ]
         };
 
+        // Background pre-cache all tab images into browser cache for instant switching
+        function precacheAllTabImages() {
+            const urls = [];
+            Object.keys(customizeCardSets).forEach(function (key) {
+                if (key === 'coating') return;
+                customizeCardSets[key].forEach(function (item) {
+                    urls.push(customizeUploadsUrl + item[0]);
+                });
+            });
+
+            let idx = 0;
+            function loadNext() {
+                if (idx >= urls.length) return;
+                const img = new Image();
+                img.src = urls[idx++];
+                img.onload = img.onerror = function () {
+                    if (window.requestIdleCallback) {
+                        window.requestIdleCallback(loadNext, { timeout: 300 });
+                    } else {
+                        setTimeout(loadNext, 40);
+                    }
+                };
+            }
+
+            if (window.requestIdleCallback) {
+                window.requestIdleCallback(loadNext, { timeout: 1500 });
+            } else {
+                setTimeout(loadNext, 800);
+            }
+        }
+
+        if (document.readyState === 'complete') {
+            precacheAllTabImages();
+        } else {
+            window.addEventListener('load', precacheAllTabImages);
+        }
 
         function setCustomizeCardOrder(option) {
             const cardSet = customizeCardSets[option] || customizeCardSets.coating;
 
             if (grid) {
-                // Fade out existing cards
+                // Smooth rapid fade out
                 const currentCards = Array.from(grid.children);
                 currentCards.forEach(card => {
                     card.style.opacity = "0";
                 });
 
                 setTimeout(() => {
-                    // Reset marquee animation
+                    // Reset marquee animation cleanly
                     grid.style.animation = "none";
                     void grid.offsetHeight;
                     grid.style.animation = "";
 
-                    // Ensure the base loop has at least 10 cards and is a full multiple of the cardSet length to prevent visual glitches
                     let repeatCount = Math.ceil(10 / cardSet.length);
                     let totalBaseCards = cardSet.length * repeatCount;
                     let baseHTML = '';
 
                     for (let i = 0; i < repeatCount; i++) {
-                        cardSet.forEach(item => {
+                        cardSet.forEach((item, cardIdx) => {
                             const [imagePath, title] = item;
+                            const priority = (i === 0 && cardIdx < 4) ? 'high' : 'low';
                             baseHTML += `
                                 <div class="custom-card" style="opacity: 0;">
                                     <div class="custom-img-wrapper">
-                                        <img src="${customizeUploadsUrl}${imagePath}" alt="${title}" loading="lazy" decoding="async">
+                                        <img src="${customizeUploadsUrl}${imagePath}" alt="${title}" width="200" height="200" decoding="async" fetchpriority="${priority}">
                                     </div>
                                     <span class="custom-card-title">${title}</span>
                                 </div>
@@ -482,29 +581,29 @@
                     // Duplicate base HTML for seamless marquee
                     grid.innerHTML = baseHTML + baseHTML;
 
-                    // Maintain a strict uniform speed: exactly 2 seconds per card distance
                     grid.style.animationDuration = (totalBaseCards * 2) + "s";
 
                     const children = Array.from(grid.children);
                     const halfLength = children.length / 2;
                     children.slice(halfLength).forEach(child => child.classList.add('clone-card'));
 
-                    // Fade in new cards
+                    // Fade in new cards immediately
                     requestAnimationFrame(() => {
-                        void grid.offsetWidth; // Force reflow
+                        void grid.offsetWidth;
                         children.forEach(card => {
                             card.style.opacity = "1";
                         });
                     });
-                }, 200);
+                }, 100);
             }
         }
 
         document.querySelectorAll('.customize-tab').forEach(function (tab) {
-            tab.addEventListener('pointerdown', function (event) {
-                event.stopPropagation();
-            });
             tab.addEventListener('click', function () {
+                const targetTab = tab.dataset.customizeTab;
+                if (targetTab === currentActiveTab) return;
+
+                currentActiveTab = targetTab;
                 document.querySelectorAll('.customize-tab').forEach(function (item) {
                     item.classList.remove('active');
                     item.setAttribute('aria-selected', 'false');
@@ -512,7 +611,7 @@
 
                 tab.classList.add('active');
                 tab.setAttribute('aria-selected', 'true');
-                setCustomizeCardOrder(tab.dataset.customizeTab);
+                setCustomizeCardOrder(targetTab);
 
                 if (customizeSidebar) {
                     try {
@@ -527,31 +626,5 @@
                 }
             });
         });
-
-        setCustomizeCardOrder('coating');
-
-        if (customizeSidebar) {
-            let dragStartX = 0;
-            let dragStartScrollLeft = 0;
-            let isDraggingTabs = false;
-
-            customizeSidebar.addEventListener('pointerdown', function (event) {
-                dragStartX = event.clientX;
-                dragStartScrollLeft = customizeSidebar.scrollLeft;
-                isDraggingTabs = true;
-                customizeSidebar.setPointerCapture(event.pointerId);
-            });
-
-            customizeSidebar.addEventListener('pointermove', function (event) {
-                if (!isDraggingTabs) return;
-                customizeSidebar.scrollLeft = dragStartScrollLeft - (event.clientX - dragStartX);
-            });
-
-            ['pointerup', 'pointercancel'].forEach(function (eventName) {
-                customizeSidebar.addEventListener(eventName, function () {
-                    isDraggingTabs = false;
-                });
-            });
-        }
     })();
 </script>
