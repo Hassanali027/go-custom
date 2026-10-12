@@ -64,7 +64,18 @@ Route::get('/search', function (\Illuminate\Http\Request $request) {
     return view('search', compact('q', 'products', 'categories', 'blogs', 'totalCount'));
 });
 
+// 410 Gone rules for permanently removed spam / prize URLs
+Route::any('/prize/{any?}', function () {
+    abort(410, 'Gone');
+})->where('any', '.*');
 
+Route::any('/delivery-information.php', function () {
+    abort(410, 'Gone');
+});
+
+Route::any('/delivery-information', function () {
+    abort(410, 'Gone');
+});
 
 Route::get('/product', function () {
     return redirect('/', 301);

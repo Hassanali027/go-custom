@@ -5,6 +5,18 @@
 
     RewriteEngine On
 
+    # Return 410 Gone for permanently removed spam / prize URLs
+    RewriteCond %{QUERY_STRING} (^|/)prize(/|$) [NC,OR]
+    RewriteCond %{QUERY_STRING} (^|&)prize(/|$) [NC]
+    RewriteRule ^ - [G,L]
+
+    RewriteRule ^(?:public/)?delivery-information(?:\.php)?$ - [G,L]
+    RewriteRule ^(?:public/)?prize(?:/.*)?$ - [G,L]
+
+    # Redirect www to non-www (https://gocustomboxes.com)
+    RewriteCond %{HTTP_HOST} ^www\.(.+)$ [NC]
+    RewriteRule ^ https://%1%{REQUEST_URI} [R=301,L,NE]
+
     # Redirect directly requested /public URLs to their clean public equivalent.
     # THE_REQUEST ensures Laravel's internal rewrite does not trigger this redirect.
     RewriteCond %{THE_REQUEST} \s/+public(?:[/?\s]) [NC]
