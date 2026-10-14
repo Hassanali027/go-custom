@@ -349,12 +349,14 @@
         align-items: center;
         padding: 0.75rem 0;
         margin: 0;
+        white-space: nowrap;
     }
 
     .header-nav li .mega-trigger {
         background: transparent;
         border: 0;
         cursor: pointer;
+        white-space: nowrap;
     }
 
     .header-nav li a:hover,
