@@ -1060,8 +1060,8 @@
         
         if (count($navParents) <= 1) {
             $navParents = [
-                ['id' => 101, 'title' => 'Box by Industry', 'slug' => 'box-by-industry'],
-                ['id' => 102, 'title' => 'Box by Material', 'slug' => 'box-by-material'],
+                ['id' => 101, 'title' => 'Industries', 'slug' => 'box-by-industry'],
+                ['id' => 102, 'title' => 'Box By Material', 'slug' => 'box-by-material'],
                 ['id' => 103, 'title' => 'Box by Style', 'slug' => 'box-by-style'],
             ];
         }
@@ -1073,11 +1073,8 @@
             $navByParentSlug[$slug] = array_values($children);
         }
         $navParentItems = $navParents;
-        $navLabels = [
-            'box-by-industry' => 'Industry',
-            'box-by-material' => 'Material',
-            'box-by-style' => 'Box by Style',
-        ];
+        // Navbar labels come straight from each category's own title, so they can
+        // be renamed from the admin panel (Edit category → Title).
         $customBoxProducts = \Illuminate\Support\Facades\DB::table('admin_products')
             ->select('title', 'slug', 'image', 'nav_image')
             ->where('status', 'published')
@@ -1099,7 +1096,7 @@
             </li>
             @foreach($navParentItems as $navParent)
             <li class="has-mega" data-mega-type="{{ $navParent['slug'] }}">
-                <button type="button" class="mega-trigger" aria-haspopup="true" style="color: #000000; text-decoration: none; font-weight: 700; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 0.9375rem;">{{ $navLabels[$navParent['slug']] ?? $navParent['title'] }}</button>
+                <button type="button" class="mega-trigger" aria-haspopup="true" style="color: #000000; text-decoration: none; font-weight: 700; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 0.9375rem;">{{ $navParent['title'] }}</button>
             </li>
             @endforeach
             <li class="has-mega" data-mega-type="resources">
@@ -1212,8 +1209,8 @@
                     @endphp
                     <li class="mobile-nav-item has-dropdown">
                         <div class="mobile-nav-header" onclick="this.parentElement.classList.toggle('open')">
-                            <a href="#" class="mobile-nav-link-top" onclick="event.preventDefault(); event.stopPropagation(); this.parentElement.parentElement.classList.toggle('open');">{{ $navLabels[$navParent['slug']] ?? $navParent['title'] }}</a>
-                            <button type="button" class="mobile-dropdown-toggle" aria-label="Toggle {{ $navLabels[$navParent['slug']] ?? $navParent['title'] }} dropdown">
+                            <a href="#" class="mobile-nav-link-top" onclick="event.preventDefault(); event.stopPropagation(); this.parentElement.parentElement.classList.toggle('open');">{{ $navParent['title'] }}</a>
+                            <button type="button" class="mobile-dropdown-toggle" aria-label="Toggle {{ $navParent['title'] }} dropdown">
                                 <svg class="chevron-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                                     <polyline points="6 9 12 15 18 9"></polyline>
                                 </svg>
