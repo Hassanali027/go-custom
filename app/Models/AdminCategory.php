@@ -5,7 +5,7 @@ class AdminCategory extends Model
 {
     protected $table = 'admin_categories';
     protected $guarded = [];
-    protected $casts = ['show_in_nav' => 'boolean', 'show_home' => 'boolean'];
+    protected $casts = ['show_in_nav' => 'boolean', 'show_home' => 'boolean', 'is_nav_group' => 'boolean'];
 
     public function parent() { return $this->belongsTo(self::class, 'parent_id'); }
     public function children() { return $this->hasMany(self::class, 'parent_id'); }

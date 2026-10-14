@@ -276,6 +276,11 @@ Route::get('/preview-email', function () {
 Route::get('/{slug}', function ($slug) {
     // 1. Check if it's a category
     $category = DB::table('admin_categories')->where('slug', $slug)->first();
+    // Navigation-group categories (e.g. Box by Industry / Material / Style) only
+    // organise other categories in the menu — they have no public page of their own.
+    if ($category && !empty($category->is_nav_group)) {
+        abort(404);
+    }
     if ($category) {
         $categoryArr = (array) $category;
         $categories = DB::table('admin_categories')->get()->map(fn($r)=>(array)$r)->all();

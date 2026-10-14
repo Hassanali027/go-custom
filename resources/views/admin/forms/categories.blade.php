@@ -58,7 +58,7 @@
                 </select>
             </div>
             
-            <div class="field">
+            <div class="field page-only-section">
                 <label>Featured Image</label>
                 @if($editing && !empty($item['image']))
                     <div class="single-image-wrapper" style="margin-bottom:0.5rem; position:relative; display:inline-block;">
@@ -72,6 +72,15 @@
     </div>
     <div class="section">
         <h3>Category Hierarchy</h3>
+        <div class="field full" style="margin-bottom:1rem; background:#fff8e6; border:1px solid #ffe0a3; border-radius:0.5rem; padding:0.875rem 1rem;">
+            <label class="check" style="display:flex; align-items:flex-start; gap:0.625rem; margin:0; cursor:pointer;">
+                <input type="checkbox" id="isNavGroupToggle" name="is_nav_group" value="1" @if((bool) $v('is_nav_group')) checked @endif style="margin-top:0.2rem;">
+                <span>
+                    <strong>Navigation group only — no public page</strong>
+                    <small style="display:block; margin-top:0.25rem; color:#6b7280;">Use this for menu parents like <em>Box by Industry</em>, <em>Box by Material</em> or <em>Box by Style</em>. It just groups other categories in the navbar; it will not open its own page (the slug returns 404). Assign child categories to it using their own <strong>Parent Category</strong> field. When checked, the page-content fields below are hidden.</small>
+                </span>
+            </label>
+        </div>
         <div class="form-grid">
             <div class="field">
                 <label>Parent Category</label>
@@ -100,7 +109,7 @@
         </div>
     </div>
 
-    <div class="section">
+    <div class="section page-only-section">
         <h3>Hero & Banner</h3>
         <div class="form-grid">
             <div class="field">
@@ -142,7 +151,7 @@
         </div>
     </div>
 
-    <div class="section">
+    <div class="section page-only-section">
         <h3>Category Sections</h3>
         <div class="form-grid">
             <div class="field full">
@@ -157,7 +166,7 @@
         </div>
     </div>
 
-    <div class="section">
+    <div class="section page-only-section">
         <div style="display:flex; justify-content:space-between; align-items:center; gap:1rem; margin-bottom:0.9375rem;">
             <div>
                 <h3 style="margin:0;">Image & Text Feature Sections</h3>
@@ -199,7 +208,7 @@
         </div>
     </div>
 
-    <div class="section">
+    <div class="section page-only-section">
         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.9375rem;">
             <h3 style="margin-bottom: 0;">Category FAQs</h3>
             <button type="button" onclick="addFaqRow()" class="btn light" style="padding: 0.375rem 0.75rem; font-size: 0.8125rem;"><i class="fa-solid fa-plus"></i> Add FAQ</button>
@@ -223,7 +232,7 @@
             @endfor
         </div>
     </div>
-    <div class="section">
+    <div class="section page-only-section">
         <h3>SEO & Search Visibility</h3>
         <div class="form-grid">
             <div class="field">
@@ -343,6 +352,20 @@
                     tinymce.triggerSave();
                 }
             });
+        }
+
+        // Navigation group toggle: hide all page-content fields when this category
+        // is only a navbar group (no public page of its own).
+        const navGroupToggle = document.getElementById('isNavGroupToggle');
+        if (navGroupToggle) {
+            const applyNavGroupState = function () {
+                const hide = navGroupToggle.checked;
+                document.querySelectorAll('.page-only-section').forEach(function (el) {
+                    el.style.display = hide ? 'none' : '';
+                });
+            };
+            navGroupToggle.addEventListener('change', applyNavGroupState);
+            applyNavGroupState();
         }
     });
 
