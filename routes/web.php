@@ -85,7 +85,7 @@ Route::get('/product/{slug}', function ($slug) {
 });
 
 // A category-style listing for products selected as Popular Product in the admin panel.
-Route::get('/popular-products', function () {
+Route::get('/popular-products/', function () {
     $popularSettings = (new \App\Http\Controllers\AdminHomepageController())->loadSettings();
     $popularProducts = DB::table('admin_products')
         ->where('status', 'published')
@@ -221,6 +221,8 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::post('/homepage-settings', [AdminHomepageController::class, 'update'])->name('homepage.update');
         Route::get('/popular-products-settings', [AdminHomepageController::class, 'popularProductsEdit'])->name('popularproducts.edit');
         Route::post('/popular-products-settings', [AdminHomepageController::class, 'popularProductsUpdate'])->name('popularproducts.update');
+        Route::get('/popular-products', [AdminHomepageController::class, 'popularProductsEdit'])->name('popularproducts.edit');
+        Route::post('/popular-products', [AdminHomepageController::class, 'popularProductsUpdate'])->name('popularproducts.update');
         Route::get('/footer-settings', [AdminFooterController::class, 'edit'])->name('footer.edit');
         Route::post('/footer-settings', [AdminFooterController::class, 'update'])->name('footer.update');
         Route::get('/faq-page-settings', [AdminFaqPageController::class, 'edit'])->name('faqpage.edit');
@@ -236,14 +238,6 @@ Route::prefix('admin')->name('admin.')->group(function () {
 });
 
 Route::get('/why-choose-us/',[WhyChooseUsController::class, 'index']);
-
-try {
-    $faqRow = DB::table('homepage_contents')->where('section', 'faq_page')->where('field_key', 'faq_page_slug')->first();
-    $faqSlug = $faqRow ? $faqRow->value : 'frequentlyAskedQuestions';
-} catch (\Exception $e) {
-    $faqSlug = 'frequentlyAskedQuestions';
-}
-Route::get('/' . strtolower(ltrim($faqSlug, '/')), [FrequentlyAskedQuestionController::class, 'index']);
 
 Route::get('/about-us/',[AboutUsController::class,'index']);
 
@@ -274,6 +268,17 @@ Route::get('/preview-email', function () {
 
 // Catch-all route for categories and products
 Route::get('/{slug}', function ($slug) {
+    // Resolve the FAQ slug at request time so admin changes are reflected
+    // immediately, even when Laravel's route cache is enabled.
+    $faqSlug = DB::table('homepage_contents')
+        ->where('section', 'faq_page')
+        ->where('field_key', 'faq_page_slug')
+        ->value('value') ?: 'frequentlyAskedQuestions';
+    $faqSlug = trim(strtolower($faqSlug), '/');
+    if ($faqSlug !== '' && strtolower($slug) === $faqSlug) {
+        return app(FrequentlyAskedQuestionController::class)->index();
+    }
+
     // 1. Check if it's a category
     $category = DB::table('admin_categories')->where('slug', $slug)->first();
     // Navigation-group categories (e.g. Box by Industry / Material / Style) only
