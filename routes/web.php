@@ -221,8 +221,9 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::post('/homepage-settings', [AdminHomepageController::class, 'update'])->name('homepage.update');
         Route::get('/popular-products-settings', [AdminHomepageController::class, 'popularProductsEdit'])->name('popularproducts.edit');
         Route::post('/popular-products-settings', [AdminHomepageController::class, 'popularProductsUpdate'])->name('popularproducts.update');
-        Route::get('/popular-products', [AdminHomepageController::class, 'popularProductsEdit'])->name('popularproducts.edit');
-        Route::post('/popular-products', [AdminHomepageController::class, 'popularProductsUpdate'])->name('popularproducts.update');
+        // Alias URLs only — route names must stay unique or `php artisan route:cache` fails.
+        Route::get('/popular-products', [AdminHomepageController::class, 'popularProductsEdit']);
+        Route::post('/popular-products', [AdminHomepageController::class, 'popularProductsUpdate']);
         Route::get('/footer-settings', [AdminFooterController::class, 'edit'])->name('footer.edit');
         Route::post('/footer-settings', [AdminFooterController::class, 'update'])->name('footer.update');
         Route::get('/faq-page-settings', [AdminFaqPageController::class, 'edit'])->name('faqpage.edit');
