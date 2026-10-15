@@ -105,13 +105,13 @@ class AdminHomepageController extends Controller
             // Accept both raw JSON-LD and a complete <script type="application/ld+json"> block.
             'schema' => 'nullable|string|max:50000',
             'hero_title' => 'nullable|string|max:255',
-            'hero_description' => 'nullable|string',
+            'hero_description' => 'nullable|string|max:300',
             'hero_image' => 'nullable|image|mimes:jpeg,png,jpg,webp,svg|max:5120',
             'popular_meta_title' => 'nullable|string|max:255',
             'popular_meta_description' => 'nullable|string|max:1000',
             'popular_meta_keywords' => 'nullable|string|max:1000',
             'popular_hero_title' => 'nullable|string|max:255',
-            'popular_hero_description' => 'nullable|string',
+            'popular_hero_description' => 'nullable|string|max:300',
             'popular_hero_image' => 'nullable|image|mimes:jpeg,png,jpg,webp,svg|max:5120',
             'popular_hero_primary_button_text' => 'nullable|string|max:80',
             'popular_hero_primary_button_url' => 'nullable|string|max:255',
@@ -132,9 +132,13 @@ class AdminHomepageController extends Controller
         $settings['robots'] = $request->input('robots', 'index,follow');
         $settings['schema'] = $request->input('schema');
         $settings['hero_title'] = $request->input('hero_title');
-        $settings['hero_description'] = $request->input('hero_description');
+        $settings['hero_description'] = $request->filled('hero_description') ? mb_substr(trim($request->input('hero_description')), 0, 300) : $request->input('hero_description');
         foreach (['popular_meta_title', 'popular_meta_description', 'popular_meta_keywords', 'popular_hero_title', 'popular_hero_description', 'popular_hero_primary_button_text', 'popular_hero_primary_button_url'] as $field) {
-            $settings[$field] = $request->input($field);
+            if ($field === 'popular_hero_description' && $request->filled('popular_hero_description')) {
+                $settings[$field] = mb_substr(trim($request->input($field)), 0, 300);
+            } else {
+                $settings[$field] = $request->input($field);
+            }
         }
 
         if ($request->input('remove_hero_image') == '1') {
@@ -255,7 +259,7 @@ class AdminHomepageController extends Controller
             'popular_meta_description' => 'nullable|string|max:1000',
             'popular_meta_keywords' => 'nullable|string|max:255',
             'popular_hero_title' => 'nullable|string|max:255',
-            'popular_hero_description' => 'nullable|string',
+            'popular_hero_description' => 'nullable|string|max:300',
             'popular_hero_image' => 'nullable|image|mimes:jpeg,png,jpg,webp,svg|max:5120',
             'popular_hero_primary_button_text' => 'nullable|string|max:80',
             'popular_hero_primary_button_url' => 'nullable|string|max:255',
@@ -286,7 +290,11 @@ class AdminHomepageController extends Controller
 
         // Text Fields
         foreach (['popular_meta_title', 'popular_meta_description', 'popular_meta_keywords', 'popular_hero_title', 'popular_hero_description', 'popular_hero_primary_button_text', 'popular_hero_primary_button_url', 'popular_content_section'] as $field) {
-            $settings[$field] = $request->input($field);
+            if ($field === 'popular_hero_description' && $request->filled('popular_hero_description')) {
+                $settings[$field] = mb_substr(trim($request->input($field)), 0, 300);
+            } else {
+                $settings[$field] = $request->input($field);
+            }
         }
 
         // Reconstruct Popular FAQs array

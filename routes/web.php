@@ -103,7 +103,7 @@ Route::get('/popular-products/', function () {
         'meta_keywords' => $popularSettings['popular_meta_keywords'] ?? '',
         'hero_title' => $popularSettings['popular_hero_title'] ?: 'Popular Custom Packaging Products',
         'hero_badge' => 'Popular Products',
-        'hero_description' => $popularSettings['popular_hero_description'] ?: 'Browse the packaging products selected by our team for their quality, presentation, and versatile custom options.',
+        'hero_description' => $popularSettings['popular_hero_description'] ?? '',
         'hero_image' => $popularSettings['popular_hero_image'] ?: ($popularProducts[0]['image'] ?? 'uploads/Home-Banner.webp'),
         'hero_primary_button_text' => $popularSettings['popular_hero_primary_button_text'] ?: 'Get Instant Quote',
         'hero_primary_button_url' => $popularSettings['popular_hero_primary_button_url'] ?: '/request-quote/',

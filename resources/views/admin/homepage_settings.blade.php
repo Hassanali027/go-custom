@@ -210,8 +210,11 @@
                 </div>
                 
                 <div class="field full">
-                    <label for="hero_description">Hero Description</label>
-                    <textarea id="hero_description" name="hero_description" rows="3" placeholder="Enter brief hero paragraph text...">{{ old('hero_description', $settings['hero_description'] ?? '') }}</textarea>
+                    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.25rem;">
+                        <label for="hero_description" style="margin:0;">Hero Description</label>
+                        <small id="hero_desc_counter" style="color:var(--muted); font-size:0.8125rem; font-weight:600;"><span id="hero_desc_count">0</span>/300 characters</small>
+                    </div>
+                    <textarea id="hero_description" name="hero_description" rows="3" maxlength="300" placeholder="Enter brief hero paragraph text (max 300 characters)...">{{ old('hero_description', $settings['hero_description'] ?? '') }}</textarea>
                 </div>
 
                 <div class="field full">
@@ -501,5 +504,43 @@
         hidden.value = '1';
         wrapper.style.display = 'none';
     }
+
+    // Hero Description 300-character limit enforcement
+    (function() {
+        const heroDescInput = document.getElementById('hero_description');
+        const heroDescCount = document.getElementById('hero_desc_count');
+        const heroDescCounter = document.getElementById('hero_desc_counter');
+
+        function updateHeroDescCount() {
+            if (!heroDescInput) return;
+            if (heroDescInput.value.length > 300) {
+                heroDescInput.value = heroDescInput.value.slice(0, 300);
+            }
+            const len = heroDescInput.value.length;
+            if (heroDescCount) heroDescCount.textContent = len;
+            if (heroDescCounter) {
+                if (len >= 300) {
+                    heroDescCounter.style.color = '#e74c3c';
+                } else if (len >= 270) {
+                    heroDescCounter.style.color = '#f39c12';
+                } else {
+                    heroDescCounter.style.color = 'var(--muted)';
+                }
+            }
+        }
+
+        if (heroDescInput) {
+            heroDescInput.addEventListener('input', updateHeroDescCount);
+            heroDescInput.addEventListener('paste', function() {
+                setTimeout(updateHeroDescCount, 0);
+            });
+            heroDescInput.addEventListener('keydown', function(e) {
+                if (this.value.length >= 300 && !['Backspace', 'Delete', 'ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown', 'Tab'].includes(e.key) && !e.ctrlKey && !e.metaKey) {
+                    e.preventDefault();
+                }
+            });
+            updateHeroDescCount();
+        }
+    })();
 </script>
 @endsection

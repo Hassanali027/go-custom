@@ -111,18 +111,26 @@
         max-width: 80rem;
         margin: 0 auto;
         padding: 2.5rem 3.4375rem;
-        display: block;
+        display: grid;
+        grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+        align-items: center;
+        gap: 3rem;
         position: relative;
         z-index: 2;
         box-sizing: border-box;
+        min-height: 26.25rem;
     }
 
     .hero-content {
         max-width: 35rem;
+        width: 100%;
         position: relative;
         z-index: 2;
         padding-top: 0;
         padding-bottom: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
     }
 
 
@@ -139,7 +147,7 @@
         color: #000;
         margin-bottom: 0.875rem;
         overflow-wrap: break-word;
-        max-width: 30rem;
+        max-width: 34rem;
         text-transform: capitalize;
     }
 
@@ -150,18 +158,26 @@
     .category-page-hero .hero-title {
         font-family: 'Open Sans', sans-serif;
         font-size: 2rem;
-        line-height: 1.2;
+        line-height: 1.25;
         max-width: 34rem;
         text-align: left;
         margin-bottom: 0.75rem;
+        min-height: 5rem;
+        display: flex;
+        align-items: flex-start;
     }
 
     .category-page-hero .hero-description {
         max-width: 34rem;
-        text-align: left;
-        line-height: 1.45;
-        margin-bottom: 1.25rem;
+        width: 100%;
         text-align: justify;
+        line-height: 1.55;
+        margin-bottom: 1.75rem;
+        height: 7.75rem;
+        min-height: 7.75rem;
+        max-height: 7.75rem;
+        overflow: hidden;
+        box-sizing: border-box;
     }
 
     .category-page-hero .hero-title br {
@@ -169,19 +185,34 @@
     }
 
     .category-page-hero .hero-section {
-        padding-top: 1.5rem;
-        padding-bottom: 1.5rem;
+        padding-top: 2rem;
+        padding-bottom: 2rem;
+        min-height: 26.25rem;
     }
 
     .hero-description {
         text-align: justify;
         font-family: 'DM Sans', sans-serif;
         font-size: 1rem;
-        line-height: 1.6;
+        line-height: 1.55;
         color: #000;
-        max-width: 31.875rem;
-        margin-bottom: 2rem;
+        max-width: 34rem;
+        width: 100%;
+        margin-bottom: 1.75rem;
         font-weight: 300;
+        height: 7.75rem;
+        min-height: 7.75rem;
+        max-height: 7.75rem;
+        overflow: hidden;
+        box-sizing: border-box;
+    }
+
+    .hero-buttons {
+        position: relative;
+        display: flex;
+        gap: 1rem;
+        align-items: center;
+        margin-top: 0;
     }
 
     .hero-btn {
@@ -205,11 +236,13 @@
 
 
     .hero-image-wrapper {
-        position: absolute;
-        right: 3.4375rem;
-        top: 0;
-        bottom: 0;
-        width: 28.5rem;
+        position: relative;
+        right: auto;
+        top: auto;
+        bottom: auto;
+        width: 100%;
+        height: 100%;
+        max-height: 22rem;
         display: flex;
         justify-content: flex-end;
         align-items: center;
@@ -217,10 +250,10 @@
     }
 
     .hero-image-wrapper img {
-        width: 100%;
-        max-width: 28.5rem;
+        width: auto;
+        max-width: 100%;
         height: auto;
-        max-height: 100%;
+        max-height: 22rem;
         border-radius: 1rem;
         box-shadow: none;
         background-color: transparent;
@@ -230,54 +263,53 @@
 
     /* Give the homepage artwork the same strong visual presence as the reference. */
     .home-hero-wrapper .hero-image-wrapper {
-        right: 3.4375rem;
-        width: 36rem;
+        right: auto;
+        width: 100%;
     }
 
     .home-hero-wrapper .hero-image-wrapper img {
-        max-width: 36rem;
-        max-height: 110%;
+        max-width: 100%;
+        max-height: 23rem;
         transform: none;
         transform-origin: center;
     }
 
     @media (min-width: 75.0625rem) {
         .category-page-hero .hero-image-wrapper {
-            width: 34rem;
+            width: 100%;
         }
 
         .category-page-hero .hero-image-wrapper img {
-            max-width: 34rem;
-            max-height: 100%;
+            max-width: 100%;
+            max-height: 22rem;
         }
     }
 
     @media (max-width: 75rem) and (min-width: 62.0625rem) {
         .home-hero-wrapper .hero-content {
-            max-width: 27rem;
+            max-width: 100%;
         }
 
         .home-hero-wrapper .hero-image-wrapper {
-            right: 3.4375rem;
-            width: 27rem;
+            right: auto;
+            width: 100%;
         }
 
         .home-hero-wrapper .hero-image-wrapper img {
-            max-width: 27rem;
-            max-height: 100%;
+            max-width: 100%;
+            max-height: 20rem;
             transform: none;
         }
     }
 
     @media (max-width: 93.75rem) and (min-width: 62.0625rem) {
         .hero-section {
-            grid-template-columns: minmax(0, 1fr) minmax(20rem, 38%);
-            gap: 2rem;
+            grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+            gap: 2.5rem;
         }
         .hero-image-wrapper img {
             max-width: 100%;
             height: auto;
-            aspect-ratio: 1 / 1;
         }
     }
 
@@ -325,11 +357,14 @@
         }
 
         .category-page-hero .hero-title {
+            min-height: auto;
             max-width: 27.5rem;
             text-align: center;
+            justify-content: center;
         }
 
-        .hero-description {
+        .hero-description,
+        .category-page-hero .hero-description {
             font-family: 'Inter', sans-serif;
             font-size: 1rem;
             font-weight: 400;
@@ -339,6 +374,10 @@
             margin-left: auto;
             margin-right: auto;
             margin-bottom: 1.75rem;
+            height: auto;
+            min-height: auto;
+            max-height: none;
+            overflow: visible;
         }
 
         .hero-image-wrapper {
@@ -430,7 +469,8 @@
             text-align: center;
         }
 
-        .hero-description {
+        .hero-description,
+        .category-page-hero .hero-description {
             width: 90vw;
             max-width: 100vw;
             position: relative;
@@ -440,6 +480,10 @@
             line-height: 1.5;
             margin-bottom: 1.25rem;
             text-align: justify;
+            height: auto;
+            min-height: auto;
+            max-height: none;
+            overflow: visible;
         }
     }
 
@@ -518,9 +562,7 @@
                 {!! !empty($settings['hero_title']) ? $settings['hero_title'] : 'Custom Packaging<br>For The Food &<br>Beverage Industry' !!}
             </h1>
 
-            <p class="hero-description">
-                {{ !empty($settings['hero_description']) ? $settings['hero_description'] : 'We believe your home should feel like a gentle exhale. Every piece we curate carries the quiet confidence of timeless design — rooted in earthy tones, honest materials, and a deep respect for slow living.' }}
-            </p>
+            <p class="hero-description">{{ !empty($settings['hero_description']) ? $settings['hero_description'] : '' }}</p>
 
             <div class="hero-buttons" style="position: relative; display: flex; gap: 1rem; align-items: center;">
                 <div class="hero-glow-circle"></div>

@@ -121,6 +121,7 @@ class AdminContentController extends Controller
             'title' => 'required|string|max:255',
             'slug' => 'nullable|string|max:255',
             'schema' => 'nullable|string|max:50000',
+            'hero_description' => 'nullable|string|max:300',
         ]);
         $table = ['products'=>'admin_products','categories'=>'admin_categories','blogs'=>'admin_blogs','pages'=>'admin_pages','authors'=>'admin_authors'][$module];
         $columns = [
@@ -135,6 +136,10 @@ class AdminContentController extends Controller
         $payload = collect($request->except(['_token','_method','images','existing_images','image','nav_image','hero_image','banner_image','icon','categories','related','faq_question','faq_answer']))->only($fields)->all();
         \Log::info('AdminContentController payload for ' . $module, $payload);
         $payload['title'] = $request->title; $payload['slug'] = Str::slug($request->slug ?: $request->title); $payload['updated_at'] = now();
+
+        if (isset($payload['hero_description']) && is_string($payload['hero_description'])) {
+            $payload['hero_description'] = mb_substr(trim($payload['hero_description']), 0, 300);
+        }
 
         if (isset($payload['publish_date']) && !empty(trim($payload['publish_date']))) {
             $payload['publish_date'] = date('Y-m-d', strtotime(trim($payload['publish_date'])));
