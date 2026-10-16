@@ -399,6 +399,8 @@
             <form action="{{ url('/submit-quote') }}" method="POST" enctype="multipart/form-data" class="qf-main-grid">
                 @csrf
                 <input type="hidden" name="form_source" value="quote">
+                <input type="hidden" name="source_form" value="{{ $quoteSource ?? 'Get Custom Quote Form' }}">
+                <input type="hidden" name="source_page" value="{{ url()->current() }}">
 
                 <!-- Row 1: Name, Email, Phone -->
                 <div class="qf-group qf-span-4 qf-span-12-m">
@@ -430,6 +432,7 @@
                 <div class="qf-group qf-span-3 qf-span-6-m">
                     <label>Unit *</label>
                     <select name="units" required>
+                        <option value="" selected disabled hidden>Select Unit</option>
                         <option value="mm">mm</option>
                         <option value="cm">cm</option>
                         <option value="inches">inches</option>

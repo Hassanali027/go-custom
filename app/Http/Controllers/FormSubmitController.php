@@ -56,7 +56,7 @@ class FormSubmitController extends Controller
 
     public function submitQuote(Request $request)
     {
-        $this->trimFields($request, ['name', 'email', 'phone']);
+        $this->trimFields($request, ['name', 'email', 'phone', 'company_name', 'website', 'physical_address', 'message']);
 
         $validated = $request->validate([
             'name' => 'required|string|max:255',
@@ -64,7 +64,8 @@ class FormSubmitController extends Controller
             'phone' => 'required|string|max:20',
             'company_name' => 'nullable|string|max:255',
             'website' => 'nullable|string|max:255',
-            'physical_address' => 'nullable|string|max:255',
+            // Address is only asked for (and required) on the product page sample-kit form.
+            'physical_address' => 'nullable|required_if:source_form,Product Page - Bottom Form|string|max:255',
             'width' => 'required|string|max:255',
             'length' => 'required|string|max:255',
             'depth' => 'required|string|max:255',
@@ -79,9 +80,12 @@ class FormSubmitController extends Controller
             'quantity' => 'required|integer|min:1',
             'quote_file' => 'nullable|file|max:10240', // 10MB max
             'message' => 'nullable|string',
-            'form_source' => 'nullable|string|max:50'
+            'form_source' => 'nullable|string|max:50',
+            'source_form' => 'nullable|string|max:100',
+            'source_page' => 'nullable|string|max:500'
         ], [
             'box_style.required' => 'Please select a Box Style.',
+            'physical_address.required_if' => 'The physical address field is required.',
         ]);
 
         foreach (['paper_stock', 'paper_coating', 'color'] as $field) {
@@ -91,6 +95,9 @@ class FormSubmitController extends Controller
         }
         if (empty($validated['cad_sample'])) {
             $validated['cad_sample'] = 'No';
+        }
+        if (empty($validated['source_page'])) {
+            $validated['source_page'] = $request->headers->get('referer');
         }
 
         if (empty($validated['form_source'])) {

@@ -2400,7 +2400,7 @@
                         </div>
                         <div class="input-group">
                             <select name="units" class="quote-input" required>
-                                <option value="" disabled selected>mm *</option>
+                                <option value="" selected disabled hidden>Unit *</option>
                                 <option>mm</option>
                                 <option>cm</option>
                                 <option>inch</option>
@@ -2410,6 +2410,8 @@
 
                     <input type="hidden" name="box_style" value="{{ $product['title'] ?? 'Custom Packaging Box' }}">
                     <input type="hidden" name="form_source" value="product">
+                    <input type="hidden" name="source_form" value="Product Page - Top Form">
+                    <input type="hidden" name="source_page" value="{{ url()->current() }}">
 
                     <!-- Paper Stock, Coating, Color -->
                     <div class="form-grid-3 form-grid-options">

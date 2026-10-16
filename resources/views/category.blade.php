@@ -794,7 +794,7 @@
 
         @include('components.coating-finishing')
         
-        @include('components.customquote')
+        @include('components.customquote', ['quoteSource' => 'Category Page - Get Custom Quote'])
 
         @php
             $featureSections = json_decode($category['feature_sections'] ?? '[]', true) ?: [];

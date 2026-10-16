@@ -507,6 +507,8 @@
                 <form action="{{ url('/submit-quote') }}" method="POST" enctype="multipart/form-data" style="display: flex; flex-direction: column; gap: 1rem;">
                     @csrf
                     <input type="hidden" name="form_source" value="quote">
+                    <input type="hidden" name="source_form" value="Request a Quote Page">
+                    <input type="hidden" name="source_page" value="{{ url()->current() }}">
                     <!-- Row 1 -->
                     <div class="iq-grid-2">
                         <div class="iq-form-group">
@@ -548,6 +550,7 @@
                         <div class="iq-form-group">
                             <label>Units *</label>
                             <select name="units" required>
+                                <option value="" selected disabled hidden>Select Unit</option>
                                 <option value="mm">mm</option>
                                 <option value="cm">cm</option>
                                 <option value="inches">inches</option>
