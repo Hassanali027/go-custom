@@ -112,7 +112,7 @@
         <div class="qf-video-dialog">
             <button type="button" class="qf-video-close" aria-label="Close video">&times;</button>
             <h3 class="qf-video-title" id="qf-video-title">Video Guide</h3>
-            <video controls playsinline preload="none"></video>
+            <video controls controlslist="nodownload noplaybackrate" disablepictureinpicture disableremoteplayback playsinline preload="none" oncontextmenu="return false;"></video>
         </div>
     </div>
 
