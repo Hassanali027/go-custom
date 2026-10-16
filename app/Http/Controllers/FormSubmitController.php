@@ -18,14 +18,26 @@ class FormSubmitController extends Controller
         $this->adminEmail = config('mail.to.address');
     }
 
+    // Strip surrounding whitespace (incl. non-breaking spaces) so "   " fails the required rule.
+    private function trimFields(Request $request, array $fields)
+    {
+        foreach ($fields as $field) {
+            if (is_string($request->input($field))) {
+                $request->merge([$field => preg_replace('/^[\s\x{00A0}\x{200B}]+|[\s\x{00A0}\x{200B}]+$/u', '', $request->input($field))]);
+            }
+        }
+    }
+
     public function submitContact(Request $request)
     {
+        $this->trimFields($request, ['name', 'email', 'phone', 'message']);
+
         $validated = $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|email|max:255',
             'phone' => 'required|string|max:20',
             'subject' => 'nullable|string|max:255',
-            'message' => 'nullable|string'
+            'message' => 'required|string'
         ]);
 
         dispatch(function () use ($validated) {
@@ -44,6 +56,8 @@ class FormSubmitController extends Controller
 
     public function submitQuote(Request $request)
     {
+        $this->trimFields($request, ['name', 'email', 'phone']);
+
         $validated = $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|email|max:255',
@@ -55,7 +69,7 @@ class FormSubmitController extends Controller
             'length' => 'required|string|max:255',
             'depth' => 'required|string|max:255',
             'units' => 'required|string|max:255',
-            'box_style' => 'nullable|string|max:255',
+            'box_style' => 'required|string|max:255',
             'material' => 'nullable|string|max:255',
             'paper_stock' => 'nullable|string|max:255',
             'color' => 'nullable|string|max:255',
@@ -66,7 +80,18 @@ class FormSubmitController extends Controller
             'quote_file' => 'nullable|file|max:10240', // 10MB max
             'message' => 'nullable|string',
             'form_source' => 'nullable|string|max:50'
+        ], [
+            'box_style.required' => 'Please select a Box Style.',
         ]);
+
+        foreach (['paper_stock', 'paper_coating', 'color'] as $field) {
+            if (empty($validated[$field])) {
+                $validated[$field] = 'Not Sure';
+            }
+        }
+        if (empty($validated['cad_sample'])) {
+            $validated['cad_sample'] = 'No';
+        }
 
         if (empty($validated['form_source'])) {
             $referer = $request->headers->get('referer', '');

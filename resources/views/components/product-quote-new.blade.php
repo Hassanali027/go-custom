@@ -326,15 +326,15 @@
                 <div class="pqn-form-row">
                     <div class="pqn-form-group">
                         <label class="pqn-label">Name *</label>
-                        <input type="text" name="name" class="pqn-input" placeholder="Name" required>
+                        <input type="text" name="name" class="pqn-input" placeholder="Name" pattern=".*\S.*" data-qf-trim required>
                     </div>
                     <div class="pqn-form-group">
                         <label class="pqn-label">Email Address *</label>
-                        <input type="email" name="email" class="pqn-input" placeholder="Email" required>
+                        <input type="email" name="email" class="pqn-input" placeholder="Email" data-qf-trim required>
                     </div>
                     <div class="pqn-form-group">
                         <label class="pqn-label">Phone *</label>
-                        <input type="tel" name="phone" class="pqn-input" placeholder="Phone number" required>
+                        <input type="tel" name="phone" class="pqn-input" placeholder="Phone number" pattern=".*\S.*" data-qf-trim required>
                     </div>
                 </div>
                 
@@ -380,6 +380,7 @@
                     <button type="submit" class="pqn-btn">Get Free Quote</button>
                 </div>
             </form>
+            @include('components.quote-trim-script')
         </div>
         
         <!-- Right Sidebar Column -->

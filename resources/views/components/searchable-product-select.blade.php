@@ -187,6 +187,16 @@
                     });
                 });
 
+                if (form) {
+                    // form.reset() doesn't clear hidden inputs, so restore the initial selection manually.
+                    const initialValue = valueInput.value;
+                    const initialSelected = valueInput.dataset.productSelected;
+                    form.addEventListener('reset', function () {
+                        valueInput.value = initialValue;
+                        valueInput.dataset.productSelected = initialSelected;
+                    });
+                }
+
                 if (form && {{ $required ? 'true' : 'false' }}) {
                     form.addEventListener('submit', function (event) {
                         if (valueInput.dataset.productSelected === '1' && valueInput.value.trim() !== '') return;

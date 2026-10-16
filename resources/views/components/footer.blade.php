@@ -310,9 +310,15 @@ document.addEventListener('DOMContentLoaded', function() {
                     'Accept': 'application/json'
                 }
             })
-            .then(response => response.json())
-            .then(data => {
+            .then(response => response.json().then(data => ({ ok: response.ok, data })))
+            .then(({ ok, data }) => {
                 if(submitBtn) submitBtn.innerHTML = originalBtnText;
+
+                if(!ok) {
+                    const errors = data && data.errors ? Object.values(data.errors).flat() : [];
+                    alert(errors.length ? errors.join('\n') : (data && data.message) || 'Please check the form and try again.');
+                    return;
+                }
 
                 let inlineMsg = form.querySelector('.ajax-inline-success');
                 if(!inlineMsg) {

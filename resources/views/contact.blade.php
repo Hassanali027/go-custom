@@ -492,28 +492,29 @@
                             @csrf
                             <div class="form-group">
                                 <label for="first_name">First Name</label>
-                                <input type="text" id="first_name" name="name" placeholder="Enter Your Name" required>
+                                <input type="text" id="first_name" name="name" placeholder="Enter Your Name" pattern=".*\S.*" data-qf-trim required>
                             </div>
                             <div class="form-group">
                                 <label for="last_name">Last Name</label>
-                                <input type="text" id="last_name" name="last_name" placeholder="Enter Last Name">
+                                <input type="text" id="last_name" name="last_name" placeholder="Enter Last Name" data-qf-trim>
                             </div>
                             <div class="form-group">
                                 <label for="email">Email</label>
-                                <input type="email" id="email" name="email" placeholder="Enter Your email" required>
+                                <input type="email" id="email" name="email" placeholder="Enter Your email" data-qf-trim required>
                             </div>
                             <div class="form-group">
                                 <label for="phone">Phone</label>
-                                <input type="tel" id="phone" name="phone" placeholder="Enter Your Number" required>
+                                <input type="tel" id="phone" name="phone" placeholder="Enter Your Number" pattern=".*\S.*" data-qf-trim required>
                             </div>
                             <div class="form-group full-width">
                                 <label for="message">Message</label>
-                                <textarea id="message" name="message" placeholder="Tell us about your project..." required></textarea>
+                                <textarea id="message" name="message" placeholder="Tell us about your project..." data-qf-trim required></textarea>
                             </div>
                             <div class="submit-btn-wrap">
                                 <button type="submit" class="submit-btn">Send Message <i class="fa-solid fa-arrow-right"></i></button>
                             </div>
                         </form>
+                        @include('components.quote-trim-script')
                     </div>
 
                     <!-- Info Column -->

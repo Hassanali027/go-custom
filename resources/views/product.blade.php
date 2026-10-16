@@ -2346,22 +2346,28 @@
                             text-align: left;
                             font-family: 'DM Sans', sans-serif;
                         }
-                        .hero-quote-box .form-bottom-grid {
+                        .hero-quote-box .form-grid-2 {
                             display: grid;
                             grid-template-columns: 1fr 1fr;
-                            column-gap: 0.625rem;
-                            row-gap: 1.125rem;
+                            gap: 0.625rem;
                             margin-bottom: 1.125rem;
                         }
-                        .hero-quote-box .form-bottom-grid > * {
-                            grid-column: span 1;
+                        .hero-quote-box .form-upload-row {
+                            margin-bottom: 1.125rem;
+                        }
+                        /* Smaller text in the 3-column dropdown row so placeholders show in full */
+                        .hero-quote-box .form-grid-options select.quote-input {
+                            font-size: 0.8125rem !important;
+                            padding-left: 0.75rem !important;
+                            padding-right: 1.875rem !important;
+                            background-position: right 0.625rem center !important;
+                        }
+                        .hero-quote-box .input-group .qf-video-link {
+                            margin-top: 0.375rem;
                         }
                         @media (max-width: 48rem) {
-                            .hero-quote-box .form-bottom-grid {
+                            .hero-quote-box .form-grid-2 {
                                 grid-template-columns: 1fr;
-                            }
-                            .hero-quote-box .form-bottom-grid > * {
-                                grid-column: span 1;
                             }
                         }
                             .hero-quote-box .quote-submit-btn {
@@ -2372,13 +2378,13 @@
 
                     <div class="form-grid-3">
                         <div class="input-group">
-                            <input type="text" name="name" class="quote-input" placeholder="Name *" oninput="this.value = this.value.replace(/[^a-zA-Z\s]/g, '')" required>
+                            <input type="text" name="name" class="quote-input" placeholder="Name *" oninput="this.value = this.value.replace(/[^a-zA-Z\s]/g, '')" pattern=".*\S.*" data-qf-trim required>
                         </div>
                         <div class="input-group">
-                            <input type="email" name="email" class="quote-input" placeholder="Email *" required>
+                            <input type="email" name="email" class="quote-input" placeholder="Email *" data-qf-trim required>
                         </div>
                         <div class="input-group">
-                            <input type="tel" name="phone" class="quote-input" placeholder="Phone number *" oninput="this.value = this.value.replace(/[^0-9+\-\(\)\s]/g, '')" required>
+                            <input type="tel" name="phone" class="quote-input" placeholder="Phone number *" oninput="this.value = this.value.replace(/[^0-9+\-\(\)\s]/g, '')" pattern=".*\S.*" data-qf-trim required>
                         </div>
                     </div>
 
@@ -2405,10 +2411,12 @@
                     <input type="hidden" name="box_style" value="{{ $product['title'] ?? 'Custom Packaging Box' }}">
                     <input type="hidden" name="form_source" value="product">
 
-                    <div class="form-bottom-grid">
+                    <!-- Paper Stock, Coating, Color -->
+                    <div class="form-grid-3 form-grid-options">
                         <div class="input-group">
-                            <select name="paper_stock" class="quote-input" required>
-                                <option value="" disabled selected>Select Paper Stock</option>
+                            <select name="paper_stock" class="quote-input">
+                                <option value="" selected disabled hidden>Select Paper Stock</option>
+                                <option value="Not Sure">Not Sure</option>
                                 <option>12pt Cardboard Stock</option>
                                 <option>14pt Cardboard Stock</option>
                                 <option>16pt Cardboard Stock</option>
@@ -2420,43 +2428,54 @@
                                 <option>Recycled BuxBoard</option>
                                 <option>Corrugated Stock</option>
                             </select>
+                            <x-video-guide-link video="paper-stock" title="Paper Stock Guide" variant="light" />
                         </div>
                         <div class="input-group">
                             <select name="paper_coating" class="quote-input">
-                                <option value="" selected>Select Paper Coating</option>
+                                <option value="" selected disabled hidden>Select Paper Coating</option>
+                                <option value="Not Sure">Not Sure</option>
                                 <option>Aqueous Coating</option>
                                 <option>Semi Gloss</option>
                                 <option>Gloss UV</option>
                                 <option>Matte UV</option>
                                 <option>Semi Matte</option>
                             </select>
+                            <x-video-guide-link video="paper-coating" title="Paper Coating Guide" variant="light" />
                         </div>
                         <div class="input-group">
-                            <select name="color" class="quote-input" required>
-                                <option value="" disabled selected>Color Options</option>
+                            <select name="color" class="quote-input">
+                                <option value="" selected disabled hidden>Color Options</option>
+                                <option value="Not Sure">Not Sure</option>
                                 <option>1 color</option>
                                 <option>2 color</option>
                                 <option>3 color</option>
                                 <option>4 color (CMYK)</option>
                                 <option>No Printing</option>
                             </select>
+                            <x-video-guide-link video="colors" title="Color Options Guide" variant="light" />
                         </div>
-                        <div class="input-group">
-                            <input type="number" name="quantity" class="quote-input" placeholder="Quantity" required>
-                        </div>
+                    </div>
+
+                    <!-- CAD Sample, Quantity -->
+                    <div class="form-grid-2">
                         <div class="input-group">
                             <select name="cad_sample" class="quote-input">
-                                <option value="" selected>Select CAD Sample</option>
+                                <option value="" selected disabled hidden>Select CAD Sample</option>
                                 <option value="Yes">Yes</option>
                                 <option value="No">No</option>
                             </select>
                         </div>
                         <div class="input-group">
-                            <div class="file-upload-wrap">
-                                <input type="file" name="quote_file" id="quote_file_input" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; opacity: 0; cursor: pointer;" onchange="document.getElementById('quote_file_text').value = this.files.length > 0 ? this.files[0].name : ''">
-                                <input type="text" id="quote_file_text" class="quote-input" placeholder="No file choosen" readonly style="pointer-events: none;">
-                                <button type="button" class="upload-btn" style="pointer-events: none;">Upload</button>
-                            </div>
+                            <input type="number" name="quantity" class="quote-input" placeholder="Quantity *" required>
+                        </div>
+                    </div>
+
+                    <!-- Upload (full width) -->
+                    <div class="input-group form-upload-row">
+                        <div class="file-upload-wrap">
+                            <input type="file" name="quote_file" id="quote_file_input" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; opacity: 0; cursor: pointer;" onchange="document.getElementById('quote_file_text').value = this.files.length > 0 ? this.files[0].name : ''">
+                            <input type="text" id="quote_file_text" class="quote-input" placeholder="No file chosen" readonly style="pointer-events: none;">
+                            <button type="button" class="upload-btn" style="pointer-events: none;">Upload</button>
                         </div>
                     </div>
 
@@ -2468,6 +2487,7 @@
                         <button type="submit" class="quote-submit-btn">Get Free Quote</button>
                     </div>
                 </form>
+                @include('components.quote-trim-script')
             </div>
         </div>
     </section>
