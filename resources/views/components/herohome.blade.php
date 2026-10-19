@@ -2,19 +2,21 @@
     .category-hero-wrapper {
         width: 100%;
         max-width: 100%;
-        height: 26.25rem;
+        min-height: 26.25rem;
+        height: auto;
         box-sizing: border-box;
         background: linear-gradient(160deg, #FFF8E7 0%, #FFE9C2 35%, #FFE0A6 100%);
         color: #000;
         position: relative;
         overflow: hidden;
         display: flex;
-        align-items: flex-start;
+        align-items: center;
     }
     
     @media (max-width: 62rem) {
         .category-hero-wrapper {
             height: auto;
+            min-height: auto;
             display: block;
         }
 
@@ -119,6 +121,7 @@
         z-index: 2;
         box-sizing: border-box;
         min-height: 26.25rem;
+        height: auto;
     }
 
     .hero-content {
@@ -162,7 +165,7 @@
         max-width: 34rem;
         text-align: left;
         margin-bottom: 0.75rem;
-        min-height: 5rem;
+        min-height: auto;
         display: flex;
         align-items: flex-start;
     }
@@ -173,10 +176,11 @@
         text-align: justify;
         line-height: 1.55;
         margin-bottom: 1.75rem;
-        height: 7.75rem;
-        min-height: 7.75rem;
-        max-height: 7.75rem;
-        overflow: hidden;
+        height: auto;
+        min-height: auto;
+        max-height: none;
+        overflow: visible;
+        white-space: pre-line;
         box-sizing: border-box;
     }
 
@@ -188,6 +192,7 @@
         padding-top: 2rem;
         padding-bottom: 2rem;
         min-height: 26.25rem;
+        height: auto;
     }
 
     .hero-description {
@@ -200,10 +205,11 @@
         width: 100%;
         margin-bottom: 1.75rem;
         font-weight: 300;
-        height: 7.75rem;
-        min-height: 7.75rem;
-        max-height: 7.75rem;
-        overflow: hidden;
+        height: auto;
+        min-height: auto;
+        max-height: none;
+        overflow: visible;
+        white-space: pre-line;
         box-sizing: border-box;
     }
 

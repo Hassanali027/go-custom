@@ -123,11 +123,8 @@
             </div>
             
             <div class="field full">
-                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.25rem;">
-                    <label style="margin:0;">Hero Description</label>
-                    <small id="hero_desc_counter" style="color:#6b7280; font-size:0.8125rem; font-weight:600;"><span id="hero_desc_count">0</span>/300 characters</small>
-                </div>
-                <textarea name="hero_description" id="hero_description_input" maxlength="300" placeholder="Enter hero description (max 300 characters)...">{{ $v('hero_description') }}</textarea>
+                <label>Hero Description</label>
+                <textarea name="hero_description" id="hero_description_input" placeholder="Enter hero description...">{{ $v('hero_description') }}</textarea>
             </div>
             
             <div class="field">
@@ -466,43 +463,6 @@
         document.querySelectorAll('.feature-section-number').forEach((number, index) => number.textContent = index + 1);
     }
 
-    // Hero Description 300-character limit enforcement
-    (function() {
-        const heroDescInput = document.getElementById('hero_description_input');
-        const heroDescCount = document.getElementById('hero_desc_count');
-        const heroDescCounter = document.getElementById('hero_desc_counter');
-
-        function updateHeroDescCount() {
-            if (!heroDescInput) return;
-            if (heroDescInput.value.length > 300) {
-                heroDescInput.value = heroDescInput.value.slice(0, 300);
-            }
-            const len = heroDescInput.value.length;
-            if (heroDescCount) heroDescCount.textContent = len;
-            if (heroDescCounter) {
-                if (len >= 300) {
-                    heroDescCounter.style.color = '#e74c3c';
-                } else if (len >= 270) {
-                    heroDescCounter.style.color = '#f39c12';
-                } else {
-                    heroDescCounter.style.color = '#6b7280';
-                }
-            }
-        }
-
-        if (heroDescInput) {
-            heroDescInput.addEventListener('input', updateHeroDescCount);
-            heroDescInput.addEventListener('paste', function() {
-                setTimeout(updateHeroDescCount, 0);
-            });
-            heroDescInput.addEventListener('keydown', function(e) {
-                if (this.value.length >= 300 && !['Backspace', 'Delete', 'ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown', 'Tab'].includes(e.key) && !e.ctrlKey && !e.metaKey) {
-                    e.preventDefault();
-                }
-            });
-            updateHeroDescCount();
-        }
-    })();
 </script>
 
 @endsection
