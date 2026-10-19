@@ -44,10 +44,14 @@ class FormSpamGuard
             return back()->with('success', $message);
         }
 
+        $messages = [
+            'expired' => 'This page has expired. Please refresh the page and try again.',
+            'fast' => 'Please wait a few seconds and submit again.',
+            'captcha' => 'Please solve the addition correctly.',
+        ];
+
         throw ValidationException::withMessages([
-            SpamGuard::ANSWER_FIELD => $reason === 'expired'
-                ? 'This page has expired. Please refresh the page and try again.'
-                : 'Please solve the addition correctly.',
+            SpamGuard::ANSWER_FIELD => $messages[$reason] ?? $messages['captcha'],
         ]);
     }
 }

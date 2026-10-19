@@ -10,7 +10,9 @@
     $fsg = !empty($captcha) ? \App\Support\SpamGuard::captcha() : ['token' => \App\Support\SpamGuard::token()];
 @endphp
 <input type="hidden" name="{{ \App\Support\SpamGuard::TOKEN_FIELD }}" class="fsg-token" value="{{ $fsg['token'] }}"@if(!empty($captcha)) data-a="{{ $fsg['a'] }}" data-b="{{ $fsg['b'] }}"@endif>
-<div style="position:absolute;left:-10000px;top:auto;width:1px;height:1px;overflow:hidden;" aria-hidden="true">
+{{-- display:none (not just off-screen) so browser autofill and form-filler extensions never fill the trap;
+     a filled trap makes the server treat a real visitor as a bot and silently skip the email. --}}
+<div style="display:none;" aria-hidden="true">
     <label>Leave this field empty <input type="text" name="{{ \App\Support\SpamGuard::HONEYPOT_FIELD }}" value="" tabindex="-1" autocomplete="off"></label>
 </div>
 @once
@@ -32,6 +34,14 @@
             })
             .catch(function () {});
     };
+
+    // A real visitor's browser runs this script, so clear the trap field right before sending:
+    // even if autofill or an extension filled it, a real person is never treated as a bot.
+    // Simple bots post straight to the server without running it, so they still get caught.
+    document.addEventListener('submit', function (e) {
+        var trap = e.target && e.target.querySelector && e.target.querySelector('input[name="{{ \App\Support\SpamGuard::HONEYPOT_FIELD }}"]');
+        if (trap) trap.value = '';
+    }, true);
 
     // Every guarded form gets a fresh token after it is reset (the AJAX handler resets it after a successful submit).
     document.addEventListener('reset', function (e) {

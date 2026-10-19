@@ -27,8 +27,11 @@ class SpamGuard
     /** A rendered page is considered stale after this long. */
     const MAX_SECONDS = 6 * 3600;
 
-    /** Reasons that only a bot can trigger; the bot gets a fake "thank you". */
-    const SILENT_REASONS = ['honeypot', 'token', 'fast'];
+    /**
+     * Reasons that only a bot can trigger; the bot gets a fake "thank you".
+     * "fast" is not here: a quick real visitor gets a visible "please try again" instead of losing the quote.
+     */
+    const SILENT_REASONS = ['honeypot', 'token'];
 
     /**
      * Encrypted token for a form without a captcha.
