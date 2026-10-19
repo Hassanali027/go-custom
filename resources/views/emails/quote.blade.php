@@ -33,7 +33,7 @@
     </style>
 </head>
 <body style="background-color: #f9f9f9; padding: 1.25rem;">
-    <h2 style="text-align: center; color: #3498DB; font-family: Arial, sans-serif; margin-bottom: 1.25rem; font-size: 1.5rem;">New Quote Request Received</h2>
+    <h2 style="text-align: center; color: #3498DB; font-family: Arial, sans-serif; margin-bottom: 1.25rem; font-size: 1.5rem;">Request a Quote</h2>
     <table style="width: 100%; border-collapse: collapse; font-family: Arial, sans-serif; max-width: 50rem; margin: 0 auto;">
         @php
             $productName = $data['product_name'] ?? $data['box_style'] ?? null;
@@ -164,21 +164,38 @@
         </tr>
         @endif
 
+        {{-- The product page sample-kit form has no file upload. --}}
+        @if(($data['source_form'] ?? '') !== 'Product Page - Bottom Form')
         <tr>
             <th style="border: 1px solid #ddd; padding: 0.75rem; text-align: left; font-size: 0.875rem; background-color: #3498DB; color: #ffffff; width: 30%; font-weight: bold;">File:</th>
             <td style="border: 1px solid #ddd; padding: 0.75rem; text-align: left; font-size: 0.875rem; color: #333333; background-color: #ffffff;">
                 @if(!empty($data['quote_file_path']) && $data['quote_file_path'] !== 'N/A')
-                    A file was attached to this request.
+                    Attached{{ !empty($data['quote_file_name']) ? ': ' . $data['quote_file_name'] : '' }}
                 @else
                     No file uploaded
                 @endif
             </td>
         </tr>
+        @endif
         
         @if(!empty($data['message']) && $data['message'] !== 'N/A')
         <tr>
             <th style="border: 1px solid #ddd; padding: 0.75rem; text-align: left; font-size: 0.875rem; background-color: #3498DB; color: #ffffff; width: 30%; font-weight: bold;">Message:</th>
             <td style="border: 1px solid #ddd; padding: 0.75rem; text-align: left; font-size: 0.875rem; color: #333333; background-color: #ffffff;">{{ $data['message'] }}</td>
+        </tr>
+        @endif
+
+        @if(!empty($data['source_form']) || !empty($data['source_page']))
+        <tr>
+            <th style="border: 1px solid #ddd; padding: 0.75rem; text-align: left; font-size: 0.875rem; background-color: #3498DB; color: #ffffff; width: 30%; font-weight: bold;">Source:</th>
+            <td style="border: 1px solid #ddd; padding: 0.75rem; text-align: left; font-size: 0.875rem; color: #333333; background-color: #ffffff;">
+                @if(!empty($data['source_form']))
+                    <strong>{{ $data['source_form'] }}</strong><br>
+                @endif
+                @if(!empty($data['source_page']))
+                    {{ $data['source_page'] }}
+                @endif
+            </td>
         </tr>
         @endif
     </table>

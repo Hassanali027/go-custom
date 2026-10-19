@@ -317,6 +317,7 @@
             
             <form action="{{ url('/submit-quote') }}" method="POST" enctype="multipart/form-data">
                 @csrf
+                @include('components.spam-guard-fields')
                 @if(session('success'))
                     <div style="background-color: #d4edda; color: #155724; padding: 0.625rem; border-radius: 0.3125rem; margin-bottom: 1.25rem;">
                         {{ session('success') }}
@@ -326,60 +327,77 @@
                 <div class="pqn-form-row">
                     <div class="pqn-form-group">
                         <label class="pqn-label">Name *</label>
-                        <input type="text" name="name" class="pqn-input" placeholder="Name" required>
+                        <input type="text" name="name" class="pqn-input" placeholder="Name" pattern=".*\S.*" data-qf-trim required>
                     </div>
                     <div class="pqn-form-group">
                         <label class="pqn-label">Email Address *</label>
-                        <input type="email" name="email" class="pqn-input" placeholder="Email" required>
+                        <input type="email" name="email" class="pqn-input" placeholder="Email" data-qf-trim required>
                     </div>
                     <div class="pqn-form-group">
                         <label class="pqn-label">Phone *</label>
-                        <input type="tel" name="phone" class="pqn-input" placeholder="Phone number" required>
+                        <input type="tel" name="phone" class="pqn-input" placeholder="Phone number" pattern=".*\S.*" data-qf-trim required>
                     </div>
                 </div>
                 
                 <div class="pqn-form-row">
                     <div class="pqn-form-group">
                         <label class="pqn-label">Company Name</label>
-                        <input type="text" name="company_name" class="pqn-input" placeholder="Company">
+                        <input type="text" name="company_name" class="pqn-input" placeholder="Company" data-qf-trim>
                     </div>
                     <div class="pqn-form-group">
                         <label class="pqn-label">Website</label>
-                        <input type="text" name="website" class="pqn-input" placeholder="Website">
+                        <input type="text" name="website" class="pqn-input" placeholder="Website" data-qf-trim>
                     </div>
                     <div class="pqn-form-group">
-                        <label class="pqn-label">Physical Address</label>
-                        <input type="text" name="physical_address" class="pqn-input" placeholder="Address">
+                        <label class="pqn-label">Physical Address *</label>
+                        <input type="text" name="physical_address" class="pqn-input" placeholder="Address" pattern=".*\S.*" data-qf-trim required>
                     </div>
                 </div>
-                
+
                 <div class="pqn-form-row">
                     <div class="pqn-form-group">
                         <label class="pqn-label">Box Style *</label>
                         <x-searchable-product-select input-class="pqn-input" value="{{ $product['title'] ?? 'Custom Packaging Box' }}" />
                     </div>
                     <div class="pqn-form-group">
+                        <label class="pqn-label">Color</label>
+                        <select name="color" class="pqn-input">
+                            <option value="" selected disabled hidden>Select Color</option>
+                            <option value="Not Sure">Not Sure</option>
+                            <option value="1 Color">1 Color</option><option value="2 Colors">2 Colors</option>
+                            <option value="3 Colors">3 Colors</option><option value="Full Color">Full Color</option>
+                        </select>
+                        <x-video-guide-link video="colors" title="Color Options Guide" variant="light" />
+                    </div>
+                    <div class="pqn-form-group">
                         <label class="pqn-label">Quantity *</label>
-                        <input type="number" name="quantity" class="pqn-input" placeholder="Enter quantity" required>
+                        <input type="number" name="quantity" class="pqn-input" placeholder="Enter quantity" oninput="this.value = this.value.replace(/[^0-9]/g, '')" min="1" required>
                     </div>
                 </div>
-                
+
                 <div class="pqn-form-group" style="margin-bottom: 0.625rem;">
                     <label class="pqn-label">Message</label>
-                    <textarea name="message" class="pqn-input" rows="4" placeholder="Enter your message"></textarea>
+                    <textarea name="message" class="pqn-input" rows="4" placeholder="Enter your message" data-qf-trim></textarea>
                 </div>
                 
                 <!-- Hidden inputs for validation -->
                 <input type="hidden" name="form_source" value="product">
+                <input type="hidden" name="source_form" value="Product Page - Bottom Form">
+                <input type="hidden" name="source_page" value="{{ url()->current() }}">
                 <input type="hidden" name="width" value="N/A">
                 <input type="hidden" name="length" value="N/A">
                 <input type="hidden" name="depth" value="N/A">
                 <input type="hidden" name="units" value="N/A">
+                {{-- Not asked in this form; "N/A" keeps them out of the email instead of defaulting to Not Sure / No. --}}
+                <input type="hidden" name="paper_stock" value="N/A">
+                <input type="hidden" name="paper_coating" value="N/A">
+                <input type="hidden" name="cad_sample" value="N/A">
                 
                 <div class="pqn-btn-wrapper">
                     <button type="submit" class="pqn-btn">Get Free Quote</button>
                 </div>
             </form>
+            @include('components.quote-trim-script')
         </div>
         
         <!-- Right Sidebar Column -->

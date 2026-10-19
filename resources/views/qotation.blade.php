@@ -193,6 +193,20 @@
             overflow: hidden;
         }
 
+        /* Smaller text in the 4-column rows so dropdown placeholders show in full */
+        .iq-grid-4 .iq-form-group select {
+            font-size: 0.75rem;
+            padding-left: 0.625rem;
+            padding-right: 1.75rem;
+            background-position: right 0.625rem center;
+        }
+        .iq-grid-4 .iq-form-group .iq-product-search-input {
+            font-size: 0.75rem !important;
+            padding-left: 0.625rem !important;
+            padding-right: 1.75rem !important;
+            background-position: right 0.5rem center !important;
+        }
+
         /* Remove number input spinner arrows */
         .iq-form-group input[type="number"]::-webkit-inner-spin-button,
         .iq-form-group input[type="number"]::-webkit-outer-spin-button {
@@ -492,16 +506,19 @@
                 @endif
                 <form action="{{ url('/submit-quote') }}" method="POST" enctype="multipart/form-data" style="display: flex; flex-direction: column; gap: 1rem;">
                     @csrf
+                    @include('components.spam-guard-fields')
                     <input type="hidden" name="form_source" value="quote">
+                    <input type="hidden" name="source_form" value="Request a Quote Page">
+                    <input type="hidden" name="source_page" value="{{ url()->current() }}">
                     <!-- Row 1 -->
                     <div class="iq-grid-2">
                         <div class="iq-form-group">
                             <label>Name *</label>
-                            <input type="text" name="name" placeholder="Enter your name" oninput="this.value = this.value.replace(/[0-9]/g, '')" required>
+                            <input type="text" name="name" placeholder="Enter your name" oninput="this.value = this.value.replace(/[0-9]/g, '')" pattern=".*\S.*" data-qf-trim required>
                         </div>
                         <div class="iq-form-group">
                             <label>Email Address *</label>
-                            <input type="email" name="email" placeholder="Enter your email" required>
+                            <input type="email" name="email" placeholder="Enter your email" data-qf-trim required>
                         </div>
                     </div>
 
@@ -509,7 +526,7 @@
                     <div class="iq-grid-2">
                         <div class="iq-form-group">
                             <label>Phone *</label>
-                            <input type="tel" name="phone" placeholder="Enter your number" oninput="this.value = this.value.replace(/[^0-9+\- ]/g, '')" required>
+                            <input type="tel" name="phone" placeholder="Enter your number" oninput="this.value = this.value.replace(/[^0-9+\- ]/g, '')" pattern=".*\S.*" data-qf-trim required>
                         </div>
                         <div class="iq-form-group">
                             <label>Physical Address</label>
@@ -534,6 +551,7 @@
                         <div class="iq-form-group">
                             <label>Units *</label>
                             <select name="units" required>
+                                <option value="" selected disabled hidden>Select Unit</option>
                                 <option value="mm">mm</option>
                                 <option value="cm">cm</option>
                                 <option value="inches">inches</option>
@@ -544,35 +562,41 @@
                     <!-- Row 4: Product, Paper Stock, Coating, Color Options -->
                     <div class="iq-grid-4">
                         <div class="iq-form-group">
-                            <label>Select Box Style</label>
-                            <x-searchable-product-select input-class="iq-product-search-input" placeholder="Search or select product" />
+                            <label>Select Box Style *</label>
+                            <x-searchable-product-select input-class="iq-product-search-input" placeholder="Select your box style" />
                         </div>
                         <div class="iq-form-group">
                             <label>Select Paper Stock</label>
                             <select name="paper_stock">
-                                <option value="">Choose option</option>
+                                <option value="" selected disabled hidden>Select Paper Stock</option>
+                                <option value="Not Sure">Not Sure</option>
                                 <option>12pt Cardboard Stock</option><option>14pt Cardboard Stock</option>
                                 <option>16pt Cardboard Stock</option><option>18pt Cardboard Stock</option>
                                 <option>20pt Cardboard Stock</option><option>22pt Cardboard Stock</option>
                                 <option>24pt Cardboard Stock</option><option>Kraft Stock</option>
                                 <option>Recycled BuxBoard</option><option>Corrugated Stock</option>
                             </select>
+                            <x-video-guide-link video="paper-stock" title="Paper Stock Guide" variant="light" />
                         </div>
                         <div class="iq-form-group">
                             <label>Paper Coating</label>
                             <select name="paper_coating">
-                                <option value="">Select Paper Coating</option>
+                                <option value="" selected disabled hidden>Select Paper Coating</option>
+                                <option value="Not Sure">Not Sure</option>
                                 <option>Aqueous Coating</option><option>Semi Gloss</option>
                                 <option>Gloss UV</option><option>Matte UV</option><option>Semi Matte</option>
                             </select>
+                            <x-video-guide-link video="paper-coating" title="Paper Coating Guide" variant="light" />
                         </div>
                         <div class="iq-form-group">
                             <label>Color Options</label>
                             <select name="color">
-                                <option value="">Choose option</option>
+                                <option value="" selected disabled hidden>Select Color Options</option>
+                                <option value="Not Sure">Not Sure</option>
                                 <option value="1 Color">1 Color</option><option value="2 Colors">2 Colors</option>
                                 <option value="3 Colors">3 Colors</option><option value="Full Color">Full Color</option>
                             </select>
+                            <x-video-guide-link video="colors" title="Color Options Guide" variant="light" />
                         </div>
                     </div>
 
@@ -585,7 +609,7 @@
                         <div class="iq-form-group">
                             <label>Select CAD Sample</label>
                             <select name="cad_sample">
-                                <option value="">Select CAD Sample</option>
+                                <option value="" selected disabled hidden>Select CAD Sample</option>
                                 <option value="Yes">Yes</option>
                                 <option value="No">No</option>
                             </select>
@@ -611,6 +635,7 @@
                         <button type="submit" class="iq-submit-btn" style="background-color: var(--secondary-color); color: var(--primary-color); border: none; border-radius: 0.375rem; padding: 0.875rem 2.5rem; font-size: 1rem; font-weight: 700; font-family: 'Open Sans', sans-serif; width: 100%; max-width: 20rem; cursor: pointer; transition: background-color 0.2s ease;" onmouseover="this.style.backgroundColor='#e0d5d3'" onmouseout="this.style.backgroundColor='var(--secondary-color)'">Get a Quote</button>
                     </div>
                 </form>
+                @include('components.quote-trim-script')
             </div>
         </div>
 

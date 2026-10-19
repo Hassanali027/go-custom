@@ -301,18 +301,46 @@ document.addEventListener('DOMContentLoaded', function() {
             if(submitBtn) submitBtn.innerHTML = 'Submitting...';
             
             const formData = new FormData(form);
-            
-            fetch(form.action, {
+
+            const send = () => fetch(form.action, {
                 method: 'POST',
                 body: formData,
                 headers: {
                     'X-Requested-With': 'XMLHttpRequest',
                     'Accept': 'application/json'
                 }
+            });
+
+            // 419 = the session behind the page's CSRF token expired (e.g. the tab was left open).
+            // Get a fresh CSRF token for a new session and send the same data once more.
+            const refreshCsrfAndResend = () => fetch('{{ url('/spam-guard/token') }}/?captcha=0', {
+                headers: { 'X-Requested-With': 'XMLHttpRequest', 'Accept': 'application/json' },
+                credentials: 'same-origin',
+                cache: 'no-store'
             })
-            .then(response => response.json())
-            .then(data => {
+            .then(r => r.json())
+            .then(d => {
+                if(!d.csrf) throw new Error('No CSRF token');
+                const tokenInput = form.querySelector('input[name="_token"]');
+                if(tokenInput) tokenInput.value = d.csrf;
+                formData.set('_token', d.csrf);
+                return send();
+            });
+
+            send()
+            .then(response => response.status === 419 ? refreshCsrfAndResend() : response)
+            .then(response => response.json().catch(() => ({})).then(data => ({ ok: response.ok, status: response.status, data })))
+            .then(({ ok, status, data }) => {
                 if(submitBtn) submitBtn.innerHTML = originalBtnText;
+
+                if(!ok) {
+                    const errors = data && data.errors ? Object.values(data.errors).flat() : [];
+                    let message = errors.length ? errors.join('\n') : (data && data.message) || 'Please check the form and try again.';
+                    if(status === 419) message = 'Your session has expired. Please refresh the page and try again.';
+                    if(status === 429) message = 'Too many attempts. Please wait a few minutes and try again.';
+                    alert(message);
+                    return;
+                }
 
                 let inlineMsg = form.querySelector('.ajax-inline-success');
                 if(!inlineMsg) {

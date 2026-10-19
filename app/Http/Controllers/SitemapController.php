@@ -8,41 +8,6 @@ use Illuminate\Support\Carbon;
 
 class SitemapController extends Controller
 {
-    public function xml()
-    {
-        $urls = collect([
-            ['loc' => url('/'), 'changefreq' => 'weekly', 'priority' => '1.0'],
-            ['loc' => url('/sitemap/'), 'changefreq' => 'monthly', 'priority' => '0.3'],
-            ['loc' => url('/contact-us/'), 'changefreq' => 'monthly', 'priority' => '0.5'],
-            ['loc' => url('/request-quote/'), 'changefreq' => 'monthly', 'priority' => '0.7'],
-            ['loc' => url('/blog/'), 'changefreq' => 'weekly', 'priority' => '0.6'],
-            ['loc' => url('/about-us/'), 'changefreq' => 'monthly', 'priority' => '0.6'],
-            ['loc' => url('/why-choose-us/'), 'changefreq' => 'monthly', 'priority' => '0.5'],
-        ]);
-
-        $faqSlug = DB::table('homepage_contents')
-            ->where('section', 'faq_page')
-            ->where('field_key', 'faq_page_slug')
-            ->value('value') ?: 'frequentlyAskedQuestions';
-        $urls->push(['loc' => url('/' . trim($faqSlug, '/') . '/'), 'changefreq' => 'monthly', 'priority' => '0.6']);
-
-        DB::table('admin_categories')->whereNotNull('slug')->get()->each(function ($row) use ($urls) {
-            $urls->push(['loc' => url('/' . trim($row->slug, '/') . '/'), 'changefreq' => 'weekly', 'priority' => '0.8']);
-        });
-        DB::table('admin_products')->where('status', 'published')->whereNotNull('slug')->get()->each(function ($row) use ($urls) {
-            $urls->push(['loc' => url('/' . trim($row->slug, '/') . '/'), 'changefreq' => 'weekly', 'priority' => '0.8']);
-        });
-        DB::table('admin_blogs')->where('status', 'published')->whereNotNull('slug')->get()->each(function ($row) use ($urls) {
-            $urls->push(['loc' => url('/blog/' . trim($row->slug, '/') . '/'), 'changefreq' => 'weekly', 'priority' => '0.6']);
-        });
-        DB::table('admin_pages')->where('status', 'published')->whereNotNull('slug')->get()->each(function ($row) use ($urls) {
-            $urls->push(['loc' => url('/' . trim($row->slug, '/') . '/'), 'changefreq' => 'monthly', 'priority' => '0.5']);
-        });
-
-        $xml = view('sitemap-xml', ['urls' => $urls->unique('loc')])->render();
-        return response($xml, 200)->header('Content-Type', 'application/xml; charset=UTF-8');
-    }
-
     public function index()
     {
         $blogs = DB::table('admin_blogs')->get();

@@ -221,8 +221,9 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::post('/homepage-settings', [AdminHomepageController::class, 'update'])->name('homepage.update');
         Route::get('/popular-products-settings', [AdminHomepageController::class, 'popularProductsEdit'])->name('popularproducts.edit');
         Route::post('/popular-products-settings', [AdminHomepageController::class, 'popularProductsUpdate'])->name('popularproducts.update');
-        Route::get('/popular-products', [AdminHomepageController::class, 'popularProductsEdit'])->name('popularproducts.edit');
-        Route::post('/popular-products', [AdminHomepageController::class, 'popularProductsUpdate'])->name('popularproducts.update');
+        // Alias URLs only — route names must stay unique or `php artisan route:cache` fails.
+        Route::get('/popular-products', [AdminHomepageController::class, 'popularProductsEdit']);
+        Route::post('/popular-products', [AdminHomepageController::class, 'popularProductsUpdate']);
         Route::get('/footer-settings', [AdminFooterController::class, 'edit'])->name('footer.edit');
         Route::post('/footer-settings', [AdminFooterController::class, 'update'])->name('footer.update');
         Route::get('/faq-page-settings', [AdminFaqPageController::class, 'edit'])->name('faqpage.edit');
@@ -243,8 +244,19 @@ Route::get('/about-us/',[AboutUsController::class,'index']);
 
 use App\Http\Controllers\FormSubmitController;
 Route::post('/submit-contact', [FormSubmitController::class, 'submitContact']);
-Route::post('/submit-quote', [FormSubmitController::class, 'submitQuote']);
+// Quote forms go through spam.guard (honeypot, timing token, server-checked "a + b" captcha).
+// See App\Support\SpamGuard. No per-IP throttle here: behind the Hostinger CDN every visitor
+// can arrive from the same edge IP, so an IP limit would block real customers.
+Route::post('/submit-quote', [FormSubmitController::class, 'submitQuote'])->middleware('spam.guard');
 Route::post('/submit-newsletter', [FormSubmitController::class, 'submitNewsletter']);
+// Fresh anti-bot token (+ captcha numbers) and CSRF token, so a form can be submitted again
+// without a reload, and an expired session can recover instead of failing with "CSRF token mismatch".
+Route::get('/spam-guard/token/', function (\Illuminate\Http\Request $request) {
+    $data = $request->boolean('captcha') ? \App\Support\SpamGuard::captcha() : ['token' => \App\Support\SpamGuard::token()];
+    $data['csrf'] = csrf_token();
+
+    return response()->json($data)->header('Cache-Control', 'no-store');
+})->middleware('throttle:120,1');
 
 // Temporary route to preview email design
 Route::get('/preview-email', function () {

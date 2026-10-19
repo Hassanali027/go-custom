@@ -31,13 +31,14 @@ class QuoteFormMail extends Mailable
     public function build()
     {
         $isProduct = (!empty($this->data['form_source']) && $this->data['form_source'] === 'product');
-        $subject = $isProduct ? 'Product request a quote' : 'Request a quote';
+        $subject = $isProduct ? 'Product Request a Quote' : 'Request a Quote';
 
         $mail = $this->subject($subject)
                      ->view('emails.quote');
                      
         if (!empty($this->data['quote_file_path'])) {
-            $mail->attach(storage_path('app/public/' . $this->data['quote_file_path']));
+            $options = !empty($this->data['quote_file_name']) ? ['as' => $this->data['quote_file_name']] : [];
+            $mail->attach(storage_path('app/' . $this->data['quote_file_path']), $options);
         }
         
         return $mail;

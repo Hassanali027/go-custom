@@ -118,10 +118,11 @@
         -moz-appearance: none !important;
         background-image: url('data:image/svg+xml;utf8,<svg fill="white" height="20" viewBox="0 0 24 24" width="20" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/></svg>') !important;
         background-repeat: no-repeat !important;
-        background-position: right 0.65rem center !important;
-        background-size: 1.15rem auto !important;
-        padding-right: 2.2rem !important;
-        padding-left: 0.75rem !important;
+        background-position: right 0.5rem center !important;
+        background-size: 1rem auto !important;
+        padding-right: 1.75rem !important;
+        padding-left: 0.625rem !important;
+        font-size: 0.75rem !important;
         text-overflow: ellipsis !important;
         white-space: nowrap !important;
         overflow: hidden !important;
@@ -151,6 +152,11 @@
         font-size: 0.8125rem;
         font-weight: 300;
         letter-spacing: 0.02em;
+    }
+
+    .qf-group .product-search-input::placeholder {
+        font-size: 0.75rem;
+        letter-spacing: 0;
     }
 
     .qf-group input:-webkit-autofill,
@@ -363,6 +369,9 @@
             min-width: auto !important;
             font-size: 0.75rem !important;
         }
+        .qf-group .product-search-input::placeholder {
+            font-size: 0.6875rem;
+        }
     }
 </style>
 
@@ -389,20 +398,23 @@
 
             <form action="{{ url('/submit-quote') }}" method="POST" enctype="multipart/form-data" class="qf-main-grid">
                 @csrf
+                @include('components.spam-guard-fields', ['captcha' => true])
                 <input type="hidden" name="form_source" value="quote">
+                <input type="hidden" name="source_form" value="{{ $quoteSource ?? 'Get Custom Quote Form' }}">
+                <input type="hidden" name="source_page" value="{{ url()->current() }}">
 
                 <!-- Row 1: Name, Email, Phone -->
                 <div class="qf-group qf-span-4 qf-span-12-m">
                     <label>Name *</label>
-                    <input type="text" name="name" placeholder="Enter your name" oninput="this.value = this.value.replace(/[^a-zA-Z\s]/g, '')" required>
+                    <input type="text" name="name" placeholder="Enter your name" oninput="this.value = this.value.replace(/[^a-zA-Z\s]/g, '')" pattern=".*\S.*" data-qf-trim required>
                 </div>
                 <div class="qf-group qf-span-4 qf-span-12-m">
                     <label>Email Address *</label>
-                    <input type="email" name="email" placeholder="Enter your email" required>
+                    <input type="email" name="email" placeholder="Enter your email" data-qf-trim required>
                 </div>
                 <div class="qf-group qf-span-4 qf-span-12-m">
                     <label>Phone *</label>
-                    <input type="tel" name="phone" placeholder="Enter your number" oninput="this.value = this.value.replace(/[^0-9+\-\s()]/g, '')" required>
+                    <input type="tel" name="phone" placeholder="Enter your number" oninput="this.value = this.value.replace(/[^0-9+\-\s()]/g, '')" pattern=".*\S.*" data-qf-trim required>
                 </div>
 
                 <!-- Row 2: Dimensions -->
@@ -421,6 +433,7 @@
                 <div class="qf-group qf-span-3 qf-span-6-m">
                     <label>Unit *</label>
                     <select name="units" required>
+                        <option value="" selected disabled hidden>Select Unit</option>
                         <option value="mm">mm</option>
                         <option value="cm">cm</option>
                         <option value="inches">inches</option>
@@ -429,35 +442,41 @@
 
                 <!-- Row 3: Product, Paper Stock, Paper Coating, Color Options -->
                 <div class="qf-group qf-span-3 qf-span-6-m">
-                    <label>Select Box Style</label>
+                    <label>Select Box Style *</label>
                     <x-searchable-product-select placeholder="Select your box style" />
                 </div>
                 <div class="qf-group qf-span-3 qf-span-6-m">
                     <label>Select Paper Stock</label>
                     <select name="paper_stock">
-                        <option value="">Choose option</option>
+                        <option value="" selected disabled hidden>Select Paper Stock</option>
+                        <option value="Not Sure">Not Sure</option>
                         <option>12pt Cardboard Stock</option><option>14pt Cardboard Stock</option>
                         <option>16pt Cardboard Stock</option><option>18pt Cardboard Stock</option>
                         <option>20pt Cardboard Stock</option><option>22pt Cardboard Stock</option>
                         <option>24pt Cardboard Stock</option><option>Kraft Stock</option>
                         <option>Recycled BuxBoard</option><option>Corrugated Stock</option>
                     </select>
+                    <x-video-guide-link video="paper-stock" title="Paper Stock Guide" />
                 </div>
                 <div class="qf-group qf-span-3 qf-span-6-m">
                     <label>Paper Coating</label>
                     <select name="paper_coating">
-                        <option value="">Choose option</option>
+                        <option value="" selected disabled hidden>Select Paper Coating</option>
+                        <option value="Not Sure">Not Sure</option>
                         <option>Aqueous Coating</option><option>Semi Gloss</option>
                         <option>Gloss UV</option><option>Matte UV</option><option>Semi Matte</option>
                     </select>
+                    <x-video-guide-link video="paper-coating" title="Paper Coating Guide" />
                 </div>
                 <div class="qf-group qf-span-3 qf-span-6-m">
                     <label>Color Options</label>
                     <select name="color">
-                        <option value="">Choose option</option>
+                        <option value="" selected disabled hidden>Select Color Options</option>
+                        <option value="Not Sure">Not Sure</option>
                         <option value="1 Color">1 Color</option><option value="2 Colors">2 Colors</option>
                         <option value="3 Colors">3 Colors</option><option value="Full Color">Full Color</option>
                     </select>
+                    <x-video-guide-link video="colors" title="Color Options Guide" />
                 </div>
 
                 <!-- Row 4: Quantity, CAD Sample, File Upload -->
@@ -468,7 +487,7 @@
                 <div class="qf-group qf-span-4 qf-span-6-m">
                     <label>Select CAD Sample</label>
                     <select name="cad_sample">
-                        <option value="">Select CAD Sample</option>
+                        <option value="" selected disabled hidden>Select CAD Sample</option>
                         <option value="Yes">Yes</option>
                         <option value="No">No</option>
                     </select>
@@ -486,6 +505,11 @@
                 <div class="qf-group qf-span-12 qf-span-12-m">
                     <label>Message</label>
                     <textarea name="message" placeholder="Enter your message"></textarea>
+                </div>
+
+                <!-- Human verification -->
+                <div class="qf-span-12 qf-span-12-m">
+                    @include('components.human-check')
                 </div>
 
                 <!-- Submit -->
@@ -544,6 +568,9 @@
 
     </div>
 </section>
+
+@include('components.quote-trim-script')
+
 <script>
 document.querySelectorAll('.qf-group select').forEach(function(sel) {
     sel.classList.add('is-placeholder');
