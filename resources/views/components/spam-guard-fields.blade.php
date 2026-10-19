@@ -25,6 +25,8 @@
             .then(function (d) {
                 if (!token || !d.token) return;
                 token.value = d.token;
+                var csrf = form.querySelector('input[name="_token"]');
+                if (csrf && d.csrf) csrf.value = d.csrf;
                 if (d.a) { token.dataset.a = d.a; token.dataset.b = d.b; }
                 if (onNumbers && d.a) onNumbers(Number(d.a), Number(d.b));
             })

@@ -244,16 +244,19 @@ Route::get('/about-us/',[AboutUsController::class,'index']);
 
 use App\Http\Controllers\FormSubmitController;
 Route::post('/submit-contact', [FormSubmitController::class, 'submitContact']);
-// Quote forms go through spam.guard (honeypot, timing token, server-checked "a + b" captcha)
-// and are rate limited per IP. See App\Support\SpamGuard.
-Route::post('/submit-quote', [FormSubmitController::class, 'submitQuote'])->middleware(['spam.guard', 'throttle:8,10']);
+// Quote forms go through spam.guard (honeypot, timing token, server-checked "a + b" captcha).
+// See App\Support\SpamGuard. No per-IP throttle here: behind the Hostinger CDN every visitor
+// can arrive from the same edge IP, so an IP limit would block real customers.
+Route::post('/submit-quote', [FormSubmitController::class, 'submitQuote'])->middleware('spam.guard');
 Route::post('/submit-newsletter', [FormSubmitController::class, 'submitNewsletter']);
-// Fresh anti-bot token (+ captcha numbers) so a form can be submitted again without a reload.
+// Fresh anti-bot token (+ captcha numbers) and CSRF token, so a form can be submitted again
+// without a reload, and an expired session can recover instead of failing with "CSRF token mismatch".
 Route::get('/spam-guard/token/', function (\Illuminate\Http\Request $request) {
-    return response()->json(
-        $request->boolean('captcha') ? \App\Support\SpamGuard::captcha() : ['token' => \App\Support\SpamGuard::token()]
-    )->header('Cache-Control', 'no-store');
-})->middleware('throttle:30,1');
+    $data = $request->boolean('captcha') ? \App\Support\SpamGuard::captcha() : ['token' => \App\Support\SpamGuard::token()];
+    $data['csrf'] = csrf_token();
+
+    return response()->json($data)->header('Cache-Control', 'no-store');
+})->middleware('throttle:120,1');
 
 // Temporary route to preview email design
 Route::get('/preview-email', function () {
