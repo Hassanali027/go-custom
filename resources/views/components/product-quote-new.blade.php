@@ -317,6 +317,7 @@
             
             <form action="{{ url('/submit-quote') }}" method="POST" enctype="multipart/form-data">
                 @csrf
+                @include('components.spam-guard-fields')
                 @if(session('success'))
                     <div style="background-color: #d4edda; color: #155724; padding: 0.625rem; border-radius: 0.3125rem; margin-bottom: 1.25rem;">
                         {{ session('success') }}

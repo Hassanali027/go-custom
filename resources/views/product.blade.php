@@ -2162,6 +2162,7 @@
                 
                 <form action="{{ url('/submit-quote') }}" method="POST" enctype="multipart/form-data">
                     @csrf
+                    @include('components.spam-guard-fields')
                     
                     <style>
                         .hero-quote-box .form-grid-3 {

@@ -398,6 +398,7 @@
 
             <form action="{{ url('/submit-quote') }}" method="POST" enctype="multipart/form-data" class="qf-main-grid">
                 @csrf
+                @include('components.spam-guard-fields', ['captcha' => true])
                 <input type="hidden" name="form_source" value="quote">
                 <input type="hidden" name="source_form" value="{{ $quoteSource ?? 'Get Custom Quote Form' }}">
                 <input type="hidden" name="source_page" value="{{ url()->current() }}">
@@ -504,6 +505,11 @@
                 <div class="qf-group qf-span-12 qf-span-12-m">
                     <label>Message</label>
                     <textarea name="message" placeholder="Enter your message"></textarea>
+                </div>
+
+                <!-- Human verification -->
+                <div class="qf-span-12 qf-span-12-m">
+                    @include('components.human-check')
                 </div>
 
                 <!-- Submit -->

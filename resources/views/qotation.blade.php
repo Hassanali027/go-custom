@@ -506,6 +506,7 @@
                 @endif
                 <form action="{{ url('/submit-quote') }}" method="POST" enctype="multipart/form-data" style="display: flex; flex-direction: column; gap: 1rem;">
                     @csrf
+                    @include('components.spam-guard-fields')
                     <input type="hidden" name="form_source" value="quote">
                     <input type="hidden" name="source_form" value="Request a Quote Page">
                     <input type="hidden" name="source_page" value="{{ url()->current() }}">
