@@ -6,13 +6,14 @@
 <div class="human-check">
     <div class="human-check-header">
         <span class="human-check-title">Are you a human?</span>
+        {{-- The status takes the place of the hint line, so the box never changes size. --}}
         <p class="human-check-copy">Solve this quick addition before continuing.</p>
+        <span class="human-check-status" aria-live="polite"></span>
     </div>
     <div class="human-check-control">
         <span class="human-check-question">0 + 0 =</span>
         <input type="text" class="human-check-answer" name="{{ \App\Support\SpamGuard::ANSWER_FIELD }}" inputmode="numeric" maxlength="2" placeholder="Answer" aria-label="Human verification answer" autocomplete="off">
         <button type="button" class="human-check-btn">Verify</button>
-        <span class="human-check-status" aria-live="polite"></span>
     </div>
 </div>
 
@@ -94,20 +95,27 @@
             padding: 0 1.5rem;
             cursor: pointer;
         }
+        .human-check-copy,
         .human-check-status {
-            min-height: 1.125rem;
-            font-size: 0.8125rem;
-            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.35;
         }
+        .human-check-status {
+            display: none;
+            margin: 0;
+            font-size: 0.8125rem;
+            font-weight: 500;
+        }
+        .human-check-header.has-status .human-check-copy { display: none; }
+        .human-check-header.has-status .human-check-status { display: block; }
         .human-check-status.is-error { color: #ff6b6b; }
         .human-check-status.is-success { color: #72d17f; }
         @media (max-width: 48rem) {
             .human-check { padding: 1rem; }
             .human-check-title { font-size: 0.875rem; }
-            .human-check-copy { font-size: 0.75rem; }
+            .human-check-copy,
+            .human-check-status { font-size: 0.75rem; }
             .human-check-control { width: 100%; }
             .human-check .human-check-answer { flex: 1 1 5.5rem; min-width: 5.5rem; }
-            .human-check-status { width: 100%; }
         }
     </style>
 
@@ -120,10 +128,12 @@
             var answer = box.querySelector('.human-check-answer');
             var button = box.querySelector('.human-check-btn');
             var status = box.querySelector('.human-check-status');
+            var header = box.querySelector('.human-check-header');
             var total = null;
 
             function setStatus(text, state) {
                 status.textContent = text;
+                header.classList.toggle('has-status', text !== '');
                 status.classList.toggle('is-error', state === 'error');
                 status.classList.toggle('is-success', state === 'success');
                 answer.classList.toggle('is-invalid', state === 'error');
