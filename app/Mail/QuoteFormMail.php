@@ -37,7 +37,8 @@ class QuoteFormMail extends Mailable
                      ->view('emails.quote');
                      
         if (!empty($this->data['quote_file_path'])) {
-            $mail->attach(storage_path('app/public/' . $this->data['quote_file_path']));
+            $options = !empty($this->data['quote_file_name']) ? ['as' => $this->data['quote_file_name']] : [];
+            $mail->attach(storage_path('app/' . $this->data['quote_file_path']), $options);
         }
         
         return $mail;

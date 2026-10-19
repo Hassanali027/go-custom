@@ -170,7 +170,7 @@
             <th style="border: 1px solid #ddd; padding: 0.75rem; text-align: left; font-size: 0.875rem; background-color: #3498DB; color: #ffffff; width: 30%; font-weight: bold;">File:</th>
             <td style="border: 1px solid #ddd; padding: 0.75rem; text-align: left; font-size: 0.875rem; color: #333333; background-color: #ffffff;">
                 @if(!empty($data['quote_file_path']) && $data['quote_file_path'] !== 'N/A')
-                    A file was attached to this request.
+                    Attached{{ !empty($data['quote_file_name']) ? ': ' . $data['quote_file_name'] : '' }}
                 @else
                     No file uploaded
                 @endif

@@ -86,6 +86,8 @@ class FormSubmitController extends Controller
         ], [
             'box_style.required' => 'Please select a Box Style.',
             'physical_address.required_if' => 'The physical address field is required.',
+            'quote_file.max' => 'The uploaded file must be 10 MB or smaller.',
+            'quote_file.uploaded' => 'The file could not be uploaded. Please use a file of 10 MB or smaller.',
         ]);
 
         foreach (['paper_stock', 'paper_coating', 'color'] as $field) {
@@ -109,9 +111,13 @@ class FormSubmitController extends Controller
             }
         }
 
+        unset($validated['quote_file']);
         if ($request->hasFile('quote_file')) {
-            $path = $request->file('quote_file')->store('quotes', 'public');
-            $validated['quote_file_path'] = $path;
+            // Private disk (storage/app/quotes): the file is only emailed, never served on the website,
+            // so an uploaded script can't be opened through a public URL.
+            $file = $request->file('quote_file');
+            $validated['quote_file_path'] = $file->store('quotes', 'local');
+            $validated['quote_file_name'] = $file->getClientOriginalName();
         }
 
         dispatch(function () use ($validated) {
