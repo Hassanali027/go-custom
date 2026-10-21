@@ -926,19 +926,24 @@
         }
 
         .mobile-nav-header .mobile-nav-link-top {
-            padding: 0;
+            padding: 0.875rem 0;
+            margin: -0.875rem 0;
+            align-self: stretch;
         }
 
         .mobile-dropdown-toggle {
             background: none;
             border: none;
-            padding: 0.25rem;
+            padding: 0.875rem 0.5rem;
+            margin: -0.875rem 0;
+            min-width: 2.75rem;
             cursor: pointer;
             color: #fff;
             display: flex;
             align-items: center;
             justify-content: center;
             flex-shrink: 0;
+            align-self: stretch;
         }
 
         .mobile-dropdown-toggle .chevron-icon {
@@ -1187,9 +1192,9 @@
                     </div>
                 </li>
                 <li class="mobile-nav-item has-dropdown">
-                    <div class="mobile-nav-header" onclick="this.parentElement.classList.toggle('open')">
-                        <a href="#" class="mobile-nav-link-top" onclick="event.preventDefault(); event.stopPropagation(); this.parentElement.parentElement.classList.toggle('open');">Hot Products</a>
-                        <button type="button" class="mobile-dropdown-toggle" aria-label="Toggle Hot product dropdown">
+                    <div class="mobile-nav-header">
+                        <a href="{{ url('/popular-products/') }}" class="mobile-nav-link-top">Hot Products</a>
+                        <button type="button" class="mobile-dropdown-toggle" aria-label="Toggle Hot product dropdown" onclick="this.closest('.mobile-nav-item').classList.toggle('open');">
                             <svg class="chevron-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
                                 <polyline points="6 9 12 15 18 9"></polyline>
                             </svg>
