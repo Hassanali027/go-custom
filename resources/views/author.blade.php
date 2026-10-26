@@ -2,11 +2,36 @@
 <html lang="en">
 
 <head>
-    <link rel="icon" href="{{ asset('uploads/go-custom-boxes-favicon.png') }}" type="image/png">
-    @include('components.canonical')
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Author - {{ $author['title'] }}</title>
+    <link rel="icon" href="{{ asset('uploads/go-custom-boxes-favicon.png') }}" type="image/png">
+
+    @php
+        $authorName = $author['title'] ?? 'Packaging Specialist';
+        $authorBio = !empty($author['bio']) ? trim(strip_tags((string)$author['bio'])) : (!empty($author['description']) ? trim(strip_tags((string)$author['description'])) : ('Articles and packaging insights by ' . $authorName . ' at Go Custom Boxes.'));
+        $authorImg = !empty($author['image']) ? asset($author['image']) : asset('uploads/Home-Banner.webp');
+    @endphp
+
+    <title>{{ $authorName }} - Packaging Specialist | Go Custom Boxes</title>
+    <meta name="description" content="{{ $authorBio }}">
+    <meta name="keywords" content="{{ strtolower($authorName) }}, packaging specialist, custom boxes, go custom boxes">
+    <meta name="robots" content="index,follow">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="profile">
+    <meta property="og:title" content="{{ $authorName }} | Go Custom Boxes">
+    <meta property="og:description" content="{{ $authorBio }}">
+    <meta property="og:url" content="{{ url()->current() }}/">
+    <meta property="og:image" content="{{ $authorImg }}">
+    <meta property="og:site_name" content="Go Custom Boxes">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="{{ $authorName }} | Go Custom Boxes">
+    <meta name="twitter:description" content="{{ $authorBio }}">
+    <meta name="twitter:image" content="{{ $authorImg }}">
+
+    @include('components.canonical')
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Open+Sans:wght@300;400;600;700;800;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
@@ -261,7 +286,7 @@
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: var(--card-gap);
-            align-items: start;
+            align-items: stretch;
         }
 
         /* ==========================================================================
@@ -280,6 +305,7 @@
             -webkit-tap-highlight-color: transparent;
             box-shadow: 0 0.25rem 0.9375rem rgba(0,0,0,0.03);
             cursor: pointer;
+            height: 100%;
         }
 
         .blog-card:hover {
@@ -292,6 +318,9 @@
             height: auto;
             aspect-ratio: 2 / 1;
             object-fit: contain;
+            object-position: center;
+            background-position: center;
+            background-size: contain;
             background: transparent;
             border-radius: 0.75rem;
             margin: 0.875rem auto 0;
@@ -299,7 +328,7 @@
         }
 
         .blog-card__content {
-            padding: 1.5rem 1.5rem 0.75rem;
+            padding: 1.5rem 1.5rem 1.25rem;
             display: flex;
             flex-direction: column;
             flex: 1;
@@ -323,6 +352,8 @@
             margin-bottom: 0.75rem;
             text-decoration: none;
             transition: color 0.3s;
+            flex-grow: 1;
+            min-height: 5.25rem;
         }
 
         .blog-card__title::after {
@@ -357,7 +388,7 @@
         }
 
         .blog-card__title + div {
-            margin-top: 0.5rem;
+            margin-top: auto;
         }
 
         .blog-card__author {
@@ -588,7 +619,7 @@
             }
 
             .blog-card__image {
-                height: 13.125rem;
+                height: auto;
             }
         }
 
@@ -604,7 +635,7 @@
             }
 
             .blog-card__image {
-                height: 12.5rem;
+                height: auto;
             }
         }
 
@@ -680,7 +711,7 @@
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width: 16px; height: 16px;">
                         <polyline points="9 18 15 12 9 6"></polyline>
                     </svg>
-                    <span aria-current="page" style="color: #000;">About Us</span>
+                    <span aria-current="page" style="color: #000;">Author</span>
                 </nav>
 
                 <div class="hero-content">
@@ -707,9 +738,14 @@
                     </div>
                     <div class="author-info">
                         <h1 class="author-name">{{ $author['title'] }}</h1>
-                        <p class="author-bio">
-                            {{ $author['description'] }}
-                        </p>
+                        @if(!empty($author['designation']))
+                            <div class="author-title">{{ $author['designation'] }}</div>
+                        @endif
+                        @if(!empty($author['bio']))
+                            <p class="author-bio">
+                                {{ $author['bio'] }}
+                            </p>
+                        @endif
                         <div class="author-social">
                             @if(!empty($author['linkedin']))
                             <a href="{{ $author['linkedin'] }}" class="social-link" aria-label="LinkedIn Profile" target="_blank" rel="noopener noreferrer">
@@ -741,18 +777,22 @@
         <!-- Blog Posts Section -->
         <section class="blog-section">
             <div class="container">
-                <h2 class="section-title">Blog Posts By This Author</h2>
-                @if(isset($blogs) && count($blogs) > 0)
+                @php
+                    $authorBlogsWithImage = isset($blogs) ? array_values(array_filter($blogs, fn($item) => !empty($item['image']))) : [];
+                @endphp
+                @if(count($authorBlogsWithImage) > 0)
                     <div class="blog-grid">
-                        @foreach($blogs as $item)
+                        @foreach($authorBlogsWithImage as $item)
                         @php
                             $bDate = !empty($item['publish_date']) ? date('M d, Y', strtotime($item['publish_date'])) : (!empty($item['created_at']) ? date('M d, Y', strtotime($item['created_at'])) : 'Nov 15, 2024');
                             $bExcerpt = !empty(trim((string) ($item['excerpt'] ?? ''))) ? $item['excerpt'] : (!empty(trim((string) ($item['content'] ?? ''))) ? $item['content'] : '');
                             $bUrl = url('/blog/' . $item['slug']) . '/';
-                            $blogImg = !empty($item['image']) ? (\Illuminate\Support\Str::startsWith($item['image'], ['http', 'storage/', 'uploads/', 'images/']) ? asset($item['image']) : asset('storage/'.$item['image'])) : asset('images/below-hero.png');
+                            $blogImg = !empty($item['image']) ? (\Illuminate\Support\Str::startsWith($item['image'], ['http', 'storage/', 'uploads/', 'images/']) ? asset($item['image']) : asset('storage/'.$item['image'])) : null;
                         @endphp
                         <article class="blog-card" onclick="window.location.href='{{ $bUrl }}';" style="cursor: pointer;">
-                            <img src="{{ $blogImg }}" alt="{{ $item['title'] }}" class="blog-card__image" onerror="this.src='{{ asset('images/below-hero.png') }}'" loading="lazy">
+                            @if(!empty($blogImg))
+                            <img src="{{ $blogImg }}" alt="{{ $item['title'] }}" class="blog-card__image" onerror="this.style.display='none';" loading="lazy">
+                            @endif
                             <div class="blog-card__content">
                                 <div class="blog-card__meta">
                                     <a href="{{ url('/author/' . $author['slug']) }}/" class="blog-card__author" style="color:inherit;text-decoration:none;z-index:2;position:relative;" onclick="event.stopPropagation();">{{ $author['title'] }}</a>

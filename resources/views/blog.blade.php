@@ -1,11 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="icon" href="{{ asset('uploads/go-custom-boxes-favicon.png') }}" type="image/png">
-    @include('components.canonical')
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Blog - Go Custom Boxes</title>
+    <link rel="icon" href="{{ asset('uploads/go-custom-boxes-favicon.png') }}" type="image/png">
+    <title>Packaging Insights & Industry Trends | Go Custom Boxes</title>
+    <meta name="description" content="Explore custom packaging insights, trends, design tips, and structural advice for luxury rigid boxes, corrugated cartons, and branded packaging.">
+    <meta name="keywords" content="custom boxes blog, packaging insights, rigid boxes guide, luxury packaging trends">
+    <meta name="robots" content="index,follow">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Packaging Insights & Industry Trends | Go Custom Boxes">
+    <meta property="og:description" content="Explore custom packaging insights, trends, design tips, and structural advice for luxury rigid boxes, corrugated cartons, and branded packaging.">
+    <meta property="og:url" content="{{ url('/blog') }}/">
+    <meta property="og:image" content="{{ asset('uploads/Home-Banner.webp') }}">
+    <meta property="og:site_name" content="Go Custom Boxes">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Packaging Insights & Industry Trends | Go Custom Boxes">
+    <meta name="twitter:description" content="Explore custom packaging insights, trends, design tips, and structural advice for luxury rigid boxes, corrugated cartons, and branded packaging.">
+    <meta name="twitter:image" content="{{ asset('uploads/Home-Banner.webp') }}">
+
+    @include('components.canonical')
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Open+Sans:wght@300;400;600;700;800;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="{{ asset('css/footer.css') }}">
@@ -53,13 +71,33 @@
             gap: 2.5rem;
             align-items: center;
             margin-bottom: 2.5rem;
+            cursor: pointer;
+            transition: transform 0.25s ease;
+        }
+
+        .featured-img-link {
+            display: block;
+            width: 100%;
+            border-radius: 0.75rem;
+            overflow: hidden;
+            text-decoration: none;
         }
 
         .featured-img {
             width: 100%;
             height: auto;
+            object-fit: cover;
+            object-position: center;
+            background-position: center;
+            background-size: cover;
             border-radius: 0.75rem;
             background-color: transparent;
+            display: block;
+            transition: transform 0.35s ease;
+        }
+
+        .featured-post:hover .featured-img {
+            transform: scale(1.02);
         }
 
         .featured-copy h2 {
@@ -69,6 +107,16 @@
             color: var(--text-dark);
             margin: 0 0 1.25rem 0;
             line-height: 1.3;
+        }
+
+        .featured-title-link {
+            color: inherit;
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+        .featured-post:hover .featured-title-link {
+            color: var(--dark-blue);
         }
 
         .featured-copy p.excerpt {
@@ -114,12 +162,13 @@
             justify-content: center;
             gap: 1.875rem;
             margin-bottom: 3.125rem;
-            align-items: start;
+            align-items: stretch;
         }
 
         .blog-card {
             border: 1px solid #EAEAEA;
             border-radius: 1rem;
+            width: 100%;
             max-width: 23.875rem;
             overflow: hidden;
             display: flex;
@@ -128,6 +177,7 @@
             box-shadow: 0 0.25rem 0.9375rem rgba(0,0,0,0.03);
             transition: transform 0.3s, box-shadow 0.3s;
             cursor: pointer;
+            height: 100%;
         }
 
         .blog-card:hover {
@@ -140,6 +190,9 @@
             height: auto;
             aspect-ratio: 2 / 1;
             object-fit: contain;
+            object-position: center;
+            background-position: center;
+            background-size: contain;
             background: transparent;
             border-radius: 0.75rem;
             margin: 0.875rem auto 0;
@@ -147,7 +200,7 @@
         }
 
         .card-content {
-            padding: 1.25rem 1.5rem 0.75rem;
+            padding: 1.25rem 1.5rem 1.25rem;
             display: flex;
             flex-direction: column;
             flex: 1;
@@ -169,6 +222,8 @@
             margin: 0 0 1.25rem 0;
             color: var(--text-dark);
             line-height: 1.4;
+            flex-grow: 1;
+            min-height: 5.25rem;
         }
 
         .card-description {
@@ -182,7 +237,7 @@
         }
 
         .card-link {
-            margin-top: 0.5rem;
+            margin-top: auto;
             color: var(--dark-blue);
             font-weight: 700;
             font-size: 0.875rem;
@@ -211,6 +266,9 @@
                 grid-template-columns: 1fr;
                 gap: 1.875rem;
                 margin-bottom: 2.5rem;
+            }
+            .featured-img-link {
+                border-radius: 1rem;
             }
             .featured-img {
                 height: 22.5rem;
@@ -252,6 +310,9 @@
                 grid-template-columns: 1fr;
                 gap: 1.125rem;
                 margin-bottom: 2.1875rem;
+            }
+            .featured-img-link {
+                border-radius: 1rem;
             }
             .featured-img {
                 width: 100%;
@@ -321,18 +382,17 @@
                     ];
                     if (!empty($blogs) && count($blogs) > 0) {
                         $blogsArray = json_decode(json_encode($blogs), true);
-                        $featuredBlog = $blogsArray[0];
+                        $blogsArray = array_values(array_filter($blogsArray, fn($b) => !empty(trim((string)($b['image'] ?? '')))));
+                        usort($blogsArray, function($a, $b) {
+                            $idA = (int)($a['id'] ?? 0);
+                            $idB = (int)($b['id'] ?? 0);
+                            return $idB <=> $idA;
+                        });
+                        $featuredBlog = $blogsArray[0] ?? null;
                         $displayBlogs = array_slice($blogsArray, 1);
                     } else {
-                        // Mock feature blog if no DB
-                        $featuredBlog = [
-                            'title' => '7 Packaging Trends That Will Shape Brands In 2026',
-                            'image' => 'uploads/blog-content img.png',
-                            'author_name' => 'Joe Stanley',
-                            'publish_date' => '2026-08-12',
-                            'excerpt' => 'Discover the latest packaging trends transforming how brands present their products from sustainable materials to premium designs.',
-                            'slug' => '7-packaging-trends-2026'
-                        ];
+                        $featuredBlog = null;
+                        $displayBlogs = [];
                     }
                 @endphp
 
@@ -342,22 +402,31 @@
                         $fTitle = $featuredBlog['title'] ?? '';
                         $fExcerpt = $featuredBlog['excerpt'] ?? '';
                         $fSlug = $featuredBlog['slug'] ?? '';
-                        $fImg = !empty($featuredBlog['image']) ? asset($featuredBlog['image']) : asset('uploads/about-us-banner.webp');
+                        $fImg = !empty($featuredBlog['image']) ? (\Illuminate\Support\Str::startsWith($featuredBlog['image'], ['http://', 'https://']) ? $featuredBlog['image'] : asset($featuredBlog['image'])) : null;
                         $fUrl = url('/blog/' . $fSlug) . '/';
-                        $fAuthor = $featuredBlog['author_name'] ?? 'Joe Stanley';
-                        $fAuthorSlug = $featuredBlog['author_slug'] ?? \Illuminate\Support\Str::slug($fAuthor);
+                        $fAuthor = $featuredBlog['author_name'] ?? '';
+                        $fAuthorSlug = $featuredBlog['author_slug'] ?? ($fAuthor ? \Illuminate\Support\Str::slug($fAuthor) : '');
                         $fDate = !empty($featuredBlog['publish_date']) ? date('M d, Y', strtotime($featuredBlog['publish_date'])) : 'Aug 12, 2026';
                         $fExcerptText = trim(strip_tags(html_entity_decode(html_entity_decode($fExcerpt, ENT_QUOTES | ENT_HTML5, 'UTF-8'), ENT_QUOTES | ENT_HTML5, 'UTF-8')));
                     @endphp
-                    <div class="featured-post">
-                        <img src="{{ $fImg }}" alt="{{ $fTitle }}" class="featured-img" onerror="this.src='{{ asset('uploads/about-us-banner.webp') }}'">
+                    <div class="featured-post" onclick="window.location.href='{{ $fUrl }}';">
+                        @if(!empty($fImg))
+                        <a href="{{ $fUrl }}" class="featured-img-link" onclick="event.stopPropagation();">
+                            <img src="{{ $fImg }}" alt="{{ $fTitle }}" class="featured-img" onerror="this.parentElement.style.display='none';">
+                        </a>
+                        @endif
                         <div class="featured-copy">
-                            <h2>{{ $fTitle }}</h2>
+                            <h2><a href="{{ $fUrl }}" class="featured-title-link" onclick="event.stopPropagation();">{{ $fTitle }}</a></h2>
+                            @if(!empty($fExcerptText))
                             <p class="excerpt">{{ Str::limit($fExcerptText, 150) }}</p>
+                            @endif
                             <div class="meta">
-                                <a href="{{ url('/author/' . $fAuthorSlug) }}/" style="text-decoration: none; color: inherit;">{{ $fAuthor }}</a> &nbsp;|&nbsp; {{ $fDate }}
+                                @if(!empty($fAuthor))
+                                <a href="{{ url('/author/' . $fAuthorSlug) }}/" onclick="event.stopPropagation();" style="text-decoration: none; color: inherit;">{{ $fAuthor }}</a> &nbsp;|&nbsp;
+                                @endif
+                                {{ $fDate }}
                             </div>
-                            <a href="{{ $fUrl }}" class="read-btn">Read Blog <i class="fa-solid fa-arrow-right"></i></a>
+                            <a href="{{ $fUrl }}" class="read-btn" onclick="event.stopPropagation();">Read Blog <i class="fa-solid fa-arrow-right"></i></a>
                         </div>
                     </div>
                 @endif
@@ -367,11 +436,11 @@
                     @foreach($displayBlogs as $index => $item)
                         @php
                             $item = (array) $item;
-                            $bTitle = $item['title'] ?? 'The Ultimate Guide To Choosing The Right Custom Packaging For Your Brand';
-                            $bAuthor = $item['author_name'] ?? 'Joe Stanley';
-                            $bAuthorSlug = $item['author_slug'] ?? \Illuminate\Support\Str::slug($bAuthor);
+                            $bTitle = $item['title'] ?? '';
+                            $bAuthor = $item['author_name'] ?? '';
+                            $bAuthorSlug = $item['author_slug'] ?? ($bAuthor ? \Illuminate\Support\Str::slug($bAuthor) : '');
                             $bSlug = $item['slug'] ?? 'blog-detail';
-                            $bImg = !empty($item['image']) ? asset($item['image']) : asset('uploads/about-us-banner.webp');
+                            $bImg = !empty($item['image']) ? (\Illuminate\Support\Str::startsWith($item['image'], ['http://', 'https://']) ? $item['image'] : asset($item['image'])) : null;
                             $bUrl = url('/blog/' . $bSlug) . '/';
                             $bExcerpt = !empty(trim((string) ($item['excerpt'] ?? '')))
                                 ? $item['excerpt']
@@ -379,10 +448,16 @@
                             $bExcerptText = trim(strip_tags(html_entity_decode(html_entity_decode((string) $bExcerpt, ENT_QUOTES | ENT_HTML5, 'UTF-8'), ENT_QUOTES | ENT_HTML5, 'UTF-8')));
                         @endphp
                         <div class="blog-card {{ $index >= 9 ? 'blog-card-hidden' : '' }}" onclick="window.location.href='{{ $bUrl }}';" @if($index >= 9) style="display:none;" @endif>
-                            <img src="{{ $bImg }}" alt="{{ $bTitle }}" onerror="this.src='{{ asset('uploads/about-us-banner.webp') }}'">
+                            @if(!empty($bImg))
+                            <img src="{{ $bImg }}" alt="{{ $bTitle }}" onerror="this.style.display='none';">
+                            @endif
                             <div class="card-content">
                                 <div class="card-meta">
+                                    @if(!empty($bAuthor))
                                     <a href="{{ url('/author/' . $bAuthorSlug) }}/" onclick="event.stopPropagation();" style="text-decoration: none; color: inherit;"><span>{{ $bAuthor }}</span></a>
+                                    @else
+                                    <span></span>
+                                    @endif
                                     <span>8 min read</span>
                                 </div>
                                 <h3>{{ $bTitle }}</h3>

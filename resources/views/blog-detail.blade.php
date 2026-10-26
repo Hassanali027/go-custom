@@ -1,16 +1,60 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="icon" href="{{ asset('uploads/go-custom-boxes-favicon.png') }}" type="image/png">
-    @include('components.canonical')
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ $blog['meta_title'] ?? ($blog['title'] ?? 'Blog Detail') }}</title>
+    <link rel="icon" href="{{ asset('uploads/go-custom-boxes-favicon.png') }}" type="image/png">
+
+    @php
+        $pageMetaTitle = !empty(trim((string)($blog['meta_title'] ?? ''))) 
+            ? $blog['meta_title'] 
+            : (!empty(trim((string)($blog['title'] ?? ''))) ? $blog['title'] . ' | Go Custom Boxes' : 'Blog Detail - Go Custom Boxes');
+        $pageMetaDescription = !empty(trim((string)($blog['meta_description'] ?? ''))) 
+            ? $blog['meta_description'] 
+            : (!empty(trim((string)($blog['excerpt'] ?? ''))) ? trim(strip_tags((string)$blog['excerpt'])) : '');
+        $pageMetaKeywords = !empty(trim((string)($blog['meta_keywords'] ?? ''))) 
+            ? $blog['meta_keywords'] 
+            : (!empty(trim((string)($blog['tags'] ?? ''))) ? $blog['tags'] : '');
+        $pageRobots = !empty(trim((string)($blog['robots'] ?? ''))) ? $blog['robots'] : 'index,follow';
+        $pageImage = !empty($blog['image']) 
+            ? (\Illuminate\Support\Str::startsWith($blog['image'], ['http://', 'https://']) ? $blog['image'] : asset($blog['image'])) 
+            : asset('uploads/Home-Banner.webp');
+    @endphp
+
+    <title>{{ $pageMetaTitle }}</title>
+    @if(!empty($pageMetaDescription))
+    <meta name="description" content="{{ $pageMetaDescription }}">
+    @endif
+    @if(!empty($pageMetaKeywords))
+    <meta name="keywords" content="{{ $pageMetaKeywords }}">
+    @endif
+    <meta name="robots" content="{{ $pageRobots }}">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="{{ $pageMetaTitle }}">
+    @if(!empty($pageMetaDescription))
+    <meta property="og:description" content="{{ $pageMetaDescription }}">
+    @endif
+    <meta property="og:url" content="{{ url()->current() }}/">
+    <meta property="og:image" content="{{ $pageImage }}">
+    <meta property="og:site_name" content="Go Custom Boxes">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="{{ $pageMetaTitle }}">
+    @if(!empty($pageMetaDescription))
+    <meta name="twitter:description" content="{{ $pageMetaDescription }}">
+    @endif
+    <meta name="twitter:image" content="{{ $pageImage }}">
+
+    @include('components.canonical')
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Open+Sans:wght@300;400;600;700;800;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
         :root {
+            --primary-color: #0A2240;
             --dark-blue: #0A2240;
             --yellow: #FFB400;
             --light-yellow: #FFF8E7;
@@ -63,17 +107,19 @@
         .hero-img-wrapper {
             width: 100%;
             height: auto;
-            aspect-ratio: 2.35 / 1;
             border-radius: 0.75rem;
             margin-bottom: 2.5rem;
             overflow: hidden;
             display: block;
+            background: transparent;
         }
         .hero-img {
             width: 100%;
-            height: 100%;
-            object-fit: cover;
+            height: auto;
+            max-width: 100%;
+            object-fit: contain;
             object-position: center;
+            background: transparent;
             display: block;
             border-radius: inherit;
         }
@@ -156,6 +202,30 @@
         }
         .main-content li {
             margin-bottom: 0.625rem;
+        }
+
+        /* Internal / Editorial Links in Article Content */
+        .main-content a:not(.cta-btn) {
+            color: var(--primary-color, var(--dark-blue, #0A2240)) !important;
+            text-decoration: underline !important;
+            text-decoration-color: var(--primary-color, var(--dark-blue, #0A2240)) !important;
+            text-underline-offset: 0.1875rem;
+            cursor: pointer;
+            transition: color 0.2s ease, text-decoration-color 0.2s ease;
+        }
+        .main-content a:not(.cta-btn) * {
+            color: var(--primary-color, var(--dark-blue, #0A2240)) !important;
+            text-decoration-color: var(--primary-color, var(--dark-blue, #0A2240)) !important;
+        }
+        .main-content a:not(.cta-btn):hover,
+        .main-content a:not(.cta-btn):hover * {
+            color: #1a4f8b !important;
+            text-decoration-color: #1a4f8b !important;
+        }
+        .main-content span:has(> a),
+        .main-content span:has(> strong > a),
+        .main-content strong:has(> a) {
+            text-decoration-color: var(--primary-color, var(--dark-blue, #0A2240)) !important;
         }
 
         /* Key Takeaways Box (Mapping from .callout-box) */
@@ -255,7 +325,19 @@
 
         /* Author Widget */
         .author-box {
-            margin-bottom: 1.875rem;
+            margin-bottom: 0;
+            display: block;
+            text-decoration: none !important;
+            color: inherit;
+            cursor: pointer;
+            transition: opacity 0.2s ease, transform 0.2s ease;
+        }
+        .author-box:hover .author-name {
+            color: #1a4f8b;
+            text-decoration: underline;
+        }
+        .author-box:hover .author-img {
+            transform: scale(1.05);
         }
         .author-profile {
             display: flex;
@@ -270,17 +352,45 @@
             object-fit: cover;
             flex-shrink: 0;
             margin-top: 0.125rem;
+            transition: transform 0.2s ease;
         }
         .author-name {
             font-family: var(--font-heading);
             font-size: 1.125rem;
             font-weight: 700;
             color: var(--dark-blue);
+            transition: color 0.2s ease;
         }
         .author-role {
             font-size: 0.8125rem;
             color: #000;
             margin-top: 0.3125rem;
+        }
+        .author-expertise {
+            font-size: 0.875rem;
+            color: #000;
+            line-height: 1.5;
+            text-align: left;
+            margin-bottom: 0.5rem;
+        }
+        .author-description {
+            font-size: 0.875rem;
+            color: #000;
+            line-height: 1.5;
+            text-align: left;
+        }
+        .author-description p {
+            margin: 0 0 0.5rem 0;
+            font-size: inherit;
+            color: inherit;
+            line-height: inherit;
+        }
+        .author-description p:last-child {
+            margin-bottom: 0;
+        }
+        .author-description strong, .author-description b {
+            font-weight: 700;
+            color: inherit;
         }
         .author-bio {
             font-size: 0.875rem;
@@ -288,28 +398,6 @@
             line-height: 1.5;
             text-align: left;
         }
-
-        /* TOC */
-        .toc-list {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-        .toc-item {
-            margin-bottom: 0.9375rem;
-            position: relative;
-        }
-        .toc-item a {
-            font-size: 1rem;
-            color: #444;
-            transition: color 0.3s;
-            text-decoration: none;
-        }
-        .toc-item.active a {
-            color: var(--dark-blue);
-            font-weight: 500;
-        }
-        .toc-item a:hover { color: var(--dark-blue); }
 
         /* Social Share */
         .share-icons {
@@ -337,7 +425,7 @@
         /* Related Blogs */
         .related-section {
             padding: 0;
-            margin-top: -1rem;
+            margin-top: 2.5rem;
         }
         .related-title {
             font-family: var(--font-heading);
@@ -352,20 +440,23 @@
             grid-template-columns: repeat(3, minmax(0, 23.875rem));
             justify-content: start;
             gap: 1.875rem;
-            align-items: start;
+            align-items: stretch;
         }
 
         .blog-card {
             border: 1px solid var(--border-color);
             border-radius: 1rem;
+            width: 100%;
+            max-width: 23.875rem;
             overflow: hidden;
             display: flex;
             flex-direction: column;
             background: #fff;
-            transition: transform 0.3s;
-            max-width: 23.875rem;
+            box-shadow: 0 0.25rem 0.9375rem rgba(0,0,0,0.03);
+            transition: transform 0.3s, box-shadow 0.3s;
             position: relative;
             cursor: pointer;
+            height: 100%;
         }
         .blog-card-hit-area {
             position: absolute;
@@ -383,14 +474,19 @@
         }
         .blog-card img {
             width: calc(100% - 1.75rem);
-            height: 13.75rem;
-            object-fit: cover;
+            height: auto;
+            aspect-ratio: 2 / 1;
+            object-fit: contain;
+            object-position: center;
+            background-position: center;
+            background-size: contain;
+            background: transparent;
             border-radius: 0.75rem;
             margin: 0.875rem auto 0;
             display: block;
         }
         .card-content {
-            padding: 1.25rem 1.5rem 0.75rem;
+            padding: 1.25rem 1.5rem 1.25rem;
             display: flex;
             flex-direction: column;
             flex: 1;
@@ -407,11 +503,14 @@
             font-family: var(--font-heading);
             font-size: 1.25rem !important;
             font-weight: 700;
-            margin: 0 0 0.9375rem 0;
+            margin: 0 0 1.25rem 0;
             line-height: 1.4;
+            color: var(--text-dark);
+            flex-grow: 1;
+            min-height: 5.25rem;
         }
         .card-link {
-            margin-top: 0.5rem;
+            margin-top: auto;
             color: var(--dark-blue);
             font-weight: 700;
             font-size: 0.875rem;
@@ -427,7 +526,7 @@
             .content-layout { grid-template-columns: 1fr; gap: 0; }
             .sidebar { position: static; margin-top: 0; }
             .blog-grid { grid-template-columns: repeat(2, 1fr); }
-            .hero-img-wrapper { height: auto; aspect-ratio: 2.35 / 1; }
+            .hero-img-wrapper { height: auto; }
         }
         @media (max-width: 48rem) {
             .container { padding: 0 1rem; }
@@ -438,7 +537,6 @@
                 margin-left: calc(-50vw + 50%); 
                 border-radius: 0; 
                 height: auto;
-                aspect-ratio: 2 / 1;
                 margin-bottom: 1.5625rem;
             }
             .article-title {
@@ -453,7 +551,6 @@
                 gap: 0.625rem 1rem;
                 line-height: 1.6;
             }
-            .toc-widget { display: none !important; }
             .sidebar {
                 border: 1px solid #EAEAEA;
                 border-left: 1px solid #EAEAEA;
@@ -468,8 +565,6 @@
                 margin: 1.5rem 0;
             }
             .author-share-card { margin-bottom: 1.5rem; }
-            .desktop-cta { display: none !important; }
-            .mobile-cta { display: flex !important; margin-top: 1.875rem; }
             .blog-grid { grid-template-columns: 1fr; }
             .cta-banner { flex-direction: column; text-align: center; gap: 1.25rem; }
             
@@ -486,9 +581,29 @@
                 word-spacing: 0.25rem;
                 line-height: 1.6;
             }
+        /* Blog Detail FAQ Styling */
+        .blog-detail-section .product-faq-section {
+            background-color: transparent !important;
+            padding: 3rem 0 1.5rem 0;
+            width: 100%;
         }
-        
-        .mobile-cta { display: none; }
+        .blog-detail-section .product-faq-heading {
+            font-family: var(--font-heading);
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--dark-blue);
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        @media (max-width: 48rem) {
+            .blog-detail-section .product-faq-section {
+                padding: 2rem 0 1rem 0;
+            }
+            .blog-detail-section .product-faq-heading {
+                font-size: 1.5rem;
+                margin-bottom: 1.25rem;
+            }
+        }
     </style>
 </head>
 <body>
@@ -496,21 +611,39 @@
 @include('components.header')
 
 @php 
-    $authorName = !empty($blog['joined_author_name']) ? $blog['joined_author_name'] : (!empty($blog['author_name']) ? $blog['author_name'] : 'Joe Stanley');
-    $authorSlug = $blog['joined_author_slug'] ?? ($blog['author_slug'] ?? 'joe-stanley');
+    $authorName = !empty($blog['joined_author_name']) ? $blog['joined_author_name'] : (!empty($blog['author_name']) ? $blog['author_name'] : null);
+    $authorSlug = !empty($blog['joined_author_slug']) ? $blog['joined_author_slug'] : (!empty($blog['author_slug']) ? $blog['author_slug'] : ($authorName ? \Illuminate\Support\Str::slug($authorName) : null));
+    $authorUrl = $authorSlug ? (url('/author/' . $authorSlug) . '/') : null;
     $authorImgPath = !empty($blog['joined_author_image']) ? $blog['joined_author_image'] : (!empty($blog['author_image']) ? $blog['author_image'] : null);
-    $authorDesc = !empty($blog['joined_author_desc']) ? $blog['joined_author_desc'] : (!empty($blog['author_description']) ? $blog['author_description'] : 'Packaging Design Expert');
+    $authorDesc = !empty($blog['joined_author_desc']) ? $blog['joined_author_desc'] : (!empty($blog['author_description']) ? $blog['author_description'] : null);
+    $authorDesignation = !empty($blog['joined_author_designation']) ? $blog['joined_author_designation'] : (!empty($blog['author_designation']) ? $blog['author_designation'] : null);
+    $authorExpertise = !empty($blog['joined_author_bio']) ? $blog['joined_author_bio'] : (!empty($blog['author_bio']) ? $blog['author_bio'] : null);
+    $authorDescription = $authorDesc;
 
     $authorImg = $authorImgPath ? (\Illuminate\Support\Str::startsWith($authorImgPath, ['http', 'storage/', 'uploads/', 'images/']) ? asset($authorImgPath) : asset('storage/'.$authorImgPath)) : asset('images/ahmed-khan.png'); 
     
-    $publishDate = !empty($blog['publish_date']) ? date('M j, Y', strtotime($blog['publish_date'])) : (!empty($blog['created_at']) ? date('M j, Y', strtotime($blog['created_at'])) : 'Aug 12, 2026');
-    $updateDate = !empty($blog['updated_at']) ? date('M j, Y', strtotime($blog['updated_at'])) : 'May 27, 2026';
+    $publishDate = !empty($blog['publish_date']) ? date('M j, Y', strtotime($blog['publish_date'])) : (!empty($blog['created_at']) ? date('M j, Y', strtotime($blog['created_at'])) : null);
+    $updateDate = !empty($blog['updated_at']) ? date('M j, Y', strtotime($blog['updated_at'])) : null;
     
-    $fTitle = $blog['title'] ?? '7 Packaging Trends That Will Shape Brands in 2026';
-    $fImg = !empty($blog['image']) ? asset($blog['image']) : asset('uploads/about-us-banner.webp');
+    $fTitle = $blog['title'] ?? '';
+    $fImg = !empty($blog['image']) ? (\Illuminate\Support\Str::startsWith($blog['image'], ['http://', 'https://']) ? $blog['image'] : asset($blog['image'])) : null;
+    $fImgWidth = 1600;
+    $fImgHeight = 800;
+    if (!empty($blog['image'])) {
+        $relPath = preg_replace('#^https?://[^/]+/#', '', (string)$blog['image']);
+        $relPath = ltrim($relPath, '/');
+        $imgPath = public_path($relPath);
+        if (file_exists($imgPath) && !is_dir($imgPath)) {
+            $sz = @getimagesize($imgPath);
+            if (!empty($sz[0]) && !empty($sz[1])) {
+                $fImgWidth = (int)$sz[0];
+                $fImgHeight = (int)$sz[1];
+            }
+        }
+    }
     $articleSubtitle = trim(strip_tags(html_entity_decode(html_entity_decode((string) ($blog['excerpt'] ?? ''), ENT_QUOTES | ENT_HTML5, 'UTF-8'), ENT_QUOTES | ENT_HTML5, 'UTF-8')));
     $shareUrl = rtrim(url()->current(), '/') . '/';
-    $articleSubtitle = $articleSubtitle ?: 'Discover the latest packaging trends shaping modern brands, from sustainable materials to premium finishes and memorable unboxing experiences.';
+    $blogFaqs = !empty($blogFaqs) ? $blogFaqs : (!empty($faqs) ? $faqs : (!empty($blog['faqs']) ? (is_string($blog['faqs']) ? (json_decode($blog['faqs'], true) ?: []) : (array)$blog['faqs']) : []));
 @endphp
 
 <main class="blog-detail-section">
@@ -531,9 +664,11 @@
         </div>
 
         <!-- Hero Image -->
-        <div class="hero-img-wrapper">
-            <img src="{{ $fImg }}" alt="{{ $fTitle }}" class="hero-img" onerror="this.src='{{ asset('uploads/about-us-banner.webp') }}'">        
+        @if(!empty($fImg))
+        <div class="hero-img-wrapper" style="aspect-ratio: {{ $fImgWidth }} / {{ $fImgHeight }};">
+            <img src="{{ $fImg }}" alt="{{ $fTitle }}" width="{{ $fImgWidth }}" height="{{ $fImgHeight }}" class="hero-img" loading="eager" fetchpriority="high" style="aspect-ratio: {{ $fImgWidth }} / {{ $fImgHeight }};" onerror="this.parentElement.style.display='none';">        
         </div>
+        @endif
         <!-- 2 Column Layout -->
         <div class="content-layout">
             
@@ -542,13 +677,21 @@
                 
                 <!-- Title & Meta -->
                 <h1 class="article-title">{{ $fTitle }}</h1>
+                @if(!empty($articleSubtitle))
                 <p class="article-subtitle">{{ $articleSubtitle }}</p>
+                @endif
                 
                 <div class="article-meta">
+                    @if(!empty($publishDate))
                     <span>Published: {{ $publishDate }}</span>
-                    <span class="divider">•</span>
+                    @endif
+                    @if(!empty($updateDate) && $updateDate !== $publishDate)
+                    @if(!empty($publishDate))<span class="divider">•</span>@endif
                     <span>Last Updated: {{ $updateDate }}</span>
+                    @endif
+                    @if(!empty($publishDate) || !empty($updateDate))
                     <span class="divider">•</span>
+                    @endif
                     <span>8 min read</span>
                 </div>
                 
@@ -565,51 +708,10 @@
 
                 @if(!empty($blog['content']))
                     {!! $blog['content'] !!}
-                @else
-                    @if(empty($keyTakeaways))
-                    <div class="callout-box">
-                        <div class="callout-label">KEY TAKEAWAYS</div>
-                        <div class="callout-content">
-                            <ul>
-                                <li>Eco-friendly and responsible materials are becoming increasingly important for modern packaging.</li>
-                                <li>Clean, minimalist designs can create a stronger and more premium brand identity.</li>
-                                <li>Premium finishes, such as foil, embossing, and soft-touch can make packaging more memorable.</li>
-                                <li>A thoughtful unboxing experience can strengthen customer engagement and brand connection.</li>
-                                <li>Effective packaging should balance appearance, functionality, protection, and brand identity.</li>
-                            </ul>
-                        </div>
-                    </div>
-                    @endif
-
-                    <p>Packaging has evolved far beyond a simple way to protect a product. Today, it plays an important role in how customers recognize, experience, and remember a brand. From the moment a package arrives at a customer's doorstep to the satisfaction of opening it, every detail can influence how a product is perceived.</p>
-
-                    <h2>What is Offset Printing?</h2>
-                    <p>Offset printing is a common printing technique in which the inked image is transferred from a plate to a rubber blanket, then to the printing surface.</p>
-
-                    <h2>Offset Lithography vs Digital Printing</h2>
-                    <p>While digital printing is ideal for short runs, offset lithography remains the most cost-effective solution for high-volume jobs while delivering superior color fidelity.</p>
-
-                    <h2>The Pre-Press Stage</h2>
-                    <p>Before any ink touches the paper, the pre-press stage ensures all digital files are perfectly converted to plates, ready for the press.</p>
-                    
-                    <h2>The Printing Stage</h2>
-                    <p>Once plates are loaded, the printing stage begins, transferring the image with incredible speed and precision.</p>
-
-                    <h2>The Post-Press Stage</h2>
-                    <p>After printing, the sheets are cut, folded, and bound, turning flat paper into finished products.</p>
-
-                    <h2>Quality Control and Inspection</h2>
-                    <p>Throughout the process, rigorous quality control ensures every printed piece meets exact standards.</p>
-
-                    <h2>Types of Offset Litho-Printing</h2>
-                    <p>There are several types of offset printing, each suited for different applications and materials.</p>
-
-                    <h2>Web Offset Printing</h2>
-                    <p>Web offset printing uses rolls of paper rather than individual sheets, making it ideal for extremely high-volume printing like newspapers and catalogs.</p>
                 @endif
 
-                <!-- CTA Banner (Desktop) -->
-                <div class="cta-banner desktop-cta">
+                <!-- CTA Banner -->
+                <div class="cta-banner">
                     <div>
                         <div class="cta-banner-text">Need custom packaging for your product?</div>
                         <div class="cta-banner-sub">Get pricing, samples, and expert advice — no commitment required.</div>
@@ -622,36 +724,40 @@
             <!-- Right: Sidebar -->
             <div class="sidebar">
                 
+                @if(!empty($authorName))
                 <div class="author-share-card">
                     <!-- Author Widget -->
                     <div class="widget">
                         <div class="widget-title">Written by</div>
-                        <div class="author-box">
+                        <a href="{{ $authorUrl ?: '#' }}" class="author-box" aria-label="View {{ $authorName }}'s author profile">
                             <div class="author-profile">
                                 <img src="{{ $authorImg }}" alt="{{ $authorName }}" class="author-img" onerror="this.src='{{ asset('images/ahmed-khan.png') }}'">
                                 <div>
                                     <div class="author-name">{{ $authorName }}</div>
-                                    <div class="author-role">{{ $authorDesc }}</div>
+                                    @if(!empty($authorDesignation))
+                                    <div class="author-role">{{ $authorDesignation }}</div>
+                                    @endif
                                 </div>
                             </div>
-                            <div class="author-bio">
-                                5+ years in content strategy — building packaging case studies, guides, and blogs.
+                            @if(!empty($authorExpertise))
+                            <div class="author-expertise">
+                                {{ $authorExpertise }}
                             </div>
+                            @endif
+                        </a>
+
+                        @if(!empty($authorDescription) && $authorDescription !== $authorExpertise)
+                        <hr style="border: none; border-top: 1px dotted #ccc; margin: 1.875rem 0;">
+                        <div class="author-description">
+                            {!! $authorDescription !!}
                         </div>
+                        <hr style="border: none; border-top: 1px dotted #ccc; margin: 1.875rem 0;">
+                        @else
+                        <hr style="border: none; border-top: 1px dotted #ccc; margin: 1.875rem 0;">
+                        @endif
                     </div>
                 </div>
-
-                <hr style="border: none; border-top: 1px dotted #ccc; margin: 1.875rem 0;" class="toc-widget">
-
-                <!-- TOC Widget -->
-                <div class="widget toc-widget">
-                    <div class="widget-title">Table Of Content</div>
-                    <ul class="toc-list" id="tocList">
-                        <!-- Populated by JS -->
-                    </ul>
-                </div>
-                
-                <hr style="border: none; border-top: 1px dotted #ccc; margin: 1.875rem 0;" class="toc-widget">
+                @endif
 
                 <hr class="mobile-share-divider">
 
@@ -676,121 +782,72 @@
 
         </div>
 
-        <!-- CTA Banner (Mobile) -->
-        <div class="cta-banner mobile-cta">
-            <div>
-                <div class="cta-banner-text">Need custom packaging for your product?</div>
-                <div class="cta-banner-sub">Get pricing, samples, and expert advice — no commitment required.</div>
-            </div>
-            <a href="{{ url('/contact-us') }}/" class="cta-btn">Get a Free Quote</a>
-        </div>
-
     </div>
-    
-    <!-- FAQs Component -->
-    @include('components.product-faq')
+
+    <!-- Blog FAQs Section -->
+    @include('components.product-faq', ['displayFaqs' => $blogFaqs])
 
     <!-- Related Blogs -->
+    @php
+        $currentBlogId = $blog['id'] ?? null;
+        $currentBlogSlug = $blog['slug'] ?? '';
+        $filteredRecentBlogs = collect($recentBlogs ?? [])
+            ->filter(function($rb) use ($currentBlogId, $currentBlogSlug) {
+                $rb = (object) $rb;
+                if (empty($rb->image)) {
+                    return false;
+                }
+                if (!empty($currentBlogId) && isset($rb->id) && (string)$rb->id === (string)$currentBlogId) {
+                    return false;
+                }
+                if (!empty($currentBlogSlug) && isset($rb->slug) && $rb->slug === $currentBlogSlug) {
+                    return false;
+                }
+                return true;
+            })
+            ->values();
+    @endphp
+
+    @if($filteredRecentBlogs->count() > 0)
     <div class="container">
         <div class="related-section">
             <h2 class="related-title">Related Blogs</h2>
             <div class="blog-grid">
-                @if(!empty($recentBlogs) && count($recentBlogs) > 0)
-                    @foreach($recentBlogs as $rb)
-                        @php
-                            $bTitle = $rb->title ?? 'The Ultimate Guide To Choosing The Right Custom Packaging For Your Brand';
-                            $bAuthor = $rb->author_name ?? 'Joe Stanley';
-                            $bAuthorSlug = $rb->author_slug ?? \Illuminate\Support\Str::slug($bAuthor);
-                            $bSlug = $rb->slug ?? 'blog-detail';
-                            $bImg = !empty($rb->image) ? asset($rb->image) : asset('uploads/about-us-banner.webp');
-                            $bUrl = url('/blog/' . $bSlug) . '/';
-                        @endphp
-                        <article class="blog-card">
-                            <a href="{{ $bUrl }}" class="blog-card-hit-area" aria-label="Read {{ $bTitle }}"><span class="visually-hidden">Read {{ $bTitle }}</span></a>
-                            <img src="{{ $bImg }}" alt="{{ $bTitle }}" onerror="this.src='{{ asset('uploads/about-us-banner.webp') }}'">
-                            <div class="card-content">
-                                <div class="card-meta">
-                                    <a href="{{ url('/author/' . $bAuthorSlug) }}/" onclick="event.stopPropagation();" style="text-decoration: none; color: inherit;"><span>{{ $bAuthor }}</span></a>
-                                    <span>8 min read</span>
-                                </div>
-                                <h3>{{ $bTitle }}</h3>
-                                <a href="{{ $bUrl }}" class="card-link">Read Blog <i class="fa-solid fa-arrow-right"></i></a>
-                            </div>
-                        </article>
-                    @endforeach
-                @else
-                    <!-- Fallback / Dummy blogs if empty -->
-                    @for($i=0; $i<3; $i++)
-                    <div class="blog-card" onclick="window.location.href='#';">
-                        <img src="{{ asset('uploads/about-us-banner.webp') }}" alt="Packaging Box">
+                @foreach($filteredRecentBlogs as $rb)
+                    @php
+                        $bTitle = $rb->title ?? '';
+                        $bAuthor = $rb->joined_author_name ?? ($rb->author_name ?? '');
+                        $bAuthorSlug = $rb->joined_author_slug ?? ($rb->author_slug ?? ($bAuthor ? \Illuminate\Support\Str::slug($bAuthor) : ''));
+                        $bSlug = $rb->slug ?? 'blog-detail';
+                        $bImg = !empty($rb->image) ? (\Illuminate\Support\Str::startsWith($rb->image, ['http://', 'https://']) ? $rb->image : asset($rb->image)) : null;
+                        $bUrl = url('/blog/' . $bSlug) . '/';
+                    @endphp
+                    <article class="blog-card">
+                        <a href="{{ $bUrl }}" class="blog-card-hit-area" aria-label="Read {{ $bTitle }}"><span class="visually-hidden">Read {{ $bTitle }}</span></a>
+                        @if(!empty($bImg))
+                        <img src="{{ $bImg }}" alt="{{ $bTitle }}" onerror="this.style.display='none';">
+                        @endif
                         <div class="card-content">
                             <div class="card-meta">
-                                <a href="{{ url('/author/joe-stanley') }}/" onclick="event.stopPropagation();" style="text-decoration: none; color: inherit;"><span>Joe Stanley</span></a>
+                                @if(!empty($bAuthor))
+                                <a href="{{ url('/author/' . $bAuthorSlug) }}/" onclick="event.stopPropagation();" style="text-decoration: none; color: inherit;"><span>{{ $bAuthor }}</span></a>
+                                @else
+                                <span></span>
+                                @endif
                                 <span>8 min read</span>
                             </div>
-                            <h3>The Ultimate Guide To Choosing The Right Custom Packaging For Your Brand</h3>
-                            <a href="#" class="card-link">Read Blog <i class="fa-solid fa-arrow-right"></i></a>
+                            <h3>{{ $bTitle }}</h3>
+                            <a href="{{ $bUrl }}" class="card-link">Read Blog <i class="fa-solid fa-arrow-right"></i></a>
                         </div>
-                    </div>
-                    @endfor
-                @endif
+                    </article>
+                @endforeach
             </div>
         </div>
     </div>
+    @endif
 </main>
 
 @include('components.footer')
-
-<script>
-document.addEventListener('DOMContentLoaded', function () {
-    var mainContent = document.querySelector('.main-content');
-    var tocList = document.getElementById('tocList');
-    if (!mainContent || !tocList) return;
-
-    var headings = mainContent.querySelectorAll('h2');
-    if (headings.length === 0) {
-        document.getElementById('tocList').parentElement.style.display = 'none';
-        return;
-    }
-
-    headings.forEach(function (heading, index) {
-        var id = 'heading-' + index;
-        heading.setAttribute('id', id);
-
-        var li = document.createElement('li');
-        li.className = 'toc-item';
-        if(index === 0) li.classList.add('active');
-
-        var a = document.createElement('a');
-        a.href = '#' + id;
-        a.textContent = heading.textContent.trim();
-        
-        a.addEventListener('click', function (e) {
-            e.preventDefault();
-            heading.scrollIntoView({ behavior: 'smooth', block: 'start' });
-            document.querySelectorAll('.toc-item').forEach(i => i.classList.remove('active'));
-            li.classList.add('active');
-        });
-
-        li.appendChild(a);
-        tocList.appendChild(li);
-    });
-
-    window.addEventListener('scroll', function () {
-        var scrollY = window.scrollY + 100;
-        var activeIndex = 0;
-        headings.forEach(function (heading, index) {
-            if (heading.offsetTop <= scrollY) {
-                activeIndex = index;
-            }
-        });
-        tocList.querySelectorAll('.toc-item').forEach(function (item, i) {
-            if (i === activeIndex) item.classList.add('active');
-            else item.classList.remove('active');
-        });
-    });
-});
-</script>
 
 </body>
 </html>

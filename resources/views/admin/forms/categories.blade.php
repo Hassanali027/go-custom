@@ -159,10 +159,6 @@
                 <input name="feature_title" value="{{ $v('feature_title') }}" placeholder="e.g. Key Packaging Features">
                 <small style="display:block; margin-top:0.375rem; color:#6b7280;">This heading appears above the image and text feature section on the category page.</small>
             </div>
-            <div class="field full">
-                <label>Category Description</label>
-                <textarea name="description" style="min-height:11.25rem">{{ $v('description') }}</textarea>
-            </div>
         </div>
     </div>
 

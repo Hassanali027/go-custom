@@ -68,10 +68,12 @@
         margin-bottom: 0.625rem;
     }
     .dynamic-container a {
-        color: var(--primary-color, #8D4445);
-        text-decoration: none;
+        color: var(--primary-color, #0B2240);
+        text-decoration: underline;
+        text-underline-offset: 0.1875rem;
     }
     .dynamic-container a:hover {
+        color: #1a4f8b;
         text-decoration: underline;
     }
     .dynamic-container img {

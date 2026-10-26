@@ -69,7 +69,7 @@
     }
 
     .product-faq-icon {
-        color: var(--primary-color);
+        color: var(--primary-color, #0A2240);
         font-size: 1.25rem;
         font-weight: 300;
         line-height: 1;
@@ -98,7 +98,7 @@
     }
 
     .product-faq-item.active .product-faq-answer {
-        max-height: 18.75rem;
+        max-height: 50rem;
         padding: 1.25rem 1.5rem;
     }
 
@@ -139,34 +139,40 @@
     }
 </style>
 
+@php
+    $rawFaqs = $displayFaqs ?? ($faqs ?? null);
+    if (!isset($rawFaqs) && !request()->is('contact-us*') && !request()->is('contact-us') && !request()->is('blog*')) {
+        $rawFaqs = [
+            ['q' => 'Which printing method is best for small orders?', 'a' => 'For smaller orders, digital printing is usually the most cost-effective method. It offers quick turnaround times and excellent print quality without the need for expensive setup costs or printing plates.'],
+            ['q' => 'Do you offer free design support?', 'a' => 'Yes, our team of expert designers provides free design assistance. We can help you create custom artwork or optimize your existing designs to ensure they print perfectly on your packaging.'],
+            ['q' => 'What is the minimum order quantity?', 'a' => 'Our minimum order quantity (MOQ) typically starts at 100 units for most standard custom boxes. However, this may vary depending on the specific box style and materials you choose.'],
+            ['q' => 'Can I get a sample before placing a full order?', 'a' => 'Yes, we offer custom printed samples so you can check the material, size, and print quality before committing to a larger production run.'],
+            ['q' => 'What is your turnaround time?', 'a' => 'Our standard turnaround time is 8-10 business days after the final design approval. We also offer expedited shipping options if you need your boxes sooner.']
+        ];
+    }
+    $filteredFaqs = collect($rawFaqs)->map(function($f) {
+        return (array) $f;
+    })->filter(function($f) {
+        $q = trim((string)($f['q'] ?? $f['question'] ?? ''));
+        $a = trim((string)($f['a'] ?? $f['answer'] ?? ''));
+        return $q !== '' || $a !== '';
+    })->values()->all();
+@endphp
+
+@if(count($filteredFaqs) > 0)
 <section class="product-faq-section">
     <div class="container">
         <h2 class="product-faq-heading">Frequently Asked Questions</h2>
         
         <div class="product-faq-list">
-            @php
-                if (!isset($displayFaqs) || empty($displayFaqs)) {
-                    $displayFaqs = [
-                        ['q' => 'Which printing method is best for small orders?', 'a' => 'For smaller orders, digital printing is usually the most cost-effective method. It offers quick turnaround times and excellent print quality without the need for expensive setup costs or printing plates.'],
-                        ['q' => 'Do you offer free design support?', 'a' => 'Yes, our team of expert designers provides free design assistance. We can help you create custom artwork or optimize your existing designs to ensure they print perfectly on your packaging.'],
-                        ['q' => 'What is the minimum order quantity?', 'a' => 'Our minimum order quantity (MOQ) typically starts at 100 units for most standard custom boxes. However, this may vary depending on the specific box style and materials you choose.'],
-                        ['q' => 'Can I get a sample before placing a full order?', 'a' => 'Yes, we offer custom printed samples so you can check the material, size, and print quality before committing to a larger production run.'],
-                        ['q' => 'What is your turnaround time?', 'a' => 'Our standard turnaround time is 8-10 business days after the final design approval. We also offer expedited shipping options if you need your boxes sooner.']
-                    ];
-                }
-            @endphp
-            
-            @foreach($displayFaqs as $faq)
-                @if(request()->is('contact-us') && ($faq['q'] ?? $faq['question'] ?? '') === 'What is your turnaround time?')
-                    @continue
-                @endif
+            @foreach($filteredFaqs as $faq)
             <div class="product-faq-item">
                 <h3 style="margin: 0; padding: 0;">
-<button class="product-faq-question" type="button">
-                    <span class="product-faq-question-text">{{ $faq['q'] ?? $faq['question'] ?? '' }}</span>
-                    <span class="product-faq-icon" aria-hidden="true"></span>
-                </button>
-</h3>
+                    <button class="product-faq-question" type="button">
+                        <span class="product-faq-question-text">{{ $faq['q'] ?? $faq['question'] ?? '' }}</span>
+                        <span class="product-faq-icon" aria-hidden="true"></span>
+                    </button>
+                </h3>
                 <div class="product-faq-answer">
                     <p>{!! nl2br(e($faq['a'] ?? $faq['answer'] ?? '')) !!}</p>
                 </div>
@@ -175,6 +181,7 @@
         </div>
     </div>
 </section>
+@endif
 
 <script>
 document.addEventListener('DOMContentLoaded', function() {

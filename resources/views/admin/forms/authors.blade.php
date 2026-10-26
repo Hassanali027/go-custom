@@ -3,6 +3,8 @@
 @section('heading', ($item ? 'Edit ' : 'Add ') . $meta['singular'])
 @section('content')
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tinymce/6.8.2/tinymce.min.js"></script>
+
 @php
     $v = fn($key, $default = '') => old($key, $item[$key] ?? $default);
     $editing = (bool)$item;
@@ -30,6 +32,13 @@
             </div>
             
             <div class="field">
+                <label>Author Designation / Role</label>
+                <input name="designation" value="{{ $v('designation') }}" placeholder="e.g. Content Strategier Writer">
+                <small style="color:var(--muted); font-size:0.75rem;">Shown beside the author's name in the blog post sidebar.</small>
+            </div>
+
+
+            <div class="field">
                 <label>URL Slug</label>
                 <input name="slug" value="{{ $v('slug') }}" placeholder="auto-generated-from-name">
             </div>
@@ -55,7 +64,29 @@
     </div>
     
     <div class="section">
-        <h3>Social Links & Description</h3>
+        <h3>Author Expertise</h3>
+        <div class="form-grid">
+            <div class="field full">
+                <label>Author Expertise</label>
+                <textarea name="bio" rows="3" placeholder="e.g. 5+ years in content strategy - building packaging case studies, guides and blogs...">{{ $v('bio') }}</textarea>
+                <small style="color:var(--muted); font-size:0.75rem;">Displayed directly underneath the author's avatar and name in the blog post sidebar.</small>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h3>Description</h3>
+        <div class="form-grid">
+            <div class="field full">
+                <label>Description</label>
+                <textarea name="description" rows="4" placeholder="Enter author description...">{{ $v('description') }}</textarea>
+                <small style="color:var(--muted); font-size:0.75rem;">Displayed in the blog author sidebar between horizontal lines (not shown on author page).</small>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h3>Social Links</h3>
         <div class="form-grid">
             <div class="field">
                 <label>Facebook URL</label>
@@ -71,11 +102,6 @@
                 <label>LinkedIn URL</label>
                 <input type="url" name="linkedin" value="{{ $v('linkedin') }}" placeholder="https://linkedin.com/in/author">
             </div>
-            
-            <div class="field full">
-                <label>Author Description</label>
-                <textarea name="description" rows="5" placeholder="Short biography about the author...">{{ $v('description') }}</textarea>
-            </div>
         </div>
     </div>
     
@@ -84,5 +110,38 @@
         <button type="submit" class="btn btn-primary">Save {{ $meta['singular'] }}</button>
     </div>
 </form>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        if (typeof tinymce !== 'undefined') {
+            tinymce.init({
+                ...window.tinyMceUploadConfig,
+                selector: 'textarea[name="description"]',
+                height: 300,
+                plugins: 'code advlist autolink lists link charmap preview searchreplace visualblocks wordcount',
+                toolbar: 'undo redo | fontfamily fontsize blocks | bold italic underline strikethrough | forecolor backcolor | alignleft aligncenter alignright alignjustify | bullist numlist | link removeformat | code',
+                fontsize_formats: '10px 12px 13px 14px 15px 16px 18px 20px 22px 24px 28px 32px 36px',
+                branding: false,
+                promotion: false,
+                menubar: false,
+                content_style: 'body { font-family:"DM Sans",-apple-system,BlinkMacSystemFont,sans-serif; font-size:14px; line-height:1.6; color:#111; }',
+                setup: function (editor) {
+                    editor.on('change keyup', function () {
+                        editor.save();
+                    });
+                }
+            });
+        }
+
+        const form = document.querySelector('form.panel');
+        if (form) {
+            form.addEventListener('submit', function () {
+                if (typeof tinymce !== 'undefined') {
+                    tinymce.triggerSave();
+                }
+            });
+        }
+    });
+</script>
 
 @endsection

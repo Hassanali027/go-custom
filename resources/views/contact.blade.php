@@ -1,12 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="icon" href="{{ asset('uploads/go-custom-boxes-favicon.png') }}" type="image/png">
-    @include('components.canonical')
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Contact The Rigid Boxes for premium custom packaging solutions.">
-    <title>Contact Us</title>
+    <link rel="icon" href="{{ asset('uploads/go-custom-boxes-favicon.png') }}" type="image/png">
+
+    @php
+        $contactPageMeta = \Illuminate\Support\Facades\DB::table('admin_pages')
+            ->where('slug', 'contact-us')
+            ->orWhere('appearance', 'Contact')
+            ->orWhere('title', 'like', '%Contact%')
+            ->first();
+        $contactMetaTitle = !empty($contactPageMeta->meta_title) 
+            ? $contactPageMeta->meta_title 
+            : (!empty($contactPageMeta->title) ? $contactPageMeta->title . ' | Go Custom Boxes' : 'Contact Us | Go Custom Boxes');
+        $contactMetaDescription = !empty($contactPageMeta->meta_description) 
+            ? $contactPageMeta->meta_description 
+            : 'Contact Go Custom Boxes for high-quality custom printed boxes, wholesale packaging quotes, and specialist design support.';
+        $contactMetaKeywords = !empty($contactPageMeta->meta_keywords) 
+            ? $contactPageMeta->meta_keywords 
+            : 'contact go custom boxes, custom packaging quote, box manufacturer usa';
+        $contactRobots = !empty($contactPageMeta->robots) ? $contactPageMeta->robots : 'index,follow';
+    @endphp
+
+    <title>{{ $contactMetaTitle }}</title>
+    <meta name="description" content="{{ $contactMetaDescription }}">
+    @if(!empty($contactMetaKeywords))
+    <meta name="keywords" content="{{ $contactMetaKeywords }}">
+    @endif
+    <meta name="robots" content="{{ $contactRobots }}">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="{{ $contactMetaTitle }}">
+    <meta property="og:description" content="{{ $contactMetaDescription }}">
+    <meta property="og:url" content="{{ url('/contact-us') }}/">
+    <meta property="og:image" content="{{ asset('uploads/Home-Banner.webp') }}">
+    <meta property="og:site_name" content="Go Custom Boxes">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="{{ $contactMetaTitle }}">
+    <meta name="twitter:description" content="{{ $contactMetaDescription }}">
+    <meta name="twitter:image" content="{{ asset('uploads/Home-Banner.webp') }}">
+
+    @include('components.canonical')
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Open+Sans:wght@300;400;600;700;800;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
@@ -567,6 +605,22 @@
             </div>
         </section>
 
+        @php
+            $contactPage = \Illuminate\Support\Facades\DB::table('admin_pages')
+                ->where('slug', 'contact-us')
+                ->orWhere('appearance', 'Contact')
+                ->orWhere('title', 'like', '%Contact%')
+                ->first();
+            $contactFaqs = [];
+            if ($contactPage && isset($contactPage->faqs) && $contactPage->faqs !== null && $contactPage->faqs !== '') {
+                $contactFaqs = is_string($contactPage->faqs) ? (json_decode($contactPage->faqs, true) ?: []) : (array) $contactPage->faqs;
+            }
+            $contactFaqs = collect($contactFaqs)->filter(function($f) {
+                $f = (array) $f;
+                return trim((string)($f['question'] ?? ($f['q'] ?? ''))) !== '' && trim((string)($f['answer'] ?? ($f['a'] ?? ''))) !== '';
+            })->values()->all();
+        @endphp
+
         <!-- Map and FAQ Section -->
         <section class="map-faq-section">
             <div class="container map-faq-container">
@@ -578,20 +632,12 @@
                     <iframe id="contact-map" src="https://maps.google.com/maps?q=41.9980605,-87.6844075&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" title="LabelPouches Map"></iframe>
                 </div>
 
+                @if(count($contactFaqs) > 0)
                 <!-- FAQ Column -->
                 <div class="faq-column">
-                    @php
-                        $contactPage = \Illuminate\Support\Facades\DB::table('admin_pages')
-                            ->where('appearance', 'Contact')
-                            ->orWhere('title', 'like', '%Contact Us%')
-                            ->first();
-                        $contactFaqs = [];
-                        if ($contactPage && !empty($contactPage->faqs)) {
-                            $contactFaqs = json_decode($contactPage->faqs, true) ?: [];
-                        }
-                    @endphp
                     @include('components.product-faq', ['displayFaqs' => $contactFaqs])
                 </div>
+                @endif
             </div>
         </section>
 

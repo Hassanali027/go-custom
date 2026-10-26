@@ -41,7 +41,22 @@
                         <td class="searchable">/{{ $item['slug'] }}</td>
                         <td><span class="status">{{ ucfirst($item['status'] ?? 'draft') }}</span></td>
                         <td>{{ $item['updated_at'] ?? '' }}</td>
-                        <td style="display:flex;gap:0.4375rem">
+                        <td style="display:flex;gap:0.4375rem;align-items:center;">
+                            @php
+                                $liveUrl = null;
+                                if (!empty($item['slug'])) {
+                                    if ($module === 'blogs') {
+                                        $liveUrl = url('/blog/' . $item['slug']) . '/';
+                                    } elseif ($module === 'authors') {
+                                        $liveUrl = url('/author/' . $item['slug']) . '/';
+                                    } else {
+                                        $liveUrl = url('/' . $item['slug']) . '/';
+                                    }
+                                }
+                            @endphp
+                            @if($liveUrl)
+                                <a class="btn light" href="{{ $liveUrl }}" target="_blank" title="View live page in new tab" style="display:inline-flex;align-items:center;gap:0.25rem;"><i class="fa-solid fa-arrow-up-right-from-square"></i> View</a>
+                            @endif
                             <a class="btn light" href="{{ route('admin.module.edit', [$module, $item['id']]) }}">Edit</a>
                             <form method="post" action="{{ route('admin.module.destroy', [$module, $item['id']]) }}">
                                 @csrf 

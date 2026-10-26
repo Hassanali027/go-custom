@@ -11,6 +11,54 @@
     $resolveImg = fn($path) => empty($path) ? '' : (\Illuminate\Support\Str::startsWith($path, ['storage/', 'uploads/', 'images/']) ? asset($path) : asset('storage/' . $path));
 @endphp
 
+<style>
+    .custom-multiselect-container { position: relative; width: 100%; z-index: 50; }
+    .multiselect-trigger {
+        min-height: 3rem; padding: 0.5rem 0.875rem; background: #ffffff;
+        border: 0.0938rem solid #ddd8df; border-radius: 0.625rem;
+        display: flex; align-items: center; justify-content: space-between;
+        cursor: pointer; transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+    .multiselect-trigger:hover, .custom-multiselect-container.open .multiselect-trigger {
+        border-color: var(--primary); box-shadow: 0 0 0 3px rgba(255,180,0,0.16);
+    }
+    .selected-tags { display: flex; flex-wrap: wrap; gap: 0.375rem; align-items: center; flex: 1; margin-right: 0.625rem; }
+    .tag-chip {
+        background: var(--soft); color: var(--primary); font-size: 12px;
+        font-weight: 700; padding: 4px 10px; border-radius: 6px;
+        display: inline-flex; align-items: center; gap: 6px; border: 1px solid #f2d78e;
+    }
+    .tag-chip i { cursor: pointer; font-size: 0.6875rem; }
+    .tag-chip i:hover { color: var(--primary-dark); }
+    .dropdown-placeholder { color: var(--muted); font-size: 0.8125rem; font-weight: 500; }
+    .multiselect-dropdown {
+        display: none; position: absolute; top: calc(100% + 0.375rem); left: 0; right: 0;
+        background: #ffffff; border: 0.0938rem solid #ddd8df; border-radius: 0.75rem;
+        box-shadow: 0 0.75rem 2.1875rem rgba(0,0,0,0.18); z-index: 9999; padding: 0.75rem;
+    }
+    .custom-multiselect-container.open .multiselect-dropdown { display: block; }
+    .dropdown-search { position: relative; margin-bottom: 0.5rem; }
+    .dropdown-search input {
+        width: 100%; padding: 0.5625rem 0.75rem 0.5625rem 2.125rem; font-size: 0.8125rem;
+        border-radius: 0.5rem; border: 1px solid var(--line); background: #fbfafb;
+    }
+    .dropdown-search i.search-icon { position: absolute; left: 0.6875rem; top: 50%; transform: translateY(-50%); color: var(--muted); font-size: 0.75rem; }
+    .dropdown-actions {
+        display: flex; justify-content: space-between; padding: 0.25rem 0.375rem 0.5rem;
+        font-size: 0.6875rem; font-weight: 700; border-bottom: 1px solid var(--line); margin-bottom: 0.375rem;
+    }
+    .dropdown-actions span { color: var(--primary); cursor: pointer; }
+    .dropdown-actions span:hover { text-decoration: underline; }
+    .dropdown-options-list { max-height: 13.75rem; overflow-y: auto; display: flex; flex-direction: column; gap: 0.25rem; }
+    .dropdown-option-item {
+        display: flex; align-items: center; gap: 0.625rem; padding: 0.5rem 0.625rem;
+        border-radius: 0.375rem; cursor: pointer; transition: background 0.15s ease;
+        font-size: 0.8125rem; font-weight: 600; color: var(--text);
+    }
+    .dropdown-option-item:hover { background: var(--soft); }
+    .dropdown-option-item input[type="checkbox"] { width: 1rem; height: 1rem; accent-color: var(--primary); cursor: pointer; }
+</style>
+
 @if($errors->any())
     <div class="alert" style="background:#fff0f0; color:#9c2828">
         {{ $errors->first() }}
@@ -46,13 +94,13 @@
             </div>
             
             <div class="field">
-                <label>Featured Image</label>
+                <label>Featured Image *</label>
                 @if($editing && !empty($item['image']))
                     <div style="margin-bottom:0.5rem">
                         <img src="{{ $resolveImg($item['image']) }}" style="height:3.75rem; border-radius:0.25rem; border:1px solid #ddd">
                     </div>
                 @endif
-                <input type="file" name="image" accept="image/*">
+                <input type="file" name="image" accept="image/*" {{ !$editing || empty($item['image']) ? 'required' : '' }}>
             </div>
         </div>
     </div>
@@ -73,30 +121,7 @@
                 <label>Publish Date</label>
                 <input type="text" name="publish_date" value="{{ $v('publish_date') }}" placeholder="YYYY-MM-DD">
             </div>
-            
-            <div class="field">
-                <label>Category</label>
-                @php
-                    $blogCategory = strtolower(trim((string) $v('blog_category')));
-                    $blogCategory = [
-                        'packaging basics' => 'packaging',
-                        'marketing tips' => 'marketing',
-                        'sustainable packaging guide' => 'sustainability',
-                        'production & moq tips' => 'production',
-                        'design tips' => 'design',
-                        'industry specific studies' => 'industry',
-                    ][$blogCategory] ?? $blogCategory;
-                @endphp
-                <select name="blog_category">
-                    <option value="">Select a blog category</option>
-                    <option value="packaging" {{ $blogCategory === 'packaging' ? 'selected' : '' }}>Packaging Basics</option>
-                    <option value="marketing" {{ $blogCategory === 'marketing' ? 'selected' : '' }}>Marketing Tips</option>
-                    <option value="sustainability" {{ $blogCategory === 'sustainability' ? 'selected' : '' }}>Sustainable Packaging Guide</option>
-                    <option value="production" {{ $blogCategory === 'production' ? 'selected' : '' }}>Production &amp; MOQ Tips</option>
-                    <option value="design" {{ $blogCategory === 'design' ? 'selected' : '' }}>Design Tips</option>
-                    <option value="industry" {{ $blogCategory === 'industry' ? 'selected' : '' }}>Industry Specific Studies</option>
-                </select>
-            </div>
+
             
             <div class="field">
                 <label>Tags / Tag Cloud</label>
@@ -104,7 +129,7 @@
             </div>
             
             <div class="field full">
-                <label>Excerpt</label>
+                <label>Hero Description</label>
                 <textarea name="excerpt">{{ $v('excerpt') }}</textarea>
             </div>
 
@@ -125,6 +150,105 @@
             </div>
         </div>
     </div>
+
+    <div class="section" style="overflow:visible; position:relative; z-index:25;">
+        <div style="margin-bottom: 0.9375rem;">
+            <h3 style="margin-bottom: 0.25rem;">Related Blog Posts</h3>
+            <small style="color: var(--muted); font-size: 0.8125rem;">Select specific blog posts to be displayed in the "Related Blogs" section on this blog post's page on the website. If no blogs are selected or if all are cleared, no related blogs section will be displayed.</small>
+        </div>
+        <div class="form-grid" style="overflow:visible;">
+            <div class="field full" style="overflow:visible; position:relative; z-index:20;">
+                <label>Related Blogs</label>
+                @php
+                    $editingRelatedIds = [];
+                    if ($editing && !empty($item['related'])) {
+                        $rel = is_string($item['related']) ? json_decode($item['related'], true) : $item['related'];
+                        $editingRelatedIds = array_map('intval', (array) ($rel ?? []));
+                    }
+                    if (old('related') !== null) {
+                        $editingRelatedIds = array_map('intval', (array) old('related'));
+                    }
+                @endphp
+                <div class="custom-multiselect-container" id="blogMultiselect">
+                    <div class="multiselect-trigger" onclick="toggleDropdown('blogMultiselect')">
+                        <div class="selected-tags" id="blogSelectedTags"></div>
+                        <i class="fa-solid fa-chevron-down" style="font-size:0.75rem; color:var(--muted);"></i>
+                    </div>
+                    <div class="multiselect-dropdown">
+                        <div class="dropdown-search">
+                            <i class="fa-solid fa-magnifying-glass search-icon"></i>
+                            <input type="text" placeholder="Search blog posts..." onkeyup="filterOptions(this, 'blogOptionsList')">
+                        </div>
+                        <div class="dropdown-actions">
+                            <span onclick="selectAllOptions('blogMultiselect', true)">Select All</span>
+                            <span onclick="selectAllOptions('blogMultiselect', false)">Clear All</span>
+                        </div>
+                        <div class="dropdown-options-list" id="blogOptionsList">
+                            @foreach($blogs ?? [] as $b)
+                                @if(!$editing || empty($item['id']) || $b['id'] != ($item['id'] ?? null))
+                                <label class="dropdown-option-item">
+                                    <input type="checkbox" name="related[]" value="{{ $b['id'] }}"
+                                        data-title="{{ $b['title'] }}"
+                                        {{ in_array((int)$b['id'], $editingRelatedIds, true) ? 'checked' : '' }}
+                                        onchange="updateMultiselectDisplay('blogMultiselect')">
+                                    <span>{{ $b['title'] }}</span>
+                                </label>
+                                @endif
+                            @endforeach
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.9375rem; flex-wrap: wrap; gap: 0.5rem;">
+            <div>
+                <h3 style="margin-bottom: 0.25rem;">Blog FAQs</h3>
+                <small style="color: var(--muted); font-size: 0.8125rem;">Add or remove frequently asked questions for this blog post. If all FAQs are removed, the FAQ section will not be shown on the blog page.</small>
+            </div>
+            <button type="button" onclick="addFaqRow()" class="btn light" style="padding: 0.375rem 0.75rem; font-size: 0.8125rem; white-space: nowrap;"><i class="fa-solid fa-plus"></i> Add FAQ</button>
+        </div>
+        <div class="form-grid" id="faqsContainer">
+            @php
+                $oldQuestions = old('faq_question');
+                $oldAnswers = old('faq_answer');
+                $hasOld = is_array($oldQuestions);
+                
+                $initialFaqs = [];
+                if ($hasOld) {
+                    foreach ($oldQuestions as $idx => $q) {
+                        $initialFaqs[] = [
+                            'question' => $q,
+                            'answer' => $oldAnswers[$idx] ?? '',
+                        ];
+                    }
+                } elseif (!empty($blogFaqs)) {
+                    $initialFaqs = $blogFaqs;
+                }
+            @endphp
+
+            <div id="noFaqsMessage" style="grid-column: 1 / -1; color: var(--muted); padding: 0.75rem 0; font-size: 0.875rem; {{ count($initialFaqs) > 0 ? 'display: none;' : '' }}">
+                No FAQs added yet for this blog post. Click "<strong>+ Add FAQ</strong>" above to add one.
+            </div>
+
+            @foreach($initialFaqs as $i => $faq)
+                <div class="field faq-question-field">
+                    <label class="faq-q-label">Question {{ $i + 1 }}</label>
+                    <input name="faq_question[]" value="{{ $faq['question'] ?? ($faq['q'] ?? '') }}" placeholder="Enter question">
+                </div>
+                <div class="field faq-answer-field">
+                    <label class="faq-a-label">Answer {{ $i + 1 }}</label>
+                    <div style="display: flex; gap: 0.625rem; align-items: flex-start;">
+                        <textarea name="faq_answer[]" style="min-height:4.375rem; flex: 1;" placeholder="Enter answer">{{ $faq['answer'] ?? ($faq['a'] ?? '') }}</textarea>
+                        <button type="button" onclick="removeFaqRow(this)" style="background: none; border: none; color: #e74c3c; cursor: pointer; padding: 0.3125rem; margin-top: 0.3125rem; font-size: 1rem;" title="Remove FAQ"><i class="fa-solid fa-trash"></i></button>
+                    </div>
+                </div>
+            @endforeach
+        </div>
+    </div>
+
     <div class="section">
         <h3>SEO & Search Visibility</h3>
         <div class="form-grid">
@@ -176,6 +300,9 @@
 
     <div class="actions">
         <a class="btn light" href="{{ route('admin.module.index', $module) }}">Cancel</a>
+        @if($editing && !empty($item['slug']))
+            <a class="btn light" href="{{ url('/blog/' . $item['slug']) }}/" target="_blank" style="margin-right: auto; display: inline-flex; align-items: center; gap: 0.375rem;"><i class="fa-solid fa-arrow-up-right-from-square"></i> View Live Blog</a>
+        @endif
         <button class="btn" type="submit">Save {{ $meta['singular'] }}</button>
     </div>
 </form>
@@ -192,7 +319,7 @@
                 block_formats: 'Paragraph=p; Heading 1=h1; Heading 2=h2; Heading 3=h3; Heading 4=h4; Heading 5=h5; Heading 6=h6; Preformatted=pre',
                 branding: false,
                 promotion: false,
-                content_style: 'body { font-family:"DM Sans",sans-serif; font-size:0.875rem; line-height:1.6; }'
+                content_style: 'body { font-family:"DM Sans",sans-serif; font-size:0.875rem; line-height:1.6; } a { color: #0A2240 !important; text-decoration: underline !important; text-underline-offset: 2px; }'
             });
             // Keep the full article editor taller while the short rich-text fields stay compact.
             ['excerpt', 'key_takeaways', 'author_description'].forEach(function (name) {
@@ -201,5 +328,124 @@
             });
         }
     });
+
+    function updateFaqLabels() {
+        const container = document.getElementById('faqsContainer');
+        const qFields = container.querySelectorAll('.faq-question-field');
+        const aFields = container.querySelectorAll('.faq-answer-field');
+        const emptyMsg = document.getElementById('noFaqsMessage');
+
+        qFields.forEach((field, idx) => {
+            const lbl = field.querySelector('.faq-q-label');
+            if (lbl) lbl.innerText = 'Question ' + (idx + 1);
+        });
+
+        aFields.forEach((field, idx) => {
+            const lbl = field.querySelector('.faq-a-label');
+            if (lbl) lbl.innerText = 'Answer ' + (idx + 1);
+        });
+
+        if (emptyMsg) {
+            emptyMsg.style.display = qFields.length === 0 ? 'block' : 'none';
+        }
+    }
+
+    function addFaqRow() {
+        const container = document.getElementById('faqsContainer');
+        const count = container.querySelectorAll('.faq-question-field').length;
+        const newIndex = count + 1;
+        
+        const qField = document.createElement('div');
+        qField.className = 'field faq-question-field';
+        qField.innerHTML = `<label class="faq-q-label">Question ${newIndex}</label><input name="faq_question[]" value="" placeholder="Enter question">`;
+        
+        const aField = document.createElement('div');
+        aField.className = 'field faq-answer-field';
+        aField.innerHTML = `
+            <label class="faq-a-label">Answer ${newIndex}</label>
+            <div style="display: flex; gap: 0.625rem; align-items: flex-start;">
+                <textarea name="faq_answer[]" style="min-height:4.375rem; flex: 1;" placeholder="Enter answer"></textarea>
+                <button type="button" onclick="removeFaqRow(this)" style="background: none; border: none; color: #e74c3c; cursor: pointer; padding: 0.3125rem; margin-top: 0.3125rem; font-size: 1rem;" title="Remove FAQ"><i class="fa-solid fa-trash"></i></button>
+            </div>
+        `;
+        
+        container.appendChild(qField);
+        container.appendChild(aField);
+        updateFaqLabels();
+    }
+
+    function removeFaqRow(btn) {
+        const aField = btn.closest('.faq-answer-field');
+        if (!aField) return;
+        const qField = aField.previousElementSibling;
+        if (qField && qField.classList.contains('faq-question-field')) {
+            qField.remove();
+        }
+        aField.remove();
+        updateFaqLabels();
+    }
+
+    document.addEventListener('DOMContentLoaded', function () {
+        updateMultiselectDisplay('blogMultiselect');
+    });
+
+    function toggleDropdown(containerId) {
+        const container = document.getElementById(containerId);
+        if (!container) return;
+        const isOpen = container.classList.contains('open');
+        document.querySelectorAll('.custom-multiselect-container').forEach(c => c.classList.remove('open'));
+        if (!isOpen) container.classList.add('open');
+    }
+
+    document.addEventListener('click', function (e) {
+        if (!e.target.closest('.custom-multiselect-container')) {
+            document.querySelectorAll('.custom-multiselect-container').forEach(c => c.classList.remove('open'));
+        }
+    });
+
+    function updateMultiselectDisplay(containerId) {
+        const container = document.getElementById(containerId);
+        if (!container) return;
+        const tagsBox = container.querySelector('.selected-tags');
+        const checkedInputs = container.querySelectorAll('.dropdown-options-list input[type="checkbox"]:checked');
+        tagsBox.innerHTML = '';
+        if (checkedInputs.length === 0) {
+            tagsBox.innerHTML = '<span class="dropdown-placeholder">Click to select related blogs...</span>';
+        } else {
+            checkedInputs.forEach(cb => {
+                const title = cb.getAttribute('data-title');
+                const val = cb.value;
+                const chip = document.createElement('span');
+                chip.className = 'tag-chip';
+                chip.innerHTML = `${title} <i class="fa-solid fa-xmark" onclick="event.stopPropagation(); uncheckOption('${containerId}', '${val}')"></i>`;
+                tagsBox.appendChild(chip);
+            });
+        }
+    }
+
+    function uncheckOption(containerId, val) {
+        const container = document.getElementById(containerId);
+        if (!container) return;
+        const cb = container.querySelector(`input[value="${val}"]`);
+        if (cb) { cb.checked = false; updateMultiselectDisplay(containerId); }
+    }
+
+    function filterOptions(searchInput, listId) {
+        const filter = searchInput.value.toLowerCase();
+        const list = document.getElementById(listId);
+        if (!list) return;
+        list.querySelectorAll('.dropdown-option-item').forEach(item => {
+            item.style.display = item.textContent.toLowerCase().includes(filter) ? 'flex' : 'none';
+        });
+    }
+
+    function selectAllOptions(containerId, selectAll) {
+        const container = document.getElementById(containerId);
+        if (!container) return;
+        container.querySelectorAll('.dropdown-options-list input[type="checkbox"]').forEach(cb => {
+            if (cb.closest('.dropdown-option-item').style.display !== 'none') cb.checked = selectAll;
+        });
+        updateMultiselectDisplay(containerId);
+    }
 </script>
 @endsection

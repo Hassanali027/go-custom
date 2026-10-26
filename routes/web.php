@@ -27,7 +27,10 @@ Route::get('/', function () {
     $recentBlogs = DB::table('admin_blogs')
         ->leftJoin('admin_authors', 'admin_blogs.author_id', '=', 'admin_authors.id')
         ->select('admin_blogs.*', 'admin_authors.title as author_name', 'admin_authors.slug as author_slug')
-        ->where('admin_blogs.status', 'published')->limit(4)->get();
+        ->where('admin_blogs.status', 'published')
+        ->whereNotNull('admin_blogs.image')
+        ->where('admin_blogs.image', '!=', '')
+        ->limit(4)->get();
     return view('homepage', compact('settings', 'categories', 'products', 'recentBlogs'));
 });
 
@@ -54,8 +57,13 @@ Route::get('/search', function (\Illuminate\Http\Request $request) {
             ->get()->map(fn($r)=>(array)$r)->all();
             
         $blogs = DB::table('admin_blogs')
-            ->where('title', 'like', "%{$q}%")
-            ->orWhere('content', 'like', "%{$q}%")
+            ->where(function($bQuery) use ($q) {
+                $bQuery->where('title', 'like', "%{$q}%")
+                       ->orWhere('content', 'like', "%{$q}%");
+            })
+            ->where('status', 'published')
+            ->whereNotNull('image')
+            ->where('image', '!=', '')
             ->get()->map(fn($r)=>(array)$r)->all();
             
         $totalCount = count($products) + count($categories) + count($blogs);
@@ -131,40 +139,155 @@ Route::get('/blog', function () {
         ->leftJoin('admin_authors', 'admin_blogs.author_id', '=', 'admin_authors.id')
         ->select('admin_blogs.*', 'admin_authors.title as author_name', 'admin_authors.image as author_image', 'admin_authors.slug as author_slug')
         ->where('admin_blogs.status', 'published')
+        ->whereNotNull('admin_blogs.image')
+        ->where('admin_blogs.image', '!=', '')
+        ->orderByDesc('admin_blogs.id')
         ->get()->map(fn($r) => (array) $r)->all();
     return view('blog', compact('blogs'));
 });
 
-Route::get('/blog-detail', function () {
+Route::get('/blog-detail', function (Illuminate\Http\Request $request) {
+    $slug = $request->query('slug');
+    if (!$slug) {
+        abort(404);
+    }
     $blog = DB::table('admin_blogs')
         ->leftJoin('admin_authors', 'admin_blogs.author_id', '=', 'admin_authors.id')
-        ->select('admin_blogs.*', 'admin_authors.title as author_name', 'admin_authors.image as author_image', 'admin_authors.description as author_description', 'admin_authors.facebook as author_facebook', 'admin_authors.twitter as author_twitter', 'admin_authors.linkedin as author_linkedin', 'admin_authors.slug as author_slug')
-        ->where('admin_blogs.status', 'published')->first();
-    $blog = $blog ? (array) $blog : [];
-    $recentBlogs = DB::table('admin_blogs')
-        ->leftJoin('admin_authors', 'admin_blogs.author_id', '=', 'admin_authors.id')
-        ->select('admin_blogs.*', 'admin_authors.title as author_name', 'admin_authors.slug as author_slug')
-        ->where('admin_blogs.status', 'published')->limit(4)->get();
-    return view('blog-detail', compact('blog', 'recentBlogs'));
+        ->select(
+            'admin_blogs.*',
+            'admin_authors.title as author_name',
+            'admin_authors.title as joined_author_name',
+            'admin_authors.designation as author_designation',
+            'admin_authors.designation as joined_author_designation',
+            'admin_authors.bio as author_bio',
+            'admin_authors.bio as joined_author_bio',
+            'admin_authors.toc_title as author_toc_title',
+            'admin_authors.toc_title as joined_author_toc_title',
+            'admin_authors.image as author_image',
+            'admin_authors.image as joined_author_image',
+            'admin_authors.description as author_description',
+            'admin_authors.description as joined_author_desc',
+            'admin_authors.facebook as author_facebook',
+            'admin_authors.facebook as joined_author_facebook',
+            'admin_authors.twitter as author_twitter',
+            'admin_authors.twitter as joined_author_twitter',
+            'admin_authors.linkedin as author_linkedin',
+            'admin_authors.linkedin as joined_author_linkedin',
+            'admin_authors.slug as author_slug',
+            'admin_authors.slug as joined_author_slug'
+        )
+        ->where('admin_blogs.slug', $slug)
+        ->first();
+    if (!$blog) {
+        abort(404);
+    }
+    if (($blog->status ?? 'published') !== 'published' && !Illuminate\Support\Facades\Auth::check() && !session('admin_logged_in')) {
+        abort(404);
+    }
+    $blog = (array) $blog;
+    $currentId = $blog['id'] ?? null;
+    $relatedIds = [];
+    if (!empty($blog['related'])) {
+        $decoded = is_string($blog['related']) ? json_decode($blog['related'], true) : $blog['related'];
+        $relatedIds = array_values(array_filter(array_map('intval', (array) ($decoded ?? []))));
+    }
+
+    $recentBlogs = collect();
+    if (!empty($relatedIds)) {
+        $explicitQuery = DB::table('admin_blogs')
+            ->leftJoin('admin_authors', 'admin_blogs.author_id', '=', 'admin_authors.id')
+            ->select('admin_blogs.*', 'admin_authors.title as joined_author_name', 'admin_authors.title as author_name', 'admin_authors.slug as joined_author_slug', 'admin_authors.slug as author_slug')
+            ->whereIn('admin_blogs.id', $relatedIds)
+            ->where('admin_blogs.status', 'published')
+            ->whereNotNull('admin_blogs.image')
+            ->where('admin_blogs.image', '!=', '');
+        if ($currentId) {
+            $explicitQuery->where('admin_blogs.id', '!=', $currentId);
+        }
+        $fetched = $explicitQuery->get()->keyBy('id');
+        foreach ($relatedIds as $rid) {
+            if (isset($fetched[$rid])) {
+                $recentBlogs->push($fetched[$rid]);
+            }
+        }
+    }
+
+    $faqs = [];
+    if (isset($blog['faqs']) && $blog['faqs'] !== null && $blog['faqs'] !== '') {
+        $faqs = is_string($blog['faqs']) ? (json_decode($blog['faqs'], true) ?: []) : (array) $blog['faqs'];
+    }
+    $blogFaqs = $faqs;
+    return view('blog-detail', compact('blog', 'recentBlogs', 'faqs', 'blogFaqs'));
 });
 
 Route::get('/blog/{slug}', function ($slug) {
     $blog = DB::table('admin_blogs')
         ->leftJoin('admin_authors', 'admin_blogs.author_id', '=', 'admin_authors.id')
-        ->select('admin_blogs.*', 'admin_authors.title as joined_author_name', 'admin_authors.image as joined_author_image', 'admin_authors.description as joined_author_desc', 'admin_authors.facebook as joined_author_facebook', 'admin_authors.twitter as joined_author_twitter', 'admin_authors.linkedin as joined_author_linkedin', 'admin_authors.slug as joined_author_slug')
-        ->where('admin_blogs.slug', $slug)->first();
+        ->select(
+            'admin_blogs.*',
+            'admin_authors.title as author_name',
+            'admin_authors.title as joined_author_name',
+            'admin_authors.designation as author_designation',
+            'admin_authors.designation as joined_author_designation',
+            'admin_authors.bio as author_bio',
+            'admin_authors.bio as joined_author_bio',
+            'admin_authors.toc_title as author_toc_title',
+            'admin_authors.toc_title as joined_author_toc_title',
+            'admin_authors.image as author_image',
+            'admin_authors.image as joined_author_image',
+            'admin_authors.description as author_description',
+            'admin_authors.description as joined_author_desc',
+            'admin_authors.facebook as author_facebook',
+            'admin_authors.facebook as joined_author_facebook',
+            'admin_authors.twitter as author_twitter',
+            'admin_authors.twitter as joined_author_twitter',
+            'admin_authors.linkedin as author_linkedin',
+            'admin_authors.linkedin as joined_author_linkedin',
+            'admin_authors.slug as author_slug',
+            'admin_authors.slug as joined_author_slug'
+        )
+        ->where('admin_blogs.slug', $slug)
+        ->first();
     if (!$blog) {
-        $blog = DB::table('admin_blogs')
-            ->leftJoin('admin_authors', 'admin_blogs.author_id', '=', 'admin_authors.id')
-            ->select('admin_blogs.*', 'admin_authors.title as joined_author_name', 'admin_authors.image as joined_author_image', 'admin_authors.description as joined_author_desc', 'admin_authors.facebook as joined_author_facebook', 'admin_authors.twitter as joined_author_twitter', 'admin_authors.linkedin as joined_author_linkedin', 'admin_authors.slug as joined_author_slug')
-            ->where('admin_blogs.status', 'published')->first();
+        abort(404);
     }
-    $blog = $blog ? (array) $blog : [];
-    $recentBlogs = DB::table('admin_blogs')
-        ->leftJoin('admin_authors', 'admin_blogs.author_id', '=', 'admin_authors.id')
-        ->select('admin_blogs.*', 'admin_authors.title as joined_author_name', 'admin_authors.slug as joined_author_slug')
-        ->where('admin_blogs.status', 'published')->limit(4)->get();
-    return view('blog-detail', compact('blog', 'recentBlogs'));
+    if (($blog->status ?? 'published') !== 'published' && !Illuminate\Support\Facades\Auth::check() && !session('admin_logged_in')) {
+        abort(404);
+    }
+    $blog = (array) $blog;
+    $currentId = $blog['id'] ?? null;
+    $relatedIds = [];
+    if (!empty($blog['related'])) {
+        $decoded = is_string($blog['related']) ? json_decode($blog['related'], true) : $blog['related'];
+        $relatedIds = array_values(array_filter(array_map('intval', (array) ($decoded ?? []))));
+    }
+
+    $recentBlogs = collect();
+    if (!empty($relatedIds)) {
+        $explicitQuery = DB::table('admin_blogs')
+            ->leftJoin('admin_authors', 'admin_blogs.author_id', '=', 'admin_authors.id')
+            ->select('admin_blogs.*', 'admin_authors.title as joined_author_name', 'admin_authors.title as author_name', 'admin_authors.slug as joined_author_slug', 'admin_authors.slug as author_slug')
+            ->whereIn('admin_blogs.id', $relatedIds)
+            ->where('admin_blogs.status', 'published')
+            ->whereNotNull('admin_blogs.image')
+            ->where('admin_blogs.image', '!=', '');
+        if ($currentId) {
+            $explicitQuery->where('admin_blogs.id', '!=', $currentId);
+        }
+        $fetched = $explicitQuery->get()->keyBy('id');
+        foreach ($relatedIds as $rid) {
+            if (isset($fetched[$rid])) {
+                $recentBlogs->push($fetched[$rid]);
+            }
+        }
+    }
+
+    $faqs = [];
+    if (isset($blog['faqs']) && $blog['faqs'] !== null && $blog['faqs'] !== '') {
+        $faqs = is_string($blog['faqs']) ? (json_decode($blog['faqs'], true) ?: []) : (array) $blog['faqs'];
+    }
+    $blogFaqs = $faqs;
+    return view('blog-detail', compact('blog', 'recentBlogs', 'faqs', 'blogFaqs'));
 });
 
 Route::get('/author/{slug?}', function ($slug = null) {
@@ -193,6 +316,8 @@ Route::get('/author/{slug?}', function ($slug = null) {
             ->select('admin_blogs.*', 'admin_authors.title as author_name', 'admin_authors.image as author_image', 'admin_authors.slug as author_slug')
             ->where('admin_blogs.author_id', $author['id'])
             ->where('admin_blogs.status', 'published')
+            ->whereNotNull('admin_blogs.image')
+            ->where('admin_blogs.image', '!=', '')
             ->get()->map(fn($r) => (array) $r)->all();
     }
 

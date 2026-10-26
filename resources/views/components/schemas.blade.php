@@ -314,7 +314,7 @@
             'name' => $schemaAuthor['title'] ?? $schemaPageName,
             'url' => $schemaPageUrl,
             'image' => $schemaImageUrl($schemaAuthor['image'] ?? null),
-            'description' => trim(strip_tags($schemaAuthor['description'] ?? '')),
+            'description' => trim(strip_tags(!empty($schemaAuthor['bio']) ? $schemaAuthor['bio'] : ($schemaAuthor['description'] ?? ''))),
             'worksFor' => ['@id' => $schemaOrganizationId],
         ], fn ($value) => $value !== null && $value !== '');
         $schemaGraph[$schemaWebPageIndex]['mainEntity'] = ['@id' => $schemaPersonId];

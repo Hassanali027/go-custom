@@ -275,7 +275,7 @@
         }
 
         .blog-card__image {
-            height: 13.125rem;
+            height: auto;
         }
 
         .blog-card__content {

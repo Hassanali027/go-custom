@@ -56,6 +56,7 @@ class AdminContentController extends Controller
             'meta' => $this->modules()[$module],
             'categories' => $data['categories'],
             'products' => $data['products'],
+            'blogs' => $data['blogs'],
             'authors' => $data['authors'],
         ];
 
@@ -79,6 +80,12 @@ class AdminContentController extends Controller
                 ->all();
         } else {
             $formData['productFaqs'] = [];
+        }
+
+        if ($module === 'blogs' && !empty($item['faqs'])) {
+            $formData['blogFaqs'] = is_string($item['faqs']) ? (json_decode($item['faqs'], true) ?: []) : (array) $item['faqs'];
+        } else {
+            $formData['blogFaqs'] = [];
         }
 
         return $formData;
@@ -117,21 +124,32 @@ class AdminContentController extends Controller
 
     private function persist(Request $request, string $module, string $id)
     {
-        $request->validate([
-            'title' => 'required|string|max:255',
-            'slug' => 'nullable|string|max:255',
-            'schema' => 'nullable|string|max:50000',
-            'hero_description' => 'nullable|string',
-        ]);
         $table = ['products'=>'admin_products','categories'=>'admin_categories','blogs'=>'admin_blogs','pages'=>'admin_pages','authors'=>'admin_authors'][$module];
         $columns = [
             'products' => ['title','slug','status','show_home','show_as_custom_box','image','nav_image','images','description','long_description','alt_text','box_style','material','printing','finishing','dimensions','moq','turnaround','meta_title','meta_description','meta_keywords','robots','schema','related'],
             'categories' => ['title','slug','status','parent_id','is_nav_group','show_in_nav','show_home','image','icon','hero_image','banner_image','hero_title','hero_badge','hero_description','description','products_heading','products_description','feature_title','why_choose_title','why_choose_description','feature_sections','meta_title','meta_description','meta_keywords','robots','schema'],
-            'blogs' => ['title','slug','status','show_home','image','author_id','author_name','publish_date','blog_category','tags','excerpt','key_takeaways','content','author_description','alt_text','meta_title','meta_description','meta_keywords','robots','schema'],
+            'blogs' => ['title','slug','status','show_home','image','author_id','author_name','publish_date','blog_category','tags','excerpt','key_takeaways','content','toc_title','author_description','author_bio','alt_text','meta_title','meta_description','meta_keywords','robots','schema','faqs','related'],
             'pages' => ['title','slug','status','show_home','image','heading','content','position','appearance','alt_text','meta_title','meta_description','meta_keywords','robots','schema'],
-            'authors' => ['title','slug','status','description','image','facebook','twitter','linkedin'],
+            'authors' => ['title','slug','status','designation','bio','toc_title','description','image','facebook','twitter','linkedin'],
         ][$module];
         $existing = ctype_digit((string)$id) ? DB::table($table)->where('id',(int)$id)->first() : null;
+
+        $rules = [
+            'title' => 'required|string|max:255',
+            'slug' => 'nullable|string|max:255',
+            'schema' => 'nullable|string|max:50000',
+            'hero_description' => 'nullable|string',
+        ];
+
+        if ($module === 'blogs') {
+            if (!$existing || empty($existing->image) || $request->input('remove_image') == '1') {
+                $rules['image'] = 'required|file|image';
+            } else {
+                $rules['image'] = 'nullable|file|image';
+            }
+        }
+
+        $request->validate($rules);
         $fields = $columns;
         $payload = collect($request->except(['_token','_method','images','existing_images','image','nav_image','hero_image','banner_image','icon','categories','related','faq_question','faq_answer']))->only($fields)->all();
         \Log::info('AdminContentController payload for ' . $module, $payload);
@@ -151,9 +169,23 @@ class AdminContentController extends Controller
             }
         }
 
-        if ($module === 'products') {
+        if ($module === 'products' || $module === 'blogs') {
             // `related` is excluded above with other array inputs, so explicitly persist it as JSON below.
             $payload['related'] = array_map('intval', (array) $request->input('related', []));
+        }
+
+        if ($module === 'blogs') {
+            $faqs = [];
+            $faqQuestions = (array) $request->input('faq_question', []);
+            $faqAnswers = (array) $request->input('faq_answer', []);
+            foreach ($faqQuestions as $i => $q) {
+                $q = trim((string) $q);
+                $a = trim((string) ($faqAnswers[$i] ?? ''));
+                if ($q !== '' || $a !== '') {
+                    $faqs[] = ['question' => $q, 'answer' => $a];
+                }
+            }
+            $payload['faqs'] = json_encode($faqs, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
         }
 
         if ($module === 'categories') {
@@ -238,17 +270,81 @@ class AdminContentController extends Controller
             $payload['images'] = json_encode(array_values(array_merge($existingImages, $newImages)));
         }
         foreach (['images','related'] as $jsonField) if (array_key_exists($jsonField,$payload) && is_array($payload[$jsonField])) $payload[$jsonField] = json_encode($payload[$jsonField]);
-        if ($existing) DB::table($table)->where('id',$existing->id)->update($payload); else { $payload['created_at']=now(); $id=DB::table($table)->insertGetId($payload); }
-        if ($module==='products') { DB::table('admin_category_product')->where('product_id',$id)->delete(); foreach((array)$request->input('categories',[]) as $cat) if($cat) DB::table('admin_category_product')->insert(['product_id'=>$id,'category_id'=>$cat]); DB::table('admin_product_faqs')->where('product_id',$id)->delete(); foreach((array)$request->input('faq_question',[]) as $i=>$q) if($q && !empty($request->input('faq_answer')[$i]??'')) DB::table('admin_product_faqs')->insert(['product_id'=>$id,'question'=>$q,'answer'=>$request->input('faq_answer')[$i],'created_at'=>now(),'updated_at'=>now()]); }
-        if ($module==='categories') { DB::table('admin_category_faqs')->where('category_id',$id)->delete(); foreach((array)$request->input('faq_question',[]) as $i=>$q) if($q && !empty($request->input('faq_answer')[$i]??'')) DB::table('admin_category_faqs')->insert(['category_id'=>$id,'question'=>$q,'answer'=>$request->input('faq_answer')[$i],'created_at'=>now(),'updated_at'=>now()]); }
-        if ($module==='pages') { 
+        if ($existing) {
+            DB::table($table)->where('id', $existing->id)->update($payload);
+            $targetId = $existing->id;
+        } else {
+            $payload['created_at'] = now();
+            $targetId = DB::table($table)->insertGetId($payload);
+        }
+
+        if ($module === 'products') {
+            DB::table('admin_category_product')->where('product_id', $targetId)->delete();
+            foreach ((array) $request->input('categories', []) as $cat) {
+                if ($cat) {
+                    DB::table('admin_category_product')->insert(['product_id' => $targetId, 'category_id' => $cat]);
+                }
+            }
+            DB::table('admin_product_faqs')->where('product_id', $targetId)->delete();
+            $faqQuestions = (array) $request->input('faq_question', []);
+            $faqAnswers = (array) $request->input('faq_answer', []);
+            foreach ($faqQuestions as $i => $q) {
+                $q = trim((string) $q);
+                $a = trim((string) ($faqAnswers[$i] ?? ''));
+                if ($q !== '' || $a !== '') {
+                    DB::table('admin_product_faqs')->insert([
+                        'product_id' => $targetId,
+                        'question' => $q,
+                        'answer' => $a,
+                        'created_at' => now(),
+                        'updated_at' => now(),
+                    ]);
+                }
+            }
+        }
+        if ($module === 'categories') {
+            DB::table('admin_category_faqs')->where('category_id', $targetId)->delete();
+            $faqQuestions = (array) $request->input('faq_question', []);
+            $faqAnswers = (array) $request->input('faq_answer', []);
+            foreach ($faqQuestions as $i => $q) {
+                $q = trim((string) $q);
+                $a = trim((string) ($faqAnswers[$i] ?? ''));
+                if ($q !== '' || $a !== '') {
+                    DB::table('admin_category_faqs')->insert([
+                        'category_id' => $targetId,
+                        'question' => $q,
+                        'answer' => $a,
+                        'created_at' => now(),
+                        'updated_at' => now(),
+                    ]);
+                }
+            }
+        }
+        if ($module === 'pages') { 
             $faqs = []; 
-            foreach((array)$request->input('faq_question',[]) as $i=>$q) { 
-                if($q && !empty($request->input('faq_answer')[$i]??'')) { 
-                    $faqs[] = ['question' => $q, 'answer' => $request->input('faq_answer')[$i]]; 
+            $faqQuestions = (array) $request->input('faq_question', []);
+            $faqAnswers = (array) $request->input('faq_answer', []);
+            foreach ($faqQuestions as $i => $q) { 
+                $q = trim((string) $q);
+                $a = trim((string) ($faqAnswers[$i] ?? ''));
+                if ($q !== '' && $a !== '') { 
+                    $faqs[] = ['question' => $q, 'answer' => $a]; 
                 } 
             } 
-            DB::table('admin_pages')->where('id', $existing ? $existing->id : $id)->update(['faqs' => json_encode($faqs)]); 
+            DB::table('admin_pages')->where('id', $targetId)->update(['faqs' => json_encode($faqs)]); 
+        }
+        if ($module === 'blogs') { 
+            $faqs = []; 
+            $faqQuestions = (array) $request->input('faq_question', []);
+            $faqAnswers = (array) $request->input('faq_answer', []);
+            foreach ($faqQuestions as $i => $q) { 
+                $q = trim((string) $q);
+                $a = trim((string) ($faqAnswers[$i] ?? ''));
+                if ($q !== '' || $a !== '') { 
+                    $faqs[] = ['question' => $q, 'answer' => $a]; 
+                } 
+            } 
+            DB::table('admin_blogs')->where('id', $targetId)->update(['faqs' => json_encode($faqs, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES)]); 
         }
         return redirect()->route('admin.module.index', $module)->with('success', $this->modules()[$module]['singular'].' saved successfully.');
     }
@@ -256,7 +352,12 @@ class AdminContentController extends Controller
     public function destroy(string $module, string $id)
     {
         abort_unless(isset($this->modules()[$module]), 404);
-        $table = ['products'=>'admin_products','categories'=>'admin_categories','blogs'=>'admin_blogs','pages'=>'admin_pages','authors'=>'admin_authors'][$module]; DB::table($table)->where('id',$id)->delete();
+        if ($module === 'products') {
+            DB::table('admin_product_faqs')->where('product_id', $id)->delete();
+            DB::table('admin_category_product')->where('product_id', $id)->delete();
+        }
+        $table = ['products'=>'admin_products','categories'=>'admin_categories','blogs'=>'admin_blogs','pages'=>'admin_pages','authors'=>'admin_authors'][$module];
+        DB::table($table)->where('id', $id)->delete();
         return back()->with('success', 'Item deleted successfully.');
     }
 }

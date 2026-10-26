@@ -366,11 +366,13 @@
                     <div class="blog-list">
                         @foreach($blogs as $blog)
                             @php
-                                $bImg = !empty($blog['image']) ? $blog['image'] : 'images/placeholder.jpg';
-                                $bImgUrl = \Illuminate\Support\Str::startsWith($bImg, ['storage/', 'uploads/', 'images/']) ? asset($bImg) : asset('storage/' . $bImg);
+                                $bImg = !empty($blog['image']) ? $blog['image'] : null;
+                                $bImgUrl = $bImg ? (\Illuminate\Support\Str::startsWith($bImg, ['storage/', 'uploads/', 'images/']) ? asset($bImg) : asset('storage/' . $bImg)) : null;
                             @endphp
                             <a href="{{ url('/blog/' . $blog['slug']) }}/" class="blog-item">
-                                <img src="{{ $bImgUrl }}" alt="{{ $blog['title'] }}" class="blog-item-img">
+                                @if(!empty($bImgUrl))
+                                <img src="{{ $bImgUrl }}" alt="{{ $blog['title'] }}" class="blog-item-img" onerror="this.style.display='none';">
+                                @endif
                                 <div class="blog-item-content">
                                     <div class="blog-item-title">{{ $blog['title'] }}</div>
                                     <div class="blog-item-excerpt">

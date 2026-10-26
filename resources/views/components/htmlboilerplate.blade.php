@@ -1,11 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="icon" href="{{ asset('uploads/go-custom-boxes-favicon.png') }}" type="image/png">
-    @include('components.canonical')
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ $title ?? '' }}</title>
+    <link rel="icon" href="{{ asset('uploads/go-custom-boxes-favicon.png') }}" type="image/png">
+    <title>{{ $title ?? 'Custom Packaging | Go Custom Boxes' }}</title>
     @if(!empty($metaDescription))
         <meta name="description" content="{{ $metaDescription }}">
     @endif
@@ -15,6 +14,26 @@
     @if(!empty($robots))
         <meta name="robots" content="{{ $robots }}">
     @endif
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="{{ $title ?? 'Custom Packaging | Go Custom Boxes' }}">
+    @if(!empty($metaDescription))
+    <meta property="og:description" content="{{ $metaDescription }}">
+    @endif
+    <meta property="og:url" content="{{ url()->current() }}/">
+    <meta property="og:image" content="{{ asset('uploads/Home-Banner.webp') }}">
+    <meta property="og:site_name" content="Go Custom Boxes">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="{{ $title ?? 'Custom Packaging | Go Custom Boxes' }}">
+    @if(!empty($metaDescription))
+    <meta name="twitter:description" content="{{ $metaDescription }}">
+    @endif
+    <meta name="twitter:image" content="{{ asset('uploads/Home-Banner.webp') }}">
+
+    @include('components.canonical')
     <!-- Import Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>

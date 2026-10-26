@@ -1,18 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="icon" href="{{ asset('uploads/go-custom-boxes-favicon.png') }}" type="image/png">
-    @include('components.canonical')
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no">
-    <title>{{ ($product['meta_title'] ?? $product['title'] ?? 'Custom Packaging') }}</title>
-    @if(!empty($product['meta_description']))
-        <meta name="description" content="{{ $product['meta_description'] }}">
+    <link rel="icon" href="{{ asset('uploads/go-custom-boxes-favicon.png') }}" type="image/png">
+
+    @php
+        $prodMetaTitle = !empty(trim((string)($product['meta_title'] ?? ''))) 
+            ? $product['meta_title'] 
+            : (!empty(trim((string)($product['title'] ?? ''))) ? $product['title'] . ' | Go Custom Boxes' : 'Custom Packaging | Go Custom Boxes');
+        $prodMetaDescription = !empty(trim((string)($product['meta_description'] ?? ''))) 
+            ? $product['meta_description'] 
+            : (!empty(trim((string)($product['description'] ?? ''))) ? trim(strip_tags((string)$product['description'])) : 'Custom printed rigid packaging boxes at wholesale rates. Premium luxury boxes for retail, cosmetic, and gift packaging.');
+        $prodMetaKeywords = !empty(trim((string)($product['meta_keywords'] ?? ''))) ? $product['meta_keywords'] : '';
+        $prodRobots = !empty(trim((string)($product['robots'] ?? ''))) ? $product['robots'] : 'index,follow';
+        $prodImg = !empty($product['image']) 
+            ? (\Illuminate\Support\Str::startsWith($product['image'], ['http://', 'https://']) ? $product['image'] : asset($product['image'])) 
+            : asset('uploads/Home-Banner.webp');
+    @endphp
+
+    <title>{{ $prodMetaTitle }}</title>
+    @if(!empty($prodMetaDescription))
+    <meta name="description" content="{{ $prodMetaDescription }}">
     @endif
-    @if(!empty($product['meta_keywords']))
-        <meta name="keywords" content="{{ $product['meta_keywords'] }}">
+    @if(!empty($prodMetaKeywords))
+    <meta name="keywords" content="{{ $prodMetaKeywords }}">
     @endif
-    <meta name="robots" content="{{ $product['robots'] ?? 'index,follow' }}">
+    <meta name="robots" content="{{ $prodRobots }}">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="product">
+    <meta property="og:title" content="{{ $prodMetaTitle }}">
+    @if(!empty($prodMetaDescription))
+    <meta property="og:description" content="{{ $prodMetaDescription }}">
+    @endif
+    <meta property="og:url" content="{{ url()->current() }}/">
+    <meta property="og:image" content="{{ $prodImg }}">
+    <meta property="og:site_name" content="Go Custom Boxes">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="{{ $prodMetaTitle }}">
+    @if(!empty($prodMetaDescription))
+    <meta name="twitter:description" content="{{ $prodMetaDescription }}">
+    @endif
+    <meta name="twitter:image" content="{{ $prodImg }}">
+
+    @include('components.canonical')
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Open+Sans:wght@300;400;600;700;800;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
@@ -2616,7 +2650,7 @@
     @include('components.content')
 
     <!-- FAQs Section -->
-    @include('components.product-faq')
+    @include('components.product-faq', ['displayFaqs' => $faqs])
 
     <!-- Related Products -->
     @php $rProds = !empty($relatedProducts) ? $relatedProducts : []; @endphp

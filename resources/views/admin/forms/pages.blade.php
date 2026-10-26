@@ -96,21 +96,40 @@
         </div>
         <div class="form-grid" id="faqsContainer">
             @php
-                $faqsCount = max(1, count($pageFaqs), count(old('faq_question', [])));
+                $oldQuestions = old('faq_question');
+                $oldAnswers = old('faq_answer');
+                $hasOld = is_array($oldQuestions);
+                
+                $initialFaqs = [];
+                if ($hasOld) {
+                    foreach ($oldQuestions as $idx => $q) {
+                        $initialFaqs[] = [
+                            'question' => $q,
+                            'answer' => $oldAnswers[$idx] ?? '',
+                        ];
+                    }
+                } elseif (!empty($pageFaqs)) {
+                    $initialFaqs = $pageFaqs;
+                }
             @endphp
-            @for($i = 0; $i < $faqsCount; $i++)
+
+            <div id="noFaqsMessage" style="grid-column: 1 / -1; color: var(--muted); padding: 0.75rem 0; font-size: 0.875rem; {{ count($initialFaqs) > 0 ? 'display: none;' : '' }}">
+                No FAQs added yet for this page. Click "<strong>+ Add FAQ</strong>" above to add one.
+            </div>
+
+            @foreach($initialFaqs as $i => $faq)
                 <div class="field faq-question-field">
                     <label class="faq-q-label">Question {{ $i + 1 }}</label>
-                    <input name="faq_question[]" value="{{ old('faq_question.' . $i, $pageFaqs[$i]['question'] ?? '') }}" placeholder="Enter question">
+                    <input name="faq_question[]" value="{{ $faq['question'] ?? ($faq['q'] ?? '') }}" placeholder="Enter question">
                 </div>
                 <div class="field faq-answer-field">
                     <label class="faq-a-label">Answer {{ $i + 1 }}</label>
                     <div style="display: flex; gap: 0.625rem; align-items: flex-start;">
-                        <textarea name="faq_answer[]" style="min-height:4.375rem; flex: 1;" placeholder="Enter answer">{{ old('faq_answer.' . $i, $pageFaqs[$i]['answer'] ?? '') }}</textarea>
-                        <button type="button" onclick="removeFaqRow(this)" style="background: none; border: none; color: #e74c3c; cursor: pointer; padding: 0.3125rem; margin-top: 0.3125rem;" title="Remove FAQ"><i class="fa-solid fa-trash"></i></button>
+                        <textarea name="faq_answer[]" style="min-height:4.375rem; flex: 1;" placeholder="Enter answer">{{ $faq['answer'] ?? ($faq['a'] ?? '') }}</textarea>
+                        <button type="button" onclick="removeFaqRow(this)" style="background: none; border: none; color: #e74c3c; cursor: pointer; padding: 0.3125rem; margin-top: 0.3125rem; font-size: 1rem;" title="Remove FAQ"><i class="fa-solid fa-trash"></i></button>
                     </div>
                 </div>
-            @endfor
+            @endforeach
         </div>
     </div>
 
@@ -187,6 +206,27 @@
         }
 </script>
 <script>
+    function updateFaqLabels() {
+        const container = document.getElementById('faqsContainer');
+        const qFields = container.querySelectorAll('.faq-question-field');
+        const aFields = container.querySelectorAll('.faq-answer-field');
+        const emptyMsg = document.getElementById('noFaqsMessage');
+
+        qFields.forEach((field, idx) => {
+            const lbl = field.querySelector('.faq-q-label');
+            if (lbl) lbl.innerText = 'Question ' + (idx + 1);
+        });
+
+        aFields.forEach((field, idx) => {
+            const lbl = field.querySelector('.faq-a-label');
+            if (lbl) lbl.innerText = 'Answer ' + (idx + 1);
+        });
+
+        if (emptyMsg) {
+            emptyMsg.style.display = qFields.length === 0 ? 'block' : 'none';
+        }
+    }
+
     function addFaqRow() {
         const container = document.getElementById('faqsContainer');
         const count = container.querySelectorAll('.faq-question-field').length;
@@ -202,24 +242,24 @@
             <label class="faq-a-label">Answer ${newIndex}</label>
             <div style="display: flex; gap: 0.625rem; align-items: flex-start;">
                 <textarea name="faq_answer[]" style="min-height:4.375rem; flex: 1;" placeholder="Enter answer"></textarea>
-                <button type="button" onclick="removeFaqRow(this)" style="background: none; border: none; color: #e74c3c; cursor: pointer; padding: 0.3125rem; margin-top: 0.3125rem;" title="Remove FAQ"><i class="fa-solid fa-trash"></i></button>
+                <button type="button" onclick="removeFaqRow(this)" style="background: none; border: none; color: #e74c3c; cursor: pointer; padding: 0.3125rem; margin-top: 0.3125rem; font-size: 1rem;" title="Remove FAQ"><i class="fa-solid fa-trash"></i></button>
             </div>
         `;
         
         container.appendChild(qField);
         container.appendChild(aField);
+        updateFaqLabels();
     }
 
     function removeFaqRow(btn) {
         const aField = btn.closest('.faq-answer-field');
+        if (!aField) return;
         const qField = aField.previousElementSibling;
+        if (qField && qField.classList.contains('faq-question-field')) {
+            qField.remove();
+        }
         aField.remove();
-        qField.remove();
-        
-        const qLabels = document.querySelectorAll('#faqsContainer .faq-q-label');
-        const aLabels = document.querySelectorAll('#faqsContainer .faq-a-label');
-        qLabels.forEach((lbl, idx) => lbl.innerText = 'Question ' + (idx + 1));
-        aLabels.forEach((lbl, idx) => lbl.innerText = 'Answer ' + (idx + 1));
+        updateFaqLabels();
     }
 </script>
 @endsection

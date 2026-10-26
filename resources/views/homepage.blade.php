@@ -2,18 +2,35 @@
 <html lang="en">
 
 <head>
-    <link rel="icon" href="{{ asset('uploads/go-custom-boxes-favicon.png') }}" type="image/png">
-    @include('components.canonical')
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ !empty($settings['meta_title']) ? $settings['meta_title'] : 'Custom Printed Boxes' }}
-    </title>
-    <meta name="description"
-        content="{{ !empty($settings['meta_description']) ? $settings['meta_description'] : 'Custom printed rigid packaging boxes at wholesale rates. Premium luxury boxes for retail, cosmetic, and gift packaging.' }}">
+    <link rel="icon" href="{{ asset('uploads/go-custom-boxes-favicon.png') }}" type="image/png">
+    @php
+        $homeTitle = !empty($settings['meta_title']) ? $settings['meta_title'] : 'Custom Printed Boxes & Luxury Packaging | Go Custom Boxes';
+        $homeDesc = !empty($settings['meta_description']) ? $settings['meta_description'] : 'Custom printed rigid packaging boxes at wholesale rates. Premium luxury boxes for retail, cosmetic, and gift packaging.';
+    @endphp
+    <title>{{ $homeTitle }}</title>
+    <meta name="description" content="{{ $homeDesc }}">
     @if(!empty($settings['meta_keywords']))
     <meta name="keywords" content="{{ $settings['meta_keywords'] }}">
     @endif
     <meta name="robots" content="{{ $settings['robots'] ?? 'index,follow' }}">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="{{ $homeTitle }}">
+    <meta property="og:description" content="{{ $homeDesc }}">
+    <meta property="og:url" content="{{ url('/') }}/">
+    <meta property="og:image" content="{{ asset('uploads/Home-Banner.webp') }}">
+    <meta property="og:site_name" content="Go Custom Boxes">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="{{ $homeTitle }}">
+    <meta name="twitter:description" content="{{ $homeDesc }}">
+    <meta name="twitter:image" content="{{ asset('uploads/Home-Banner.webp') }}">
+
+    @include('components.canonical')
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
