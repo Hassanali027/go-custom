@@ -128,7 +128,7 @@ class AdminContentController extends Controller
         $columns = [
             'products' => ['title','slug','status','show_home','show_as_custom_box','image','nav_image','images','description','long_description','alt_text','box_style','material','printing','finishing','dimensions','moq','turnaround','meta_title','meta_description','meta_keywords','robots','schema','related'],
             'categories' => ['title','slug','status','parent_id','is_nav_group','show_in_nav','show_home','image','icon','hero_image','banner_image','hero_title','hero_badge','hero_description','description','products_heading','products_description','feature_title','why_choose_title','why_choose_description','feature_sections','meta_title','meta_description','meta_keywords','robots','schema'],
-            'blogs' => ['title','slug','status','show_home','image','author_id','author_name','publish_date','blog_category','tags','excerpt','key_takeaways','content','toc_title','author_description','author_bio','alt_text','meta_title','meta_description','meta_keywords','robots','schema','faqs','related'],
+            'blogs' => ['title','slug','status','show_home','set_home','image','author_id','author_name','publish_date','blog_category','tags','excerpt','key_takeaways','content','toc_title','author_description','author_bio','alt_text','meta_title','meta_description','meta_keywords','robots','schema','faqs','related'],
             'pages' => ['title','slug','status','show_home','image','heading','content','position','appearance','alt_text','meta_title','meta_description','meta_keywords','robots','schema'],
             'authors' => ['title','slug','status','designation','bio','toc_title','description','image','facebook','twitter','linkedin'],
         ][$module];
@@ -163,7 +163,7 @@ class AdminContentController extends Controller
             $payload['publish_date'] = date('Y-m-d', strtotime(trim($payload['publish_date'])));
         }
 
-        foreach (['show_home', 'show_in_nav', 'show_as_custom_box', 'is_nav_group'] as $checkboxField) {
+        foreach (['show_home', 'set_home', 'show_in_nav', 'show_as_custom_box', 'is_nav_group'] as $checkboxField) {
             if (in_array($checkboxField, $fields, true)) {
                 $payload[$checkboxField] = $request->boolean($checkboxField) ? 1 : 0;
             }

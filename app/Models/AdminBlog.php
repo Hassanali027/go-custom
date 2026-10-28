@@ -5,5 +5,5 @@ class AdminBlog extends Model
 {
     protected $table = 'admin_blogs';
     protected $guarded = [];
-    protected $casts = ['show_home' => 'boolean', 'publish_date' => 'date'];
+    protected $casts = ['show_home' => 'boolean', 'set_home' => 'boolean', 'publish_date' => 'date'];
 }

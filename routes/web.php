@@ -30,6 +30,13 @@ Route::get('/', function () {
         ->where('admin_blogs.status', 'published')
         ->whereNotNull('admin_blogs.image')
         ->where('admin_blogs.image', '!=', '')
+        ->where(function ($query) {
+            $query->where('admin_blogs.show_home', 1)
+                  ->orWhere('admin_blogs.set_home', 1);
+        })
+        ->orderByDesc('admin_blogs.set_home')
+        ->orderByDesc('admin_blogs.publish_date')
+        ->orderByDesc('admin_blogs.created_at')
         ->limit(4)->get();
     return view('homepage', compact('settings', 'categories', 'products', 'recentBlogs'));
 });

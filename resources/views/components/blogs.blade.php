@@ -72,7 +72,7 @@
         display: grid;
         grid-template-columns: repeat(3, 1fr);
         gap: 1.5rem;
-        align-items: start;
+        align-items: stretch;
     }
 
     .blog-card {
@@ -87,6 +87,7 @@
         -webkit-tap-highlight-color: transparent;
         box-shadow: 0 0.25rem 0.9375rem rgba(0,0,0,0.03);
         cursor: pointer;
+        height: 100%;
     }
 
     .blog-card:hover {
@@ -130,6 +131,13 @@
         margin-bottom: 0.75rem;
         text-decoration: none;
         transition: color 0.3s;
+        height: 4.875rem;
+        min-height: 4.875rem;
+        max-height: 4.875rem;
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
     }
 
     .blog-card__title::after {
@@ -163,8 +171,10 @@
         min-height: 2.8rem;
     }
 
+    .blog-card__btn-wrap,
     .blog-card__title + div {
-        margin-top: 0.5rem;
+        margin-top: auto;
+        padding-top: 0.5rem;
     }
 
     .blog-card__author {
@@ -284,6 +294,14 @@
 
         .blog-card__title {
             font-size: 1.125rem;
+            line-height: 1.3;
+            height: 4.3875rem;
+            min-height: 4.3875rem;
+            max-height: 4.3875rem;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
         }
 
         .blog-card__desc {
@@ -332,6 +350,7 @@
     }
 </style>
 
+@if(isset($recentBlogs) && count($recentBlogs) > 0)
 <section class="blogs-section">
     <div class="blogs-container">
 
@@ -344,86 +363,61 @@
         </div>
 
         <div class="blogs-grid" id="blogsGrid">
-            @if(isset($recentBlogs) && count($recentBlogs) > 0)
-                @foreach($recentBlogs->take(3) as $blog)
-                    @php
-                        $bTitle = $blog->title ?? 'Sustainable Packaging Trends For 2026';
-                        $bAuthor = $blog->author_name ?? null;
-                        $authorSlug = $blog->author_slug ?? null;
-                        
-                        if (!$bAuthor) {
-                            $defaultAuthor = \Illuminate\Support\Facades\DB::table('admin_authors')->first();
-                            if ($defaultAuthor) {
-                                $bAuthor = $defaultAuthor->title;
-                                $authorSlug = $defaultAuthor->slug;
-                            }
+            @foreach($recentBlogs->take(3) as $blog)
+                @php
+                    $bTitle = $blog->title ?? 'Sustainable Packaging Trends For 2026';
+                    $bAuthor = $blog->author_name ?? null;
+                    $authorSlug = $blog->author_slug ?? null;
+                    
+                    if (!$bAuthor) {
+                        $defaultAuthor = \Illuminate\Support\Facades\DB::table('admin_authors')->first();
+                        if ($defaultAuthor) {
+                            $bAuthor = $defaultAuthor->title;
+                            $authorSlug = $defaultAuthor->slug;
                         }
-                        
-                        $bAuthor = $bAuthor ?: 'Joe Danley';
-                        $authorSlug = $authorSlug ?: \Illuminate\Support\Str::slug($bAuthor);
+                    }
+                    
+                    $bAuthor = $bAuthor ?: 'Joe Danley';
+                    $authorSlug = $authorSlug ?: \Illuminate\Support\Str::slug($bAuthor);
 
-                        $bDate = !empty($blog->publish_date) ? date('M d, Y', strtotime($blog->publish_date)) : (!empty($blog->created_at) ? date('M d, Y', strtotime($blog->created_at)) : 'Nov 15, 2024');
-                        // Older blog records may not have an excerpt. In that case, show a
-                        // short, plain-text preview from the article itself instead of leaving
-                        // the home-page card blank.
-                        $bExcerpt = !empty(trim((string) ($blog->excerpt ?? '')))
-                            ? $blog->excerpt
-                            : (!empty(trim((string) ($blog->content ?? '')))
-                                ? $blog->content
-                                : 'Explore how eco-friendly rigid boxes are transforming luxury packaging with sustainable solutions.');
-                        $bSlug = $blog->slug ?? 'blog-detail';
-                        $bImg = !empty($blog->image) ? asset($blog->image) : asset('uploads/industry-custom-luxury-box.jfif');
-                        $bUrl = url('/blog/' . $bSlug) . '/';
-                    @endphp
-                    <article class="blog-card" onclick="window.location.href='{{ $bUrl }}';" style="cursor: pointer;">
-                        <img src="{{ $bImg }}" alt="{{ $bTitle }}" class="blog-card__image" onerror="this.src='https://placehold.co/400x240/dddddd/555555?text=Blog+Image'">
-                        <div class="blog-card__content">
-                            <div class="blog-card__meta">
-                                <a href="{{ url('/author/' . $authorSlug) }}/" class="blog-card__author" style="color:inherit;text-decoration:none;z-index:2;position:relative;" onclick="event.stopPropagation();">{{ $bAuthor }}</a>
-                                <span class="blog-card__date">{{ $bDate }}</span>
-                            </div>
-                            <a href="{{ $bUrl }}" class="blog-card__title" onclick="event.stopPropagation();">{{ $bTitle }}</a>
-
-                            <div>
-                                <a href="{{ $bUrl }}" class="blog-card__readmore" onclick="event.stopPropagation();">
-                                    Read Blog
-                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-                                </a>
-                            </div>
-                        </div>
-                    </article>
-                @endforeach
-            @else
-                <!-- Card 1 Fallback -->
-                <article class="blog-card">
-                    <img src="{{ asset('uploads/industry-custom-luxury-box.jfif') }}" alt="Sustainable Packaging Trends" class="blog-card__image" onerror="this.src='https://placehold.co/400x240/dddddd/555555?text=Blog+Image'">
+                    $bDate = !empty($blog->publish_date) ? date('M d, Y', strtotime($blog->publish_date)) : (!empty($blog->created_at) ? date('M d, Y', strtotime($blog->created_at)) : 'Nov 15, 2024');
+                    // Older blog records may not have an excerpt. In that case, show a
+                    // short, plain-text preview from the article itself instead of leaving
+                    // the home-page card blank.
+                    $bExcerpt = !empty(trim((string) ($blog->excerpt ?? '')))
+                        ? $blog->excerpt
+                        : (!empty(trim((string) ($blog->content ?? '')))
+                            ? $blog->content
+                            : 'Explore how eco-friendly rigid boxes are transforming luxury packaging with sustainable solutions.');
+                    $bSlug = $blog->slug ?? 'blog-detail';
+                    $bImg = !empty($blog->image) ? asset($blog->image) : asset('uploads/industry-custom-luxury-box.jfif');
+                    $bUrl = url('/blog/' . $bSlug) . '/';
+                @endphp
+                <article class="blog-card" onclick="window.location.href='{{ $bUrl }}';" style="cursor: pointer;">
+                    <img src="{{ $bImg }}" alt="{{ $bTitle }}" class="blog-card__image" onerror="this.src='https://placehold.co/400x240/dddddd/555555?text=Blog+Image'">
                     <div class="blog-card__content">
                         <div class="blog-card__meta">
-                            <span class="blog-card__author">Joe Danley</span>
-                            <span class="blog-card__date">Nov 15, 2024</span>
+                            <a href="{{ url('/author/' . $authorSlug) }}/" class="blog-card__author" style="color:inherit;text-decoration:none;z-index:2;position:relative;" onclick="event.stopPropagation();">{{ $bAuthor }}</a>
+                            <span class="blog-card__date">{{ $bDate }}</span>
                         </div>
-                        <a href="{{ url('/blog-detail') }}" class="blog-card__title">Sustainable Packaging Trends For 2026</a>
+                        <a href="{{ $bUrl }}" class="blog-card__title" onclick="event.stopPropagation();">{{ $bTitle }}</a>
 
-                        <div>
-                            <a href="{{ url('/blog-detail') }}" class="blog-card__readmore">
+                        <div class="blog-card__btn-wrap">
+                            <a href="{{ $bUrl }}" class="blog-card__readmore" onclick="event.stopPropagation();">
                                 Read Blog
                                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
                             </a>
                         </div>
                     </div>
                 </article>
-            @endif
+            @endforeach
         </div>
 
         <!-- Mobile Pagination Dots -->
         <div class="blog-dots" id="blogDots">
-            @if(isset($recentBlogs) && count($recentBlogs) > 0)
-                @foreach($recentBlogs->take(3) as $i => $b)
-                    <span class="blog-dot {{ $i === 0 ? 'active' : '' }}" data-index="{{ $i }}"></span>
-                @endforeach
-            @else
-                <span class="blog-dot active" data-index="0"></span>
-            @endif
+            @foreach($recentBlogs->take(3) as $i => $b)
+                <span class="blog-dot {{ $i === 0 ? 'active' : '' }}" data-index="{{ $i }}"></span>
+            @endforeach
         </div>
 
         <!-- Mobile View All Blogs Button -->
@@ -461,4 +455,5 @@
         });
     })();
 </script>
+@endif
 
