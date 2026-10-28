@@ -57,13 +57,20 @@ class SitemapController extends Controller
             return $date ? Carbon::parse($date)->toDateString() : null;
         };
 
+        // The FAQ page lives at the slug set in Admin → FAQ Page Settings, resolved
+        // the same way as the catch-all route and the header link.
+        $faqSlug = DB::table('homepage_contents')
+            ->where('section', 'faq_page')
+            ->where('field_key', 'faq_page_slug')
+            ->value('value') ?: 'frequentlyAskedQuestions';
+
         $entries = collect([
             ['loc' => $makeUrl(''), 'changefreq' => 'daily', 'priority' => '1.0'],
             ['loc' => $makeUrl('about-us'), 'changefreq' => 'monthly', 'priority' => '0.8'],
             ['loc' => $makeUrl('contact-us'), 'changefreq' => 'monthly', 'priority' => '0.8'],
             ['loc' => $makeUrl('popular-products'), 'changefreq' => 'weekly', 'priority' => '0.9'],
             ['loc' => $makeUrl('blog'), 'changefreq' => 'weekly', 'priority' => '0.8'],
-            ['loc' => $makeUrl('frequentlyaskedquestions'), 'changefreq' => 'monthly', 'priority' => '0.7'],
+            ['loc' => $makeUrl(strtolower($faqSlug)), 'changefreq' => 'monthly', 'priority' => '0.7'],
             ['loc' => $makeUrl('why-choose-us'), 'changefreq' => 'monthly', 'priority' => '0.7'],
             ['loc' => $makeUrl('request-quote'), 'changefreq' => 'monthly', 'priority' => '0.8'],
         ]);
@@ -79,15 +86,25 @@ class SitemapController extends Controller
             }
         };
 
-        $published = static function (string $table) {
-            return DB::table($table)
+        $published = static function (string $table, ?\Closure $scope = null) {
+            $query = DB::table($table)
                 ->where('status', 'published')
                 ->whereNotNull('slug')
-                ->where('slug', '!=', '')
-                ->get(['slug', 'updated_at']);
+                ->where('slug', '!=', '');
+            if ($scope) {
+                $scope($query);
+            }
+
+            return $query->get(['slug', 'updated_at']);
         };
 
-        $appendRecords($published('admin_categories'), '', '0.8');
+        // Navigation-group categories (Industries, Box By Material, Box by Style)
+        // only organise the menu and return 404, so keep them out of the sitemap.
+        $appendRecords($published('admin_categories', static function ($query) {
+            $query->where(function ($q) {
+                $q->whereNull('is_nav_group')->orWhere('is_nav_group', 0);
+            });
+        }), '', '0.8');
         $appendRecords($published('admin_products'), '', '0.9');
         $appendRecords($published('admin_pages'), '', '0.7');
         $appendRecords($published('admin_blogs'), 'blog/', '0.7');
