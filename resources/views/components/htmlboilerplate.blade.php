@@ -3,35 +3,51 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#0B2240">
     <link rel="icon" href="{{ asset('uploads/go-custom-boxes-favicon.png') }}" type="image/png">
     <title>{{ $title ?? 'Custom Packaging | Go Custom Boxes' }}</title>
-    @if(!empty($metaDescription))
-        <meta name="description" content="{{ $metaDescription }}">
-    @endif
+    @php
+        $bpTitle = $title ?? 'Custom Packaging | Go Custom Boxes';
+        $bpDesc = !empty($metaDescription) 
+            ? $metaDescription 
+            : 'Custom printed rigid packaging boxes at wholesale rates. Premium luxury boxes for retail, cosmetic, and gift packaging.';
+    @endphp
+    <meta name="description" content="{{ $bpDesc }}">
     @if(!empty($metaKeywords))
         <meta name="keywords" content="{{ $metaKeywords }}">
     @endif
     @if(!empty($robots))
         <meta name="robots" content="{{ $robots }}">
     @endif
+    <meta name="author" content="{{ $author ?? 'Go Custom Boxes' }}">
+    <meta name="publisher" content="{{ $publisher ?? 'Go Custom Boxes' }}">
+
+    @php
+        $bpPath = trim(request()->path(), '/');
+        $bpUrl = $bpPath === '' ? rtrim(url('/'), '/') : rtrim(url('/' . $bpPath), '/') . '/';
+        $bpImage = !empty($image) 
+            ? (\Illuminate\Support\Str::startsWith($image, ['http://', 'https://']) ? $image : asset($image)) 
+            : (!empty($ogImage) 
+                ? (\Illuminate\Support\Str::startsWith($ogImage, ['http://', 'https://']) ? $ogImage : asset($ogImage)) 
+                : asset('uploads/Home-Banner.webp'));
+    @endphp
 
     <!-- Open Graph / Facebook -->
+    <meta property="og:locale" content="en_US">
     <meta property="og:type" content="website">
-    <meta property="og:title" content="{{ $title ?? 'Custom Packaging | Go Custom Boxes' }}">
-    @if(!empty($metaDescription))
-    <meta property="og:description" content="{{ $metaDescription }}">
-    @endif
-    <meta property="og:url" content="{{ url()->current() }}/">
-    <meta property="og:image" content="{{ asset('uploads/Home-Banner.webp') }}">
+    <meta property="og:title" content="{{ $bpTitle }}">
+    <meta property="og:description" content="{{ $bpDesc }}">
+    <meta property="og:url" content="{{ $bpUrl }}">
+    <meta property="og:image" content="{{ $bpImage }}">
+    <meta property="og:image:alt" content="{{ $bpTitle }}">
     <meta property="og:site_name" content="Go Custom Boxes">
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="{{ $title ?? 'Custom Packaging | Go Custom Boxes' }}">
-    @if(!empty($metaDescription))
-    <meta name="twitter:description" content="{{ $metaDescription }}">
-    @endif
-    <meta name="twitter:image" content="{{ asset('uploads/Home-Banner.webp') }}">
+    <meta name="twitter:title" content="{{ $bpTitle }}">
+    <meta name="twitter:description" content="{{ $bpDesc }}">
+    <meta name="twitter:image" content="{{ $bpImage }}">
+    <meta name="twitter:image:alt" content="{{ $bpTitle }}">
 
     @include('components.canonical')
     <!-- Import Fonts -->

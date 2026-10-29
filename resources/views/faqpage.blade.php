@@ -1,4 +1,9 @@
-@include('components.htmlboilerplate')
+@include('components.htmlboilerplate', [
+    'title' => 'Frequently Asked Questions | Go Custom Boxes',
+    'metaDescription' => 'Get answers to frequently asked questions about custom printed boxes, ordering processes, turnaround times, and materials at Go Custom Boxes.',
+    'metaKeywords' => 'custom boxes faqs, packaging questions, box ordering guide',
+    'robots' => 'index,follow'
+])
 <style>
     .faq-container {
         font-family: 'DM Sans', sans-serif;

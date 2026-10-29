@@ -124,6 +124,17 @@ class AdminContentController extends Controller
 
     private function persist(Request $request, string $module, string $id)
     {
+        if ($module === 'categories') {
+
+            if ($currentFeatured) {
+                $featuredIds = array_map('intval', (array) (json_decode($currentFeatured, true) ?: []));
+                $featuredIds = array_values(array_filter($featuredIds, fn($catId) => $catId != (int) $id));
+                DB::table('homepage_contents')->where('field_key', 'featured_categories')->update([
+                    'value' => json_encode($featuredIds),
+                    'updated_at' => now()
+                ]);
+            }
+        }
         $table = ['products'=>'admin_products','categories'=>'admin_categories','blogs'=>'admin_blogs','pages'=>'admin_pages','authors'=>'admin_authors'][$module];
         $columns = [
             'products' => ['title','slug','status','show_home','show_as_custom_box','image','nav_image','images','description','long_description','alt_text','box_style','material','printing','finishing','dimensions','moq','turnaround','meta_title','meta_description','meta_keywords','robots','schema','related'],
@@ -303,6 +314,30 @@ class AdminContentController extends Controller
             }
         }
         if ($module === 'categories') {
+
+            $featuredIds = $currentFeatured ? (json_decode($currentFeatured, true) ?: []) : [];
+            $featuredIds = array_map('intval', (array) $featuredIds);
+            $targetIntId = (int) $targetId;
+
+            if (!empty($payload['show_home'])) {
+                if (!in_array($targetIntId, $featuredIds, true)) {
+                    $featuredIds[] = $targetIntId;
+                }
+            } else {
+                $featuredIds = array_values(array_filter($featuredIds, fn($id) => $id !== $targetIntId));
+            }
+
+            DB::table('homepage_contents')->updateOrInsert(
+                ['section' => 'list', 'field_key' => 'featured_categories'],
+                [
+                    'section' => 'list',
+                    'value' => json_encode($featuredIds),
+                    'value_type' => 'json',
+                    'updated_at' => now(),
+                    'created_at' => now()
+                ]
+            );
+
             DB::table('admin_category_faqs')->where('category_id', $targetId)->delete();
             $faqQuestions = (array) $request->input('faq_question', []);
             $faqAnswers = (array) $request->input('faq_answer', []);
@@ -355,6 +390,17 @@ class AdminContentController extends Controller
         if ($module === 'products') {
             DB::table('admin_product_faqs')->where('product_id', $id)->delete();
             DB::table('admin_category_product')->where('product_id', $id)->delete();
+        }
+        if ($module === 'categories') {
+
+            if ($currentFeatured) {
+                $featuredIds = array_map('intval', (array) (json_decode($currentFeatured, true) ?: []));
+                $featuredIds = array_values(array_filter($featuredIds, fn($catId) => $catId != (int) $id));
+                DB::table('homepage_contents')->where('field_key', 'featured_categories')->update([
+                    'value' => json_encode($featuredIds),
+                    'updated_at' => now()
+                ]);
+            }
         }
         $table = ['products'=>'admin_products','categories'=>'admin_categories','blogs'=>'admin_blogs','pages'=>'admin_pages','authors'=>'admin_authors'][$module];
         DB::table($table)->where('id', $id)->delete();

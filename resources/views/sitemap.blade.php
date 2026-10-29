@@ -5,7 +5,30 @@
     @include('components.canonical')
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sitemap</title>
+    <meta name="theme-color" content="#0B2240">
+    <title>Sitemap | Go Custom Boxes</title>
+    <meta name="description" content="Explore the sitemap for Go Custom Boxes. Discover all custom packaging categories, products, industry solutions, and blogs.">
+    <meta name="keywords" content="sitemap, packaging products, custom boxes categories, go custom boxes">
+    <meta name="robots" content="index,follow">
+    <meta name="author" content="Go Custom Boxes">
+    <meta name="publisher" content="Go Custom Boxes">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:locale" content="en_US">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Sitemap | Go Custom Boxes">
+    <meta property="og:description" content="Explore the sitemap for Go Custom Boxes. Discover all custom packaging categories, products, industry solutions, and blogs.">
+    <meta property="og:url" content="{{ rtrim(url('/sitemap'), '/') }}/">
+    <meta property="og:image" content="{{ asset('uploads/Home-Banner.webp') }}">
+    <meta property="og:image:alt" content="Sitemap - Go Custom Boxes">
+    <meta property="og:site_name" content="Go Custom Boxes">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Sitemap | Go Custom Boxes">
+    <meta name="twitter:description" content="Explore the sitemap for Go Custom Boxes. Discover all custom packaging categories, products, industry solutions, and blogs.">
+    <meta name="twitter:image" content="{{ asset('uploads/Home-Banner.webp') }}">
+    <meta name="twitter:image:alt" content="Sitemap - Go Custom Boxes">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Open+Sans:wght@300;400;600;700;800;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">

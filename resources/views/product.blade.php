@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no">
+    <meta name="theme-color" content="#0B2240">
     <link rel="icon" href="{{ asset('uploads/go-custom-boxes-favicon.png') }}" type="image/png">
 
     @php
@@ -27,15 +28,19 @@
     <meta name="keywords" content="{{ $prodMetaKeywords }}">
     @endif
     <meta name="robots" content="{{ $prodRobots }}">
+    <meta name="author" content="Go Custom Boxes">
+    <meta name="publisher" content="Go Custom Boxes">
 
     <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="product">
+    <meta property="og:locale" content="en_US">
+    <meta property="og:type" content="website">
     <meta property="og:title" content="{{ $prodMetaTitle }}">
     @if(!empty($prodMetaDescription))
     <meta property="og:description" content="{{ $prodMetaDescription }}">
     @endif
-    <meta property="og:url" content="{{ url()->current() }}/">
+    <meta property="og:url" content="{{ rtrim(url()->current(), '/') }}/">
     <meta property="og:image" content="{{ $prodImg }}">
+    <meta property="og:image:alt" content="{{ $prodMetaTitle }}">
     <meta property="og:site_name" content="Go Custom Boxes">
 
     <!-- Twitter -->
@@ -45,6 +50,7 @@
     <meta name="twitter:description" content="{{ $prodMetaDescription }}">
     @endif
     <meta name="twitter:image" content="{{ $prodImg }}">
+    <meta name="twitter:image:alt" content="{{ $prodMetaTitle }}">
 
     @include('components.canonical')
     <link rel="preconnect" href="https://fonts.googleapis.com">

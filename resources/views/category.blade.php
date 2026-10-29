@@ -1,8 +1,13 @@
 @include('components.htmlboilerplate', [
-    'title' => $category['meta_title'] ?? ($category['title'] ?? 'Custom Packaging'),
-    'metaDescription' => $category['meta_description'] ?? '',
+    'title' => $category['meta_title'] ?? ($category['title'] ? ($category['title'] . ' | Go Custom Boxes') : 'Custom Packaging | Go Custom Boxes'),
+    'metaDescription' => !empty($category['meta_description']) 
+        ? $category['meta_description'] 
+        : (!empty($category['description']) 
+            ? trim(strip_tags((string)$category['description'])) 
+            : ('Order custom ' . ($category['title'] ?? 'packaging') . ' with premium finishes, vibrant printing, and wholesale rates at Go Custom Boxes.')),
     'metaKeywords' => $category['meta_keywords'] ?? '',
     'robots' => $category['robots'] ?? 'index,follow',
+    'image' => !empty($category['hero_image']) ? $category['hero_image'] : (!empty($category['image']) ? $category['image'] : null),
     'schema' => $category['schema'] ?? '',
 ])
 

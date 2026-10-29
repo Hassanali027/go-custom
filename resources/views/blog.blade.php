@@ -3,18 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#0B2240">
     <link rel="icon" href="{{ asset('uploads/go-custom-boxes-favicon.png') }}" type="image/png">
     <title>Packaging Insights & Industry Trends | Go Custom Boxes</title>
     <meta name="description" content="Explore custom packaging insights, trends, design tips, and structural advice for luxury rigid boxes, corrugated cartons, and branded packaging.">
     <meta name="keywords" content="custom boxes blog, packaging insights, rigid boxes guide, luxury packaging trends">
     <meta name="robots" content="index,follow">
+    <meta name="author" content="Go Custom Boxes">
+    <meta name="publisher" content="Go Custom Boxes">
 
     <!-- Open Graph / Facebook -->
+    <meta property="og:locale" content="en_US">
     <meta property="og:type" content="website">
     <meta property="og:title" content="Packaging Insights & Industry Trends | Go Custom Boxes">
     <meta property="og:description" content="Explore custom packaging insights, trends, design tips, and structural advice for luxury rigid boxes, corrugated cartons, and branded packaging.">
-    <meta property="og:url" content="{{ url('/blog') }}/">
+    <meta property="og:url" content="{{ rtrim(url('/blog'), '/') }}/">
     <meta property="og:image" content="{{ asset('uploads/Home-Banner.webp') }}">
+    <meta property="og:image:alt" content="Packaging Insights & Industry Trends | Go Custom Boxes">
     <meta property="og:site_name" content="Go Custom Boxes">
 
     <!-- Twitter -->
@@ -22,6 +27,7 @@
     <meta name="twitter:title" content="Packaging Insights & Industry Trends | Go Custom Boxes">
     <meta name="twitter:description" content="Explore custom packaging insights, trends, design tips, and structural advice for luxury rigid boxes, corrugated cartons, and branded packaging.">
     <meta name="twitter:image" content="{{ asset('uploads/Home-Banner.webp') }}">
+    <meta name="twitter:image:alt" content="Packaging Insights & Industry Trends | Go Custom Boxes">
 
     @include('components.canonical')
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Open+Sans:wght@300;400;600;700;800;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">

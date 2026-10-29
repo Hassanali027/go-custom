@@ -1,4 +1,9 @@
-@include('components.htmlboilerplate')
+@include('components.htmlboilerplate', [
+    'title' => 'Why Choose Us | Go Custom Boxes',
+    'metaDescription' => 'Discover why brands choose Go Custom Boxes for custom printed packaging, superior structural strength, wholesale pricing, and reliable delivery.',
+    'metaKeywords' => 'why choose go custom boxes, custom packaging benefits, box printing quality',
+    'robots' => 'index,follow'
+])
 <style>
     /* =========================================
        Global Box Sizing (Fixes 100% overflow)

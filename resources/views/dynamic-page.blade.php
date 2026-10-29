@@ -3,8 +3,9 @@
     $metaDescription = $page['meta_description'] ?? null;
     $metaKeywords = $page['meta_keywords'] ?? null;
     $robots = $page['robots'] ?? 'index,follow';
+    $pageImage = !empty($page['image']) ? $page['image'] : null;
 @endphp
-@include('components.htmlboilerplate', ['title' => $title, 'metaDescription' => $metaDescription, 'metaKeywords' => $metaKeywords, 'robots' => $robots])
+@include('components.htmlboilerplate', ['title' => $title, 'metaDescription' => $metaDescription, 'metaKeywords' => $metaKeywords, 'robots' => $robots, 'image' => $pageImage])
 <style>
     .dynamic-hero {
         background-color: #ffffff;

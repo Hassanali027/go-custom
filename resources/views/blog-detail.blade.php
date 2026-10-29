@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#0B2240">
     <link rel="icon" href="{{ asset('uploads/go-custom-boxes-favicon.png') }}" type="image/png">
 
     @php
@@ -19,6 +20,11 @@
         $pageImage = !empty($blog['image']) 
             ? (\Illuminate\Support\Str::startsWith($blog['image'], ['http://', 'https://']) ? $blog['image'] : asset($blog['image'])) 
             : asset('uploads/Home-Banner.webp');
+        $blogAuthor = !empty(trim((string)($blog['joined_author_name'] ?? ''))) 
+            ? trim((string)$blog['joined_author_name']) 
+            : (!empty(trim((string)($blog['author_name'] ?? ''))) 
+                ? trim((string)$blog['author_name']) 
+                : 'Go Custom Boxes');
     @endphp
 
     <title>{{ $pageMetaTitle }}</title>
@@ -29,16 +35,33 @@
     <meta name="keywords" content="{{ $pageMetaKeywords }}">
     @endif
     <meta name="robots" content="{{ $pageRobots }}">
+    <meta name="author" content="{{ $blogAuthor }}">
+    <meta name="publisher" content="Go Custom Boxes">
 
     <!-- Open Graph / Facebook -->
+    <meta property="og:locale" content="en_US">
     <meta property="og:type" content="article">
     <meta property="og:title" content="{{ $pageMetaTitle }}">
     @if(!empty($pageMetaDescription))
     <meta property="og:description" content="{{ $pageMetaDescription }}">
     @endif
-    <meta property="og:url" content="{{ url()->current() }}/">
+    <meta property="og:url" content="{{ rtrim(url()->current(), '/') }}/">
     <meta property="og:image" content="{{ $pageImage }}">
+    <meta property="og:image:alt" content="{{ !empty($blog['alt_text']) ? $blog['alt_text'] : $pageMetaTitle }}">
     <meta property="og:site_name" content="Go Custom Boxes">
+    @if(!empty($blog['publish_date']))
+    <meta property="article:published_time" content="{{ date('c', strtotime($blog['publish_date'])) }}">
+    @elseif(!empty($blog['created_at']))
+    <meta property="article:published_time" content="{{ date('c', strtotime($blog['created_at'])) }}">
+    @endif
+    @if(!empty($blog['updated_at']))
+    <meta property="article:modified_time" content="{{ date('c', strtotime($blog['updated_at'])) }}">
+    @endif
+    @if(!empty($blog['blog_category']))
+    <meta property="article:section" content="{{ $blog['blog_category'] }}">
+    @endif
+    <meta property="article:publisher" content="Go Custom Boxes">
+    <meta property="article:author" content="{{ $blogAuthor }}">
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image">
@@ -47,6 +70,7 @@
     <meta name="twitter:description" content="{{ $pageMetaDescription }}">
     @endif
     <meta name="twitter:image" content="{{ $pageImage }}">
+    <meta name="twitter:image:alt" content="{{ !empty($blog['alt_text']) ? $blog['alt_text'] : $pageMetaTitle }}">
 
     @include('components.canonical')
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Open+Sans:wght@300;400;600;700;800;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">

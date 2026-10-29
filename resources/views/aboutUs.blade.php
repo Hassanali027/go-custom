@@ -1,4 +1,9 @@
-@include('components.htmlboilerplate')
+@include('components.htmlboilerplate', [
+    'title' => 'About Us | Go Custom Boxes',
+    'metaDescription' => 'Learn more about Go Custom Boxes, our commitment to exceptional custom packaging, bespoke box printing, and wholesale packaging solutions.',
+    'metaKeywords' => 'about go custom boxes, custom packaging company, box manufacturer usa',
+    'robots' => 'index,follow'
+])
 <style>
 /* Base Styles */
 .about-us-page {

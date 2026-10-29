@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#0B2240">
     <link rel="icon" href="{{ asset('uploads/go-custom-boxes-favicon.png') }}" type="image/png">
 
     @php
@@ -29,13 +30,17 @@
     <meta name="keywords" content="{{ $contactMetaKeywords }}">
     @endif
     <meta name="robots" content="{{ $contactRobots }}">
+    <meta name="author" content="Go Custom Boxes">
+    <meta name="publisher" content="Go Custom Boxes">
 
     <!-- Open Graph / Facebook -->
+    <meta property="og:locale" content="en_US">
     <meta property="og:type" content="website">
     <meta property="og:title" content="{{ $contactMetaTitle }}">
     <meta property="og:description" content="{{ $contactMetaDescription }}">
-    <meta property="og:url" content="{{ url('/contact-us') }}/">
+    <meta property="og:url" content="{{ rtrim(url('/contact-us'), '/') }}/">
     <meta property="og:image" content="{{ asset('uploads/Home-Banner.webp') }}">
+    <meta property="og:image:alt" content="{{ $contactMetaTitle }}">
     <meta property="og:site_name" content="Go Custom Boxes">
 
     <!-- Twitter -->
@@ -43,6 +48,7 @@
     <meta name="twitter:title" content="{{ $contactMetaTitle }}">
     <meta name="twitter:description" content="{{ $contactMetaDescription }}">
     <meta name="twitter:image" content="{{ asset('uploads/Home-Banner.webp') }}">
+    <meta name="twitter:image:alt" content="{{ $contactMetaTitle }}">
 
     @include('components.canonical')
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -325,7 +331,7 @@
         }
 
         .social-media-title {
-            font-size: 0.9375rem;
+            font-size: 0.9375rm;
             font-weight: 600;
             margin: 1.25rem 0 0.9375rem 0;
             color: #fff;

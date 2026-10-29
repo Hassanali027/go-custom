@@ -5,8 +5,29 @@
     @include('components.canonical')
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Get Instant Quote</title>
+    <meta name="theme-color" content="#0B2240">
+    <title>Get Instant Quote | Go Custom Boxes</title>
     <meta name="description" content="Request your free custom quote for luxury rigid packaging boxes. Fast estimates & high quality custom boxes.">
+    <meta name="robots" content="index,follow">
+    <meta name="author" content="Go Custom Boxes">
+    <meta name="publisher" content="Go Custom Boxes">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:locale" content="en_US">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Get Instant Quote | Go Custom Boxes">
+    <meta property="og:description" content="Request your free custom quote for luxury rigid packaging boxes. Fast estimates & high quality custom boxes.">
+    <meta property="og:url" content="{{ rtrim(url('/request-quote'), '/') }}/">
+    <meta property="og:image" content="{{ asset('uploads/Home-Banner.webp') }}">
+    <meta property="og:image:alt" content="Get Instant Custom Packaging Quote - Go Custom Boxes">
+    <meta property="og:site_name" content="Go Custom Boxes">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Get Instant Quote | Go Custom Boxes">
+    <meta name="twitter:description" content="Request your free custom quote for luxury rigid packaging boxes. Fast estimates & high quality custom boxes.">
+    <meta name="twitter:image" content="{{ asset('uploads/Home-Banner.webp') }}">
+    <meta name="twitter:image:alt" content="Get Instant Custom Packaging Quote - Go Custom Boxes">
     
     <!-- Fonts & Icons -->
     <link rel="preconnect" href="https://fonts.googleapis.com">

@@ -1,13 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#0B2240">
     <link rel="icon" href="{{ asset('uploads/go-custom-boxes-favicon.png') }}" type="image/png">
 
     @php
-        $authorName = $author['title'] ?? 'Packaging Specialist';
+        $authorName = !empty(trim((string)($author['title'] ?? ''))) ? trim((string)$author['title']) : 'Packaging Specialist';
         $authorBio = !empty($author['bio']) ? trim(strip_tags((string)$author['bio'])) : (!empty($author['description']) ? trim(strip_tags((string)$author['description'])) : ('Articles and packaging insights by ' . $authorName . ' at Go Custom Boxes.'));
         $authorImg = !empty($author['image']) ? asset($author['image']) : asset('uploads/Home-Banner.webp');
     @endphp
@@ -16,6 +18,8 @@
     <meta name="description" content="{{ $authorBio }}">
     <meta name="keywords" content="{{ strtolower($authorName) }}, packaging specialist, custom boxes, go custom boxes">
     <meta name="robots" content="index,follow">
+    <meta name="author" content="{{ $authorName }}">
+    <meta name="publisher" content="Go Custom Boxes">
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="profile">
@@ -30,6 +34,7 @@
     <meta name="twitter:title" content="{{ $authorName }} | Go Custom Boxes">
     <meta name="twitter:description" content="{{ $authorBio }}">
     <meta name="twitter:image" content="{{ $authorImg }}">
+    <meta name="twitter:creator" content="{{ $authorName }}">
 
     @include('components.canonical')
     <link rel="preconnect" href="https://fonts.googleapis.com">

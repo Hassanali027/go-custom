@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#0B2240">
     <link rel="icon" href="{{ asset('uploads/go-custom-boxes-favicon.png') }}" type="image/png">
     @php
         $homeTitle = !empty($settings['meta_title']) ? $settings['meta_title'] : 'Custom Printed Boxes & Luxury Packaging | Go Custom Boxes';
@@ -15,13 +16,17 @@
     <meta name="keywords" content="{{ $settings['meta_keywords'] }}">
     @endif
     <meta name="robots" content="{{ $settings['robots'] ?? 'index,follow' }}">
+    <meta name="author" content="Go Custom Boxes">
+    <meta name="publisher" content="Go Custom Boxes">
 
     <!-- Open Graph / Facebook -->
+    <meta property="og:locale" content="en_US">
     <meta property="og:type" content="website">
     <meta property="og:title" content="{{ $homeTitle }}">
     <meta property="og:description" content="{{ $homeDesc }}">
-    <meta property="og:url" content="{{ url('/') }}/">
+    <meta property="og:url" content="{{ rtrim(url('/'), '/') }}">
     <meta property="og:image" content="{{ asset('uploads/Home-Banner.webp') }}">
+    <meta property="og:image:alt" content="{{ $homeTitle }}">
     <meta property="og:site_name" content="Go Custom Boxes">
 
     <!-- Twitter -->
@@ -29,6 +34,7 @@
     <meta name="twitter:title" content="{{ $homeTitle }}">
     <meta name="twitter:description" content="{{ $homeDesc }}">
     <meta name="twitter:image" content="{{ asset('uploads/Home-Banner.webp') }}">
+    <meta name="twitter:image:alt" content="{{ $homeTitle }}">
 
     @include('components.canonical')
     <!-- Fonts -->
@@ -2203,16 +2209,21 @@
 
                 <div class="cards-grid">
                     @php
-                    $featuredCatIds = (array) ($settings['featured_categories'] ?? []);
+                    $featuredCatIds = array_map('intval', (array) ($settings['featured_categories'] ?? []));
 
-                    // Categories from Home Settings
-                    $settingCategories = collect($categories)->whereIn('id', $featuredCatIds);
 
-                    // Categories where "Show on home page" is checked
-                    $homeCategories = collect($categories)->where('show_home', 1);
 
-                    // Combine both and ensure no duplicates, limit to 8
-                    $featuredCategories = $homeCategories->merge($settingCategories)->unique('id')->take(8)->all();
+
+
+                    $categoriesById = collect($categories)->keyBy('id');
+                    $featuredCategories = collect($featuredCatIds)
+                        ->map(fn ($id) => $categoriesById->get($id))
+                        ->filter(fn ($cat) => $cat && ($cat['status'] ?? 'published') === 'published')
+                        ->values()
+                        ->all();
+
+
+
                     @endphp
 
                     @if(empty($featuredCategories))

@@ -26,7 +26,7 @@ Route::get('/', function () {
     $products = DB::table('admin_products')->get()->map(fn($r)=>(array)$r)->all();
     $recentBlogs = DB::table('admin_blogs')
         ->leftJoin('admin_authors', 'admin_blogs.author_id', '=', 'admin_authors.id')
-        ->select('admin_blogs.*', 'admin_authors.title as author_name', 'admin_authors.slug as author_slug')
+        ->select('admin_blogs.*', DB::raw('COALESCE(NULLIF(admin_authors.title, ""), NULLIF(admin_blogs.author_name, "")) as author_name'), 'admin_authors.slug as author_slug')
         ->where('admin_blogs.status', 'published')
         ->whereNotNull('admin_blogs.image')
         ->where('admin_blogs.image', '!=', '')
@@ -144,7 +144,7 @@ Route::get('/contact-us/', function () {
 Route::get('/blog', function () {
     $blogs = DB::table('admin_blogs')
         ->leftJoin('admin_authors', 'admin_blogs.author_id', '=', 'admin_authors.id')
-        ->select('admin_blogs.*', 'admin_authors.title as author_name', 'admin_authors.image as author_image', 'admin_authors.slug as author_slug')
+        ->select('admin_blogs.*', DB::raw('COALESCE(NULLIF(admin_authors.title, ""), NULLIF(admin_blogs.author_name, "")) as author_name'), 'admin_authors.image as author_image', 'admin_authors.slug as author_slug')
         ->where('admin_blogs.status', 'published')
         ->whereNotNull('admin_blogs.image')
         ->where('admin_blogs.image', '!=', '')
@@ -162,7 +162,7 @@ Route::get('/blog-detail', function (Illuminate\Http\Request $request) {
         ->leftJoin('admin_authors', 'admin_blogs.author_id', '=', 'admin_authors.id')
         ->select(
             'admin_blogs.*',
-            'admin_authors.title as author_name',
+            DB::raw('COALESCE(NULLIF(admin_authors.title, ""), NULLIF(admin_blogs.author_name, "")) as author_name'),
             'admin_authors.title as joined_author_name',
             'admin_authors.designation as author_designation',
             'admin_authors.designation as joined_author_designation',
@@ -203,7 +203,7 @@ Route::get('/blog-detail', function (Illuminate\Http\Request $request) {
     if (!empty($relatedIds)) {
         $explicitQuery = DB::table('admin_blogs')
             ->leftJoin('admin_authors', 'admin_blogs.author_id', '=', 'admin_authors.id')
-            ->select('admin_blogs.*', 'admin_authors.title as joined_author_name', 'admin_authors.title as author_name', 'admin_authors.slug as joined_author_slug', 'admin_authors.slug as author_slug')
+            ->select('admin_blogs.*', 'admin_authors.title as joined_author_name', DB::raw('COALESCE(NULLIF(admin_authors.title, ""), NULLIF(admin_blogs.author_name, "")) as author_name'), 'admin_authors.slug as joined_author_slug', 'admin_authors.slug as author_slug')
             ->whereIn('admin_blogs.id', $relatedIds)
             ->where('admin_blogs.status', 'published')
             ->whereNotNull('admin_blogs.image')
@@ -232,7 +232,7 @@ Route::get('/blog/{slug}', function ($slug) {
         ->leftJoin('admin_authors', 'admin_blogs.author_id', '=', 'admin_authors.id')
         ->select(
             'admin_blogs.*',
-            'admin_authors.title as author_name',
+            DB::raw('COALESCE(NULLIF(admin_authors.title, ""), NULLIF(admin_blogs.author_name, "")) as author_name'),
             'admin_authors.title as joined_author_name',
             'admin_authors.designation as author_designation',
             'admin_authors.designation as joined_author_designation',
@@ -273,7 +273,7 @@ Route::get('/blog/{slug}', function ($slug) {
     if (!empty($relatedIds)) {
         $explicitQuery = DB::table('admin_blogs')
             ->leftJoin('admin_authors', 'admin_blogs.author_id', '=', 'admin_authors.id')
-            ->select('admin_blogs.*', 'admin_authors.title as joined_author_name', 'admin_authors.title as author_name', 'admin_authors.slug as joined_author_slug', 'admin_authors.slug as author_slug')
+            ->select('admin_blogs.*', 'admin_authors.title as joined_author_name', DB::raw('COALESCE(NULLIF(admin_authors.title, ""), NULLIF(admin_blogs.author_name, "")) as author_name'), 'admin_authors.slug as joined_author_slug', 'admin_authors.slug as author_slug')
             ->whereIn('admin_blogs.id', $relatedIds)
             ->where('admin_blogs.status', 'published')
             ->whereNotNull('admin_blogs.image')

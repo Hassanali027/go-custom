@@ -4,8 +4,29 @@
     <link rel="icon" href="{{ asset('uploads/go-custom-boxes-favicon.png') }}" type="image/png">
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#0B2240">
+        <meta name="author" content="Go Custom Boxes">
+        <meta name="publisher" content="Go Custom Boxes">
 
-        <title>Laravel</title>
+        <title>Go Custom Boxes | Custom Printed Boxes & Luxury Packaging</title>
+        <meta name="description" content="Custom printed rigid packaging boxes at wholesale rates. Premium luxury boxes for retail, cosmetic, and gift packaging.">
+
+        <!-- Open Graph / Facebook -->
+        <meta property="og:locale" content="en_US">
+        <meta property="og:type" content="website">
+        <meta property="og:title" content="Go Custom Boxes | Custom Printed Boxes & Luxury Packaging">
+        <meta property="og:description" content="Custom printed rigid packaging boxes at wholesale rates. Premium luxury boxes for retail, cosmetic, and gift packaging.">
+        <meta property="og:url" content="{{ rtrim(url('/'), '/') }}">
+        <meta property="og:image" content="{{ asset('uploads/Home-Banner.webp') }}">
+        <meta property="og:image:alt" content="Go Custom Boxes">
+        <meta property="og:site_name" content="Go Custom Boxes">
+
+        <!-- Twitter -->
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:title" content="Go Custom Boxes | Custom Printed Boxes & Luxury Packaging">
+        <meta name="twitter:description" content="Custom printed rigid packaging boxes at wholesale rates. Premium luxury boxes for retail, cosmetic, and gift packaging.">
+        <meta name="twitter:image" content="{{ asset('uploads/Home-Banner.webp') }}">
+        <meta name="twitter:image:alt" content="Go Custom Boxes">
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Open+Sans:wght@300;400;600;700;800;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">

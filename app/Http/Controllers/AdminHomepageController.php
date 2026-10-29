@@ -161,8 +161,18 @@ class AdminHomepageController extends Controller
             $settings['popular_hero_image'] = 'uploads/' . $fileName;
         }
 
-        $settings['featured_categories'] = array_map('intval', (array) $request->input('featured_categories', []));
-        $settings['bestseller_products'] = array_map('intval', (array) $request->input('bestseller_products', []));
+        $featuredCatIds = array_map('intval', (array) $request->input('featured_categories', []));
+        $settings['featured_categories'] = $featuredCatIds;
+        DB::table('admin_categories')->whereNotIn('id', $featuredCatIds)->update(['show_home' => 0]);
+        if (!empty($featuredCatIds)) {
+            DB::table('admin_categories')->whereIn('id', $featuredCatIds)->update(['show_home' => 1]);
+        }
+        $bestsellerProductIds = array_map('intval', (array) $request->input('bestseller_products', []));
+        $settings['bestseller_products'] = $bestsellerProductIds;
+        DB::table('admin_products')->whereNotIn('id', $bestsellerProductIds)->update(['show_home' => 0]);
+        if (!empty($bestsellerProductIds)) {
+            DB::table('admin_products')->whereIn('id', $bestsellerProductIds)->update(['show_home' => 1]);
+        }
         $settings['content_section'] = $request->input('content_section');
 
         // Reconstruct FAQs array
